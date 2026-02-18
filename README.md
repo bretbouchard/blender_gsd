@@ -49,10 +49,44 @@ blender_gsd/
 ├── scripts/          # Task runner and artifact scripts
 ├── profiles/         # Export and render profiles
 ├── tasks/            # Task definitions
+├── projects/         # Individual artifact projects
+├── presets/          # Export and render presets
 ├── templates/        # Project templates
 ├── .planning/        # GSD planning documents
 └── .claude/          # Claude configuration (agents, commands)
 ```
+
+## Projects
+
+### neve_knobs
+
+Neve-style audio knob generator with 5 procedural styles:
+
+- **Style 1 (Blue)** - Glossy blue cap, smooth surface
+- **Style 2 (Silver)** - Metallic silver, 24 ridges
+- **Style 3 (Silver Deep)** - Metallic silver, 32 ridges
+- **Style 4 (Silver Shallow)** - Metallic silver, 18 ridges
+- **Style 5 (Red)** - Glossy red with separate skirt
+
+**Features:**
+- Pure Geometry Nodes implementation
+- Real mesh displacement for knurling (not shader bump)
+- Configurable knurl zone, profile, and fade parameters
+- Production-ready GLB export
+
+**Usage:**
+```bash
+# Export single knob
+blender --background --python scripts/run_task.py -- projects/neve_knobs/tasks/knob_style1_blue_gn.yaml
+
+# Output: projects/neve_knobs/build/neve_knob_style1_blue_gn.glb
+```
+
+**Documentation:**
+- [Control Surface Workflow](.planning/CONTROL_SURFACE_WORKFLOW.md)
+- [Knurling System Spec](projects/neve_knobs/docs/KNURLING_SYSTEM_SPEC.md)
+- [Parameter Architecture](.planning/research/PARAMETER_ARCHITECTURE.md)
+
 
 ## Task Format
 
