@@ -11,9 +11,14 @@ Modules:
 - surface_geo: Geometry Nodes builders for surface features
 - faders: Fader configuration and presets
 - fader_geo: Geometry Nodes builders for faders
+- buttons: Button configuration and presets
+- button_geo: Geometry Nodes builders for buttons
 
 Quick Start:
-    from lib.control_system import ParameterHierarchy, get_profile, SurfaceFeatures, FaderConfig
+    from lib.control_system import (
+        ParameterHierarchy, get_profile, SurfaceFeatures,
+        FaderConfig, ButtonConfig
+    )
 
     # Get a knob profile
     profile = get_profile("chicken_head")
@@ -25,6 +30,9 @@ Quick Start:
 
     # Get a fader preset
     fader = get_fader_preset("ssl_4000_channel")
+
+    # Get a button preset
+    button = get_button_preset("neve_1073_momentary")
 
     # Resolve parameters with hierarchy
     hierarchy = ParameterHierarchy()
@@ -95,6 +103,26 @@ from .faders import (
     get_fader_preset,
 )
 
+from .buttons import (
+    # Enums
+    ButtonType,
+    ButtonShape,
+    ButtonSurface,
+    TexturePattern,
+    IlluminationType,
+    TactileFeedback,
+    ActuationForce,
+    CapShape,
+    # Config classes
+    ButtonCapConfig,
+    IlluminationConfig,
+    ButtonConfig,
+    # Presets
+    BUTTON_PRESETS,
+    list_button_presets,
+    get_button_preset,
+)
+
 __all__ = [
     # Parameters
     "ParameterGroup",
@@ -153,6 +181,26 @@ __all__ = [
     "FADER_PRESETS",
     "list_fader_presets",
     "get_fader_preset",
+
+    # Buttons - Enums
+    "ButtonType",
+    "ButtonShape",
+    "ButtonSurface",
+    "TexturePattern",
+    "IlluminationType",
+    "TactileFeedback",
+    "ActuationForce",
+    "CapShape",
+
+    # Buttons - Configs
+    "ButtonCapConfig",
+    "IlluminationConfig",
+    "ButtonConfig",
+
+    # Buttons - Presets
+    "BUTTON_PRESETS",
+    "list_button_presets",
+    "get_button_preset",
 ]
 
-__version__ = "0.3.0"
+__version__ = "0.4.0"

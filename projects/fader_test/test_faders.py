@@ -1,7 +1,8 @@
 """
 Test Fader Geometry Generation
 
-Creates test renders for all fader types and presets.
+Creates test renders for all fader types and presets with clear visualization.
+Uses Workbench renderer with matcap and outlines for clear shape visibility.
 """
 
 from __future__ import annotations
@@ -35,9 +36,14 @@ def clear_scene():
     for mat in bpy.data.materials:
         bpy.data.materials.remove(mat)
 
+    # Clear worlds
+    for world in bpy.data.worlds:
+        if world.name != "World":
+            bpy.data.worlds.remove(world)
+
 
 def setup_render_scene():
-    """Setup basic render scene."""
+    """Setup render scene with Workbench for clear shape visualization."""
     # Camera
     cam = bpy.data.objects.new("Camera", bpy.data.cameras.new("Camera"))
     bpy.context.collection.objects.link(cam)
@@ -49,38 +55,57 @@ def setup_render_scene():
     key = bpy.data.objects.new("KeyLight", bpy.data.lights.new("KeyLight", 'AREA'))
     bpy.context.collection.objects.link(key)
     key.location = (0.2, -0.2, 0.3)
-    key.data.energy = 500
+    key.data.energy = 800
     key.data.size = 0.2
 
     # Fill light
     fill = bpy.data.objects.new("FillLight", bpy.data.lights.new("FillLight", 'AREA'))
     bpy.context.collection.objects.link(fill)
     fill.location = (-0.15, -0.15, 0.2)
-    fill.data.energy = 200
+    fill.data.energy = 400
     fill.data.size = 0.15
 
-    # Render settings
-    bpy.context.scene.render.engine = 'CYCLES'
+    # Rim light
+    rim = bpy.data.objects.new("RimLight", bpy.data.lights.new("RimLight", 'AREA'))
+    bpy.context.collection.objects.link(rim)
+    rim.location = (0, 0.15, 0.1)
+    rim.data.energy = 300
+    rim.data.size = 0.1
+
+    # Render settings - Workbench for cleaner visualization
+    bpy.context.scene.render.engine = 'BLENDER_WORKBENCH'
     bpy.context.scene.render.resolution_x = 1920
     bpy.context.scene.render.resolution_y = 1080
-    bpy.context.scene.cycles.samples = 64
-    bpy.context.scene.render.film_transparent = True
+
+    # Workbench settings for better shape visualization
+    shading = bpy.context.scene.display.shading
+    shading.light = 'MATCAP'
+    shading.show_object_outline = True
+    shading.object_outline_color = (0.0, 0.0, 0.0)  # Black outlines
+    shading.show_shadows = True
+    shading.show_cavity = True
+    shading.cavity_type = 'BOTH'
 
 
-def create_test_material(base_color=(0.4, 0.4, 0.45), metallic=0.0, roughness=0.3):
-    """Create a simple test material."""
-    mat = bpy.data.materials.new("TestMaterial")
-    mat.use_nodes = True
+def create_toon_material(base_color=(0.4, 0.4, 0.45)):
+    """Create a toon/cel shader material for clear visualization."""
+    mat = bpy.data.materials.new("ToonMaterial")
     nt = mat.node_tree
     nt.nodes.clear()
 
-    bsdf = nt.nodes.new("ShaderNodeBsdfPrincipled")
-    bsdf.inputs["Base Color"].default_value = (*base_color, 1.0)
-    bsdf.inputs["Metallic"].default_value = metallic
-    bsdf.inputs["Roughness"].default_value = roughness
+    # Create toon BSDF for cel-shaded look
+    toon = nt.nodes.new("ShaderNodeBsdfToon")
+    toon.inputs["Color"].default_value = (*base_color, 1.0)
+    toon.inputs["Size"].default_value = 0.5
+    toon.inputs["Smooth"].default_value = 0.05
 
+    # Output
     output = nt.nodes.new("ShaderNodeOutputMaterial")
-    nt.links.new(bsdf.outputs["BSDF"], output.inputs["Surface"])
+    nt.links.new(toon.outputs["BSDF"], output.inputs["Surface"])
+
+    # Position nodes
+    toon.location = (-200, 0)
+    output.location = (100, 0)
 
     return mat
 
@@ -116,12 +141,8 @@ def create_fader_object(config: FaderConfig, name: str, x_pos: float = 0.0, y_po
     # Build fader geometry
     fader_geo = build_fader(nk, config, 200, 0)
 
-    # Set material
-    mat = create_test_material(
-        base_color=config.knob.color,
-        metallic=config.knob.metallic,
-        roughness=config.knob.roughness
-    )
+    # Set toon material for clear visualization
+    mat = create_toon_material(base_color=config.knob.color)
     set_mat = nk.n("GeometryNodeSetMaterial", "SetMaterial", 1000, 0)
     set_mat.inputs["Material"].default_value = mat
 
@@ -147,9 +168,7 @@ def test_basic_channel_fader():
             width=0.025,
             depth=0.012,
             height=0.020,
-            color=(0.2, 0.2, 0.22),
-            metallic=0.8,
-            roughness=0.3
+            color=(0.35, 0.35, 0.4),
         ),
         track=TrackConfig(
             style=TrackStyle.COVERED_SLOT,
@@ -324,6 +343,14 @@ def test_knob_styles():
         FaderKnobStyle.TAPERED
     ]
 
+    # Different colors for each style
+    colors = [
+        (0.7, 0.3, 0.3),   # Red
+        (0.3, 0.7, 0.3),   # Green
+        (0.3, 0.3, 0.7),   # Blue
+        (0.7, 0.6, 0.3),   # Gold
+    ]
+
     clear_scene()
     setup_render_scene()
 
@@ -331,7 +358,7 @@ def test_knob_styles():
     output_dir.mkdir(parents=True, exist_ok=True)
 
     # Create 4 faders in a row
-    for i, style in enumerate(styles):
+    for i, (style, color) in enumerate(zip(styles, colors)):
         config = FaderConfig(
             name=f"KnobStyle_{style.name}",
             travel_length=0.080,
@@ -341,9 +368,7 @@ def test_knob_styles():
                 width=0.020,
                 depth=0.010,
                 height=0.015,
-                color=(0.15, 0.15, 0.17),
-                metallic=0.9,
-                roughness=0.2
+                color=color,
             ),
             track=TrackConfig(style=TrackStyle.EXPOSED),
             scale=ScaleConfig(enabled=False),
@@ -366,10 +391,53 @@ def test_knob_styles():
     return True
 
 
+def test_all_presets():
+    """Test 7: All presets side by side."""
+    print("\n=== Test 7: All Presets Comparison ===")
+
+    preset_names = [
+        "ssl_4000_channel",
+        "neve_88rs_channel",
+        "api_vision_channel",
+        "modern_digital",
+        "short_compact",
+        "mini_pocket"
+    ]
+
+    clear_scene()
+    setup_render_scene()
+
+    output_dir = ROOT / "projects/fader_test/build"
+    output_dir.mkdir(parents=True, exist_ok=True)
+
+    # Create faders in a grid (2 rows of 3)
+    for i, preset_name in enumerate(preset_names):
+        config = get_fader_preset(preset_name)
+        row = i // 3
+        col = i % 3
+        x_pos = col * 0.045
+        y_pos = -row * 0.025
+        create_fader_object(config, f"Fader_{preset_name}", x_pos, y_pos)
+
+    bpy.context.view_layer.update()
+
+    # Adjust camera to see all
+    cam = bpy.data.objects["Camera"]
+    cam.location = (0.05, -0.20, 0.15)
+    cam.rotation_euler = (math.radians(70), 0, math.radians(15))
+
+    output_path = str(output_dir / "test7_all_presets.png")
+    bpy.context.scene.render.filepath = output_path
+    bpy.ops.render.render(write_still=True)
+    print(f"  Rendered: {output_path}")
+
+    return True
+
+
 def run_all_tests():
     """Run all fader tests."""
     print("=" * 60)
-    print("Fader Geometry Tests")
+    print("Fader Geometry Tests (Workbench Visualization)")
     print("=" * 60)
 
     tests = [
@@ -379,6 +447,7 @@ def run_all_tests():
         ("Short Fader", test_short_fader),
         ("Mini Fader", test_mini_fader),
         ("Knob Styles", test_knob_styles),
+        ("All Presets Comparison", test_all_presets),
     ]
 
     results = []
