@@ -26,10 +26,24 @@ def main(task_path: str):
     Execute a GSD task file.
 
     Args:
-        task_path: Path to task YAML/JSON file
+        task_path: Path to task YAML/JSON file (relative to ROOT or absolute)
     """
+    # Resolve task path - check if it's in a project subdirectory
+    task_file = pathlib.Path(task_path)
+    if task_file.is_absolute():
+        full_task_path = task_file
+        project_root = task_file.parents[2] if "tasks" in str(task_file) else ROOT
+    else:
+        full_task_path = ROOT / task_path
+        # Check if this is a project path (projects/NAME/tasks/...)
+        parts = task_path.split("/")
+        if len(parts) >= 3 and parts[0] == "projects":
+            project_root = ROOT / parts[0] / parts[1]
+        else:
+            project_root = ROOT
+
     # Load and validate task
-    task = load_task(ROOT / task_path)
+    task = load_task(full_task_path)
     errors = validate_task(task)
     if errors:
         print(f"[ERROR] Task validation failed:")
@@ -39,25 +53,41 @@ def main(task_path: str):
 
     task_id = task["task_id"]
     print(f"[GSD] Running task: {task_id}")
+    print(f"[GSD] Project root: {project_root}")
 
     # Reset scene to clean state
     reset_scene()
     collection = ensure_collection("Generated")
 
     # Import and run the artifact builder
-    # The task file should specify which script to use
+    # First check project scripts, then framework scripts
     script_name = task.get("script", "artifact_example")
-    try:
-        # Dynamic import of the artifact script
-        import importlib.util
-        spec = importlib.util.spec_from_file_location(
-            "artifact_script",
-            ROOT / "scripts" / f"{script_name}.py"
-        )
-        artifact_module = importlib.util.module_from_spec(spec)
-        spec.loader.exec_module(artifact_module)
-    except FileNotFoundError:
-        print(f"[ERROR] Artifact script not found: scripts/{script_name}.py")
+
+    # Try project scripts first
+    script_paths = [
+        project_root / "scripts" / f"{script_name}.py",
+        ROOT / "scripts" / f"{script_name}.py",
+    ]
+
+    artifact_module = None
+    for script_path in script_paths:
+        if script_path.exists():
+            try:
+                import importlib.util
+                spec = importlib.util.spec_from_file_location(
+                    "artifact_script",
+                    script_path
+                )
+                artifact_module = importlib.util.module_from_spec(spec)
+                spec.loader.exec_module(artifact_module)
+                print(f"[GSD] Loaded script: {script_path}")
+                break
+            except Exception as e:
+                print(f"[ERROR] Failed to load script {script_path}: {e}")
+
+    if artifact_module is None:
+        print(f"[ERROR] Artifact script not found: {script_name}")
+        print(f"[ERROR] Searched: {[str(p) for p in script_paths]}")
         sys.exit(1)
 
     # Build the artifact(s)
@@ -67,13 +97,16 @@ def main(task_path: str):
     # Handle outputs
     outputs = task.get("outputs", {})
 
+    # Use project root for output paths
+    output_root = project_root
+
     if "mesh" in outputs:
-        filepath = export_mesh(result["root_objects"], outputs["mesh"], ROOT)
+        filepath = export_mesh(result["root_objects"], outputs["mesh"], output_root)
         print(f"[GSD] Mesh exported: {filepath}")
 
     if "preview" in outputs:
         ensure_render_rig()
-        filepath = render_preview(result["root_objects"], outputs["preview"], ROOT)
+        filepath = render_preview(result["root_objects"], outputs["preview"], output_root)
         print(f"[GSD] Preview rendered: {filepath}")
 
     # Debug visualization
