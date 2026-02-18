@@ -7,13 +7,19 @@ Modules:
 - parameters: Hierarchical parameter resolution
 - colors: Color system with LAB interpolation
 - profiles: Knob geometry profile definitions
+- surface_features: Surface feature configurations (knurling, ribbing, etc.)
+- surface_geo: Geometry Nodes builders for surface features
 
 Quick Start:
-    from lib.control_system import ParameterHierarchy, get_profile
+    from lib.control_system import ParameterHierarchy, get_profile, SurfaceFeatures
 
     # Get a knob profile
     profile = get_profile("chicken_head")
     params = profile.to_params()
+
+    # Get surface features preset
+    features = SurfaceFeatures.from_preset("neve_1073")
+    params.update(features.to_params())
 
     # Resolve parameters with hierarchy
     hierarchy = ParameterHierarchy()
@@ -44,6 +50,26 @@ from .profiles import (
     PROFILES,
 )
 
+from .surface_features import (
+    # Enums
+    KnurlPattern,
+    IndicatorType,
+    GroovePattern,
+    # Config classes
+    KnurlingConfig,
+    RibbingConfig,
+    GrooveConfig,
+    IndicatorConfig,
+    ColletConfig,
+    CapConfig,
+    BacklightConfig,
+    SurfaceFeatures,
+    # Presets
+    SURFACE_PRESETS,
+    list_presets,
+    get_preset,
+)
+
 __all__ = [
     # Parameters
     "ParameterGroup",
@@ -62,6 +88,26 @@ __all__ = [
     "list_profiles",
     "create_custom_profile",
     "PROFILES",
+
+    # Surface Features - Enums
+    "KnurlPattern",
+    "IndicatorType",
+    "GroovePattern",
+
+    # Surface Features - Configs
+    "KnurlingConfig",
+    "RibbingConfig",
+    "GrooveConfig",
+    "IndicatorConfig",
+    "ColletConfig",
+    "CapConfig",
+    "BacklightConfig",
+    "SurfaceFeatures",
+
+    # Surface Features - Presets
+    "SURFACE_PRESETS",
+    "list_presets",
+    "get_preset",
 ]
 
-__version__ = "0.1.0"
+__version__ = "0.2.0"

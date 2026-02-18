@@ -91,33 +91,33 @@
 ## Milestone: v0.4 - Control Surface Design System
 **Target**: TBD
 
-### Phase 5: Core Control System (REQ-CTRL-01, REQ-CTRL-02)
-- [ ] Parameter hierarchy implementation
-- [ ] 9 parameter group loaders
-- [ ] YAML preset system
-- [ ] Color system with semantic tokens
-- [ ] Material system with PBR
-- [ ] Basic geometry generation for knobs
+### Phase 5: Core Control System (REQ-CTRL-01, REQ-CTRL-02) ✅
+- [x] Parameter hierarchy implementation
+- [x] 9 parameter group loaders
+- [x] YAML preset system
+- [x] Color system with semantic tokens
+- [x] Material system with PBR
+- [x] Basic geometry generation for knobs
 
-### Phase 5.1: Knob Geometry Profiles (REQ-CTRL-04)
-- [ ] Chicken head profile
-- [ ] Cylindrical profile
-- [ ] Domed profile
-- [ ] Flattop profile
-- [ ] Soft-touch profile
-- [ ] Pointer profile
-- [ ] Instrument profile
-- [ ] Collet profile
-- [ ] Apex profile
-- [ ] Custom profile loader
+### Phase 5.1: Knob Geometry Profiles (REQ-CTRL-04) ✅
+- [x] Chicken head profile
+- [x] Cylindrical profile
+- [x] Domed profile
+- [x] Flattop profile
+- [x] Soft-touch profile
+- [x] Pointer profile
+- [x] Instrument profile
+- [x] Collet profile
+- [x] Apex profile
+- [x] Custom profile loader
 
-### Phase 5.2: Knob Surface Features (REQ-CTRL-04)
-- [ ] Knurling system
-- [ ] Ribbing system
-- [ ] Groove system
-- [ ] Indicator geometry (line, dot, pointer)
-- [ ] Collet and cap systems
-- [ ] Backlit indicator support
+### Phase 5.2: Knob Surface Features (REQ-CTRL-04) ✅
+- [x] Knurling system (straight, diamond, helical patterns)
+- [x] Ribbing system (horizontal rings)
+- [x] Groove system (single, multi, spiral)
+- [x] Indicator geometry (line, dot, pointer)
+- [x] Collet and cap systems
+- [x] Backlit indicator support
 
 ### Phase 5.3: Fader System (REQ-CTRL-04)
 - [ ] Channel fader geometry

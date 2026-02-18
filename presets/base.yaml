@@ -27,12 +27,104 @@ color_system:
 
 # Knurling defaults
 knurling:
-  count: 0              # No knurling by default
-  depth: 0.001          # 1mm depth
+  enabled: false        # Disabled by default
+  pattern: straight     # straight, diamond, helical
+  count: 30             # Number of ridges
+  depth: 0.0008         # 0.8mm depth
   z_start: 0.0          # Start at bottom (normalized 0-1)
   z_end: 1.0            # End at top (normalized 0-1)
   fade: 0.0             # No fade by default
   profile: 0.5          # Round profile (0=flat, 0.5=round, 1=sharp)
+  cross_angle: 0.0      # Angle for diamond pattern (radians)
+  helix_pitch: 0.0      # Vertical rise per rotation for helical
+
+# Ribbing defaults
+ribbing:
+  enabled: false        # Disabled by default
+  count: 5              # Number of ribs
+  depth: 0.0006         # 0.6mm depth
+  width: 0.001          # 1mm width
+  spacing: 0.002        # 2mm spacing
+  z_start: 0.1          # Start position (normalized)
+  z_end: 0.9            # End position (normalized)
+  profile: 0.5          # Round profile
+  edge_radius: 0.0      # No edge rounding
+
+# Groove defaults
+groove:
+  enabled: false        # Disabled by default
+  pattern: single       # single, multi, spiral
+  depth: 0.001          # 1mm depth
+  width: 0.002          # 2mm width
+  z_position: 0.5       # Position (normalized)
+  count: 1              # Number of grooves (multi pattern)
+  spacing: 0.003        # Spacing between grooves
+  spiral_turns: 2.0     # Rotations for spiral
+  profile: 0.3          # Slightly rounded
+  edge_radius: 0.0      # No edge rounding
+
+# Indicator defaults
+indicator:
+  enabled: true         # Enabled by default
+  type: line            # line, dot, pointer, skirt, engraved, backlit
+  length: 0.012         # 12mm length
+  width: 0.08           # Angular width (radians)
+  height: 0.0005        # 0.5mm height
+  z_offset: 0.0         # Vertical offset
+  radial_offset: 0.0    # Radial offset
+  color: [1.0, 1.0, 1.0]  # White
+  emissive: false       # No emission
+  emissive_strength: 1.0
+  engrave_depth: 0.0005
+  backlight_color: [0.2, 0.8, 1.0]  # Cyan
+  backlight_intensity: 2.0
+  backlight_spread: 0.002
+  dot_diameter: 0.003   # For dot type
+
+# Collet defaults
+collet:
+  enabled: false        # Disabled by default
+  height: 0.010         # 10mm height
+  diameter: 0.020       # 20mm diameter
+  thickness: 0.002      # 2mm wall thickness
+  z_position: 0.0       # Bottom position
+  gap: 0.001            # Gap above collet
+  metallic: 0.9         # Mostly metallic
+  roughness: 0.2        # Slightly polished
+  color: [0.7, 0.7, 0.72]  # Silver
+  knurled: false        # No collet knurling
+  knurl_count: 40
+
+# Cap defaults
+cap:
+  enabled: false        # Disabled by default
+  diameter: 0.012       # 12mm diameter
+  height: 0.003         # 3mm height
+  inset: 0.001          # 1mm inset
+  domed: false          # Flat top
+  dome_radius: 0.006    # For domed style
+  metallic: 0.0         # Non-metallic
+  roughness: 0.3        # Standard
+  color: [0.2, 0.2, 0.2]  # Dark gray
+  has_indicator: false
+  indicator_color: [1.0, 1.0, 1.0]
+
+# Backlight defaults
+backlight:
+  enabled: false        # Disabled by default
+  color: [0.2, 0.8, 1.0]  # Cyan
+  intensity: 2.0
+  spread: 0.003         # 3mm spread
+  animated: false
+  animation_type: static  # static, pulse, breath, chase
+  z_start: 0.0
+  z_end: 1.0
+  ring_angle_start: 0.0
+  ring_angle_end: 6.28318  # 2*pi
+  ring_segments: 16
+  responds_to_value: false
+  value_min: 0.0
+  value_max: 1.0
 
 # Lighting defaults
 lighting:
