@@ -146,3 +146,124 @@ Each Blender project is self-contained.
 - [ ] Project template system
 - [ ] Init command for new projects
 - [ ] Isolated build directories
+
+---
+
+## REQ-CTRL-01: Universal Control Surface System
+**Priority**: P0
+**Status**: Planned
+
+A comprehensive system for generating ANY control surface aesthetic with complete flexibility.
+- Supports knobs, faders, buttons, LEDs, encoders, displays
+- Hierarchical parameter inheritance
+- Style preset system for instant aesthetic changes
+- Smooth morphing between any styles
+
+### Acceptance Criteria
+- [ ] Can generate 10+ knob profile types
+- [ ] Can replicate Neve 1073 aesthetic
+- [ ] Can replicate SSL 4000 aesthetic
+- [ ] Can replicate Roland TR-808 aesthetic
+- [ ] Morphing between any two styles works
+- [ ] All parameters are runtime-adjustable
+
+---
+
+## REQ-CTRL-02: Hierarchical Parameter System
+**Priority**: P0
+**Status**: Planned
+
+Parameters are organized in logical groups with inheritance.
+- Global → Category → Variant → Instance hierarchy
+- Color system with semantic tokens
+- Material system with PBR properties
+- Animation system with easing curves
+- Lighting presets
+
+### Acceptance Criteria
+- [ ] 9 parameter groups defined and implemented
+- [ ] Inheritance chain works correctly
+- [ ] Override at any level works
+- [ ] YAML preset loading works
+
+---
+
+## REQ-CTRL-03: Style Preset Library
+**Priority**: P1
+**Status**: Planned
+
+Comprehensive library of iconic equipment presets.
+- Consoles: Neve, SSL, API, Harrison
+- Synths: Moog, Roland, Sequential, Korg
+- Pedals: Boss, MXR, EHX, boutique
+- Drum machines: 808, 909, MPC, Elektron
+- Outboard: 1176, LA-2A, Pultec
+
+### Acceptance Criteria
+- [ ] 5+ console presets
+- [ ] 5+ synth presets
+- [ ] 5+ pedal presets
+- [ ] 3+ drum machine presets
+- [ ] 3+ outboard gear presets
+
+---
+
+## REQ-CTRL-04: Control Element Types
+**Priority**: P0
+**Status**: Planned
+
+Complete coverage of all control element types.
+
+### Rotary Controls
+- [ ] 10+ knob profiles (chicken head, cylindrical, domed, etc.)
+- [ ] Surface features (knurling, ribbing, grooves)
+- [ ] Indicator types (line, dot, pointer, skirt)
+- [ ] Collet and cap systems
+- [ ] Backlit indicators
+
+### Linear Controls
+- [ ] Channel faders (100mm)
+- [ ] Short faders (60mm)
+- [ ] Mini faders (45mm)
+- [ ] Motorized faders
+- [ ] Touch-sensitive faders
+
+### Buttons/Switches
+- [ ] Momentary buttons
+- [ ] Latching buttons
+- [ ] Illuminated buttons
+- [ ] Cap switch system
+- [ ] Toggle switches
+- [ ] Rotary push-switches
+
+### Indicators
+- [ ] Single LEDs
+- [ ] LED bars
+- [ ] VU meters
+- [ ] 7-segment displays
+- [ ] OLED/LCD placeholders
+
+### Encoders
+- [ ] Detented encoders
+- [ ] Smooth encoders
+- [ ] Push-encoders
+
+---
+
+## REQ-CTRL-05: Morphing Engine
+**Priority**: P1
+**Status**: Planned
+
+Smooth transitions between any control styles.
+- Geometry morphing (blend shapes)
+- Material morphing (property interpolation)
+- Color morphing (color space interpolation)
+- Animation system for transitions
+- Staggered animation support
+
+### Acceptance Criteria
+- [ ] Morph between any two presets
+- [ ] Per-group morph factors
+- [ ] Per-control morph factors
+- [ ] Animation with easing curves
+- [ ] Real-time preview

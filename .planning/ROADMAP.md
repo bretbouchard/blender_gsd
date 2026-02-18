@@ -86,6 +86,92 @@
 
 ---
 
+---
+
+## Milestone: v0.4 - Control Surface Design System
+**Target**: TBD
+
+### Phase 5: Core Control System (REQ-CTRL-01, REQ-CTRL-02)
+- [ ] Parameter hierarchy implementation
+- [ ] 9 parameter group loaders
+- [ ] YAML preset system
+- [ ] Color system with semantic tokens
+- [ ] Material system with PBR
+- [ ] Basic geometry generation for knobs
+
+### Phase 5.1: Knob Geometry Profiles (REQ-CTRL-04)
+- [ ] Chicken head profile
+- [ ] Cylindrical profile
+- [ ] Domed profile
+- [ ] Flattop profile
+- [ ] Soft-touch profile
+- [ ] Pointer profile
+- [ ] Instrument profile
+- [ ] Collet profile
+- [ ] Apex profile
+- [ ] Custom profile loader
+
+### Phase 5.2: Knob Surface Features (REQ-CTRL-04)
+- [ ] Knurling system
+- [ ] Ribbing system
+- [ ] Groove system
+- [ ] Indicator geometry (line, dot, pointer)
+- [ ] Collet and cap systems
+- [ ] Backlit indicator support
+
+### Phase 5.3: Fader System (REQ-CTRL-04)
+- [ ] Channel fader geometry
+- [ ] Short fader geometry
+- [ ] Mini fader geometry
+- [ ] Fader knob styles
+- [ ] Track/scale generation
+- [ ] LED meter integration
+
+### Phase 5.4: Button System (REQ-CTRL-04)
+- [ ] Momentary button geometry
+- [ ] Latching button geometry
+- [ ] Illuminated button system
+- [ ] Cap switch system
+- [ ] Toggle switch geometry
+
+### Phase 5.5: LED/Indicator System (REQ-CTRL-04)
+- [ ] Single LED geometry
+- [ ] LED bar geometry
+- [ ] VU meter geometry
+- [ ] 7-segment placeholder
+- [ ] Emissive material integration
+
+### Phase 5.6: Style Presets - Consoles (REQ-CTRL-03)
+- [ ] Neve 1073 preset
+- [ ] Neve 88RS preset
+- [ ] SSL 4000 E preset
+- [ ] SSL 9000 J preset
+- [ ] API 2500 preset
+
+### Phase 5.7: Style Presets - Synths (REQ-CTRL-03)
+- [ ] Moog Minimoog preset
+- [ ] Roland TR-808 preset
+- [ ] Roland TR-909 preset
+- [ ] Sequential Prophet-5 preset
+- [ ] Korg MS-20 preset
+
+### Phase 5.8: Style Presets - Pedals (REQ-CTRL-03)
+- [ ] Boss Compact preset
+- [ ] MXR Classic preset
+- [ ] Electro-Harmonix Big Muff preset
+- [ ] Ibanez Tube Screamer preset
+- [ ] Strymon preset
+
+### Phase 5.9: Morphing Engine (REQ-CTRL-05)
+- [ ] Geometry morphing
+- [ ] Material morphing
+- [ ] Color morphing (LAB interpolation)
+- [ ] Animation system for transitions
+- [ ] Staggered animation support
+- [ ] Real-time morph preview
+
+---
+
 ## Future Considerations
 
 ### Not Yet Scheduled
@@ -93,3 +179,5 @@
 - Alternative DCC support (Houdini, Maya)
 - Cloud render integration
 - Real-time collaboration
+- Physical simulation (springs, dampers)
+- Audio-reactive visualization
