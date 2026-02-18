@@ -1,0 +1,152 @@
+# Render Pass Presets
+# Configurations for multi-pass rendering and compositing
+
+# Pass groupings for common use cases
+pass_groups:
+  beauty:
+    description: "Standard beauty pass only"
+    passes:
+      - combined
+    use_case: [final_delivery, web]
+
+  data_passes:
+    description: "Data passes for compositing"
+    passes:
+      - depth
+      - normal
+      - vector
+    use_case: [compositing, dof_post, motion_blur_post]
+
+  material_passes:
+    description: "Material component passes"
+    passes:
+      - diffuse_direct
+      - diffuse_indirect
+      - diffuse_color
+      - glossy_direct
+      - glossy_indirect
+      - glossy_color
+      - transmission_direct
+      - transmission_indirect
+      - transmission_color
+    use_case: [material_editing, relighting]
+
+  cryptomatte:
+    description: "Object and material isolation"
+    passes:
+      - cryptomatte_object
+      - cryptomatte_material
+      - cryptomatte_asset
+    use_case: [object_isolation, masking, selection]
+
+  full_production:
+    description: "Complete pass set for production"
+    passes:
+      - combined
+      - depth
+      - normal
+      - vector
+      - diffuse_direct
+      - diffuse_indirect
+      - diffuse_color
+      - glossy_direct
+      - glossy_indirect
+      - glossy_color
+      - transmission_direct
+      - transmission_indirect
+      - transmission_color
+      - emission
+      - environment
+      - shadow
+      - ao
+      - cryptomatte_object
+      - cryptomatte_material
+    use_case: [production, compositing, archive]
+
+  product_minimal:
+    description: "Minimal passes for product renders"
+    passes:
+      - combined
+      - cryptomatte_object
+      - shadow
+    use_case: [product_photography, quick_delivery]
+
+# Pass configuration details
+pass_config:
+  combined:
+    api_attribute: use_pass_combined
+    description: "Full beauty render"
+    always_enabled: true
+
+  depth:
+    api_attribute: use_pass_z
+    description: "Z-depth for DoF and fog"
+    dependencies: []
+
+  normal:
+    api_attribute: use_pass_normal
+    description: "Surface normals"
+    dependencies: [combined]
+
+  vector:
+    api_attribute: use_pass_vector
+    description: "Motion vectors for blur"
+    dependencies: [combined]
+
+  cryptomatte_object:
+    api_attribute: use_pass_cryptomatte_object
+    description: "Object ID matte"
+    dependencies: [combined]
+    levels: 6
+    accurate: true
+
+  cryptomatte_material:
+    api_attribute: use_pass_cryptomatte_material
+    description: "Material ID matte"
+    dependencies: [combined]
+    levels: 6
+    accurate: true
+
+  cryptomatte_asset:
+    api_attribute: use_pass_cryptomatte_asset
+    description: "Asset ID matte"
+    dependencies: [combined]
+    levels: 6
+    accurate: true
+
+  emission:
+    api_attribute: use_pass_emit
+    description: "Emission contribution"
+    dependencies: [combined]
+
+  environment:
+    api_attribute: use_pass_environment
+    description: "Environment lighting"
+    dependencies: [combined]
+
+  shadow:
+    api_attribute: use_pass_shadow
+    description: "Shadow pass"
+    dependencies: [combined]
+
+  ao:
+    api_attribute: use_pass_ambient_occlusion
+    description: "Ambient occlusion"
+    dependencies: [combined]
+
+# EXR output configuration for production
+exr_settings:
+  beauty_only:
+    compression: DWAA
+    depth: 16
+    description: "Good for color data, lossy but fast"
+
+  multi_layer_compositing:
+    compression: ZIP
+    depth: 32
+    description: "Lossless, good balance for passes"
+
+  archive_storage:
+    compression: PIZ
+    depth: 32
+    description: "Best compression, lossless"

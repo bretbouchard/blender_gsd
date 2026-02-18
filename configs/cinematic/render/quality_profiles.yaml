@@ -1,0 +1,90 @@
+# Render Quality Profiles
+# Tiered render settings from viewport to archive quality
+
+profiles:
+  viewport_capture:
+    engine: BLENDER_WORKBENCH
+    resolution:
+      base: 512
+      scale: 100
+    description: "Instant viewport grab, preview only"
+    use_case: [preview, quick_check]
+    estimated_time: instant
+
+  eevee_draft:
+    engine: BLENDER_EEVEE_NEXT
+    resolution:
+      base: 2048
+      scale: 50
+    samples: 16
+    raytracing: false
+    description: "Quick review, seconds to render"
+    use_case: [draft, iteration]
+    estimated_time: seconds
+
+  cycles_preview:
+    engine: CYCLES
+    resolution:
+      base: 2048
+      scale: 100
+    samples: 64
+    adaptive_sampling:
+      enabled: true
+      threshold: 0.02
+      min_samples: 8
+    description: "Review quality, minutes to render"
+    use_case: [preview, review]
+    estimated_time: minutes
+
+  cycles_production:
+    engine: CYCLES
+    resolution:
+      base: 4096
+      scale: 100
+    samples: 256
+    adaptive_sampling:
+      enabled: true
+      threshold: 0.01
+      min_samples: 16
+    description: "Production quality"
+    use_case: [production, final]
+    estimated_time: tens_of_minutes
+
+  cycles_archive:
+    engine: CYCLES
+    resolution:
+      base: 4096
+      scale: 100
+    samples: 1024
+    adaptive_sampling:
+      enabled: true
+      threshold: 0.005
+      min_samples: 32
+    description: "Archive quality, overnight renders"
+    use_case: [archive, master]
+    estimated_time: hours
+
+# Engine identifiers for Blender 5.x API
+# CRITICAL: Use BLENDER_EEVEE_NEXT, not BLENDER_EEVEE (deprecated)
+engine_identifiers:
+  cycles: CYCLES
+  eevee_next: BLENDER_EEVEE_NEXT
+  workbench: BLENDER_WORKBENCH
+
+# Denoiser settings by quality tier
+denoiser_settings:
+  viewport_capture:
+    enabled: false
+  eevee_draft:
+    enabled: false
+  cycles_preview:
+    enabled: true
+    denoiser: OPENIMAGEDENOISE
+  cycles_production:
+    enabled: true
+    denoiser: OPTIX
+    fallback: OPENIMAGEDENOISE
+  cycles_archive:
+    enabled: true
+    denoiser: OPTIX
+    fallback: OPENIMAGEDENOISE
