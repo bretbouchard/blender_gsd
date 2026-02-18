@@ -907,11 +907,12 @@ def build_collet(
     inner.inputs["Depth"].default_value = config.height + 0.001  # Slightly taller
 
     # Subtract inner from outer using difference boolean
-    # Note: Geometry Nodes uses Mesh Boolean node
+    # Note: Blender 5.x uses different socket names
     bool_diff = nk.n("GeometryNodeMeshBoolean", "ColletBool", X + 400, Y)
     bool_diff.operation = "DIFFERENCE"
-    nk.link(outer.outputs["Mesh"], bool_diff.inputs["Mesh A"])
-    nk.link(inner.outputs["Mesh"], bool_diff.inputs["Mesh B"])
+    # Use index-based access for compatibility
+    nk.link(outer.outputs["Mesh"], bool_diff.inputs[0])  # Mesh A / first mesh
+    nk.link(inner.outputs["Mesh"], bool_diff.inputs[1])  # Mesh B / second mesh
 
     # Position
     transform = nk.n("GeometryNodeTransform", "ColletTransform", X + 600, Y)
