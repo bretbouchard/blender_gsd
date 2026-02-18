@@ -1,0 +1,66 @@
+# Lens Presets
+# Focal lengths from 14mm ultra-wide to 135mm telephoto, plus macro and vintage
+
+lenses:
+  # Wide angle
+  14mm_ultra_wide:
+    focal_length: 14
+    description: "Dramatic distortion, epic establishing shots"
+    distortion: 0.08
+    vignette: 0.4
+    use_case: establishing
+
+  24mm_wide:
+    focal_length: 24
+    description: "Environmental context, slight distortion"
+    distortion: 0.03
+    vignette: 0.2
+    use_case: environmental
+
+  # Normal
+  35mm_documentary:
+    focal_length: 35
+    description: "Natural field of view, street feel"
+    distortion: 0.01
+    vignette: 0.1
+    use_case: documentary
+
+  50mm_normal:
+    focal_length: 50
+    description: "Most natural, human eye equivalent"
+    distortion: 0.0
+    vignette: 0.05
+    use_case: hero
+
+  # Portrait
+  85mm_portrait:
+    focal_length: 85
+    description: "Flattering compression, background separation"
+    distortion: 0.0
+    vignette: 0.1
+    use_case: portrait
+
+  135mm_telephoto:
+    focal_length: 135
+    description: "Strong compression, isolated subject"
+    distortion: 0.0
+    vignette: 0.15
+    use_case: detail
+
+  # Macro
+  90mm_macro:
+    focal_length: 90
+    description: "Close focus, extreme detail"
+    minimum_focus: 0.15
+    distortion: 0.0
+    use_case: macro
+
+  # Vintage / Character Lenses
+  helios_44_2:
+    focal_length: 58
+    description: "Vintage Soviet, swirly bokeh"
+    distortion: 0.02
+    vignette: 0.5
+    flare: intense
+    bokeh_swirl: 0.7
+    chromatic_aberration: 0.004

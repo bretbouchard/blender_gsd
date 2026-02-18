@@ -1,0 +1,39 @@
+# Sensor Size Presets
+# Standard sensor dimensions for different camera formats
+
+sensors:
+  full_frame:
+    width: 36.0
+    height: 24.0
+    description: "Full frame 35mm (most common)"
+    crop_factor: 1.0
+
+  aps_c:
+    width: 23.5
+    height: 15.6
+    description: "APS-C (crop sensor)"
+    crop_factor: 1.5
+
+  micro_four_thirds:
+    width: 17.3
+    height: 13.0
+    description: "Micro Four Thirds"
+    crop_factor: 2.0
+
+  super_35:
+    width: 24.89
+    height: 18.66
+    description: "Super 35 cinema"
+    crop_factor: 1.45
+
+  red_monstro:
+    width: 40.96
+    height: 21.6
+    description: "RED Monstro 8K VV"
+    crop_factor: 0.88
+
+  arri_alexa_lf:
+    width: 36.7
+    height: 25.54
+    description: "ARRI Alexa LF"
+    crop_factor: 0.98

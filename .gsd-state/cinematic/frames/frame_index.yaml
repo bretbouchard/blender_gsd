@@ -1,0 +1,11 @@
+# Frame Store Index
+# Tracks all saved frames for A/B comparison workflow
+#
+# Structure:
+# shots:
+#   shot_name:
+#     frames: [1, 2, 3, ...]
+#     current: 3
+
+version: 1
+shots: {}

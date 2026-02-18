@@ -1,0 +1,40 @@
+# Lens Imperfection Presets
+# Realistic lens character for cinematic look
+
+imperfections:
+  cooke_s4:
+    description: "Cooke S4 - Warm, organic character"
+    flare:
+      enabled: true
+      intensity: 0.3
+      streaks: 6
+    vignette: 0.15
+    chromatic_aberration: 0.001
+    bokeh_shape: rounded
+
+  arri_master_prime:
+    description: "ARRI Master Prime - Clean, sharp"
+    flare:
+      enabled: true
+      intensity: 0.15
+      streaks: 8
+    vignette: 0.08
+    chromatic_aberration: 0.0005
+    bokeh_shape: circular
+
+  vintage_helios:
+    description: "Helios 44-2 - Swirly bokeh, heavy flare"
+    flare:
+      enabled: true
+      intensity: 0.6
+      streaks: 16
+    vignette: 0.4
+    chromatic_aberration: 0.004
+    bokeh_swirl: 0.7
+
+  clean:
+    description: "Minimal imperfections"
+    flare:
+      enabled: false
+    vignette: 0.0
+    chromatic_aberration: 0.0

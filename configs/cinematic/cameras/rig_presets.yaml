@@ -1,0 +1,50 @@
+# Camera Rig Presets
+# Motion control systems for camera movement
+
+rigs:
+  tripod:
+    description: "Static with pan/tilt"
+    degrees_of_freedom: [pan, tilt]
+    constraints:
+      position_locked: true
+
+  tripod_orbit:
+    description: "Orbit around plumb bob"
+    motion:
+      type: orbit
+      axis: z
+      range: [0, 360]
+
+  dolly:
+    description: "Linear track movement"
+    track:
+      type: linear
+      direction: forward
+    wheels: false
+
+  dolly_curved:
+    description: "Curved track for arc shots"
+    track:
+      type: bezier
+      control_points: auto
+
+  crane:
+    description: "3D arc movement"
+    arm_length: 3.0
+    max_height: 5.0
+    motion:
+      type: arc_3d
+
+  steadicam:
+    description: "Smooth handheld simulation"
+    smoothing:
+      position: 0.8
+      rotation: 0.9
+    human_motion: true
+
+  drone:
+    description: "Free-flight path following"
+    motion:
+      type: path
+      speed: constant
+    constraints: none
