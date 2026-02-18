@@ -178,10 +178,13 @@
 **Requirements**: `.planning/REQUIREMENTS_CINEMATIC.md`
 
 ### Phase 6.0: Foundation (REQ-CINE-01)
-- [ ] `lib/cinematic/` module structure
-- [ ] Base classes and types
-- [ ] Configuration directory structure
-- [ ] State persistence framework
+**Goal:** Establish foundational module structure, configuration directories, and state persistence framework for the cinematic rendering system.
+**Plans:** 3 plans
+
+Plans:
+- [ ] 06-01-PLAN.md — Create lib/cinematic/ Python package with types, enums, and state persistence
+- [ ] 06-02-PLAN.md — Create configuration directory structure with 21 YAML preset files
+- [ ] 06-03-PLAN.md — Create state persistence directory structure with frame index
 
 ### Phase 6.1: Camera System (REQ-CINE-CAM, REQ-CINE-PLUMB)
 - [ ] camera.py - transforms, rig mounting
