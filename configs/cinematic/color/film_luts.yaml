@@ -1,0 +1,73 @@
+# Film LUT Presets
+# Film stock emulation LUTs for cinematic looks
+
+film:
+  kodak_2383:
+    file: luts/kodak_2383.cube
+    description: "Classic Kodak Vision3 print film"
+    intensity: 1.0
+    size: 33
+    colorspace_in: Linear
+    colorspace_out: sRGB
+    use_case: [cinematic, warm]
+    intensity_default: 0.8
+
+  fuji_3510:
+    file: luts/fuji_3510.cube
+    description: "Fuji film stock"
+    intensity: 1.0
+    size: 33
+    colorspace_in: Linear
+    colorspace_out: sRGB
+    use_case: [cinematic, cool]
+    intensity_default: 0.8
+
+  cineon:
+    file: luts/cineon.cube
+    description: "Log film scan look"
+    intensity: 0.8
+    size: 33
+    colorspace_in: Log
+    colorspace_out: sRGB
+    use_case: [cinematic, flat]
+    intensity_default: 0.7
+
+  kodak_5219:
+    file: luts/kodak_5219.cube
+    description: "Kodak Vision3 500T negative film"
+    intensity: 1.0
+    size: 33
+    colorspace_in: Linear
+    colorspace_out: sRGB
+    use_case: [cinematic, low_light]
+    intensity_default: 0.75
+
+  fuji_400:
+    file: luts/fuji_400.cube
+    description: "Fuji 400H film stock"
+    intensity: 1.0
+    size: 33
+    colorspace_in: Linear
+    colorspace_out: sRGB
+    use_case: [portrait, pastel]
+    intensity_default: 0.7
+
+  portra_400:
+    file: luts/portra_400.cube
+    description: "Kodak Portra 400 portrait film"
+    intensity: 1.0
+    size: 33
+    colorspace_in: Linear
+    colorspace_out: sRGB
+    use_case: [portrait, natural]
+    intensity_default: 0.7
+
+  vision3_250d:
+    file: luts/vision3_250d.cube
+    description: "Kodak Vision3 250D daylight film"
+    intensity: 1.0
+    size: 33
+    colorspace_in: Linear
+    colorspace_out: sRGB
+    use_case: [cinematic, daylight]
+    intensity_default: 0.8

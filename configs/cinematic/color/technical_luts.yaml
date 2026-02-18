@@ -1,0 +1,59 @@
+# Technical LUT Presets
+# Color space conversion and display transform LUTs
+
+technical:
+  rec709:
+    file: luts/rec709.cube
+    description: "Standard Rec.709 display"
+    type: display
+    size: 65
+    colorspace_in: Rec709
+    colorspace_out: sRGB
+
+  srgb:
+    file: luts/srgb.cube
+    description: "sRGB display"
+    type: display
+    size: 65
+    colorspace_in: Linear
+    colorspace_out: sRGB
+
+  p3_dci:
+    file: luts/p3_dci.cube
+    description: "DCI-P3 display"
+    type: display
+    size: 65
+    colorspace_in: DCI-P3
+    colorspace_out: sRGB
+
+  aces_cg:
+    file: luts/aces_cg.cube
+    description: "ACEScg working space"
+    type: working
+    size: 65
+    colorspace_in: ACEScg
+    colorspace_out: Rec709
+
+  linear_to_log:
+    file: luts/linear_to_log.cube
+    description: "Linear to Log encoding"
+    type: encoding
+    size: 65
+    colorspace_in: Linear
+    colorspace_out: Log
+
+  rec709_to_srgb:
+    file: luts/rec709_to_srgb.cube
+    description: "Rec.709 to sRGB conversion"
+    type: conversion
+    size: 65
+    colorspace_in: Rec709
+    colorspace_out: sRGB
+
+  acescg_to_rec709:
+    file: luts/acescg_to_rec709.cube
+    description: "ACEScg to Rec.709 working space conversion"
+    type: conversion
+    size: 65
+    colorspace_in: ACEScg
+    colorspace_out: Rec709

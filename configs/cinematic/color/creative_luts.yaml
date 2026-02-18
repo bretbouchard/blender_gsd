@@ -1,0 +1,103 @@
+# Creative LUT Presets
+# Artistic and cinematic color grades
+
+creative:
+  # Cinematic Looks
+  cinematic_teal_orange:
+    file: luts/teal_orange.cube
+    description: "Classic Hollywood teal and orange look"
+    intensity: 0.8
+    size: 33
+    use_case: [action, blockbuster]
+    intensity_default: 0.6
+
+  cinematic_bleach_bypass:
+    file: luts/bleach_bypass.cube
+    description: "Desaturated, high contrast look"
+    intensity: 0.7
+    size: 33
+    use_case: [dramatic, thriller]
+    intensity_default: 0.5
+
+  cinematic_vintage:
+    file: luts/vintage_film.cube
+    description: "Aged film stock look"
+    intensity: 0.6
+    size: 33
+    use_case: [nostalgic, period]
+    intensity_default: 0.5
+
+  # Product Photography Looks
+  product_clean:
+    file: luts/product_clean.cube
+    description: "Clean, neutral product look"
+    intensity: 0.5
+    size: 33
+    use_case: [product, catalog]
+    intensity_default: 0.4
+
+  product_vibrant:
+    file: luts/product_vibrant.cube
+    description: "Saturated, vibrant product look"
+    intensity: 0.6
+    size: 33
+    use_case: [product, marketing]
+    intensity_default: 0.5
+
+  product_luxury:
+    file: luts/product_luxury.cube
+    description: "High-end luxury product look"
+    intensity: 0.5
+    size: 33
+    use_case: [product, premium]
+    intensity_default: 0.4
+
+  # Mood Looks
+  moody_blue:
+    file: luts/moody_blue.cube
+    description: "Cool, moody atmosphere"
+    intensity: 0.7
+    size: 33
+    use_case: [mood, atmospheric]
+    intensity_default: 0.5
+
+  warm_golden:
+    file: luts/warm_golden.cube
+    description: "Warm, golden hour feel"
+    intensity: 0.6
+    size: 33
+    use_case: [warm, inviting]
+    intensity_default: 0.5
+
+  high_contrast_noir:
+    file: luts/noir.cube
+    description: "High contrast black and white"
+    intensity: 1.0
+    size: 33
+    use_case: [dramatic, bw]
+    intensity_default: 0.8
+
+  # Genre Looks
+  cyberpunk:
+    file: luts/cyberpunk.cube
+    description: "Neon-drenched cyberpunk aesthetic"
+    intensity: 0.7
+    size: 33
+    use_case: [scifi, neon]
+    intensity_default: 0.5
+
+  retro_80s:
+    file: luts/retro_80s.cube
+    description: "1980s retro aesthetic"
+    intensity: 0.6
+    size: 33
+    use_case: [retro, synthwave]
+    intensity_default: 0.5
+
+  desaturated_documentary:
+    file: luts/documentary.cube
+    description: "Muted, documentary style"
+    intensity: 0.5
+    size: 33
+    use_case: [documentary, natural]
+    intensity_default: 0.4

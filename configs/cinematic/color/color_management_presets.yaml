@@ -1,0 +1,75 @@
+# Color Management Presets
+# View transform and color space configurations
+
+presets:
+  # Standard display
+  srgb_standard:
+    display_device: sRGB
+    view_transform: Standard
+    look: None
+    exposure: 0.0
+    gamma: 1.0
+    description: "Standard sRGB display"
+
+  # AgX default (recommended)
+  agx_default:
+    display_device: sRGB
+    view_transform: AgX
+    look: AgX Default Medium High Contrast
+    exposure: 0.0
+    gamma: 1.0
+    description: "AgX default - recommended for most work"
+
+  # AgX for product shots
+  agx_product:
+    display_device: sRGB
+    view_transform: AgX
+    look: AgX Default Low Contrast
+    exposure: 0.0
+    gamma: 1.0
+    description: "AgX low contrast - product photography"
+
+  # AgX for dramatic
+  agx_dramatic:
+    display_device: sRGB
+    view_transform: AgX
+    look: AgX Default High Contrast
+    exposure: 0.0
+    gamma: 1.0
+    description: "AgX high contrast - dramatic shots"
+
+  # ACEScg (if using ACES workflow)
+  acescg:
+    display_device: sRGB
+    view_transform: ACEScg
+    look: None
+    exposure: 0.0
+    gamma: 1.0
+    description: "ACEScg working space"
+
+  # Filmic (legacy)
+  filmic:
+    display_device: sRGB
+    view_transform: Filmic
+    look: Filmic Medium High Contrast
+    exposure: 0.0
+    gamma: 1.0
+    description: "Filmic view transform (legacy)"
+
+  # Raw (for compositing)
+  raw:
+    display_device: None
+    view_transform: Raw
+    look: None
+    exposure: 0.0
+    gamma: 1.0
+    description: "Raw linear for compositing"
+
+  # Log (for grading)
+  log:
+    display_device: sRGB
+    view_transform: Log
+    look: None
+    exposure: 0.0
+    gamma: 1.0
+    description: "Log encoding for color grading"
