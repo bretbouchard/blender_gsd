@@ -4,7 +4,7 @@ Procedural Neve-style audio knobs generated with Blender Geometry Nodes and Shad
 
 ## Preview
 
-![All 5 Knob Styles](build/neve_knobs_all.png)
+![All 5 Knob Styles](build/neve_knobs_preview.png)
 
 ## Knob Styles
 
@@ -28,7 +28,7 @@ for style in 1 2 3 4 5; do
 done
 
 # Render composite image
-blender -b -P projects/neve_knobs/scripts/render_knobs.py
+blender -b -P projects/neve_knobs/scripts/render_final.py
 ```
 
 ## Parameters
@@ -59,4 +59,4 @@ parameters:
 - `build/neve_knob_style3_silver.glb`
 - `build/neve_knob_style4_silver.glb`
 - `build/neve_knob_style5_red.glb`
-- `build/neve_knobs_all.png` (composite render)
+- `build/neve_knobs_preview.png` (composite render)
