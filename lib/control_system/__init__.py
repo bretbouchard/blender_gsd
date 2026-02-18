@@ -123,6 +123,26 @@ from .buttons import (
     get_button_preset,
 )
 
+from .leds import (
+    # Enums
+    LEDType,
+    LEDShape,
+    LEDLens,
+    BezelStyle,
+    BarDirection,
+    ColorZone,
+    # Config classes
+    BezelConfig,
+    LEDConfig,
+    LEDBarConfig,
+    VUMeterConfig,
+    SevenSegmentConfig,
+    # Presets
+    LED_PRESETS,
+    list_led_presets,
+    get_led_preset,
+)
+
 __all__ = [
     # Parameters
     "ParameterGroup",
@@ -201,6 +221,26 @@ __all__ = [
     "BUTTON_PRESETS",
     "list_button_presets",
     "get_button_preset",
+
+    # LEDs - Enums
+    "LEDType",
+    "LEDShape",
+    "LEDLens",
+    "BezelStyle",
+    "BarDirection",
+    "ColorZone",
+
+    # LEDs - Configs
+    "BezelConfig",
+    "LEDConfig",
+    "LEDBarConfig",
+    "VUMeterConfig",
+    "SevenSegmentConfig",
+
+    # LEDs - Presets
+    "LED_PRESETS",
+    "list_led_presets",
+    "get_led_preset",
 ]
 
-__version__ = "0.4.0"
+__version__ = "0.5.0"
