@@ -1,0 +1,20 @@
+name: base_turntable
+abstract: true
+
+camera:
+  lens:
+    preset: 50mm_normal
+    aperture: f/8
+
+animation:
+  turntable:
+    enabled: true
+    subject_rotation: true
+    duration: 120
+
+lighting:
+  rig: three_point_soft
+
+backdrop:
+  type: infinite_curve
+  preset: gray_studio

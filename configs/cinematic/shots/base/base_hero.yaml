@@ -1,0 +1,17 @@
+name: base_hero
+abstract: true
+
+camera:
+  lens:
+    preset: 85mm_portrait
+    aperture: f/4
+
+lighting:
+  rig: three_point_soft
+
+backdrop:
+  type: infinite_curve
+  preset: white_studio
+
+color:
+  view_transform: AgX Default Medium High Contrast
