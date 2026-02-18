@@ -190,19 +190,25 @@ Plans:
 ### Phase 6.1: Camera System (REQ-CINE-CAM, REQ-CINE-PLUMB)
 **Goal:** Implement comprehensive camera system with lenses, sensor presets, camera rigs, and plumb bob targeting system.
 **Plans:** 5 plans
+**Completed:** 2026-02-18
 
 Plans:
-- [ ] 06.1-01-PLAN.md - Extend types.py with PlumbBobConfig, RigConfig, ImperfectionConfig, MultiCameraLayout dataclasses; create preset_loader.py
-- [ ] 06.1-02-PLAN.md - Create camera.py with camera creation, DoF configuration, and preset application
-- [ ] 06.1-03-PLAN.md - Create plumb_bob.py with targeting system (auto/manual/object modes)
-- [ ] 06.1-04-PLAN.md - Create lenses.py with compositor-based imperfections (vignette, chromatic aberration, flare)
-- [ ] 06.1-05-PLAN.md - Create rigs.py with camera rig constraints (tripod, dolly, crane, steadicam, drone) and multi-camera layouts
+- [x] 06.1-01-PLAN.md - Extend types.py with PlumbBobConfig, RigConfig, ImperfectionConfig, MultiCameraLayout dataclasses; create preset_loader.py
+- [x] 06.1-02-PLAN.md - Create camera.py with camera creation, DoF configuration, and preset application
+- [x] 06.1-03-PLAN.md - Create plumb_bob.py with targeting system (auto/manual/object modes)
+- [x] 06.1-04-PLAN.md - Create lenses.py with compositor-based imperfections (vignette, chromatic aberration, flare)
+- [x] 06.1-05-PLAN.md - Create rigs.py with camera rig constraints (tripod, dolly, crane, steadicam, drone) and multi-camera layouts
 
 ### Phase 6.2: Lighting System (REQ-CINE-LIGHT)
-- [ ] lighting.py - rigs, individual lights
-- [ ] Lighting rig presets (3-point, product, studio)
-- [ ] HDRI system with multi-path search
-- [ ] Gel/diffusion system
+**Goal:** Implement comprehensive lighting system with area/spot/point/sun lights, HDRI environment, gel system, light linking, and 8+ preset rigs.
+**Plans:** 5 plans
+
+Plans:
+- [ ] 06.2-01-PLAN.md - Extend LightConfig with type-specific properties; add GelConfig, HDRIConfig, LightRigConfig dataclasses; add lighting preset loaders
+- [ ] 06.2-02-PLAN.md - Create lighting.py with create_light, create_area_light, create_spot_light, setup_light_linking, apply_lighting_rig
+- [ ] 06.2-03-PLAN.md - Create gel.py with apply_gel, create_gel_from_preset, kelvin_to_rgb, combine_gels
+- [ ] 06.2-04-PLAN.md - Create hdri.py with setup_hdri, load_hdri_preset, find_hdri_path, clear_hdri
+- [ ] 06.2-05-PLAN.md - Update __init__.py with all lighting exports and version bump to 0.1.2
 
 ### Phase 6.3: Backdrop System (REQ-CINE-ENV)
 - [ ] backdrops.py - curves, gradients, HDRI
