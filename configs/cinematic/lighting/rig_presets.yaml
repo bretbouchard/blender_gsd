@@ -1,0 +1,161 @@
+# Lighting Rig Presets
+# Pre-configured lighting setups for various shot types
+
+rigs:
+  # Classic Setups
+  three_point_soft:
+    description: "Classic 3-point with soft shadows"
+    lights:
+      key:
+        position_mode: angle_distance
+        angle: 45
+        elevation: 30
+        distance: 1.5
+        intensity_ratio: 1.0
+        softness: 0.8
+
+      fill:
+        position_mode: angle_distance
+        angle: -45
+        elevation: 15
+        distance: 2.0
+        intensity_ratio: 0.4
+        softness: 0.9
+
+      rim:
+        position_mode: angle_distance
+        angle: 160
+        elevation: 45
+        distance: 1.5
+        intensity_ratio: 0.7
+        softness: 0.3
+
+  three_point_hard:
+    description: "Dramatic 3-point with hard shadows"
+    extends: three_point_soft
+    lights:
+      key:
+        softness: 0.1
+      fill:
+        intensity_ratio: 0.2
+        softness: 0.3
+
+  # Product Lighting
+  product_hero:
+    description: "Clean product photography"
+    lights:
+      overhead_softbox:
+        type: area
+        position: [0, 0, 2.0]
+        rotation: [-90, 0, 0]
+        size: [2.0, 2.0]
+        intensity: 1500
+        softness: 1.0
+
+      fill_card_left:
+        type: area
+        position: [-1.0, 0, 0.5]
+        rotation: [0, 60, 0]
+        size: [0.5, 1.0]
+        intensity: 200
+        softness: 1.0
+
+      fill_card_right:
+        type: area
+        position: [1.0, 0, 0.5]
+        rotation: [0, -60, 0]
+        size: [0.5, 1.0]
+        intensity: 200
+        softness: 1.0
+
+  product_dramatic:
+    description: "Dramatic product shot with mood"
+    lights:
+      key_spot:
+        type: spot
+        angle: 45
+        elevation: 60
+        distance: 1.0
+        intensity: 2000
+        spot_size: 30
+        softness: 0.2
+
+      rim:
+        type: area
+        angle: 170
+        elevation: 30
+        distance: 1.2
+        intensity: 800
+
+  # Studio Environments
+  studio_high_key:
+    description: "Bright, minimal shadows"
+    hdri:
+      file: studio_bright.hdr
+      intensity: 1.5
+      rotation: 0
+
+    lights:
+      fill_ambient:
+        type: area
+        position: [0, 0, 3.0]
+        rotation: [-90, 0, 0]
+        size: [5.0, 5.0]
+        intensity: 500
+
+  studio_low_key:
+    description: "Dark, dramatic, selective lighting"
+    hdri:
+      file: black.hdr
+      intensity: 0
+
+    lights:
+      key_narrow:
+        type: spot
+        angle: 30
+        elevation: 45
+        distance: 0.8
+        intensity: 3000
+        spot_size: 15
+        gobo: barn_doors
+
+  # Control Surface Specific
+  console_overhead:
+    description: "Top-down console view"
+    lights:
+      overhead:
+        type: area
+        position: [0, -0.5, 1.5]
+        rotation: [-70, 0, 0]
+        size: [1.0, 0.8]
+        intensity: 1200
+
+      screen_glow:
+        type: area
+        position: [0, -0.3, 0.1]
+        rotation: [-90, 0, 0]
+        size: [0.3, 0.2]
+        intensity: 50
+        color: [0.8, 0.9, 1.0]
+
+  mixer_angle:
+    description: "Angled mixer shot"
+    lights:
+      key:
+        angle: 60
+        elevation: 35
+        distance: 1.2
+        intensity: 1000
+
+      fill:
+        angle: -30
+        elevation: 20
+        distance: 1.8
+        intensity: 300
+
+      indicator_glow:
+        type: point
+        position: [0, 0, 0.05]
+        intensity: 100
+        color: [0.2, 0.8, 1.0]
+        radius: 0.01

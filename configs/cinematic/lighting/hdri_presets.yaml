@@ -1,0 +1,69 @@
+# HDRI Environment Presets
+# High dynamic range environment maps for realistic lighting
+
+hdri:
+  # Studio HDRIs
+  studio_bright:
+    file: assets/hdri/studio_bright_4k.hdr
+    description: "Clean bright studio"
+    exposure: 0
+    rotation: 0
+    background_visible: false
+
+  studio_soft:
+    file: assets/hdri/studio_soft_4k.hdr
+    description: "Soft diffused studio light"
+    exposure: 0.5
+    rotation: 0
+    background_visible: false
+
+  # Environment HDRIs
+  overcast_day:
+    file: assets/hdri/overcast_4k.hdr
+    description: "Soft outdoor light"
+    exposure: 0
+    rotation: auto
+    background_visible: true
+
+  golden_hour:
+    file: assets/hdri/golden_hour_4k.hdr
+    description: "Warm sunset light"
+    exposure: -0.5
+    rotation: auto
+    background_visible: true
+
+  night_city:
+    file: assets/hdri/night_city_4k.hdr
+    description: "Urban night environment"
+    exposure: 1.0
+    background_visible: true
+
+  # Abstract HDRIs
+  cyberpunk_neon:
+    file: assets/hdri/cyberpunk_neon_4k.hdr
+    description: "Neon-lit cyberpunk environment"
+    exposure: 0
+    saturation: 1.2
+    background_visible: true
+
+  # Product Photography HDRIs
+  product_white:
+    file: assets/hdri/product_white_4k.hdr
+    description: "White seamless product lighting"
+    exposure: 0.3
+    rotation: 0
+    background_visible: false
+
+  product_gray:
+    file: assets/hdri/product_gray_4k.hdr
+    description: "Neutral gray product lighting"
+    exposure: 0
+    rotation: 0
+    background_visible: false
+
+  product_black:
+    file: assets/hdri/product_black_4k.hdr
+    description: "Dark dramatic product lighting"
+    exposure: 1.5
+    rotation: 0
+    background_visible: false

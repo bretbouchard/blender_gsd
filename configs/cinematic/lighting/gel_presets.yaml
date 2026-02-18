@@ -1,0 +1,101 @@
+# Gel Presets
+# Color correction and creative gels for lighting
+
+gels:
+  # Color Temperature Correction
+  cto_full:
+    name: "Full CTO"
+    description: "Convert daylight to tungsten (5500K to 3200K)"
+    color: [1.0, 0.77, 0.56]
+    temperature_shift: -2300
+
+  cto_half:
+    name: "Half CTO"
+    description: "Moderate warming (5500K to 3800K)"
+    color: [1.0, 0.88, 0.75]
+    temperature_shift: -1700
+
+  cto_quarter:
+    name: "Quarter CTO"
+    description: "Slight warming (5500K to 4500K)"
+    color: [1.0, 0.94, 0.88]
+    temperature_shift: -1000
+
+  ctb_full:
+    name: "Full CTB"
+    description: "Convert tungsten to daylight (3200K to 5500K)"
+    color: [0.64, 0.83, 1.0]
+    temperature_shift: +2300
+
+  ctb_half:
+    name: "Half CTB"
+    description: "Moderate cooling (3200K to 4500K)"
+    color: [0.80, 0.90, 1.0]
+    temperature_shift: +1300
+
+  ctb_quarter:
+    name: "Quarter CTB"
+    description: "Slight cooling (3200K to 4000K)"
+    color: [0.90, 0.95, 1.0]
+    temperature_shift: +800
+
+  # Diffusion
+  diffusion_full:
+    name: "Full Diffusion"
+    description: "Heavy diffusion, very soft light"
+    softness: 1.0
+    transmission: 0.7
+
+  diffusion_half:
+    name: "Half Diffusion"
+    description: "Moderate diffusion"
+    softness: 0.6
+    transmission: 0.85
+
+  diffusion_quarter:
+    name: "Quarter Diffusion"
+    description: "Light diffusion"
+    softness: 0.3
+    transmission: 0.95
+
+  # Creative Colors
+  creative_red:
+    name: "Creative Red"
+    description: "Dramatic red accent"
+    color: [1.0, 0.2, 0.1]
+
+  creative_blue:
+    name: "Creative Blue"
+    description: "Cool blue accent"
+    color: [0.1, 0.3, 1.0]
+
+  creative_amber:
+    name: "Creative Amber"
+    description: "Warm amber glow"
+    color: [1.0, 0.6, 0.2]
+
+  creative_magenta:
+    name: "Creative Magenta"
+    description: "Pink/magenta accent"
+    color: [1.0, 0.2, 0.6]
+
+  creative_green:
+    name: "Creative Green"
+    description: "Green accent light"
+    color: [0.2, 1.0, 0.3]
+
+  creative_cyan:
+    name: "Creative Cyan"
+    description: "Cyan accent"
+    color: [0.2, 0.8, 1.0]
+
+  # Combined Gels
+  cto_diffusion:
+    name: "CTO + Diffusion"
+    description: "Warm and soft"
+    combines: [cto_quarter, diffusion_half]
+
+  ctb_diffusion:
+    name: "CTB + Diffusion"
+    description: "Cool and soft"
+    combines: [ctb_quarter, diffusion_half]
