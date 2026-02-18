@@ -2,6 +2,16 @@
 build/
 output/
 artifacts/
+*.blend
+*.glb
+*.gltf
+*.stl
+*.fbx
+*.obj
+
+# Render outputs
+*.png
+!docs/images/*.png
 
 # Python
 __pycache__/
