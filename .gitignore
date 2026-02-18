@@ -54,6 +54,14 @@ config/local.json
 # Private projects (submodules with sensitive work)
 projects/private/
 
+# Project directories (independent git repos)
+projects/neve_knobs/
+projects/button_test/
+projects/fader_test/
+projects/led_test/
+projects/morph_test/
+projects/surface_features_test/
+
 # Asset library cache (regenerable)
 .asset_cache/
 
