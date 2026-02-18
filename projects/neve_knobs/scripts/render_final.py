@@ -84,12 +84,12 @@ rim.data.energy = 600
 rim.data.size = 3
 rim.data.color = (1.0, 1.0, 1.0)
 
-# Camera - wide angle to see all 5 knobs
+# Camera - positioned higher for better top view of knobs
 print("[RENDER] Setting up camera...")
-bpy.ops.object.camera_add(location=(0, -2.5, 1.0))
+bpy.ops.object.camera_add(location=(0, -3.0, 2.2))
 cam = bpy.context.active_object
-cam.rotation_euler = (math.radians(68), 0, 0)
-cam.data.lens = 28  # Wide angle
+cam.rotation_euler = (math.radians(55), 0, 0)  # Less steep angle shows knob profiles better
+cam.data.lens = 42  # Less wide-angle distortion
 cam.data.sensor_fit = "HORIZONTAL"
 bpy.context.scene.camera = cam
 

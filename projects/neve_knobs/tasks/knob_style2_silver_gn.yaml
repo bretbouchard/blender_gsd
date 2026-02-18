@@ -1,0 +1,50 @@
+# Neve Knob Style 2 - Silver with ridged skirt (Geometry Nodes)
+# Medium size with ridged grip and white pointer
+
+task_id: neve_knob_style2_silver_gn_v1
+category: hybrid
+intent: >
+  Create a silver Neve-style audio knob with:
+  - Metallic silver finish
+  - Ridged skirt for grip (REAL mesh geometry)
+  - White pointer line
+  - Integrated skirt style
+
+parameters:
+  # Geometry (meters)
+  cap_height: 0.018
+  cap_diameter: 0.016
+  skirt_height: 0.008
+  skirt_diameter: 0.018
+  skirt_style: 0  # 0=integrated
+  ridge_count: 24
+  ridge_depth: 0.0008
+
+  # Knurling zone controls (0=bottom of skirt, 1=top of cap)
+  knurl_z_start: 0.0    # Start at bottom
+  knurl_z_end: 0.6      # End partway up (only on skirt portion)
+  knurl_fade: 0.0       # Hard edge (no fade for now)
+
+  # Knurling profile (0=flat, 0.5=round, 1=sharp)
+  knurl_profile: 0.0    # Flat-bottom trapezoid (Neve style)
+
+  pointer_length: 0.012
+  pointer_width: 0.05  # radians
+  segments: 64
+
+  # Material
+  base_color: [0.75, 0.75, 0.78]
+  pointer_color: [1.0, 1.0, 1.0]
+  metallic: 0.85
+  roughness: 0.35
+  clearcoat: 0.0
+
+script: neve_knob_gn
+
+outputs:
+  mesh:
+    profile: gltf_preview
+    file: build/neve_knob_style2_silver_gn.glb
+
+debug:
+  enabled: false

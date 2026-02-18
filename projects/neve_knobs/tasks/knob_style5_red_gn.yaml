@@ -1,0 +1,41 @@
+# Neve Knob Style 5 - Red (Geometry Nodes)
+# Tall red knob with prominent white pointer, smooth skirt
+
+task_id: neve_knob_style5_red_gn_v1
+category: hybrid
+intent: >
+  Create a tall red Neve-style audio knob with:
+  - Glossy red cap (tallest of all styles)
+  - Smooth metallic skirt (no ridges)
+  - Prominent white pointer line
+  - SEPARATE skirt style (independent rotating ring look)
+
+parameters:
+  # Geometry (meters)
+  cap_height: 0.025
+  cap_diameter: 0.020
+  skirt_height: 0.010
+  skirt_diameter: 0.022
+  skirt_style: 1  # 1=separate (gap between cap and skirt - "indecent" style)
+  ridge_count: 0
+  ridge_depth: 0.0
+  pointer_length: 0.015
+  pointer_width: 0.06  # radians
+  segments: 64
+
+  # Material
+  base_color: [0.85, 0.15, 0.1]
+  pointer_color: [1.0, 1.0, 1.0]
+  metallic: 0.0
+  roughness: 0.25
+  clearcoat: 0.8
+
+script: neve_knob_gn
+
+outputs:
+  mesh:
+    profile: gltf_preview
+    file: build/neve_knob_style5_red_gn.glb
+
+debug:
+  enabled: false

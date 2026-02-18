@@ -218,7 +218,7 @@ def build_artifact(task: dict, collection: bpy.types.Collection):
 
 def create_knob_material(params: dict) -> bpy.types.Material:
     """
-    Create a procedural material for the knob.
+    Create a procedural material for the knob with pointer line and ridge bump.
 
     Args:
         params: Material parameters (base_color, metallic, roughness, etc.)
@@ -233,29 +233,171 @@ def create_knob_material(params: dict) -> bpy.types.Material:
 
     nk = NodeKit(nt)
 
-    # Node positions
-    x = 0
+    # Extract parameters with defaults
+    base_color = params.get("base_color", [0.5, 0.5, 0.5])
+    pointer_color = params.get("pointer_color", [1.0, 1.0, 1.0])
+    metallic = params.get("metallic", 0.0)
+    roughness = params.get("roughness", 0.3)
+    clearcoat = params.get("clearcoat", 0.0)
+    ridge_count = params.get("ridge_count", 0)
+    ridge_depth = params.get("ridge_depth", 0.001)
+    pointer_width = params.get("pointer_width", 0.08)
+
+    # === POINTER MASK (Position-based wedge) ===
+    pointer_mask = _create_pointer_mask(nk, pointer_width)
+
+    # === COLOR BLENDING ===
+    # Mix base color with pointer color based on mask
+    base_rgba = (base_color[0], base_color[1], base_color[2], 1.0)
+    pointer_rgba = (pointer_color[0], pointer_color[1], pointer_color[2], 1.0)
+
+    color_mix = nk.n("ShaderNodeMix", "PointerColorMix", 200, 0)
+    color_mix.data_type = "RGBA"
+    nk.link(pointer_mask, color_mix.inputs["Factor"])
+    nk.set(color_mix.inputs["A"], base_rgba)
+    nk.set(color_mix.inputs["B"], pointer_rgba)
+
+    final_color = color_mix.outputs[0]
+
+    # === NORMAL/BUMP FOR RIDGES ===
+    normal_input = None
+    if ridge_count > 0:
+        normal_input = _create_ridge_bump(nk, ridge_count, ridge_depth)
+
+    # === PRINCIPLED BSDF ===
+    bsdf = nk.n("ShaderNodeBsdfPrincipled", "PrincipledBSDF", 500, 0)
+
+    # Core PBR properties
+    nk.link(final_color, bsdf.inputs["Base Color"])
+    nk.set(bsdf.inputs["Metallic"], metallic)
+    nk.set(bsdf.inputs["Roughness"], roughness)
+
+    # Clearcoat for glossy finish
+    if clearcoat > 0:
+        nk.set(bsdf.inputs["Coat Weight"], clearcoat)
+        nk.set(bsdf.inputs["Coat Roughness"], 0.05)
+
+    # Connect normal if we have ridges
+    if normal_input:
+        nk.link(normal_input, bsdf.inputs["Normal"])
 
     # Output
-    out = nk.n("ShaderNodeOutputMaterial", "Output", 800, 0)
-
-    # Principled BSDF
-    bsdf = nk.n("ShaderNodeBsdfPrincipled", "PrincipledBSDF", 400, 0)
-
-    # Set material properties
-    base_color = params.get("base_color", [0.5, 0.5, 0.5])
-    nk.set(bsdf.inputs["Base Color"], (base_color[0], base_color[1], base_color[2], 1.0))
-    nk.set(bsdf.inputs["Metallic"], params.get("metallic", 0.0))
-    nk.set(bsdf.inputs["Roughness"], params.get("roughness", 0.3))
-
-    # Coat (clearcoat in Blender 5.0 terminology) for glossy knobs
-    if params.get("clearcoat", 0) > 0:
-        nk.set(bsdf.inputs["Coat Weight"], params.get("clearcoat", 0.5))
-        nk.set(bsdf.inputs["Coat Roughness"], 0.1)
-
-    # Link to output
+    out = nk.n("ShaderNodeOutputMaterial", "Output", 700, 0)
     nk.link(bsdf.outputs["BSDF"], out.inputs["Surface"])
 
-    # TODO: Add pointer line via mix shader based on UV or position
-
     return mat
+
+
+def _create_pointer_mask(nk: NodeKit, pointer_width: float):
+    """
+    Create a radial wedge mask for the pointer line.
+
+    Uses position-based masking to create a white indicator line
+    that points toward the -Y direction (12 o'clock in front view).
+
+    Args:
+        nk: NodeKit instance
+        pointer_width: Angular half-width in radians
+
+    Returns:
+        Socket containing mask value (0.0 to 1.0)
+    """
+    X_OFFSET = -500
+    Y_OFFSET = 0
+    X_STEP = 80
+
+    # Get surface position
+    geo = nk.n("ShaderNodeNewGeometry", "Geometry", X_OFFSET, Y_OFFSET)
+
+    # Separate XYZ components
+    sep = nk.n("ShaderNodeSeparateXYZ", "SepPosition", X_OFFSET + X_STEP, Y_OFFSET)
+    nk.link(geo.outputs["Position"], sep.inputs["Vector"])
+
+    # Negate Y so pointer points "up" in front view
+    neg_y = nk.n("ShaderNodeMath", "NegateY", X_OFFSET + 2*X_STEP, Y_OFFSET)
+    neg_y.operation = "MULTIPLY"
+    nk.set(neg_y.inputs[1], -1.0)
+    nk.link(sep.outputs["Y"], neg_y.inputs[0])
+
+    # Calculate angle: atan2(x, -y)
+    arctan2 = nk.n("ShaderNodeMath", "PointerAngle", X_OFFSET + 3*X_STEP, Y_OFFSET)
+    arctan2.operation = "ARCTAN2"
+    nk.link(sep.outputs["X"], arctan2.inputs[0])
+    nk.link(neg_y.outputs["Value"], arctan2.inputs[1])
+
+    # Absolute value of angle
+    abs_angle = nk.n("ShaderNodeMath", "AbsAngle", X_OFFSET + 4*X_STEP, Y_OFFSET)
+    abs_angle.operation = "ABSOLUTE"
+    nk.link(arctan2.outputs["Value"], abs_angle.inputs[0])
+
+    # Create wedge mask: mask = 1 where |angle| < pointer_width
+    wedge = nk.n("ShaderNodeMath", "WedgeMask", X_OFFSET + 5*X_STEP, Y_OFFSET)
+    wedge.operation = "LESS_THAN"
+    nk.set(wedge.inputs[1], pointer_width)
+    nk.link(abs_angle.outputs["Value"], wedge.inputs[0])
+
+    return wedge.outputs["Value"]
+
+
+def _create_ridge_bump(nk: NodeKit, ridge_count: int, ridge_depth: float):
+    """
+    Create procedural bump mapping for grip ridges.
+
+    Creates a sawtooth pattern around the circumference using
+    angular position around the Z axis.
+
+    Args:
+        nk: NodeKit instance
+        ridge_count: Number of ridges around circumference
+        ridge_depth: Bump strength/depth
+
+    Returns:
+        Socket containing normal vector for BSDF connection
+    """
+    X_OFFSET = -500
+    Y_OFFSET = 200
+    X_STEP = 80
+
+    # Get surface position
+    geo = nk.n("ShaderNodeNewGeometry", "GeometryRidges", X_OFFSET, Y_OFFSET)
+
+    # Separate XYZ
+    sep = nk.n("ShaderNodeSeparateXYZ", "SepRidges", X_OFFSET + X_STEP, Y_OFFSET)
+    nk.link(geo.outputs["Position"], sep.inputs["Vector"])
+
+    # Calculate angle around Z axis: atan2(x, y)
+    arctan2 = nk.n("ShaderNodeMath", "RidgeAngle", X_OFFSET + 2*X_STEP, Y_OFFSET)
+    arctan2.operation = "ARCTAN2"
+    nk.link(sep.outputs["X"], arctan2.inputs[0])
+    nk.link(sep.outputs["Y"], arctan2.inputs[1])
+
+    # Shift from [-pi, pi] to [0, 2pi]
+    add_pi = nk.n("ShaderNodeMath", "AddPi", X_OFFSET + 3*X_STEP, Y_OFFSET)
+    add_pi.operation = "ADD"
+    nk.set(add_pi.inputs[1], 3.14159)
+    nk.link(arctan2.outputs["Value"], add_pi.inputs[0])
+
+    # Normalize to [0, 1]: divide by 2pi
+    div_2pi = nk.n("ShaderNodeMath", "Div2Pi", X_OFFSET + 4*X_STEP, Y_OFFSET)
+    div_2pi.operation = "DIVIDE"
+    nk.set(div_2pi.inputs[1], 6.28318)
+    nk.link(add_pi.outputs["Value"], div_2pi.inputs[0])
+
+    # Multiply by ridge count
+    ridge_freq = nk.n("ShaderNodeMath", "RidgeFreq", X_OFFSET + 5*X_STEP, Y_OFFSET)
+    ridge_freq.operation = "MULTIPLY"
+    nk.set(ridge_freq.inputs[1], float(ridge_count))
+    nk.link(div_2pi.outputs["Value"], ridge_freq.inputs[0])
+
+    # Create sawtooth: fractional part
+    sawtooth = nk.n("ShaderNodeMath", "Sawtooth", X_OFFSET + 6*X_STEP, Y_OFFSET)
+    sawtooth.operation = "FRACT"
+    nk.link(ridge_freq.outputs["Value"], sawtooth.inputs[0])
+
+    # Bump node
+    bump = nk.n("ShaderNodeBump", "RidgeBump", X_OFFSET + 7*X_STEP, Y_OFFSET)
+    nk.set(bump.inputs["Strength"], ridge_depth * 10)  # Scale up for visibility
+    nk.set(bump.inputs["Distance"], 0.01)
+    nk.link(sawtooth.outputs["Value"], bump.inputs["Height"])
+
+    return bump.outputs["Normal"]

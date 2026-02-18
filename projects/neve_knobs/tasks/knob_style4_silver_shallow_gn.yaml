@@ -1,0 +1,40 @@
+# Neve Knob Style 4 - Silver with shallow ridged skirt (Geometry Nodes)
+# Smaller size with wider ridge spacing
+
+task_id: neve_knob_style4_silver_gn_v1
+category: hybrid
+intent: >
+  Create a smaller silver Neve-style audio knob with:
+  - Metallic silver finish
+  - Shallow ridged skirt with wider spacing (REAL mesh geometry)
+  - White pointer line
+
+parameters:
+  # Geometry (meters)
+  cap_height: 0.015
+  cap_diameter: 0.014
+  skirt_height: 0.006
+  skirt_diameter: 0.016
+  skirt_style: 0  # 0=integrated
+  ridge_count: 18
+  ridge_depth: 0.0005
+  pointer_length: 0.010
+  pointer_width: 0.05  # radians
+  segments: 64
+
+  # Material
+  base_color: [0.75, 0.75, 0.78]
+  pointer_color: [1.0, 1.0, 1.0]
+  metallic: 0.85
+  roughness: 0.4
+  clearcoat: 0.0
+
+script: neve_knob_gn
+
+outputs:
+  mesh:
+    profile: gltf_preview
+    file: build/neve_knob_style4_silver_gn.glb
+
+debug:
+  enabled: false

@@ -1,0 +1,41 @@
+# Neve Knob Style 1 - Blue (Geometry Nodes)
+# Simple cylindrical blue cap with no ridges, integrated skirt
+
+task_id: neve_knob_style1_blue_gn_v1
+category: hybrid
+intent: >
+  Create a simple blue Neve-style audio knob with:
+  - Glossy blue cap
+  - White pointer line
+  - Integrated skirt (seamless transition)
+  - Smooth surface (no ridges)
+
+parameters:
+  # Geometry (meters)
+  cap_height: 0.020
+  cap_diameter: 0.018
+  skirt_height: 0.008
+  skirt_diameter: 0.020
+  skirt_style: 0  # 0=integrated
+  ridge_count: 0
+  ridge_depth: 0.0
+  pointer_length: 0.012
+  pointer_width: 0.08  # radians
+  segments: 64
+
+  # Material
+  base_color: [0.2, 0.35, 0.75]
+  pointer_color: [1.0, 1.0, 1.0]
+  metallic: 0.0
+  roughness: 0.3
+  clearcoat: 0.6
+
+script: neve_knob_gn
+
+outputs:
+  mesh:
+    profile: gltf_preview
+    file: build/neve_knob_style1_blue_gn.glb
+
+debug:
+  enabled: false
