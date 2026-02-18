@@ -6,8 +6,20 @@ Output profiles define the contract. Export functions execute it.
 
 from __future__ import annotations
 import bpy
+import addon_utils
 from pathlib import Path
 from .scene_ops import select_objects
+
+
+def _ensure_addon(addon_name: str) -> bool:
+    """Ensure an addon is enabled."""
+    try:
+        enabled = addon_utils.check(addon_name)
+        if not enabled[0]:
+            addon_utils.enable(addon_name)
+        return True
+    except Exception:
+        return False
 
 
 def export_mesh(
@@ -33,17 +45,19 @@ def export_mesh(
     profile = mesh_out_cfg.get("profile", "stl_clean")
 
     if profile.startswith("stl"):
+        # Ensure STL export addon is enabled
+        _ensure_addon("io_mesh_stl")
         bpy.ops.export_mesh.stl(
             filepath=str(filepath),
             use_selection=True,
             apply_modifiers=True,
         )
     elif profile == "gltf_preview":
+        _ensure_addon("io_scene_gltf2")
         bpy.ops.export_scene.gltf(
-            filepath=str(filepath.with_suffix("")),
+            filepath=str(filepath),
             export_format="GLB",
             use_selection=True,
-            apply_modifiers=True,
         )
     else:
         raise RuntimeError(f"Unsupported mesh export profile: {profile}")

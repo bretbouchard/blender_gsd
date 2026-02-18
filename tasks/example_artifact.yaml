@@ -20,11 +20,12 @@ script: artifact_example
 # Output specifications
 outputs:
   mesh:
-    profile: stl_clean
-    file: build/artifact_example_v1.stl
-  preview:
-    profile: studio_white_1k
-    file: build/artifact_example_v1.png
+    profile: gltf_preview
+    file: build/artifact_example_v1.glb
+  # preview disabled for initial test - requires render setup
+  # preview:
+  #   profile: studio_white_1k
+  #   file: build/artifact_example_v1.png
 
 # Debug controls (optional)
 debug:

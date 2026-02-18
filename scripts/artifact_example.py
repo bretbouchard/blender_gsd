@@ -35,8 +35,12 @@ def build_artifact(task: dict, collection: bpy.types.Collection):
     obj.scale = params.get("size", [0.25, 0.25, 0.08])
     bpy.ops.object.transform_apply(scale=True)
 
+    # Move object to our collection (unlink from scene collection if it's there)
+    try:
+        bpy.context.scene.collection.objects.unlink(obj)
+    except RuntimeError:
+        pass  # Object not in scene collection
     collection.objects.link(obj)
-    bpy.context.scene.collection.objects.unlink(obj)
 
     # --- Geometry Nodes system ---
     mod = obj.modifiers.new("System", "NODES")
