@@ -1,0 +1,59 @@
+# Infinite Curve Backdrop Presets
+# Seamless cyclorama backgrounds for product and cinematic shots
+
+curves:
+  white_studio:
+    color_bottom: [0.95, 0.95, 0.95]
+    color_top: [1.0, 1.0, 1.0]
+    radius: 5.0
+    curve_height: 3.0
+    shadow_catcher: true
+    description: "Bright white studio backdrop"
+
+  gray_studio:
+    color_bottom: [0.3, 0.3, 0.3]
+    color_top: [0.5, 0.5, 0.5]
+    radius: 4.0
+    curve_height: 3.0
+    shadow_catcher: true
+    description: "Neutral gray studio backdrop"
+
+  dark_studio:
+    color_bottom: [0.05, 0.05, 0.05]
+    color_top: [0.15, 0.15, 0.15]
+    radius: 6.0
+    curve_height: 4.0
+    shadow_catcher: true
+    description: "Dark dramatic backdrop"
+
+  gradient_warm:
+    color_bottom: [0.8, 0.6, 0.4]
+    color_top: [0.9, 0.85, 0.8]
+    radius: 5.0
+    curve_height: 3.0
+    shadow_catcher: true
+    description: "Warm gradient backdrop"
+
+  gradient_cool:
+    color_bottom: [0.2, 0.3, 0.4]
+    color_top: [0.4, 0.5, 0.6]
+    radius: 5.0
+    curve_height: 3.0
+    shadow_catcher: true
+    description: "Cool gradient backdrop"
+
+  black_olack:
+    color_bottom: [0.0, 0.0, 0.0]
+    color_top: [0.02, 0.02, 0.02]
+    radius: 5.0
+    curve_height: 3.0
+    shadow_catcher: true
+    description: "Pure black backdrop"
+
+  cream_white:
+    color_bottom: [0.95, 0.93, 0.88]
+    color_top: [0.98, 0.96, 0.92]
+    radius: 5.0
+    curve_height: 3.0
+    shadow_catcher: true
+    description: "Warm cream white backdrop"

@@ -1,0 +1,80 @@
+# Environment Presets
+# Pre-built environment/scene references
+
+environments:
+  # Studio Environments
+  studio_basic:
+    type: procedural
+    backdrop: infinite_curve
+    backdrop_preset: gray_studio
+    hdri: studio_soft
+    description: "Basic studio setup"
+
+  studio_high_key:
+    type: procedural
+    backdrop: infinite_curve
+    backdrop_preset: white_studio
+    hdri: studio_bright
+    description: "High-key bright studio"
+
+  studio_low_key:
+    type: procedural
+    backdrop: infinite_curve
+    backdrop_preset: dark_studio
+    hdri: null
+    description: "Low-key dramatic studio"
+
+  # Product Environments
+  product_clean:
+    type: procedural
+    backdrop: infinite_curve
+    backdrop_preset: white_studio
+    hdri: product_white
+    description: "Clean product photography setup"
+
+  product_dramatic:
+    type: procedural
+    backdrop: infinite_curve
+    backdrop_preset: black_olack
+    hdri: product_black
+    description: "Dramatic product setup"
+
+  # Lifestyle Environments
+  studio_lifestyle_warm:
+    type: procedural
+    backdrop: infinite_curve
+    backdrop_preset: gradient_warm
+    hdri: golden_hour
+    description: "Warm lifestyle setup"
+
+  studio_lifestyle_cool:
+    type: procedural
+    backdrop: infinite_curve
+    backdrop_preset: gradient_cool
+    hdri: overcast_day
+    description: "Cool lifestyle setup"
+
+  # External Mesh Environments
+  mesh_studio_modern:
+    type: mesh
+    file: assets/environments/studio_modern.blend
+    scale: 1.0
+    visible_to_camera: true
+    shadow_catcher: false
+    description: "Modern studio mesh environment"
+
+  mesh_studio_industrial:
+    type: mesh
+    file: assets/environments/industrial_space.blend
+    scale: 1.0
+    visible_to_camera: true
+    shadow_catcher: false
+    description: "Industrial space mesh environment"
+
+  mesh_living_room:
+    type: mesh
+    file: assets/environments/living_room.blend
+    scale: 1.0
+    visible_to_camera: true
+    shadow_catcher: false
+    description: "Living room mesh environment"
