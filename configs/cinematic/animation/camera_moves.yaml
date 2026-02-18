@@ -1,0 +1,134 @@
+# Camera Move Presets
+# Pre-defined camera movements for cinematic shots
+
+moves:
+  orbit_90:
+    type: orbit
+    angle_range: [0, 90]
+    axis: z
+    duration: 90
+    easing: ease_in_out
+    description: "90-degree orbit around subject"
+
+  orbit_180:
+    type: orbit
+    angle_range: [0, 180]
+    axis: z
+    duration: 180
+    easing: ease_in_out
+    description: "180-degree orbit around subject"
+
+  orbit_360:
+    type: orbit
+    angle_range: [0, 360]
+    axis: z
+    duration: 360
+    easing: linear
+    description: "Full 360-degree orbit around subject"
+
+  dolly_in:
+    type: dolly
+    direction: forward
+    distance: 0.5
+    duration: 60
+    easing: ease_out
+    description: "Camera moves toward subject"
+
+  dolly_out:
+    type: dolly
+    direction: backward
+    distance: 0.5
+    duration: 60
+    easing: ease_in
+    description: "Camera moves away from subject"
+
+  push_in:
+    type: combined
+    moves:
+      - type: dolly
+        distance: 0.3
+      - type: focal_length
+        from: 35
+        to: 50
+    duration: 120
+    description: "Combined dolly and zoom push"
+
+  rack_focus:
+    type: focus
+    from: 0.5
+    to: 2.0
+    duration: 30
+    easing: ease_in_out
+    description: "Focus pull between distances"
+
+  crane_up:
+    type: crane
+    elevation_range: [0, 45]
+    distance: 2.0
+    duration: 90
+    description: "Crane shot rising upward"
+
+  crane_down:
+    type: crane
+    elevation_range: [45, 0]
+    distance: 2.0
+    duration: 90
+    description: "Crane shot descending"
+
+  reveal:
+    type: sequence
+    steps:
+      - move: dolly_in
+        duration: 60
+      - hold: 30
+      - move: orbit_90
+        duration: 90
+    description: "Sequential reveal shot"
+
+  truck_left:
+    type: truck
+    direction: left
+    distance: 0.5
+    duration: 60
+    easing: ease_in_out
+    description: "Lateral movement to left"
+
+  truck_right:
+    type: truck
+    direction: right
+    distance: 0.5
+    duration: 60
+    easing: ease_in_out
+    description: "Lateral movement to right"
+
+  pan_left:
+    type: pan
+    direction: left
+    angle: 45
+    duration: 60
+    easing: ease_in_out
+    description: "Pan camera left"
+
+  pan_right:
+    type: pan
+    direction: right
+    angle: 45
+    duration: 60
+    easing: ease_in_out
+    description: "Pan camera right"
+
+  tilt_up:
+    type: tilt
+    direction: up
+    angle: 30
+    duration: 60
+    easing: ease_in_out
+    description: "Tilt camera upward"
+
+  tilt_down:
+    type: tilt
+    direction: down
+    angle: 30
+    duration: 60
+    easing: ease_in_out
+    description: "Tilt camera downward"

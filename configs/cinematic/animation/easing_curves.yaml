@@ -1,0 +1,105 @@
+# Easing Curve Presets
+# Animation interpolation functions for smooth motion
+
+easing:
+  # Basic Easings
+  linear:
+    description: "Constant speed, no acceleration"
+    formula: "y = x"
+    use_case: [continuous_motion, turntable]
+
+  ease_in:
+    description: "Slow start, accelerate to end"
+    formula: "y = x^2"
+    use_case: [exits, departures]
+
+  ease_out:
+    description: "Fast start, decelerate to end"
+    formula: "y = 1 - (1-x)^2"
+    use_case: [entrances, arrivals]
+
+  ease_in_out:
+    description: "Slow start and end, fast middle"
+    formula: "y = 2x^2 (x<0.5) or 1 - 2(1-x)^2 (x>=0.5)"
+    use_case: [smooth_transitions, general]
+
+  # Quadratic Easings
+  ease_in_quad:
+    description: "Quadratic acceleration from start"
+    formula: "y = x^2"
+    use_case: [gentle_acceleration]
+
+  ease_out_quad:
+    description: "Quadratic deceleration to end"
+    formula: "y = x * (2 - x)"
+    use_case: [gentle_deceleration]
+
+  ease_in_out_quad:
+    description: "Quadratic smooth start and end"
+    formula: "y = 2x^2 (x<0.5) or -1 + 2x + 2(1-x)^2 (x>=0.5)"
+    use_case: [smooth_motion]
+
+  # Cubic Easings
+  ease_in_cubic:
+    description: "Cubic acceleration from start"
+    formula: "y = x^3"
+    use_case: [stronger_acceleration]
+
+  ease_out_cubic:
+    description: "Cubic deceleration to end"
+    formula: "y = 1 + (x-1)^3"
+    use_case: [stronger_deceleration]
+
+  ease_in_out_cubic:
+    description: "Cubic smooth start and end"
+    formula: "y = 4x^3 (x<0.5) or 1 + 4(x-1)^3 (x>=0.5)"
+    use_case: [smooth_emphasis]
+
+  # Exponential Easings
+  ease_in_expo:
+    description: "Exponential acceleration from start"
+    formula: "y = 2^(10*(x-1))"
+    use_case: [dramatic_start]
+
+  ease_out_expo:
+    description: "Exponential deceleration to end"
+    formula: "y = 1 - 2^(-10*x)"
+    use_case: [dramatic_end]
+
+  ease_in_out_expo:
+    description: "Exponential smooth start and end"
+    formula: "see implementation"
+    use_case: [dramatic_transitions]
+
+  # Elastic Easings
+  ease_in_elastic:
+    description: "Elastic bounce at start"
+    formula: "see implementation"
+    use_case: [playful, bouncy]
+
+  ease_out_elastic:
+    description: "Elastic bounce at end"
+    formula: "see implementation"
+    use_case: [playful, bouncy]
+
+  # Bounce Easing
+  ease_out_bounce:
+    description: "Bouncing deceleration"
+    formula: "see implementation"
+    use_case: [playful, impact]
+
+  # Back Easings (overshoot)
+  ease_in_back:
+    description: "Overshoot backward before moving forward"
+    formula: "y = x^2 * ((1.70158+1)*x - 1.70158)"
+    use_case: [anticipation]
+
+  ease_out_back:
+    description: "Overshoot beyond end then settle"
+    formula: "y = 1 + (x-1)^2 * ((1.70158+1)*(x-1) + 1.70158)"
+    use_case: [settle, snap]
+
+  ease_in_out_back:
+    description: "Back easing both ends"
+    formula: "see implementation"
+    use_case: [dramatic_transitions]
