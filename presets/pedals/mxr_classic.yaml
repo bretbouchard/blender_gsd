@@ -1,0 +1,58 @@
+# MXR Classic Pedal Preset
+# The compact pedal standard (1972+)
+
+name: MXR Classic
+category: pedal
+manufacturer: MXR
+era: 1972
+description: >
+  Compact die-cast pedal with knurled cylindrical knobs,
+  white indicator lines, and simple three-knob layout.
+
+inherit: base_pedal
+
+color_system:
+  primary: [0.7, 0.7, 0.72]       # Silver knob
+  secondary: [0.5, 0.5, 0.52]     # Darker silver
+  indicator: [1.0, 1.0, 1.0]      # White line
+  accent: [0.8, 0.2, 0.1]         # Red LED
+  enclosure: [0.25, 0.25, 0.25]   # Dark enclosure
+
+geometry:
+  profile: cylindrical
+  cap_height: 0.012
+  cap_diameter: 0.014
+  skirt_height: 0.004
+  skirt_diameter: 0.014
+  skirt_style: 0
+  recessed: true  # Knobs recessed below enclosure edge
+
+knurling:
+  count: 30
+  depth: 0.0006
+  z_start: 0.0
+  z_end: 1.0
+  profile: 0.7
+
+material:
+  type: metal
+  metallic: 0.8
+  roughness: 0.35
+  clearcoat: 0.0
+
+pointer:
+  type: line
+  length: 0.006
+  width: 0.05
+  color: [1.0, 1.0, 1.0]
+
+enclosure:
+  type: die-cast
+  color: [0.25, 0.25, 0.25]
+  size: compact
+  texture: powder-coat
+
+tags:
+  - pedal
+  - mxr
+  - compact

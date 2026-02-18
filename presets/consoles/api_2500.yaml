@@ -1,0 +1,66 @@
+# API 2500 Compressor Preset
+# Classic American console gear (1970s)
+
+name: API 2500
+category: console
+manufacturer: API
+era: 1970
+description: >
+  Iconic American compressor with distinctive knob shape,
+  500-series aesthetic, and Carling toggle switches.
+
+inherit: base_console
+
+color_system:
+  primary: [0.25, 0.25, 0.25]     # API black
+  secondary: [0.15, 0.15, 0.15]   # Darker black
+  indicator: [0.9, 0.85, 0.3]     # Yellow/gold pointer
+  accent: [0.9, 0.2, 0.1]         # Red for VU
+  panel: [0.6, 0.58, 0.55]        # API gray
+
+geometry:
+  profile: cylindrical
+  cap_height: 0.016
+  cap_diameter: 0.017
+  skirt_height: 0.005
+  skirt_diameter: 0.017
+  skirt_style: 0
+  edge_radius_top: 0.001
+  edge_radius_bottom: 0.001
+
+knurling:
+  count: 32
+  depth: 0.0006
+  z_start: 0.0
+  z_end: 1.0
+  fade: 0.0
+  profile: 0.6
+
+material:
+  type: plastic
+  metallic: 0.0
+  roughness: 0.35
+  clearcoat: 0.0
+
+pointer:
+  type: line
+  length: 0.008
+  width: 0.05
+  color: [0.9, 0.85, 0.3]
+
+typography:
+  font: Futura
+  scale_color: [0.1, 0.1, 0.1]
+  label_color: [0.9, 0.9, 0.9]
+
+panel:
+  color: [0.6, 0.58, 0.55]
+  texture: brushed
+  material: aluminum
+
+tags:
+  - console
+  - api
+  - american
+  - 500-series
+  - vintage

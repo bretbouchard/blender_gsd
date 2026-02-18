@@ -1,0 +1,53 @@
+# Neve 88RS Console Preset
+# Modern flagship console (2000s)
+
+name: Neve 88RS
+category: console
+manufacturer: Neve
+era: 2000
+description: >
+  Modern flagship console with metal collet knobs,
+  premium silver-gray aesthetic, and clean professional look.
+
+inherit: base_console
+
+color_system:
+  primary: [0.7, 0.7, 0.72]       # Silver
+  secondary: [0.5, 0.5, 0.52]     # Darker silver
+  indicator: [1.0, 1.0, 1.0]      # White
+  accent: [0.85, 0.85, 0.87]      # Bright silver
+  panel: [0.25, 0.26, 0.28]       # Dark gray
+
+geometry:
+  profile: collet
+  cap_height: 0.018
+  cap_diameter: 0.016
+  skirt_height: 0.010
+  skirt_diameter: 0.020
+  skirt_style: 1  # Separate collet
+
+knurling:
+  count: 0
+
+material:
+  type: metal
+  metallic: 0.85
+  roughness: 0.25
+  clearcoat: 0.0
+
+pointer:
+  type: line
+  length: 0.012
+  width: 0.08
+  color: [1.0, 1.0, 1.0]
+
+panel:
+  color: [0.25, 0.26, 0.28]
+  texture: brushed
+  material: aluminum
+
+tags:
+  - console
+  - neve
+  - modern
+  - premium

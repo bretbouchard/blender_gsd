@@ -1,0 +1,43 @@
+# Base Pedal Preset
+# Default parameters for guitar/bass pedals
+
+name: Base Pedal
+category: pedal
+abstract: true
+description: >
+  Base preset for guitar/bass effects pedals.
+  Provides common parameters inherited by specific pedal presets.
+
+geometry:
+  segments: 48
+  edge_radius_top: 0.0005
+  edge_radius_bottom: 0.0005
+  recessed: false
+
+material:
+  type: metal
+  metallic: 0.7
+  roughness: 0.4
+  clearcoat: 0.0
+
+knurling:
+  count: 24
+  depth: 0.0006
+  z_start: 0.0
+  z_end: 1.0
+  fade: 0.0
+  profile: 0.6
+
+pointer:
+  type: line
+  length: 0.008
+  width: 0.06
+
+typography:
+  font: Helvetica
+  scale_color: [0.9, 0.9, 0.9]
+  label_color: [0.1, 0.1, 0.1]
+
+enclosure:
+  type: die-cast
+  texture: powder-coat

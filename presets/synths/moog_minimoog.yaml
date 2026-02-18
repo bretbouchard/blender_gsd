@@ -1,0 +1,54 @@
+# Moog Minimoog Preset
+# The legendary monosynth (1970)
+
+name: Moog Minimoog
+category: synth
+manufacturer: Moog
+era: 1970
+description: >
+  Iconic monosynth with chicken head knobs,
+  wooden end panels, and black/white aesthetic.
+
+inherit: base_synth
+
+color_system:
+  primary: [0.15, 0.15, 0.15]     # Black
+  secondary: [0.1, 0.1, 0.1]      # Darker black
+  indicator: [1.0, 1.0, 1.0]      # White pointer
+  accent: [0.9, 0.7, 0.2]         # Yellow accent
+  panel: [0.12, 0.12, 0.12]       # Panel black
+  wood: [0.45, 0.32, 0.2]         # Walnut wood
+
+geometry:
+  profile: chicken_head
+  cap_height: 0.020
+  cap_diameter: 0.018
+  skirt_height: 0.007
+  skirt_diameter: 0.020
+  skirt_style: 0
+
+knurling:
+  count: 0
+
+material:
+  type: plastic
+  metallic: 0.0
+  roughness: 0.3
+  clearcoat: 0.3
+
+pointer:
+  type: pointer
+  length: 0.014
+  width: 0.10
+  color: [1.0, 1.0, 1.0]
+
+panel:
+  color: [0.12, 0.12, 0.12]
+  wood_ends: true
+  wood_color: [0.45, 0.32, 0.2]
+
+tags:
+  - synth
+  - moog
+  - monosynth
+  - vintage

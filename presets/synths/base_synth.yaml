@@ -1,0 +1,42 @@
+# Base Synth Preset
+# Default parameters for synthesizer equipment
+
+name: Base Synth
+category: synth
+abstract: true
+description: >
+  Base preset for synthesizer equipment.
+  Provides common parameters inherited by specific synth presets.
+
+geometry:
+  segments: 64
+  edge_radius_top: 0.001
+  edge_radius_bottom: 0.001
+
+material:
+  type: plastic
+  metallic: 0.0
+  roughness: 0.35
+  clearcoat: 0.2
+
+knurling:
+  count: 0
+  depth: 0.0006
+  z_start: 0.0
+  z_end: 1.0
+  fade: 0.0
+  profile: 0.5
+
+pointer:
+  type: line
+  length: 0.012
+  width: 0.08
+
+typography:
+  font: Helvetica
+  scale_color: [0.9, 0.9, 0.9]
+  label_color: [0.1, 0.1, 0.1]
+
+panel:
+  texture: matte
+  material: steel

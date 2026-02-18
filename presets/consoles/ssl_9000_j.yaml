@@ -1,0 +1,58 @@
+# SSL 9000 J Console Preset
+# The modern SSL flagship (1994)
+
+name: SSL 9000 J
+category: console
+manufacturer: SSL
+era: 1994
+description: >
+  Modern SSL console with refined aesthetics,
+  darker sleeker look with black center dots.
+
+inherit: base_console
+
+color_system:
+  primary: [0.55, 0.55, 0.57]     # Darker gray
+  secondary: [0.35, 0.35, 0.37]   # Very dark gray
+  indicator: [0.1, 0.1, 0.1]      # Black center dot
+  accent: [0.8, 0.8, 0.82]        # Light accent
+  panel: [0.15, 0.15, 0.17]       # Near black
+
+geometry:
+  profile: domed
+  cap_height: 0.018
+  cap_diameter: 0.017
+  skirt_height: 0.005
+  skirt_diameter: 0.018
+  skirt_style: 0
+  edge_radius_top: 0.002
+
+knurling:
+  count: 24
+  depth: 0.0003
+  z_start: 0.0
+  z_end: 0.7
+  fade: 0.05
+  profile: 0.4
+
+material:
+  type: plastic
+  metallic: 0.0
+  roughness: 0.28
+  clearcoat: 0.5
+
+pointer:
+  type: dot
+  length: 0.008
+  width: 0.06
+  color: [0.1, 0.1, 0.1]
+
+panel:
+  color: [0.15, 0.15, 0.17]
+  texture: matte
+  material: steel
+
+tags:
+  - console
+  - ssl
+  - modern

@@ -1,0 +1,70 @@
+# Neve 1073 Console Preset
+# The legendary British console channel strip (1970)
+
+name: Neve 1073
+category: console
+manufacturer: Neve
+era: 1970
+description: >
+  Classic British console channel strip with distinctive blue knobs,
+  chicken head profile, and warm vintage aesthetic.
+
+# Inherit from base console preset
+inherit: base_console
+
+# Color palette
+color_system:
+  primary: [0.2, 0.35, 0.75]      # Classic Neve blue
+  secondary: [0.15, 0.25, 0.55]   # Darker blue
+  indicator: [1.0, 1.0, 1.0]      # White pointer
+  accent: [0.8, 0.7, 0.6]         # Warm metal accent
+  panel: [0.35, 0.38, 0.35]       # Gray-green panel
+
+# Geometry profile
+geometry:
+  profile: chicken_head
+  cap_height: 0.022
+  cap_diameter: 0.018
+  skirt_height: 0.008
+  skirt_diameter: 0.020
+  skirt_style: 0  # Integrated
+  edge_radius_top: 0.002
+
+# Knurling
+knurling:
+  count: 0  # Smooth cap
+
+# Material
+material:
+  type: plastic
+  metallic: 0.0
+  roughness: 0.25
+  clearcoat: 0.6
+  clearcoat_roughness: 0.05
+
+# Pointer
+pointer:
+  type: pointer
+  length: 0.014
+  width: 0.10
+  color: [1.0, 1.0, 1.0]
+
+# Typography
+typography:
+  font: Swiss 721
+  scale_color: [0.9, 0.9, 0.9]
+  label_color: [0.2, 0.2, 0.2]
+
+# Panel
+panel:
+  color: [0.35, 0.38, 0.35]
+  texture: brushed
+  material: steel
+
+# Tags for categorization
+tags:
+  - console
+  - neve
+  - british
+  - vintage
+  - premium

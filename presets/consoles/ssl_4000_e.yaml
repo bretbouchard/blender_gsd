@@ -1,0 +1,64 @@
+# SSL 4000 E Console Preset
+# The British studio workhorse (1979)
+
+name: SSL 4000 E
+category: console
+manufacturer: SSL
+era: 1979
+description: >
+  Iconic British console with gray domed knobs featuring
+  colored center dots, clean technical aesthetic.
+
+inherit: base_console
+
+color_system:
+  primary: [0.6, 0.6, 0.62]       # SSL gray
+  secondary: [0.4, 0.4, 0.42]     # Darker gray
+  indicator: [0.2, 0.4, 0.8]      # Blue center dot
+  accent: [0.9, 0.7, 0.2]         # Yellow for select buttons
+  panel: [0.2, 0.2, 0.22]         # Dark panel
+
+geometry:
+  profile: domed
+  cap_height: 0.020
+  cap_diameter: 0.018
+  skirt_height: 0.006
+  skirt_diameter: 0.019
+  skirt_style: 0
+  edge_radius_top: 0.003
+
+knurling:
+  count: 20
+  depth: 0.0004
+  z_start: 0.0
+  z_end: 0.6
+  fade: 0.1
+  profile: 0.5
+
+material:
+  type: plastic
+  metallic: 0.0
+  roughness: 0.3
+  clearcoat: 0.4
+
+pointer:
+  type: dot  # Center dot style
+  length: 0.010
+  width: 0.08
+  color: [0.2, 0.4, 0.8]
+
+typography:
+  font: Helvetica
+  scale_color: [0.85, 0.85, 0.85]
+  label_color: [0.15, 0.15, 0.15]
+
+panel:
+  color: [0.2, 0.2, 0.22]
+  texture: matte
+  material: steel
+
+tags:
+  - console
+  - ssl
+  - british
+  - vintage
