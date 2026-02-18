@@ -53,6 +53,20 @@ def export_mesh(
             apply_modifiers=True,
         )
     elif profile == "gltf_preview":
+        # Apply modifiers before export (important for Geometry Nodes)
+        for obj in root_objects:
+            # Select the object
+            bpy.context.view_layer.objects.active = obj
+            obj.select_set(True)
+
+            # Apply all modifiers
+            for mod in obj.modifiers:
+                try:
+                    bpy.ops.object.modifier_apply(modifier=mod.name)
+                except Exception:
+                    # Some modifiers can't be applied, skip them
+                    pass
+
         _ensure_addon("io_scene_gltf2")
         bpy.ops.export_scene.gltf(
             filepath=str(filepath),
