@@ -56,11 +56,9 @@ projects/private/
 
 # Project directories (independent git repos)
 projects/neve_knobs/
-projects/button_test/
-projects/fader_test/
-projects/led_test/
-projects/morph_test/
-projects/surface_features_test/
+
+# Test build outputs (but track test source files)
+tests/*/build/
 
 # Asset library cache (regenerable)
 .asset_cache/
