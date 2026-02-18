@@ -1,0 +1,33 @@
+# Example Artifact Task
+# This demonstrates the canonical task file format
+
+task_id: artifact_example_v1
+category: hybrid  # geometry | material | hybrid | experiment
+intent: >
+  Generate an artifact demonstrating the full pipeline system
+  with geometry nodes, mask generation, and debug visualization.
+
+# Parameters are scalar, vector, or enum values only
+parameters:
+  size: [0.25, 0.25, 0.08]  # [x, y, z] dimensions in meters
+  bevel_mm: 1.2
+  detail_amount: 0.35
+  seed: 1337
+
+# Which script to run (from scripts/ directory)
+script: artifact_example
+
+# Output specifications
+outputs:
+  mesh:
+    profile: stl_clean
+    file: build/artifact_example_v1.stl
+  preview:
+    profile: studio_white_1k
+    file: build/artifact_example_v1.png
+
+# Debug controls (optional)
+debug:
+  enabled: true
+  show_mask: mask_height        # Visualize this mask attribute
+  stop_after_stage: secondary   # Stop pipeline after this stage

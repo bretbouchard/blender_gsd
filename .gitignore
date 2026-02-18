@@ -1,0 +1,60 @@
+# Build outputs
+build/
+output/
+artifacts/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+.venv/
+ENV/
+
+# Blender
+*.blend1
+*.blend2
+*.blend3
+*.blend4
+*.blend5
+*.blend6
+*.blend7
+*.blend8
+*.blend9
+*.blend@
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Local config (may contain private paths)
+.env
+.env.local
+config/local.yaml
+config/local.json
+
+# Private projects (submodules with sensitive work)
+projects/private/
+
+# Asset library cache (regenerable)
+.asset_cache/
+
+# Debug outputs (temporary)
+debug/
+*.log
+
+# Beads local data (project-specific)
+.beads/
+
+# Temporary files
+tmp/
+temp/
+*.tmp

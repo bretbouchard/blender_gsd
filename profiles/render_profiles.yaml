@@ -1,0 +1,50 @@
+# Render Profiles
+# Reusable configurations for preview and final renders
+
+studio_white_1k:
+  description: "Standard studio lighting, 1K resolution"
+  engine: CYCLES
+  resolution: [1024, 1024]
+  samples: 64
+  transparent_bg: true
+  color_management: "Filmic"
+
+studio_white_2k:
+  description: "Standard studio lighting, 2K resolution"
+  engine: CYCLES
+  resolution: [2048, 2048]
+  samples: 128
+  transparent_bg: true
+  color_management: "Filmic"
+
+turntable_1k:
+  description: "Turntable animation, 1K resolution"
+  engine: CYCLES
+  resolution: [1024, 1024]
+  samples: 64
+  animation: true
+  frames: 60
+  frame_start: 1
+  frame_end: 60
+
+draft_512:
+  description: "Fast draft preview, 512px"
+  engine: EEVEE
+  resolution: [512, 512]
+  samples: 16
+  transparent_bg: true
+
+product_4k:
+  description: "High quality product render"
+  engine: CYCLES
+  resolution: [4096, 4096]
+  samples: 256
+  transparent_bg: true
+  denoising: true
+
+debug_material:
+  description: "Debug render with material override"
+  engine: WORKBENCH
+  resolution: [512, 512]
+  lighting: "FLAT"
+  show_wireframe: true

@@ -1,0 +1,58 @@
+# Export Profiles
+# Reusable configurations for artifact export
+
+stl_clean:
+  type: stl
+  description: "Clean STL for 3D printing"
+  selection_only: true
+  apply_modifiers: true
+  axis_forward: Y
+  axis_up: Z
+
+stl_high_res:
+  type: stl
+  description: "High resolution STL for detailed prints"
+  selection_only: true
+  apply_modifiers: true
+  axis_forward: Y
+  axis_up: Z
+  mesh_resolution: high
+
+gltf_preview:
+  type: gltf
+  description: "GLB preview for web/realtime"
+  export_format: GLB
+  selection_only: true
+  apply_modifiers: true
+  export_materials: EXPORT
+
+gltf_draco:
+  type: gltf
+  description: "Compressed GLB for web delivery"
+  export_format: GLB
+  selection_only: true
+  apply_modifiers: true
+  export_draco_mesh_compression_enable: true
+
+fbx_unity:
+  type: fbx
+  description: "FBX for Unity pipeline"
+  axis_forward: -Z
+  axis_up: Y
+  apply_unit_scale: true
+  object_types: ["MESH"]
+
+fbx_unreal:
+  type: fbx
+  description: "FBX for Unreal Engine"
+  axis_forward: X
+  axis_up: Z
+  apply_unit_scale: true
+  object_types: ["MESH"]
+
+obj_interchange:
+  type: obj
+  description: "OBJ for general interchange"
+  axis_forward: -Z
+  axis_up: Y
+  apply_modifiers: true
