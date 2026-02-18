@@ -9,9 +9,11 @@ Modules:
 - profiles: Knob geometry profile definitions
 - surface_features: Surface feature configurations (knurling, ribbing, etc.)
 - surface_geo: Geometry Nodes builders for surface features
+- faders: Fader configuration and presets
+- fader_geo: Geometry Nodes builders for faders
 
 Quick Start:
-    from lib.control_system import ParameterHierarchy, get_profile, SurfaceFeatures
+    from lib.control_system import ParameterHierarchy, get_profile, SurfaceFeatures, FaderConfig
 
     # Get a knob profile
     profile = get_profile("chicken_head")
@@ -20,6 +22,9 @@ Quick Start:
     # Get surface features preset
     features = SurfaceFeatures.from_preset("neve_1073")
     params.update(features.to_params())
+
+    # Get a fader preset
+    fader = get_fader_preset("ssl_4000_channel")
 
     # Resolve parameters with hierarchy
     hierarchy = ParameterHierarchy()
@@ -70,6 +75,26 @@ from .surface_features import (
     get_preset,
 )
 
+from .faders import (
+    # Enums
+    FaderType,
+    FaderKnobStyle,
+    TrackStyle,
+    ScaleType,
+    LEDResponse,
+    ScalePosition,
+    # Config classes
+    FaderKnobConfig,
+    TrackConfig,
+    ScaleConfig,
+    LEDMeterConfig,
+    FaderConfig,
+    # Presets
+    FADER_PRESETS,
+    list_fader_presets,
+    get_fader_preset,
+)
+
 __all__ = [
     # Parameters
     "ParameterGroup",
@@ -108,6 +133,26 @@ __all__ = [
     "SURFACE_PRESETS",
     "list_presets",
     "get_preset",
+
+    # Faders - Enums
+    "FaderType",
+    "FaderKnobStyle",
+    "TrackStyle",
+    "ScaleType",
+    "LEDResponse",
+    "ScalePosition",
+
+    # Faders - Configs
+    "FaderKnobConfig",
+    "TrackConfig",
+    "ScaleConfig",
+    "LEDMeterConfig",
+    "FaderConfig",
+
+    # Faders - Presets
+    "FADER_PRESETS",
+    "list_fader_presets",
+    "get_fader_preset",
 ]
 
-__version__ = "0.2.0"
+__version__ = "0.3.0"
