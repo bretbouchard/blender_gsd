@@ -143,6 +143,28 @@ from .leds import (
     get_led_preset,
 )
 
+from .morphing import (
+    # Enums
+    EasingType,
+    # Functions
+    apply_easing,
+    rgb_to_lab,
+    lab_to_rgb,
+    interpolate_color_lab,
+    animate_morph,
+    quick_morph,
+    # Classes
+    GeometryParams,
+    MaterialParams,
+    SurfaceParams,
+    MorphTarget,
+    MorphKeyframe,
+    MorphAnimation,
+    StaggerConfig,
+    StaggeredMorph,
+    MorphEngine,
+)
+
 __all__ = [
     # Parameters
     "ParameterGroup",
@@ -241,6 +263,28 @@ __all__ = [
     "LED_PRESETS",
     "list_led_presets",
     "get_led_preset",
+
+    # Morphing - Enums
+    "EasingType",
+
+    # Morphing - Functions
+    "apply_easing",
+    "rgb_to_lab",
+    "lab_to_rgb",
+    "interpolate_color_lab",
+    "animate_morph",
+    "quick_morph",
+
+    # Morphing - Classes
+    "GeometryParams",
+    "MaterialParams",
+    "SurfaceParams",
+    "MorphTarget",
+    "MorphKeyframe",
+    "MorphAnimation",
+    "StaggerConfig",
+    "StaggeredMorph",
+    "MorphEngine",
 ]
 
-__version__ = "0.5.0"
+__version__ = "0.6.0"
