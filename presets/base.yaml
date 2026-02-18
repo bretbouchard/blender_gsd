@@ -1,0 +1,73 @@
+# Base Preset - Global Defaults
+# These parameters apply to all artifacts unless overridden
+
+# Global settings
+global:
+  units: meters
+  scale: 0.001  # mm to meters conversion
+
+# Geometry defaults
+geometry:
+  base_diameter: 0.020  # 20mm default diameter
+  height: 0.028         # 28mm default height
+  segments: 64          # Circumference resolution
+
+# Material defaults
+material:
+  metallic: 0.0
+  roughness: 0.3
+  clearcoat: 0.0
+  clearcoat_roughness: 0.05
+
+# Color system defaults
+color_system:
+  primary: [0.5, 0.5, 0.5]      # Neutral gray
+  secondary: [0.3, 0.3, 0.3]    # Darker gray
+  indicator: [1.0, 1.0, 1.0]    # White
+
+# Knurling defaults
+knurling:
+  count: 0              # No knurling by default
+  depth: 0.001          # 1mm depth
+  z_start: 0.0          # Start at bottom (normalized 0-1)
+  z_end: 1.0            # End at top (normalized 0-1)
+  fade: 0.0             # No fade by default
+  profile: 0.5          # Round profile (0=flat, 0.5=round, 1=sharp)
+
+# Lighting defaults
+lighting:
+  key_light_intensity: 1200
+  key_light_color: [1.0, 1.0, 1.0]
+  fill_light_intensity: 400
+  fill_light_color: [0.9, 0.9, 0.95]
+  rim_light_intensity: 800
+  rim_light_color: [1.0, 1.0, 1.0]
+
+# Export defaults
+export:
+  apply_modifiers: true
+  merge_vertices: true
+  triangulate: false
+  export_materials: true
+  export_uv: true
+  export_normals: true
+
+# Animation defaults (disabled by default)
+animation:
+  enabled: false
+  frame_start: 1
+  frame_end: 250
+  fps: 24
+
+# Physics defaults (disabled by default)
+physics:
+  enabled: false
+  friction: 0.5
+  restitution: 0.3
+
+# Compositing defaults (disabled by default)
+compositing:
+  enabled: false
+  bloom: false
+  bloom_intensity: 0.5
+  color_correction: false
