@@ -1,0 +1,66 @@
+# Roland TR-909 Preset
+# The hybrid drum machine legend (1983)
+
+name: Roland TR-909
+category: synth
+manufacturer: Roland
+era: 1983
+description: >
+  Hybrid analog/digital drum machine with gray knobs,
+  integrated step sequencer, and professional studio aesthetic.
+
+inherit: base_synth
+
+color_system:
+  primary: [0.45, 0.45, 0.47]       # Gray
+  secondary: [0.3, 0.3, 0.32]       # Dark gray
+  tertiary: [0.85, 0.85, 0.87]      # Light gray
+  indicator: [0.1, 0.1, 0.1]        # Black pointer
+  panel: [0.7, 0.7, 0.72]           # Silver panel
+
+geometry:
+  profile: cylindrical
+  cap_height: 0.018
+  cap_diameter: 0.020
+  skirt_height: 0.005
+  skirt_diameter: 0.020
+  skirt_style: 0
+  edge_radius_top: 0.002
+
+knurling:
+  count: 20
+  depth: 0.0004
+  z_start: 0.0
+  z_end: 1.0
+  profile: 0.5
+
+material:
+  type: plastic
+  metallic: 0.0
+  roughness: 0.4
+  clearcoat: 0.15
+
+pointer:
+  type: line
+  length: 0.010
+  width: 0.07
+  color: [0.1, 0.1, 0.1]
+
+# Knob color variants
+variants:
+  gray:
+    base_color: [0.45, 0.45, 0.47]
+  dark:
+    base_color: [0.3, 0.3, 0.32]
+
+panel:
+  color: [0.7, 0.7, 0.72]
+  texture: brushed
+  material: aluminum
+
+tags:
+  - synth
+  - roland
+  - drum-machine
+  - vintage
+  - hybrid

@@ -1,0 +1,66 @@
+# Electro-Harmonix Big Muff Preset
+# The legendary fuzz/sustainer (1969+)
+
+name: Electro-Harmonix Big Muff
+category: pedal
+manufacturer: Electro-Harmonix
+era: 1969
+description: >
+  Large enclosure with distinctive chicken-head knobs,
+  hand-painted aesthetic, and massive sustaining fuzz.
+
+inherit: base_pedal
+
+color_system:
+  primary: [0.12, 0.12, 0.14]       # Black
+  secondary: [0.95, 0.95, 0.95]     # White (graphics)
+  tertiary: [0.8, 0.2, 0.2]         # Red (graphics accent)
+  indicator: [0.95, 0.95, 0.95]     # White pointer
+  panel: [0.12, 0.12, 0.14]         # Black enclosure
+
+geometry:
+  profile: chicken_head
+  cap_height: 0.014
+  cap_diameter: 0.018
+  skirt_height: 0.005
+  skirt_diameter: 0.016
+  skirt_style: 1
+  edge_radius_top: 0.002
+
+knurling:
+  count: 0
+  depth: 0.0
+  z_start: 0.0
+  z_end: 1.0
+  profile: 0.5
+
+material:
+  type: plastic
+  metallic: 0.0
+  roughness: 0.35
+  clearcoat: 0.2
+
+pointer:
+  type: line
+  length: 0.010
+  width: 0.08
+  color: [0.95, 0.95, 0.95]
+
+# Knob color variants
+variants:
+  black:
+    base_color: [0.12, 0.12, 0.14]
+
+enclosure:
+  type: folded-steel
+  texture: painted
+  color: [0.12, 0.12, 0.14]
+  graphics: hand-painted
+  footswitch: metal
+  led_color: [1.0, 0.0, 0.0]  # Red status LED
+
+tags:
+  - pedal
+  - electro-harmonix
+  - fuzz
+  - vintage

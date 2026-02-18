@@ -1,0 +1,66 @@
+# Sequential Prophet-5 Preset
+# The legendary polyphonic synthesizer (1978)
+
+name: Sequential Prophet-5
+category: synth
+manufacturer: Sequential
+era: 1978
+description: >
+  Iconic polyphonic synthesizer with black knobs,
+  wooden end panels, and classic analog warmth.
+
+inherit: base_synth
+
+color_system:
+  primary: [0.08, 0.08, 0.1]        # Black
+  secondary: [0.35, 0.25, 0.15]     # Wood brown
+  tertiary: [0.95, 0.95, 0.95]      # White (labels)
+  indicator: [0.95, 0.95, 0.95]     # White pointer
+  panel: [0.15, 0.15, 0.18]         # Dark panel
+
+geometry:
+  profile: chicken_head
+  cap_height: 0.016
+  cap_diameter: 0.020
+  skirt_height: 0.008
+  skirt_diameter: 0.018
+  skirt_style: 1
+  edge_radius_top: 0.003
+
+knurling:
+  count: 0
+  depth: 0.0
+  z_start: 0.0
+  z_end: 1.0
+  profile: 0.5
+
+material:
+  type: plastic
+  metallic: 0.0
+  roughness: 0.35
+  clearcoat: 0.25
+
+pointer:
+  type: line
+  length: 0.012
+  width: 0.09
+  color: [0.95, 0.95, 0.95]
+
+# Knob color variants
+variants:
+  black:
+    base_color: [0.08, 0.08, 0.1]
+
+panel:
+  color: [0.15, 0.15, 0.18]
+  texture: matte
+  material: steel
+  side_panels: wood
+  wood_type: walnut
+
+tags:
+  - synth
+  - sequential
+  - polyphonic
+  - vintage
+  - analog

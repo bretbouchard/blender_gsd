@@ -1,0 +1,67 @@
+# Ibanez Tube Screamer Preset
+# The legendary overdrive (1979+)
+
+name: Ibanez Tube Screamer
+category: pedal
+manufacturer: Ibanez
+era: 1979
+description: >
+  Compact green enclosure with smooth knobs,
+  warm overdrive tone, and blues/rock heritage.
+
+inherit: base_pedal
+
+color_system:
+  primary: [0.2, 0.4, 0.15]         # Green
+  secondary: [0.95, 0.9, 0.8]       # Cream/white
+  tertiary: [0.8, 0.6, 0.2]         # Yellow accent
+  indicator: [0.95, 0.95, 0.95]     # White pointer
+  panel: [0.2, 0.4, 0.15]           # Green enclosure
+
+geometry:
+  profile: cylindrical
+  cap_height: 0.011
+  cap_diameter: 0.014
+  skirt_height: 0.004
+  skirt_diameter: 0.014
+  skirt_style: 0
+  edge_radius_top: 0.0008
+
+knurling:
+  count: 24
+  depth: 0.0005
+  z_start: 0.0
+  z_end: 1.0
+  profile: 0.55
+
+material:
+  type: plastic
+  metallic: 0.0
+  roughness: 0.35
+  clearcoat: 0.2
+
+pointer:
+  type: line
+  length: 0.008
+  width: 0.06
+  color: [0.95, 0.95, 0.95]
+
+# Knob color variants
+variants:
+  cream:
+    base_color: [0.95, 0.9, 0.8]
+  black:
+    base_color: [0.15, 0.15, 0.17]
+
+enclosure:
+  type: die-cast
+  texture: powder-coat
+  color: [0.2, 0.4, 0.15]
+  footswitch: metal
+  led_color: [1.0, 0.0, 0.0]  # Red status LED
+
+tags:
+  - pedal
+  - ibanez
+  - overdrive
+  - blues

@@ -1,0 +1,69 @@
+# Strymon Pedal Preset
+# Premium modern digital effects (2008+)
+
+name: Strymon
+category: pedal
+manufacturer: Strymon
+era: 2008
+description: >
+  Premium modern pedals with machined aluminum knobs,
+  high-resolution displays, and studio-quality algorithms.
+
+inherit: base_pedal
+
+color_system:
+  primary: [0.95, 0.95, 0.95]       # White/silver
+  secondary: [0.2, 0.2, 0.22]       # Dark accents
+  tertiary: [0.0, 0.6, 0.8]         # Blue (brand color)
+  indicator: [0.2, 0.2, 0.22]       # Dark pointer
+  panel: [0.15, 0.15, 0.17]         # Dark enclosure
+
+geometry:
+  profile: cylindrical
+  cap_height: 0.010
+  cap_diameter: 0.014
+  skirt_height: 0.003
+  skirt_diameter: 0.014
+  skirt_style: 0
+  edge_radius_top: 0.0005
+
+knurling:
+  count: 32
+  depth: 0.0004
+  z_start: 0.0
+  z_end: 1.0
+  profile: 0.5
+
+material:
+  type: metal
+  metallic: 0.85
+  roughness: 0.25
+  clearcoat: 0.0
+
+pointer:
+  type: dot
+  length: 0.002
+  width: 0.05
+  color: [0.2, 0.2, 0.22]
+
+# Knob color variants
+variants:
+  silver:
+    base_color: [0.95, 0.95, 0.95]
+  black:
+    base_color: [0.15, 0.15, 0.17]
+
+enclosure:
+  type: machined-aluminum
+  texture: brushed
+  color: [0.15, 0.15, 0.17]
+  footswitch: soft-touch
+  led_color: [0.0, 0.6, 0.8]  # Blue status LED
+  display: oled
+
+tags:
+  - pedal
+  - strymon
+  - digital
+  - premium
+  - modern

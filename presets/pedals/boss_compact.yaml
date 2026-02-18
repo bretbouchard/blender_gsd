@@ -1,0 +1,65 @@
+# Boss Compact Pedal Preset
+# The industry standard compact pedal format (1977+)
+
+name: Boss Compact
+category: pedal
+manufacturer: Boss/Roland
+era: 1977
+description: >
+  Compact die-cast enclosure with distinctive knurled knobs,
+  rubber footswitch, and legendary durability.
+
+inherit: base_pedal
+
+color_system:
+  primary: [0.18, 0.18, 0.2]        # Dark gray/black
+  secondary: [0.7, 0.7, 0.72]       # Silver
+  tertiary: [0.95, 0.3, 0.1]        # Orange (label accent)
+  indicator: [0.95, 0.95, 0.95]     # White pointer
+  panel: [0.18, 0.18, 0.2]          # Black enclosure
+
+geometry:
+  profile: cylindrical
+  cap_height: 0.012
+  cap_diameter: 0.014
+  skirt_height: 0.004
+  skirt_diameter: 0.014
+  skirt_style: 0
+  edge_radius_top: 0.0005
+
+knurling:
+  count: 28
+  depth: 0.0006
+  z_start: 0.0
+  z_end: 1.0
+  profile: 0.6
+
+material:
+  type: plastic
+  metallic: 0.0
+  roughness: 0.35
+  clearcoat: 0.15
+
+pointer:
+  type: line
+  length: 0.008
+  width: 0.06
+  color: [0.95, 0.95, 0.95]
+
+# Knob color variants
+variants:
+  black:
+    base_color: [0.18, 0.18, 0.2]
+
+enclosure:
+  type: die-cast
+  texture: powder-coat
+  color: [0.18, 0.18, 0.2]
+  footswitch: rubber
+  led_color: [0.0, 1.0, 0.0]  # Green status LED
+
+tags:
+  - pedal
+  - boss
+  - compact
+  - effects

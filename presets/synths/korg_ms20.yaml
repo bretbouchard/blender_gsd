@@ -1,0 +1,65 @@
+# Korg MS-20 Preset
+# The patchable semi-modular synthesizer (1978)
+
+name: Korg MS-20
+category: synth
+manufacturer: Korg
+era: 1978
+description: >
+  Semi-modular synthesizer with distinctive black knobs,
+  patch panel, and aggressive filter character.
+
+inherit: base_synth
+
+color_system:
+  primary: [0.1, 0.1, 0.12]         # Black
+  secondary: [0.8, 0.7, 0.2]        # Gold/yellow accents
+  tertiary: [0.9, 0.9, 0.9]         # White labels
+  indicator: [0.9, 0.9, 0.9]        # White pointer
+  panel: [0.2, 0.2, 0.22]           # Dark panel
+
+geometry:
+  profile: cylindrical
+  cap_height: 0.015
+  cap_diameter: 0.018
+  skirt_height: 0.006
+  skirt_diameter: 0.018
+  skirt_style: 0
+  edge_radius_top: 0.001
+
+knurling:
+  count: 24
+  depth: 0.0004
+  z_start: 0.0
+  z_end: 1.0
+  profile: 0.5
+
+material:
+  type: plastic
+  metallic: 0.0
+  roughness: 0.4
+  clearcoat: 0.2
+
+pointer:
+  type: line
+  length: 0.010
+  width: 0.08
+  color: [0.9, 0.9, 0.9]
+
+# Knob color variants
+variants:
+  black:
+    base_color: [0.1, 0.1, 0.12]
+
+panel:
+  color: [0.2, 0.2, 0.22]
+  texture: matte
+  material: steel
+  accent_color: [0.8, 0.7, 0.2]
+
+tags:
+  - synth
+  - korg
+  - semi-modular
+  - vintage
+  - analog
