@@ -2,6 +2,12 @@
 
 **A deterministic, code-first framework for building Blender node workflows, cinematic systems, and procedural pipelines.**
 
+[![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/)
+[![Blender 5.x](https://img.shields.io/badge/Blender-5.x-blue.svg)](https://www.blender.org/)
+[![Python 3.11+](https://img.shields.io/badge/Python-3.11+-yellow.svg)](https://www.python.org/)
+
+**Repository:** https://github.com/bretbouchard/blender_gsd
+
 ---
 
 ## Philosophy
@@ -434,6 +440,37 @@ The Council of Ricks - domain-specific AI agents:
 - Blender 5.x (Geometry Nodes + EEVEE Next)
 - Python 3.11+
 - PyYAML
+
+---
+
+## Project Status
+
+### Completed Milestones
+
+| Milestone | Version | Status |
+|-----------|---------|--------|
+| Core Infrastructure | v0.1 | Complete |
+| Control Surface System | v0.4 | Complete |
+| Cinematic Rendering System | v0.3 | Complete |
+| Motion Tracking System | v0.4 | Complete |
+
+### In Progress
+
+| Phase | Description | Status |
+|-------|-------------|--------|
+| 7.1 - 7.4 | Motion Tracking Core | Planned |
+| 8.0 - 8.4 | Follow Camera System | Planned |
+| 9.0 - 9.4 | Anamorphic Projection | Planned |
+
+### Future Milestones
+
+| Phase | Description |
+|-------|-------------|
+| 10.x | Character System (Wardrobe, State) |
+| 11.x | Audio Integration (Timeline, Sound Design) |
+| 12.x | Post-Processing (Compositor, VFX) |
+| 13.x | Retro Effects (Pixel Art, Dithering, CRT) |
+| 14.x | Production Tools (Orchestrator, Config) |
 
 ---
 
