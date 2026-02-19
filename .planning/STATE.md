@@ -78,18 +78,16 @@
 | Plan | Name | Status | Summary |
 |------|------|--------|---------|
 | 06.7-01 | Types + Preset Loaders | Complete | 06.7-01-SUMMARY.md |
-| 06.7-02 | Support Modules | Complete* | 06.7-03-SUMMARY.md (modules existed, exports added) |
+| 06.7-02 | Support Modules | Complete | 06.7-02-SUMMARY.md |
 | 06.7-03 | Package Exports + Version Bump | Complete | 06.7-03-SUMMARY.md |
-
-*Support modules (shuffler, frame_store, depth_layers, composition, lens_fx) already existed as stubs. This plan added the exports.
 
 ## Cinematic System Module Summary
 
-**lib/cinematic/** (23 modules, ~16,000 lines):
+**lib/cinematic/** (23 modules, ~17,500 lines):
 - types.py (1273 lines) - Core dataclasses (CinematicRenderSettings, support types)
-- enums.py (146 lines) - Type-safe enumerations (RenderEngine, DenoiserType, CompositionGuideType)
+- enums.py (163 lines) - Type-safe enumerations (RenderEngine, DenoiserType, CompositionGuideType)
 - state_manager.py (458 lines) - State persistence
-- preset_loader.py (968 lines) - Preset loading utilities (render + support system loaders)
+- preset_loader.py (1002 lines) - Preset loading utilities (render + support system loaders)
 - camera.py (375 lines) - Camera creation and management
 - plumb_bob.py (348 lines) - Orbit/focus targeting
 - lenses.py (320 lines) - Compositor imperfections
@@ -103,11 +101,11 @@
 - motion_path.py (692 lines) - Procedural motion path generation
 - shot_builder.py (500 lines) - Shot preset system
 - render.py (830 lines) - Quality tiers, passes, EXR output, denoising
-- shuffler.py (366 lines) - Shot variation generator
-- frame_store.py (stub) - State capture and comparison
-- depth_layers.py (stub) - Fore/mid/background organization
-- composition.py (97 lines) - Composition guide overlays
-- lens_fx.py (138 lines) - Post-process lens effects
+- shuffler.py (365 lines) - Shot variation generator
+- frame_store.py (419 lines) - State capture and comparison
+- depth_layers.py (438 lines) - Fore/mid/background organization
+- composition.py (643 lines) - Composition guide overlays
+- lens_fx.py (719 lines) - Post-process lens effects
 - __init__.py (726 lines) - Package exports
 
 **Total exports:** 272+
