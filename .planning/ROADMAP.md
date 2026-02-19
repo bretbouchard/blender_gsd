@@ -188,7 +188,7 @@
 
 ---
 
-## Milestone: v0.5 - Cinematic Rendering System ✅ COMPLETE
+## Milestone: v0.5 - Cinematic Rendering System - COMPLETE
 **Target**: 2026-02-19
 **Design**: `.planning/design/CINEMATIC_SYSTEM_DESIGN.md`
 **Requirements**: `.planning/REQUIREMENTS_CINEMATIC.md`
@@ -608,10 +608,10 @@ Plans:
 - [ ] 07.5-05-PLAN.md - Update package exports, version bump to 0.4.0 (MILESTONE v0.6 COMPLETE)
 
 **Key Integrations**:
-- KnobTracker.rotation_to_morph() → MorphEngine
-- MocapRetargeter.retarget_to_morph() → MorphEngine
-- ScanImporter → backdrop system
-- BatchProcessor → shot assembly
+- KnobTracker.rotation_to_morph() -> MorphEngine
+- MocapRetargeter.retarget_to_morph() -> MorphEngine
+- ScanImporter -> backdrop system
+- BatchProcessor -> shot assembly
 
 **Acceptance Criteria**:
 - [ ] Planar tracking produces corner pin
@@ -738,44 +738,87 @@ configs/cinematic/follow_cam/
 **Priority**: P0 | **Est. Effort**: 8-11 days
 **Beads**: `blender_gsd-57`, `blender_gsd-58`, `blender_gsd-59`
 **Unblocked by**: `blender_gsd-34` (Raycasting)
+**Plans:** 3 plans
+
+**Dependencies:**
+- Depends on: 8.0, 8.1
+- Enables: 8.3
+- Critical Path: No
+- Test Coverage: 80%
 
 **Goal**: Implement intelligent obstacle detection, avoidance, and prediction.
 
-**Tasks**:
+**Wave Structure**:
+- **Wave 1**: Configuration files (avoidance_presets.yaml, prediction_settings.yaml)
+- **Wave 2**: Operator behavior implementation (human-like reactions, oscillation prevention)
+- **Wave 3**: Unit tests and package exports
+
+Plans:
+- [ ] 08.2-01-PLAN.md - Create avoidance_presets.yaml and prediction_settings.yaml configuration files
+- [ ] 08.2-02-PLAN.md - Add OperatorBehavior dataclass, OscillationPreventer class, and integrate with collision.py
+- [ ] 08.2-03-PLAN.md - Create test_follow_cam_operator.py unit tests, update package exports
+
+**Features**:
 
 1. **Collision Detection** (REQ-FOLLOW-AVOID):
-   - [ ] Raycast detection from camera to subject
-   - [ ] Spherecast for wider detection radius
-   - [ ] Frustum check for objects in view
-   - [ ] Collision layer support
-   - [ ] Ignore list (transparent, triggers, subject)
+   - Raycast detection from camera to subject (3x3 grid)
+   - Spherecast for wider detection radius
+   - Frustum check for objects in view
+   - Collision layer support
+   - Ignore list (transparent, triggers, subject)
 
 2. **Obstacle Response** (REQ-FOLLOW-AVOID):
-   - [ ] Push forward (move camera closer to subject)
-   - [ ] Orbit away (rotate around obstacle)
-   - [ ] Raise up (move camera higher)
-   - [ ] Zoom through (for transparent obstacles)
-   - [ ] Camera backing response (wall behind camera)
+   - Push forward (move camera closer to subject)
+   - Orbit away (rotate around obstacle)
+   - Raise up (move camera higher)
+   - Zoom through (for transparent obstacles)
+   - Camera backing response (wall behind camera)
 
 3. **Camera Operator Behavior** (REQ-FOLLOW-AVOID):
-   - [ ] Human-like reaction delay
-   - [ ] Angle preferences
-   - [ ] Smooth, intentional movements
-   - [ ] Natural breathing (subtle movement)
-   - [ ] Decision weighting (visibility, composition, smoothness)
+   - Human-like reaction delay (0.1s default)
+   - Angle preferences (horizontal: -45 to 45, vertical: 10 to 30)
+   - Smooth, intentional movements
+   - Natural breathing (subtle movement: 0.01m, 0.25Hz)
+   - Decision weighting (visibility=1.0, composition=0.7, smoothness=0.5, distance=0.3)
 
 4. **Motion Prediction** (REQ-FOLLOW-PREDICT):
-   - [ ] Velocity-based trajectory prediction
-   - [ ] Animation-based prediction (read keyframes ahead)
-   - [ ] Look-ahead system (anticipate subject movement)
-   - [ ] Speed anticipation (adjust for acceleration/deceleration)
-   - [ ] Corner prediction (for vehicle following)
+   - Velocity-based trajectory prediction
+   - Animation-based prediction (read keyframes ahead)
+   - Look-ahead system (0.5s default, anticipate subject movement)
+   - Speed anticipation (adjust for acceleration/deceleration)
+   - Corner prediction (for vehicle following)
+
+5. **Anti-Oscillation**:
+   - Position history tracking
+   - Direction change detection
+   - Damping when oscillation detected
+   - Minimum damping factor (never freeze camera)
+
+**Deliverables**:
+```
+configs/cinematic/follow_cam/
+├── avoidance_presets.yaml   # Collision, response, operator behavior presets
+└── prediction_settings.yaml # Trajectory, look-ahead, corner prediction
+
+lib/cinematic/follow_cam/
+├── types.py               # Extended with OperatorBehavior dataclass
+├── collision.py           # Extended with apply_operator_behavior, breathing, angle preference
+└── prediction.py          # Extended with OscillationPreventer class
+
+tests/unit/
+└── test_follow_cam_operator.py  # Unit tests for operator behavior
+```
 
 **Acceptance Criteria**:
-- [ ] Camera never passes through walls
-- [ ] Subject never fully occluded
+- [ ] Raycast collision detection works
+- [ ] Camera pushes forward when wall behind
+- [ ] Camera orbits around obstacles
+- [ ] Prediction anticipates obstacles before contact
 - [ ] No oscillation or jitter in avoidance
-- [ ] Prediction reduces camera lag by >50%
+- [ ] Subject never fully occluded
+- [ ] Camera has human-like reaction delay
+- [ ] Camera prefers specific angle ranges
+- [ ] Camera has subtle breathing movement
 
 ---
 
@@ -854,17 +897,17 @@ configs/cinematic/follow_cam/
 
 ### Follow Camera Summary
 
-| Phase | Requirements | Priority | Est. Days | Beads |
-|-------|-------------|----------|-----------|-------|
-| 8.0 | FOLLOW-01 | P1 | 2-3 | blender_gsd-51 |
-| 8.1 | FOLLOW-MODE | P0 | 5-7 | blender_gsd-52, blender_gsd-53, blender_gsd-54, blender_gsd-55, blender_gsd-56 |
-| 8.2 | FOLLOW-AVOID, FOLLOW-PREDICT | P0 | 8-11 | blender_gsd-57, blender_gsd-58, blender_gsd-59 |
-| 8.3 | FOLLOW-SOLVE, FOLLOW-ENV | P0 | 7-9 | blender_gsd-60, blender_gsd-61 |
-| 8.4 | FOLLOW-INTEGRATE, FOLLOW-FRAME, FOLLOW-DEBUG | P1 | 7-10 | blender_gsd-62, blender_gsd-63 |
+| Phase | Requirements | Priority | Est. Days | Beads | Plans |
+|-------|-------------|----------|-----------|-------|-------|
+| 8.0 | FOLLOW-01 | P1 | 2-3 | blender_gsd-51 | - |
+| 8.1 | FOLLOW-MODE | P0 | 5-7 | blender_gsd-52..56 | - |
+| 8.2 | FOLLOW-AVOID, FOLLOW-PREDICT | P0 | 8-11 | blender_gsd-57..59 | 3 |
+| 8.3 | FOLLOW-SOLVE, FOLLOW-ENV | P0 | 7-9 | blender_gsd-60, blender_gsd-61 | - |
+| 8.4 | FOLLOW-INTEGRATE, FOLLOW-FRAME, FOLLOW-DEBUG | P1 | 7-10 | blender_gsd-62, blender_gsd-63 | - |
 
 **Total**: 29-40 days
 **Epic**: `blender_gsd-50`
-**Unblocked by**: `blender_gsd-34` (Raycasting → Collision Detection)
+**Unblocked by**: `blender_gsd-34` (Raycasting -> Collision Detection)
 
 **Follow Modes**:
 | Mode | Use Case |
