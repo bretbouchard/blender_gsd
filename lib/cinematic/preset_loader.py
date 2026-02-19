@@ -9,7 +9,7 @@ Follows pattern from lib/cinematic/state_manager.py for YAML/JSON handling.
 
 from __future__ import annotations
 from pathlib import Path
-from typing import Dict, Any, List
+from typing import Dict, Any, List, Optional
 
 try:
     import yaml
@@ -18,6 +18,9 @@ except ImportError:
 
 # Configuration root directory
 CONFIG_ROOT = Path("configs/cinematic/cameras")
+
+# Shot template configuration
+SHOT_CONFIG_ROOT = Path("configs/cinematic/shots")
 
 # Lighting configuration root directory
 LIGHTING_CONFIG_ROOT = Path("configs/cinematic/lighting")
@@ -1000,3 +1003,175 @@ def list_composition_guide_presets() -> List[str]:
     path = SUPPORT_CONFIG_ROOT / "composition_guides.yaml"
     data = load_preset(path)
     return sorted(data.get("guides", {}).keys())
+
+
+# =============================================================================
+# Shot Template Preset Loaders
+# =============================================================================
+
+
+def get_shot_template(name: str) -> Dict[str, Any]:
+    """
+    Load a shot template by name.
+
+    Args:
+        name: Name of the shot template (e.g., "studio_white", "product_hero")
+
+    Returns:
+        Dictionary containing template configuration
+
+    Raises:
+        FileNotFoundError: If templates.yaml doesn't exist
+        ValueError: If template name not found
+        RuntimeError: If YAML file but PyYAML not available
+    """
+    path = SHOT_CONFIG_ROOT / "templates.yaml"
+    if not path.exists():
+        raise FileNotFoundError(f"Shot templates file not found: {path}")
+
+    data = load_preset(path)
+
+    templates = data.get("templates", {})
+    if name not in templates:
+        available = list(templates.keys())
+        raise ValueError(f"Shot template '{name}' not found. Available: {available}")
+
+    return templates[name]
+
+
+def resolve_template_inheritance(
+    template_name: str,
+    loaded_templates: Optional[Dict[str, Any]] = None,
+    _chain: Optional[List[str]] = None
+) -> Dict[str, Any]:
+    """
+    Resolve template inheritance chain, merging parent into child.
+
+    Args:
+        template_name: Template to resolve
+        loaded_templates: Cache of already loaded templates
+        _chain: Internal - tracks inheritance chain for circular detection
+
+    Returns:
+        Fully resolved template dictionary with all inherited values
+
+    Raises:
+        ValueError: If circular inheritance detected or abstract template used directly
+    """
+    if loaded_templates is None:
+        loaded_templates = {}
+    if _chain is None:
+        _chain = []
+
+    # Circular inheritance detection
+    if template_name in _chain:
+        raise ValueError(f"Circular template inheritance detected: {' -> '.join(_chain + [template_name])}")
+
+    _chain.append(template_name)
+
+    # Load template
+    if template_name not in loaded_templates:
+        loaded_templates[template_name] = get_shot_template(template_name)
+
+    template = loaded_templates[template_name].copy()
+
+    # Check abstract
+    if template.get("abstract", False) and len(_chain) == 1:
+        raise ValueError(f"Cannot use abstract template '{template_name}' directly")
+
+    # If no parent, return as-is
+    parent_name = template.get("extends", "")
+    if not parent_name:
+        return template
+
+    # Resolve parent recursively
+    parent = resolve_template_inheritance(parent_name, loaded_templates, _chain)
+
+    # Merge: parent as base, child overrides
+    merged = parent.copy()
+    for key, value in template.items():
+        if key == "extends":
+            continue
+        if value is not None:
+            # Deep merge for dicts
+            if isinstance(value, dict) and key in merged and isinstance(merged[key], dict):
+                merged[key] = {**merged[key], **value}
+            else:
+                merged[key] = value
+
+    return merged
+
+
+def list_shot_templates(include_abstract: bool = False) -> List[str]:
+    """
+    List all available shot template names.
+
+    Args:
+        include_abstract: If True, include abstract templates
+
+    Returns:
+        Sorted list of shot template names
+
+    Raises:
+        FileNotFoundError: If templates.yaml doesn't exist
+        RuntimeError: If YAML file but PyYAML not available
+    """
+    path = SHOT_CONFIG_ROOT / "templates.yaml"
+    if not path.exists():
+        return []
+
+    data = load_preset(path)
+    templates = data.get("templates", {})
+
+    if include_abstract:
+        return sorted(templates.keys())
+    else:
+        return sorted([k for k, v in templates.items() if not v.get("abstract", False)])
+
+
+def get_shot_assembly(name: str) -> Dict[str, Any]:
+    """
+    Load a shot assembly by name.
+
+    Args:
+        name: Name of the shot assembly
+
+    Returns:
+        Dictionary containing assembly configuration
+
+    Raises:
+        FileNotFoundError: If assemblies.yaml doesn't exist
+        ValueError: If assembly name not found
+        RuntimeError: If YAML file but PyYAML not available
+    """
+    path = SHOT_CONFIG_ROOT / "assemblies.yaml"
+    if not path.exists():
+        raise FileNotFoundError(f"Shot assemblies file not found: {path}")
+
+    data = load_preset(path)
+
+    assemblies = data.get("assemblies", {})
+    if name not in assemblies:
+        available = list(assemblies.keys())
+        raise ValueError(f"Shot assembly '{name}' not found. Available: {available}")
+
+    return assemblies[name]
+
+
+def list_shot_assemblies() -> List[str]:
+    """
+    List all available shot assembly names.
+
+    Returns:
+        Sorted list of shot assembly names
+
+    Raises:
+        FileNotFoundError: If assemblies.yaml doesn't exist
+        RuntimeError: If YAML file but PyYAML not available
+    """
+    path = SHOT_CONFIG_ROOT / "assemblies.yaml"
+    if not path.exists():
+        return []
+
+    data = load_preset(path)
+    return sorted(data.get("assemblies", {}).keys())
