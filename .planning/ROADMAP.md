@@ -234,27 +234,31 @@ Plans:
 ### Phase 6.5: Animation System (REQ-CINE-ANIM, REQ-CINE-PATH)
 **Goal:** Implement camera animation system with orbit, dolly, crane, pan, tilt, rack focus, and turntable rotation, plus procedural motion paths.
 **Plans:** 3 plans
+**Completed:** 2026-02-19
 
 Plans:
-- [ ] 06.5-01-PLAN.md - Add AnimationConfig, MotionPathConfig, TurntableConfig dataclasses; add animation preset loaders
-- [ ] 06.5-02-PLAN.md - Create animation.py with orbit/dolly/crane/turntable animations; create motion_path.py with Bezier path generation
-- [ ] 06.5-03-PLAN.md - Update __init__.py with all animation exports (~30 new exports)
+- [x] 06.5-01-PLAN.md - Add AnimationConfig, MotionPathConfig, TurntableConfig dataclasses; add animation preset loaders
+- [x] 06.5-02-PLAN.md - Create animation.py with orbit/dolly/crane/turntable animations; create motion_path.py with Bezier path generation
+- [x] 06.5-03-PLAN.md - Update __init__.py with all animation exports (~30 new exports)
 
 ### Phase 6.6: Render System (REQ-CINE-RENDER)
 **Goal:** Implement render system with quality tier presets, render pass configuration, EXR output, hardware-aware denoising, and batch rendering.
 **Plans:** 3 plans
+**Completed:** 2026-02-18
 
 Plans:
-- [ ] 06.6-01-PLAN.md - Add CinematicRenderSettings dataclass, render enums, and render preset loaders
-- [ ] 06.6-02-PLAN.md - Create render.py with quality tiers, pass configuration, EXR output, denoiser selection, and batch rendering
-- [ ] 06.6-03-PLAN.md - Update __init__.py with all render exports and version bump to 0.2.2
+- [x] 06.6-01-PLAN.md - Add CinematicRenderSettings dataclass, render enums, and render preset loaders
+- [x] 06.6-02-PLAN.md - Create render.py with quality tiers, pass configuration, EXR output, denoiser selection, and batch rendering
+- [x] 06.6-03-PLAN.md - Update __init__.py with all render exports and version bump to 0.2.2
 
 ### Phase 6.7: Support Systems
-- [ ] shuffler.py - shot variation generator
-- [ ] frame_store.py - state capture/comparison
-- [ ] depth_layers.py - fore/mid/background
-- [ ] composition.py - guides and overlays
-- [ ] lens_fx.py - post-process effects (bloom, flare, vignette)
+**Goal:** Implement support utilities for shot variation, state capture/comparison, depth organization, composition guides, and lens effects.
+**Plans:** 3 plans
+
+Plans:
+- [ ] 06.7-01-PLAN.md - Add ShuffleConfig, FrameState, DepthLayerConfig, CompositionGuide, LensFXConfig dataclasses; add preset loaders
+- [ ] 06.7-02-PLAN.md - Create shuffler.py, frame_store.py, depth_layers.py, composition.py, lens_fx.py modules with YAML presets
+- [ ] 06.7-03-PLAN.md - Update __init__.py with all support system exports and version bump to 0.2.3
 
 ### Phase 6.8: Shot Assembly (REQ-CINE-SHOT, REQ-CINE-TEMPLATE)
 - [ ] shot.py - complete shot assembly
