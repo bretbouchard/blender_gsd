@@ -1,142 +1,441 @@
 # Blender GSD Framework
 
-**Deterministic, GSD-powered procedural artifact generation for Blender.**
+**A deterministic, code-first framework for building Blender node workflows, cinematic systems, and procedural pipelines.**
+
+---
 
 ## Philosophy
 
-> Blender never stores intent. Blender only executes intent.
+> **Blender never stores intent. Blender only executes intent.**
 >
 > Intent lives in GSD. Logic lives in scripts. Structure lives in nodes.
-> Files are disposable.
+> Files are disposable. Everything is reproducible.
 
-## Quick Start
+---
 
-```bash
-# Run the example task
-make run
+## Core Capabilities
 
-# Or with a specific task
-make run TASK=tasks/example_artifact.yaml
+### Node Workflow System
 
-# Inspect interactively
-make inspect
+Build complex Geometry Nodes and shader graphs programmatically:
+
+```python
+from lib.nodekit import NodeGraph, InputSocket
+
+# Create node groups from code
+graph = NodeGraph("MyGeometry")
+graph.add_node("MeshPrimitiveCube", size=(1, 1, 1))
+graph.add_node("SetMaterial", material="debug_material")
+graph.output(geometry="mesh")
 ```
 
-## Core Concepts
+**Features:**
+- Programmatic node group construction
+- Socket routing and type validation
+- Reusable node templates
+- Debug material integration
 
-### Artifacts
-Any thing Blender produces - panels, knobs, enclosures, materials, scenes.
+### Mask Infrastructure
 
-### Systems
-Reusable procedural logic blocks that generate artifacts.
+First-class mask system for controlling where effects apply:
 
-### Stages
-Every artifact is built through deterministic stages:
-1. **Normalize** - Parameter canonicalization
-2. **Primary** - Base geometry/material
-3. **Secondary** - Modifications, cutouts
-4. **Detail** - Surface effects (masked)
-5. **OutputPrep** - Attributes, cleanup
+```python
+from lib.masks import Mask, MaskCombiner
 
-### Masks
-First-class infrastructure for controlling where effects apply.
+# Create zone-based masks
+height_mask = Mask.from_height(min=0.2, max=0.8)
+angle_mask = Mask.from_angle(axis='Z', start=0, end=90)
+
+# Combine with boolean operations
+combined = MaskCombiner(height_mask).AND(angle_mask)
+```
+
+**Mask Types:**
+- Height, angle, and radial masks
+- UV-based selection masks
+- Boolean combinations (AND, OR, XOR, NOT)
+- Smooth falloff controls
+
+### Universal Stage Pipeline
+
+Every artifact flows through 5 deterministic stages:
+
+| Stage | Purpose |
+|-------|---------|
+| **Normalize** | Parameter canonicalization and validation |
+| **Primary** | Base geometry or material generation |
+| **Secondary** | Modifications, cutouts, secondary elements |
+| **Detail** | Surface effects controlled by masks |
+| **OutputPrep** | Attributes, cleanup, export preparation |
+
+---
+
+## Cinematic System
+
+A complete cinematic rendering pipeline with camera, lighting, and animation systems.
+
+### Camera System
+
+```python
+from lib.cinematic import CameraConfig, PlumbBobConfig, RigConfig
+
+camera = CameraConfig(
+    name="hero_camera",
+    focal_length=50.0,
+    f_stop=2.8,
+    focus_distance=3.0,
+    transform=Transform3D(position=(0, -5, 2)),
+)
+
+# Plumb bob targeting (auto, manual, object modes)
+plumb_bob = PlumbBobConfig(
+    mode="object",
+    target_object="Product",
+)
+
+# Camera rigs (tripod, dolly, crane, steadicam, drone)
+rig = RigConfig(rig_type="dolly_curved", path_points=[...])
+```
+
+**Camera Features:**
+- Sensor presets (Full Frame, Super 35, Micro 4/3, iPhone)
+- Lens presets (24mm wide to 135mm telephoto)
+- DoF configuration with plumb bob targeting
+- Lens imperfections (vignette, chromatic aberration, flare)
+
+### Lighting System
+
+```python
+from lib.cinematic import LightConfig, LightRigConfig, HDRIConfig
+
+# Individual lights
+key_light = LightConfig(
+    name="key",
+    light_type="area",
+    intensity=1000.0,
+    color=(1.0, 0.95, 0.9),  # Slightly warm
+)
+
+# Light rigs with presets
+rig = LightRigConfig.from_preset("three_point")
+
+# HDRI environments
+hdri = HDRIConfig(
+    filepath="//assets/hdri/studio.hdr",
+    rotation=45.0,
+    strength=1.0,
+)
+```
+
+**Lighting Features:**
+- Area, spot, point, and sun lights
+- Gel system for colored lighting
+- Light linking for selective illumination
+- 8+ preset lighting rigs
+
+### Animation System
+
+```python
+from lib.cinematic import AnimationConfig, MotionPathConfig
+
+# Orbit animation
+orbit = AnimationConfig(
+    enabled=True,
+    type="orbit",
+    angle_range=(0, 360),
+    radius=3.0,
+    frame_range=(1, 120),
+)
+
+# Bezier motion paths
+path = MotionPathConfig(
+    points=[(0,0,0), (2,1,0), (4,0,0)],
+    easing="ease_in_out",
+)
+```
+
+**Animation Types:**
+- Orbit, dolly, crane, pan, tilt
+- Rack focus animations
+- Turntable rotation
+- Custom Bezier motion paths
+
+### Render System
+
+```python
+from lib.cinematic import CinematicRenderSettings
+
+settings = CinematicRenderSettings(
+    quality_tier="production",  # preview, standard, production
+    engine="BLENDER_EEVEE_NEXT",
+    resolution_x=3840,
+    resolution_y=2160,
+    samples=256,
+    use_pass_cryptomatte=True,
+)
+```
+
+---
+
+## Motion Tracking System
+
+Full motion tracking pipeline with camera solving and compositing integration.
+
+```python
+from lib.cinematic.tracking import (
+    TrackingSession,
+    PointTracker,
+    CameraSolver,
+    Stabilization,
+)
+
+# Track features in footage
+tracker = PointTracker()
+tracks = tracker.detect_features(method="KLT", count=100)
+
+# Solve camera motion
+solver = CameraSolver()
+solve = solver.solve(tracks, refine_focal_length=True)
+
+# Apply stabilization
+stabilize = Stabilization(smoothing=0.5)
+stabilized = stabilize.apply(solve.camera_animation)
+```
+
+**Tracking Features:**
+- Feature detection (FAST, Harris, KLT optical flow)
+- Camera solving with libmv integration
+- Device camera profiles (iPhone, RED, ARRI, Blackmagic)
+- External format import (FBX, Alembic, BVH, Nuke .chan)
+- ST-Map generation for lens distortion
+- 2D video stabilization
+
+---
+
+## Follow Camera System
+
+Intelligent camera following with obstacle avoidance and path prediction.
+
+```python
+from lib.cinematic.follow_cam import (
+    FollowCameraConfig,
+    FollowMode,
+    CollisionDetector,
+    MotionPredictor,
+)
+
+# Configure follow camera
+config = FollowCameraConfig(
+    mode=FollowMode.OVER_SHOULDER,
+    target_object="Character",
+    distance=3.0,
+    height=1.6,
+)
+
+# Collision detection and avoidance
+detector = CollisionDetector(
+    method="spherecast",
+    collision_layers=["geometry"],
+    ignore_objects=["trigger_volumes"],
+)
+
+# Motion prediction for smooth following
+predictor = MotionPredictor(
+    look_ahead_frames=10,
+    velocity_smoothing=0.3,
+)
+```
+
+**Follow Modes:**
+- Side-scroller (2.5D platformer)
+- Over-shoulder (third-person)
+- Chase (vehicle following)
+- Orbit-follow, Lead, Aerial, Free roam
+
+**Intelligent Behaviors:**
+- Obstacle detection and avoidance
+- Motion prediction and anticipation
+- Pre-solve for deterministic rendering
+- Navigation mesh with A* pathfinding
+- Rule-of-thirds framing
+
+---
+
+## Anamorphic Projection System
+
+Create forced perspective art that only appears correct from specific viewpoints.
+
+```python
+from lib.cinematic.projection import (
+    FrustumConfig,
+    project_from_camera,
+    generate_uvs_from_projection,
+    bake_projection_texture,
+    create_sweet_spot,
+    VisibilityController,
+)
+
+# Project image from camera viewpoint
+config = FrustumConfig(resolution_x=1920, resolution_y=1080, fov=50.0)
+result = project_from_camera("Camera", config, "artwork.png")
+
+# Generate UVs for projection
+uvs = generate_uvs_from_projection(result)
+
+# Bake to texture
+bake = bake_projection_texture(config, output_path="baked.png")
+
+# Define sweet spot zone
+zone = create_sweet_spot(
+    camera_position=(0, 5, 1.6),
+    radius=0.5,
+    target_objects=["FloorArt"],
+)
+
+# Control visibility based on camera position
+controller = VisibilityController()
+controller.add_zone(zone)
+visibility = controller.update(camera_position=(0, 5, 1.6))
+```
+
+**Projection Features:**
+- Camera frustum raycasting
+- Surface detection and classification (floor, wall, ceiling)
+- UV generation from projection rays
+- Texture baking (diffuse, emission, decal modes)
+- Sweet spot zones for visibility
+- Multi-surface corner projections
+
+---
+
+## Control Surface System
+
+Generate procedural control surfaces (knobs, faders, buttons, LEDs).
+
+```python
+from lib.control_system import (
+    ParameterHierarchy,
+    KnobProfile,
+    SurfaceFeatures,
+    MorphingEngine,
+)
+
+# Define parameters with inheritance
+params = ParameterHierarchy()
+params.set_global("knob_diameter", 0.025)
+params.set_category("knob", "profile", "chicken_head")
+params.set_variant("neve_1073", "color", "#2D4A6B")
+
+# Generate knob with features
+knob = KnobProfile.from_preset("neve_1073")
+knob.add_feature(SurfaceFeatures.KNURLING(pattern="diamond", density=24))
+
+# Morph between styles
+morph = MorphingEngine()
+morph.animate(from_preset="neve_1073", to_preset="ssl_4000", frames=60)
+```
+
+**Control Elements:**
+- 10+ knob profiles (chicken head, cylindrical, domed, collet, etc.)
+- Surface features (knurling, ribbing, grooves, indicators)
+- Faders (channel, short, mini with LED meters)
+- Buttons (momentary, latching, illuminated, toggle)
+- LEDs (single, bar, VU meter)
+
+---
+
+## Input System
+
+Build custom input zone geometry with debug visualization.
+
+```python
+from lib.inputs import InputZoneBuilder, InputPreset
+
+# Build input zone
+zone = InputZoneBuilder("MyZone")
+zone.add_section("A_Top", shape="cone", height=0.5)
+zone.add_section("A_Mid", shape="cylinder", height=0.3)
+zone.set_debug_mode(True)  # Per-section color visualization
+
+# Apply preset
+preset = InputPreset.from_yaml("presets/knob_neve_1073.yaml")
+zone.apply_preset(preset)
+```
+
+---
+
+## Testing & Validation
+
+Oracle-based testing framework for deterministic validation:
+
+```python
+from lib.oracle import compare_numbers, compare_vectors, file_exists
+
+def test_camera_focal_length():
+    camera = CameraConfig(focal_length=50.0)
+    compare_numbers(camera.focal_length, 50.0, tolerance=0.001)
+
+def test_output_exists():
+    assert file_exists("build/output.glb")
+```
+
+**Test Coverage:**
+- 500+ unit tests
+- Oracle comparison functions
+- Works outside Blender (fallback implementations)
+
+---
 
 ## Directory Structure
 
 ```
 blender_gsd/
-├── lib/              # Core library (pipeline, nodekit, masks)
-├── scripts/          # Task runner and artifact scripts
-├── profiles/         # Export and render profiles
-├── tasks/            # Task definitions
-├── projects/         # Individual artifact projects
-├── presets/          # Export and render presets
-├── templates/        # Project templates
-├── .planning/        # GSD planning documents
-└── .claude/          # Claude configuration (agents, commands)
+├── lib/                        # Core libraries
+│   ├── pipeline.py             # Stage-based execution
+│   ├── nodekit.py              # Node group construction
+│   ├── masks.py                # Mask infrastructure
+│   ├── oracle.py               # Testing utilities
+│   ├── cinematic/              # Cinematic system
+│   │   ├── camera.py           # Camera creation/DoF
+│   │   ├── lighting.py         # Light management
+│   │   ├── animation.py        # Animation system
+│   │   ├── render.py           # Render pipeline
+│   │   ├── tracking/           # Motion tracking
+│   │   ├── follow_cam/         # Follow camera
+│   │   └── projection/         # Anamorphic projection
+│   ├── control_system/         # Control surfaces
+│   └── inputs/                 # Input zone builder
+├── configs/                    # YAML configurations
+│   └── cinematic/              # Camera, lighting presets
+├── tests/                      # Test suite
+│   └── unit/                   # Unit tests
+├── .planning/                  # GSD planning documents
+└── .claude/                    # Claude configuration
 ```
 
-## Projects
+---
 
-### neve_knobs
+## Specialist Agents
 
-Neve-style audio knob generator with 5 procedural styles:
-
-- **Style 1 (Blue)** - Glossy blue cap, smooth surface
-- **Style 2 (Silver)** - Metallic silver, 24 ridges
-- **Style 3 (Silver Deep)** - Metallic silver, 32 ridges
-- **Style 4 (Silver Shallow)** - Metallic silver, 18 ridges
-- **Style 5 (Red)** - Glossy red with separate skirt
-
-**Features:**
-- Pure Geometry Nodes implementation
-- Real mesh displacement for knurling (not shader bump)
-- Configurable knurl zone, profile, and fade parameters
-- Production-ready GLB export
-
-**Usage:**
-```bash
-# Export single knob
-blender --background --python scripts/run_task.py -- projects/neve_knobs/tasks/knob_style1_blue_gn.yaml
-
-# Output: projects/neve_knobs/build/neve_knob_style1_blue_gn.glb
-```
-
-**Documentation:**
-- [Control Surface Workflow](.planning/CONTROL_SURFACE_WORKFLOW.md)
-- [Knurling System Spec](projects/neve_knobs/docs/KNURLING_SYSTEM_SPEC.md)
-- [Parameter Architecture](.planning/research/PARAMETER_ARCHITECTURE.md)
-
-
-## Task Format
-
-```yaml
-task_id: my_artifact_v1
-category: geometry
-intent: >
-  Description of what the artifact should be.
-
-parameters:
-  size: [0.25, 0.25, 0.08]
-  detail_amount: 0.35
-
-outputs:
-  mesh:
-    profile: stl_clean
-    file: build/my_artifact.stl
-
-debug:
-  enabled: true
-  show_mask: mask_height
-```
-
-## Blender Ricks
-
-Specialist agents for the Council of Ricks:
+The Council of Ricks - domain-specific AI agents:
 
 | Agent | Specialty |
 |-------|-----------|
 | geometry-rick | Geometry Nodes systems |
 | shader-rick | Material/shader pipelines |
 | compositor-rick | Compositor graphs |
-| export-rick | Export pipeline optimization |
 | render-rick | Render pipeline configuration |
-| asset-rick | Asset library management |
 | pipeline-rick | GSD pipeline orchestration |
 
-## Asset Library
-
-Located at `/Volumes/Storage/3d`:
-- 3,090 blend files
-- 29 KitBash3D packs
-- VFX assets, animation resources
-- 3D printing models
+---
 
 ## Requirements
 
-- Blender 4.x
-- Python 3.10+
-- PyYAML (for task files)
+- Blender 5.x (Geometry Nodes + EEVEE Next)
+- Python 3.11+
+- PyYAML
+
+---
 
 ## License
 
