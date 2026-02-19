@@ -2,22 +2,46 @@
 Shot Assembly Module (REQ-CINE-SHOT)
 
 Complete shot assembly from YAML configuration. Single entry point
-for creating fully-configured cinematic shots.
+for creating fully-configured cinematic shots with template inheritance,
+state persistence, and render capabilities.
+
+Core Functions:
+    assemble_shot: Assemble complete shot from ShotAssemblyConfig
+    load_shot_yaml: Load shot definition from YAML file
+    save_shot_state: Save shot state for version control
+    render_shot: Render assembled shot
+    create_shot_from_template: Create shot from template with inheritance
+    edit_shot: Edit existing shot with partial overrides
 
 Usage:
-    from lib.cinematic.shot import assemble_shot, load_shot_yaml, render_shot
+    from lib.cinematic.shot import (
+        assemble_shot, load_shot_yaml, save_shot_state,
+        render_shot, create_shot_from_template, edit_shot
+    )
 
     # Load and assemble from YAML
     config = load_shot_yaml("shots/hero_shot.yaml")
-    objects = assemble_shot(config)
+    result = assemble_shot(config)
 
-    # Render
-    render_shot(config, output_path="//render/hero_shot.png")
+    # Create from template
+    shot = create_shot_from_template(
+        template_name="product_hero",
+        subject="my_product",
+        overrides={"camera": {"focal_length": 85}}
+    )
+
+    # Render the shot
+    render_shot(output_path="//render/hero_shot.png")
+
+    # Save state for versioning
+    save_shot_state("hero_shot", version=1)
 """
 
 from __future__ import annotations
 from pathlib import Path
-from typing import Dict, Any, Optional, List
+from typing import Dict, Any, Optional, List, Tuple
+from datetime import datetime
+import copy
 import json
 
 try:
@@ -35,7 +59,7 @@ except ImportError:
 from .types import (
     ShotAssemblyConfig, ShotTemplateConfig, CameraConfig, PlumbBobConfig,
     LightConfig, BackdropConfig, ColorConfig, CinematicRenderSettings,
-    AnimationConfig, RigConfig
+    AnimationConfig, RigConfig, ShotState
 )
 from .preset_loader import (
     resolve_template_inheritance, get_shot_template, get_lighting_rig_preset,
@@ -49,8 +73,9 @@ try:
     from .lighting import create_light, apply_lighting_rig
     from .backdrops import create_backdrop
     from .color import apply_color_preset, set_view_transform
-    from .render import apply_quality_profile, render_frame
+    from .render import apply_quality_profile, render_frame, render_animation, get_render_metadata
     from .animation import create_orbit_animation, create_turntable_animation
+    from .state_manager import StateManager, FrameStore
     MODULES_AVAILABLE = True
 except ImportError:
     MODULES_AVAILABLE = False
@@ -272,65 +297,123 @@ def _setup_animation(
                 )
 
 
-def save_shot_state(config: ShotAssemblyConfig, path: Path) -> bool:
+def save_shot_state(
+    shot_name: str,
+    version: Optional[int] = None,
+    base_path: Optional[Path] = None
+) -> Tuple[int, Path]:
     """
-    Save shot configuration to YAML.
+    Save complete shot state for version control.
+
+    Captures current Blender scene state and saves it to a versioned
+    directory structure for comparison and rollback.
+
+    Args:
+        shot_name: Name of the shot to save
+        version: Optional version number (auto-incremented if None)
+        base_path: Base path for frame storage (default: .gsd-state/cinematic/frames)
+
+    Returns:
+        Tuple of (version_number, path_to_saved_state)
+    """
+    if not MODULES_AVAILABLE:
+        raise RuntimeError("State manager modules not available")
+
+    if base_path is None:
+        base_path = Path(".gsd-state/cinematic/frames")
+
+    store = FrameStore(base_path)
+    manager = StateManager(base_path)
+
+    # Capture current state
+    state = manager.capture_current(shot_name)
+
+    # Save to frame store
+    if version is not None:
+        # Save to specific version
+        shot_dir = base_path / shot_name / f"{version:03d}"
+        shot_dir.mkdir(parents=True, exist_ok=True)
+        state.version = version
+        manager.save(state, shot_dir / "state.yaml")
+        saved_version = version
+    else:
+        # Auto-increment version
+        saved_version = store.save_frame(shot_name, state)
+
+    return saved_version, base_path / shot_name / f"{saved_version:03d}" / "state.yaml"
+
+
+def load_shot_state(
+    shot_name: str,
+    version: int,
+    base_path: Optional[Path] = None
+) -> ShotState:
+    """
+    Load shot state from versioned storage.
+
+    Args:
+        shot_name: Name of the shot
+        version: Version number to load
+        base_path: Base path for frame storage (default: .gsd-state/cinematic/frames)
+
+    Returns:
+        ShotState loaded from storage
+
+    Raises:
+        FileNotFoundError: If version doesn't exist
+    """
+    if not MODULES_AVAILABLE:
+        raise RuntimeError("State manager modules not available")
+
+    if base_path is None:
+        base_path = Path(".gsd-state/cinematic/frames")
+
+    store = FrameStore(base_path)
+    return store.load_frame(shot_name, version)
+
+
+def save_shot_yaml(config: ShotAssemblyConfig, path: Path) -> None:
+    """
+    Save shot configuration to YAML file.
 
     Args:
         config: Shot configuration to save
-        path: Output path
-
-    Returns:
-        True on success
+        path: Output file path
     """
-    try:
-        path = Path(path)
-        path.parent.mkdir(parents=True, exist_ok=True)
+    path = Path(path)
+    path.parent.mkdir(parents=True, exist_ok=True)
 
-        data = config.to_dict()
+    data = config.to_dict()
 
-        with open(path, "w", encoding="utf-8") as f:
-            if yaml:
-                yaml.dump(data, f, default_flow_style=False, sort_keys=False)
-            else:
-                json.dump(data, f, indent=2)
-
-        return True
-    except Exception:
-        return False
-
-
-def load_shot_state(path: Path) -> ShotAssemblyConfig:
-    """
-    Load saved shot configuration.
-
-    Args:
-        path: Path to saved shot state
-
-    Returns:
-        ShotAssemblyConfig
-    """
-    return load_shot_yaml(path)
+    with open(path, "w", encoding="utf-8") as f:
+        if yaml:
+            yaml.dump(data, f, default_flow_style=False, sort_keys=False)
+        else:
+            json.dump(data, f, indent=2)
 
 
 def render_shot(
-    config: ShotAssemblyConfig,
+    config: Optional[ShotAssemblyConfig] = None,
     output_path: Optional[str] = None,
-    scene: Optional[Any] = None
-) -> bool:
+    scene: Optional[Any] = None,
+    animation: bool = False,
+    use_viewport: bool = False
+) -> str:
     """
-    Render the shot.
+    Render the assembled shot.
 
     Args:
-        config: Shot configuration
+        config: Optional shot configuration for render settings
         output_path: Optional override output path
         scene: Optional scene override
+        animation: Render animation sequence (vs single frame)
+        use_viewport: Use viewport render for faster preview
 
     Returns:
-        True on success
+        Output path used for rendering (empty string on failure)
     """
-    if not BLENDER_AVAILABLE or not MODULES_AVAILABLE:
-        return False
+    if not BLENDER_AVAILABLE:
+        return ""
 
     if scene is None:
         scene = bpy.context.scene
@@ -338,24 +421,33 @@ def render_shot(
     # Set output path
     if output_path:
         scene.render.filepath = output_path
-    elif config.output_path:
+    elif config and config.output_path:
         scene.render.filepath = config.output_path
 
-    # Apply render settings
-    if config.render:
-        apply_quality_profile(config.render.quality_tier, scene=scene)
+    # Apply render settings from config
+    if config and config.render and MODULES_AVAILABLE:
+        if hasattr(config.render, 'quality_tier') and config.render.quality_tier:
+            apply_quality_profile(config.render.quality_tier, scene=scene)
 
     # Execute render
     try:
-        if config.animation and config.animation.enabled:
+        is_animation = animation or (config and config.animation and config.animation.enabled)
+        if is_animation:
             # Animation render
-            bpy.ops.render.render(animation=True)
+            if MODULES_AVAILABLE:
+                return render_animation(output_path=output_path)
+            else:
+                bpy.ops.render.render(animation=True)
         else:
             # Single frame
-            bpy.ops.render.render(write_still=True)
-        return True
+            if MODULES_AVAILABLE:
+                return render_frame(output_path=output_path, use_viewport=use_viewport)
+            else:
+                bpy.ops.render.render(write_still=True)
     except Exception:
-        return False
+        pass
+
+    return scene.render.filepath
 
 
 def create_shot_from_template(
@@ -417,3 +509,26 @@ def edit_shot(config: ShotAssemblyConfig, edits: Dict[str, Any]) -> ShotAssembly
 
     # Reconstruct config
     return ShotAssemblyConfig.from_dict(config_dict)
+
+
+# =============================================================================
+# MODULE EXPORTS
+# =============================================================================
+
+__all__ = [
+    # Core assembly functions
+    "assemble_shot",
+    "load_shot_yaml",
+    "save_shot_yaml",
+    "save_shot_state",
+    "load_shot_state",
+    "render_shot",
+
+    # Template functions
+    "create_shot_from_template",
+    "edit_shot",
+
+    # Constants
+    "BLENDER_AVAILABLE",
+    "MODULES_AVAILABLE",
+]
