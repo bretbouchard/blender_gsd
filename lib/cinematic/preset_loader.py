@@ -28,6 +28,9 @@ LIGHTING_CONFIG_ROOT = Path("configs/cinematic/lighting")
 # Backdrop configuration root directory
 BACKDROP_CONFIG_ROOT = Path("configs/cinematic/backdrops")
 
+# Camera profile configuration
+CAMERA_PROFILE_ROOT = Path("configs/cinematic/tracking")
+
 
 def load_preset(path: Path) -> Dict[str, Any]:
     """
@@ -1175,3 +1178,60 @@ def list_shot_assemblies() -> List[str]:
 
     data = load_preset(path)
     return sorted(data.get("assemblies", {}).keys())
+
+
+# =============================================================================
+# Camera Profile Preset Loaders
+# =============================================================================
+
+
+def get_camera_profile(name: str) -> Dict[str, Any]:
+    """
+    Load a camera device profile by name.
+
+    Args:
+        name: Name of the camera profile (e.g., "iPhone_15_Pro_Main", "Sony_A7III_50mm")
+
+    Returns:
+        Dictionary containing camera profile configuration
+
+    Raises:
+        FileNotFoundError: If camera_profiles.yaml doesn't exist
+        ValueError: If profile name not found
+        RuntimeError: If YAML file but PyYAML not available
+    """
+    path = CAMERA_PROFILE_ROOT / "camera_profiles.yaml"
+    if not path.exists():
+        raise FileNotFoundError(f"Camera profiles file not found: {path}")
+
+    with open(path, "r", encoding="utf-8") as f:
+        data = yaml.safe_load(f)
+
+    profiles = data.get("profiles", {})
+    if name not in profiles:
+        available = list(profiles.keys())
+        raise ValueError(f"Camera profile '{name}' not found. Available: {available}")
+
+    return profiles[name]
+
+
+def list_camera_profiles() -> List[str]:
+    """
+    List available camera profiles.
+
+    Returns:
+        Sorted list of camera profile names
+
+    Raises:
+        FileNotFoundError: If camera_profiles.yaml doesn't exist
+        RuntimeError: If YAML file but PyYAML not available
+    """
+    path = CAMERA_PROFILE_ROOT / "camera_profiles.yaml"
+    if not path.exists():
+        return []
+
+    with open(path, "r", encoding="utf-8") as f:
+        data = yaml.safe_load(f)
+
+    return sorted(data.get("profiles", {}).keys())
+
