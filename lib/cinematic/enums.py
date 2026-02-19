@@ -135,3 +135,28 @@ class DenoiserType(str, Enum):
     OPTIX = "OPTIX"
     OPENIMAGEDENOISE = "OPENIMAGEDENOISE"
     NONE = "NONE"
+
+
+class CompositionGuideType(str, Enum):
+    """Composition guide types."""
+    RULE_OF_THIRDS = "rule_of_thirds"
+    GOLDEN_RATIO = "golden_ratio"
+    GOLDEN_SPIRAL = "golden_spiral"
+    CENTER_CROSS = "center_cross"
+    DIAGONAL = "diagonal"
+
+
+class DepthLayer(str, Enum):
+    """Depth layer types for DOF and compositing."""
+    FOREGROUND = "foreground"
+    MIDGROUND = "midground"
+    BACKGROUND = "background"
+
+
+class LensFXType(str, Enum):
+    """Post-process lens effect types."""
+    BLOOM = "bloom"
+    FLARE = "flare"
+    VIGNETTE = "vignette"
+    CHROMATIC = "chromatic"
+    GLITCH = "glitch"

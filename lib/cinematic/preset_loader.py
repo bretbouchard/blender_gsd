@@ -925,3 +925,44 @@ def list_exr_presets() -> List[str]:
     path = RENDER_CONFIG_ROOT / "pass_presets.yaml"
     data = load_preset(path)
     return sorted(data.get("exr_settings", {}).keys())
+
+
+# =============================================================================
+# Support System Preset Loaders
+# =============================================================================
+
+SUPPORT_CONFIG_ROOT = Path("configs/cinematic/support")
+
+
+def get_shuffle_preset(name: str) -> Dict[str, Any]:
+    """Load shuffle preset by name."""
+    path = SUPPORT_CONFIG_ROOT / "shuffle_presets.yaml"
+    data = load_preset(path)
+    presets = data.get("shuffle_presets", {})
+    if name not in presets:
+        raise ValueError(f"Shuffle preset '{name}' not found.")
+    return presets[name]
+
+
+def get_lens_fx_preset(name: str) -> Dict[str, Any]:
+    """Load lens FX preset by name."""
+    path = SUPPORT_CONFIG_ROOT / "lens_fx_presets.yaml"
+    data = load_preset(path)
+    presets = data.get("lens_fx_presets", {})
+    if name not in presets:
+        raise ValueError(f"Lens FX preset '{name}' not found.")
+    return presets[name]
+
+
+def list_shuffle_presets() -> List[str]:
+    """List all available shuffle preset names."""
+    path = SUPPORT_CONFIG_ROOT / "shuffle_presets.yaml"
+    data = load_preset(path)
+    return sorted(data.get("shuffle_presets", {}).keys())
+
+
+def list_lens_fx_presets() -> List[str]:
+    """List all available lens FX preset names."""
+    path = SUPPORT_CONFIG_ROOT / "lens_fx_presets.yaml"
+    data = load_preset(path)
+    return sorted(data.get("lens_fx_presets", {}).keys())

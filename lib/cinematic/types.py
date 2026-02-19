@@ -1079,6 +1079,199 @@ class CinematicRenderSettings:
         )
 
 
+@dataclass
+class ShuffleConfig:
+    """Shot variation configuration for generating multiple takes."""
+    enabled: bool = False
+    camera_angle_range: Tuple[float, float] = (-15.0, 15.0)  # degrees
+    camera_height_range: Tuple[float, float] = (-0.2, 0.2)  # meters
+    focal_length_range: Tuple[float, float] = (45.0, 85.0)  # mm
+    light_intensity_range: Tuple[float, float] = (0.8, 1.2)  # multiplier
+    light_angle_range: Tuple[float, float] = (-30.0, 30.0)  # degrees
+    exposure_range: Tuple[float, float] = (-0.5, 0.5)  # stops
+    num_variations: int = 5
+    seed: Optional[int] = None
+
+    def to_dict(self) -> Dict[str, Any]:
+        return {
+            "enabled": self.enabled,
+            "camera_angle_range": list(self.camera_angle_range),
+            "camera_height_range": list(self.camera_height_range),
+            "focal_length_range": list(self.focal_length_range),
+            "light_intensity_range": list(self.light_intensity_range),
+            "light_angle_range": list(self.light_angle_range),
+            "exposure_range": list(self.exposure_range),
+            "num_variations": self.num_variations,
+            "seed": self.seed,
+        }
+
+    @classmethod
+    def from_dict(cls, data: Dict[str, Any]) -> "ShuffleConfig":
+        return cls(
+            enabled=data.get("enabled", False),
+            camera_angle_range=tuple(data.get("camera_angle_range", (-15.0, 15.0))),
+            camera_height_range=tuple(data.get("camera_height_range", (-0.2, 0.2))),
+            focal_length_range=tuple(data.get("focal_length_range", (45.0, 85.0))),
+            light_intensity_range=tuple(data.get("light_intensity_range", (0.8, 1.2))),
+            light_angle_range=tuple(data.get("light_angle_range", (-30.0, 30.0))),
+            exposure_range=tuple(data.get("exposure_range", (-0.5, 0.5))),
+            num_variations=data.get("num_variations", 5),
+            seed=data.get("seed", None),
+        )
+
+
+@dataclass
+class FrameState:
+    """Captured scene state for comparison and undo."""
+    frame_number: int = 1
+    camera_transform: Dict[str, Any] = field(default_factory=dict)
+    camera_settings: Dict[str, Any] = field(default_factory=dict)
+    light_states: List[Dict[str, Any]] = field(default_factory=list)
+    object_transforms: List[Dict[str, Any]] = field(default_factory=list)
+    render_settings: Dict[str, Any] = field(default_factory=dict)
+    color_settings: Dict[str, Any] = field(default_factory=dict)
+    timestamp: str = ""
+    label: str = ""
+
+    def to_dict(self) -> Dict[str, Any]:
+        return {
+            "frame_number": self.frame_number,
+            "camera_transform": self.camera_transform,
+            "camera_settings": self.camera_settings,
+            "light_states": self.light_states,
+            "object_transforms": self.object_transforms,
+            "render_settings": self.render_settings,
+            "color_settings": self.color_settings,
+            "timestamp": self.timestamp,
+            "label": self.label,
+        }
+
+    @classmethod
+    def from_dict(cls, data: Dict[str, Any]) -> "FrameState":
+        return cls(
+            frame_number=data.get("frame_number", 1),
+            camera_transform=data.get("camera_transform", {}),
+            camera_settings=data.get("camera_settings", {}),
+            light_states=data.get("light_states", []),
+            object_transforms=data.get("object_transforms", []),
+            render_settings=data.get("render_settings", {}),
+            color_settings=data.get("color_settings", {}),
+            timestamp=data.get("timestamp", ""),
+            label=data.get("label", ""),
+        )
+
+
+@dataclass
+class DepthLayerConfig:
+    """Depth layer organization for DOF and compositing."""
+    enabled: bool = False
+    foreground_objects: List[str] = field(default_factory=list)
+    midground_objects: List[str] = field(default_factory=list)
+    background_objects: List[str] = field(default_factory=list)
+    foreground_dof: float = 0.0
+    midground_dof: float = 0.0
+    background_dof: float = 0.1
+
+    def to_dict(self) -> Dict[str, Any]:
+        return {
+            "enabled": self.enabled,
+            "foreground_objects": self.foreground_objects,
+            "midground_objects": self.midground_objects,
+            "background_objects": self.background_objects,
+            "foreground_dof": self.foreground_dof,
+            "midground_dof": self.midground_dof,
+            "background_dof": self.background_dof,
+        }
+
+    @classmethod
+    def from_dict(cls, data: Dict[str, Any]) -> "DepthLayerConfig":
+        return cls(
+            enabled=data.get("enabled", False),
+            foreground_objects=data.get("foreground_objects", []),
+            midground_objects=data.get("midground_objects", []),
+            background_objects=data.get("background_objects", []),
+            foreground_dof=data.get("foreground_dof", 0.0),
+            midground_dof=data.get("midground_dof", 0.0),
+            background_dof=data.get("background_dof", 0.1),
+        )
+
+
+@dataclass
+class CompositionGuide:
+    """Composition guide overlay configuration."""
+    enabled: bool = False
+    rule_of_thirds: bool = True
+    golden_ratio: bool = False
+    center_cross: bool = False
+    diagonal: bool = False
+    guide_opacity: float = 0.5
+    guide_color: Tuple[float, float, float, float] = (1.0, 0.0, 0.0, 0.5)
+
+    def to_dict(self) -> Dict[str, Any]:
+        return {
+            "enabled": self.enabled,
+            "rule_of_thirds": self.rule_of_thirds,
+            "golden_ratio": self.golden_ratio,
+            "center_cross": self.center_cross,
+            "diagonal": self.diagonal,
+            "guide_opacity": self.guide_opacity,
+            "guide_color": list(self.guide_color),
+        }
+
+    @classmethod
+    def from_dict(cls, data: Dict[str, Any]) -> "CompositionGuide":
+        return cls(
+            enabled=data.get("enabled", False),
+            rule_of_thirds=data.get("rule_of_thirds", True),
+            golden_ratio=data.get("golden_ratio", False),
+            center_cross=data.get("center_cross", False),
+            diagonal=data.get("diagonal", False),
+            guide_opacity=data.get("guide_opacity", 0.5),
+            guide_color=tuple(data.get("guide_color", (1.0, 0.0, 0.0, 0.5))),
+        )
+
+
+@dataclass
+class LensFXConfig:
+    """Post-process lens effects configuration."""
+    enabled: bool = False
+    bloom_intensity: float = 0.0
+    bloom_threshold: float = 0.8
+    flare_intensity: float = 0.0
+    flare_ghost_count: int = 4
+    vignette_intensity: float = 0.0
+    vignette_radius: float = 0.8
+    chromatic_aberration: float = 0.0
+    film_grain: float = 0.0
+
+    def to_dict(self) -> Dict[str, Any]:
+        return {
+            "enabled": self.enabled,
+            "bloom_intensity": self.bloom_intensity,
+            "bloom_threshold": self.bloom_threshold,
+            "flare_intensity": self.flare_intensity,
+            "flare_ghost_count": self.flare_ghost_count,
+            "vignette_intensity": self.vignette_intensity,
+            "vignette_radius": self.vignette_radius,
+            "chromatic_aberration": self.chromatic_aberration,
+            "film_grain": self.film_grain,
+        }
+
+    @classmethod
+    def from_dict(cls, data: Dict[str, Any]) -> "LensFXConfig":
+        return cls(
+            enabled=data.get("enabled", False),
+            bloom_intensity=data.get("bloom_intensity", 0.0),
+            bloom_threshold=data.get("bloom_threshold", 0.8),
+            flare_intensity=data.get("flare_intensity", 0.0),
+            flare_ghost_count=data.get("flare_ghost_count", 4),
+            vignette_intensity=data.get("vignette_intensity", 0.0),
+            vignette_radius=data.get("vignette_radius", 0.8),
+            chromatic_aberration=data.get("chromatic_aberration", 0.0),
+            film_grain=data.get("film_grain", 0.0),
+        )
+
+
 # =============================================================================
 # COMPOSITION RULES - Professional cinematography constants
 # =============================================================================
