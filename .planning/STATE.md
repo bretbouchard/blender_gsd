@@ -3,9 +3,9 @@
 ## Current Position
 
 **Phase:** 6.9 of 6.10 (camera-matching)
-**Plan:** 2 of 2 (complete)
+**Plan:** 3 of 3 (complete)
 **Status:** Phase Complete
-**Last activity:** 2026-02-19 - Completed 06.9-02 (Camera Matching + Audio Sync Modules)
+**Last activity:** 2026-02-19 - Completed 06.9-03 (Camera Profiles + Exports)
 
 **Progress:** [████████████] 100%
 
@@ -96,15 +96,18 @@
 | Plan | Name | Status | Summary |
 |------|------|--------|---------|
 | 06.9-01 | Camera Matching Types + Loaders | Complete | 06.9-01-SUMMARY.md |
-| 06.9-02 | Camera Matching + Audio Sync Modules | Complete | 06.9-02-SUMMARY.md |
+| 06.9-02 | Camera Matching + Audio Sync Modules | Complete* | 06.9-03-SUMMARY.md (combined with 03) |
+| 06.9-03 | Camera Profiles + Exports | Complete | 06.9-03-SUMMARY.md |
+
+*Plan 06.9-02 was implemented inline with 06.9-03 as a blocking issue fix.
 
 ## Cinematic System Module Summary
 
-**lib/cinematic/** (26 modules, ~20,700 lines):
+**lib/cinematic/** (28 modules, ~21,500 lines):
 - types.py (1994 lines) - Core dataclasses (CinematicRenderSettings, camera matching, audio sync types)
 - enums.py (163 lines) - Type-safe enumerations (RenderEngine, DenoiserType, CompositionGuideType)
 - state_manager.py (458 lines) - State persistence
-- preset_loader.py (1237 lines) - Preset loading utilities (render + support + shot template + camera profile loaders)
+- preset_loader.py (1238 lines) - Preset loading utilities (render + support + shot template + camera profile loaders)
 - camera.py (375 lines) - Camera creation and management
 - camera_match.py (399 lines) - Camera matching from reference and tracking import
 - audio_sync.py (300 lines) - Audio sync and beat marker support
@@ -126,10 +129,10 @@
 - depth_layers.py (438 lines) - Fore/mid/background organization
 - composition.py (643 lines) - Composition guide overlays
 - lens_fx.py (719 lines) - Post-process lens effects
-- __init__.py (749 lines) - Package exports
+- __init__.py (783 lines) - Package exports
 
-**Total exports:** 285+
-**Version:** 0.2.4
+**Total exports:** 300+
+**Version:** 0.2.5
 
 ## Decisions
 
@@ -187,6 +190,9 @@
 | 2026-02-19 | 06.9-02 | detect_horizon_line placeholder | Full implementation requires image analysis (edge detection, vanishing point) |
 | 2026-02-19 | 06.9-02 | Nuke .chan Y-up conversion | Converts Y-up coordinate system to Blender's Z-up default |
 | 2026-02-19 | 06.9-02 | FOV to focal length conversion | Uses 36mm sensor width for simplified calculation |
+| 2026-02-19 | 06.9-03 | Camera profiles organized by category | Easy discovery: smartphone, cinema, DSLR, action, drone |
+| 2026-02-19 | 06.9-03 | Brown-Conrady for action cameras | Wide-angle lenses (GoPro, DJI Osmo) need 5-coefficient model |
+| 2026-02-19 | 06.9-03 | Version bump to 0.2.5 | Camera matching system complete |
 
 ## Concerns
 
@@ -195,6 +201,6 @@ None currently.
 ## Session Continuity
 
 **Last session:** 2026-02-19
-**Stopped at:** Completed 06.9-02 (Camera Matching + Audio Sync Modules)
+**Stopped at:** Completed 06.9-03 (Camera Profiles + Exports)
 **Resume file:** None
 **Next phase:** Phase 6.9 complete - ready for Phase 6.10 or next phase in roadmap
