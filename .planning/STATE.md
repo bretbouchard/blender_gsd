@@ -3,9 +3,9 @@
 ## Current Position
 
 **Phase:** 7.5 of 7.5 (advanced-features) - IN PROGRESS
-**Plan:** 3 of 5 complete
-**Status:** Phase 07.5 Plan 03 Scan Import complete
-**Last activity:** 2026-02-19 - Completed 07.5-03 Scan Import
+**Plan:** 4 of 5 complete
+**Status:** Phase 07.5 Plan 04 Mocap Import complete
+**Last activity:** 2026-02-19 - Completed 07.5-04 Mocap Import
 
 **Progress:** [█████████░] 93% (Milestone v0.5 complete, v0.6 Phase 2 in progress)
 
@@ -18,7 +18,7 @@
 | 07.5-01 | Batch Processing | Complete | 07.5-01-SUMMARY.md |
 | 07.5-02 | Object Tracker | Complete | 07.5-02-SUMMARY.md |
 | 07.5-03 | Scan Import | Complete | 07.5-03-SUMMARY.md |
-| 07.5-04 | Mocap Import | Planned | MocapImporter, HandAnimation, MocapRetargeter |
+| 07.5-04 | Mocap Import | Complete | 07.5-04-SUMMARY.md |
 | 07.5-05 | Package Exports + Version Bump | Planned | Version 0.4.0, MILESTONE v0.6 COMPLETE |
 
 **Wave Structure:**
@@ -183,13 +183,14 @@
 
 ## Tracking System Module Summary
 
-**lib/cinematic/tracking/** (6 modules, ~3,650 lines):
-- types.py (886 lines) - TrackData, SolveData, FootageMetadata, TrackingSession, BatchJob, BatchConfig, BatchResult, CornerPinData, PlanarTrack, RotationCurve, RigidBodySolve, FloorPlane, ScaleCalibration, ScanData
+**lib/cinematic/tracking/** (7 modules, ~4,668 lines):
+- types.py (1188 lines) - TrackData, SolveData, FootageMetadata, TrackingSession, BatchJob, BatchConfig, BatchResult, CornerPinData, PlanarTrack, RotationCurve, RigidBodySolve, FloorPlane, ScaleCalibration, ScanData, JointTransform, BoneChannel, MocapData, FingerData, HandFrame, HandAnimation
 - footage.py (833 lines) - Footage import, ffprobe metadata extraction
 - import_export.py (976 lines) - Nuke .chan import, coordinate conversion
 - session_manager.py (130 lines) - Session persistence (save/load/resume)
 - object_tracker.py (500 lines) - PlanarTracker, KnobTracker, RigidBodyTracker, FaderTracker, ObjectTracker
 - scan_import.py (751 lines) - PLYParser, OBJParser, FloorDetector, ScaleDetector, ScanImporter
+- mocap.py (694 lines) - MocapImporter, MocapRetargeter, ButtonPressDetector, PressEvent
 
 **lib/cinematic/batch.py** (450 lines) - BatchProcessor, BatchCheckpoint, generate_batch_report
 
@@ -288,6 +289,9 @@
 | 2026-02-19 | 07.5-03 | RANSAC floor detection with horizontal bias | Robust plane fitting with prefer_horizontal option |
 | 2026-02-19 | 07.5-03 | PLY binary little/big endian support | Cross-platform binary format compatibility |
 | 2026-02-19 | 07.5-03 | Scale calibration confidence scoring | Inverse proportional to deviation from 1.0 |
+| 2026-02-19 | 07.5-04 | BVH hierarchy parsing with bone_stack | Tracks parent-child relationships during recursive parse |
+| 2026-02-19 | 07.5-04 | Hysteresis for button press detection | Different press/release thresholds prevent flickering |
+| 2026-02-19 | 07.5-04 | Rotation ranges per control type | Knob=360deg, Fader=90deg, Button=30deg depth |
 
 ## Concerns
 
@@ -296,9 +300,9 @@ None currently.
 ## Session Continuity
 
 **Last session:** 2026-02-19
-**Stopped at:** Completed 07.5-03 Scan Import
+**Stopped at:** Completed 07.5-04 Mocap Import
 **Resume file:** .planning/phases/07.5-advanced-features/
-**Next phase:** Execute Phase 07.5 Plan 04 (Mocap Import) if needed
+**Next phase:** Execute Phase 07.5 Plan 05 (Package Exports + Version Bump) if needed
 
 ## Milestone Summary
 
