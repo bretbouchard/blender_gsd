@@ -1,0 +1,113 @@
+# Shot Variation Presets for Cinematic Shuffler
+#
+# Generates multiple shot variations with randomized camera,
+# lighting, and lens parameters for batch rendering workflows.
+#
+# Usage:
+#   from lib.cinematic.shuffler import apply_shuffle_preset
+#   variations = apply_shuffle_preset("moderate", base_camera)
+
+shuffle_presets:
+  # Subtle variations for A/B testing
+  subtle:
+    description: "Subtle variations for A/B testing - minimal parameter changes"
+    enabled: true
+    camera_angle_range: [-5.0, 5.0]  # +/- 5 degrees
+    camera_height_range: [-0.05, 0.05]  # +/- 5 cm
+    focal_length_range: [45.0, 60.0]  # 45-60mm
+    light_intensity_range: [0.95, 1.05]  # +/- 5%
+    light_angle_range: [-10.0, 10.0]  # +/- 10 degrees
+    exposure_range: [-0.2, 0.2]  # +/- 0.2 stops
+    num_variations: 3
+    seed: null  # Random each time
+
+  # Moderate variations for exploration
+  moderate:
+    description: "Moderate variations for shot exploration - balanced parameter changes"
+    enabled: true
+    camera_angle_range: [-15.0, 15.0]  # +/- 15 degrees
+    camera_height_range: [-0.2, 0.2]  # +/- 20 cm
+    focal_length_range: [35.0, 85.0]  # 35-85mm
+    light_intensity_range: [0.8, 1.2]  # +/- 20%
+    light_angle_range: [-30.0, 30.0]  # +/- 30 degrees
+    exposure_range: [-0.5, 0.5]  # +/- 0.5 stops
+    num_variations: 5
+    seed: null
+
+  # Aggressive variations for creative exploration
+  aggressive:
+    description: "Aggressive variations for creative exploration - wide parameter ranges"
+    enabled: true
+    camera_angle_range: [-45.0, 45.0]  # +/- 45 degrees
+    camera_height_range: [-0.5, 0.5]  # +/- 50 cm
+    focal_length_range: [24.0, 135.0]  # 24-135mm (wide to telephoto)
+    light_intensity_range: [0.5, 1.5]  # +/- 50%
+    light_angle_range: [-60.0, 60.0]  # +/- 60 degrees
+    exposure_range: [-1.0, 1.0]  # +/- 1 stop
+    num_variations: 10
+    seed: null
+
+  # Lens exploration - focus on focal length variations
+  lens_exploration:
+    description: "Focus on focal length variations with stable camera position"
+    enabled: true
+    camera_angle_range: [-5.0, 5.0]  # Minimal angle change
+    camera_height_range: [-0.05, 0.05]  # Minimal height change
+    focal_length_range: [24.0, 200.0]  # Wide to telephoto
+    light_intensity_range: [0.9, 1.1]  # +/- 10%
+    light_angle_range: [-15.0, 15.0]  # +/- 15 degrees
+    exposure_range: [-0.3, 0.3]  # +/- 0.3 stops
+    num_variations: 7
+    seed: null
+
+  # Lighting exploration - focus on light variations
+  lighting_exploration:
+    description: "Focus on lighting variations with stable camera"
+    enabled: true
+    camera_angle_range: [-5.0, 5.0]  # Minimal angle change
+    camera_height_range: [-0.05, 0.05]  # Minimal height change
+    focal_length_range: [50.0, 85.0]  # Stable portrait range
+    light_intensity_range: [0.5, 2.0]  # +/- 50-100% intensity
+    light_angle_range: [-90.0, 90.0]  # Full side-to-side movement
+    exposure_range: [-1.0, 1.0]  # +/- 1 stop
+    num_variations: 8
+    seed: null
+
+  # Reproducible - fixed seed for consistent results
+  reproducible:
+    description: "Reproducible variations with fixed seed"
+    enabled: true
+    camera_angle_range: [-15.0, 15.0]
+    camera_height_range: [-0.2, 0.2]
+    focal_length_range: [35.0, 85.0]
+    light_intensity_range: [0.8, 1.2]
+    light_angle_range: [-30.0, 30.0]
+    exposure_range: [-0.5, 0.5]
+    num_variations: 5
+    seed: 42  # Fixed seed for reproducibility
+
+  # Portrait mode - optimized for portrait photography
+  portrait:
+    description: "Portrait photography variations - stable framing with DOF changes"
+    enabled: true
+    camera_angle_range: [-10.0, 10.0]
+    camera_height_range: [-0.1, 0.3]  # Slightly more height variation
+    focal_length_range: [50.0, 135.0]  # Portrait lens range
+    light_intensity_range: [0.7, 1.3]
+    light_angle_range: [-45.0, 45.0]
+    exposure_range: [-0.5, 0.5]
+    num_variations: 6
+    seed: null
+
+  # Product mode - optimized for product photography
+  product:
+    description: "Product photography variations - stable framing with subtle changes"
+    enabled: true
+    camera_angle_range: [-8.0, 8.0]
+    camera_height_range: [-0.15, 0.15]
+    focal_length_range: [50.0, 100.0]  # Macro/product range
+    light_intensity_range: [0.85, 1.15]
+    light_angle_range: [-20.0, 20.0]
+    exposure_range: [-0.3, 0.3]
+    num_variations: 5
+    seed: null

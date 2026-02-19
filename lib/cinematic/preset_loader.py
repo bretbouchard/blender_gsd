@@ -966,3 +966,37 @@ def list_lens_fx_presets() -> List[str]:
     path = SUPPORT_CONFIG_ROOT / "lens_fx_presets.yaml"
     data = load_preset(path)
     return sorted(data.get("lens_fx_presets", {}).keys())
+
+
+def get_depth_layer_preset(name: str) -> Dict[str, Any]:
+    """Load depth layer preset by name."""
+    path = SUPPORT_CONFIG_ROOT / "depth_layers.yaml"
+    data = load_preset(path)
+    layers = data.get("layers", {})
+    if name not in layers:
+        raise ValueError(f"Depth layer preset '{name}' not found.")
+    return layers[name]
+
+
+def list_depth_layer_presets() -> List[str]:
+    """List all available depth layer preset names."""
+    path = SUPPORT_CONFIG_ROOT / "depth_layers.yaml"
+    data = load_preset(path)
+    return sorted(data.get("layers", {}).keys())
+
+
+def get_composition_guide_preset(name: str) -> Dict[str, Any]:
+    """Load composition guide preset by name."""
+    path = SUPPORT_CONFIG_ROOT / "composition_guides.yaml"
+    data = load_preset(path)
+    guides = data.get("guides", {})
+    if name not in guides:
+        raise ValueError(f"Composition guide preset '{name}' not found.")
+    return guides[name]
+
+
+def list_composition_guide_presets() -> List[str]:
+    """List all available composition guide preset names."""
+    path = SUPPORT_CONFIG_ROOT / "composition_guides.yaml"
+    data = load_preset(path)
+    return sorted(data.get("guides", {}).keys())
