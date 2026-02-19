@@ -990,6 +990,95 @@ class TurntableConfig:
         )
 
 
+@dataclass
+class CinematicRenderSettings:
+    """
+    Cinematic render configuration for quality tiers and passes.
+
+    Attributes:
+        quality_tier: Quality preset (viewport, draft, preview, production, archive)
+        engine: Render engine (BLENDER_EEVEE_NEXT, CYCLES)
+        resolution_x: Render width in pixels
+        resolution_y: Render height in pixels
+        resolution_percentage: Resolution scale (100 = full)
+        frame_start: Start frame
+        frame_end: End frame
+        fps: Frames per second
+        samples: Render samples (EEVEE/Cycles)
+        use_denoising: Enable denoising
+        denoiser_type: Denoiser (OPTIX, OPENIMAGEDENOISE, etc.)
+        use_motion_blur: Enable motion blur
+        motion_blur_shutter: Shutter speed for motion blur
+        use_pass_z: Enable depth pass
+        use_pass_cryptomatte: Enable cryptomatte pass
+        use_pass_normal: Enable normal pass
+        use_pass_combined: Enable combined pass
+        output_format: Output format (OPEN_EXR_MULTILAYER, PNG, etc.)
+        output_path: Output directory path
+        exr_codec: EXR compression codec
+    """
+    quality_tier: str = "preview"
+    engine: str = "BLENDER_EEVEE_NEXT"
+    resolution_x: int = 1920
+    resolution_y: int = 1080
+    resolution_percentage: int = 100
+    frame_start: int = 1
+    frame_end: int = 120
+    fps: float = 24.0
+    samples: int = 64
+    use_denoising: bool = True
+    denoiser_type: str = "OPENIMAGEDENOISE"
+    use_motion_blur: bool = False
+    motion_blur_shutter: float = 0.5
+    use_pass_z: bool = True
+    use_pass_cryptomatte: bool = False
+    use_pass_normal: bool = False
+    use_pass_combined: bool = True
+    output_format: str = "PNG"
+    output_path: str = "//render/"
+    exr_codec: str = "ZIP"
+
+    def to_dict(self) -> Dict[str, Any]:
+        return {
+            "quality_tier": self.quality_tier, "engine": self.engine,
+            "resolution_x": self.resolution_x, "resolution_y": self.resolution_y,
+            "resolution_percentage": self.resolution_percentage,
+            "frame_start": self.frame_start, "frame_end": self.frame_end,
+            "fps": self.fps, "samples": self.samples,
+            "use_denoising": self.use_denoising, "denoiser_type": self.denoiser_type,
+            "use_motion_blur": self.use_motion_blur, "motion_blur_shutter": self.motion_blur_shutter,
+            "use_pass_z": self.use_pass_z, "use_pass_cryptomatte": self.use_pass_cryptomatte,
+            "use_pass_normal": self.use_pass_normal, "use_pass_combined": self.use_pass_combined,
+            "output_format": self.output_format, "output_path": self.output_path,
+            "exr_codec": self.exr_codec,
+        }
+
+    @classmethod
+    def from_dict(cls, data: Dict[str, Any]) -> "CinematicRenderSettings":
+        return cls(
+            quality_tier=data.get("quality_tier", "preview"),
+            engine=data.get("engine", "BLENDER_EEVEE_NEXT"),
+            resolution_x=data.get("resolution_x", 1920),
+            resolution_y=data.get("resolution_y", 1080),
+            resolution_percentage=data.get("resolution_percentage", 100),
+            frame_start=data.get("frame_start", 1),
+            frame_end=data.get("frame_end", 120),
+            fps=data.get("fps", 24.0),
+            samples=data.get("samples", 64),
+            use_denoising=data.get("use_denoising", True),
+            denoiser_type=data.get("denoiser_type", "OPENIMAGEDENOISE"),
+            use_motion_blur=data.get("use_motion_blur", False),
+            motion_blur_shutter=data.get("motion_blur_shutter", 0.5),
+            use_pass_z=data.get("use_pass_z", True),
+            use_pass_cryptomatte=data.get("use_pass_cryptomatte", False),
+            use_pass_normal=data.get("use_pass_normal", False),
+            use_pass_combined=data.get("use_pass_combined", True),
+            output_format=data.get("output_format", "PNG"),
+            output_path=data.get("output_path", "//render/"),
+            exr_codec=data.get("exr_codec", "ZIP"),
+        )
+
+
 # =============================================================================
 # COMPOSITION RULES - Professional cinematography constants
 # =============================================================================

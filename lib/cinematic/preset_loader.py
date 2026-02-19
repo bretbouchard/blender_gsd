@@ -838,3 +838,90 @@ def list_turntable_presets() -> List[str]:
     path = ANIMATION_CONFIG_ROOT / "turntable_presets.yaml"
     data = load_preset(path)
     return sorted(data.get("turntables", {}).keys())
+
+
+# =============================================================================
+# Render System Preset Loaders
+# =============================================================================
+
+RENDER_CONFIG_ROOT = Path("configs/cinematic/render")
+
+
+def get_quality_profile(name: str) -> Dict[str, Any]:
+    """Load quality profile preset by name."""
+    path = RENDER_CONFIG_ROOT / "quality_profiles.yaml"
+    data = load_preset(path)
+    profiles = data.get("profiles", {})
+    if name not in profiles:
+        raise ValueError(f"Quality profile '{name}' not found. Available: {list(profiles.keys())}")
+    return profiles[name]
+
+
+def get_pass_preset(name: str) -> Dict[str, Any]:
+    """
+    Load render pass preset by name.
+
+    Args:
+        name: Name of the pass preset (e.g., "beauty", "full_production", "product_minimal")
+
+    Returns:
+        Dictionary containing pass configuration with 'passes' list
+
+    Raises:
+        FileNotFoundError: If pass_presets.yaml doesn't exist
+        ValueError: If preset name not found
+        RuntimeError: If YAML file but PyYAML not available
+    """
+    path = RENDER_CONFIG_ROOT / "pass_presets.yaml"
+    data = load_preset(path)
+
+    # Check in pass_groups section (from YAML structure)
+    presets = data.get("pass_groups", {})
+    if name not in presets:
+        raise ValueError(f"Pass preset '{name}' not found. Available: {list(presets.keys())}")
+    return presets[name]
+
+
+def get_exr_settings(name: str) -> Dict[str, Any]:
+    """
+    Load EXR output settings preset by name.
+
+    Args:
+        name: Name of the EXR preset (e.g., "beauty_only", "multi_layer_compositing", "archive_storage")
+
+    Returns:
+        Dictionary containing EXR settings (compression, depth, description)
+
+    Raises:
+        FileNotFoundError: If pass_presets.yaml doesn't exist
+        ValueError: If preset name not found
+        RuntimeError: If YAML file but PyYAML not available
+    """
+    path = RENDER_CONFIG_ROOT / "pass_presets.yaml"
+    data = load_preset(path)
+
+    settings = data.get("exr_settings", {})
+    if name not in settings:
+        raise ValueError(f"EXR preset '{name}' not found. Available: {list(settings.keys())}")
+    return settings[name]
+
+
+def list_quality_profiles() -> List[str]:
+    """List all available quality profile names."""
+    path = RENDER_CONFIG_ROOT / "quality_profiles.yaml"
+    data = load_preset(path)
+    return sorted(data.get("profiles", {}).keys())
+
+
+def list_pass_presets() -> List[str]:
+    """List all available pass preset names."""
+    path = RENDER_CONFIG_ROOT / "pass_presets.yaml"
+    data = load_preset(path)
+    return sorted(data.get("pass_groups", {}).keys())
+
+
+def list_exr_presets() -> List[str]:
+    """List all available EXR preset names."""
+    path = RENDER_CONFIG_ROOT / "pass_presets.yaml"
+    data = load_preset(path)
+    return sorted(data.get("exr_settings", {}).keys())

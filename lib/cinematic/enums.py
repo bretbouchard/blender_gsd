@@ -112,3 +112,26 @@ class WorkingColorSpace(str, Enum):
     ACESCG = "ACEScg"
     FILMIC = "Filmic"
     STANDARD = "Standard"
+
+
+class QualityTier(str, Enum):
+    """Render quality tier presets."""
+    VIEWPORT = "viewport"
+    DRAFT = "draft"
+    PREVIEW = "preview"
+    PRODUCTION = "production"
+    ARCHIVE = "archive"
+
+
+class RenderEngine(str, Enum):
+    """Render engine options."""
+    EEVEE_NEXT = "BLENDER_EEVEE_NEXT"
+    CYCLES = "CYCLES"
+    WORKBENCH = "BLENDER_WORKBENCH"
+
+
+class DenoiserType(str, Enum):
+    """Denoiser options."""
+    OPTIX = "OPTIX"
+    OPENIMAGEDENOISE = "OPENIMAGEDENOISE"
+    NONE = "NONE"
