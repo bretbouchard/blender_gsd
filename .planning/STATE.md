@@ -2,12 +2,37 @@
 
 ## Current Position
 
-**Phase:** 6.10 of 6.10 (integration-testing)
-**Plan:** 3 of 3 (complete)
-**Status:** Phase Complete - Milestone v0.5 Cinematic Rendering System COMPLETE
-**Last activity:** 2026-02-19 - Completed 06.10-03 (Testing + Benchmark Exports, Version 0.3.0)
+**Phase:** 7.5 of 7.5 (advanced-features) - PLANNED
+**Plan:** 0 of 5 (ready for execution)
+**Status:** Planning Complete - Phase 7.5 Advanced Features planned
+**Last activity:** 2026-02-19 - Created Phase 7.5 planning documents (5 plans)
 
-**Progress:** [████████████] 100%
+**Progress:** [████████░░] 80% (Milestone v0.5 complete, v0.6 planned)
+
+## Phase 7.5 Planning Summary
+
+### 07.5-advanced-features (Planned)
+
+| Plan | Name | Status | Summary |
+|------|------|--------|---------|
+| 07.5-01 | Batch Processing | Planned | BatchProcessor with checkpoint resume |
+| 07.5-02 | Object Tracker | Planned | PlanarTracker, KnobTracker, RigidBodyTracker |
+| 07.5-03 | Scan Import | Planned | PLY/OBJ parsers, FloorDetector, ScaleDetector |
+| 07.5-04 | Mocap Import | Planned | MocapImporter, HandAnimation, MocapRetargeter |
+| 07.5-05 | Package Exports + Version Bump | Planned | Version 0.4.0, MILESTONE v0.6 COMPLETE |
+
+**Wave Structure:**
+1. Wave 1: batch.py (highest value, lowest complexity)
+2. Wave 2: object_tracker.py (planar tracking, knob rotation)
+3. Wave 3: scan_import.py (LiDAR with floor/scale detection)
+4. Wave 4: mocap.py (retargeting to MorphEngine)
+5. Wave 5: Package exports, version bump to 0.4.0
+
+**Key Integrations:**
+- KnobTracker.rotation_to_morph() → MorphEngine
+- MocapRetargeter.retarget_to_morph() → MorphEngine
+- ScanImporter → backdrop system
+- BatchProcessor → shot assembly
 
 ## Phase Summary
 
@@ -211,6 +236,12 @@
 | 2026-02-19 | 06.10-01 | BenchmarkResult for measurements | Store timing and resource usage data |
 | 2026-02-19 | 06.10-03 | Created benchmark.py inline | Plan dependency 06.10-02 was unmet; necessary for export task |
 | 2026-02-19 | 06.10-03 | Version bump to 0.3.0 | Milestone v0.5 Cinematic Rendering System complete |
+| 2026-02-19 | 07.5-PLAN | Wave 1 = batch.py first | Highest value (parallel processing), lowest complexity |
+| 2026-02-19 | 07.5-PLAN | Wave 5 = Version bump to 0.4.0 | Marks MILESTONE v0.6 (Motion Tracking System) complete |
+| 2026-02-19 | 07.5-PLAN | rotation_to_morph() in KnobTracker | Direct integration with MorphEngine for control surfaces |
+| 2026-02-19 | 07.5-PLAN | RANSAC for floor detection | Standard algorithm for robust plane fitting |
+| 2026-02-19 | 07.5-PLAN | ProcessPoolExecutor for batch | Subprocess isolation prevents crashes from affecting other jobs |
+| 2026-02-19 | 07.5-PLAN | P2 priority for Phase 7.5 | Can be implemented incrementally after core tracking |
 
 ## Concerns
 
@@ -219,9 +250,9 @@ None currently.
 ## Session Continuity
 
 **Last session:** 2026-02-19
-**Stopped at:** Completed 06.10-03 (Testing + Benchmark Exports, Version 0.3.0)
-**Resume file:** None
-**Next phase:** Milestone v0.5 Cinematic Rendering System COMPLETE - ready for next milestone
+**Stopped at:** Created Phase 7.5 planning documents (5 plans)
+**Resume file:** .planning/phases/07.5-advanced-features/
+**Next phase:** Execute Phase 7.5 Wave 1 (07.5-01 Batch Processing)
 
 ## Milestone Summary
 
