@@ -2,10 +2,10 @@
 
 ## Current Position
 
-**Phase:** 6.5 of 6.10 (animation-system)
-**Plan:** 3 of 3 (complete)
-**Status:** Phase Complete
-**Last activity:** 2026-02-19 - Completed 06.5-03 (Package Exports + Version Bump)
+**Phase:** 6.6 of 6.10 (render-system)
+**Plan:** 1 of 3 (in progress)
+**Status:** In Progress
+**Last activity:** 2026-02-18 - Completed 06.6-01 (Render System Types + Preset Loaders)
 
 **Progress:** [██████████░░] 88%
 
@@ -63,13 +63,21 @@
 | 06.5-02 | Animation Module | Complete | 06.5-02-SUMMARY.md |
 | 06.5-03 | Package Exports + Version Bump | Complete | 06.5-03-SUMMARY.md |
 
+### 06.6-render-system (In Progress)
+
+| Plan | Name | Status | Summary |
+|------|------|--------|---------|
+| 06.6-01 | Render Types + Preset Loaders | Complete | 06.6-01-SUMMARY.md |
+| 06.6-02 | Render Module | Not started | - |
+| 06.6-03 | Package Exports + Version Bump | Not started | - |
+
 ## Cinematic System Module Summary
 
-**lib/cinematic/** (17 modules, ~11300 lines):
-- types.py (1000 lines) - Core dataclasses (extended with AnimationConfig, MotionPathConfig, TurntableConfig)
-- enums.py (115 lines) - Type-safe enumerations (added ViewTransform, WorkingColorSpace)
+**lib/cinematic/** (17 modules, ~11500 lines):
+- types.py (1080 lines) - Core dataclasses (extended with CinematicRenderSettings)
+- enums.py (138 lines) - Type-safe enumerations (added QualityTier, RenderEngine, DenoiserType)
 - state_manager.py (458 lines) - State persistence
-- preset_loader.py (840 lines) - Preset loading utilities (added animation system loaders)
+- preset_loader.py (880 lines) - Preset loading utilities (added render system loaders)
 - camera.py (375 lines) - Camera creation and management
 - plumb_bob.py (348 lines) - Orbit/focus targeting
 - lenses.py (320 lines) - Compositor imperfections
@@ -113,12 +121,15 @@
 | 2026-02-19 | 06.4-02 | Optional scene_luminance parameter | Direct luminance requires render pass access |
 | 2026-02-19 | 06.4-03 | Version left at 0.2.0 | Already bumped from prior shot_builder integration |
 | 2026-02-19 | 06.5-01 | AnimationConfig.type as string enum | Flexible for future animation types without enum maintenance |
-| 2026-02-19 | 06.5-01 | TurntableConfig defaults loop=True | Product showcase typically requires continuous rotation |
+| 2026-02-19 | 06.5-01 | TurntableConfig.defaults loop=True | Product showcase typically requires continuous rotation |
 | 2026-02-19 | 06.5-01 | Separate dataclasses for each animation type | Clean separation of concerns, easier to extend independently |
 | 2026-02-19 | 06.5-01 | Match existing YAML structure | Consistent with camera_moves.yaml and easing_curves.yaml patterns |
 | 2026-02-19 | 06.5-02 | LINEAR interpolation for turntable/orbit | Constant-speed motion for product showcase |
 | 2026-02-19 | 06.5-02 | Direct keyframe_insert API | Avoid bpy.ops context dependencies |
 | 2026-02-19 | 06.5-02 | Separate motion_path module | Isolate procedural path generation logic |
+| 2026-02-18 | 06.6-01 | CinematicRenderSettings as separate class | Extends basic RenderSettings with pass configuration and quality tiers |
+| 2026-02-18 | 06.6-01 | Default engine EEVEE_NEXT | Modern Blender 4.0+ default, faster iteration |
+| 2026-02-18 | 06.6-01 | Default samples 64 | Balance between quality and speed for preview tier |
 
 ## Concerns
 
@@ -126,7 +137,7 @@ None currently.
 
 ## Session Continuity
 
-**Last session:** 2026-02-19
-**Stopped at:** Completed 06.5-03 (Package Exports + Version Bump)
+**Last session:** 2026-02-18
+**Stopped at:** Completed 06.6-01 (Render System Types + Preset Loaders)
 **Resume file:** None
-**Next phase:** Phase 6.5 complete - check ROADMAP.md for next phase
+**Next phase:** Continue with 06.6-02 (Render Module)
