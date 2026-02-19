@@ -2,10 +2,10 @@
 
 ## Current Position
 
-**Phase:** 6.7 of 6.10 (support-systems)
-**Plan:** 3 of 3 (complete)
-**Status:** Phase Complete
-**Last activity:** 2026-02-19 - Completed 06.7-03 (Package Exports + Version Bump)
+**Phase:** 6.8 of 6.10 (shot-assembly)
+**Plan:** 1 of 3 (in progress)
+**Status:** In Progress
+**Last activity:** 2026-02-19 - Completed 06.8-01 (Shot Template Types + Loaders)
 
 **Progress:** [███████████░] 92%
 
@@ -81,6 +81,12 @@
 | 06.7-02 | Support Modules | Complete | 06.7-02-SUMMARY.md |
 | 06.7-03 | Package Exports + Version Bump | Complete | 06.7-03-SUMMARY.md |
 
+### 06.8-shot-assembly (In Progress)
+
+| Plan | Name | Status | Summary |
+|------|------|--------|---------|
+| 06.8-01 | Shot Template Types + Loaders | Complete | 06.8-01-SUMMARY.md |
+
 ## Cinematic System Module Summary
 
 **lib/cinematic/** (23 modules, ~17,500 lines):
@@ -154,6 +160,9 @@
 | 2026-02-19 | 06.7-01 | DepthLayerConfig separate DOF per layer | Fine control over depth of field by scene depth |
 | 2026-02-19 | 06.7-01 | LensFXConfig defaults to disabled | Effects should be explicitly enabled |
 | 2026-02-19 | 06.7-03 | Version bump to 0.2.3 | Support systems exports complete |
+| 2026-02-19 | 06.8-01 | extends field as string | Simple template name reference, resolved at load time |
+| 2026-02-19 | 06.8-01 | abstract boolean field | Clean way to mark non-renderable base templates |
+| 2026-02-19 | 06.8-01 | Deep merge for dicts in inheritance | Allows partial overrides (e.g., just change camera.focal_length) |
 
 ## Concerns
 
@@ -162,6 +171,6 @@ None currently.
 ## Session Continuity
 
 **Last session:** 2026-02-19
-**Stopped at:** Completed 06.7-03 (Package Exports + Version Bump)
+**Stopped at:** Completed 06.8-01 (Shot Template Types + Loaders)
 **Resume file:** None
-**Next phase:** Phase 6.7 complete - ready for next phase in roadmap
+**Next phase:** Continue Phase 6.8 shot-assembly (plan 02)
