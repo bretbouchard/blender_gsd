@@ -1,0 +1,69 @@
+# Import Format Configurations
+# Mappings for external tracking data imports
+
+formats:
+  # FBX camera import
+  fbx:
+    description: "FBX camera tracking data"
+    extensions: [".fbx"]
+    coordinate_system:
+      up: "Y"  # FBX default is Y-up
+      forward: "-Z"
+      convert_to_blender: true  # Blender is Z-up
+    camera_import:
+      import_focal: true
+      import_aperture: true
+      import_animation: true
+      import_lens_distortion: true
+    scale_factor: 0.01  # cm to m
+
+  # Nuke .chan
+  nuke_chan:
+    description: "Nuke camera channel file"
+    extensions: [".chan"]
+    columns: ["frame", "tx", "ty", "tz", "rx", "ry", "rz", "focal"]
+    frame_column: 0
+    delimiter: "space"
+    rotation_order: "XYZ"
+    coordinate_system:
+      up: "Y"
+      convert_to_blender: true
+
+  # Alembic
+  alembic:
+    description: "Alembic animation cache"
+    extensions: [".abc"]
+    camera_import:
+      import_camera: true
+      import_transforms: true
+      import_geometry: false
+    frame_rate: "from_file"
+
+  # BVH motion capture
+  bvh:
+    description: "Biovision Hierarchy motion capture"
+    extensions: [".bvh"]
+    import:
+      import_skeleton: true
+      import_animation: true
+      retarget_to_metarig: false
+    scale_factor: 0.01
+
+  # JSON custom format
+  json:
+    description: "Custom JSON tracking format"
+    extensions: [".json"]
+    schema_version: "1.0"
+    structure:
+      frames: "List of frame objects"
+      frame: "frame_number, camera_transform, focal_length"
+
+  # 3DEqualizer Python export
+  3dequalizer:
+    description: "3DEqualizer Python script export"
+    extensions: [".py"]
+    export_type: "python_script"
+    includes:
+      - camera_animation
+      - point_cloud
+      - lens_distortion

@@ -1,0 +1,58 @@
+# Camera Solver Settings
+# Configures libmv camera solving parameters
+
+settings:
+  # Default solver settings
+  default:
+    description: "Standard camera solve settings"
+    refinement:
+      refine_focal_length: true
+      refine_principal_point: false
+      refine_radial_distortion: "k1_only"  # k1_only, k1_k2, none
+    motion:
+      type: "perspective"  # perspective, affine
+    keyframes:
+      auto_select: true
+      min_keyframes: 8
+      method: "motion_analysis"  # Select frames with good parallax
+    quality:
+      max_reprojection_error: 1.0  # Pixels
+      min_tracks_per_frame: 8
+      acceptable_error: 0.5
+
+  # Fixed focal length (no zoom)
+  fixed_focal:
+    description: "Fixed focal length, no zoom"
+    refinement:
+      refine_focal_length: false
+      refine_principal_point: false
+      refine_radial_distortion: "k1_only"
+    motion:
+      type: "perspective"
+
+  # Zoom lens
+  zoom_lens:
+    description: "Allow focal length variation for zoom lenses"
+    refinement:
+      refine_focal_length: true
+      refine_principal_point: false
+      refine_radial_distortion: "k1_k2"
+    motion:
+      type: "perspective"
+    focal_length:
+      constraints:
+        min: 20.0
+        max: 100.0
+
+  # Architectural solve
+  architectural:
+    description: "Optimized for architectural scenes"
+    refinement:
+      refine_focal_length: true
+      refine_principal_point: false
+      refine_radial_distortion: "k1_only"
+    motion:
+      type: "perspective"
+    constraints:
+      prefer_vertical_lines: true
+      prefer_horizontal_lines: true
