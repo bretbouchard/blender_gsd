@@ -883,3 +883,306 @@ class ScanData:
             has_color=data.get("has_color", False),
             has_normals=data.get("has_normals", False),
         )
+
+
+@dataclass
+class JointTransform:
+    """
+    Single joint transform at a frame.
+
+    Represents a single bone/joint transform at a specific frame
+    in a motion capture animation.
+
+    Attributes:
+        frame: Frame number
+        position: Joint position (x, y, z)
+        rotation_euler: Euler rotation in degrees (x, y, z)
+        rotation_quaternion: Quaternion rotation (w, x, y, z)
+        scale: Joint scale (x, y, z)
+    """
+    frame: int
+    position: Tuple[float, float, float] = (0.0, 0.0, 0.0)
+    rotation_euler: Tuple[float, float, float] = (0.0, 0.0, 0.0)
+    rotation_quaternion: Tuple[float, float, float, float] = (1.0, 0.0, 0.0, 0.0)
+    scale: Tuple[float, float, float] = (1.0, 1.0, 1.0)
+
+    def to_dict(self) -> Dict[str, Any]:
+        """Convert to dictionary for serialization."""
+        return {
+            "frame": self.frame,
+            "position": list(self.position),
+            "rotation_euler": list(self.rotation_euler),
+            "rotation_quaternion": list(self.rotation_quaternion),
+            "scale": list(self.scale),
+        }
+
+    @classmethod
+    def from_dict(cls, data: Dict[str, Any]) -> "JointTransform":
+        """Create from dictionary."""
+        return cls(
+            frame=data.get("frame", 0),
+            position=tuple(data.get("position", (0.0, 0.0, 0.0))),
+            rotation_euler=tuple(data.get("rotation_euler", (0.0, 0.0, 0.0))),
+            rotation_quaternion=tuple(data.get("rotation_quaternion", (1.0, 0.0, 0.0, 0.0))),
+            scale=tuple(data.get("scale", (1.0, 1.0, 1.0))),
+        )
+
+
+@dataclass
+class BoneChannel:
+    """
+    Animation channel for a single bone/joint.
+
+    Stores animation data for a single bone including its transform
+    hierarchy and per-frame transforms.
+
+    Attributes:
+        name: Bone name
+        parent: Parent bone name (empty string for root)
+        transforms: Per-frame joint transforms
+        offset: Bone offset from parent (x, y, z)
+        channels: Animation channels (e.g., ['Xposition', 'Yposition', 'Zrotation'])
+    """
+    name: str = ""
+    parent: str = ""
+    transforms: List["JointTransform"] = field(default_factory=list)
+    offset: Tuple[float, float, float] = (0.0, 0.0, 0.0)
+    channels: List[str] = field(default_factory=list)
+
+    def get_transform_at_frame(self, frame: int) -> Optional["JointTransform"]:
+        """Get transform data for a specific frame."""
+        for t in self.transforms:
+            if t.frame == frame:
+                return t
+        return None
+
+    def to_dict(self) -> Dict[str, Any]:
+        """Convert to dictionary for serialization."""
+        return {
+            "name": self.name,
+            "parent": self.parent,
+            "transforms": [t.to_dict() for t in self.transforms],
+            "offset": list(self.offset),
+            "channels": self.channels,
+        }
+
+    @classmethod
+    def from_dict(cls, data: Dict[str, Any]) -> "BoneChannel":
+        """Create from dictionary."""
+        transforms = [JointTransform.from_dict(t) for t in data.get("transforms", [])]
+        return cls(
+            name=data.get("name", ""),
+            parent=data.get("parent", ""),
+            transforms=transforms,
+            offset=tuple(data.get("offset", (0.0, 0.0, 0.0))),
+            channels=data.get("channels", []),
+        )
+
+
+@dataclass
+class MocapData:
+    """
+    Complete motion capture data.
+
+    Contains imported motion capture data with bone hierarchy and
+    per-frame animation for all joints.
+
+    Attributes:
+        id: Unique mocap identifier
+        name: Human-readable mocap name
+        source_path: Path to source file
+        source_format: File format (bvh, fbx, etc.)
+        frame_start: First frame number
+        frame_end: Last frame number
+        fps: Frames per second
+        duration_seconds: Animation duration in seconds
+        bones: List of bone animation channels
+        hierarchy: Bone hierarchy (parent -> [children])
+    """
+    id: str = field(default_factory=lambda: str(uuid.uuid4())[:8])
+    name: str = "mocap"
+    source_path: str = ""
+    source_format: str = ""
+    frame_start: int = 1
+    frame_end: int = 1
+    fps: float = 30.0
+    duration_seconds: float = 0.0
+    bones: List["BoneChannel"] = field(default_factory=list)
+    hierarchy: Dict[str, List[str]] = field(default_factory=dict)
+
+    def get_bone(self, name: str) -> Optional["BoneChannel"]:
+        """Get bone channel by name."""
+        for bone in self.bones:
+            if bone.name == name:
+                return bone
+        return None
+
+    def get_bone_names(self) -> List[str]:
+        """Get list of all bone names."""
+        return [b.name for b in self.bones]
+
+    def to_dict(self) -> Dict[str, Any]:
+        """Convert to dictionary for serialization."""
+        return {
+            "id": self.id,
+            "name": self.name,
+            "source_path": self.source_path,
+            "source_format": self.source_format,
+            "frame_start": self.frame_start,
+            "frame_end": self.frame_end,
+            "fps": self.fps,
+            "duration_seconds": self.duration_seconds,
+            "bones": [b.to_dict() for b in self.bones],
+            "hierarchy": self.hierarchy,
+        }
+
+    @classmethod
+    def from_dict(cls, data: Dict[str, Any]) -> "MocapData":
+        """Create from dictionary."""
+        bones = [BoneChannel.from_dict(b) for b in data.get("bones", [])]
+        return cls(
+            id=data.get("id", str(uuid.uuid4())[:8]),
+            name=data.get("name", "mocap"),
+            source_path=data.get("source_path", ""),
+            source_format=data.get("source_format", ""),
+            frame_start=data.get("frame_start", 1),
+            frame_end=data.get("frame_end", 1),
+            fps=data.get("fps", 30.0),
+            duration_seconds=data.get("duration_seconds", 0.0),
+            bones=bones,
+            hierarchy=data.get("hierarchy", {}),
+        )
+
+
+@dataclass
+class FingerData:
+    """
+    Finger joint data for hand tracking.
+
+    Represents a single finger joint's rotation and position.
+
+    Attributes:
+        finger_name: Finger name (thumb, index, middle, ring, pinky)
+        joint_name: Joint name (metacarpal, proximal, intermediate, distal)
+        rotation: Joint rotation in degrees (x, y, z)
+        position: Joint position (x, y, z)
+    """
+    finger_name: str = ""
+    joint_name: str = ""
+    rotation: Tuple[float, float, float] = (0.0, 0.0, 0.0)
+    position: Tuple[float, float, float] = (0.0, 0.0, 0.0)
+
+    def to_dict(self) -> Dict[str, Any]:
+        """Convert to dictionary for serialization."""
+        return {
+            "finger_name": self.finger_name,
+            "joint_name": self.joint_name,
+            "rotation": list(self.rotation),
+            "position": list(self.position),
+        }
+
+    @classmethod
+    def from_dict(cls, data: Dict[str, Any]) -> "FingerData":
+        """Create from dictionary."""
+        return cls(
+            finger_name=data.get("finger_name", ""),
+            joint_name=data.get("joint_name", ""),
+            rotation=tuple(data.get("rotation", (0.0, 0.0, 0.0))),
+            position=tuple(data.get("position", (0.0, 0.0, 0.0))),
+        )
+
+
+@dataclass
+class HandFrame:
+    """
+    Complete hand data for a single frame.
+
+    Contains all finger joint data and wrist transform for
+    a single frame of hand animation.
+
+    Attributes:
+        frame: Frame number
+        wrist_position: Wrist position (x, y, z)
+        wrist_rotation: Wrist rotation in degrees (x, y, z)
+        fingers: List of finger joint data
+        finger_tips: Finger tip positions by finger name
+    """
+    frame: int
+    wrist_position: Tuple[float, float, float] = (0.0, 0.0, 0.0)
+    wrist_rotation: Tuple[float, float, float] = (0.0, 0.0, 0.0)
+    fingers: List["FingerData"] = field(default_factory=list)
+    finger_tips: Dict[str, Tuple[float, float, float]] = field(default_factory=dict)
+
+    def get_finger_tip(self, finger: str) -> Optional[Tuple[float, float, float]]:
+        """Get finger tip position for a specific finger."""
+        return self.finger_tips.get(finger)
+
+    def to_dict(self) -> Dict[str, Any]:
+        """Convert to dictionary for serialization."""
+        return {
+            "frame": self.frame,
+            "wrist_position": list(self.wrist_position),
+            "wrist_rotation": list(self.wrist_rotation),
+            "fingers": [f.to_dict() for f in self.fingers],
+            "finger_tips": {k: list(v) for k, v in self.finger_tips.items()},
+        }
+
+    @classmethod
+    def from_dict(cls, data: Dict[str, Any]) -> "HandFrame":
+        """Create from dictionary."""
+        fingers = [FingerData.from_dict(f) for f in data.get("fingers", [])]
+        finger_tips = {k: tuple(v) for k, v in data.get("finger_tips", {}).items()}
+        return cls(
+            frame=data.get("frame", 0),
+            wrist_position=tuple(data.get("wrist_position", (0.0, 0.0, 0.0))),
+            wrist_rotation=tuple(data.get("wrist_rotation", (0.0, 0.0, 0.0))),
+            fingers=fingers,
+            finger_tips=finger_tips,
+        )
+
+
+@dataclass
+class HandAnimation:
+    """
+    Complete hand animation extracted from mocap.
+
+    Contains per-frame hand tracking data for animation retargeting
+    and control surface interaction detection.
+
+    Attributes:
+        name: Animation name
+        frames: List of hand frame data
+        frame_start: First frame number
+        frame_end: Last frame number
+    """
+    name: str = "hand"
+    frames: List["HandFrame"] = field(default_factory=list)
+    frame_start: int = 1
+    frame_end: int = 1
+
+    def get_frame(self, frame: int) -> Optional["HandFrame"]:
+        """Get hand data for a specific frame."""
+        for f in self.frames:
+            if f.frame == frame:
+                return f
+        return None
+
+    def to_dict(self) -> Dict[str, Any]:
+        """Convert to dictionary for serialization."""
+        return {
+            "name": self.name,
+            "frames": [f.to_dict() for f in self.frames],
+            "frame_start": self.frame_start,
+            "frame_end": self.frame_end,
+        }
+
+    @classmethod
+    def from_dict(cls, data: Dict[str, Any]) -> "HandAnimation":
+        """Create from dictionary."""
+        frames = [HandFrame.from_dict(f) for f in data.get("frames", [])]
+        return cls(
+            name=data.get("name", "hand"),
+            frames=frames,
+            frame_start=data.get("frame_start", 1),
+            frame_end=data.get("frame_end", 1),
+        )

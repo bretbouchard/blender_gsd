@@ -48,6 +48,13 @@ from .types import (
     FloorPlane,
     ScaleCalibration,
     ScanData,
+    # Mocap import types
+    JointTransform,
+    BoneChannel,
+    MocapData,
+    FingerData,
+    HandFrame,
+    HandAnimation,
 )
 
 from .footage import (
@@ -85,6 +92,16 @@ from .scan_import import (
     SCAN_FORMATS,
 )
 
+from .mocap import (
+    MocapImporter,
+    MocapRetargeter,
+    ButtonPressDetector,
+    PressEvent,
+    HAND_BONE_NAMES,
+    import_move_ai,
+    import_rokoko,
+)
+
 __all__ = [
     # Types
     "TrackData",
@@ -102,6 +119,13 @@ __all__ = [
     "FloorPlane",
     "ScaleCalibration",
     "ScanData",
+    # Mocap import types
+    "JointTransform",
+    "BoneChannel",
+    "MocapData",
+    "FingerData",
+    "HandFrame",
+    "HandAnimation",
     # Footage
     "extract_metadata",
     "analyze_footage",
@@ -129,6 +153,14 @@ __all__ = [
     "import_polycam",
     "import_reality_scan",
     "SCAN_FORMATS",
+    # Mocap Import
+    "MocapImporter",
+    "MocapRetargeter",
+    "ButtonPressDetector",
+    "PressEvent",
+    "HAND_BONE_NAMES",
+    "import_move_ai",
+    "import_rokoko",
     # Constants
     "BLENDER_AVAILABLE",
 ]
