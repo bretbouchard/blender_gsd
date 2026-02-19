@@ -414,6 +414,24 @@ from .shot import (
     edit_shot,
 )
 
+# Camera Matching & Audio Sync (Phase 6.9)
+from .types import CameraMatchConfig, TrackingImportConfig, AudioSyncConfig, CameraProfile
+from .camera_match import (
+    match_camera_to_reference,
+    import_tracking_data,
+    estimate_focal_length,
+    detect_horizon_line,
+    apply_camera_profile,
+)
+from .audio_sync import (
+    load_audio,
+    place_beat_markers,
+    detect_bpm,
+    create_animation_markers,
+    get_frame_at_beat,
+    get_beat_at_frame,
+)
+
 __all__ = [
     # Core types
     "Transform3D",
@@ -739,10 +757,27 @@ __all__ = [
     "create_shot_from_template",
     "edit_shot",
 
+    # Camera Matching & Audio Sync
+    "CameraMatchConfig",
+    "TrackingImportConfig",
+    "AudioSyncConfig",
+    "CameraProfile",
+    "match_camera_to_reference",
+    "import_tracking_data",
+    "estimate_focal_length",
+    "detect_horizon_line",
+    "apply_camera_profile",
+    "load_audio",
+    "place_beat_markers",
+    "detect_bpm",
+    "create_animation_markers",
+    "get_frame_at_beat",
+    "get_beat_at_frame",
+
     # Constants
     "APERTURE_MIN",
     "APERTURE_MAX",
     "BLENDER_AVAILABLE",
 ]
 
-__version__ = "0.2.4"
+__version__ = "0.2.5"
