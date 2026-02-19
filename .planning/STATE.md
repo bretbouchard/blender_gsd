@@ -2,12 +2,12 @@
 
 ## Current Position
 
-**Phase:** 6.3 of 6.10 (backdrop-system)
-**Plan:** 3 of 3 (complete)
-**Status:** Phase Complete
-**Last activity:** 2026-02-19 - Completed 06.3-03 (Package exports, version 0.1.3)
+**Phase:** 6.4 of 6.10 (color-pipeline)
+**Plan:** 1 of 3 (in progress)
+**Status:** In Progress
+**Last activity:** 2026-02-19 - Completed 06.4-01 (ColorConfig, LUTConfig, ExposureLockConfig types)
 
-**Progress:** [██████████░░] 83%
+**Progress:** [██████████░░] 85%
 
 ## Phase Summary
 
@@ -47,13 +47,21 @@
 | 06.3-02 | Backdrop Module | Complete | 06.3-02-SUMMARY.md |
 | 06.3-03 | Package Exports + Version Bump | Complete | 06.3-03-SUMMARY.md |
 
+### 06.4-color-pipeline (In Progress)
+
+| Plan | Name | Status | Summary |
+|------|------|--------|---------|
+| 06.4-01 | Types + Preset Loaders | Complete | 06.4-01-SUMMARY.md |
+| 06.4-02 | Color Management Module | Not started | - |
+| 06.4-03 | Package Exports + Version Bump | Not started | - |
+
 ## Cinematic System Module Summary
 
-**lib/cinematic/** (13 modules, ~6750 lines):
-- types.py (669 lines) - Core dataclasses (extended with BackdropConfig new properties)
-- enums.py (83 lines) - Type-safe enumerations (added AreaLightShape)
+**lib/cinematic/** (13 modules, ~7200 lines):
+- types.py (800 lines) - Core dataclasses (extended with ColorConfig, LUTConfig, ExposureLockConfig)
+- enums.py (115 lines) - Type-safe enumerations (added ViewTransform, WorkingColorSpace)
 - state_manager.py (458 lines) - State persistence
-- preset_loader.py (563 lines) - Preset loading utilities (added backdrop loaders)
+- preset_loader.py (700 lines) - Preset loading utilities (added color system loaders)
 - camera.py (375 lines) - Camera creation and management
 - plumb_bob.py (348 lines) - Orbit/focus targeting
 - lenses.py (320 lines) - Compositor imperfections
@@ -86,6 +94,8 @@
 | 2026-02-19 | 06.3-02 | CLIP shadow_method | Clean shadow edges (not HASHED) |
 | 2026-02-19 | 06.3-02 | LINEAR ColorRamp interpolation | Avoid gradient banding artifacts |
 | 2026-02-19 | 06.3-03 | Version bump to 0.1.3 | Backdrop system complete |
+| 2026-02-19 | 06.4-01 | LUTConfig.intensity default = 0.8 | Per REQ-CINE-LUT requirements |
+| 2026-02-19 | 06.4-01 | ExposureLockConfig.target_gray = 0.18 | 18% gray standard |
 
 ## Concerns
 
@@ -94,6 +104,6 @@ None currently.
 ## Session Continuity
 
 **Last session:** 2026-02-19
-**Stopped at:** Completed 06.3-03 (Package exports, version 0.1.3)
+**Stopped at:** Completed 06.4-01 (Types + Preset Loaders)
 **Resume file:** None
-**Next phase:** 06.4 (Animation System) or integration testing
+**Next phase:** 06.4-02 (Color Management Module)
