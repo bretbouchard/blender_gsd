@@ -202,18 +202,23 @@ Plans:
 ### Phase 6.2: Lighting System (REQ-CINE-LIGHT)
 **Goal:** Implement comprehensive lighting system with area/spot/point/sun lights, HDRI environment, gel system, light linking, and 8+ preset rigs.
 **Plans:** 5 plans
+**Completed:** 2026-02-18
 
 Plans:
-- [ ] 06.2-01-PLAN.md - Extend LightConfig with type-specific properties; add GelConfig, HDRIConfig, LightRigConfig dataclasses; add lighting preset loaders
-- [ ] 06.2-02-PLAN.md - Create lighting.py with create_light, create_area_light, create_spot_light, setup_light_linking, apply_lighting_rig
-- [ ] 06.2-03-PLAN.md - Create gel.py with apply_gel, create_gel_from_preset, kelvin_to_rgb, combine_gels
-- [ ] 06.2-04-PLAN.md - Create hdri.py with setup_hdri, load_hdri_preset, find_hdri_path, clear_hdri
-- [ ] 06.2-05-PLAN.md - Update __init__.py with all lighting exports and version bump to 0.1.2
+- [x] 06.2-01-PLAN.md - Extend LightConfig with type-specific properties; add GelConfig, HDRIConfig, LightRigConfig dataclasses; add lighting preset loaders
+- [x] 06.2-02-PLAN.md - Create lighting.py with create_light, create_area_light, create_spot_light, setup_light_linking, apply_lighting_rig
+- [x] 06.2-03-PLAN.md - Create gel.py with apply_gel, create_gel_from_preset, kelvin_to_rgb, combine_gels
+- [x] 06.2-04-PLAN.md - Create hdri.py with setup_hdri, load_hdri_preset, find_hdri_path, clear_hdri
+- [x] 06.2-05-PLAN.md - Update __init__.py with all lighting exports and version bump to 0.1.2
 
 ### Phase 6.3: Backdrop System (REQ-CINE-ENV)
-- [ ] backdrops.py - curves, gradients, HDRI
-- [ ] Backdrop presets
-- [ ] Shadow catcher system
+**Goal:** Implement backdrop system for product rendering with infinite curves, gradient backgrounds, shadow catchers, and HDRI backdrops.
+**Plans:** 3 plans
+
+Plans:
+- [ ] 06.3-01-PLAN.md - Extend BackdropConfig with additional properties; add backdrop preset loaders (infinite curves, gradients, environments)
+- [ ] 06.3-02-PLAN.md - Create backdrops.py with create_infinite_curve, create_gradient_material, setup_shadow_catcher, create_backdrop
+- [ ] 06.3-03-PLAN.md - Update __init__.py with all backdrop exports and version bump to 0.1.3
 
 ### Phase 6.4: Color Pipeline (REQ-CINE-LUT)
 - [ ] color.py - LUT management, color management
