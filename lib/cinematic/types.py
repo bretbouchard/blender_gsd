@@ -802,3 +802,502 @@ class ExposureLockConfig:
             highlight_protection=data.get("highlight_protection", 0.95),
             shadow_protection=data.get("shadow_protection", 0.02),
         )
+
+
+@dataclass
+class AnimationConfig:
+    """
+    Camera animation configuration.
+
+    Supports various camera move types for cinematic animation.
+
+    Attributes:
+        enabled: Whether animation is active
+        type: Animation type (static, orbit, dolly, crane, push_in, turntable, pan, tilt, truck, rack_focus, custom)
+        duration: Animation duration in frames
+        start_frame: Starting frame number
+        easing: Easing function name (linear, ease_in, ease_out, ease_in_out, etc.)
+        loop: Whether animation loops
+        angle_range: Start and end angle for orbit/turntable (degrees)
+        radius: Orbit radius in meters
+        distance: Dolly/crane travel distance in meters
+        direction: Movement direction (forward, backward, clockwise, counterclockwise)
+        elevation_range: Vertical angle range for crane shots (degrees)
+        subject_rotation: Whether subject rotates with camera (for turntable effect)
+        from_value: Starting value for parameter-based animations
+        to_value: Ending value for parameter-based animations
+    """
+    enabled: bool = False
+    type: str = "static"  # static, orbit, dolly, crane, push_in, turntable, pan, tilt, truck, rack_focus, custom
+    duration: int = 120
+    start_frame: int = 1
+    easing: str = "linear"
+    loop: bool = False
+    angle_range: Tuple[float, float] = (0.0, 360.0)
+    radius: float = 1.0
+    distance: float = 0.5
+    direction: str = "forward"
+    elevation_range: Tuple[float, float] = (0.0, 45.0)
+    subject_rotation: bool = False
+    from_value: float = 0.0
+    to_value: float = 1.0
+
+    def to_dict(self) -> Dict[str, Any]:
+        """Convert to dictionary for serialization."""
+        return {
+            "enabled": self.enabled,
+            "type": self.type,
+            "duration": self.duration,
+            "start_frame": self.start_frame,
+            "easing": self.easing,
+            "loop": self.loop,
+            "angle_range": list(self.angle_range),
+            "radius": self.radius,
+            "distance": self.distance,
+            "direction": self.direction,
+            "elevation_range": list(self.elevation_range),
+            "subject_rotation": self.subject_rotation,
+            "from_value": self.from_value,
+            "to_value": self.to_value,
+        }
+
+    @classmethod
+    def from_dict(cls, data: Dict[str, Any]) -> "AnimationConfig":
+        """Create from dictionary."""
+        return cls(
+            enabled=data.get("enabled", False),
+            type=data.get("type", "static"),
+            duration=data.get("duration", 120),
+            start_frame=data.get("start_frame", 1),
+            easing=data.get("easing", "linear"),
+            loop=data.get("loop", False),
+            angle_range=tuple(data.get("angle_range", (0.0, 360.0))),
+            radius=data.get("radius", 1.0),
+            distance=data.get("distance", 0.5),
+            direction=data.get("direction", "forward"),
+            elevation_range=tuple(data.get("elevation_range", (0.0, 45.0))),
+            subject_rotation=data.get("subject_rotation", False),
+            from_value=data.get("from_value", 0.0),
+            to_value=data.get("to_value", 1.0),
+        )
+
+
+@dataclass
+class MotionPathConfig:
+    """
+    Motion path configuration for procedural camera moves.
+
+    Supports various path types for complex camera animations.
+
+    Attributes:
+        path_type: Path interpolation type (linear, spline, bezier, arc)
+        duration: Path duration in frames
+        look_at: Look-at target mode (plumb_bob, manual, object, forward)
+        interpolation: Interpolation method for path evaluation
+        points: List of control points with position and handle data
+        preset: Named preset for common paths
+        closed: Whether path is closed (loops back to start)
+    """
+    path_type: str = "linear"  # linear, spline, bezier, arc
+    duration: int = 120
+    look_at: str = "plumb_bob"  # plumb_bob, manual, object, forward
+    interpolation: str = "bezier"
+    points: List[Dict[str, Any]] = field(default_factory=list)
+    preset: str = ""
+    closed: bool = False
+
+    def to_dict(self) -> Dict[str, Any]:
+        """Convert to dictionary for serialization."""
+        return {
+            "path_type": self.path_type,
+            "duration": self.duration,
+            "look_at": self.look_at,
+            "interpolation": self.interpolation,
+            "points": self.points,
+            "preset": self.preset,
+            "closed": self.closed,
+        }
+
+    @classmethod
+    def from_dict(cls, data: Dict[str, Any]) -> "MotionPathConfig":
+        """Create from dictionary."""
+        return cls(
+            path_type=data.get("path_type", "linear"),
+            duration=data.get("duration", 120),
+            look_at=data.get("look_at", "plumb_bob"),
+            interpolation=data.get("interpolation", "bezier"),
+            points=data.get("points", []),
+            preset=data.get("preset", ""),
+            closed=data.get("closed", False),
+        )
+
+
+@dataclass
+class TurntableConfig:
+    """
+    Turntable rotation configuration for product showcase.
+
+    Provides smooth, looping rotation ideal for product videos.
+
+    Attributes:
+        enabled: Whether turntable rotation is active
+        axis: Rotation axis (X, Y, Z)
+        angle_range: Start and end angle in degrees
+        duration: Rotation duration in frames (one full rotation)
+        start_frame: Starting frame number
+        easing: Easing function for smooth acceleration/deceleration
+        loop: Whether rotation loops continuously
+        direction: Rotation direction (clockwise, counterclockwise)
+        rotation_speed: Speed multiplier (1.0 = normal speed)
+    """
+    enabled: bool = False
+    axis: str = "Z"
+    angle_range: Tuple[float, float] = (0.0, 360.0)
+    duration: int = 120
+    start_frame: int = 1
+    easing: str = "linear"
+    loop: bool = True
+    direction: str = "clockwise"
+    rotation_speed: float = 1.0
+
+    def to_dict(self) -> Dict[str, Any]:
+        """Convert to dictionary for serialization."""
+        return {
+            "enabled": self.enabled,
+            "axis": self.axis,
+            "angle_range": list(self.angle_range),
+            "duration": self.duration,
+            "start_frame": self.start_frame,
+            "easing": self.easing,
+            "loop": self.loop,
+            "direction": self.direction,
+            "rotation_speed": self.rotation_speed,
+        }
+
+    @classmethod
+    def from_dict(cls, data: Dict[str, Any]) -> "TurntableConfig":
+        """Create from dictionary."""
+        return cls(
+            enabled=data.get("enabled", False),
+            axis=data.get("axis", "Z"),
+            angle_range=tuple(data.get("angle_range", (0.0, 360.0))),
+            duration=data.get("duration", 120),
+            start_frame=data.get("start_frame", 1),
+            easing=data.get("easing", "linear"),
+            loop=data.get("loop", True),
+            direction=data.get("direction", "clockwise"),
+            rotation_speed=data.get("rotation_speed", 1.0),
+        )
+
+
+# =============================================================================
+# COMPOSITION RULES - Professional cinematography constants
+# =============================================================================
+
+# Shot sizes (how much of subject is in frame)
+SHOT_SIZES = {
+    "ecu": {"name": "Extreme Close-Up", "heads_visible": 1.0, "description": "Eyes, lips, extreme detail"},
+    "cu": {"name": "Close-Up", "heads_visible": 1.5, "description": "Face fills frame"},
+    "mcu": {"name": "Medium Close-Up", "heads_visible": 2.5, "description": "Chest up"},
+    "m": {"name": "Medium", "heads_visible": 3.5, "description": "Waist up"},
+    "mf": {"name": "Medium Full", "heads_visible": 5.0, "description": "Knees up"},
+    "f": {"name": "Full", "heads_visible": 7.0, "description": "Full body"},
+    "w": {"name": "Wide", "heads_visible": 10.0, "description": "Subject in environment"},
+    "ew": {"name": "Extreme Wide", "heads_visible": 20.0, "description": "Establishing shot"},
+}
+
+# Lens recommendations by shot size
+LENS_BY_SHOT_SIZE = {
+    "ecu": {"focal_length": 100, "preset": "90mm_macro", "description": "Macro or long lens for detail"},
+    "cu": {"focal_length": 85, "preset": "85mm_portrait", "description": "Portrait lens, flattering compression"},
+    "mcu": {"focal_length": 65, "preset": "50mm_normal", "description": "Normal to portrait range"},
+    "m": {"focal_length": 50, "preset": "50mm_normal", "description": "Normal lens, natural perspective"},
+    "mf": {"focal_length": 50, "preset": "50mm_normal", "description": "Normal lens"},
+    "f": {"focal_length": 35, "preset": "35mm_documentary", "description": "Slight wide for full body"},
+    "w": {"focal_length": 24, "preset": "24mm_wide", "description": "Wide for environment"},
+    "ew": {"focal_length": 14, "preset": "14mm_ultra_wide", "description": "Ultra wide for establishing"},
+}
+
+# F-stop recommendations by shot size (depth of field)
+FSTOP_BY_SHOT_SIZE = {
+    "ecu": {"f_stop": 11.0, "reason": "Deep DOF for detail sharpness"},
+    "cu": {"f_stop": 2.8, "reason": "Shallow DOF, subject separation"},
+    "mcu": {"f_stop": 4.0, "reason": "Moderate DOF"},
+    "m": {"f_stop": 5.6, "reason": "Balanced DOF"},
+    "mf": {"f_stop": 5.6, "reason": "Balanced DOF"},
+    "f": {"f_stop": 8.0, "reason": "Deeper DOF for full body"},
+    "w": {"f_stop": 11.0, "reason": "Deep DOF, see environment"},
+    "ew": {"f_stop": 11.0, "reason": "Deep DOF, everything sharp"},
+}
+
+# Camera angles and their emotional impact
+CAMERA_ANGLES = {
+    "low": {"height_factor": -0.5, "power": "dominant", "emotion": "powerful, heroic"},
+    "eye": {"height_factor": 0.0, "power": "neutral", "emotion": "relatable, natural"},
+    "high": {"height_factor": 0.5, "power": "submissive", "emotion": "vulnerable, small"},
+    "birds_eye": {"height_factor": 1.0, "power": "omniscient", "emotion": "overview, god view"},
+    "worms_eye": {"height_factor": -1.0, "power": "extreme_dominant", "emotion": "dramatic, imposing"},
+}
+
+# Camera positions relative to subject
+CAMERA_POSITIONS = {
+    "front": {"angle_y": 0, "description": "Straight on, direct"},
+    "three_quarter": {"angle_y": 45, "description": "3/4 view, shows front and side"},
+    "profile": {"angle_y": 90, "description": "Side view"},
+    "three_quarter_back": {"angle_y": 135, "description": "3/4 from back"},
+    "back": {"angle_y": 180, "description": "From behind"},
+}
+
+# Lighting ratios by mood
+LIGHTING_RATIOS = {
+    "high_key": {"key_fill": 1.5, "description": "Bright, minimal shadows"},
+    "normal": {"key_fill": 2.0, "description": "Standard 2:1 ratio"},
+    "dramatic": {"key_fill": 4.0, "description": "4:1 ratio, moody"},
+    "low_key": {"key_fill": 8.0, "description": "8:1 ratio, very dark"},
+    "noir": {"key_fill": 16.0, "description": "Extreme contrast"},
+}
+
+
+@dataclass
+class CompositionConfig:
+    """
+    Composition rules for a shot - the "DP's cheat sheet".
+
+    These values are automatically derived from shot_size, mood, and style
+    but can be overridden for specific creative needs.
+
+    Attributes:
+        shot_size: Size of shot (ecu, cu, mcu, m, mf, f, w, ew)
+        camera_angle: Vertical angle (low, eye, high, birds_eye, worms_eye)
+        camera_position: Horizontal position (front, three_quarter, profile, etc.)
+        subject_framing: Where subject is in frame (center, thirds_left, thirds_right)
+        headroom: Space above subject's head (0.0-1.0)
+        looking_room: Space in direction subject is looking (0.0-1.0)
+        lens_focal_length: Recommended focal length in mm
+        lens_preset: Lens preset name
+        f_stop: Recommended aperture
+        lighting_ratio: Key:fill lighting ratio
+    """
+    shot_size: str = "m"
+    camera_angle: str = "eye"
+    camera_position: str = "three_quarter"
+    subject_framing: str = "center"
+    headroom: float = 0.1
+    looking_room: float = 0.15
+    lens_focal_length: float = 50.0
+    lens_preset: str = "50mm_normal"
+    f_stop: float = 5.6
+    lighting_ratio: float = 2.0
+
+    def to_dict(self) -> Dict[str, Any]:
+        """Convert to dictionary for serialization."""
+        return {
+            "shot_size": self.shot_size,
+            "camera_angle": self.camera_angle,
+            "camera_position": self.camera_position,
+            "subject_framing": self.subject_framing,
+            "headroom": self.headroom,
+            "looking_room": self.looking_room,
+            "lens_focal_length": self.lens_focal_length,
+            "lens_preset": self.lens_preset,
+            "f_stop": self.f_stop,
+            "lighting_ratio": self.lighting_ratio,
+        }
+
+    @classmethod
+    def from_dict(cls, data: Dict[str, Any]) -> "CompositionConfig":
+        """Create from dictionary."""
+        return cls(
+            shot_size=data.get("shot_size", "m"),
+            camera_angle=data.get("camera_angle", "eye"),
+            camera_position=data.get("camera_position", "three_quarter"),
+            subject_framing=data.get("subject_framing", "center"),
+            headroom=data.get("headroom", 0.1),
+            looking_room=data.get("looking_room", 0.15),
+            lens_focal_length=data.get("lens_focal_length", 50.0),
+            lens_preset=data.get("lens_preset", "50mm_normal"),
+            f_stop=data.get("f_stop", 5.6),
+            lighting_ratio=data.get("lighting_ratio", 2.0),
+        )
+
+    @classmethod
+    def from_shot_size(cls, shot_size: str, mood: str = "normal") -> "CompositionConfig":
+        """
+        Create composition config from shot size with automatic lens/f-stop selection.
+
+        This is the "DP's auto-mode" - automatically selects appropriate
+        lens, f-stop, and lighting ratio based on shot size.
+        """
+        lens_info = LENS_BY_SHOT_SIZE.get(shot_size, LENS_BY_SHOT_SIZE["m"])
+        fstop_info = FSTOP_BY_SHOT_SIZE.get(shot_size, FSTOP_BY_SHOT_SIZE["m"])
+        ratio_info = LIGHTING_RATIOS.get(mood, LIGHTING_RATIOS["normal"])
+
+        return cls(
+            shot_size=shot_size,
+            lens_focal_length=lens_info["focal_length"],
+            lens_preset=lens_info["preset"],
+            f_stop=fstop_info["f_stop"],
+            lighting_ratio=ratio_info["key_fill"],
+        )
+
+
+@dataclass
+class CompleteShotConfig:
+    """
+    Complete shot configuration - everything needed for one shot.
+
+    This is the "master config" that ties together:
+    - Camera settings (lens, f-stop, position)
+    - Composition rules (shot size, framing, angle)
+    - Lighting setup (preset or custom)
+    - Backdrop/environment
+    - Post-processing hints
+
+    Usage:
+        # Create from preset
+        config = CompleteShotConfig.from_preset("apple_hero", subject_name="product")
+
+        # Create from shot size (auto-selects lens, f-stop, lighting)
+        config = CompleteShotConfig.from_shot_size("mcu", mood="dramatic")
+
+        # Create manually
+        config = CompleteShotConfig(
+            name="hero_shot_01",
+            composition=CompositionConfig(shot_size="cu"),
+            camera=CameraConfig(focal_length=85, f_stop=2.8),
+            lighting_rig="three_point_soft",
+            backdrop=BackdropConfig(backdrop_type="gradient"),
+        )
+    """
+    name: str = "shot_01"
+    description: str = ""
+
+    # Composition rules (derived from shot_size or set manually)
+    composition: CompositionConfig = field(default_factory=CompositionConfig)
+
+    # Camera configuration
+    camera: CameraConfig = field(default_factory=CameraConfig)
+
+    # Targeting (plumb bob for orbit/focus)
+    plumb_bob: PlumbBobConfig = field(default_factory=PlumbBobConfig)
+
+    # Camera rig (tripod, dolly, etc.)
+    rig: RigConfig = field(default_factory=RigConfig)
+
+    # Lighting (preset name or custom config)
+    lighting_rig: str = ""  # Preset name like "three_point_soft"
+    lights: Dict[str, LightConfig] = field(default_factory=dict)  # Or custom lights
+
+    # Backdrop/environment
+    backdrop: BackdropConfig = field(default_factory=BackdropConfig)
+    environment_preset: str = ""  # HDRI or environment preset
+
+    # Lens imperfections
+    imperfections: ImperfectionConfig = field(default_factory=ImperfectionConfig)
+
+    # Post-processing hints
+    color_grade: str = "neutral"  # warm, cool, neutral, dramatic
+    contrast: str = "medium"  # low, medium, high
+    saturation: float = 1.0
+
+    # Subject reference
+    subject_name: str = ""
+
+    def to_dict(self) -> Dict[str, Any]:
+        """Convert to dictionary for serialization."""
+        return {
+            "name": self.name,
+            "description": self.description,
+            "composition": self.composition.to_dict(),
+            "camera": self.camera.to_dict(),
+            "plumb_bob": self.plumb_bob.to_dict(),
+            "rig": self.rig.to_dict(),
+            "lighting_rig": self.lighting_rig,
+            "lights": {k: v.to_dict() for k, v in self.lights.items()},
+            "backdrop": self.backdrop.to_dict(),
+            "environment_preset": self.environment_preset,
+            "imperfections": self.imperfections.to_dict(),
+            "color_grade": self.color_grade,
+            "contrast": self.contrast,
+            "saturation": self.saturation,
+            "subject_name": self.subject_name,
+        }
+
+    @classmethod
+    def from_dict(cls, data: Dict[str, Any]) -> "CompleteShotConfig":
+        """Create from dictionary."""
+        lights_data = data.get("lights", {})
+        lights = {k: LightConfig.from_dict(v) for k, v in lights_data.items()}
+
+        return cls(
+            name=data.get("name", "shot_01"),
+            description=data.get("description", ""),
+            composition=CompositionConfig.from_dict(data.get("composition", {})),
+            camera=CameraConfig.from_dict(data.get("camera", {})),
+            plumb_bob=PlumbBobConfig.from_dict(data.get("plumb_bob", {})),
+            rig=RigConfig.from_dict(data.get("rig", {})),
+            lighting_rig=data.get("lighting_rig", ""),
+            lights=lights,
+            backdrop=BackdropConfig.from_dict(data.get("backdrop", {})),
+            environment_preset=data.get("environment_preset", ""),
+            imperfections=ImperfectionConfig.from_dict(data.get("imperfections", {})),
+            color_grade=data.get("color_grade", "neutral"),
+            contrast=data.get("contrast", "medium"),
+            saturation=data.get("saturation", 1.0),
+            subject_name=data.get("subject_name", ""),
+        )
+
+    @classmethod
+    def from_shot_size(
+        cls,
+        shot_size: str,
+        mood: str = "normal",
+        subject_name: str = ""
+    ) -> "CompleteShotConfig":
+        """
+        Create complete shot config from shot size.
+
+        Automatically selects appropriate lens, f-stop, and lighting
+        based on cinematography rules.
+
+        Args:
+            shot_size: Shot size (ecu, cu, mcu, m, mf, f, w, ew)
+            mood: Lighting mood (high_key, normal, dramatic, low_key, noir)
+            subject_name: Name of subject object
+        """
+        composition = CompositionConfig.from_shot_size(shot_size, mood)
+
+        camera = CameraConfig(
+            focal_length=composition.lens_focal_length,
+            f_stop=composition.f_stop,
+        )
+
+        return cls(
+            name=f"{shot_size}_{mood}",
+            composition=composition,
+            camera=camera,
+            subject_name=subject_name,
+        )
+
+    @classmethod
+    def from_preset(
+        cls,
+        preset_name: str,
+        subject_name: str = ""
+    ) -> "CompleteShotConfig":
+        """
+        Create complete shot config from a shot preset.
+
+        This loads a preset from the shot preset YAML files and
+        creates a fully configured CompleteShotConfig.
+
+        Args:
+            preset_name: Shot preset name (e.g., "apple_hero", "studio_white")
+            subject_name: Name of subject object
+        """
+        # This will be implemented in shot_builder.py
+        # For now, return a basic config
+        return cls(
+            name=preset_name,
+            subject_name=subject_name,
+        )

@@ -698,3 +698,143 @@ def list_film_lut_presets() -> List[str]:
     path = COLOR_CONFIG_ROOT / "film_luts.yaml"
     data = load_preset(path)
     return sorted(data.get("film", {}).keys())
+
+
+# =============================================================================
+# Animation System Preset Loaders
+# =============================================================================
+
+# Animation configuration root directory
+ANIMATION_CONFIG_ROOT = Path("configs/cinematic/animation")
+
+
+def get_camera_move_preset(name: str) -> Dict[str, Any]:
+    """
+    Load camera move preset by name.
+
+    Args:
+        name: Name of the camera move preset (e.g., "orbit_360", "dolly_push_in")
+
+    Returns:
+        Dictionary containing camera move configuration
+
+    Raises:
+        FileNotFoundError: If camera_moves.yaml doesn't exist
+        ValueError: If preset name not found
+        RuntimeError: If YAML file but PyYAML not available
+    """
+    path = ANIMATION_CONFIG_ROOT / "camera_moves.yaml"
+    data = load_preset(path)
+
+    moves = data.get("moves", {})
+    if name not in moves:
+        available = list(moves.keys())
+        raise ValueError(
+            f"Camera move preset '{name}' not found. Available: {available}"
+        )
+
+    return moves[name]
+
+
+def get_easing_preset(name: str) -> Dict[str, Any]:
+    """
+    Load easing curve preset by name.
+
+    Args:
+        name: Name of the easing preset (e.g., "linear", "ease_in_out", "exponential")
+
+    Returns:
+        Dictionary containing easing curve configuration
+
+    Raises:
+        FileNotFoundError: If easing_curves.yaml doesn't exist
+        ValueError: If preset name not found
+        RuntimeError: If YAML file but PyYAML not available
+    """
+    path = ANIMATION_CONFIG_ROOT / "easing_curves.yaml"
+    data = load_preset(path)
+
+    curves = data.get("easing", {})
+    if name not in curves:
+        available = list(curves.keys())
+        raise ValueError(
+            f"Easing preset '{name}' not found. Available: {available}"
+        )
+
+    return curves[name]
+
+
+def get_turntable_preset(name: str) -> Dict[str, Any]:
+    """
+    Load turntable rotation preset by name.
+
+    Args:
+        name: Name of the turntable preset (e.g., "product_standard", "product_slow")
+
+    Returns:
+        Dictionary containing turntable configuration
+
+    Raises:
+        FileNotFoundError: If turntable_presets.yaml doesn't exist
+        ValueError: If preset name not found
+        RuntimeError: If YAML file but PyYAML not available
+    """
+    path = ANIMATION_CONFIG_ROOT / "turntable_presets.yaml"
+    data = load_preset(path)
+
+    presets = data.get("turntables", {})
+    if name not in presets:
+        available = list(presets.keys())
+        raise ValueError(
+            f"Turntable preset '{name}' not found. Available: {available}"
+        )
+
+    return presets[name]
+
+
+def list_camera_move_presets() -> List[str]:
+    """
+    List all available camera move preset names.
+
+    Returns:
+        Sorted list of camera move preset names
+
+    Raises:
+        FileNotFoundError: If camera_moves.yaml doesn't exist
+        RuntimeError: If YAML file but PyYAML not available
+    """
+    path = ANIMATION_CONFIG_ROOT / "camera_moves.yaml"
+    data = load_preset(path)
+    return sorted(data.get("moves", {}).keys())
+
+
+def list_easing_presets() -> List[str]:
+    """
+    List all available easing preset names.
+
+    Returns:
+        Sorted list of easing preset names
+
+    Raises:
+        FileNotFoundError: If easing_curves.yaml doesn't exist
+        RuntimeError: If YAML file but PyYAML not available
+    """
+    path = ANIMATION_CONFIG_ROOT / "easing_curves.yaml"
+    data = load_preset(path)
+    return sorted(data.get("easing", {}).keys())
+
+
+def list_turntable_presets() -> List[str]:
+    """
+    List all available turntable preset names.
+
+    Returns:
+        Sorted list of turntable preset names
+
+    Raises:
+        FileNotFoundError: If turntable_presets.yaml doesn't exist
+        RuntimeError: If YAML file but PyYAML not available
+    """
+    path = ANIMATION_CONFIG_ROOT / "turntable_presets.yaml"
+    data = load_preset(path)
+    return sorted(data.get("turntables", {}).keys())

@@ -1,0 +1,111 @@
+# Turntable Rotation Presets
+# Product showcase rotation configurations for cinematic animation
+#
+# Usage:
+#   from lib.cinematic.preset_loader import get_turntable_preset
+#   config = get_turntable_preset("product_standard")
+
+turntables:
+  # Standard product rotation - 360 degrees in 4 seconds (24fps)
+  product_standard:
+    enabled: true
+    axis: "Z"
+    angle_range: [0.0, 360.0]
+    duration: 96  # 4 seconds at 24fps
+    start_frame: 1
+    easing: "linear"
+    loop: true
+    direction: "clockwise"
+    rotation_speed: 1.0
+    description: "Standard 360-degree product rotation, 4-second loop"
+
+  # Slow, dramatic rotation for premium products
+  product_slow:
+    enabled: true
+    axis: "Z"
+    angle_range: [0.0, 360.0]
+    duration: 240  # 10 seconds at 24fps
+    start_frame: 1
+    easing: "ease_in_out"
+    loop: true
+    direction: "clockwise"
+    rotation_speed: 0.4
+    description: "Slow, elegant rotation for premium product showcase"
+
+  # Fast rotation for quick previews
+  product_fast:
+    enabled: true
+    axis: "Z"
+    angle_range: [0.0, 360.0]
+    duration: 48  # 2 seconds at 24fps
+    start_frame: 1
+    easing: "linear"
+    loop: true
+    direction: "clockwise"
+    rotation_speed: 2.5
+    description: "Fast rotation for quick product previews"
+
+  # 90-degree turn for multiple-angle stills
+  product_90:
+    enabled: true
+    axis: "Z"
+    angle_range: [0.0, 90.0]
+    duration: 30  # 1.25 seconds at 24fps
+    start_frame: 1
+    easing: "ease_in_out"
+    loop: false
+    direction: "clockwise"
+    rotation_speed: 1.0
+    description: "90-degree rotation for multi-angle product shots"
+
+  # 180-degree turn
+  product_180:
+    enabled: true
+    axis: "Z"
+    angle_range: [0.0, 180.0]
+    duration: 60  # 2.5 seconds at 24fps
+    start_frame: 1
+    easing: "ease_in_out"
+    loop: false
+    direction: "clockwise"
+    rotation_speed: 1.0
+    description: "180-degree rotation for front-to-back showcase"
+
+  # 270-degree turn (3/4 rotation)
+  product_270:
+    enabled: true
+    axis: "Z"
+    angle_range: [0.0, 270.0]
+    duration: 90  # 3.75 seconds at 24fps
+    start_frame: 1
+    easing: "ease_in_out"
+    loop: false
+    direction: "clockwise"
+    rotation_speed: 1.0
+    description: "270-degree rotation for extended product view"
+
+  # Console/knob rotation - horizontal axis for musical equipment
+  console_knob:
+    enabled: true
+    axis: "X"
+    angle_range: [-30.0, 30.0]
+    duration: 72  # 3 seconds at 24fps
+    start_frame: 1
+    easing: "ease_in_out"
+    loop: true
+    direction: "clockwise"
+    rotation_speed: 1.0
+    description: "Rocking rotation for console knobs and vertical controls"
+
+  # Control surface rotation - for faders, sliders, and horizontal controls
+  control_surface:
+    enabled: true
+    axis: "Y"
+    angle_range: [-15.0, 15.0]
+    duration: 60  # 2.5 seconds at 24fps
+    start_frame: 1
+    easing: "ease_in_out_sine"
+    loop: true
+    direction: "clockwise"
+    rotation_speed: 1.0
+    description: "Subtle rocking for control surfaces and fader banks"
