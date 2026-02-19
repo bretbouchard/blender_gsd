@@ -8,6 +8,7 @@ Follows patterns from lib/cinematic/types.py.
 """
 
 from __future__ import annotations
+import uuid
 from dataclasses import dataclass, field
 from typing import Dict, Any, Tuple, List, Optional
 
@@ -390,4 +391,142 @@ class FootageInfo:
             codec=data.get("codec", ""),
             has_alpha=data.get("has_alpha", False),
             is_sequence=data.get("is_sequence", False),
+        )
+
+
+@dataclass
+class BatchJob:
+    """
+    Single batch job definition.
+
+    Attributes:
+        id: Unique job identifier
+        name: Human-readable job name
+        shot_config: Path to shot YAML configuration
+        output_path: Output directory for job results
+        status: Current job status (pending, running, completed, failed, skipped)
+        error: Error message if failed
+        start_time: ISO timestamp when job started
+        end_time: ISO timestamp when job completed
+        retry_count: Number of retry attempts
+    """
+    id: str = field(default_factory=lambda: str(uuid.uuid4())[:8])
+    name: str = "batch_job"
+    shot_config: str = ""
+    output_path: str = ""
+    status: str = "pending"
+    error: Optional[str] = None
+    start_time: Optional[str] = None
+    end_time: Optional[str] = None
+    retry_count: int = 0
+
+    def to_dict(self) -> Dict[str, Any]:
+        return {
+            "id": self.id,
+            "name": self.name,
+            "shot_config": self.shot_config,
+            "output_path": self.output_path,
+            "status": self.status,
+            "error": self.error,
+            "start_time": self.start_time,
+            "end_time": self.end_time,
+            "retry_count": self.retry_count,
+        }
+
+    @classmethod
+    def from_dict(cls, data: Dict[str, Any]) -> "BatchJob":
+        return cls(
+            id=data.get("id", str(uuid.uuid4())[:8]),
+            name=data.get("name", "batch_job"),
+            shot_config=data.get("shot_config", ""),
+            output_path=data.get("output_path", ""),
+            status=data.get("status", "pending"),
+            error=data.get("error"),
+            start_time=data.get("start_time"),
+            end_time=data.get("end_time"),
+            retry_count=data.get("retry_count", 0),
+        )
+
+
+@dataclass
+class BatchConfig:
+    """
+    Batch processing configuration.
+
+    Attributes:
+        workers: Number of parallel workers (default: CPU count - 1)
+        resume_on_failure: Skip completed jobs on restart
+        checkpoint_path: Path to checkpoint file
+        max_retries: Maximum retry attempts per job
+        timeout_seconds: Job timeout (0 = no timeout)
+        continue_on_error: Continue batch if job fails
+    """
+    workers: int = 0  # 0 = auto-detect
+    resume_on_failure: bool = True
+    checkpoint_path: str = ".batch_checkpoint.json"
+    max_retries: int = 3
+    timeout_seconds: int = 0
+    continue_on_error: bool = True
+
+    def to_dict(self) -> Dict[str, Any]:
+        return {
+            "workers": self.workers,
+            "resume_on_failure": self.resume_on_failure,
+            "checkpoint_path": self.checkpoint_path,
+            "max_retries": self.max_retries,
+            "timeout_seconds": self.timeout_seconds,
+            "continue_on_error": self.continue_on_error,
+        }
+
+    @classmethod
+    def from_dict(cls, data: Dict[str, Any]) -> "BatchConfig":
+        return cls(
+            workers=data.get("workers", 0),
+            resume_on_failure=data.get("resume_on_failure", True),
+            checkpoint_path=data.get("checkpoint_path", ".batch_checkpoint.json"),
+            max_retries=data.get("max_retries", 3),
+            timeout_seconds=data.get("timeout_seconds", 0),
+            continue_on_error=data.get("continue_on_error", True),
+        )
+
+
+@dataclass
+class BatchResult:
+    """
+    Result of batch processing operation.
+
+    Attributes:
+        total_jobs: Total number of jobs in batch
+        completed: Number of completed jobs
+        failed: Number of failed jobs
+        skipped: Number of skipped jobs (resume)
+        duration_seconds: Total processing time
+        jobs: List of job results
+    """
+    total_jobs: int = 0
+    completed: int = 0
+    failed: int = 0
+    skipped: int = 0
+    duration_seconds: float = 0.0
+    jobs: List["BatchJob"] = field(default_factory=list)
+
+    def to_dict(self) -> Dict[str, Any]:
+        return {
+            "total_jobs": self.total_jobs,
+            "completed": self.completed,
+            "failed": self.failed,
+            "skipped": self.skipped,
+            "duration_seconds": self.duration_seconds,
+            "jobs": [j.to_dict() for j in self.jobs],
+        }
+
+    @classmethod
+    def from_dict(cls, data: Dict[str, Any]) -> "BatchResult":
+        return cls(
+            total_jobs=data.get("total_jobs", 0),
+            completed=data.get("completed", 0),
+            failed=data.get("failed", 0),
+            skipped=data.get("skipped", 0),
+            duration_seconds=data.get("duration_seconds", 0.0),
+            jobs=[BatchJob.from_dict(j) for j in data.get("jobs", [])],
         )
