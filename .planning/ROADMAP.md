@@ -222,9 +222,13 @@ Plans:
 - [x] 06.3-03-PLAN.md - Update __init__.py with all backdrop exports and version bump to 0.1.3
 
 ### Phase 6.4: Color Pipeline (REQ-CINE-LUT)
-- [ ] color.py - LUT management, color management
-- [ ] LUT preset library (technical, film, creative)
-- [ ] Exposure lock system
+**Goal:** Implement color management system with view transforms, LUT validation, and exposure lock for consistent cinematic rendering.
+**Plans:** 3 plans
+
+Plans:
+- [ ] 06.4-01-PLAN.md - Add ColorConfig, LUTConfig, ExposureLockConfig dataclasses; add ViewTransform enum; add color preset loaders
+- [ ] 06.4-02-PLAN.md - Create color.py with set_view_transform, apply_color_preset, validate_lut_file, calculate_auto_exposure
+- [ ] 06.4-03-PLAN.md - Update __init__.py with all color exports and version bump to 0.1.4
 
 ### Phase 6.5: Animation System (REQ-CINE-ANIM, REQ-CINE-PATH)
 - [ ] animation.py - camera moves, unified timeline
