@@ -2,12 +2,12 @@
 
 ## Current Position
 
-**Phase:** 6.6 of 6.10 (render-system)
-**Plan:** 3 of 3 (complete)
-**Status:** Phase Complete
-**Last activity:** 2026-02-18 - Completed 06.6-03 (Package Exports + Version Bump)
+**Phase:** 6.7 of 6.10 (support-systems)
+**Plan:** 1 of 3 (in-progress)
+**Status:** In Progress
+**Last activity:** 2026-02-19 - Completed 06.7-01 (Support System Types + Preset Loaders)
 
-**Progress:** [██████████░░] 88%
+**Progress:** [██████████░░] 89%
 
 ## Phase Summary
 
@@ -73,13 +73,21 @@
 
 *Plan 06.6-02 was implemented inline with 06.6-03 as a blocking issue fix.
 
+### 06.7-support-systems (In Progress)
+
+| Plan | Name | Status | Summary |
+|------|------|--------|---------|
+| 06.7-01 | Types + Preset Loaders | Complete | 06.7-01-SUMMARY.md |
+| 06.7-02 | Support Modules | Not started | - |
+| 06.7-03 | Package Exports + Version Bump | Not started | - |
+
 ## Cinematic System Module Summary
 
-**lib/cinematic/** (18 modules, ~12,500 lines):
-- types.py (1080 lines) - Core dataclasses (CinematicRenderSettings)
-- enums.py (138 lines) - Type-safe enumerations (RenderEngine, DenoiserType)
+**lib/cinematic/** (18 modules, ~13,000 lines):
+- types.py (1273 lines) - Core dataclasses (CinematicRenderSettings, support types)
+- enums.py (146 lines) - Type-safe enumerations (RenderEngine, DenoiserType, CompositionGuideType)
 - state_manager.py (458 lines) - State persistence
-- preset_loader.py (920 lines) - Preset loading utilities (render system loaders)
+- preset_loader.py (968 lines) - Preset loading utilities (render + support system loaders)
 - camera.py (375 lines) - Camera creation and management
 - plumb_bob.py (348 lines) - Orbit/focus targeting
 - lenses.py (320 lines) - Compositor imperfections
@@ -136,6 +144,10 @@
 | 2026-02-18 | 06.6-03 | Created render.py inline | Plan dependency 06.6-02 was unmet; necessary for export task |
 | 2026-02-18 | 06.6-03 | BLENDER_EEVEE_NEXT not BLENDER_EEVEE | Critical: EEVEE deprecated in Blender 4.2+ |
 | 2026-02-18 | 06.6-03 | Version bump to 0.2.2 | Render system complete |
+| 2026-02-19 | 06.7-01 | ShuffleConfig default ranges | Camera angle +/-15 deg, focal length 45-85mm for useful variations |
+| 2026-02-19 | 06.7-01 | FrameState includes timestamp | Essential for version comparison and undo history |
+| 2026-02-19 | 06.7-01 | DepthLayerConfig separate DOF per layer | Fine control over depth of field by scene depth |
+| 2026-02-19 | 06.7-01 | LensFXConfig defaults to disabled | Effects should be explicitly enabled |
 
 ## Concerns
 
@@ -143,7 +155,7 @@ None currently.
 
 ## Session Continuity
 
-**Last session:** 2026-02-18
-**Stopped at:** Completed 06.6-03 (Package Exports + Version Bump)
+**Last session:** 2026-02-19
+**Stopped at:** Completed 06.7-01 (Support System Types + Preset Loaders)
 **Resume file:** None
-**Next phase:** Phase 6.6 complete - check ROADMAP.md for next phase
+**Next phase:** Continue 06.7-support-systems (Plan 2 of 3)
