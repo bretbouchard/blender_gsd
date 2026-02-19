@@ -241,11 +241,13 @@ Plans:
 - [ ] 06.5-03-PLAN.md - Update __init__.py with all animation exports (~30 new exports)
 
 ### Phase 6.6: Render System (REQ-CINE-RENDER)
-- [ ] Extended render.py for cinematic profiles
-- [ ] Render pass system (beauty, cryptomatte, depth, etc.)
-- [ ] Quality tier presets (viewport, draft, preview, production, archive)
-- [ ] Batch rendering with dependencies
-- [ ] Metadata embedding in EXR
+**Goal:** Implement render system with quality tier presets, render pass configuration, EXR output, hardware-aware denoising, and batch rendering.
+**Plans:** 3 plans
+
+Plans:
+- [ ] 06.6-01-PLAN.md - Add CinematicRenderSettings dataclass, render enums, and render preset loaders
+- [ ] 06.6-02-PLAN.md - Create render.py with quality tiers, pass configuration, EXR output, denoiser selection, and batch rendering
+- [ ] 06.6-03-PLAN.md - Update __init__.py with all render exports and version bump to 0.2.2
 
 ### Phase 6.7: Support Systems
 - [ ] shuffler.py - shot variation generator
