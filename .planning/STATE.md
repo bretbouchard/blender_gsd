@@ -2,20 +2,20 @@
 
 ## Current Position
 
-**Phase:** 7.0 of 7.5 (tracking-foundation) - COMPLETE
-**Plan:** 5 of 5 complete
-**Status:** Phase 07.0 Tracking Foundation complete, ready for Phase 07.5
-**Last activity:** 2026-02-19 - Completed 07.0-05 Package Exports
+**Phase:** 7.5 of 7.5 (advanced-features) - IN PROGRESS
+**Plan:** 1 of 5 complete
+**Status:** Phase 07.5 Plan 01 Batch Processing complete
+**Last activity:** 2026-02-19 - Completed 07.5-01 Batch Processing
 
-**Progress:** [█████████░] 90% (Milestone v0.5 complete, v0.6 Phase 1 complete)
+**Progress:** [█████████░] 91% (Milestone v0.5 complete, v0.6 Phase 2 in progress)
 
 ## Phase 7.5 Planning Summary
 
-### 07.5-advanced-features (Planned)
+### 07.5-advanced-features (In Progress)
 
 | Plan | Name | Status | Summary |
 |------|------|--------|---------|
-| 07.5-01 | Batch Processing | Planned | BatchProcessor with checkpoint resume |
+| 07.5-01 | Batch Processing | Complete | 07.5-01-SUMMARY.md |
 | 07.5-02 | Object Tracker | Planned | PlanarTracker, KnobTracker, RigidBodyTracker |
 | 07.5-03 | Scan Import | Planned | PLY/OBJ parsers, FloorDetector, ScaleDetector |
 | 07.5-04 | Mocap Import | Planned | MocapImporter, HandAnimation, MocapRetargeter |
@@ -184,10 +184,12 @@
 ## Tracking System Module Summary
 
 **lib/cinematic/tracking/** (4 modules, ~1,800 lines):
-- types.py (394 lines) - TrackData, SolveData, FootageMetadata, TrackingSession
+- types.py (533 lines) - TrackData, SolveData, FootageMetadata, TrackingSession, BatchJob, BatchConfig, BatchResult
 - footage.py (833 lines) - Footage import, ffprobe metadata extraction
 - import_export.py (976 lines) - Nuke .chan import, coordinate conversion
 - session_manager.py (130 lines) - Session persistence (save/load/resume)
+
+**lib/cinematic/batch.py** (450 lines) - BatchProcessor, BatchCheckpoint, generate_batch_report
 
 **State directories:**
 - .gsd-state/tracking/sessions/ - Active tracking sessions
@@ -273,6 +275,10 @@
 | 2026-02-19 | 07.0-04 | Backward compatibility with ImportedCamera | Legacy class preserved with to_solve_data() method |
 | 2026-02-19 | 07.0-05 | JSON fallback when PyYAML not available | Session persistence works without PyYAML dependency |
 | 2026-02-19 | 07.0-05 | Version bump to 0.3.1 | Tracking foundation exports complete |
+| 2026-02-19 | 07.5-01 | ProcessPoolExecutor for batch | Subprocess isolation prevents crashes from affecting other jobs |
+| 2026-02-19 | 07.5-01 | JSON checkpoint format | Cross-platform compatibility, easy debugging |
+| 2026-02-19 | 07.5-01 | Auto-detect workers (CPU-1) | Safe default that leaves headroom for system |
+| 2026-02-19 | 07.5-01 | Per-job timeout support | Prevents hung jobs from blocking batch indefinitely |
 
 ## Concerns
 
@@ -281,9 +287,9 @@ None currently.
 ## Session Continuity
 
 **Last session:** 2026-02-19
-**Stopped at:** Completed 07.0-05 Package Exports (Phase 07.0 COMPLETE)
+**Stopped at:** Completed 07.5-01 Batch Processing
 **Resume file:** .planning/phases/07.5-advanced-features/
-**Next phase:** Execute Phase 07.5 (Advanced Features) if needed
+**Next phase:** Execute Phase 07.5 Plan 02 (Object Tracker) if needed
 
 ## Milestone Summary
 
