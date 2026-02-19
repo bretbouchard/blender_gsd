@@ -19,6 +19,7 @@ Modules:
 - color: Color management, LUT validation, and exposure lock
 - animation: Camera moves, motion paths, and turntable rotations
 - motion_path: Procedural motion path generation
+- render: Quality tiers, render passes, EXR output, denoising
 
 Quick Start:
     from lib.cinematic import (
@@ -114,6 +115,8 @@ from .types import (
     CAMERA_ANGLES,
     CAMERA_POSITIONS,
     LIGHTING_RATIOS,
+    # Render types
+    CinematicRenderSettings,
 )
 from .enums import (
     LensType,
@@ -126,6 +129,9 @@ from .enums import (
     # Color enums
     ViewTransform,
     WorkingColorSpace,
+    # Render enums
+    RenderEngine,
+    DenoiserType,
 )
 from .state_manager import (
     StateManager,
@@ -170,6 +176,13 @@ from .preset_loader import (
     list_camera_move_presets,
     list_easing_presets,
     list_turntable_presets,
+    # Render preset loaders
+    get_quality_profile,
+    get_pass_preset,
+    get_exr_settings,
+    list_quality_profiles,
+    list_pass_presets,
+    list_exr_presets,
 )
 from .camera import (
     create_camera,
@@ -315,6 +328,22 @@ from .motion_path import (
     get_point_at_distance,
     sample_path_uniformly,
     remove_motion_path,
+)
+from .render import (
+    apply_quality_profile,
+    apply_render_settings,
+    configure_render_passes,
+    setup_cryptomatte,
+    setup_exr_output,
+    detect_optimal_denoiser,
+    enable_denoising,
+    set_render_engine,
+    set_resolution,
+    set_frame_range,
+    render_frame,
+    render_animation,
+    get_render_settings,
+    apply_pass_preset,
 )
 
 __all__ = [
@@ -556,10 +585,38 @@ __all__ = [
     "sample_path_uniformly",
     "remove_motion_path",
 
+    # Render types
+    "CinematicRenderSettings",
+    # Render enums
+    "RenderEngine",
+    "DenoiserType",
+    # Render preset loaders
+    "get_quality_profile",
+    "get_pass_preset",
+    "get_exr_settings",
+    "list_quality_profiles",
+    "list_pass_presets",
+    "list_exr_presets",
+    # Render functions
+    "apply_quality_profile",
+    "apply_render_settings",
+    "configure_render_passes",
+    "setup_cryptomatte",
+    "setup_exr_output",
+    "detect_optimal_denoiser",
+    "enable_denoising",
+    "set_render_engine",
+    "set_resolution",
+    "set_frame_range",
+    "render_frame",
+    "render_animation",
+    "get_render_settings",
+    "apply_pass_preset",
+
     # Constants
     "APERTURE_MIN",
     "APERTURE_MAX",
     "BLENDER_AVAILABLE",
 ]
 
-__version__ = "0.2.1"
+__version__ = "0.2.2"
