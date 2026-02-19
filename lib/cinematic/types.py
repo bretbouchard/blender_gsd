@@ -1583,3 +1583,183 @@ class CompleteShotConfig:
             name=preset_name,
             subject_name=subject_name,
         )
+
+
+@dataclass
+class ShotTemplateConfig:
+    """
+    Shot template configuration with inheritance support (REQ-CINE-TEMPLATE).
+
+    Templates can extend other templates using the 'extends' field.
+    Abstract templates cannot be rendered directly.
+
+    Attributes:
+        name: Template name (unique identifier)
+        extends: Parent template name for inheritance (empty = base template)
+        abstract: If True, template cannot be rendered directly
+        description: Human-readable description
+        camera: Camera configuration overrides
+        plumb_bob: Plumb bob configuration overrides
+        rig: Camera rig configuration overrides
+        lighting_rig: Lighting rig preset name
+        lights: Custom light configurations
+        backdrop: Backdrop configuration overrides
+        environment_preset: Environment/HDRI preset name
+        imperfections: Lens imperfection configuration
+        animation: Animation configuration
+        render: Render settings overrides
+        color: Color management overrides
+        composition: Composition rules overrides
+        subject_name: Default subject object name
+    """
+    name: str = ""
+    extends: str = ""  # Parent template name
+    abstract: bool = False  # Cannot render directly if True
+    description: str = ""
+    # All other fields optional - override parent values
+    camera: Optional[CameraConfig] = None
+    plumb_bob: Optional[PlumbBobConfig] = None
+    rig: Optional[RigConfig] = None
+    lighting_rig: str = ""
+    lights: Dict[str, LightConfig] = field(default_factory=dict)
+    backdrop: Optional[BackdropConfig] = None
+    environment_preset: str = ""
+    imperfections: Optional[ImperfectionConfig] = None
+    animation: Optional[AnimationConfig] = None
+    render: Optional[CinematicRenderSettings] = None
+    color: Optional[ColorConfig] = None
+    composition: Optional[CompositionConfig] = None
+    subject_name: str = ""
+
+    def to_dict(self) -> Dict[str, Any]:
+        """Convert to dictionary for serialization."""
+        return {
+            "name": self.name,
+            "extends": self.extends,
+            "abstract": self.abstract,
+            "description": self.description,
+            "camera": self.camera.to_dict() if self.camera else None,
+            "plumb_bob": self.plumb_bob.to_dict() if self.plumb_bob else None,
+            "rig": self.rig.to_dict() if self.rig else None,
+            "lighting_rig": self.lighting_rig,
+            "lights": {k: v.to_dict() for k, v in self.lights.items()},
+            "backdrop": self.backdrop.to_dict() if self.backdrop else None,
+            "environment_preset": self.environment_preset,
+            "imperfections": self.imperfections.to_dict() if self.imperfections else None,
+            "animation": self.animation.to_dict() if self.animation else None,
+            "render": self.render.to_dict() if self.render else None,
+            "color": self.color.to_dict() if self.color else None,
+            "composition": self.composition.to_dict() if self.composition else None,
+            "subject_name": self.subject_name,
+        }
+
+    @classmethod
+    def from_dict(cls, data: Dict[str, Any]) -> "ShotTemplateConfig":
+        """Create from dictionary."""
+        lights_data = data.get("lights", {})
+        lights = {k: LightConfig.from_dict(v) for k, v in lights_data.items()}
+
+        return cls(
+            name=data.get("name", ""),
+            extends=data.get("extends", ""),
+            abstract=data.get("abstract", False),
+            description=data.get("description", ""),
+            camera=CameraConfig.from_dict(data["camera"]) if data.get("camera") else None,
+            plumb_bob=PlumbBobConfig.from_dict(data["plumb_bob"]) if data.get("plumb_bob") else None,
+            rig=RigConfig.from_dict(data["rig"]) if data.get("rig") else None,
+            lighting_rig=data.get("lighting_rig", ""),
+            lights=lights,
+            backdrop=BackdropConfig.from_dict(data["backdrop"]) if data.get("backdrop") else None,
+            environment_preset=data.get("environment_preset", ""),
+            imperfections=ImperfectionConfig.from_dict(data["imperfections"]) if data.get("imperfections") else None,
+            animation=AnimationConfig.from_dict(data["animation"]) if data.get("animation") else None,
+            render=CinematicRenderSettings.from_dict(data["render"]) if data.get("render") else None,
+            color=ColorConfig.from_dict(data["color"]) if data.get("color") else None,
+            composition=CompositionConfig.from_dict(data["composition"]) if data.get("composition") else None,
+            subject_name=data.get("subject_name", ""),
+        )
+
+
+@dataclass
+class ShotAssemblyConfig:
+    """
+    Complete shot assembly configuration (REQ-CINE-SHOT).
+
+    Brings together all elements for a single shot:
+    - Template reference (with inheritance resolution)
+    - Subject specification
+    - Camera configuration
+    - Lighting configuration
+    - Backdrop configuration
+    - Color/render settings
+    - Animation (optional)
+
+    Supports resume/edit workflow via frame store integration.
+
+    Attributes:
+        name: Shot name (used for output files)
+        template: Template name to use as base
+        subject: Subject object name or specification
+        camera: Camera config (overrides template)
+        lighting_rig: Lighting rig preset name
+        lights: Custom lights (overrides template)
+        backdrop: Backdrop config (overrides template)
+        color: Color management config
+        render: Render settings
+        animation: Animation config (optional)
+        output_path: Output directory for renders
+        metadata: Additional metadata
+    """
+    name: str = "shot_01"
+    template: str = ""  # Template to use
+    subject: str = ""  # Subject object name
+    camera: Optional[CameraConfig] = None
+    plumb_bob: Optional[PlumbBobConfig] = None
+    lighting_rig: str = ""
+    lights: Dict[str, LightConfig] = field(default_factory=dict)
+    backdrop: Optional[BackdropConfig] = None
+    color: Optional[ColorConfig] = None
+    render: Optional[CinematicRenderSettings] = None
+    animation: Optional[AnimationConfig] = None
+    output_path: str = "//render/"
+    metadata: Dict[str, Any] = field(default_factory=dict)
+
+    def to_dict(self) -> Dict[str, Any]:
+        """Convert to dictionary for serialization."""
+        return {
+            "name": self.name,
+            "template": self.template,
+            "subject": self.subject,
+            "camera": self.camera.to_dict() if self.camera else None,
+            "plumb_bob": self.plumb_bob.to_dict() if self.plumb_bob else None,
+            "lighting_rig": self.lighting_rig,
+            "lights": {k: v.to_dict() for k, v in self.lights.items()},
+            "backdrop": self.backdrop.to_dict() if self.backdrop else None,
+            "color": self.color.to_dict() if self.color else None,
+            "render": self.render.to_dict() if self.render else None,
+            "animation": self.animation.to_dict() if self.animation else None,
+            "output_path": self.output_path,
+            "metadata": self.metadata,
+        }
+
+    @classmethod
+    def from_dict(cls, data: Dict[str, Any]) -> "ShotAssemblyConfig":
+        """Create from dictionary."""
+        lights_data = data.get("lights", {})
+        lights = {k: LightConfig.from_dict(v) for k, v in lights_data.items()}
+
+        return cls(
+            name=data.get("name", "shot_01"),
+            template=data.get("template", ""),
+            subject=data.get("subject", ""),
+            camera=CameraConfig.from_dict(data["camera"]) if data.get("camera") else None,
+            plumb_bob=PlumbBobConfig.from_dict(data["plumb_bob"]) if data.get("plumb_bob") else None,
+            lighting_rig=data.get("lighting_rig", ""),
+            lights=lights,
+            backdrop=BackdropConfig.from_dict(data["backdrop"]) if data.get("backdrop") else None,
+            color=ColorConfig.from_dict(data["color"]) if data.get("color") else None,
+            render=CinematicRenderSettings.from_dict(data["render"]) if data.get("render") else None,
+            animation=AnimationConfig.from_dict(data["animation"]) if data.get("animation") else None,
+            output_path=data.get("output_path", "//render/"),
+            metadata=data.get("metadata", {}),
+        )
