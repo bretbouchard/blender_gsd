@@ -36,6 +36,18 @@ class LightType(Enum):
     SUN = "sun"
 
 
+class AreaLightShape(Enum):
+    """
+    Shape options for area lights.
+
+    Maps to Blender area light shapes (must be uppercase).
+    """
+    SQUARE = "SQUARE"
+    RECTANGLE = "RECTANGLE"
+    DISK = "DISK"
+    ELLIPSE = "ELLIPSE"
+
+
 class QualityTier(Enum):
     """
     Render quality tiers.
@@ -71,3 +83,32 @@ class EasingType(Enum):
     EASE_IN = "ease_in"
     EASE_OUT = "ease_out"
     EASE_IN_OUT = "ease_in_out"
+
+
+class ViewTransform(str, Enum):
+    """
+    Blender view transform options.
+
+    Controls how scene-linear color is transformed for display.
+    AgX is the modern default (Blender 4.0+).
+    """
+    STANDARD = "Standard"
+    AGX = "AgX"
+    FILMIC = "Filmic"
+    FILMIC_LOG = "Filmic Log"
+    RAW = "Raw"
+    LOG = "Log"
+    ACESCG = "ACEScg"
+
+
+class WorkingColorSpace(str, Enum):
+    """
+    Scene linear working color space options.
+
+    Determines the internal color space used for rendering calculations.
+    Configured via Blender's Scene > Color Management > Render Space.
+    """
+    AGX = "AgX"
+    ACESCG = "ACEScg"
+    FILMIC = "Filmic"
+    STANDARD = "Standard"

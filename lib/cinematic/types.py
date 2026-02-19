@@ -670,3 +670,135 @@ class MultiCameraLayout:
             composite_rows=data.get("composite_rows", 0),
             composite_cols=data.get("composite_cols", 0),
         )
+
+
+@dataclass
+class ColorConfig:
+    """
+    Color management configuration for cinematic rendering.
+
+    Controls view transform, exposure, gamma, and look settings
+    for Blender's color management system.
+
+    Attributes:
+        view_transform: Blender view transform (Standard, AgX, Filmic, Filmic Log, Raw, Log, ACEScg)
+        exposure: Global exposure adjustment (-inf to +inf)
+        gamma: Gamma correction (0 to 5)
+        look: Color look preset (e.g., "AgX Default Medium High Contrast")
+        display_device: Output display device (sRGB, DCI-P3, etc.)
+        working_color_space: Scene linear color space (AgX, ACEScg, Filmic, Standard)
+    """
+    view_transform: str = "AgX"
+    exposure: float = 0.0
+    gamma: float = 1.0
+    look: str = "None"
+    display_device: str = "sRGB"
+    working_color_space: str = "AgX"  # Scene linear color space
+
+    def to_dict(self) -> Dict[str, Any]:
+        """Convert to dictionary for serialization."""
+        return {
+            "view_transform": self.view_transform,
+            "exposure": self.exposure,
+            "gamma": self.gamma,
+            "look": self.look,
+            "display_device": self.display_device,
+            "working_color_space": self.working_color_space,
+        }
+
+    @classmethod
+    def from_dict(cls, data: Dict[str, Any]) -> "ColorConfig":
+        """Create from dictionary."""
+        return cls(
+            view_transform=data.get("view_transform", "AgX"),
+            exposure=data.get("exposure", 0.0),
+            gamma=data.get("gamma", 1.0),
+            look=data.get("look", "None"),
+            display_device=data.get("display_device", "sRGB"),
+            working_color_space=data.get("working_color_space", "AgX"),
+        )
+
+
+@dataclass
+class LUTConfig:
+    """
+    LUT configuration with intensity blending support.
+
+    Supports technical, film, and creative LUTs for color grading.
+
+    Attributes:
+        name: Preset name (e.g., "kodak_2383", "fuji_400h")
+        lut_path: Path to .cube file
+        intensity: Blend intensity 0.0-1.0 (default 0.8 per REQ-CINE-LUT)
+        enabled: Whether LUT is active
+        lut_type: LUT category (technical, film, creative)
+        precision: LUT resolution (33 for film, 65 for technical)
+    """
+    name: str = ""
+    lut_path: str = ""
+    intensity: float = 0.8  # Default per REQ-CINE-LUT
+    enabled: bool = True
+    lut_type: str = "creative"  # technical, film, creative
+    precision: int = 33  # 33 for film, 65 for technical
+
+    def to_dict(self) -> Dict[str, Any]:
+        """Convert to dictionary for serialization."""
+        return {
+            "name": self.name,
+            "lut_path": self.lut_path,
+            "intensity": self.intensity,
+            "enabled": self.enabled,
+            "lut_type": self.lut_type,
+            "precision": self.precision,
+        }
+
+    @classmethod
+    def from_dict(cls, data: Dict[str, Any]) -> "LUTConfig":
+        """Create from dictionary."""
+        return cls(
+            name=data.get("name", ""),
+            lut_path=data.get("lut_path", ""),
+            intensity=data.get("intensity", 0.8),
+            enabled=data.get("enabled", True),
+            lut_type=data.get("lut_type", "creative"),
+            precision=data.get("precision", 33),
+        )
+
+
+@dataclass
+class ExposureLockConfig:
+    """
+    Auto-exposure lock configuration per REQ-CINE-LUT.
+
+    Provides automatic exposure targeting based on scene luminance
+    with highlight and shadow protection.
+
+    Attributes:
+        enabled: Whether auto-exposure lock is active
+        target_gray: Target middle gray value (0.18 = 18% gray)
+        highlight_protection: Maximum highlight value to protect (0-1)
+        shadow_protection: Minimum shadow value to protect (0-1)
+    """
+    enabled: bool = False
+    target_gray: float = 0.18  # 18% gray
+    highlight_protection: float = 0.95
+    shadow_protection: float = 0.02
+
+    def to_dict(self) -> Dict[str, Any]:
+        """Convert to dictionary for serialization."""
+        return {
+            "enabled": self.enabled,
+            "target_gray": self.target_gray,
+            "highlight_protection": self.highlight_protection,
+            "shadow_protection": self.shadow_protection,
+        }
+
+    @classmethod
+    def from_dict(cls, data: Dict[str, Any]) -> "ExposureLockConfig":
+        """Create from dictionary."""
+        return cls(
+            enabled=data.get("enabled", False),
+            target_gray=data.get("target_gray", 0.18),
+            highlight_protection=data.get("highlight_protection", 0.95),
+            shadow_protection=data.get("shadow_protection", 0.02),
+        )

@@ -560,3 +560,141 @@ def list_environment_presets() -> List[str]:
     path = BACKDROP_CONFIG_ROOT / "environments.yaml"
     data = load_preset(path)
     return sorted(data.get("environments", {}).keys())
+
+
+# =============================================================================
+# Color System Preset Loaders
+# =============================================================================
+
+# Color configuration root directory
+COLOR_CONFIG_ROOT = Path("configs/cinematic/color")
+
+
+def get_color_preset(name: str) -> Dict[str, Any]:
+    """
+    Load color management preset by name.
+
+    Args:
+        name: Name of the color preset (e.g., "neutral", "high_contrast")
+
+    Returns:
+        Dictionary containing color management configuration
+
+    Raises:
+        FileNotFoundError: If color_management_presets.yaml doesn't exist
+        ValueError: If preset name not found
+        RuntimeError: If YAML file but PyYAML not available
+    """
+    path = COLOR_CONFIG_ROOT / "color_management_presets.yaml"
+    data = load_preset(path)
+
+    presets = data.get("presets", {})
+    if name not in presets:
+        available = list(presets.keys())
+        raise ValueError(
+            f"Color preset '{name}' not found. Available: {available}"
+        )
+
+    return presets[name]
+
+
+def get_technical_lut_preset(name: str) -> Dict[str, Any]:
+    """
+    Load technical LUT preset by name.
+
+    Args:
+        name: Name of the technical LUT (e.g., "rec709_to_log", "slog3")
+
+    Returns:
+        Dictionary containing technical LUT configuration
+
+    Raises:
+        FileNotFoundError: If technical_luts.yaml doesn't exist
+        ValueError: If LUT name not found
+        RuntimeError: If YAML file but PyYAML not available
+    """
+    path = COLOR_CONFIG_ROOT / "technical_luts.yaml"
+    data = load_preset(path)
+
+    luts = data.get("technical", {})
+    if name not in luts:
+        raise ValueError(
+            f"Technical LUT '{name}' not found. Available: {list(luts.keys())}"
+        )
+
+    return luts[name]
+
+
+def get_film_lut_preset(name: str) -> Dict[str, Any]:
+    """
+    Load film LUT preset by name.
+
+    Args:
+        name: Name of the film LUT (e.g., "kodak_2383", "fuji_400h")
+
+    Returns:
+        Dictionary containing film LUT configuration
+
+    Raises:
+        FileNotFoundError: If film_luts.yaml doesn't exist
+        ValueError: If LUT name not found
+        RuntimeError: If YAML file but PyYAML not available
+    """
+    path = COLOR_CONFIG_ROOT / "film_luts.yaml"
+    data = load_preset(path)
+
+    luts = data.get("film", {})
+    if name not in luts:
+        raise ValueError(
+            f"Film LUT '{name}' not found. Available: {list(luts.keys())}"
+        )
+
+    return luts[name]
+
+
+def list_color_presets() -> List[str]:
+    """
+    List all available color management preset names.
+
+    Returns:
+        Sorted list of color preset names
+
+    Raises:
+        FileNotFoundError: If color_management_presets.yaml doesn't exist
+        RuntimeError: If YAML file but PyYAML not available
+    """
+    path = COLOR_CONFIG_ROOT / "color_management_presets.yaml"
+    data = load_preset(path)
+    return sorted(data.get("presets", {}).keys())
+
+
+def list_technical_lut_presets() -> List[str]:
+    """
+    List all available technical LUT preset names.
+
+    Returns:
+        Sorted list of technical LUT preset names
+
+    Raises:
+        FileNotFoundError: If technical_luts.yaml doesn't exist
+        RuntimeError: If YAML file but PyYAML not available
+    """
+    path = COLOR_CONFIG_ROOT / "technical_luts.yaml"
+    data = load_preset(path)
+    return sorted(data.get("technical", {}).keys())
+
+
+def list_film_lut_presets() -> List[str]:
+    """
+    List all available film LUT preset names.
+
+    Returns:
+        Sorted list of film LUT preset names
+
+    Raises:
+        FileNotFoundError: If film_luts.yaml doesn't exist
+        RuntimeError: If YAML file but PyYAML not available
+    """
+    path = COLOR_CONFIG_ROOT / "film_luts.yaml"
+    data = load_preset(path)
+    return sorted(data.get("film", {}).keys())
