@@ -55,6 +55,10 @@ from .types import (
     FingerData,
     HandFrame,
     HandAnimation,
+    # Batch processing types
+    BatchJob,
+    BatchConfig,
+    BatchResult,
 )
 
 from .footage import (
@@ -126,6 +130,10 @@ __all__ = [
     "FingerData",
     "HandFrame",
     "HandAnimation",
+    # Batch processing types
+    "BatchJob",
+    "BatchConfig",
+    "BatchResult",
     # Footage
     "extract_metadata",
     "analyze_footage",

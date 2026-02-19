@@ -463,6 +463,42 @@ from .tracking.import_export import (
 )
 from .tracking.session_manager import TrackingSessionManager
 
+# Batch Processing (Phase 7.5)
+from .batch import (
+    BatchProcessor,
+    BatchCheckpoint,
+    create_batch_from_directory,
+    generate_batch_report,
+    run_batch,
+)
+
+# Object Tracking (Phase 7.5)
+from .tracking.object_tracker import (
+    PlanarTracker, KnobTracker, RigidBodyTracker, FaderTracker, ObjectTracker
+)
+from .tracking.types import (
+    CornerPinData, PlanarTrack, RotationCurve, RigidBodySolve
+)
+
+# Scan Import (Phase 7.5)
+from .tracking.scan_import import (
+    PLYParser, OBJParser, FloorDetector, ScaleDetector, ScanImporter,
+    import_polycam, import_reality_scan, SCAN_FORMATS
+)
+from .tracking.types import FloorPlane, ScaleCalibration, ScanData
+
+# Mocap Import (Phase 7.5)
+from .tracking.mocap import (
+    MocapImporter, MocapRetargeter, ButtonPressDetector, PressEvent,
+    HAND_BONE_NAMES, import_move_ai, import_rokoko
+)
+from .tracking.types import (
+    JointTransform, BoneChannel, MocapData, FingerData, HandFrame, HandAnimation
+)
+
+# Batch Types (from tracking.types)
+from .tracking.types import BatchJob, BatchConfig, BatchResult
+
 __all__ = [
     # Core types
     "Transform3D",
@@ -838,10 +874,59 @@ __all__ = [
     "import_nuke_chan",
     "import_tracking_data",
 
+    # Batch Processing (Phase 7.5)
+    "BatchProcessor",
+    "BatchCheckpoint",
+    "create_batch_from_directory",
+    "generate_batch_report",
+    "run_batch",
+    "BatchJob",
+    "BatchConfig",
+    "BatchResult",
+
+    # Object Tracking (Phase 7.5)
+    "PlanarTracker",
+    "KnobTracker",
+    "RigidBodyTracker",
+    "FaderTracker",
+    "ObjectTracker",
+    "CornerPinData",
+    "PlanarTrack",
+    "RotationCurve",
+    "RigidBodySolve",
+
+    # Scan Import (Phase 7.5)
+    "PLYParser",
+    "OBJParser",
+    "FloorDetector",
+    "ScaleDetector",
+    "ScanImporter",
+    "import_polycam",
+    "import_reality_scan",
+    "SCAN_FORMATS",
+    "FloorPlane",
+    "ScaleCalibration",
+    "ScanData",
+
+    # Mocap Import (Phase 7.5)
+    "MocapImporter",
+    "MocapRetargeter",
+    "ButtonPressDetector",
+    "PressEvent",
+    "HAND_BONE_NAMES",
+    "import_move_ai",
+    "import_rokoko",
+    "JointTransform",
+    "BoneChannel",
+    "MocapData",
+    "FingerData",
+    "HandFrame",
+    "HandAnimation",
+
     # Constants
     "APERTURE_MIN",
     "APERTURE_MAX",
     "BLENDER_AVAILABLE",
 ]
 
-__version__ = "0.3.1"
+__version__ = "0.4.0"

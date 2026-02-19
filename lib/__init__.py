@@ -16,7 +16,13 @@ _IN_BLENDER = 'bpy' in sys.modules or 'bpy' in sys.builtin_module_names
 # Always-available modules (no Blender dependency)
 # These can be imported for unit testing
 
+__version__ = "0.4.0"
+__version_info__ = (0, 4, 0)
+
 __all__ = [
+    # Version
+    "__version__",
+    "__version_info__",
     # Blender-dependent (import lazily or in Blender context)
     "Pipeline",
     "NodeKit",
