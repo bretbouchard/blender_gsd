@@ -232,11 +232,13 @@ Plans:
 - [x] 06.4-03-PLAN.md - Update __init__.py with all color exports (27 new exports)
 
 ### Phase 6.5: Animation System (REQ-CINE-ANIM, REQ-CINE-PATH)
-- [ ] animation.py - camera moves, unified timeline
-- [ ] motion_path.py - procedural path generation
-- [ ] Animation presets (orbit, dolly, crane, push-in)
-- [ ] Turntable system
-- [ ] Audio sync support
+**Goal:** Implement camera animation system with orbit, dolly, crane, pan, tilt, rack focus, and turntable rotation, plus procedural motion paths.
+**Plans:** 3 plans
+
+Plans:
+- [ ] 06.5-01-PLAN.md - Add AnimationConfig, MotionPathConfig, TurntableConfig dataclasses; add animation preset loaders
+- [ ] 06.5-02-PLAN.md - Create animation.py with orbit/dolly/crane/turntable animations; create motion_path.py with Bezier path generation
+- [ ] 06.5-03-PLAN.md - Update __init__.py with all animation exports (~30 new exports)
 
 ### Phase 6.6: Render System (REQ-CINE-RENDER)
 - [ ] Extended render.py for cinematic profiles
