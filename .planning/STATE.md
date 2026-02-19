@@ -2,10 +2,10 @@
 
 ## Current Position
 
-**Phase:** 6.4 of 6.10 (color-pipeline)
-**Plan:** 3 of 3 (complete)
-**Status:** Phase Complete
-**Last activity:** 2026-02-19 - Completed 06.4-03 (Package Exports + Version Bump)
+**Phase:** 6.5 of 6.10 (animation-system)
+**Plan:** 1 of 3 (in progress)
+**Status:** In Progress
+**Last activity:** 2026-02-19 - Completed 06.5-01 (Animation Types + Preset Loaders)
 
 **Progress:** [██████████░░] 86%
 
@@ -55,13 +55,21 @@
 | 06.4-02 | Color Management Module | Complete | 06.4-02-SUMMARY.md |
 | 06.4-03 | Package Exports + Version Bump | Complete | 06.4-03-SUMMARY.md |
 
+### 06.5-animation-system (In Progress)
+
+| Plan | Name | Status | Summary |
+|------|------|--------|---------|
+| 06.5-01 | Animation Types + Preset Loaders | Complete | 06.5-01-SUMMARY.md |
+| 06.5-02 | Animation Module | Pending | - |
+| 06.5-03 | Package Exports + Version Bump | Pending | - |
+
 ## Cinematic System Module Summary
 
-**lib/cinematic/** (15 modules, ~9000 lines):
-- types.py (800 lines) - Core dataclasses (extended with ColorConfig, LUTConfig, ExposureLockConfig)
+**lib/cinematic/** (15 modules, ~9400 lines):
+- types.py (1000 lines) - Core dataclasses (extended with AnimationConfig, MotionPathConfig, TurntableConfig)
 - enums.py (115 lines) - Type-safe enumerations (added ViewTransform, WorkingColorSpace)
 - state_manager.py (458 lines) - State persistence
-- preset_loader.py (700 lines) - Preset loading utilities (added color system loaders)
+- preset_loader.py (840 lines) - Preset loading utilities (added animation system loaders)
 - camera.py (375 lines) - Camera creation and management
 - plumb_bob.py (348 lines) - Orbit/focus targeting
 - lenses.py (320 lines) - Compositor imperfections
@@ -102,6 +110,10 @@
 | 2026-02-19 | 06.4-02 | MixRGB intensity blending | LUT output blends at config.intensity ratio (0.8 default) |
 | 2026-02-19 | 06.4-02 | Optional scene_luminance parameter | Direct luminance requires render pass access |
 | 2026-02-19 | 06.4-03 | Version left at 0.2.0 | Already bumped from prior shot_builder integration |
+| 2026-02-19 | 06.5-01 | AnimationConfig.type as string enum | Flexible for future animation types without enum maintenance |
+| 2026-02-19 | 06.5-01 | TurntableConfig defaults loop=True | Product showcase typically requires continuous rotation |
+| 2026-02-19 | 06.5-01 | Separate dataclasses for each animation type | Clean separation of concerns, easier to extend independently |
+| 2026-02-19 | 06.5-01 | Match existing YAML structure | Consistent with camera_moves.yaml and easing_curves.yaml patterns |
 
 ## Concerns
 
@@ -110,6 +122,6 @@ None currently.
 ## Session Continuity
 
 **Last session:** 2026-02-19
-**Stopped at:** Completed 06.4-03 (Package Exports + Version Bump)
+**Stopped at:** Completed 06.5-01 (Animation Types + Preset Loaders)
 **Resume file:** None
-**Next phase:** Phase 6.4 complete - check ROADMAP.md for next phase
+**Next phase:** Continue with 06.5-02 (Animation Module)
