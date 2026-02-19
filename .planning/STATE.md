@@ -3,11 +3,11 @@
 ## Current Position
 
 **Phase:** 7.5 of 7.5 (advanced-features) - IN PROGRESS
-**Plan:** 1 of 5 complete
-**Status:** Phase 07.5 Plan 01 Batch Processing complete
-**Last activity:** 2026-02-19 - Completed 07.5-01 Batch Processing
+**Plan:** 2 of 5 complete
+**Status:** Phase 07.5 Plan 02 Object Tracker complete
+**Last activity:** 2026-02-19 - Completed 07.5-02 Object Tracker
 
-**Progress:** [█████████░] 91% (Milestone v0.5 complete, v0.6 Phase 2 in progress)
+**Progress:** [█████████░] 92% (Milestone v0.5 complete, v0.6 Phase 2 in progress)
 
 ## Phase 7.5 Planning Summary
 
@@ -16,7 +16,7 @@
 | Plan | Name | Status | Summary |
 |------|------|--------|---------|
 | 07.5-01 | Batch Processing | Complete | 07.5-01-SUMMARY.md |
-| 07.5-02 | Object Tracker | Planned | PlanarTracker, KnobTracker, RigidBodyTracker |
+| 07.5-02 | Object Tracker | Complete | 07.5-02-SUMMARY.md |
 | 07.5-03 | Scan Import | Planned | PLY/OBJ parsers, FloorDetector, ScaleDetector |
 | 07.5-04 | Mocap Import | Planned | MocapImporter, HandAnimation, MocapRetargeter |
 | 07.5-05 | Package Exports + Version Bump | Planned | Version 0.4.0, MILESTONE v0.6 COMPLETE |
@@ -183,11 +183,12 @@
 
 ## Tracking System Module Summary
 
-**lib/cinematic/tracking/** (4 modules, ~1,800 lines):
-- types.py (533 lines) - TrackData, SolveData, FootageMetadata, TrackingSession, BatchJob, BatchConfig, BatchResult
+**lib/cinematic/tracking/** (5 modules, ~2,700 lines):
+- types.py (713 lines) - TrackData, SolveData, FootageMetadata, TrackingSession, BatchJob, BatchConfig, BatchResult, CornerPinData, PlanarTrack, RotationCurve, RigidBodySolve
 - footage.py (833 lines) - Footage import, ffprobe metadata extraction
 - import_export.py (976 lines) - Nuke .chan import, coordinate conversion
 - session_manager.py (130 lines) - Session persistence (save/load/resume)
+- object_tracker.py (500 lines) - PlanarTracker, KnobTracker, RigidBodyTracker, FaderTracker, ObjectTracker
 
 **lib/cinematic/batch.py** (450 lines) - BatchProcessor, BatchCheckpoint, generate_batch_report
 
@@ -279,6 +280,10 @@
 | 2026-02-19 | 07.5-01 | JSON checkpoint format | Cross-platform compatibility, easy debugging |
 | 2026-02-19 | 07.5-01 | Auto-detect workers (CPU-1) | Safe default that leaves headroom for system |
 | 2026-02-19 | 07.5-01 | Per-job timeout support | Prevents hung jobs from blocking batch indefinitely |
+| 2026-02-19 | 07.5-02 | rotation_to_morph() for MorphEngine | Direct integration with control surface morphing system |
+| 2026-02-19 | 07.5-02 | Nuke CornerPin2D export format | Industry standard for compositing workflows |
+| 2026-02-19 | 07.5-02 | Quaternion rotation in RigidBodySolve | Full 3D rotation without gimbal lock |
+| 2026-02-19 | 07.5-02 | Unified ObjectTracker interface | Single entry point for all tracking types |
 
 ## Concerns
 
@@ -287,9 +292,9 @@ None currently.
 ## Session Continuity
 
 **Last session:** 2026-02-19
-**Stopped at:** Completed 07.5-01 Batch Processing
+**Stopped at:** Completed 07.5-02 Object Tracker
 **Resume file:** .planning/phases/07.5-advanced-features/
-**Next phase:** Execute Phase 07.5 Plan 02 (Object Tracker) if needed
+**Next phase:** Execute Phase 07.5 Plan 03 (Scan Import) if needed
 
 ## Milestone Summary
 
