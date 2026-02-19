@@ -20,6 +20,11 @@ Modules:
 - animation: Camera moves, motion paths, and turntable rotations
 - motion_path: Procedural motion path generation
 - render: Quality tiers, render passes, EXR output, denoising
+- shuffler: Shot variation generator
+- frame_store: State capture and comparison
+- depth_layers: Fore/mid/background organization
+- composition: Composition guide overlays
+- lens_fx: Post-process lens effects
 
 Quick Start:
     from lib.cinematic import (
@@ -117,6 +122,12 @@ from .types import (
     LIGHTING_RATIOS,
     # Render types
     CinematicRenderSettings,
+    # Support system types
+    ShuffleConfig,
+    FrameState,
+    DepthLayerConfig,
+    CompositionGuide,
+    LensFXConfig,
 )
 from .enums import (
     LensType,
@@ -132,6 +143,10 @@ from .enums import (
     # Render enums
     RenderEngine,
     DenoiserType,
+    # Support system enums
+    CompositionGuideType,
+    DepthLayer,
+    LensFXType,
 )
 from .state_manager import (
     StateManager,
@@ -183,6 +198,15 @@ from .preset_loader import (
     list_quality_profiles,
     list_pass_presets,
     list_exr_presets,
+    # Support system preset loaders
+    get_shuffle_preset,
+    get_lens_fx_preset,
+    get_depth_layer_preset,
+    get_composition_guide_preset,
+    list_shuffle_presets,
+    list_lens_fx_presets,
+    list_depth_layer_presets,
+    list_composition_guide_presets,
 )
 from .camera import (
     create_camera,
@@ -344,6 +368,38 @@ from .render import (
     render_animation,
     get_render_settings,
     apply_pass_preset,
+)
+from .shuffler import (
+    generate_variations,
+    apply_variation,
+    randomize_parameter,
+)
+from .frame_store import (
+    capture_frame_state,
+    restore_frame_state,
+    compare_states,
+    save_state_to_file,
+    load_state_from_file,
+)
+from .depth_layers import (
+    organize_depth_layers,
+    assign_object_to_layer,
+    apply_layer_dof,
+    get_objects_by_layer,
+)
+from .composition import (
+    setup_composition_guides,
+    create_rule_of_thirds_overlay,
+    create_golden_ratio_overlay,
+    remove_composition_guides,
+)
+from .lens_fx import (
+    apply_lens_fx,
+    setup_bloom,
+    setup_flare,
+    setup_vignette,
+    setup_chromatic_aberration,
+    remove_lens_fx,
 )
 
 __all__ = [
@@ -613,10 +669,57 @@ __all__ = [
     "get_render_settings",
     "apply_pass_preset",
 
+    # Support system types
+    "ShuffleConfig",
+    "FrameState",
+    "DepthLayerConfig",
+    "CompositionGuide",
+    "LensFXConfig",
+    # Support system enums
+    "CompositionGuideType",
+    "DepthLayer",
+    "LensFXType",
+    # Support system preset loaders
+    "get_shuffle_preset",
+    "get_lens_fx_preset",
+    "get_depth_layer_preset",
+    "get_composition_guide_preset",
+    "list_shuffle_presets",
+    "list_lens_fx_presets",
+    "list_depth_layer_presets",
+    "list_composition_guide_presets",
+    # Shuffler functions
+    "generate_variations",
+    "apply_variation",
+    "randomize_parameter",
+    # Frame store functions
+    "capture_frame_state",
+    "restore_frame_state",
+    "compare_states",
+    "save_state_to_file",
+    "load_state_from_file",
+    # Depth layers functions
+    "organize_depth_layers",
+    "assign_object_to_layer",
+    "apply_layer_dof",
+    "get_objects_by_layer",
+    # Composition functions
+    "setup_composition_guides",
+    "create_rule_of_thirds_overlay",
+    "create_golden_ratio_overlay",
+    "remove_composition_guides",
+    # Lens FX functions
+    "apply_lens_fx",
+    "setup_bloom",
+    "setup_flare",
+    "setup_vignette",
+    "setup_chromatic_aberration",
+    "remove_lens_fx",
+
     # Constants
     "APERTURE_MIN",
     "APERTURE_MAX",
     "BLENDER_AVAILABLE",
 ]
 
-__version__ = "0.2.2"
+__version__ = "0.2.3"
