@@ -2,10 +2,10 @@
 
 ## Current Position
 
-**Phase:** 6.8 of 6.10 (shot-assembly)
-**Plan:** 3 of 3 (complete)
+**Phase:** 6.9 of 6.10 (camera-matching)
+**Plan:** 1 of 1 (complete)
 **Status:** Phase Complete
-**Last activity:** 2026-02-19 - Completed 06.8-03 (Shot Template Presets + Exports)
+**Last activity:** 2026-02-19 - Completed 06.9-01 (Camera Matching Types + Loaders)
 
 **Progress:** [████████████] 100%
 
@@ -91,13 +91,19 @@
 
 *Plan 06.8-02 was implemented inline with 06.8-03 as a blocking issue fix.
 
+### 06.9-camera-matching (Complete)
+
+| Plan | Name | Status | Summary |
+|------|------|--------|---------|
+| 06.9-01 | Camera Matching Types + Loaders | Complete | 06.9-01-SUMMARY.md |
+
 ## Cinematic System Module Summary
 
-**lib/cinematic/** (24 modules, ~18,500 lines):
-- types.py (1273 lines) - Core dataclasses (CinematicRenderSettings, support types, shot configs)
+**lib/cinematic/** (24 modules, ~19,000 lines):
+- types.py (1502 lines) - Core dataclasses (CinematicRenderSettings, camera matching, audio sync types)
 - enums.py (163 lines) - Type-safe enumerations (RenderEngine, DenoiserType, CompositionGuideType)
 - state_manager.py (458 lines) - State persistence
-- preset_loader.py (1178 lines) - Preset loading utilities (render + support + shot template loaders)
+- preset_loader.py (1238 lines) - Preset loading utilities (render + support + shot template + camera profile loaders)
 - camera.py (375 lines) - Camera creation and management
 - plumb_bob.py (348 lines) - Orbit/focus targeting
 - lenses.py (320 lines) - Compositor imperfections
@@ -119,7 +125,7 @@
 - lens_fx.py (719 lines) - Post-process lens effects
 - __init__.py (749 lines) - Package exports
 
-**Total exports:** 281+
+**Total exports:** 285+
 **Version:** 0.2.4
 
 ## Decisions
@@ -170,6 +176,10 @@
 | 2026-02-19 | 06.8-01 | Deep merge for dicts in inheritance | Allows partial overrides (e.g., just change camera.focal_length) |
 | 2026-02-19 | 06.8-03 | Created shot.py inline | Plan dependency 06.8-02 was unmet; necessary for export task |
 | 2026-02-19 | 06.8-03 | Version bump to 0.2.4 | Shot assembly system complete |
+| 2026-02-19 | 06.9-01 | CameraMatchConfig vanishing points as List[Tuple] | Flexible storage for 2D image coordinates |
+| 2026-02-19 | 06.9-01 | TrackingImportConfig format as string | Easier YAML serialization and future extensibility |
+| 2026-02-19 | 06.9-01 | AudioSyncConfig markers as Dict[str, int] | Maps marker names to frame numbers |
+| 2026-02-19 | 06.9-01 | CameraProfile distortion_params as list | Supports various distortion models with different coefficient counts |
 
 ## Concerns
 
@@ -178,6 +188,6 @@ None currently.
 ## Session Continuity
 
 **Last session:** 2026-02-19
-**Stopped at:** Completed 06.8-03 (Shot Template Presets + Exports)
+**Stopped at:** Completed 06.9-01 (Camera Matching Types + Loaders)
 **Resume file:** None
-**Next phase:** Phase 6.8 complete - ready for next phase in roadmap
+**Next phase:** Phase 6.9 complete - ready for Phase 6.10 or next phase in roadmap
