@@ -402,6 +402,18 @@ from .lens_fx import (
     remove_lens_fx,
 )
 
+# Shot Assembly (Phase 6.8)
+from .types import ShotTemplateConfig, ShotAssemblyConfig
+from .shot import (
+    assemble_shot,
+    load_shot_yaml,
+    save_shot_state,
+    load_shot_state,
+    render_shot,
+    create_shot_from_template,
+    edit_shot,
+)
+
 __all__ = [
     # Core types
     "Transform3D",
@@ -716,10 +728,21 @@ __all__ = [
     "setup_chromatic_aberration",
     "remove_lens_fx",
 
+    # Shot Assembly
+    "ShotTemplateConfig",
+    "ShotAssemblyConfig",
+    "assemble_shot",
+    "load_shot_yaml",
+    "save_shot_state",
+    "load_shot_state",
+    "render_shot",
+    "create_shot_from_template",
+    "edit_shot",
+
     # Constants
     "APERTURE_MIN",
     "APERTURE_MAX",
     "BLENDER_AVAILABLE",
 ]
 
-__version__ = "0.2.3"
+__version__ = "0.2.4"
