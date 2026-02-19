@@ -25,6 +25,7 @@ Modules:
 - depth_layers: Fore/mid/background organization
 - composition: Composition guide overlays
 - lens_fx: Post-process lens effects
+- tracking: Motion tracking types and import (Phase 7.0)
 
 Quick Start:
     from lib.cinematic import (
@@ -449,6 +450,19 @@ from .benchmark import (
     get_system_info,
 )
 
+# Tracking System (Phase 7.0)
+from .tracking.types import (
+    TrackData, SolveData, SolveReport, FootageMetadata, FootageInfo, TrackingSession
+)
+from .tracking.footage import (
+    extract_metadata, analyze_footage, get_frame_rate
+)
+from .tracking.import_export import (
+    convert_yup_to_zup_position, convert_yup_to_zup_rotation,
+    fov_to_focal_length, import_nuke_chan, import_tracking_data
+)
+from .tracking.session_manager import TrackingSessionManager
+
 __all__ = [
     # Core types
     "Transform3D",
@@ -807,10 +821,27 @@ __all__ = [
     "save_benchmark_results",
     "get_system_info",
 
+    # Tracking System (Phase 7.0)
+    "TrackData",
+    "SolveData",
+    "SolveReport",
+    "FootageMetadata",
+    "FootageInfo",
+    "TrackingSession",
+    "TrackingSessionManager",
+    "extract_metadata",
+    "analyze_footage",
+    "get_frame_rate",
+    "convert_yup_to_zup_position",
+    "convert_yup_to_zup_rotation",
+    "fov_to_focal_length",
+    "import_nuke_chan",
+    "import_tracking_data",
+
     # Constants
     "APERTURE_MIN",
     "APERTURE_MAX",
     "BLENDER_AVAILABLE",
 ]
 
-__version__ = "0.3.0"
+__version__ = "0.3.1"
