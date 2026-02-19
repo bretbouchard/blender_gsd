@@ -3,11 +3,11 @@
 ## Current Position
 
 **Phase:** 6.8 of 6.10 (shot-assembly)
-**Plan:** 1 of 3 (in progress)
-**Status:** In Progress
-**Last activity:** 2026-02-19 - Completed 06.8-01 (Shot Template Types + Loaders)
+**Plan:** 3 of 3 (complete)
+**Status:** Phase Complete
+**Last activity:** 2026-02-19 - Completed 06.8-03 (Shot Template Presets + Exports)
 
-**Progress:** [███████████░] 92%
+**Progress:** [████████████] 100%
 
 ## Phase Summary
 
@@ -81,19 +81,23 @@
 | 06.7-02 | Support Modules | Complete | 06.7-02-SUMMARY.md |
 | 06.7-03 | Package Exports + Version Bump | Complete | 06.7-03-SUMMARY.md |
 
-### 06.8-shot-assembly (In Progress)
+### 06.8-shot-assembly (Complete)
 
 | Plan | Name | Status | Summary |
 |------|------|--------|---------|
 | 06.8-01 | Shot Template Types + Loaders | Complete | 06.8-01-SUMMARY.md |
+| 06.8-02 | Shot Assembly Module | Complete* | 06.8-03-SUMMARY.md (combined with 03) |
+| 06.8-03 | Shot Template Presets + Exports | Complete | 06.8-03-SUMMARY.md |
+
+*Plan 06.8-02 was implemented inline with 06.8-03 as a blocking issue fix.
 
 ## Cinematic System Module Summary
 
-**lib/cinematic/** (23 modules, ~17,500 lines):
-- types.py (1273 lines) - Core dataclasses (CinematicRenderSettings, support types)
+**lib/cinematic/** (24 modules, ~18,500 lines):
+- types.py (1273 lines) - Core dataclasses (CinematicRenderSettings, support types, shot configs)
 - enums.py (163 lines) - Type-safe enumerations (RenderEngine, DenoiserType, CompositionGuideType)
 - state_manager.py (458 lines) - State persistence
-- preset_loader.py (1002 lines) - Preset loading utilities (render + support system loaders)
+- preset_loader.py (1178 lines) - Preset loading utilities (render + support + shot template loaders)
 - camera.py (375 lines) - Camera creation and management
 - plumb_bob.py (348 lines) - Orbit/focus targeting
 - lenses.py (320 lines) - Compositor imperfections
@@ -106,16 +110,17 @@
 - animation.py (1203 lines) - Camera animation functions, easing, turntable
 - motion_path.py (692 lines) - Procedural motion path generation
 - shot_builder.py (500 lines) - Shot preset system
+- shot.py (338 lines) - Shot assembly from YAML
 - render.py (830 lines) - Quality tiers, passes, EXR output, denoising
 - shuffler.py (365 lines) - Shot variation generator
 - frame_store.py (419 lines) - State capture and comparison
 - depth_layers.py (438 lines) - Fore/mid/background organization
 - composition.py (643 lines) - Composition guide overlays
 - lens_fx.py (719 lines) - Post-process lens effects
-- __init__.py (726 lines) - Package exports
+- __init__.py (749 lines) - Package exports
 
-**Total exports:** 272+
-**Version:** 0.2.3
+**Total exports:** 281+
+**Version:** 0.2.4
 
 ## Decisions
 
@@ -163,6 +168,8 @@
 | 2026-02-19 | 06.8-01 | extends field as string | Simple template name reference, resolved at load time |
 | 2026-02-19 | 06.8-01 | abstract boolean field | Clean way to mark non-renderable base templates |
 | 2026-02-19 | 06.8-01 | Deep merge for dicts in inheritance | Allows partial overrides (e.g., just change camera.focal_length) |
+| 2026-02-19 | 06.8-03 | Created shot.py inline | Plan dependency 06.8-02 was unmet; necessary for export task |
+| 2026-02-19 | 06.8-03 | Version bump to 0.2.4 | Shot assembly system complete |
 
 ## Concerns
 
@@ -171,6 +178,6 @@ None currently.
 ## Session Continuity
 
 **Last session:** 2026-02-19
-**Stopped at:** Completed 06.8-01 (Shot Template Types + Loaders)
+**Stopped at:** Completed 06.8-03 (Shot Template Presets + Exports)
 **Resume file:** None
-**Next phase:** Continue Phase 6.8 shot-assembly (plan 02)
+**Next phase:** Phase 6.8 complete - ready for next phase in roadmap
