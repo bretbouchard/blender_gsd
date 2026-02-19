@@ -3,9 +3,9 @@
 ## Current Position
 
 **Phase:** 6.4 of 6.10 (color-pipeline)
-**Plan:** 2 of 3 (in progress)
-**Status:** In Progress
-**Last activity:** 2026-02-19 - Completed 06.4-02 (Color management module with LUT/exposure)
+**Plan:** 3 of 3 (complete)
+**Status:** Phase Complete
+**Last activity:** 2026-02-19 - Completed 06.4-03 (Package Exports + Version Bump)
 
 **Progress:** [██████████░░] 86%
 
@@ -47,17 +47,17 @@
 | 06.3-02 | Backdrop Module | Complete | 06.3-02-SUMMARY.md |
 | 06.3-03 | Package Exports + Version Bump | Complete | 06.3-03-SUMMARY.md |
 
-### 06.4-color-pipeline (In Progress)
+### 06.4-color-pipeline (Complete)
 
 | Plan | Name | Status | Summary |
 |------|------|--------|---------|
 | 06.4-01 | Types + Preset Loaders | Complete | 06.4-01-SUMMARY.md |
 | 06.4-02 | Color Management Module | Complete | 06.4-02-SUMMARY.md |
-| 06.4-03 | Package Exports + Version Bump | Not started | - |
+| 06.4-03 | Package Exports + Version Bump | Complete | 06.4-03-SUMMARY.md |
 
 ## Cinematic System Module Summary
 
-**lib/cinematic/** (14 modules, ~8000 lines):
+**lib/cinematic/** (15 modules, ~9000 lines):
 - types.py (800 lines) - Core dataclasses (extended with ColorConfig, LUTConfig, ExposureLockConfig)
 - enums.py (115 lines) - Type-safe enumerations (added ViewTransform, WorkingColorSpace)
 - state_manager.py (458 lines) - State persistence
@@ -71,10 +71,11 @@
 - hdri.py (401 lines) - HDRI environment lighting
 - backdrops.py (770 lines) - Backdrop creation and management
 - color.py (793 lines) - Color management, LUT validation, exposure lock
-- __init__.py (360 lines) - Package exports
+- shot_builder.py (500 lines) - Shot preset system
+- __init__.py (450 lines) - Package exports
 
-**Total exports:** 111
-**Version:** 0.1.3
+**Total exports:** 150+
+**Version:** 0.2.0
 
 ## Decisions
 
@@ -100,6 +101,7 @@
 | 2026-02-19 | 06.4-02 | ColorBalance for LUT approximation | Blender lacks native .cube LUT loader in compositor |
 | 2026-02-19 | 06.4-02 | MixRGB intensity blending | LUT output blends at config.intensity ratio (0.8 default) |
 | 2026-02-19 | 06.4-02 | Optional scene_luminance parameter | Direct luminance requires render pass access |
+| 2026-02-19 | 06.4-03 | Version left at 0.2.0 | Already bumped from prior shot_builder integration |
 
 ## Concerns
 
@@ -108,6 +110,6 @@ None currently.
 ## Session Continuity
 
 **Last session:** 2026-02-19
-**Stopped at:** Completed 06.4-02 (Color Management Module)
+**Stopped at:** Completed 06.4-03 (Package Exports + Version Bump)
 **Resume file:** None
-**Next phase:** 06.4-03 (Package Exports + Version Bump)
+**Next phase:** Phase 6.4 complete - check ROADMAP.md for next phase
