@@ -2,12 +2,12 @@
 
 ## Current Position
 
-**Phase:** 7.5 of 7.5 (advanced-features) - COMPLETE
-**Plan:** 5 of 5 complete
-**Status:** Phase 07.5 Plan 05 Package Exports complete - MILESTONE v0.6 COMPLETE
-**Last activity:** 2026-02-19 - Completed 07.5-05 Package Exports + Version Bump
+**Phase:** 8.0 of 8.4 (foundation) - IN PROGRESS
+**Plan:** 1 of 1 complete
+**Status:** Phase 08.0 Plan 01 Follow Camera Foundation complete
+**Last activity:** 2026-02-19 - Completed 08.0-01 Follow Camera Foundation
 
-**Progress:** [██████████] 100% (Milestone v0.6 Motion Tracking System COMPLETE)
+**Progress:** [████████░░] 80% (Milestone v0.7 Follow Camera System in progress)
 
 **Version:** 0.4.0
 
@@ -35,6 +35,31 @@
 - MocapRetargeter.retarget_to_morph() → MorphEngine
 - ScanImporter → backdrop system
 - BatchProcessor → shot assembly
+
+## Phase 8.0 Planning Summary
+
+### 08.0-foundation (Complete)
+
+| Plan | Name | Status | Summary |
+|------|------|--------|---------|
+| 08.0-01 | Follow Camera Foundation | Complete | 08.0-01-SUMMARY.md |
+
+**Follow Camera Module Structure:**
+- 10 Python modules in lib/cinematic/follow_cam/
+- 8 follow modes: side_scroller, over_shoulder, chase, chase_side, orbit_follow, lead, aerial, free_roam
+- 18 presets in follow_modes.yaml
+- State directories for solves and previews
+
+**Key Files:**
+- types.py (473 lines) - FollowMode enum, FollowCameraConfig, CameraState
+- follow_modes.py - Mode implementations
+- transitions.py - Mode transitions
+- collision.py - Collision detection
+- prediction.py - Motion prediction
+- framing.py - Intelligent framing
+- pre_solve.py - Pre-solve workflow
+- navmesh.py - Navigation mesh
+- debug.py - Debug visualization
 
 ## Phase Summary
 
@@ -204,6 +229,32 @@
 **Total exports:** 70+
 **Version:** 0.4.0
 
+## Follow Camera System Module Summary
+
+**lib/cinematic/follow_cam/** (10 modules, ~14,000 lines):
+- types.py (473 lines) - FollowMode, FollowCameraConfig, FollowTarget, CameraState, ObstacleInfo
+- follow_modes.py (~600 lines) - calculate_ideal_position, smooth_position, smooth_angle
+- transitions.py (~400 lines) - TransitionManager, create_orbit_transition, create_dolly_transition
+- collision.py (~500 lines) - detect_obstacles, calculate_avoidance_position
+- prediction.py (~400 lines) - MotionPredictor, predict_look_ahead
+- framing.py (~300 lines) - calculate_framing_offset, apply_dead_zone
+- pre_solve.py (~400 lines) - PreSolver, compute_pre_solve_path
+- navmesh.py (~400 lines) - NavMesh, smooth_path, simplify_path
+- debug.py (~400 lines) - DebugVisualizer, generate_hud_text
+- __init__.py (~200 lines) - Package exports
+
+**configs/cinematic/follow_cam/follow_modes.yaml** (18 presets)
+- 8 follow mode presets (one per mode)
+- Collision presets (relaxed, strict, minimal)
+- Transition presets (instant, smooth, cinematic, orbit)
+
+**State directories:**
+- .gsd-state/follow_cam/solves/ - Pre-solved camera paths
+- .gsd-state/follow_cam/previews/ - Preview videos
+
+**Total exports:** 60+
+**Version:** 0.4.0
+
 ## Decisions
 
 | Date | Phase | Decision | Rationale |
@@ -298,6 +349,8 @@
 | 2026-02-19 | 07.5-04 | Hysteresis for button press detection | Different press/release thresholds prevent flickering |
 | 2026-02-19 | 07.5-04 | Rotation ranges per control type | Knob=360deg, Fader=90deg, Button=30deg depth |
 | 2026-02-19 | 07.5-05 | Version bump to 0.4.0 | MILESTONE v0.6 Motion Tracking System complete |
+| 2026-02-19 | 08.0-01 | State directories for follow_cam | Separate runtime state (solves/previews) from source files |
+| 2026-02-19 | 08.0-01 | .gitkeep for empty directories | Track state directories in git without content |
 
 ## Concerns
 
@@ -306,9 +359,9 @@ None currently.
 ## Session Continuity
 
 **Last session:** 2026-02-19
-**Stopped at:** Completed 07.5-05 Package Exports + Version Bump
+**Stopped at:** Completed 08.0-01 Follow Camera Foundation
 **Resume file:** None - Phase complete
-**Next phase:** Phase 8.0 (Follow Camera Foundation) or other next milestone
+**Next phase:** Phase 08.1 (Follow Mode Implementations) or other next phase
 
 ## Milestone Summary
 
