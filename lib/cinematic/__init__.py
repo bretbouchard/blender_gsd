@@ -432,6 +432,23 @@ from .audio_sync import (
     get_beat_at_frame,
 )
 
+# Testing & Benchmarking (Phase 6.10)
+from .types import IntegrationConfig, TestConfig, PerformanceConfig, BenchmarkResult
+from .testing import (
+    run_shot_test,
+    validate_shot_output,
+    compare_to_reference,
+    run_test_suite,
+)
+from .benchmark import (
+    benchmark_shot_assembly,
+    benchmark_render,
+    benchmark_animation,
+    run_all_benchmarks,
+    save_benchmark_results,
+    get_system_info,
+)
+
 __all__ = [
     # Core types
     "Transform3D",
@@ -774,10 +791,26 @@ __all__ = [
     "get_frame_at_beat",
     "get_beat_at_frame",
 
+    # Testing & Benchmarking
+    "IntegrationConfig",
+    "TestConfig",
+    "PerformanceConfig",
+    "BenchmarkResult",
+    "run_shot_test",
+    "validate_shot_output",
+    "compare_to_reference",
+    "run_test_suite",
+    "benchmark_shot_assembly",
+    "benchmark_render",
+    "benchmark_animation",
+    "run_all_benchmarks",
+    "save_benchmark_results",
+    "get_system_info",
+
     # Constants
     "APERTURE_MIN",
     "APERTURE_MAX",
     "BLENDER_AVAILABLE",
 ]
 
-__version__ = "0.2.5"
+__version__ = "0.3.0"
