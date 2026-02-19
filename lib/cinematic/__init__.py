@@ -16,6 +16,7 @@ Modules:
 - gel: Gel/color filter system
 - hdri: HDRI environment lighting
 - backdrops: Infinite curve backdrops, gradients, and shadow catchers
+- color: Color management, LUT validation, and exposure lock
 
 Quick Start:
     from lib.cinematic import (
@@ -32,6 +33,9 @@ Quick Start:
         setup_light_linking, apply_lighting_rig,
         apply_gel, create_gel_from_preset, kelvin_to_rgb,
         setup_hdri, load_hdri_preset, find_hdri_path,
+        # Color management
+        ColorConfig, LUTConfig, ExposureLockConfig,
+        set_view_transform, apply_color_preset, apply_lut,
     )
 
     # Create camera config
@@ -70,6 +74,9 @@ Quick Start:
 
     # Set up HDRI environment
     load_hdri_preset("studio_bright")
+
+    # Apply color preset
+    apply_color_preset("agx_default")
 """
 
 from .types import (
@@ -87,6 +94,10 @@ from .types import (
     GelConfig,
     HDRIConfig,
     LightRigConfig,
+    # Color types
+    ColorConfig,
+    LUTConfig,
+    ExposureLockConfig,
 )
 from .enums import (
     LensType,
@@ -96,6 +107,9 @@ from .enums import (
     EasingType,
     # Lighting enum
     AreaLightShape,
+    # Color enums
+    ViewTransform,
+    WorkingColorSpace,
 )
 from .state_manager import (
     StateManager,
@@ -126,6 +140,13 @@ from .preset_loader import (
     list_infinite_curve_presets,
     list_gradient_presets,
     list_environment_presets,
+    # Color preset loaders
+    get_color_preset,
+    get_technical_lut_preset,
+    get_film_lut_preset,
+    list_color_presets,
+    list_technical_lut_presets,
+    list_film_lut_presets,
 )
 from .camera import (
     create_camera,
@@ -211,6 +232,36 @@ from .backdrops import (
     delete_backdrop,
     get_backdrop,
 )
+from .color import (
+    set_view_transform,
+    apply_color_preset,
+    get_current_color_settings,
+    reset_color_settings,
+    get_available_looks,
+    set_working_color_space,
+    validate_lut_file,
+    find_lut_path,
+    load_lut_config,
+    list_available_luts,
+    apply_lut,
+    remove_lut_nodes,
+    get_active_luts,
+    calculate_auto_exposure,
+    apply_exposure_lock,
+    set_exposure,
+    set_gamma,
+    get_exposure_range,
+    get_gamma_range,
+)
+from .shot_builder import (
+    apply_shot_preset,
+    get_shot_preset,
+    list_shot_presets,
+    list_shot_presets_by_category,
+    get_shot_preset_info,
+    get_presets_for_use_case,
+    ShotPreset,
+)
 
 __all__ = [
     # Core types
@@ -232,6 +283,11 @@ __all__ = [
     "HDRIConfig",
     "LightRigConfig",
 
+    # Color types
+    "ColorConfig",
+    "LUTConfig",
+    "ExposureLockConfig",
+
     # Enums
     "LensType",
     "LightType",
@@ -239,6 +295,9 @@ __all__ = [
     "ColorSpace",
     "EasingType",
     "AreaLightShape",
+    # Color enums
+    "ViewTransform",
+    "WorkingColorSpace",
 
     # State management
     "StateManager",
@@ -269,6 +328,13 @@ __all__ = [
     "list_infinite_curve_presets",
     "list_gradient_presets",
     "list_environment_presets",
+    # Color preset loaders
+    "get_color_preset",
+    "get_technical_lut_preset",
+    "get_film_lut_preset",
+    "list_color_presets",
+    "list_technical_lut_presets",
+    "list_film_lut_presets",
 
     # Camera functions
     "create_camera",
@@ -351,10 +417,40 @@ __all__ = [
     "delete_backdrop",
     "get_backdrop",
 
+    # Color functions
+    "set_view_transform",
+    "apply_color_preset",
+    "get_current_color_settings",
+    "reset_color_settings",
+    "get_available_looks",
+    "set_working_color_space",
+    "validate_lut_file",
+    "find_lut_path",
+    "load_lut_config",
+    "list_available_luts",
+    "apply_lut",
+    "remove_lut_nodes",
+    "get_active_luts",
+    "calculate_auto_exposure",
+    "apply_exposure_lock",
+    "set_exposure",
+    "set_gamma",
+    "get_exposure_range",
+    "get_gamma_range",
+
+    # Shot preset functions
+    "apply_shot_preset",
+    "get_shot_preset",
+    "list_shot_presets",
+    "list_shot_presets_by_category",
+    "get_shot_preset_info",
+    "get_presets_for_use_case",
+    "ShotPreset",
+
     # Constants
     "APERTURE_MIN",
     "APERTURE_MAX",
     "BLENDER_AVAILABLE",
 ]
 
-__version__ = "0.1.3"
+__version__ = "0.2.0"
