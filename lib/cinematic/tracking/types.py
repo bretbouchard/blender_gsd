@@ -710,3 +710,176 @@ class RigidBodySolve:
             scale=tuple(data.get("scale", (1.0, 1.0, 1.0))),
             error=data.get("error", 0.0),
         )
+
+
+@dataclass
+class FloorPlane:
+    """
+    Detected floor plane data.
+
+    Represents the floor plane detected from LiDAR/scan data
+    using RANSAC plane fitting algorithm.
+
+    Attributes:
+        normal: Plane normal vector (nx, ny, nz)
+        distance: Distance from origin to plane
+        confidence: Detection confidence 0-1
+        inlier_count: Number of points that fit the plane
+        rotation_euler: Euler rotation to align floor to XY plane
+    """
+    normal: Tuple[float, float, float] = (0.0, 0.0, 1.0)
+    distance: float = 0.0
+    confidence: float = 0.0
+    inlier_count: int = 0
+    rotation_euler: Tuple[float, float, float] = (0.0, 0.0, 0.0)
+
+    def to_dict(self) -> Dict[str, Any]:
+        """Convert to dictionary for serialization."""
+        return {
+            "normal": list(self.normal),
+            "distance": self.distance,
+            "confidence": self.confidence,
+            "inlier_count": self.inlier_count,
+            "rotation_euler": list(self.rotation_euler),
+        }
+
+    @classmethod
+    def from_dict(cls, data: Dict[str, Any]) -> "FloorPlane":
+        """Create from dictionary."""
+        return cls(
+            normal=tuple(data.get("normal", (0.0, 0.0, 1.0))),
+            distance=data.get("distance", 0.0),
+            confidence=data.get("confidence", 0.0),
+            inlier_count=data.get("inlier_count", 0),
+            rotation_euler=tuple(data.get("rotation_euler", (0.0, 0.0, 0.0))),
+        )
+
+
+@dataclass
+class ScaleCalibration:
+    """
+    Scale calibration data.
+
+    Contains scale factor derived from known reference measurements
+    in the scanned environment.
+
+    Attributes:
+        scale_factor: Multiplier to convert scan units to meters
+        reference_type: Type of reference used (aruco, distance, object)
+        reference_value: Known reference value in real-world units
+        measured_value: Measured value in scan units
+        confidence: Calibration confidence 0-1
+    """
+    scale_factor: float = 1.0
+    reference_type: str = "unknown"  # aruco, distance, object
+    reference_value: float = 0.0
+    measured_value: float = 0.0
+    confidence: float = 1.0
+
+    def to_dict(self) -> Dict[str, Any]:
+        """Convert to dictionary for serialization."""
+        return {
+            "scale_factor": self.scale_factor,
+            "reference_type": self.reference_type,
+            "reference_value": self.reference_value,
+            "measured_value": self.measured_value,
+            "confidence": self.confidence,
+        }
+
+    @classmethod
+    def from_dict(cls, data: Dict[str, Any]) -> "ScaleCalibration":
+        """Create from dictionary."""
+        return cls(
+            scale_factor=data.get("scale_factor", 1.0),
+            reference_type=data.get("reference_type", "unknown"),
+            reference_value=data.get("reference_value", 0.0),
+            measured_value=data.get("measured_value", 0.0),
+            confidence=data.get("confidence", 1.0),
+        )
+
+
+@dataclass
+class ScanData:
+    """
+    Imported scan data with metadata.
+
+    Contains point cloud or mesh data from LiDAR scanners,
+    photogrammetry, or other 3D scanning sources.
+
+    Attributes:
+        id: Unique scan identifier
+        name: Human-readable scan name
+        source_path: Path to source file
+        source_format: File format (ply, obj, etc.)
+        point_count: Number of points in point cloud
+        vertex_count: Number of vertices in mesh
+        bounds_min: Bounding box minimum corner
+        bounds_max: Bounding box maximum corner
+        floor: Detected floor plane data
+        scale: Scale calibration data
+        is_point_cloud: Whether this is point cloud data
+        has_color: Whether points have color data
+        has_normals: Whether points have normal data
+    """
+    id: str = field(default_factory=lambda: str(uuid.uuid4())[:8])
+    name: str = "scan"
+    source_path: str = ""
+    source_format: str = ""
+    point_count: int = 0
+    vertex_count: int = 0
+    bounds_min: Tuple[float, float, float] = (0.0, 0.0, 0.0)
+    bounds_max: Tuple[float, float, float] = (1.0, 1.0, 1.0)
+    floor: Optional["FloorPlane"] = None
+    scale: Optional["ScaleCalibration"] = None
+    is_point_cloud: bool = True
+    has_color: bool = False
+    has_normals: bool = False
+
+    def get_dimensions(self) -> Tuple[float, float, float]:
+        """Get scan dimensions (width, depth, height)."""
+        return (
+            self.bounds_max[0] - self.bounds_min[0],
+            self.bounds_max[1] - self.bounds_min[1],
+            self.bounds_max[2] - self.bounds_min[2],
+        )
+
+    def to_dict(self) -> Dict[str, Any]:
+        """Convert to dictionary for serialization."""
+        return {
+            "id": self.id,
+            "name": self.name,
+            "source_path": self.source_path,
+            "source_format": self.source_format,
+            "point_count": self.point_count,
+            "vertex_count": self.vertex_count,
+            "bounds_min": list(self.bounds_min),
+            "bounds_max": list(self.bounds_max),
+            "floor": self.floor.to_dict() if self.floor else None,
+            "scale": self.scale.to_dict() if self.scale else None,
+            "is_point_cloud": self.is_point_cloud,
+            "has_color": self.has_color,
+            "has_normals": self.has_normals,
+        }
+
+    @classmethod
+    def from_dict(cls, data: Dict[str, Any]) -> "ScanData":
+        """Create from dictionary."""
+        floor_data = data.get("floor")
+        floor = FloorPlane.from_dict(floor_data) if floor_data else None
+        scale_data = data.get("scale")
+        scale = ScaleCalibration.from_dict(scale_data) if scale_data else None
+        return cls(
+            id=data.get("id", str(uuid.uuid4())[:8]),
+            name=data.get("name", "scan"),
+            source_path=data.get("source_path", ""),
+            source_format=data.get("source_format", ""),
+            point_count=data.get("point_count", 0),
+            vertex_count=data.get("vertex_count", 0),
+            bounds_min=tuple(data.get("bounds_min", (0.0, 0.0, 0.0))),
+            bounds_max=tuple(data.get("bounds_max", (1.0, 1.0, 1.0))),
+            floor=floor,
+            scale=scale,
+            is_point_cloud=data.get("is_point_cloud", True),
+            has_color=data.get("has_color", False),
+            has_normals=data.get("has_normals", False),
+        )

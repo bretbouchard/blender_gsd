@@ -44,6 +44,10 @@ from .types import (
     PlanarTrack,
     RotationCurve,
     RigidBodySolve,
+    # Scan import types
+    FloorPlane,
+    ScaleCalibration,
+    ScanData,
 )
 
 from .footage import (
@@ -70,6 +74,17 @@ from .object_tracker import (
     ObjectTracker,
 )
 
+from .scan_import import (
+    PLYParser,
+    OBJParser,
+    FloorDetector,
+    ScaleDetector,
+    ScanImporter,
+    import_polycam,
+    import_reality_scan,
+    SCAN_FORMATS,
+)
+
 __all__ = [
     # Types
     "TrackData",
@@ -83,6 +98,10 @@ __all__ = [
     "PlanarTrack",
     "RotationCurve",
     "RigidBodySolve",
+    # Scan import types
+    "FloorPlane",
+    "ScaleCalibration",
+    "ScanData",
     # Footage
     "extract_metadata",
     "analyze_footage",
@@ -101,6 +120,15 @@ __all__ = [
     "RigidBodyTracker",
     "FaderTracker",
     "ObjectTracker",
+    # Scan Import
+    "PLYParser",
+    "OBJParser",
+    "FloorDetector",
+    "ScaleDetector",
+    "ScanImporter",
+    "import_polycam",
+    "import_reality_scan",
+    "SCAN_FORMATS",
     # Constants
     "BLENDER_AVAILABLE",
 ]
