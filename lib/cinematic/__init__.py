@@ -17,6 +17,8 @@ Modules:
 - hdri: HDRI environment lighting
 - backdrops: Infinite curve backdrops, gradients, and shadow catchers
 - color: Color management, LUT validation, and exposure lock
+- animation: Camera moves, motion paths, and turntable rotations
+- motion_path: Procedural motion path generation
 
 Quick Start:
     from lib.cinematic import (
@@ -98,6 +100,20 @@ from .types import (
     ColorConfig,
     LUTConfig,
     ExposureLockConfig,
+    # Animation types
+    AnimationConfig,
+    MotionPathConfig,
+    TurntableConfig,
+    # Composition types
+    CompositionConfig,
+    CompleteShotConfig,
+    # Composition constants
+    SHOT_SIZES,
+    LENS_BY_SHOT_SIZE,
+    FSTOP_BY_SHOT_SIZE,
+    CAMERA_ANGLES,
+    CAMERA_POSITIONS,
+    LIGHTING_RATIOS,
 )
 from .enums import (
     LensType,
@@ -147,6 +163,13 @@ from .preset_loader import (
     list_color_presets,
     list_technical_lut_presets,
     list_film_lut_presets,
+    # Animation preset loaders
+    get_camera_move_preset,
+    get_easing_preset,
+    get_turntable_preset,
+    list_camera_move_presets,
+    list_easing_presets,
+    list_turntable_presets,
 )
 from .camera import (
     create_camera,
@@ -262,6 +285,37 @@ from .shot_builder import (
     get_presets_for_use_case,
     ShotPreset,
 )
+from .animation import (
+    create_orbit_animation,
+    create_dolly_animation,
+    create_truck_animation,
+    create_crane_animation,
+    create_pan_animation,
+    create_tilt_animation,
+    create_rack_focus_animation,
+    create_push_in_animation,
+    create_turntable_animation,
+    create_animation_from_preset,
+    apply_camera_move_preset,
+    apply_turntable_preset,
+    clear_animation,
+    set_scene_frame_range,
+    apply_easing,
+)
+from .motion_path import (
+    generate_bezier_path,
+    generate_arc_path,
+    generate_orbit_path,
+    interpolate_catmull_rom,
+    create_motion_path_curve,
+    setup_camera_follow_path,
+    create_motion_path_from_config,
+    create_motion_path_from_preset,
+    calculate_path_length,
+    get_point_at_distance,
+    sample_path_uniformly,
+    remove_motion_path,
+)
 
 __all__ = [
     # Core types
@@ -287,6 +341,23 @@ __all__ = [
     "ColorConfig",
     "LUTConfig",
     "ExposureLockConfig",
+
+    # Animation types
+    "AnimationConfig",
+    "MotionPathConfig",
+    "TurntableConfig",
+
+    # Composition types
+    "CompositionConfig",
+    "CompleteShotConfig",
+
+    # Composition constants
+    "SHOT_SIZES",
+    "LENS_BY_SHOT_SIZE",
+    "FSTOP_BY_SHOT_SIZE",
+    "CAMERA_ANGLES",
+    "CAMERA_POSITIONS",
+    "LIGHTING_RATIOS",
 
     # Enums
     "LensType",
@@ -335,6 +406,13 @@ __all__ = [
     "list_color_presets",
     "list_technical_lut_presets",
     "list_film_lut_presets",
+    # Animation preset loaders
+    "get_camera_move_preset",
+    "get_easing_preset",
+    "get_turntable_preset",
+    "list_camera_move_presets",
+    "list_easing_presets",
+    "list_turntable_presets",
 
     # Camera functions
     "create_camera",
@@ -447,10 +525,41 @@ __all__ = [
     "get_presets_for_use_case",
     "ShotPreset",
 
+    # Animation functions
+    "create_orbit_animation",
+    "create_dolly_animation",
+    "create_truck_animation",
+    "create_crane_animation",
+    "create_pan_animation",
+    "create_tilt_animation",
+    "create_rack_focus_animation",
+    "create_push_in_animation",
+    "create_turntable_animation",
+    "create_animation_from_preset",
+    "apply_camera_move_preset",
+    "apply_turntable_preset",
+    "clear_animation",
+    "set_scene_frame_range",
+    "apply_easing",
+
+    # Motion path functions
+    "generate_bezier_path",
+    "generate_arc_path",
+    "generate_orbit_path",
+    "interpolate_catmull_rom",
+    "create_motion_path_curve",
+    "setup_camera_follow_path",
+    "create_motion_path_from_config",
+    "create_motion_path_from_preset",
+    "calculate_path_length",
+    "get_point_at_distance",
+    "sample_path_uniformly",
+    "remove_motion_path",
+
     # Constants
     "APERTURE_MIN",
     "APERTURE_MAX",
     "BLENDER_AVAILABLE",
 ]
 
-__version__ = "0.2.0"
+__version__ = "0.2.1"

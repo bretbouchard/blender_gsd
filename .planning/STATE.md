@@ -3,9 +3,9 @@
 ## Current Position
 
 **Phase:** 6.5 of 6.10 (animation-system)
-**Plan:** 1 of 3 (in progress)
+**Plan:** 2 of 3 (in progress)
 **Status:** In Progress
-**Last activity:** 2026-02-19 - Completed 06.5-01 (Animation Types + Preset Loaders)
+**Last activity:** 2026-02-19 - Completed 06.5-02 (Animation Module)
 
 **Progress:** [██████████░░] 86%
 
@@ -60,12 +60,12 @@
 | Plan | Name | Status | Summary |
 |------|------|--------|---------|
 | 06.5-01 | Animation Types + Preset Loaders | Complete | 06.5-01-SUMMARY.md |
-| 06.5-02 | Animation Module | Pending | - |
+| 06.5-02 | Animation Module | Complete | 06.5-02-SUMMARY.md |
 | 06.5-03 | Package Exports + Version Bump | Pending | - |
 
 ## Cinematic System Module Summary
 
-**lib/cinematic/** (15 modules, ~9400 lines):
+**lib/cinematic/** (17 modules, ~11300 lines):
 - types.py (1000 lines) - Core dataclasses (extended with AnimationConfig, MotionPathConfig, TurntableConfig)
 - enums.py (115 lines) - Type-safe enumerations (added ViewTransform, WorkingColorSpace)
 - state_manager.py (458 lines) - State persistence
@@ -79,6 +79,8 @@
 - hdri.py (401 lines) - HDRI environment lighting
 - backdrops.py (770 lines) - Backdrop creation and management
 - color.py (793 lines) - Color management, LUT validation, exposure lock
+- animation.py (1203 lines) - Camera animation functions, easing, turntable
+- motion_path.py (692 lines) - Procedural motion path generation
 - shot_builder.py (500 lines) - Shot preset system
 - __init__.py (450 lines) - Package exports
 
@@ -114,6 +116,9 @@
 | 2026-02-19 | 06.5-01 | TurntableConfig defaults loop=True | Product showcase typically requires continuous rotation |
 | 2026-02-19 | 06.5-01 | Separate dataclasses for each animation type | Clean separation of concerns, easier to extend independently |
 | 2026-02-19 | 06.5-01 | Match existing YAML structure | Consistent with camera_moves.yaml and easing_curves.yaml patterns |
+| 2026-02-19 | 06.5-02 | LINEAR interpolation for turntable/orbit | Constant-speed motion for product showcase |
+| 2026-02-19 | 06.5-02 | Direct keyframe_insert API | Avoid bpy.ops context dependencies |
+| 2026-02-19 | 06.5-02 | Separate motion_path module | Isolate procedural path generation logic |
 
 ## Concerns
 
@@ -122,6 +127,6 @@ None currently.
 ## Session Continuity
 
 **Last session:** 2026-02-19
-**Stopped at:** Completed 06.5-01 (Animation Types + Preset Loaders)
+**Stopped at:** Completed 06.5-02 (Animation Module)
 **Resume file:** None
-**Next phase:** Continue with 06.5-02 (Animation Module)
+**Next phase:** Continue with 06.5-03 (Package Exports + Version Bump)
