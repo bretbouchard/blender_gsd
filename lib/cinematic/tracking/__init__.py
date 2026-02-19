@@ -21,6 +21,7 @@ from .types import (
     SolveData,
     SolveReport,
     FootageMetadata,
+    FootageInfo,
     TrackingSession,
 )
 
@@ -30,6 +31,7 @@ __all__ = [
     "SolveData",
     "SolveReport",
     "FootageMetadata",
+    "FootageInfo",
     "TrackingSession",
 ]
 

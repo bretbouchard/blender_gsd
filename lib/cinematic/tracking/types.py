@@ -324,3 +324,70 @@ class TrackingSession:
             created_at=data.get("created_at", ""),
             updated_at=data.get("updated_at", ""),
         )
+
+
+@dataclass
+class FootageInfo:
+    """
+    Footage information for video files and image sequences.
+
+    Contains basic footage metadata used by FootageImporter for
+    loading and analyzing video files.
+
+    Attributes:
+        source_path: Path to video file or image sequence directory
+        width: Frame width in pixels
+        height: Frame height in pixels
+        frame_start: First frame number
+        frame_end: Last frame number
+        fps: Frames per second
+        duration_seconds: Duration in seconds
+        colorspace: Color space name
+        codec: Video codec name
+        has_alpha: Whether footage has alpha channel
+        is_sequence: Whether this is an image sequence
+    """
+    source_path: str = ""
+    width: int = 1920
+    height: int = 1080
+    frame_start: int = 1
+    frame_end: int = 100
+    fps: float = 24.0
+    duration_seconds: float = 0.0
+    colorspace: str = "sRGB"
+    codec: str = ""
+    has_alpha: bool = False
+    is_sequence: bool = False
+
+    def to_dict(self) -> Dict[str, Any]:
+        """Convert to dictionary for serialization."""
+        return {
+            "source_path": self.source_path,
+            "width": self.width,
+            "height": self.height,
+            "frame_start": self.frame_start,
+            "frame_end": self.frame_end,
+            "fps": self.fps,
+            "duration_seconds": self.duration_seconds,
+            "colorspace": self.colorspace,
+            "codec": self.codec,
+            "has_alpha": self.has_alpha,
+            "is_sequence": self.is_sequence,
+        }
+
+    @classmethod
+    def from_dict(cls, data: Dict[str, Any]) -> FootageInfo:
+        """Create from dictionary."""
+        return cls(
+            source_path=data.get("source_path", ""),
+            width=data.get("width", 1920),
+            height=data.get("height", 1080),
+            frame_start=data.get("frame_start", 1),
+            frame_end=data.get("frame_end", 100),
+            fps=data.get("fps", 24.0),
+            duration_seconds=data.get("duration_seconds", 0.0),
+            colorspace=data.get("colorspace", "sRGB"),
+            codec=data.get("codec", ""),
+            has_alpha=data.get("has_alpha", False),
+            is_sequence=data.get("is_sequence", False),
+        )
