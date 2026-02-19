@@ -530,3 +530,183 @@ class BatchResult:
             duration_seconds=data.get("duration_seconds", 0.0),
             jobs=[BatchJob.from_dict(j) for j in data.get("jobs", [])],
         )
+
+
+@dataclass
+class CornerPinData:
+    """
+    Corner pin data for planar tracking.
+
+    Represents 4 corners of a tracked plane in image coordinates.
+    Used for corner pin effects and planar transformations.
+
+    Attributes:
+        frame: Frame number
+        corners: Four corners as (top-left, top-right, bottom-right, bottom-left)
+        perspective_matrix: Optional 3x3 homography matrix
+    """
+    frame: int
+    corners: Tuple[
+        Tuple[float, float],
+        Tuple[float, float],
+        Tuple[float, float],
+        Tuple[float, float]
+    ] = ((0.0, 0.0), (1.0, 0.0), (1.0, 1.0), (0.0, 1.0))
+    perspective_matrix: Optional[List[List[float]]] = None
+
+    def to_dict(self) -> Dict[str, Any]:
+        return {
+            "frame": self.frame,
+            "corners": [list(c) for c in self.corners],
+            "perspective_matrix": self.perspective_matrix,
+        }
+
+    @classmethod
+    def from_dict(cls, data: Dict[str, Any]) -> "CornerPinData":
+        corners = tuple(tuple(c) for c in data.get("corners", []))
+        if len(corners) != 4:
+            corners = ((0.0, 0.0), (1.0, 0.0), (1.0, 1.0), (0.0, 1.0))
+        return cls(
+            frame=data.get("frame", 0),
+            corners=corners,
+            perspective_matrix=data.get("perspective_matrix"),
+        )
+
+
+@dataclass
+class PlanarTrack:
+    """
+    Complete planar track with corner pin data.
+
+    Stores tracked corner positions across a frame range for
+    planar tracking and corner pin effects.
+
+    Attributes:
+        id: Unique track identifier
+        name: Human-readable track name
+        frame_start: First frame of track
+        frame_end: Last frame of track
+        corners: Per-frame corner pin data
+        reference_corners: Reference frame corners for alignment
+    """
+    id: str = field(default_factory=lambda: str(uuid.uuid4())[:8])
+    name: str = "planar_track"
+    frame_start: int = 1
+    frame_end: int = 1
+    corners: List["CornerPinData"] = field(default_factory=list)
+    reference_corners: Tuple[
+        Tuple[float, float], Tuple[float, float],
+        Tuple[float, float], Tuple[float, float]
+    ] = ((0.0, 0.0), (1.0, 0.0), (1.0, 1.0), (0.0, 1.0))
+
+    def get_corners_at_frame(self, frame: int) -> Optional["CornerPinData"]:
+        """Get corner pin data for a specific frame."""
+        for corner_data in self.corners:
+            if corner_data.frame == frame:
+                return corner_data
+        return None
+
+    def to_dict(self) -> Dict[str, Any]:
+        return {
+            "id": self.id,
+            "name": self.name,
+            "frame_start": self.frame_start,
+            "frame_end": self.frame_end,
+            "corners": [c.to_dict() for c in self.corners],
+            "reference_corners": [list(c) for c in self.reference_corners],
+        }
+
+    @classmethod
+    def from_dict(cls, data: Dict[str, Any]) -> "PlanarTrack":
+        corners = [CornerPinData.from_dict(c) for c in data.get("corners", [])]
+        ref_corners = tuple(tuple(c) for c in data.get("reference_corners", []))
+        if len(ref_corners) != 4:
+            ref_corners = ((0.0, 0.0), (1.0, 0.0), (1.0, 1.0), (0.0, 1.0))
+        return cls(
+            id=data.get("id", str(uuid.uuid4())[:8]),
+            name=data.get("name", "planar_track"),
+            frame_start=data.get("frame_start", 1),
+            frame_end=data.get("frame_end", 1),
+            corners=corners,
+            reference_corners=ref_corners,
+        )
+
+
+@dataclass
+class RotationCurve:
+    """
+    Rotation curve extracted from footage.
+
+    Stores per-frame rotation data for knob tracking and
+    rotation-based animation extraction.
+
+    Attributes:
+        frame: Frame number
+        rotation_degrees: Rotation angle in degrees
+        rotation_radians: Rotation angle in radians
+        axis: Rotation axis (X, Y, or Z)
+    """
+    frame: int
+    rotation_degrees: float = 0.0
+    rotation_radians: float = 0.0
+    axis: str = "Z"
+
+    def to_dict(self) -> Dict[str, Any]:
+        return {
+            "frame": self.frame,
+            "rotation_degrees": self.rotation_degrees,
+            "rotation_radians": self.rotation_radians,
+            "axis": self.axis,
+        }
+
+    @classmethod
+    def from_dict(cls, data: Dict[str, Any]) -> "RotationCurve":
+        import math
+        deg = data.get("rotation_degrees", 0.0)
+        return cls(
+            frame=data.get("frame", 0),
+            rotation_degrees=deg,
+            rotation_radians=data.get("rotation_radians", math.radians(deg)),
+            axis=data.get("axis", "Z"),
+        )
+
+
+@dataclass
+class RigidBodySolve:
+    """
+    Rigid body object solve result.
+
+    Contains 6-DOF (degrees of freedom) transform data for
+    object tracking and 3D reconstruction.
+
+    Attributes:
+        frame: Frame number
+        position: Object position (x, y, z)
+        rotation: Object rotation as quaternion (w, x, y, z)
+        scale: Object scale (x, y, z)
+        error: Solve error metric
+    """
+    frame: int
+    position: Tuple[float, float, float] = (0.0, 0.0, 0.0)
+    rotation: Tuple[float, float, float, float] = (1.0, 0.0, 0.0, 0.0)
+    scale: Tuple[float, float, float] = (1.0, 1.0, 1.0)
+    error: float = 0.0
+
+    def to_dict(self) -> Dict[str, Any]:
+        return {
+            "frame": self.frame,
+            "position": list(self.position),
+            "rotation": list(self.rotation),
+            "scale": list(self.scale),
+            "error": self.error,
+        }
+
+    @classmethod
+    def from_dict(cls, data: Dict[str, Any]) -> "RigidBodySolve":
+        return cls(
+            frame=data.get("frame", 0),
+            position=tuple(data.get("position", (0.0, 0.0, 0.0))),
+            rotation=tuple(data.get("rotation", (1.0, 0.0, 0.0, 0.0))),
+            scale=tuple(data.get("scale", (1.0, 1.0, 1.0))),
+            error=data.get("error", 0.0),
+        )

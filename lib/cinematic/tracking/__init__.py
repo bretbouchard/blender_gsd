@@ -39,6 +39,11 @@ from .types import (
     FootageMetadata,
     FootageInfo,
     TrackingSession,
+    # Object tracking types
+    CornerPinData,
+    PlanarTrack,
+    RotationCurve,
+    RigidBodySolve,
 )
 
 from .footage import (
@@ -57,6 +62,14 @@ from .import_export import (
 
 from .session_manager import TrackingSessionManager
 
+from .object_tracker import (
+    PlanarTracker,
+    KnobTracker,
+    RigidBodyTracker,
+    FaderTracker,
+    ObjectTracker,
+)
+
 __all__ = [
     # Types
     "TrackData",
@@ -65,6 +78,11 @@ __all__ = [
     "FootageMetadata",
     "FootageInfo",
     "TrackingSession",
+    # Object tracking types
+    "CornerPinData",
+    "PlanarTrack",
+    "RotationCurve",
+    "RigidBodySolve",
     # Footage
     "extract_metadata",
     "analyze_footage",
@@ -77,6 +95,12 @@ __all__ = [
     "import_tracking_data",
     # Session Management
     "TrackingSessionManager",
+    # Object Trackers
+    "PlanarTracker",
+    "KnobTracker",
+    "RigidBodyTracker",
+    "FaderTracker",
+    "ObjectTracker",
     # Constants
     "BLENDER_AVAILABLE",
 ]
