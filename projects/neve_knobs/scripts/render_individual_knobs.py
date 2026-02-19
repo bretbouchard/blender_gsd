@@ -13,6 +13,7 @@ import bpy
 import pathlib
 import sys
 import math
+from mathutils import Vector
 
 ROOT = pathlib.Path(__file__).resolve().parents[3]
 sys.path.insert(0, str(ROOT))
@@ -64,16 +65,42 @@ def setup_lighting():
     rim.name = "RimLight"
 
 
-def setup_camera():
-    """Setup camera for individual knob."""
-    bpy.ops.object.camera_add(location=(0, -0.18, 0.1))
+def setup_camera(target_obj=None):
+    """Setup camera for individual knob, auto-framing the object.
+
+    Uses Blender's view framing to ensure entire object is visible.
+    Camera looks down at a 30-degree angle at the object's center.
+    """
+    # Create camera
+    bpy.ops.object.camera_add()
     cam = bpy.context.active_object
-    cam.rotation_euler = (math.radians(70), 0, 0)
-    cam.data.lens = 50
-    cam.data.dof.use_dof = True
-    cam.data.dof.focus_distance = 0.18
-    cam.data.dof.aperture_fstop = 2.8
     bpy.context.scene.camera = cam
+    cam.data.lens = 50
+
+    if target_obj:
+        # Get object bounding box in world space
+        bbox = [target_obj.matrix_world @ Vector(corner) for corner in target_obj.bound_box]
+        center = sum(bbox, Vector()) / len(bbox)
+        max_dim = max((max(bbox, key=lambda v: v[i])[i] - min(bbox, key=lambda v: v[i])[i]) for i in range(3))
+
+        # Position camera to frame the object
+        # Distance calculation: fov ~ 35mm, need distance = max_dim / (2 * tan(fov/2))
+        distance = max_dim * 2.2  # More margin for comfortable framing
+
+        # Camera at 30 degrees, looking at object center
+        angle = math.radians(30)
+        cam.location = (center.x, center.y - distance * math.cos(angle), center.z + distance * math.sin(angle))
+
+        # Point camera at object center
+        direction = center - cam.location
+        rot_quat = direction.to_track_quat('-Z', 'Y')
+        cam.rotation_euler = rot_quat.to_euler()
+
+        # Set focus distance for DOF
+        cam.data.dof.use_dof = True
+        cam.data.dof.focus_distance = (center - cam.location).length
+        cam.data.dof.aperture_fstop = 4.0
+
     return cam
 
 
@@ -117,7 +144,7 @@ KNOB_CONFIGS = [
             "ridge_depth": 0.0,
             "pointer_length": 0.012,
             "pointer_width": 0.08,
-            "segments": 64,
+            "segments": 128,
             "base_color": [0.2, 0.35, 0.75],
             "pointer_color": [1.0, 1.0, 1.0],
             "metallic": 0.0,
@@ -135,14 +162,14 @@ KNOB_CONFIGS = [
             "skirt_height": 0.008,
             "skirt_diameter": 0.020,
             "skirt_style": 0,
-            "ridge_count": 24,
-            "ridge_depth": 0.0008,
+            "ridge_count": 32,
+            "ridge_depth": 0.0015,
             "knurl_z_start": 0.0,
             "knurl_z_end": 1.0,
             "knurl_profile": 0.5,
             "pointer_length": 0.012,
             "pointer_width": 0.08,
-            "segments": 64,
+            "segments": 128,
             "base_color": [0.75, 0.75, 0.78],
             "pointer_color": [1.0, 0.95, 0.9],
             "metallic": 0.85,
@@ -166,7 +193,7 @@ KNOB_CONFIGS = [
             "knurl_profile": 0.7,
             "pointer_length": 0.014,
             "pointer_width": 0.06,
-            "segments": 64,
+            "segments": 128,
             "base_color": [0.7, 0.7, 0.73],
             "pointer_color": [0.9, 0.9, 0.95],
             "metallic": 0.9,
@@ -191,7 +218,7 @@ KNOB_CONFIGS = [
             "knurl_profile": 0.3,
             "pointer_length": 0.012,
             "pointer_width": 0.1,
-            "segments": 64,
+            "segments": 128,
             "base_color": [0.8, 0.8, 0.82],
             "pointer_color": [1.0, 1.0, 1.0],
             "metallic": 0.8,
@@ -212,7 +239,7 @@ KNOB_CONFIGS = [
             "ridge_depth": 0.0,
             "pointer_length": 0.012,
             "pointer_width": 0.08,
-            "segments": 64,
+            "segments": 128,
             "base_color": [0.85, 0.15, 0.1],
             "pointer_color": [1.0, 1.0, 1.0],
             "metallic": 0.0,
@@ -261,7 +288,7 @@ def render_individual_knob(config: dict, output_path: pathlib.Path):
     setup_world()
     setup_ground()
     setup_lighting()
-    setup_camera()
+    setup_camera(knob)  # Pass knob to auto-frame it
 
     # Render settings
     scene = bpy.context.scene
@@ -291,6 +318,8 @@ def render_combined():
     col = bpy.data.collections.new("AllKnobs")
     bpy.context.scene.collection.children.link(col)
 
+    knobs = []  # Store all knobs for camera framing
+
     # Build all knobs
     spacing = 0.7  # meters between centers
     start_x = -spacing * 2
@@ -303,6 +332,7 @@ def render_combined():
         knob.scale = (25, 25, 25)
         knob.location = (start_x + i * spacing, 0, 0)
         knob.name = config["name"]
+        knobs.append(knob)
 
         # Apply modifier
         bpy.context.view_layer.update()
@@ -324,12 +354,42 @@ def render_combined():
     gbsdf.inputs["Roughness"].default_value = 0.95
     ground.data.materials.append(gmat)
 
-    # Wider camera view
-    bpy.ops.object.camera_add(location=(0, -2.5, 1.2))
+    # Camera - auto-frame all knobs
+    bpy.ops.object.camera_add()
     cam = bpy.context.active_object
-    cam.rotation_euler = (math.radians(65), 0, 0)
-    cam.data.lens = 45
     bpy.context.scene.camera = cam
+    cam.data.lens = 35  # Wide lens for group shot
+
+    # Calculate combined bounding box for all knobs
+    all_corners = []
+    for knob in knobs:
+        for corner in knob.bound_box:
+            all_corners.append(knob.matrix_world @ Vector(corner))
+
+    # Find center and max dimensions
+    center = sum(all_corners, Vector()) / len(all_corners)
+    min_x = min(c.x for c in all_corners)
+    max_x = max(c.x for c in all_corners)
+    min_y = min(c.y for c in all_corners)
+    max_y = max(c.y for c in all_corners)
+    min_z = min(c.z for c in all_corners)
+    max_z = max(c.z for c in all_corners)
+
+    width = max_x - min_x
+    height = max_z - min_z
+    max_dim = max(width, height)
+
+    # Position camera to frame all knobs
+    distance = max_dim * 1.4  # Less margin for tighter framing
+    angle = math.radians(25)  # Lower angle for wider view
+    cam.location = (center.x, center.y - distance * math.cos(angle), center.z + distance * math.sin(angle) + 0.1)
+
+    # Point camera at center of all knobs
+    direction = center - cam.location
+    rot_quat = direction.to_track_quat('-Z', 'Y')
+    cam.rotation_euler = rot_quat.to_euler()
+
+    print(f"  Camera at {cam.location}, looking at {center}")
 
     # Lighting
     bpy.ops.object.light_add(type="AREA", location=(3, -3, 5))

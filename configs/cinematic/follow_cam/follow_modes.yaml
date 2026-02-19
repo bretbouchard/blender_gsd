@@ -1,0 +1,237 @@
+# Follow Camera Mode Presets
+# Configuration presets for different follow camera modes
+#
+# Part of Phase 8.x - Follow Camera System
+# Beads: blender_gsd-51
+
+# ============================================================================
+# SIDE-SCROLLER MODE
+# Locked plane following for 2.5D platformer view
+# ============================================================================
+side_scroller_default:
+  name: "Side-Scroller Default"
+  follow_mode: "side_scroller"
+  locked_plane: "xz"
+  locked_axis_value: 0.0
+  ideal_distance: 5.0
+  ideal_height: 2.0
+  dead_zone_radius: 0.2
+  yaw_smoothing: 0.05
+  pitch_smoothing: 0.05
+
+side_scroller_vertical:
+  name: "Side-Scroller Vertical"
+  follow_mode: "side_scroller"
+  locked_plane: "xy"
+  locked_axis_value: 0.0
+  ideal_distance: 6.0
+  ideal_height: 3.0
+  dead_zone_radius: 0.15
+
+# ============================================================================
+# OVER-SHOULDER MODE
+# Third-person behind subject with offset positioning
+# ============================================================================
+over_shoulder_default:
+  name: "Over-Shoulder Default"
+  follow_mode: "over_shoulder"
+  shoulder_offset: 0.5
+  ideal_distance: 2.5
+  ideal_height: 1.6
+  yaw_smoothing: 0.15
+  pitch_smoothing: 0.1
+  dead_zone_radius: 0.1
+
+over_shoulder_left:
+  name: "Over-Shoulder Left"
+  follow_mode: "over_shoulder"
+  shoulder_offset: -0.5
+  ideal_distance: 2.5
+  ideal_height: 1.6
+
+over_shoulder_close:
+  name: "Over-Shoulder Close"
+  follow_mode: "over_shoulder"
+  shoulder_offset: 0.3
+  ideal_distance: 1.5
+  ideal_height: 1.4
+  min_distance: 0.8
+  max_distance: 3.0
+
+# ============================================================================
+# CHASE MODE
+# Chase from behind with speed-based distance
+# ============================================================================
+chase_default:
+  name: "Chase Default"
+  follow_mode: "chase"
+  ideal_distance: 4.0
+  ideal_height: 1.8
+  speed_distance_factor: 0.3
+  max_speed_distance: 2.0
+  yaw_smoothing: 0.08
+  pitch_smoothing: 0.05
+
+chase_racing:
+  name: "Chase Racing"
+  follow_mode: "chase"
+  ideal_distance: 6.0
+  ideal_height: 2.5
+  speed_distance_factor: 0.5
+  max_speed_distance: 4.0
+  yaw_smoothing: 0.12
+
+chase_side:
+  name: "Chase Side"
+  follow_mode: "chase_side"
+  ideal_distance: 5.0
+  ideal_height: 2.0
+  shoulder_offset: 3.0
+  yaw_smoothing: 0.1
+
+# ============================================================================
+# ORBIT-FOLLOW MODE
+# Orbiting while following subject
+# ============================================================================
+orbit_follow_default:
+  name: "Orbit Follow Default"
+  follow_mode: "orbit_follow"
+  ideal_distance: 3.0
+  ideal_height: 1.5
+  orbit_speed: 20.0
+  yaw_smoothing: 0.05
+
+orbit_follow_slow:
+  name: "Orbit Follow Slow"
+  follow_mode: "orbit_follow"
+  ideal_distance: 4.0
+  ideal_height: 2.0
+  orbit_speed: 10.0
+
+orbit_follow_fast:
+  name: "Orbit Follow Fast"
+  follow_mode: "orbit_follow"
+  ideal_distance: 2.5
+  ideal_height: 1.2
+  orbit_speed: 45.0
+
+# ============================================================================
+# LEAD MODE
+# Camera ahead of subject for action preview
+# ============================================================================
+lead_default:
+  name: "Lead Default"
+  follow_mode: "lead"
+  ideal_distance: 3.0
+  lead_distance: 2.0
+  ideal_height: 1.5
+  yaw_smoothing: 0.08
+
+lead_far:
+  name: "Lead Far"
+  follow_mode: "lead"
+  ideal_distance: 5.0
+  lead_distance: 4.0
+  ideal_height: 2.0
+
+# ============================================================================
+# AERIAL MODE
+# Top-down bird's eye view
+# ============================================================================
+aerial_default:
+  name: "Aerial Default"
+  follow_mode: "aerial"
+  ideal_distance: 10.0
+  ideal_height: 8.0
+  min_height: 5.0
+  max_height: 15.0
+  pitch_smoothing: 0.15
+
+aerial_close:
+  name: "Aerial Close"
+  follow_mode: "aerial"
+  ideal_distance: 6.0
+  ideal_height: 5.0
+  min_height: 3.0
+  max_height: 8.0
+
+aerial_cinematic:
+  name: "Aerial Cinematic"
+  follow_mode: "aerial"
+  ideal_distance: 15.0
+  ideal_height: 12.0
+  min_height: 8.0
+  max_height: 20.0
+  yaw_smoothing: 0.02
+  pitch_smoothing: 0.02
+
+# ============================================================================
+# FREE ROAM MODE
+# Free camera with collision detection
+# ============================================================================
+free_roam_default:
+  name: "Free Roam Default"
+  follow_mode: "free_roam"
+  ideal_distance: 3.0
+  ideal_height: 1.5
+  collision_enabled: true
+  collision_radius: 0.3
+  min_obstacle_distance: 0.5
+
+free_roam_tight:
+  name: "Free Roam Tight Spaces"
+  follow_mode: "free_roam"
+  ideal_distance: 2.0
+  ideal_height: 1.2
+  collision_enabled: true
+  collision_radius: 0.2
+  min_obstacle_distance: 0.3
+
+# ============================================================================
+# COLLISION PRESETS
+# Common collision detection configurations
+# ============================================================================
+collision_relaxed:
+  name: "Collision Relaxed"
+  collision_enabled: true
+  collision_radius: 0.4
+  min_obstacle_distance: 0.6
+  obstacle_response: "push_forward"
+
+collision_strict:
+  name: "Collision Strict"
+  collision_enabled: true
+  collision_radius: 0.2
+  min_obstacle_distance: 0.3
+  obstacle_response: "orbit_away"
+
+collision_minimal:
+  name: "Collision Minimal"
+  collision_enabled: true
+  collision_radius: 0.15
+  min_obstacle_distance: 0.2
+  obstacle_response: "raise_up"
+
+# ============================================================================
+# TRANSITION PRESETS
+# Common transition configurations
+# ============================================================================
+transition_instant:
+  name: "Instant Transition"
+  transition_type: "cut"
+  transition_duration: 0.0
+
+transition_smooth:
+  name: "Smooth Transition"
+  transition_type: "blend"
+  transition_duration: 0.5
+
+transition_cinematic:
+  name: "Cinematic Transition"
+  transition_type: "dolly"
+  transition_duration: 1.0
+
+transition_orbit:
+  name: "Orbit Transition"
+  transition_type: "orbit"
+  transition_duration: 0.75

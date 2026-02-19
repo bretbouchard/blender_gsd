@@ -39,9 +39,10 @@ KNOB_CONFIGS = [
     }},
     {"name": "style2_silver", "params": {
         "cap_height": 0.020, "cap_diameter": 0.018, "skirt_height": 0.008, "skirt_diameter": 0.020,
-        "skirt_style": 0, "ridge_count": 24, "ridge_depth": 0.0008, "pointer_length": 0.012,
-        "pointer_width": 0.08, "segments": 64, "base_color": [0.75, 0.75, 0.78],
-        "pointer_color": [1.0, 0.95, 0.9], "metallic": 0.85, "roughness": 0.25,
+        "skirt_style": 0, "ridge_count": 64, "ridge_depth": 0.0015, "knurl_profile": 0.5,
+        "pointer_length": 0.012, "pointer_width": 0.08, "segments": 64,
+        "base_color": [0.75, 0.75, 0.78], "pointer_color": [1.0, 0.95, 0.9],
+        "metallic": 0.85, "roughness": 0.25,
     }},
     {"name": "style3_silver_deep", "params": {
         "cap_height": 0.022, "cap_diameter": 0.018, "skirt_height": 0.010, "skirt_diameter": 0.022,
@@ -107,11 +108,12 @@ gbsdf.inputs["Base Color"].default_value = (0.03, 0.03, 0.03, 1.0)
 gbsdf.inputs["Roughness"].default_value = 0.95
 ground.data.materials.append(gmat)
 
-# Camera
-bpy.ops.object.camera_add(location=(0, -2.5, 1.2))
+# Camera - positioned to see all 5 knobs from a good angle
+# Knobs are scaled 25x (~50cm tall), spaced 0.7m apart, total width ~3.5m
+bpy.ops.object.camera_add(location=(0, -3.5, 1.8))
 cam = bpy.context.active_object
-cam.rotation_euler = (math.radians(65), 0, 0)
-cam.data.lens = 45
+cam.rotation_euler = (math.radians(50), 0, 0)  # Higher angle to see knob tops
+cam.data.lens = 35  # Wider lens to fit all knobs
 bpy.context.scene.camera = cam
 
 # Lighting

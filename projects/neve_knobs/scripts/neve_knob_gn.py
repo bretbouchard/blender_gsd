@@ -376,154 +376,65 @@ def _build_ridges(nk: NodeKit, geo_in, ridge_count: int, ridge_depth: float,
     nk.link(freq.outputs["Value"], sawtooth.inputs[0])
 
     # === PROFILE SHAPING ===
-    # knurl_profile: 0=flat (trapezoid), 0.5=round (sinusoidal), 1=sharp (triangular)
-    #
-    # We interpolate between three profile types:
-    # - Flat: abs(sawtooth - 0.5) * 2 (creates flat top/bottom)
-    # - Round: sin(sawtooth * 2pi) (sinusoidal)
-    # - Sharp: abs(sawtooth - 0.5) * 2 then sharpen
+    # Simple approach: use sin pattern for all profiles
+    # sin(sawtooth * pi) creates one ridge per sawtooth cycle
+    # This ensures ridge_count = actual number of visible ridges
 
-    # For simplicity, we'll use a mix approach:
-    # profile 0.0 = flat trapezoid (threshold sawtooth)
-    # profile 0.5 = sinusoidal (sin pattern)
-    # profile 1.0 = sharp triangular (abs pattern)
-
-    # Shift sawtooth to center: t = sawtooth - 0.5 (range -0.5 to 0.5)
-    center_saw = nk.n("ShaderNodeMath", "CenterSaw", X + 7*STEP, Y + 600)
-    center_saw.operation = "SUBTRACT"
-    nk.link(sawtooth.outputs["Value"], center_saw.inputs[0])
-    center_saw.inputs[1].default_value = 0.5
-
-    # Absolute value for symmetric patterns
-    abs_saw = nk.n("ShaderNodeMath", "AbsSaw", X + 8*STEP, Y + 600)
-    abs_saw.operation = "ABSOLUTE"
-    nk.link(center_saw.outputs["Value"], abs_saw.inputs[0])
-
-    # Scale to [-1, 1] range: abs_saw * 2
-    scaled_abs = nk.n("ShaderNodeMath", "ScaledAbs", X + 9*STEP, Y + 600)
-    scaled_abs.operation = "MULTIPLY"
-    nk.link(abs_saw.outputs["Value"], scaled_abs.inputs[0])
-    scaled_abs.inputs[1].default_value = 2.0
-
-    # === PROFILE INTERPOLATION ===
-    # We'll create three profiles and mix based on knurl_profile value
-
-    # FLAT PROFILE (knurl_profile = 0.0)
-    # Flat-bottom trapezoid: use step function
-    # If we're in the middle portion, stay flat
-    flat_threshold = 0.3  # Controls flat portion width
-    flat_step = nk.n("ShaderNodeMath", "FlatStep", X + 10*STEP, Y + 700)
-    flat_step.operation = "LESS_THAN"
-    nk.link(abs_saw.outputs["Value"], flat_step.inputs[0])
-    flat_step.inputs[1].default_value = flat_threshold
-
-    # Convert step to displacement: 0 = no displacement (flat), 1 = full displacement
-    flat_disp = nk.n("ShaderNodeMath", "FlatDisp", X + 11*STEP, Y + 700)
-    flat_disp.operation = "SUBTRACT"
-    flat_disp.inputs[0].default_value = 1.0
-    nk.link(flat_step.outputs["Value"], flat_disp.inputs[1])
-
-    # Scale flat displacement
-    flat_scaled = nk.n("ShaderNodeMath", "FlatScaled", X + 12*STEP, Y + 700)
-    flat_scaled.operation = "MULTIPLY"
-    nk.link(flat_disp.outputs["Value"], flat_scaled.inputs[0])
-    nk.link(scaled_abs.outputs["Value"], flat_scaled.inputs[1])
-
-    # ROUND PROFILE (knurl_profile = 0.5) - this is our base sinusoidal
-    # sin(sawtooth * 2pi) gives smooth sinusoidal
-    sin_input = nk.n("ShaderNodeMath", "SinInput", X + 10*STEP, Y + 600)
+    sin_input = nk.n("ShaderNodeMath", "SinInput", X + 7*STEP, Y + 600)
     sin_input.operation = "MULTIPLY"
     nk.link(sawtooth.outputs["Value"], sin_input.inputs[0])
-    sin_input.inputs[1].default_value = 2 * math.pi
+    sin_input.inputs[1].default_value = math.pi
 
-    round_disp = nk.n("ShaderNodeMath", "RoundDisp", X + 11*STEP, Y + 600)
-    round_disp.operation = "SINE"
-    nk.link(sin_input.outputs["Value"], round_disp.inputs[0])
+    sin_val = nk.n("ShaderNodeMath", "SinVal", X + 8*STEP, Y + 600)
+    sin_val.operation = "SINE"
+    nk.link(sin_input.outputs["Value"], sin_val.inputs[0])
 
-    # SHARP PROFILE (knurl_profile = 1.0)
-    # Sharp V shape - just use the scaled absolute value directly
-    sharp_disp = scaled_abs
+    # Knurling creates GROOVES (indentations), not bumps
+    # Use 1 - abs(sin) so peaks become valleys
+    # Where sin=1 (peak of sine), we want 0 displacement (the "land" between grooves)
+    # Where sin=0 (zero crossing), we want 1 displacement (deepest groove)
+    abs_sin = nk.n("ShaderNodeMath", "AbsSin", X + 9*STEP, Y + 600)
+    abs_sin.operation = "ABSOLUTE"
+    nk.link(sin_val.outputs["Value"], abs_sin.inputs[0])
 
-    # === MIX PROFILES ===
-    # First mix flat (0) and round (0.5)
-    # When knurl_profile <= 0.5: mix(flat, round, knurl_profile * 2)
-    # When knurl_profile > 0.5: mix(round, sharp, (knurl_profile - 0.5) * 2)
+    # Invert: 1 - abs_sin creates grooves (0 at sine peaks, 1 at zero crossings)
+    invert = nk.n("ShaderNodeMath", "InvertDisp", X + 9.5*STEP, Y + 600)
+    invert.operation = "SUBTRACT"
+    invert.inputs[0].default_value = 1.0
+    nk.link(abs_sin.outputs["Value"], invert.inputs[1])
 
-    # We'll simplify: use a single mix based on profile value
-    # 0.0 -> flat, 0.5 -> round, 1.0 -> sharp
-
-    # Mix factor for flat->round (0 to 0.5 maps to 0 to 1)
-    mix_fr_factor = nk.n("ShaderNodeMath", "MixFRFactor", X + 13*STEP, Y + 650)
-    mix_fr_factor.operation = "MULTIPLY"
-    mix_fr_factor.inputs[0].default_value = knurl_profile
-    mix_fr_factor.inputs[1].default_value = 2.0  # Scale 0-0.5 to 0-1
-
-    mix_fr_clamped = nk.n("ShaderNodeMath", "MixFRClamped", X + 14*STEP, Y + 650)
-    mix_fr_clamped.operation = "MINIMUM"
-    nk.link(mix_fr_factor.outputs["Value"], mix_fr_clamped.inputs[0])
-    mix_fr_clamped.inputs[1].default_value = 1.0
-
-    # Mix flat and round
-    mix_flat_round = nk.n("ShaderNodeMix", "MixFlatRound", X + 15*STEP, Y + 650)
-    mix_flat_round.data_type = "FLOAT"
-    nk.link(mix_fr_clamped.outputs["Value"], mix_flat_round.inputs["Factor"])
-    nk.link(flat_scaled.outputs["Value"], mix_flat_round.inputs[4])  # A = flat
-    nk.link(round_disp.outputs["Value"], mix_flat_round.inputs[5])   # B = round
-
-    # Mix factor for round->sharp (0.5 to 1 maps to 0 to 1)
-    mix_rs_factor = nk.n("ShaderNodeMath", "MixRSFactor", X + 13*STEP, Y + 550)
-    mix_rs_factor.operation = "SUBTRACT"
-    mix_rs_factor.inputs[0].default_value = knurl_profile
-    mix_rs_factor.inputs[1].default_value = 0.5
-
-    mix_rs_scaled = nk.n("ShaderNodeMath", "MixRSScaled", X + 14*STEP, Y + 550)
-    mix_rs_scaled.operation = "MULTIPLY"
-    nk.link(mix_rs_factor.outputs["Value"], mix_rs_scaled.inputs[0])
-    mix_rs_scaled.inputs[1].default_value = 2.0
-
-    mix_rs_clamped = nk.n("ShaderNodeMath", "MixRSClamped", X + 15*STEP, Y + 550)
-    mix_rs_clamped.operation = "MAXIMUM"
-    nk.link(mix_rs_scaled.outputs["Value"], mix_rs_clamped.inputs[0])
-    mix_rs_clamped.inputs[1].default_value = 0.0
-
-    mix_rs_clamp_max = nk.n("ShaderNodeMath", "MixRSClampMax", X + 16*STEP, Y + 550)
-    mix_rs_clamp_max.operation = "MINIMUM"
-    nk.link(mix_rs_clamped.outputs["Value"], mix_rs_clamp_max.inputs[0])
-    mix_rs_clamp_max.inputs[1].default_value = 1.0
-
-    # Mix round and sharp (use mix_flat_round result as base when profile <= 0.5)
-    mix_round_sharp = nk.n("ShaderNodeMix", "MixRoundSharp", X + 17*STEP, Y + 600)
-    mix_round_sharp.data_type = "FLOAT"
-    nk.link(mix_rs_clamp_max.outputs["Value"], mix_round_sharp.inputs["Factor"])
-    nk.link(mix_flat_round.outputs[2], mix_round_sharp.inputs[4])  # A = flat/round mix
-    nk.link(sharp_disp.outputs["Value"], mix_round_sharp.inputs[5])  # B = sharp
-
-    profile_disp = mix_round_sharp.outputs[2]
+    profile_disp = invert
 
     # === APPLY ZONE MASK ===
     # Multiply displacement by zone mask
-    masked_disp = nk.n("ShaderNodeMath", "MaskedDisp", X + 18*STEP, Y + 500)
+    masked_disp = nk.n("ShaderNodeMath", "MaskedDisp", X + 11*STEP, Y + 500)
     masked_disp.operation = "MULTIPLY"
-    nk.link(profile_disp, masked_disp.inputs[0])
+    nk.link(profile_disp.outputs["Value"], masked_disp.inputs[0])
     nk.link(zone_mask.outputs["Value"], masked_disp.inputs[1])
 
     # Scale by ridge depth
-    depth = nk.n("ShaderNodeMath", "RidgeDepth", X + 19*STEP, Y + 500)
+    depth = nk.n("ShaderNodeMath", "RidgeDepth", X + 12*STEP, Y + 500)
     depth.operation = "MULTIPLY"
     nk.link(masked_disp.outputs["Value"], depth.inputs[0])
     depth.inputs[1].default_value = ridge_depth
 
-    # Get normal for displacement direction
-    normal = nk.n("GeometryNodeInputNormal", "GetNormal", X + 19*STEP, Y + 350)
+    # NEGATE the displacement - knurling goes INWARD (grooves), not outward
+    neg_depth = nk.n("ShaderNodeMath", "NegateDepth", X + 12.5*STEP, Y + 500)
+    neg_depth.operation = "MULTIPLY"
+    nk.link(depth.outputs["Value"], neg_depth.inputs[0])
+    neg_depth.inputs[1].default_value = -1.0
 
-    # Scale normal by displacement value
-    scale_disp = nk.n("ShaderNodeVectorMath", "ScaleDisplacement", X + 20*STEP, Y + 400)
+    # Get normal for displacement direction (points outward on cylinder sides)
+    normal = nk.n("GeometryNodeInputNormal", "GetNormal", X + 13*STEP, Y + 350)
+
+    # Scale normal by NEGATIVE displacement value to push INWARD
+    scale_disp = nk.n("ShaderNodeVectorMath", "ScaleDisplacement", X + 14*STEP, Y + 400)
     scale_disp.operation = "SCALE"
     nk.link(normal.outputs["Normal"], scale_disp.inputs["Vector"])
-    nk.link(depth.outputs["Value"], scale_disp.inputs["Scale"])
+    nk.link(neg_depth.outputs["Value"], scale_disp.inputs["Scale"])
 
-    # Set position with offset
-    set_pos = nk.n("GeometryNodeSetPosition", "SetRidgePosition", X + 21*STEP, Y)
+    # Set position with offset (negative = inward toward center)
+    set_pos = nk.n("GeometryNodeSetPosition", "SetRidgePosition", X + 15*STEP, Y)
     nk.link(geo_in, set_pos.inputs["Geometry"])
     nk.link(scale_disp.outputs["Vector"], set_pos.inputs["Offset"])
 

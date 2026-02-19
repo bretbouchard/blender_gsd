@@ -1,0 +1,183 @@
+# Product Shot Presets
+# Professional product photography setups
+
+products:
+  # ============================================================================
+  # APPLE HERO - Minimalist product hero
+  # ============================================================================
+  apple_hero:
+    name: "Apple Hero"
+    description: "Clean minimalist product shot with subtle gradient"
+    use_case: "Tech products, luxury goods"
+    lighting:
+      setup: "gradient"
+      key:
+        type: "area"
+        intensity: 1200
+        color: [1.0, 1.0, 1.0]
+        position: [0, -2, 4]
+        size: [3, 3]
+      accent:
+        type: "area"
+        intensity: 600
+        color: [0.95, 0.95, 1.0]
+        position: [2, 0, 2]
+        size: [0.5, 2]
+    backdrop:
+      type: "gradient"
+      color_bottom: [0.92, 0.92, 0.92]
+      color_top: [0.98, 0.98, 0.98]
+      seamless: true
+    camera:
+      lens_preset: "85mm_portrait"
+      f_stop: 8.0
+      angle: "three_quarter"
+    post:
+      color_grade: "neutral"
+      contrast: "medium"
+      saturation: 1.0
+
+  # ============================================================================
+  # PRODUCT FLOATING - Object appears to float
+  # ============================================================================
+  product_floating:
+    name: "Product Floating"
+    description: "Product appears to float with soft shadow"
+    use_case: "Jewelry, cosmetics, small items"
+    lighting:
+      setup: "overhead"
+      key:
+        type: "area"
+        intensity: 1500
+        color: [1.0, 1.0, 1.0]
+        position: [0, 0, 5]
+        size: [3, 3]
+      fill:
+        type: "area"
+        intensity: 400
+        color: [1.0, 1.0, 1.0]
+        position: [0, 2, 0.5]
+        size: [2, 1]
+    backdrop:
+      type: "floating"
+      color: [0.98, 0.98, 0.98]
+      shadow_catcher: true
+      shadow_softness: 0.8
+    camera:
+      lens_preset: "90mm_macro"
+      f_stop: 11.0
+      angle: "three_quarter"
+    post:
+      color_grade: "neutral"
+      contrast: "medium"
+      saturation: 1.0
+
+  # ============================================================================
+  # PRODUCT DETAIL - Macro close-up
+  # ============================================================================
+  product_detail:
+    name: "Product Detail"
+    description: "Extreme close-up for textures and details"
+    use_case: "Textures, materials, craftsmanship"
+    lighting:
+      setup: "ring"
+      ring:
+        type: "ring"
+        intensity: 1800
+        color: [1.0, 1.0, 1.0]
+        position: [0, -0.5, 1]
+        inner_radius: 0.1
+        outer_radius: 0.3
+      fill:
+        type: "area"
+        intensity: 300
+        color: [1.0, 1.0, 1.0]
+        position: [0, 1, 0.5]
+    backdrop:
+      type: "solid"
+      color: [0.95, 0.95, 0.95]
+    camera:
+      lens_preset: "90mm_macro"
+      f_stop: 16.0
+      angle: "front"
+    post:
+      color_grade: "neutral"
+      contrast: "high"
+      saturation: 1.0
+
+  # ============================================================================
+  # PRODUCT LIFESTYLE - In-context usage
+  # ============================================================================
+  product_lifestyle:
+    name: "Product Lifestyle"
+    description: "Product in natural context with props"
+    use_case: "Consumer goods, food, beverages"
+    lighting:
+      setup: "window"
+      key:
+        type: "area"
+        intensity: 1000
+        color: [1.0, 0.98, 0.95]
+        position: [3, -1, 2]
+        size: [2, 3]
+      fill:
+        type: "area"
+        intensity: 300
+        color: [1.0, 1.0, 1.0]
+        position: [-2, 0, 1]
+      bounce:
+        type: "area"
+        intensity: 150
+        color: [1.0, 1.0, 1.0]
+        position: [0, 2, 0.5]
+    backdrop:
+      type: "lifestyle"
+      props: true
+      surface: "wood"
+    camera:
+      lens_preset: "50mm_normal"
+      f_stop: 4.0
+      angle: "three_quarter"
+    post:
+      color_grade: "warm"
+      contrast: "medium"
+      saturation: 1.1
+
+  # ============================================================================
+  # PRODUCT BLACK - Dramatic on black
+  # ============================================================================
+  product_black:
+    name: "Product Black"
+    description: "Dramatic product on pure black background"
+    use_case: "Luxury goods, jewelry, watches"
+    lighting:
+      setup: "rim"
+      key:
+        type: "spot"
+        intensity: 2000
+        color: [1.0, 1.0, 1.0]
+        position: [2, -3, 3]
+        angle: 0.3
+      rim:
+        type: "area"
+        intensity: 600
+        color: [1.0, 1.0, 1.0]
+        position: [-2, 2, 1]
+        size: [0.5, 2]
+      fill:
+        type: "area"
+        intensity: 100
+        color: [0.8, 0.8, 0.8]
+        position: [0, 0, 2]
+    backdrop:
+      type: "solid"
+      color: [0.0, 0.0, 0.0]
+      reflection: true
+    camera:
+      lens_preset: "85mm_portrait"
+      f_stop: 4.0
+      angle: "three_quarter"
+    post:
+      color_grade: "neutral"
+      contrast: "high"
+      saturation: 1.0

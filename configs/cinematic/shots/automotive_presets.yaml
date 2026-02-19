@@ -1,0 +1,198 @@
+# Automotive Shot Presets
+# Car photography setups
+
+automotive:
+  # ============================================================================
+  # CAR STUDIO - Clean studio car shot
+  # ============================================================================
+  car_studio:
+    name: "Car Studio"
+    description: "Clean studio shot with full lighting rig"
+    use_case: "Brochure, catalog, configuration"
+    lighting:
+      setup: "automotive_studio"
+      overhead:
+        type: "area"
+        intensity: 2000
+        color: [1.0, 1.0, 1.0]
+        position: [0, 0, 6]
+        size: [10, 15]
+      side_left:
+        type: "area"
+        intensity: 800
+        color: [1.0, 1.0, 1.0]
+        position: [-4, 0, 1.5]
+        size: [0.5, 4]
+      side_right:
+        type: "area"
+        intensity: 800
+        color: [1.0, 1.0, 1.0]
+        position: [4, 0, 1.5]
+        size: [0.5, 4]
+      front:
+        type: "area"
+        intensity: 600
+        color: [1.0, 1.0, 1.0]
+        position: [0, -5, 1]
+        size: [6, 0.5]
+    backdrop:
+      type: "infinite_curve"
+      color_bottom: [0.95, 0.95, 0.95]
+      color_top: [0.98, 0.98, 0.98]
+      radius: 12.0
+    camera:
+      lens_preset: "50mm_normal"
+      f_stop: 11.0
+      angle: "three_quarter"
+    post:
+      color_grade: "neutral"
+      contrast: "medium"
+      saturation: 1.0
+
+  # ============================================================================
+  # CAR TWILIGHT - Golden/blue hour blend
+  # ============================================================================
+  car_twilight:
+    name: "Car Twilight"
+    description: "Dramatic twilight with urban backdrop"
+    use_case: "Hero shots, advertising"
+    lighting:
+      setup: "mixed"
+      sun:
+        intensity: 400
+        color: [1.0, 0.5, 0.2]
+        angle: 2
+        position: [10, -20, 2]
+      sky:
+        type: "hdri"
+        exposure: 0.8
+      accent:
+        type: "spot"
+        intensity: 1000
+        color: [1.0, 0.9, 0.8]
+        position: [3, -2, 2]
+    environment:
+      type: "urban"
+      sky_color: [0.1, 0.1, 0.3]
+      ground_wet: true
+      fog:
+        enabled: true
+        density: 0.005
+        color: [0.2, 0.2, 0.3]
+    camera:
+      lens_preset: "35mm_documentary"
+      f_stop: 4.0
+      angle: "three_quarter_low"
+    post:
+      color_grade: "warm"
+      contrast: "high"
+      saturation: 1.2
+
+  # ============================================================================
+  # CAR MOTION - Implied motion blur
+  # ============================================================================
+  car_motion:
+    name: "Car Motion"
+    description: "Car with motion blur and light streaks"
+    use_case: "Dynamic advertising, posters"
+    lighting:
+      setup: "rig"
+      key:
+        type: "area"
+        intensity: 1500
+        color: [1.0, 1.0, 1.0]
+        position: [2, -3, 2]
+        size: [2, 2]
+      light_streaks:
+        enabled: true
+        color_left: [1.0, 0.3, 0.1]
+        color_right: [0.1, 0.3, 1.0]
+        blur_amount: 0.3
+    backdrop:
+      type: "motion_blur"
+      base_color: [0.1, 0.1, 0.1]
+      streak_intensity: 0.8
+    camera:
+      lens_preset: "35mm_documentary"
+      f_stop: 8.0
+      angle: "three_quarter"
+      pan_with_subject: true
+    post:
+      color_grade: "neutral"
+      contrast: "high"
+      saturation: 1.1
+
+  # ============================================================================
+  # CAR NIGHT CITY - Neon reflections
+  # ============================================================================
+  car_night_city:
+    name: "Car Night City"
+    description: "Wet city street with neon reflections"
+    use_case: "Luxury, performance, cinematic"
+    lighting:
+      setup: "neon"
+      neon_signs:
+        - color: [1.0, 0.0, 0.5]
+          position: [4, -3, 3]
+          intensity: 800
+        - color: [0.0, 1.0, 0.8]
+          position: [-3, -4, 2]
+          intensity: 600
+        - color: [1.0, 0.8, 0.0]
+          position: [0, -5, 4]
+          intensity: 400
+      street_lights:
+        - position: [5, 0, 4]
+          intensity: 500
+        - position: [-5, 0, 4]
+          intensity: 500
+    environment:
+      type: "urban_night"
+      ground_wet: true
+      puddles: true
+      reflections: 1.0
+      fog:
+        enabled: true
+        density: 0.008
+        color: [0.05, 0.05, 0.1]
+    camera:
+      lens_preset: "24mm_wide"
+      f_stop: 2.8
+      angle: "three_quarter_low"
+    post:
+      color_grade: "cool"
+      contrast: "high"
+      saturation: 1.4
+
+  # ============================================================================
+  # CAR DESERT - Dramatic landscape
+  # ============================================================================
+  car_desert:
+    name: "Car Desert"
+    description: "Dramatic desert at golden hour"
+    use_case: "Adventure, SUV, lifestyle"
+    lighting:
+      setup: "natural"
+      sun:
+        intensity: 1200
+        color: [1.0, 0.6, 0.3]
+        angle: 15
+        position: [8, -10, 4]
+      fill:
+        type: "area"
+        intensity: 200
+        color: [1.0, 0.9, 0.8]
+        position: [-2, 0, 1]
+    environment:
+      type: "desert"
+      ground_color: [0.75, 0.5, 0.3]
+      dust_particles: true
+      mountains: true
+    camera:
+      lens_preset: "24mm_wide"
+      f_stop: 11.0
+      angle: "three_quarter_low"
+    post:
+      color_grade: "warm"
+      contrast: "high"
+      saturation: 1.2

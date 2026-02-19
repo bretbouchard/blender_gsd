@@ -1,0 +1,56 @@
+# SSL 4000 Style Knob
+# Domed top with colored center, professional console look
+
+name: SSL 4000 Knob
+description: SSL 4000 style knob with dome top and knurled lower section
+input_type: rotary
+base_shape: cylinder
+
+total_height_mm: 20
+total_width_mm: 18
+
+zones:
+  a:
+    height_mm: 10
+    width_top_mm: 18
+    width_bottom_mm: 18
+    top_cap:
+      style: rounded
+      height_mm: 4
+    middle_knurl:
+      enabled: false
+    bottom_cap:
+      style: bevel
+      height_mm: 1
+  b:
+    height_mm: 10
+    width_top_mm: 18
+    width_bottom_mm: 19
+    top_cap:
+      style: flat
+      height_mm: 0
+    middle_knurl:
+      enabled: true
+      count: 20
+      depth_mm: 0.4
+      width_fraction: 0.5
+      profile: u
+    bottom_cap:
+      style: rounded
+      height_mm: 2
+
+rotation:
+  mode: locked
+  min_angle_deg: -150
+  max_angle_deg: 150
+
+mesh:
+  segments: 64
+  cap_segments: 8
+
+material:
+  base_color: [0.6, 0.6, 0.62]
+  metallic: 0.0
+  roughness: 0.3
+
+tags: [console, ssl, professional, knob]

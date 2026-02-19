@@ -1,0 +1,56 @@
+# MXR Style Knob
+# Simple knurled cylinder for guitar pedals
+
+name: MXR Style Knob
+description: Simple knurled cylinder knob, MXR pedal style
+input_type: rotary
+base_shape: cylinder
+
+total_height_mm: 15
+total_width_mm: 16
+
+zones:
+  a:
+    height_mm: 15
+    width_top_mm: 16
+    width_bottom_mm: 16
+    top_cap:
+      style: flat
+      height_mm: 1
+    middle_knurl:
+      enabled: true
+      count: 30
+      depth_mm: 0.6
+      width_fraction: 0.5
+      profile: v
+    bottom_cap:
+      style: flat
+      height_mm: 0
+  b:
+    height_mm: 0
+    width_top_mm: 16
+    width_bottom_mm: 16
+    top_cap:
+      style: flat
+      height_mm: 0
+    middle_knurl:
+      enabled: false
+    bottom_cap:
+      style: flat
+      height_mm: 0
+
+rotation:
+  mode: locked
+  min_angle_deg: -150
+  max_angle_deg: 150
+
+mesh:
+  segments: 48
+  cap_segments: 4
+
+material:
+  base_color: [0.7, 0.7, 0.72]
+  metallic: 0.8
+  roughness: 0.35
+
+tags: [pedal, mxr, compact, knob]

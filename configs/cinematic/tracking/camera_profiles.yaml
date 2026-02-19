@@ -1,153 +1,525 @@
 # Camera Device Profiles (REQ-CINE-MATCH)
-# Device-specific camera parameters for accurate matching
+# Device-specific camera parameters with lens distortion models
+# Supports: simple radial, brown_conrady (full), none
 
 profiles:
-  # === SMARTPHONE CAMERAS ===
+  # ============================================================
+  # APPLE iPHONE SERIES
+  # ============================================================
+
+  iphone_14_pro_main:
+    name: "iPhone 14 Pro Main"
+    manufacturer: "Apple"
+    model: "iPhone 14 Pro"
+    sensor_width: 7.57
+    sensor_height: 5.68
+    focal_length: 6.86
+    crop_factor: 4.76
+    distortion_model: brown_conrady
+    k1: -0.0250
+    k2: 0.0125
+    k3: 0.0
+    p1: 0.0002
+    p2: -0.0001
+    cx: 0.0012
+    cy: -0.0008
+    aspect_ratio: 1.0
+
+  iphone_14_pro_ultra_wide:
+    name: "iPhone 14 Pro Ultra Wide"
+    manufacturer: "Apple"
+    model: "iPhone 14 Pro"
+    sensor_width: 5.32
+    sensor_height: 4.0
+    focal_length: 2.55
+    crop_factor: 6.77
+    distortion_model: brown_conrady
+    k1: -0.0850
+    k2: 0.0450
+    k3: -0.0120
+    p1: 0.0010
+    p2: -0.0005
+    cx: 0.0025
+    cy: -0.0015
+    aspect_ratio: 1.0
 
   iphone_15_pro_main:
-    name: "iPhone 15 Pro Main Camera"
-    sensor_width: 9.8
-    sensor_height: 7.3
-    focal_length: 6.77  # 24mm equivalent
-    distortion_model: simple
-    distortion_params: [0.02, -0.01]
-    crop_factor: 2.94
+    name: "iPhone 15 Pro Main"
+    manufacturer: "Apple"
+    model: "iPhone 15 Pro"
+    sensor_width: 8.28
+    sensor_height: 6.22
+    focal_length: 6.78
+    crop_factor: 4.35
+    distortion_model: brown_conrady
+    k1: -0.0220
+    k2: 0.0108
+    k3: 0.0
+    p1: 0.00015
+    p2: -0.00008
+    cx: 0.0010
+    cy: -0.0006
+    aspect_ratio: 1.0
+
+  iphone_15_pro_ultra_wide:
+    name: "iPhone 15 Pro Ultra Wide"
+    manufacturer: "Apple"
+    model: "iPhone 15 Pro"
+    sensor_width: 5.35
+    sensor_height: 4.02
+    focal_length: 2.55
+    crop_factor: 6.73
+    distortion_model: brown_conrady
+    k1: -0.0820
+    k2: 0.0420
+    k3: -0.0110
+    p1: 0.0009
+    p2: -0.0004
+    cx: 0.0022
+    cy: -0.0013
     aspect_ratio: 1.0
 
   iphone_15_pro_telephoto:
     name: "iPhone 15 Pro Telephoto"
-    sensor_width: 5.6
-    sensor_height: 4.2
-    focal_length: 9.0  # 77mm equivalent
-    distortion_model: simple
-    distortion_params: [0.01, 0.0]
-    crop_factor: 4.3
+    manufacturer: "Apple"
+    model: "iPhone 15 Pro"
+    sensor_width: 5.35
+    sensor_height: 4.02
+    focal_length: 12.0
+    crop_factor: 6.73
+    distortion_model: brown_conrady
+    k1: -0.0060
+    k2: 0.0025
+    k3: 0.0
     aspect_ratio: 1.0
 
-  iphone_14_pro_main:
-    name: "iPhone 14 Pro Main Camera"
-    sensor_width: 9.8
-    sensor_height: 7.3
-    focal_length: 6.86
-    distortion_model: simple
-    distortion_params: [0.02, -0.01]
-    crop_factor: 2.96
+  # ============================================================
+  # RED CINEMA CAMERAS
+  # ============================================================
+
+  red_komodo:
+    name: "RED Komodo"
+    manufacturer: "RED"
+    model: "Komodo 6K"
+    sensor_width: 27.03
+    sensor_height: 14.26
+    focal_length: 50.0
+    crop_factor: 1.33
+    distortion_model: brown_conrady
+    k1: -0.0080
+    k2: 0.0035
+    k3: 0.0
     aspect_ratio: 1.0
 
-  pixel_8_pro_main:
-    name: "Google Pixel 8 Pro Main"
-    sensor_width: 10.2
-    sensor_height: 7.6
-    focal_length: 6.81
-    distortion_model: simple
-    distortion_params: [0.015, -0.005]
-    crop_factor: 2.97
+  red_v_raptor:
+    name: "RED V-Raptor"
+    manufacturer: "RED"
+    model: "V-Raptor 8K"
+    sensor_width: 40.96
+    sensor_height: 21.60
+    focal_length: 50.0
+    crop_factor: 0.88
+    distortion_model: brown_conrady
+    k1: -0.0060
+    k2: 0.0025
+    k3: 0.0
     aspect_ratio: 1.0
-
-  # === CINEMA CAMERAS ===
 
   red_komodo_6k:
     name: "RED KOMODO 6K"
+    manufacturer: "RED"
+    model: "KOMODO 6K"
     sensor_width: 27.03
     sensor_height: 14.26
-    focal_length: 50.0  # Default with 50mm lens
+    focal_length: 50.0
     distortion_model: none
-    distortion_params: []
     crop_factor: 1.33
     aspect_ratio: 1.9
 
+  # ============================================================
+  # ARRI CINEMA CAMERAS
+  # ============================================================
+
+  arri_alexa_mini_lf:
+    name: "ARRI Alexa Mini LF"
+    manufacturer: "ARRI"
+    model: "Alexa Mini LF"
+    sensor_width: 36.70
+    sensor_height: 25.54
+    focal_length: 50.0
+    crop_factor: 0.98
+    distortion_model: brown_conrady
+    k1: -0.0040
+    k2: 0.0018
+    k3: 0.0
+    aspect_ratio: 1.0
+
+  arri_alexa_35:
+    name: "ARRI Alexa 35"
+    manufacturer: "ARRI"
+    model: "Alexa 35"
+    sensor_width: 27.99
+    sensor_height: 19.22
+    focal_length: 50.0
+    crop_factor: 1.29
+    distortion_model: brown_conrady
+    k1: -0.0035
+    k2: 0.0015
+    k3: 0.0
+    aspect_ratio: 1.0
+
   arri_alexa_mini:
     name: "ARRI ALEXA Mini"
+    manufacturer: "ARRI"
+    model: "ALEXA Mini"
     sensor_width: 28.25
     sensor_height: 15.78
     focal_length: 50.0
     distortion_model: none
-    distortion_params: []
     crop_factor: 1.27
     aspect_ratio: 1.79
 
+  # ============================================================
+  # BLACKMAGIC DESIGN CAMERAS
+  # ============================================================
+
+  blackmagic_ursa_12k:
+    name: "Blackmagic URSA Mini Pro 12K"
+    manufacturer: "Blackmagic Design"
+    model: "URSA Mini Pro 12K"
+    sensor_width: 27.03
+    sensor_height: 14.25
+    focal_length: 50.0
+    crop_factor: 1.33
+    distortion_model: brown_conrady
+    k1: -0.0100
+    k2: 0.0045
+    k3: 0.0
+    aspect_ratio: 1.0
+
   blackmagic_pocket_6k:
-    name: "Blackmagic Pocket 6K"
+    name: "Blackmagic Pocket 6K Pro"
+    manufacturer: "Blackmagic Design"
+    model: "Pocket Cinema Camera 6K Pro"
     sensor_width: 23.10
     sensor_height: 12.99
     focal_length: 50.0
-    distortion_model: simple
-    distortion_params: [0.005, 0.0]
     crop_factor: 1.56
-    aspect_ratio: 1.78
+    distortion_model: brown_conrady
+    k1: -0.0120
+    k2: 0.0055
+    k3: 0.0
+    aspect_ratio: 1.0
 
-  # === DSLR/MIRRORLESS ===
+  blackmagic_pocket_4k:
+    name: "Blackmagic Pocket 4K"
+    manufacturer: "Blackmagic Design"
+    model: "Pocket Cinema Camera 4K"
+    sensor_width: 18.96
+    sensor_height: 10.00
+    focal_length: 50.0
+    crop_factor: 1.9
+    distortion_model: brown_conrady
+    k1: -0.0150
+    k2: 0.0070
+    k3: 0.0
+    aspect_ratio: 1.0
+
+  # ============================================================
+  # SONY CAMERAS
+  # ============================================================
+
+  sony_a7s_iii:
+    name: "Sony A7S III"
+    manufacturer: "Sony"
+    model: "Alpha 7S III"
+    sensor_width: 35.60
+    sensor_height: 23.80
+    focal_length: 50.0
+    crop_factor: 1.01
+    distortion_model: brown_conrady
+    k1: -0.0055
+    k2: 0.0024
+    k3: 0.0
+    aspect_ratio: 1.0
+
+  sony_fx6:
+    name: "Sony FX6"
+    manufacturer: "Sony"
+    model: "FX6"
+    sensor_width: 35.60
+    sensor_height: 23.80
+    focal_length: 50.0
+    crop_factor: 1.01
+    distortion_model: brown_conrady
+    k1: -0.0055
+    k2: 0.0024
+    k3: 0.0
+    aspect_ratio: 1.0
+
+  sony_fx3:
+    name: "Sony FX3"
+    manufacturer: "Sony"
+    model: "FX3"
+    sensor_width: 35.60
+    sensor_height: 23.80
+    focal_length: 50.0
+    crop_factor: 1.01
+    distortion_model: brown_conrady
+    k1: -0.0055
+    k2: 0.0024
+    k3: 0.0
+    aspect_ratio: 1.0
 
   sony_a7iv:
     name: "Sony A7 IV"
+    manufacturer: "Sony"
+    model: "Alpha 7 IV"
     sensor_width: 35.9
     sensor_height: 23.9
     focal_length: 50.0
     distortion_model: none
-    distortion_params: []
     crop_factor: 1.0
     aspect_ratio: 1.5
 
+  # ============================================================
+  # CANON CAMERAS
+  # ============================================================
+
+  canon_eos_r5:
+    name: "Canon EOS R5"
+    manufacturer: "Canon"
+    model: "EOS R5"
+    sensor_width: 36.00
+    sensor_height: 24.00
+    focal_length: 50.0
+    crop_factor: 1.0
+    distortion_model: brown_conrady
+    k1: -0.0050
+    k2: 0.0022
+    k3: 0.0
+    aspect_ratio: 1.0
+
+  canon_eos_r6:
+    name: "Canon EOS R6"
+    manufacturer: "Canon"
+    model: "EOS R6"
+    sensor_width: 35.90
+    sensor_height: 23.90
+    focal_length: 50.0
+    crop_factor: 1.0
+    distortion_model: brown_conrady
+    k1: -0.0052
+    k2: 0.0023
+    k3: 0.0
+    aspect_ratio: 1.0
+
+  canon_c70:
+    name: "Canon C70"
+    manufacturer: "Canon"
+    model: "Cinema EOS C70"
+    sensor_width: 26.20
+    sensor_height: 13.80
+    focal_length: 50.0
+    crop_factor: 1.37
+    distortion_model: brown_conrady
+    k1: -0.0070
+    k2: 0.0032
+    k3: 0.0
+    aspect_ratio: 1.0
+
   canon_r5:
     name: "Canon EOS R5"
+    manufacturer: "Canon"
+    model: "EOS R5"
     sensor_width: 36.0
     sensor_height: 24.0
     focal_length: 50.0
     distortion_model: none
-    distortion_params: []
     crop_factor: 1.0
     aspect_ratio: 1.5
 
+  # ============================================================
+  # FUJIFILM CAMERAS
+  # ============================================================
+
   fuji_xt5:
     name: "Fujifilm X-T5"
+    manufacturer: "Fujifilm"
+    model: "X-T5"
     sensor_width: 23.5
     sensor_height: 15.6
     focal_length: 50.0
     distortion_model: none
-    distortion_params: []
     crop_factor: 1.53
     aspect_ratio: 1.5
 
-  # === ACTION CAMERAS ===
+  # ============================================================
+  # GOOGLE PIXEL SERIES
+  # ============================================================
+
+  pixel_8_pro_main:
+    name: "Google Pixel 8 Pro Main"
+    manufacturer: "Google"
+    model: "Pixel 8 Pro"
+    sensor_width: 10.2
+    sensor_height: 7.6
+    focal_length: 6.81
+    distortion_model: brown_conrady
+    k1: 0.015
+    k2: -0.005
+    k3: 0.0
+    crop_factor: 2.97
+    aspect_ratio: 1.0
+
+  # ============================================================
+  # DJI DRONES
+  # ============================================================
+
+  dji_mavic_3_pro:
+    name: "DJI Mavic 3 Pro"
+    manufacturer: "DJI"
+    model: "Mavic 3 Pro"
+    sensor_width: 17.30
+    sensor_height: 13.00
+    focal_length: 12.29
+    crop_factor: 2.08
+    distortion_model: brown_conrady
+    k1: -0.0350
+    k2: 0.0180
+    k3: -0.0050
+    p1: 0.0003
+    p2: -0.0002
+    cx: 0.0015
+    cy: -0.0010
+    aspect_ratio: 1.0
+
+  dji_inspire_3:
+    name: "DJI Inspire 3"
+    manufacturer: "DJI"
+    model: "Inspire 3"
+    sensor_width: 35.90
+    sensor_height: 18.00
+    focal_length: 24.0
+    crop_factor: 1.0
+    distortion_model: brown_conrady
+    k1: -0.0120
+    k2: 0.0055
+    k3: 0.0
+    aspect_ratio: 1.0
+
+  dji_mini_4_pro:
+    name: "DJI Mini 4 Pro"
+    manufacturer: "DJI"
+    model: "Mini 4 Pro"
+    sensor_width: 9.6
+    sensor_height: 7.2
+    focal_length: 6.3
+    distortion_model: brown_conrady
+    k1: 0.02
+    k2: -0.01
+    k3: 0.0
+    crop_factor: 3.75
+    aspect_ratio: 1.0
+
+  # ============================================================
+  # GOPRO ACTION CAMERAS
+  # ============================================================
+
+  gopro_hero_12:
+    name: "GoPro Hero 12"
+    manufacturer: "GoPro"
+    model: "Hero 12 Black"
+    sensor_width: 6.17
+    sensor_height: 4.55
+    focal_length: 2.92
+    crop_factor: 5.83
+    distortion_model: brown_conrady
+    k1: -0.1200
+    k2: 0.0650
+    k3: -0.0250
+    p1: 0.0010
+    p2: -0.0008
+    cx: 0.0050
+    cy: -0.0035
+    aspect_ratio: 1.0
 
   gopro_hero12:
-    name: "GoPro Hero 12"
+    name: "GoPro Hero 12 Wide"
+    manufacturer: "GoPro"
+    model: "Hero 12 Black"
     sensor_width: 6.3
     sensor_height: 4.7
-    focal_length: 2.9  # Wide
+    focal_length: 2.9
     distortion_model: brown_conrady
-    distortion_params: [-0.25, 0.08, 0.0, 0.0, 0.0]
+    k1: -0.25
+    k2: 0.08
+    k3: 0.0
+    p1: 0.0
+    p2: 0.0
     crop_factor: 5.7
     aspect_ratio: 1.33
 
   dji_osmo_action:
     name: "DJI Osmo Action"
+    manufacturer: "DJI"
+    model: "Osmo Action"
     sensor_width: 6.3
     sensor_height: 4.7
     focal_length: 2.8
     distortion_model: brown_conrady
-    distortion_params: [-0.22, 0.06, 0.0, 0.0, 0.0]
+    k1: -0.22
+    k2: 0.06
+    k3: 0.0
+    p1: 0.0
+    p2: 0.0
     crop_factor: 5.7
     aspect_ratio: 1.33
 
-  # === DRONE CAMERAS ===
+  # ============================================================
+  # GENERIC PROFILES
+  # ============================================================
 
-  dji_mavic_3_pro:
-    name: "DJI Mavic 3 Pro Main"
-    sensor_width: 17.3
-    sensor_height: 13.0
-    focal_length: 12.3  # 24mm equivalent
-    distortion_model: simple
-    distortion_params: [0.01, 0.0]
-    crop_factor: 2.08
-    aspect_ratio: 1.33
+  generic_full_frame:
+    name: "Generic Full Frame"
+    manufacturer: "Generic"
+    model: "35mm Full Frame"
+    sensor_width: 36.0
+    sensor_height: 24.0
+    focal_length: 50.0
+    crop_factor: 1.0
+    distortion_model: none
+    aspect_ratio: 1.0
 
-  dji_mini_4_pro:
-    name: "DJI Mini 4 Pro"
-    sensor_width: 9.6
-    sensor_height: 7.2
-    focal_length: 6.3
-    distortion_model: simple
-    distortion_params: [0.02, -0.01]
-    crop_factor: 3.75
-    aspect_ratio: 1.33
+  generic_super_35:
+    name: "Generic Super 35"
+    manufacturer: "Generic"
+    model: "Super 35mm"
+    sensor_width: 24.89
+    sensor_height: 18.66
+    focal_length: 50.0
+    crop_factor: 1.45
+    distortion_model: none
+    aspect_ratio: 1.0
+
+  generic_micro_43:
+    name: "Generic Micro 4/3"
+    manufacturer: "Generic"
+    model: "Micro Four Thirds"
+    sensor_width: 17.30
+    sensor_height: 13.00
+    focal_length: 50.0
+    crop_factor: 2.0
+    distortion_model: none
+    aspect_ratio: 1.0
+
+  generic_aps_c:
+    name: "Generic APS-C"
+    manufacturer: "Generic"
+    model: "APS-C"
+    sensor_width: 23.50
+    sensor_height: 15.60
+    focal_length: 50.0
+    crop_factor: 1.53
+    distortion_model: none
+    aspect_ratio: 1.0

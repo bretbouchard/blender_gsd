@@ -1,0 +1,56 @@
+# Simple Test Knob
+# Minimal configuration for testing
+
+name: Simple Test Knob
+description: Minimal knob for testing the system
+input_type: rotary
+base_shape: cylinder
+
+total_height_mm: 20
+total_width_mm: 14
+
+zones:
+  a:
+    height_mm: 10
+    width_top_mm: 14
+    width_bottom_mm: 14
+    top_cap:
+      style: rounded
+      height_mm: 2
+    middle_knurl:
+      enabled: false
+    bottom_cap:
+      style: flat
+      height_mm: 0
+  b:
+    height_mm: 10
+    width_top_mm: 14
+    width_bottom_mm: 14
+    top_cap:
+      style: flat
+      height_mm: 0
+    middle_knurl:
+      enabled: true
+      count: 20
+      depth_mm: 0.5
+      width_fraction: 0.5
+      profile: v
+    bottom_cap:
+      style: flat
+      height_mm: 0
+
+rotation:
+  mode: locked
+  min_angle_deg: -150
+  max_angle_deg: 150
+
+mesh:
+  segments: 32
+  cap_segments: 4
+
+material:
+  base_color: [0.5, 0.5, 0.5]
+  metallic: 0.0
+  roughness: 0.3
+
+tags: [test, simple, knob]

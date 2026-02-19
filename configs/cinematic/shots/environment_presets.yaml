@@ -1,0 +1,255 @@
+# Environment Shot Presets
+# Location-based and atmospheric shots
+
+environments:
+  # ============================================================================
+  # GOLDEN HOUR OCEAN - Sunset over water
+  # ============================================================================
+  golden_hour_ocean:
+    name: "Golden Hour Ocean"
+    description: "Warm sunset over ocean with long shadows"
+    use_case: "Lifestyle, travel, romantic"
+    lighting:
+      setup: "natural"
+      sun:
+        intensity: 800
+        color: [1.0, 0.7, 0.4]
+        angle: 5  # Low on horizon
+        position: [10, -20, 2]
+      sky:
+        type: "hdri"
+        exposure: 0.5
+      fill:
+        type: "area"
+        intensity: 200
+        color: [1.0, 0.9, 0.8]
+        position: [-2, 0, 1]
+    environment:
+      type: "ocean"
+      sky_color: [1.0, 0.6, 0.3]
+      water_color: [0.1, 0.3, 0.4]
+      fog:
+        enabled: true
+        density: 0.01
+        color: [1.0, 0.8, 0.6]
+    camera:
+      lens_preset: "50mm_normal"
+      f_stop: 8.0
+      angle: "three_quarter"
+    post:
+      color_grade: "warm"
+      contrast: "medium"
+      saturation: 1.2
+
+  # ============================================================================
+  # ARIZONA MIDNIGHT - Desert night sky
+  # ============================================================================
+  arizona_midnight:
+    name: "Arizona Midnight"
+    description: "Desert landscape under starry night sky"
+    use_case: "Automotive, editorial, dramatic product"
+    lighting:
+      setup: "moonlight"
+      moon:
+        intensity: 100
+        color: [0.8, 0.85, 1.0]
+        position: [5, -10, 15]
+      stars:
+        enabled: true
+        intensity: 50
+      rim:
+        type: "spot"
+        intensity: 500
+        color: [0.7, 0.8, 1.0]
+        position: [-3, 2, 2]
+    environment:
+      type: "desert"
+      ground_color: [0.3, 0.2, 0.15]
+      sky_color: [0.02, 0.02, 0.05]
+      fog:
+        enabled: true
+        density: 0.005
+        color: [0.05, 0.05, 0.1]
+    camera:
+      lens_preset: "24mm_wide"
+      f_stop: 2.8
+      angle: "three_quarter_low"
+    post:
+      color_grade: "cool"
+      contrast: "high"
+      saturation: 0.7
+
+  # ============================================================================
+  # DEEP SPACE - Sci-fi void
+  # ============================================================================
+  deep_space:
+    name: "Deep Space"
+    description: "Sci-fi space environment with distant stars"
+    use_case: "Sci-fi, tech products, futuristic"
+    lighting:
+      setup: "rim"
+      rim:
+        type: "area"
+        intensity: 800
+        color: [0.6, 0.8, 1.0]
+        position: [3, 2, 0]
+      rim_secondary:
+        type: "area"
+        intensity: 400
+        color: [1.0, 0.4, 0.6]
+        position: [-3, -1, 1]
+      stars:
+        enabled: true
+        intensity: 100
+        nebula_color: [0.3, 0.1, 0.5]
+    environment:
+      type: "space"
+      star_field: true
+      nebula: true
+      planet: false
+    camera:
+      lens_preset: "50mm_normal"
+      f_stop: 2.8
+      angle: "three_quarter"
+    post:
+      color_grade: "cool"
+      contrast: "high"
+      saturation: 1.0
+
+  # ============================================================================
+  # FOREST MIST - Mystical woodland
+  # ============================================================================
+  forest_mist:
+    name: "Forest Mist"
+    description: "Misty forest with diffused god rays"
+    use_case: "Fantasy, lifestyle, atmospheric"
+    lighting:
+      setup: "natural"
+      sun:
+        intensity: 600
+        color: [1.0, 0.95, 0.8]
+        angle: 30
+        position: [5, -10, 10]
+      god_rays:
+        enabled: true
+        intensity: 0.3
+    environment:
+      type: "forest"
+      ground_color: [0.15, 0.2, 0.1]
+      fog:
+        enabled: true
+        density: 0.03
+        color: [0.8, 0.85, 0.8]
+        height_falloff: 0.5
+    camera:
+      lens_preset: "35mm_documentary"
+      f_stop: 4.0
+      angle: "three_quarter"
+    post:
+      color_grade: "neutral"
+      contrast: "low"
+      saturation: 0.9
+
+  # ============================================================================
+  # URBAN NIGHT - City lights
+  # ============================================================================
+  urban_night:
+    name: "Urban Night"
+    description: "Wet city street with neon reflections"
+    use_case: "Automotive, fashion, cinematic"
+    lighting:
+      setup: "mixed"
+      neon:
+        - color: [1.0, 0.0, 0.5]
+          position: [3, -2, 2]
+          intensity: 400
+        - color: [0.0, 0.5, 1.0]
+          position: [-2, -3, 1.5]
+          intensity: 300
+      ambient:
+        intensity: 50
+        color: [0.1, 0.1, 0.2]
+    environment:
+      type: "urban"
+      ground_wet: true
+      ground_color: [0.1, 0.1, 0.12]
+      buildings: true
+      fog:
+        enabled: true
+        density: 0.01
+        color: [0.1, 0.1, 0.15]
+    camera:
+      lens_preset: "35mm_documentary"
+      f_stop: 2.0
+      angle: "three_quarter_low"
+    post:
+      color_grade: "cool"
+      contrast: "high"
+      saturation: 1.3
+
+  # ============================================================================
+  # SNOW DAY - Bright winter
+  # ============================================================================
+  snow_day:
+    name: "Snow Day"
+    description: "Bright overcast winter scene"
+    use_case: "Lifestyle, product, peaceful"
+    lighting:
+      setup: "overcast"
+      sky:
+        type: "hdri"
+        exposure: 1.2
+        color: [0.9, 0.92, 0.95]
+      fill:
+        type: "area"
+        intensity: 300
+        color: [1.0, 1.0, 1.0]
+        position: [0, 2, 1]
+    environment:
+      type: "snow"
+      ground_color: [0.95, 0.95, 1.0]
+      fog:
+        enabled: true
+        density: 0.008
+        color: [0.95, 0.95, 1.0]
+    camera:
+      lens_preset: "50mm_normal"
+      f_stop: 8.0
+      angle: "three_quarter"
+    post:
+      color_grade: "cool"
+      contrast: "low"
+      saturation: 0.85
+
+  # ============================================================================
+  # DESERT GOLDEN HOUR - Dramatic landscape
+  # ============================================================================
+  desert_golden_hour:
+    name: "Desert Golden Hour"
+    description: "Dramatic desert landscape at golden hour"
+    use_case: "Automotive, editorial, adventure"
+    lighting:
+      setup: "natural"
+      sun:
+        intensity: 1000
+        color: [1.0, 0.6, 0.3]
+        angle: 10
+        position: [8, -15, 3]
+      fill:
+        type: "area"
+        intensity: 150
+        color: [1.0, 0.9, 0.8]
+        position: [-2, 0, 0.5]
+    environment:
+      type: "desert"
+      ground_color: [0.8, 0.5, 0.3]
+      sky_color: [0.5, 0.3, 0.2]
+      dust_particles: true
+    camera:
+      lens_preset: "24mm_wide"
+      f_stop: 8.0
+      angle: "three_quarter_low"
+    post:
+      color_grade: "warm"
+      contrast: "high"
+      saturation: 1.1

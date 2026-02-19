@@ -1,0 +1,56 @@
+# Neve 1073 Style Knob
+# Classic console knob with rounded top, knurled skirt
+
+name: Neve 1073 Knob
+description: Classic Neve 1073 style knob with rounded top cap and knurled skirt
+input_type: rotary
+base_shape: cylinder
+
+total_height_mm: 20
+total_width_mm: 14
+
+zones:
+  a:
+    height_mm: 12
+    width_top_mm: 14
+    width_bottom_mm: 14
+    top_cap:
+      style: rounded
+      height_mm: 3
+    middle_knurl:
+      enabled: false
+    bottom_cap:
+      style: flat
+      height_mm: 0
+  b:
+    height_mm: 8
+    width_top_mm: 14
+    width_bottom_mm: 16
+    top_cap:
+      style: flat
+      height_mm: 0
+    middle_knurl:
+      enabled: true
+      count: 30
+      depth_mm: 0.5
+      width_fraction: 0.4
+      profile: v
+    bottom_cap:
+      style: rounded
+      height_mm: 2
+
+rotation:
+  mode: locked
+  min_angle_deg: -150
+  max_angle_deg: 150
+
+mesh:
+  segments: 64
+  cap_segments: 8
+
+material:
+  base_color: [0.2, 0.35, 0.75]
+  metallic: 0.0
+  roughness: 0.25
+
+tags: [console, neve, vintage, premium, knob]
