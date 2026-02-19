@@ -1,0 +1,140 @@
+# Shot Template System (REQ-CINE-TEMPLATE)
+# Templates support inheritance via 'extends' field
+# Abstract templates cannot be rendered directly
+
+templates:
+  # === ABSTRACT BASE TEMPLATES ===
+
+  base_product:
+    abstract: true
+    description: "Base template for all product shots"
+    camera:
+      focal_length: 85.0
+      f_stop: 4.0
+      sensor_width: 36.0
+    plumb_bob:
+      mode: auto
+      offset: [0, 0, 0.1]
+    backdrop:
+      backdrop_type: infinite_curve
+      color_bottom: [0.95, 0.95, 0.95]
+      color_top: [1.0, 1.0, 1.0]
+      shadow_catcher: true
+    color:
+      view_transform: AgX
+      look: AgX Default Medium High Contrast
+    render:
+      quality_tier: preview
+      engine: BLENDER_EEVEE_NEXT
+      resolution_x: 1920
+      resolution_y: 1080
+
+  base_control_surface:
+    abstract: true
+    description: "Base template for control surface component shots"
+    extends: base_product
+    camera:
+      focal_length: 65.0
+      f_stop: 5.6
+    composition:
+      shot_size: mcu
+      camera_position: three_quarter
+
+  # === PRODUCT TEMPLATES ===
+
+  studio_product:
+    description: "Standard studio product shot with soft lighting"
+    extends: base_product
+    lighting_rig: three_point_soft
+    camera:
+      focal_length: 85.0
+      f_stop: 4.0
+
+  dramatic_product:
+    description: "Dramatic product shot with high contrast"
+    extends: base_product
+    lighting_rig: product_dramatic
+    camera:
+      f_stop: 2.8
+    color:
+      look: AgX High Contrast
+    backdrop:
+      color_bottom: [0.1, 0.1, 0.1]
+      color_top: [0.2, 0.2, 0.2]
+
+  # === CONTROL SURFACE TEMPLATES ===
+
+  hero_knob:
+    description: "Hero shot for knob controls"
+    extends: base_control_surface
+    camera:
+      focal_length: 65.0
+      f_stop: 4.0
+    lighting_rig: three_point_soft
+    composition:
+      shot_size: cu
+      camera_angle: eye
+      camera_position: three_quarter
+
+  knob_turntable:
+    description: "360 degree turntable rotation of knob"
+    extends: hero_knob
+    animation:
+      enabled: true
+      type: turntable
+      axis: Z
+      angle_range: [0, 360]
+      duration: 120
+      loop: true
+
+  knob_detail:
+    description: "Close-up detail shot of knob features"
+    extends: hero_knob
+    camera:
+      focal_length: 100.0
+      f_stop: 8.0
+    composition:
+      shot_size: ecu
+
+  hero_fader:
+    description: "Hero shot for fader controls"
+    extends: base_control_surface
+    camera:
+      focal_length: 50.0
+      f_stop: 5.6
+    lighting_rig: three_point_soft
+    composition:
+      shot_size: m
+      camera_position: three_quarter
+
+  hero_button:
+    description: "Hero shot for button controls"
+    extends: base_control_surface
+    camera:
+      focal_length: 65.0
+      f_stop: 4.0
+    lighting_rig: product_hero
+    composition:
+      shot_size: cu
+
+  # === STYLE-SPECIFIC TEMPLATES ===
+
+  neve_style:
+    abstract: true
+    description: "Neve-style color grading"
+    extends: base_control_surface
+    color:
+      look: AgX Golden
+    backdrop:
+      color_bottom: [0.18, 0.16, 0.14]
+      color_top: [0.25, 0.22, 0.18]
+
+  ssl_style:
+    abstract: true
+    description: "SSL-style color grading"
+    extends: base_control_surface
+    color:
+      look: AgX Cool Shadows
+    backdrop:
+      color_bottom: [0.12, 0.12, 0.14]
+      color_top: [0.18, 0.18, 0.22]
