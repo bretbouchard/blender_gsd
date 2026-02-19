@@ -114,13 +114,41 @@ class LightConfig:
     """
     Light configuration for cinematic lighting.
 
-    Supports area, spot, point, and sun light types.
+    Supports area, spot, point, and sun light types with type-specific properties.
+
+    Area Light Properties:
+    - shape: SQUARE, RECTANGLE, DISK, ELLIPSE
+    - size: Width/radius
+    - size_y: Height (for RECTANGLE/ELLIPSE)
+    - spread: Spread angle in radians
+
+    Spot Light Properties:
+    - spot_size: Cone angle in radians
+    - spot_blend: Edge softness (0-1)
+
+    Color Temperature (Blender 4.0+):
+    - use_temperature: Enable Kelvin-based color
+    - temperature: Color temperature in Kelvin
     """
     name: str = "key_light"
     light_type: str = "area"  # area, spot, point, sun
     intensity: float = 1000.0  # watts
     color: Tuple[float, float, float] = (1.0, 1.0, 1.0)
     transform: Transform3D = field(default_factory=Transform3D)
+    # Area light properties
+    shape: str = "RECTANGLE"  # SQUARE, RECTANGLE, DISK, ELLIPSE
+    size: float = 1.0  # Width/radius for area lights
+    size_y: float = 1.0  # Height for RECTANGLE/ELLIPSE area lights
+    spread: float = 1.047  # Spread angle in radians (60 degrees default)
+    # Spot light properties
+    spot_size: float = 0.785  # Cone angle in radians (45 degrees default)
+    spot_blend: float = 0.5  # Edge softness 0-1
+    # Shadow properties
+    shadow_soft_size: float = 0.1  # Shadow softness radius
+    use_shadow: bool = True
+    # Color temperature (Blender 4.0+)
+    use_temperature: bool = False
+    temperature: float = 6500.0  # Kelvin (daylight default)
 
     def to_dict(self) -> Dict[str, Any]:
         """Convert to dictionary for serialization."""
@@ -130,6 +158,16 @@ class LightConfig:
             "intensity": self.intensity,
             "color": list(self.color),
             "transform": self.transform.to_dict(),
+            "shape": self.shape,
+            "size": self.size,
+            "size_y": self.size_y,
+            "spread": self.spread,
+            "spot_size": self.spot_size,
+            "spot_blend": self.spot_blend,
+            "shadow_soft_size": self.shadow_soft_size,
+            "use_shadow": self.use_shadow,
+            "use_temperature": self.use_temperature,
+            "temperature": self.temperature,
         }
 
     @classmethod
@@ -142,6 +180,154 @@ class LightConfig:
             intensity=data.get("intensity", 1000.0),
             color=tuple(data.get("color", (1.0, 1.0, 1.0))),
             transform=Transform3D.from_dict(transform_data),
+            shape=data.get("shape", "RECTANGLE"),
+            size=data.get("size", 1.0),
+            size_y=data.get("size_y", 1.0),
+            spread=data.get("spread", 1.047),
+            spot_size=data.get("spot_size", 0.785),
+            spot_blend=data.get("spot_blend", 0.5),
+            shadow_soft_size=data.get("shadow_soft_size", 0.1),
+            use_shadow=data.get("use_shadow", True),
+            use_temperature=data.get("use_temperature", False),
+            temperature=data.get("temperature", 6500.0),
+        )
+
+
+@dataclass
+class GelConfig:
+    """
+    Configuration for light gel/color filter.
+
+    Gels are used to modify light color, softness, and character.
+    Common types: CTB (Color Temperature Blue), CTO (Color Temperature Orange),
+    diffusion, and creative color gels.
+
+    Attributes:
+        name: Preset name (e.g., "cto_full", "diffusion_half")
+        color: RGB color multiplier (1.0, 1.0, 1.0 = no change)
+        temperature_shift: Kelvin temperature shift (-/+) for CTB/CTO
+        softness: Diffusion amount (0 = none, 1 = heavy)
+        transmission: Light transmission factor (0-1, 1 = full transmission)
+        combines: List of gel preset names if this is a combined gel
+    """
+    name: str = "none"
+    color: Tuple[float, float, float] = (1.0, 1.0, 1.0)
+    temperature_shift: float = 0.0
+    softness: float = 0.0
+    transmission: float = 1.0
+    combines: List[str] = field(default_factory=list)
+
+    def to_dict(self) -> Dict[str, Any]:
+        """Convert to dictionary for serialization."""
+        return {
+            "name": self.name,
+            "color": list(self.color),
+            "temperature_shift": self.temperature_shift,
+            "softness": self.softness,
+            "transmission": self.transmission,
+            "combines": self.combines,
+        }
+
+    @classmethod
+    def from_dict(cls, data: Dict[str, Any]) -> GelConfig:
+        """Create from dictionary."""
+        return cls(
+            name=data.get("name", "none"),
+            color=tuple(data.get("color", (1.0, 1.0, 1.0))),
+            temperature_shift=data.get("temperature_shift", 0.0),
+            softness=data.get("softness", 0.0),
+            transmission=data.get("transmission", 1.0),
+            combines=data.get("combines", []),
+        )
+
+
+@dataclass
+class HDRIConfig:
+    """
+    Configuration for HDRI environment lighting.
+
+    HDRIs provide realistic environment lighting and reflections.
+    Common for studio setups and outdoor scenes.
+
+    Attributes:
+        name: Preset name (e.g., "studio_bright", "golden_hour")
+        file: Path to HDRI file (.hdr, .exr)
+        exposure: Exposure adjustment (0 = default, positive = brighter)
+        rotation: Rotation angle in radians for HDRI orientation
+        background_visible: If True, HDRI is visible in render background
+        saturation: Color saturation multiplier (1.0 = normal)
+    """
+    name: str = "studio_bright"
+    file: str = ""
+    exposure: float = 0.0
+    rotation: float = 0.0
+    background_visible: bool = False
+    saturation: float = 1.0
+
+    def to_dict(self) -> Dict[str, Any]:
+        """Convert to dictionary for serialization."""
+        return {
+            "name": self.name,
+            "file": self.file,
+            "exposure": self.exposure,
+            "rotation": self.rotation,
+            "background_visible": self.background_visible,
+            "saturation": self.saturation,
+        }
+
+    @classmethod
+    def from_dict(cls, data: Dict[str, Any]) -> HDRIConfig:
+        """Create from dictionary."""
+        return cls(
+            name=data.get("name", "studio_bright"),
+            file=data.get("file", ""),
+            exposure=data.get("exposure", 0.0),
+            rotation=data.get("rotation", 0.0),
+            background_visible=data.get("background_visible", False),
+            saturation=data.get("saturation", 1.0),
+        )
+
+
+@dataclass
+class LightRigConfig:
+    """
+    Configuration for lighting rig preset.
+
+    A light rig defines a complete lighting setup with multiple lights
+    and optionally an HDRI environment. Supports preset inheritance.
+
+    Attributes:
+        name: Preset name (e.g., "three_point_soft", "product_hero")
+        description: Human-readable description
+        extends: Parent preset name for inheritance
+        lights: Dictionary of light name -> LightConfig dict
+        hdri: Optional HDRIConfig dict for environment lighting
+    """
+    name: str = "three_point_soft"
+    description: str = ""
+    extends: str = ""
+    lights: Dict[str, Dict[str, Any]] = field(default_factory=dict)
+    hdri: Optional[Dict[str, Any]] = None
+
+    def to_dict(self) -> Dict[str, Any]:
+        """Convert to dictionary for serialization."""
+        return {
+            "name": self.name,
+            "description": self.description,
+            "extends": self.extends,
+            "lights": self.lights,
+            "hdri": self.hdri,
+        }
+
+    @classmethod
+    def from_dict(cls, data: Dict[str, Any]) -> LightRigConfig:
+        """Create from dictionary."""
+        return cls(
+            name=data.get("name", "three_point_soft"),
+            description=data.get("description", ""),
+            extends=data.get("extends", ""),
+            lights=data.get("lights", {}),
+            hdri=data.get("hdri"),
         )
 
 
@@ -151,12 +337,37 @@ class BackdropConfig:
     Backdrop configuration for product rendering.
 
     Supports infinite curve, gradient, HDRI, and mesh backdrops.
+
+    Attributes:
+        backdrop_type: Type of backdrop (infinite_curve, gradient, hdri, mesh)
+        color_bottom: Bottom color for gradient backdrops (RGB 0-1)
+        color_top: Top color for gradient backdrops (RGB 0-1)
+        radius: Radius/size of the backdrop
+        shadow_catcher: Whether backdrop acts as shadow catcher
+        curve_height: Height of vertical wall for infinite curves (meters)
+        curve_segments: Resolution of curve geometry
+        gradient_type: Gradient type (linear, radial, angular)
+        gradient_stops: List of gradient color stops with position and color
+        hdri_preset: Name of HDRI preset for HDRI backdrops
+        mesh_file: Path to mesh file for mesh backdrops
+        mesh_scale: Scale factor for mesh environments
     """
     backdrop_type: str = "infinite_curve"  # infinite_curve, gradient, hdri, mesh
     color_bottom: Tuple[float, float, float] = (0.95, 0.95, 0.95)
     color_top: Tuple[float, float, float] = (1.0, 1.0, 1.0)
     radius: float = 5.0
     shadow_catcher: bool = True
+    # Infinite curve properties
+    curve_height: float = 3.0  # Height of vertical wall for infinite curves
+    curve_segments: int = 32   # Resolution of curve
+    # Gradient properties
+    gradient_type: str = "linear"  # linear, radial, angular for gradient backdrops
+    gradient_stops: List[Dict] = field(default_factory=list)  # Gradient color stops
+    # HDRI properties
+    hdri_preset: str = ""     # Name of HDRI preset for HDRI backdrops
+    # Mesh properties
+    mesh_file: str = ""       # Path to mesh file for mesh backdrops
+    mesh_scale: float = 1.0   # Scale for mesh environments
 
     def to_dict(self) -> Dict[str, Any]:
         """Convert to dictionary for serialization."""
@@ -166,6 +377,13 @@ class BackdropConfig:
             "color_top": list(self.color_top),
             "radius": self.radius,
             "shadow_catcher": self.shadow_catcher,
+            "curve_height": self.curve_height,
+            "curve_segments": self.curve_segments,
+            "gradient_type": self.gradient_type,
+            "gradient_stops": self.gradient_stops,
+            "hdri_preset": self.hdri_preset,
+            "mesh_file": self.mesh_file,
+            "mesh_scale": self.mesh_scale,
         }
 
     @classmethod
@@ -177,6 +395,13 @@ class BackdropConfig:
             color_top=tuple(data.get("color_top", (1.0, 1.0, 1.0))),
             radius=data.get("radius", 5.0),
             shadow_catcher=data.get("shadow_catcher", True),
+            curve_height=data.get("curve_height", 3.0),
+            curve_segments=data.get("curve_segments", 32),
+            gradient_type=data.get("gradient_type", "linear"),
+            gradient_stops=data.get("gradient_stops", []),
+            hdri_preset=data.get("hdri_preset", ""),
+            mesh_file=data.get("mesh_file", ""),
+            mesh_scale=data.get("mesh_scale", 1.0),
         )
 
 
@@ -274,4 +499,174 @@ class ShotState:
             lights=data.get("lights", {}),
             backdrop=data.get("backdrop", {}),
             render_settings=data.get("render_settings", {}),
+        )
+
+
+@dataclass
+class PlumbBobConfig:
+    """
+    Configuration for plumb bob targeting system.
+
+    The plumb bob defines the visual center of interest for camera orbit,
+    focus, and dolly operations.
+
+    Modes:
+    - auto: Calculate from subject bounding box + offset
+    - manual: Use explicit world coordinates
+    - object: Use another object's location + offset
+
+    Focus Modes:
+    - auto: Focus distance calculated from camera to target
+    - manual: Use explicit focus_distance value
+    """
+    mode: str = "auto"  # auto, manual, object
+    offset: Tuple[float, float, float] = (0.0, 0.0, 0.0)  # World space offset
+    manual_position: Tuple[float, float, float] = (0.0, 0.0, 0.0)  # For manual mode
+    target_object: str = ""  # For object mode
+    focus_mode: str = "auto"  # auto, manual
+    focus_distance: float = 0.0  # Manual focus distance in meters (used when focus_mode="manual")
+
+    def to_dict(self) -> Dict[str, Any]:
+        """Convert to dictionary for serialization."""
+        return {
+            "mode": self.mode,
+            "offset": list(self.offset),
+            "manual_position": list(self.manual_position),
+            "target_object": self.target_object,
+            "focus_mode": self.focus_mode,
+            "focus_distance": self.focus_distance,
+        }
+
+    @classmethod
+    def from_dict(cls, data: Dict[str, Any]) -> PlumbBobConfig:
+        """Create from dictionary."""
+        return cls(
+            mode=data.get("mode", "auto"),
+            offset=tuple(data.get("offset", (0.0, 0.0, 0.0))),
+            manual_position=tuple(data.get("manual_position", (0.0, 0.0, 0.0))),
+            target_object=data.get("target_object", ""),
+            focus_mode=data.get("focus_mode", "auto"),
+            focus_distance=data.get("focus_distance", 0.0),
+        )
+
+
+@dataclass
+class RigConfig:
+    """
+    Configuration for camera rig systems.
+
+    Supports various rig types with motion constraints and smoothing.
+    All rotations in Euler degrees (XYZ order).
+    """
+    rig_type: str = "tripod"  # tripod, tripod_orbit, dolly, dolly_curved, crane, steadicam, drone
+    constraints: Dict[str, Any] = field(default_factory=dict)  # Motion constraints
+    smoothing: Dict[str, float] = field(default_factory=dict)  # Smoothing params for steadicam
+    track_config: Dict[str, Any] = field(default_factory=dict)  # Track config for dolly
+
+    def to_dict(self) -> Dict[str, Any]:
+        """Convert to dictionary for serialization."""
+        return {
+            "rig_type": self.rig_type,
+            "constraints": self.constraints,
+            "smoothing": self.smoothing,
+            "track_config": self.track_config,
+        }
+
+    @classmethod
+    def from_dict(cls, data: Dict[str, Any]) -> RigConfig:
+        """Create from dictionary."""
+        return cls(
+            rig_type=data.get("rig_type", "tripod"),
+            constraints=data.get("constraints", {}),
+            smoothing=data.get("smoothing", {}),
+            track_config=data.get("track_config", {}),
+        )
+
+
+@dataclass
+class ImperfectionConfig:
+    """
+    Configuration for lens imperfections.
+
+    Simulates real-world lens characteristics like flare, vignette,
+    chromatic aberration, and bokeh shape.
+    """
+    name: str = "clean"  # Preset name
+    flare_enabled: bool = False
+    flare_intensity: float = 0.0  # 0.0 to 1.0
+    flare_streaks: int = 8
+    vignette: float = 0.0  # 0.0 to 1.0
+    chromatic_aberration: float = 0.0  # Amount of CA
+    bokeh_shape: str = "circular"  # circular, hexagonal, octagonal, rounded
+    bokeh_swirl: float = 0.0  # For vintage lenses
+
+    def to_dict(self) -> Dict[str, Any]:
+        """Convert to dictionary for serialization."""
+        return {
+            "name": self.name,
+            "flare_enabled": self.flare_enabled,
+            "flare_intensity": self.flare_intensity,
+            "flare_streaks": self.flare_streaks,
+            "vignette": self.vignette,
+            "chromatic_aberration": self.chromatic_aberration,
+            "bokeh_shape": self.bokeh_shape,
+            "bokeh_swirl": self.bokeh_swirl,
+        }
+
+    @classmethod
+    def from_dict(cls, data: Dict[str, Any]) -> ImperfectionConfig:
+        """Create from dictionary."""
+        return cls(
+            name=data.get("name", "clean"),
+            flare_enabled=data.get("flare_enabled", False),
+            flare_intensity=data.get("flare_intensity", 0.0),
+            flare_streaks=data.get("flare_streaks", 8),
+            vignette=data.get("vignette", 0.0),
+            chromatic_aberration=data.get("chromatic_aberration", 0.0),
+            bokeh_shape=data.get("bokeh_shape", "circular"),
+            bokeh_swirl=data.get("bokeh_swirl", 0.0),
+        )
+
+
+@dataclass
+class MultiCameraLayout:
+    """
+    Configuration for multi-camera setups.
+
+    Supports various layout types for multi-camera compositing.
+    Composite output creates a grid layout in a single rendered image.
+    """
+    layout_type: str = "grid"  # grid, horizontal, vertical, circle, arc, custom
+    spacing: float = 2.0  # Distance between cameras
+    cameras: List[str] = field(default_factory=list)  # Camera names
+    positions: List[Tuple[float, float, float]] = field(default_factory=list)  # For custom layout
+    composite_output: bool = True  # Enable compositor-based composite output (grid layout to single image)
+    composite_rows: int = 0  # Number of rows in composite (0 = auto-calculate)
+    composite_cols: int = 0  # Number of columns in composite (0 = auto-calculate)
+
+    def to_dict(self) -> Dict[str, Any]:
+        """Convert to dictionary for serialization."""
+        return {
+            "layout_type": self.layout_type,
+            "spacing": self.spacing,
+            "cameras": self.cameras,
+            "positions": [list(p) for p in self.positions],
+            "composite_output": self.composite_output,
+            "composite_rows": self.composite_rows,
+            "composite_cols": self.composite_cols,
+        }
+
+    @classmethod
+    def from_dict(cls, data: Dict[str, Any]) -> MultiCameraLayout:
+        """Create from dictionary."""
+        positions_data = data.get("positions", [])
+        positions = [tuple(p) for p in positions_data] if positions_data else []
+        return cls(
+            layout_type=data.get("layout_type", "grid"),
+            spacing=data.get("spacing", 2.0),
+            cameras=data.get("cameras", []),
+            positions=positions,
+            composite_output=data.get("composite_output", True),
+            composite_rows=data.get("composite_rows", 0),
+            composite_cols=data.get("composite_cols", 0),
         )
