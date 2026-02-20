@@ -1,0 +1,392 @@
+# Electronics Prop Definitions
+# Defines electronic props for procedural set dressing
+
+category: "electronics"
+
+props:
+  # ============================================================================
+  # DISPLAYS & SCREENS
+  # ============================================================================
+
+  tv_43inch:
+    name: "43\" Television"
+    category: "electronics"
+    style: "modern"
+    material: "plastic_black"
+    dimensions: [0.97, 0.05, 0.56]
+    variations: 1
+    tags: ["tv", "screen", "media", "display"]
+    placement_zones: ["living_room", "bedroom"]
+
+  tv_55inch:
+    name: "55\" Television"
+    category: "electronics"
+    style: "modern"
+    material: "plastic_black"
+    dimensions: [1.24, 0.05, 0.70]
+    variations: 1
+    tags: ["tv", "screen", "media", "display"]
+    placement_zones: ["living_room"]
+
+  tv_65inch:
+    name: "65\" Television"
+    category: "electronics"
+    style: "modern"
+    material: "plastic_black"
+    dimensions: [1.45, 0.05, 0.83]
+    variations: 1
+    tags: ["tv", "screen", "media", "display"]
+    placement_zones: ["living_room"]
+
+  monitor_24inch:
+    name: "24\" Monitor"
+    category: "electronics"
+    style: "modern"
+    material: "plastic_black"
+    dimensions: [0.55, 0.05, 0.35]
+    variations: 2
+    tags: ["monitor", "screen", "computer", "display"]
+    placement_zones: ["office", "studio"]
+
+  monitor_27inch:
+    name: "27\" Monitor"
+    category: "electronics"
+    style: "modern"
+    material: "plastic_black"
+    dimensions: [0.61, 0.05, 0.38]
+    variations: 2
+    tags: ["monitor", "screen", "computer", "display"]
+    placement_zones: ["office", "studio"]
+
+  monitor_dual:
+    name: "Dual Monitor Setup"
+    category: "electronics"
+    style: "modern"
+    material: "plastic_black"
+    dimensions: [1.2, 0.3, 0.4]
+    variations: 1
+    tags: ["monitor", "screen", "computer", "dual", "display"]
+    placement_zones: ["office", "studio"]
+
+  # ============================================================================
+  # COMPUTERS
+  # ============================================================================
+
+  laptop:
+    name: "Laptop"
+    category: "electronics"
+    style: "modern"
+    material: "metal_aluminum"
+    dimensions: [0.35, 0.25, 0.02]
+    variations: 3
+    tags: ["computer", "laptop", "portable"]
+    placement_zones: ["office", "living_room", "bedroom", "cafe"]
+
+  laptop_open:
+    name: "Open Laptop"
+    category: "electronics"
+    style: "modern"
+    material: "metal_aluminum"
+    dimensions: [0.35, 0.25, 0.25]
+    variations: 3
+    tags: ["computer", "laptop", "portable", "open"]
+    placement_zones: ["office", "living_room", "bedroom", "cafe"]
+
+  desktop_tower:
+    name: "Desktop Tower"
+    category: "electronics"
+    style: "modern"
+    material: "metal_black"
+    dimensions: [0.2, 0.45, 0.45]
+    variations: 2
+    tags: ["computer", "desktop", "tower", "pc"]
+    placement_zones: ["office", "studio"]
+
+  all_in_one_pc:
+    name: "All-in-One PC"
+    category: "electronics"
+    style: "modern"
+    material: "metal_aluminum"
+    dimensions: [0.55, 0.05, 0.45]
+    variations: 2
+    tags: ["computer", "monitor", "all_in_one"]
+    placement_zones: ["office", "studio"]
+
+  # ============================================================================
+  # INPUT DEVICES
+  # ============================================================================
+
+  keyboard:
+    name: "Keyboard"
+    category: "electronics"
+    style: "modern"
+    material: "plastic_black"
+    dimensions: [0.45, 0.15, 0.02]
+    variations: 4
+    tags: ["computer", "keyboard", "input"]
+    placement_zones: ["office", "studio"]
+
+  keyboard_mechanical:
+    name: "Mechanical Keyboard"
+    category: "electronics"
+    style: "gaming"
+    material: "metal_black"
+    dimensions: [0.44, 0.14, 0.04]
+    variations: 3
+    tags: ["computer", "keyboard", "gaming", "mechanical"]
+    placement_zones: ["office", "gaming", "studio"]
+
+  mouse:
+    name: "Mouse"
+    category: "electronics"
+    style: "modern"
+    material: "plastic_black"
+    dimensions: [0.12, 0.07, 0.04]
+    variations: 4
+    tags: ["computer", "mouse", "input"]
+    placement_zones: ["office", "studio"]
+
+  mouse_pad:
+    name: "Mouse Pad"
+    category: "electronics"
+    style: "modern"
+    material: "fabric_black"
+    dimensions: [0.25, 0.20, 0.003]
+    variations: 3
+    tags: ["computer", "mouse", "pad"]
+    placement_zones: ["office", "studio"]
+
+  webcam:
+    name: "Webcam"
+    category: "electronics"
+    style: "modern"
+    material: "plastic_black"
+    dimensions: [0.08, 0.05, 0.05]
+    variations: 2
+    tags: ["camera", "webcam", "video", "streaming"]
+    placement_zones: ["office", "studio"]
+
+  # ============================================================================
+  # AUDIO
+  # ============================================================================
+
+  speakers_bookshelf:
+    name: "Bookshelf Speakers"
+    category: "electronics"
+    style: "modern"
+    material: "wood_black"
+    dimensions: [0.18, 0.25, 0.30]
+    variations: 2
+    tags: ["audio", "speaker", "music", "stereo"]
+    placement_zones: ["living_room", "office", "studio"]
+
+  soundbar:
+    name: "Soundbar"
+    category: "electronics"
+    style: "modern"
+    material: "metal_black"
+    dimensions: [0.9, 0.08, 0.06]
+    variations: 2
+    tags: ["audio", "speaker", "tv", "soundbar"]
+    placement_zones: ["living_room"]
+
+  headphones:
+    name: "Headphones"
+    category: "electronics"
+    style: "modern"
+    material: "plastic_black"
+    dimensions: [0.18, 0.15, 0.08]
+    variations: 4
+    tags: ["audio", "headphones", "music"]
+    placement_zones: ["office", "studio", "bedroom"]
+
+  headphones_studio:
+    name: "Studio Headphones"
+    category: "electronics"
+    style: "professional"
+    material: "metal_black"
+    dimensions: [0.20, 0.18, 0.10]
+    variations: 2
+    tags: ["audio", "headphones", "studio", "professional"]
+    placement_zones: ["studio"]
+
+  microphone:
+    name: "Microphone"
+    category: "electronics"
+    style: "professional"
+    material: "metal_chrome"
+    dimensions: [0.05, 0.05, 0.20]
+    variations: 3
+    tags: ["audio", "microphone", "recording"]
+    placement_zones: ["studio", "podcast", "office"]
+
+  # ============================================================================
+  # PHONES & TABLETS
+  # ============================================================================
+
+  smartphone:
+    name: "Smartphone"
+    category: "electronics"
+    style: "modern"
+    material: "glass_black"
+    dimensions: [0.075, 0.15, 0.008]
+    variations: 4
+    tags: ["phone", "mobile", "smartphone"]
+    placement_zones: ["living_room", "office", "bedroom", "kitchen"]
+
+  tablet:
+    name: "Tablet"
+    category: "electronics"
+    style: "modern"
+    material: "glass_black"
+    dimensions: [0.17, 0.25, 0.007]
+    variations: 2
+    tags: ["tablet", "mobile", "ipad"]
+    placement_zones: ["living_room", "office", "bedroom", "kitchen"]
+
+  tablet_stand:
+    name: "Tablet Stand"
+    category: "electronics"
+    style: "modern"
+    material: "metal_aluminum"
+    dimensions: [0.12, 0.15, 0.18]
+    variations: 2
+    tags: ["tablet", "stand", "holder"]
+    placement_zones: ["kitchen", "office", "bedroom"]
+
+  phone_desk:
+    name: "Desk Phone"
+    category: "electronics"
+    style: "modern"
+    material: "plastic_black"
+    dimensions: [0.20, 0.25, 0.08]
+    variations: 2
+    tags: ["phone", "office", "communication"]
+    placement_zones: ["office"]
+
+  # ============================================================================
+  # GAMING
+  # ============================================================================
+
+  game_console:
+    name: "Game Console"
+    category: "electronics"
+    style: "modern"
+    material: "plastic_black"
+    dimensions: [0.35, 0.08, 0.25]
+    variations: 3
+    tags: ["gaming", "console", "entertainment"]
+    placement_zones: ["living_room", "gaming"]
+
+  game_controller:
+    name: "Game Controller"
+    category: "electronics"
+    style: "modern"
+    material: "plastic_black"
+    dimensions: [0.16, 0.10, 0.06]
+    variations: 4
+    tags: ["gaming", "controller", "input"]
+    placement_zones: ["living_room", "gaming"]
+
+  vr_headset:
+    name: "VR Headset"
+    category: "electronics"
+    style: "futuristic"
+    material: "plastic_white"
+    dimensions: [0.20, 0.12, 0.12]
+    variations: 2
+    tags: ["gaming", "vr", "virtual_reality"]
+    placement_zones: ["gaming", "living_room"]
+
+  # ============================================================================
+  # SMART HOME
+  # ============================================================================
+
+  smart_speaker:
+    name: "Smart Speaker"
+    category: "electronics"
+    style: "modern"
+    material: "fabric_grey"
+    dimensions: [0.10, 0.10, 0.18]
+    variations: 3
+    tags: ["smart", "speaker", "assistant", "voice"]
+    placement_zones: ["living_room", "bedroom", "kitchen"]
+
+  smart_display:
+    name: "Smart Display"
+    category: "electronics"
+    style: "modern"
+    material: "plastic_white"
+    dimensions: [0.20, 0.10, 0.18]
+    variations: 2
+    tags: ["smart", "display", "assistant", "voice"]
+    placement_zones: ["kitchen", "living_room", "bedroom"]
+
+  smart_hub:
+    name: "Smart Home Hub"
+    category: "electronics"
+    style: "modern"
+    material: "plastic_white"
+    dimensions: [0.12, 0.12, 0.05]
+    variations: 2
+    tags: ["smart", "hub", "automation"]
+    placement_zones: ["living_room", "office"]
+
+  # ============================================================================
+  # VINTAGE / RETRO
+  # ============================================================================
+
+  crt_tv:
+    name: "CRT Television"
+    category: "electronics"
+    style: "retro"
+    period: "1980s"
+    material: "plastic_brown"
+    dimensions: [0.50, 0.45, 0.45]
+    variations: 2
+    tags: ["tv", "retro", "vintage", "crt"]
+    placement_zones: ["living_room", "bedroom"]
+
+  vcr:
+    name: "VCR Player"
+    category: "electronics"
+    style: "retro"
+    period: "1980s"
+    material: "plastic_black"
+    dimensions: [0.38, 0.10, 0.28]
+    variations: 2
+    tags: ["vcr", "retro", "vintage", "video"]
+    placement_zones: ["living_room"]
+
+  cassette_player:
+    name: "Cassette Player"
+    category: "electronics"
+    style: "retro"
+    period: "1980s"
+    material: "plastic_black"
+    dimensions: [0.25, 0.08, 0.15]
+    variations: 2
+    tags: ["audio", "cassette", "retro", "vintage"]
+    placement_zones: ["living_room", "bedroom"]
+
+  boombox:
+    name: "Boombox"
+    category: "electronics"
+    style: "retro"
+    period: "1980s"
+    material: "plastic_black"
+    dimensions: [0.50, 0.12, 0.35]
+    variations: 2
+    tags: ["audio", "boombox", "retro", "ghetto_blaster"]
+    placement_zones: ["living_room", "bedroom", "street"]
+
+  rotary_phone:
+    name: "Rotary Phone"
+    category: "electronics"
+    style: "retro"
+    period: "1960s"
+    material: "plastic_black"
+    dimensions: [0.25, 0.22, 0.15]
+    variations: 3
+    tags: ["phone", "retro", "vintage", "rotary"]
+    placement_zones: ["living_room", "office", "bedroom"]

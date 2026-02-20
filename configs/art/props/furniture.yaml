@@ -1,0 +1,295 @@
+# Furniture Prop Definitions
+# Defines furniture props for procedural set dressing
+
+category: "furniture"
+
+props:
+  # ============================================================================
+  # SEATING
+  # ============================================================================
+
+  sofa_modern:
+    name: "Modern Sofa"
+    category: "furniture"
+    style: "modern"
+    material: "fabric_neutral"
+    dimensions: [2.0, 0.9, 0.8]
+    variations: 3
+    tags: ["seating", "living_room", "sofa", "couch"]
+    placement_zones: ["living_room", "lounge"]
+
+  sofa_sectional:
+    name: "Sectional Sofa"
+    category: "furniture"
+    style: "modern"
+    material: "fabric_neutral"
+    dimensions: [3.0, 2.5, 0.8]
+    variations: 2
+    tags: ["seating", "living_room", "sofa", "sectional"]
+    placement_zones: ["living_room"]
+
+  armchair_modern:
+    name: "Modern Armchair"
+    category: "furniture"
+    style: "modern"
+    material: "fabric_neutral"
+    dimensions: [0.8, 0.8, 0.85]
+    variations: 4
+    tags: ["seating", "living_room", "chair", "armchair"]
+    placement_zones: ["living_room", "bedroom", "office"]
+
+  armchair_victorian:
+    name: "Victorian Armchair"
+    category: "furniture"
+    style: "victorian"
+    material: "fabric_velvet"
+    dimensions: [0.75, 0.75, 1.0]
+    variations: 2
+    tags: ["seating", "parlor", "antique", "armchair"]
+    placement_zones: ["living_room", "parlor"]
+
+  dining_chair_modern:
+    name: "Modern Dining Chair"
+    category: "furniture"
+    style: "modern"
+    material: "wood_oak"
+    dimensions: [0.45, 0.5, 0.85]
+    variations: 6
+    tags: ["seating", "dining", "chair"]
+    placement_zones: ["dining_room", "kitchen"]
+
+  office_chair:
+    name: "Office Chair"
+    category: "furniture"
+    style: "modern"
+    material: "fabric_black"
+    dimensions: [0.65, 0.65, 1.1]
+    variations: 2
+    tags: ["seating", "office", "desk", "swivel"]
+    placement_zones: ["office", "studio"]
+
+  # ============================================================================
+  # TABLES
+  # ============================================================================
+
+  coffee_table_wood:
+    name: "Wood Coffee Table"
+    category: "furniture"
+    style: "modern"
+    material: "wood_oak"
+    dimensions: [1.2, 0.6, 0.45]
+    variations: 3
+    tags: ["table", "living_room", "coffee", "wood"]
+    placement_zones: ["living_room"]
+
+  coffee_table_glass:
+    name: "Glass Coffee Table"
+    category: "furniture"
+    style: "modern"
+    material: "glass_clear"
+    dimensions: [1.0, 0.6, 0.4]
+    variations: 2
+    tags: ["table", "living_room", "coffee", "glass"]
+    placement_zones: ["living_room"]
+
+  dining_table_rect:
+    name: "Rectangular Dining Table"
+    category: "furniture"
+    style: "modern"
+    material: "wood_oak"
+    dimensions: [1.8, 0.9, 0.75]
+    variations: 2
+    tags: ["table", "dining", "wood"]
+    placement_zones: ["dining_room"]
+
+  dining_table_round:
+    name: "Round Dining Table"
+    category: "furniture"
+    style: "modern"
+    material: "wood_oak"
+    dimensions: [1.2, 1.2, 0.75]
+    variations: 2
+    tags: ["table", "dining", "wood", "round"]
+    placement_zones: ["dining_room", "kitchen"]
+
+  desk_office:
+    name: "Office Desk"
+    category: "furniture"
+    style: "modern"
+    material: "wood_oak"
+    dimensions: [1.4, 0.7, 0.75]
+    variations: 2
+    tags: ["table", "office", "desk", "work"]
+    placement_zones: ["office", "studio"]
+
+  desk_writing:
+    name: "Writing Desk"
+    category: "furniture"
+    style: "traditional"
+    material: "wood_cherry"
+    dimensions: [1.2, 0.6, 0.75]
+    variations: 1
+    tags: ["table", "desk", "writing", "traditional"]
+    placement_zones: ["study", "bedroom"]
+
+  side_table:
+    name: "Side Table"
+    category: "furniture"
+    style: "modern"
+    material: "wood_oak"
+    dimensions: [0.5, 0.5, 0.55]
+    variations: 3
+    tags: ["table", "side", "end", "nightstand"]
+    placement_zones: ["living_room", "bedroom"]
+
+  console_table:
+    name: "Console Table"
+    category: "furniture"
+    style: "modern"
+    material: "wood_oak"
+    dimensions: [1.2, 0.35, 0.8]
+    variations: 2
+    tags: ["table", "console", "entryway"]
+    placement_zones: ["entryway", "hallway"]
+
+  # ============================================================================
+  # BEDS
+  # ============================================================================
+
+  bed_queen:
+    name: "Queen Bed"
+    category: "furniture"
+    style: "modern"
+    material: "fabric_neutral"
+    dimensions: [1.6, 2.0, 0.6]
+    variations: 2
+    tags: ["bed", "bedroom", "queen", "sleeping"]
+    placement_zones: ["bedroom"]
+
+  bed_king:
+    name: "King Bed"
+    category: "furniture"
+    style: "modern"
+    material: "fabric_neutral"
+    dimensions: [2.0, 2.0, 0.6]
+    variations: 2
+    tags: ["bed", "bedroom", "king", "sleeping"]
+    placement_zones: ["bedroom"]
+
+  bed_single:
+    name: "Single Bed"
+    category: "furniture"
+    style: "modern"
+    material: "fabric_neutral"
+    dimensions: [1.0, 2.0, 0.5]
+    variations: 2
+    tags: ["bed", "bedroom", "single", "twin", "sleeping"]
+    placement_zones: ["bedroom", "guest_room"]
+
+  nightstand:
+    name: "Nightstand"
+    category: "furniture"
+    style: "modern"
+    material: "wood_oak"
+    dimensions: [0.5, 0.4, 0.55]
+    variations: 3
+    tags: ["storage", "bedroom", "table", "nightstand"]
+    placement_zones: ["bedroom"]
+
+  # ============================================================================
+  # STORAGE
+  # ============================================================================
+
+  bookshelf_standard:
+    name: "Standard Bookshelf"
+    category: "furniture"
+    style: "modern"
+    material: "wood_oak"
+    dimensions: [0.8, 0.35, 1.8]
+    variations: 2
+    tags: ["storage", "books", "shelf"]
+    placement_zones: ["living_room", "office", "study"]
+
+  bookshelf_builtin:
+    name: "Built-in Bookshelf"
+    category: "furniture"
+    style: "traditional"
+    material: "wood_cherry"
+    dimensions: [2.0, 0.35, 2.5]
+    variations: 1
+    tags: ["storage", "books", "shelf", "builtin"]
+    placement_zones: ["study", "library"]
+
+  dresser_6drawer:
+    name: "6-Drawer Dresser"
+    category: "furniture"
+    style: "modern"
+    material: "wood_oak"
+    dimensions: [1.2, 0.5, 0.8]
+    variations: 2
+    tags: ["storage", "bedroom", "dresser"]
+    placement_zones: ["bedroom"]
+
+  wardrobe:
+    name: "Wardrobe"
+    category: "furniture"
+    style: "modern"
+    material: "wood_oak"
+    dimensions: [1.2, 0.6, 2.0]
+    variations: 2
+    tags: ["storage", "bedroom", "closet", "wardrobe"]
+    placement_zones: ["bedroom"]
+
+  tv_stand:
+    name: "TV Stand"
+    category: "furniture"
+    style: "modern"
+    material: "wood_oak"
+    dimensions: [1.5, 0.4, 0.45]
+    variations: 3
+    tags: ["storage", "living_room", "media", "tv"]
+    placement_zones: ["living_room"]
+
+  credenza:
+    name: "Credenza"
+    category: "furniture"
+    style: "modern"
+    material: "wood_oak"
+    dimensions: [1.6, 0.45, 0.75]
+    variations: 2
+    tags: ["storage", "dining", "office", "credenza"]
+    placement_zones: ["dining_room", "office"]
+
+  filing_cabinet:
+    name: "Filing Cabinet"
+    category: "furniture"
+    style: "modern"
+    material: "metal_grey"
+    dimensions: [0.4, 0.6, 1.3]
+    variations: 2
+    tags: ["storage", "office", "files", "cabinet"]
+    placement_zones: ["office"]
+
+  # ============================================================================
+  # OUTDOOR / SPECIAL
+  # ============================================================================
+
+  bench_entryway:
+    name: "Entryway Bench"
+    category: "furniture"
+    style: "modern"
+    material: "wood_oak"
+    dimensions: [1.2, 0.4, 0.45]
+    variations: 2
+    tags: ["seating", "entryway", "bench"]
+    placement_zones: ["entryway", "mudroom"]
+
+  bar_stool:
+    name: "Bar Stool"
+    category: "furniture"
+    style: "modern"
+    material: "metal_chrome"
+    dimensions: [0.4, 0.4, 0.75]
+    variations: 3
+    tags: ["seating", "bar", "kitchen", "stool"]
+    placement_zones: ["kitchen", "bar"]

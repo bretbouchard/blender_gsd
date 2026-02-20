@@ -1,0 +1,333 @@
+# Decor Prop Definitions
+# Defines decorative props for procedural set dressing
+
+category: "decor"
+
+props:
+  # ============================================================================
+  # LIGHTING
+  # ============================================================================
+
+  lamp_floor:
+    name: "Floor Lamp"
+    category: "decor"
+    style: "modern"
+    material: "metal_chrome"
+    dimensions: [0.4, 0.4, 1.6]
+    variations: 4
+    tags: ["lighting", "lamp", "floor"]
+    placement_zones: ["living_room", "bedroom", "office"]
+
+  lamp_floor_arc:
+    name: "Arc Floor Lamp"
+    category: "decor"
+    style: "modern"
+    material: "metal_chrome"
+    dimensions: [1.5, 0.5, 2.2]
+    variations: 2
+    tags: ["lighting", "lamp", "floor", "arc"]
+    placement_zones: ["living_room"]
+
+  lamp_table:
+    name: "Table Lamp"
+    category: "decor"
+    style: "modern"
+    material: "ceramic_white"
+    dimensions: [0.3, 0.3, 0.45]
+    variations: 6
+    tags: ["lighting", "lamp", "table"]
+    placement_zones: ["living_room", "bedroom", "office"]
+
+  lamp_desk:
+    name: "Desk Lamp"
+    category: "decor"
+    style: "modern"
+    material: "metal_chrome"
+    dimensions: [0.25, 0.2, 0.4]
+    variations: 3
+    tags: ["lighting", "lamp", "desk", "office"]
+    placement_zones: ["office", "study"]
+
+  # ============================================================================
+  # VASES & CONTAINERS
+  # ============================================================================
+
+  vase_modern:
+    name: "Modern Vase"
+    category: "decor"
+    style: "modern"
+    material: "ceramic_white"
+    dimensions: [0.2, 0.2, 0.35]
+    variations: 5
+    tags: ["vase", "decorative", "ceramic"]
+    placement_zones: ["living_room", "dining_room", "bedroom"]
+
+  vase_floor:
+    name: "Floor Vase"
+    category: "decor"
+    style: "modern"
+    material: "ceramic_terracotta"
+    dimensions: [0.4, 0.4, 0.9]
+    variations: 3
+    tags: ["vase", "decorative", "floor", "ceramic"]
+    placement_zones: ["living_room", "entryway"]
+
+  bowl_decorative:
+    name: "Decorative Bowl"
+    category: "decor"
+    style: "modern"
+    material: "ceramic_white"
+    dimensions: [0.3, 0.3, 0.1]
+    variations: 4
+    tags: ["bowl", "decorative", "ceramic"]
+    placement_zones: ["living_room", "dining_room"]
+
+  # ============================================================================
+  # PLANTS
+  # ============================================================================
+
+  plant_potted:
+    name: "Potted Plant"
+    category: "decor"
+    style: "modern"
+    material: "ceramic_terracotta"
+    dimensions: [0.3, 0.3, 0.6]
+    variations: 8
+    tags: ["plant", "nature", "decorative"]
+    placement_zones: ["living_room", "bedroom", "office"]
+
+  plant_large_floor:
+    name: "Large Floor Plant"
+    category: "decor"
+    style: "modern"
+    material: "ceramic_terracotta"
+    dimensions: [0.5, 0.5, 1.5]
+    variations: 4
+    tags: ["plant", "nature", "floor"]
+    placement_zones: ["living_room", "entryway"]
+
+  succulent_small:
+    name: "Small Succulent"
+    category: "decor"
+    style: "modern"
+    material: "ceramic_white"
+    dimensions: [0.1, 0.1, 0.15]
+    variations: 6
+    tags: ["plant", "nature", "desk", "succulent"]
+    placement_zones: ["living_room", "office", "bedroom", "bathroom"]
+
+  terrarium:
+    name: "Terrarium"
+    category: "decor"
+    style: "modern"
+    material: "glass_clear"
+    dimensions: [0.2, 0.2, 0.3]
+    variations: 3
+    tags: ["plant", "nature", "terrarium", "glass"]
+    placement_zones: ["living_room", "office"]
+
+  # ============================================================================
+  # ART & FRAMES
+  # ============================================================================
+
+  picture_frame_small:
+    name: "Small Picture Frame"
+    category: "decor"
+    style: "modern"
+    material: "wood_black"
+    dimensions: [0.25, 0.02, 0.3]
+    variations: 4
+    tags: ["art", "frame", "wall", "photo"]
+    placement_zones: ["living_room", "bedroom", "office"]
+
+  picture_frame_medium:
+    name: "Medium Picture Frame"
+    category: "decor"
+    style: "modern"
+    material: "wood_black"
+    dimensions: [0.4, 0.02, 0.5]
+    variations: 4
+    tags: ["art", "frame", "wall", "photo"]
+    placement_zones: ["living_room", "bedroom", "hallway"]
+
+  picture_frame_large:
+    name: "Large Picture Frame"
+    category: "decor"
+    style: "modern"
+    material: "wood_black"
+    dimensions: [0.6, 0.02, 0.8]
+    variations: 3
+    tags: ["art", "frame", "wall"]
+    placement_zones: ["living_room", "dining_room"]
+
+  canvas_art:
+    name: "Canvas Art"
+    category: "decor"
+    style: "modern"
+    material: "canvas"
+    dimensions: [0.8, 0.03, 0.6]
+    variations: 6
+    tags: ["art", "canvas", "wall", "painting"]
+    placement_zones: ["living_room", "bedroom", "office"]
+
+  mirror_wall:
+    name: "Wall Mirror"
+    category: "decor"
+    style: "modern"
+    material: "glass_mirror"
+    dimensions: [0.6, 0.02, 0.9]
+    variations: 3
+    tags: ["mirror", "wall", "decorative"]
+    placement_zones: ["living_room", "bedroom", "hallway"]
+
+  mirror_floor:
+    name: "Floor Mirror"
+    category: "decor"
+    style: "modern"
+    material: "glass_mirror"
+    dimensions: [0.6, 0.3, 1.6]
+    variations: 2
+    tags: ["mirror", "floor", "full_length"]
+    placement_zones: ["bedroom", "entryway"]
+
+  # ============================================================================
+  # TEXTILES & SOFT GOODS
+  # ============================================================================
+
+  rug_area_small:
+    name: "Small Area Rug"
+    category: "decor"
+    style: "modern"
+    material: "fabric_wool"
+    dimensions: [1.2, 0.8, 0.02]
+    variations: 4
+    tags: ["rug", "floor", "textile"]
+    placement_zones: ["living_room", "bedroom", "office"]
+
+  rug_area_large:
+    name: "Large Area Rug"
+    category: "decor"
+    style: "modern"
+    material: "fabric_wool"
+    dimensions: [2.5, 1.8, 0.02]
+    variations: 3
+    tags: ["rug", "floor", "textile"]
+    placement_zones: ["living_room", "dining_room"]
+
+  cushion_decorative:
+    name: "Decorative Cushion"
+    category: "decor"
+    style: "modern"
+    material: "fabric_cotton"
+    dimensions: [0.45, 0.45, 0.15]
+    variations: 8
+    tags: ["cushion", "textile", "decorative", "pillow"]
+    placement_zones: ["living_room", "bedroom"]
+
+  throw_blanket:
+    name: "Throw Blanket"
+    category: "decor"
+    style: "modern"
+    material: "fabric_wool"
+    dimensions: [1.5, 1.2, 0.02]
+    variations: 4
+    tags: ["textile", "blanket", "decorative", "throw"]
+    placement_zones: ["living_room", "bedroom"]
+
+  curtains_panel:
+    name: "Panel Curtains"
+    category: "decor"
+    style: "modern"
+    material: "fabric_cotton"
+    dimensions: [1.4, 0.2, 2.5]
+    variations: 4
+    tags: ["curtain", "window", "textile"]
+    placement_zones: ["living_room", "bedroom"]
+
+  # ============================================================================
+  # CANDLES & SCENTS
+  # ============================================================================
+
+  candle_pillar:
+    name: "Pillar Candle"
+    category: "decor"
+    style: "modern"
+    material: "wax_white"
+    dimensions: [0.08, 0.08, 0.15]
+    variations: 4
+    tags: ["candle", "decorative", "lighting"]
+    placement_zones: ["living_room", "bedroom", "bathroom", "dining_room"]
+
+  candle_jar:
+    name: "Jar Candle"
+    category: "decor"
+    style: "modern"
+    material: "glass_clear"
+    dimensions: [0.1, 0.1, 0.12]
+    variations: 5
+    tags: ["candle", "decorative", "jar"]
+    placement_zones: ["living_room", "bedroom", "bathroom"]
+
+  diffuser_reed:
+    name: "Reed Diffuser"
+    category: "decor"
+    style: "modern"
+    material: "glass_clear"
+    dimensions: [0.08, 0.08, 0.25]
+    variations: 3
+    tags: ["diffuser", "scent", "decorative"]
+    placement_zones: ["living_room", "bedroom", "bathroom"]
+
+  # ============================================================================
+  # COLLECTIBLES & ACCENTS
+  # ============================================================================
+
+  sculpture_small:
+    name: "Small Sculpture"
+    category: "decor"
+    style: "modern"
+    material: "metal_bronze"
+    dimensions: [0.15, 0.15, 0.25]
+    variations: 6
+    tags: ["art", "sculpture", "decorative"]
+    placement_zones: ["living_room", "office", "bedroom"]
+
+  book_stack:
+    name: "Stack of Books"
+    category: "decor"
+    style: "modern"
+    material: "paper"
+    dimensions: [0.2, 0.15, 0.2]
+    variations: 4
+    tags: ["book", "reading", "stack", "decorative"]
+    placement_zones: ["living_room", "office", "bedroom"]
+
+  globe:
+    name: "Globe"
+    category: "decor"
+    style: "traditional"
+    material: "plastic_colored"
+    dimensions: [0.3, 0.3, 0.4]
+    variations: 2
+    tags: ["globe", "decorative", "desk"]
+    placement_zones: ["office", "study", "library"]
+
+  clock_wall:
+    name: "Wall Clock"
+    category: "decor"
+    style: "modern"
+    material: "metal_chrome"
+    dimensions: [0.35, 0.05, 0.35]
+    variations: 4
+    tags: ["clock", "wall", "decorative"]
+    placement_zones: ["living_room", "kitchen", "office"]
+
+  clock_desk:
+    name: "Desk Clock"
+    category: "decor"
+    style: "modern"
+    material: "metal_chrome"
+    dimensions: [0.12, 0.08, 0.15]
+    variations: 3
+    tags: ["clock", "desk", "decorative"]
+    placement_zones: ["office", "bedroom"]

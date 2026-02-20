@@ -1,0 +1,609 @@
+# Set Materials Configuration
+# Defines materials for procedural set construction
+
+version: "1.0"
+
+# =============================================================================
+# WOOD MATERIALS
+# =============================================================================
+
+wood:
+  oak:
+    name: "Oak Wood"
+    type: "wood"
+    color: [0.6, 0.4, 0.2]
+    roughness: 0.4
+    metallic: 0.0
+    pattern: "wood_grain"
+    grain_scale: 1.0
+
+  dark_oak:
+    name: "Dark Oak"
+    type: "wood"
+    color: [0.35, 0.25, 0.15]
+    roughness: 0.35
+    metallic: 0.0
+    pattern: "wood_grain"
+    grain_scale: 0.8
+
+  cherry:
+    name: "Cherry Wood"
+    type: "wood"
+    color: [0.5, 0.25, 0.15]
+    roughness: 0.3
+    metallic: 0.0
+    pattern: "wood_grain"
+    grain_scale: 0.9
+
+  walnut:
+    name: "Walnut Wood"
+    type: "wood"
+    color: [0.3, 0.2, 0.1]
+    roughness: 0.35
+    metallic: 0.0
+    pattern: "wood_grain"
+    grain_scale: 1.1
+
+  teak:
+    name: "Teak Wood"
+    type: "wood"
+    color: [0.55, 0.35, 0.2]
+    roughness: 0.35
+    metallic: 0.0
+    pattern: "wood_grain"
+    grain_scale: 1.2
+
+  maple:
+    name: "Maple Wood"
+    type: "wood"
+    color: [0.85, 0.75, 0.55]
+    roughness: 0.4
+    metallic: 0.0
+    pattern: "wood_grain"
+    grain_scale: 0.7
+
+  ash:
+    name: "Ash Wood"
+    type: "wood"
+    color: [0.8, 0.75, 0.6]
+    roughness: 0.45
+    metallic: 0.0
+    pattern: "wood_grain"
+    grain_scale: 0.8
+
+  ebony:
+    name: "Ebony Wood"
+    type: "wood"
+    color: [0.1, 0.08, 0.06]
+    roughness: 0.2
+    metallic: 0.0
+    pattern: "wood_grain"
+    grain_scale: 0.5
+
+  pine:
+    name: "Pine Wood"
+    type: "wood"
+    color: [0.8, 0.65, 0.4]
+    roughness: 0.6
+    metallic: 0.0
+    pattern: "wood_grain"
+    grain_scale: 1.5
+
+  reclaimed:
+    name: "Reclaimed Wood"
+    type: "wood"
+    color: [0.5, 0.4, 0.3]
+    roughness: 0.7
+    metallic: 0.0
+    pattern: "wood_distressed"
+    grain_scale: 1.0
+
+  white:
+    name: "White Painted Wood"
+    type: "wood"
+    color: [0.95, 0.95, 0.92]
+    roughness: 0.5
+    metallic: 0.0
+    pattern: "painted_wood"
+    grain_scale: 1.0
+
+# =============================================================================
+# FLOORING MATERIALS
+# =============================================================================
+
+flooring:
+  hardwood_oak:
+    name: "Hardwood Oak Floor"
+    type: "flooring"
+    base_material: "wood_oak"
+    plank_width: 0.1
+    plank_length: 1.0
+    gap_width: 0.002
+    pattern: "planks"
+
+  hardwood_dark:
+    name: "Dark Hardwood Floor"
+    type: "flooring"
+    base_material: "wood_dark_oak"
+    plank_width: 0.12
+    plank_length: 1.2
+    gap_width: 0.002
+    pattern: "planks"
+
+  hardwood_herringbone:
+    name: "Herringbone Floor"
+    type: "flooring"
+    base_material: "wood_oak"
+    plank_width: 0.08
+    plank_length: 0.4
+    pattern: "herringbone"
+
+  parquet:
+    name: "Parquet Floor"
+    type: "flooring"
+    base_material: "wood_cherry"
+    pattern: "parquet"
+    tile_size: 0.3
+
+  concrete_polished:
+    name: "Polished Concrete"
+    type: "flooring"
+    color: [0.6, 0.6, 0.6]
+    roughness: 0.2
+    pattern: "concrete_polished"
+
+  concrete_raw:
+    name: "Raw Concrete"
+    type: "flooring"
+    color: [0.5, 0.5, 0.5]
+    roughness: 0.9
+    pattern: "concrete_raw"
+
+  carpet_beige:
+    name: "Beige Carpet"
+    type: "flooring"
+    color: [0.85, 0.8, 0.7]
+    roughness: 1.0
+    pattern: "carpet"
+    pile_height: 0.01
+
+  carpet_gray:
+    name: "Gray Carpet"
+    type: "flooring"
+    color: [0.5, 0.5, 0.52]
+    roughness: 1.0
+    pattern: "carpet"
+    pile_height: 0.01
+
+  tile_ceramic:
+    name: "Ceramic Tile"
+    type: "flooring"
+    color: [0.9, 0.88, 0.85]
+    roughness: 0.3
+    tile_size: 0.3
+    grout_width: 0.003
+    grout_color: [0.7, 0.7, 0.7]
+
+  tile_marble:
+    name: "Marble Tile"
+    type: "flooring"
+    color: [0.95, 0.93, 0.9]
+    roughness: 0.1
+    pattern: "marble"
+    tile_size: 0.6
+
+  tatami:
+    name: "Tatami Mat"
+    type: "flooring"
+    color: [0.85, 0.8, 0.6]
+    roughness: 0.95
+    pattern: "tatami"
+    mat_size: [0.9, 1.8]
+
+# =============================================================================
+# WALL MATERIALS
+# =============================================================================
+
+walls:
+  drywall_white:
+    name: "White Drywall"
+    type: "wall"
+    color: [1.0, 1.0, 1.0]
+    roughness: 0.9
+    pattern: "drywall"
+
+  drywall_beige:
+    name: "Beige Drywall"
+    type: "wall"
+    color: [0.9, 0.85, 0.75]
+    roughness: 0.9
+    pattern: "drywall"
+
+  drywall_pastel:
+    name: "Pastel Wall"
+    type: "wall"
+    color: [0.9, 0.88, 0.85]
+    roughness: 0.9
+    pattern: "drywall"
+
+  wallpaper_solid:
+    name: "Solid Wallpaper"
+    type: "wall"
+    color: [0.8, 0.7, 0.6]
+    roughness: 0.85
+    pattern: "none"
+
+  wallpaper_floral:
+    name: "Floral Wallpaper"
+    type: "wall"
+    base_color: [0.9, 0.85, 0.7]
+    pattern: "floral_victorian"
+    pattern_scale: 0.3
+    roughness: 0.85
+
+  wallpaper_geometric:
+    name: "Geometric Wallpaper"
+    type: "wall"
+    base_color: [0.95, 0.9, 0.8]
+    pattern: "geometric_art_deco"
+    pattern_scale: 0.2
+    roughness: 0.8
+
+  wallpaper_striped:
+    name: "Striped Wallpaper"
+    type: "wall"
+    base_color: [0.95, 0.95, 0.92]
+    pattern: "stripes"
+    stripe_width: 0.1
+    accent_color: [0.7, 0.75, 0.7]
+
+  brick_exposed:
+    name: "Exposed Brick"
+    type: "wall"
+    color: [0.6, 0.4, 0.3]
+    roughness: 0.8
+    pattern: "brick"
+    brick_size: [0.2, 0.07, 0.1]
+    mortar_color: [0.5, 0.45, 0.4]
+
+  brick_painted:
+    name: "Painted Brick"
+    type: "wall"
+    color: [0.95, 0.95, 0.92]
+    roughness: 0.75
+    pattern: "brick"
+    brick_size: [0.2, 0.07, 0.1]
+
+  concrete_raw:
+    name: "Raw Concrete Wall"
+    type: "wall"
+    color: [0.5, 0.5, 0.5]
+    roughness: 0.9
+    pattern: "concrete_raw"
+
+  panel_wood:
+    name: "Wood Paneling"
+    type: "wall"
+    base_material: "wood_oak"
+    pattern: "paneling"
+    panel_width: 0.15
+    panel_height: 2.4
+
+  shoji_screen:
+    name: "Shoji Screen"
+    type: "wall"
+    color: [0.95, 0.93, 0.88]
+    roughness: 0.8
+    pattern: "shoji"
+    frame_color: [0.3, 0.25, 0.2]
+
+  plaster_ornate:
+    name: "Ornate Plaster"
+    type: "wall"
+    color: [0.95, 0.93, 0.88]
+    roughness: 0.6
+    pattern: "plaster_ornate"
+
+# =============================================================================
+# METAL MATERIALS
+# =============================================================================
+
+metal:
+  chrome:
+    name: "Chrome"
+    type: "metal"
+    color: [0.9, 0.9, 0.92]
+    metallic: 1.0
+    roughness: 0.05
+
+  brushed_steel:
+    name: "Brushed Steel"
+    type: "metal"
+    color: [0.7, 0.7, 0.72]
+    metallic: 1.0
+    roughness: 0.3
+    pattern: "brushed"
+
+  brass:
+    name: "Brass"
+    type: "metal"
+    color: [0.8, 0.7, 0.3]
+    metallic: 1.0
+    roughness: 0.2
+
+  bronze:
+    name: "Bronze"
+    type: "metal"
+    color: [0.6, 0.45, 0.25]
+    metallic: 1.0
+    roughness: 0.35
+
+  copper:
+    name: "Copper"
+    type: "metal"
+    color: [0.8, 0.5, 0.3]
+    metallic: 1.0
+    roughness: 0.25
+
+  iron:
+    name: "Iron"
+    type: "metal"
+    color: [0.3, 0.3, 0.32]
+    metallic: 0.9
+    roughness: 0.6
+
+  rusted:
+    name: "Rusted Metal"
+    type: "metal"
+    color: [0.5, 0.3, 0.2]
+    metallic: 0.6
+    roughness: 0.8
+    pattern: "rust"
+
+  aluminum:
+    name: "Aluminum"
+    type: "metal"
+    color: [0.85, 0.85, 0.87]
+    metallic: 1.0
+    roughness: 0.4
+
+  black:
+    name: "Black Metal"
+    type: "metal"
+    color: [0.1, 0.1, 0.1]
+    metallic: 0.8
+    roughness: 0.3
+
+  silver:
+    name: "Silver"
+    type: "metal"
+    color: [0.95, 0.95, 0.97]
+    metallic: 1.0
+    roughness: 0.1
+
+# =============================================================================
+# FABRIC MATERIALS
+# =============================================================================
+
+fabric:
+  cotton:
+    name: "Cotton"
+    type: "fabric"
+    color: [0.9, 0.9, 0.88]
+    roughness: 0.95
+    pattern: "weave_cotton"
+    sheen: 0.1
+
+  linen:
+    name: "Linen"
+    type: "fabric"
+    color: [0.95, 0.93, 0.88]
+    roughness: 0.9
+    pattern: "weave_linen"
+    sheen: 0.05
+
+  wool:
+    name: "Wool"
+    type: "fabric"
+    color: [0.6, 0.58, 0.55]
+    roughness: 1.0
+    pattern: "weave_wool"
+    sheen: 0.0
+
+  velvet:
+    name: "Velvet"
+    type: "fabric"
+    color: [0.4, 0.15, 0.2]
+    roughness: 0.5
+    pattern: "velvet"
+    sheen: 0.5
+
+  leather:
+    name: "Leather"
+    type: "fabric"
+    color: [0.3, 0.2, 0.15]
+    roughness: 0.4
+    pattern: "leather_grain"
+    sheen: 0.2
+
+  neutral:
+    name: "Neutral Fabric"
+    type: "fabric"
+    color: [0.7, 0.68, 0.65]
+    roughness: 0.95
+    pattern: "weave_basic"
+    sheen: 0.1
+
+  black:
+    name: "Black Fabric"
+    type: "fabric"
+    color: [0.1, 0.1, 0.1]
+    roughness: 0.95
+    pattern: "weave_basic"
+    sheen: 0.05
+
+  silk:
+    name: "Silk"
+    type: "fabric"
+    color: [0.8, 0.75, 0.7]
+    roughness: 0.3
+    pattern: "silk"
+    sheen: 0.8
+
+# =============================================================================
+# GLASS MATERIALS
+# =============================================================================
+
+glass:
+  clear:
+    name: "Clear Glass"
+    type: "glass"
+    color: [1.0, 1.0, 1.0]
+    roughness: 0.0
+    transmission: 0.95
+    ior: 1.5
+
+  frosted:
+    name: "Frosted Glass"
+    type: "glass"
+    color: [1.0, 1.0, 1.0]
+    roughness: 0.5
+    transmission: 0.7
+    ior: 1.5
+
+  tinted:
+    name: "Tinted Glass"
+    type: "glass"
+    color: [0.7, 0.8, 0.9]
+    roughness: 0.0
+    transmission: 0.6
+    ior: 1.5
+
+  mirror:
+    name: "Mirror"
+    type: "glass"
+    color: [0.95, 0.95, 0.95]
+    roughness: 0.0
+    metallic: 1.0
+
+# =============================================================================
+# CERAMIC MATERIALS
+# =============================================================================
+
+ceramic:
+  white:
+    name: "White Ceramic"
+    type: "ceramic"
+    color: [0.98, 0.98, 0.96]
+    roughness: 0.2
+    clearcoat: 0.8
+
+  terracotta:
+    name: "Terracotta"
+    type: "ceramic"
+    color: [0.8, 0.5, 0.3]
+    roughness: 0.7
+    clearcoat: 0.0
+
+  porcelain:
+    name: "Porcelain"
+    type: "ceramic"
+    color: [0.98, 0.97, 0.95]
+    roughness: 0.1
+    clearcoat: 1.0
+
+# =============================================================================
+# PLASTIC MATERIALS
+# =============================================================================
+
+plastic:
+  black:
+    name: "Black Plastic"
+    type: "plastic"
+    color: [0.05, 0.05, 0.05]
+    roughness: 0.4
+
+  white:
+    name: "White Plastic"
+    type: "plastic"
+    color: [0.95, 0.95, 0.95]
+    roughness: 0.4
+
+  grey:
+    name: "Grey Plastic"
+    type: "plastic"
+    color: [0.5, 0.5, 0.5]
+    roughness: 0.4
+
+# =============================================================================
+# CEILING MATERIALS
+# =============================================================================
+
+ceiling:
+  drywall_white:
+    name: "White Drywall Ceiling"
+    type: "ceiling"
+    color: [1.0, 1.0, 1.0]
+    roughness: 0.9
+
+  acoustic_tile:
+    name: "Acoustic Tile Ceiling"
+    type: "ceiling"
+    color: [0.95, 0.95, 0.93]
+    roughness: 0.95
+    pattern: "acoustic_tile"
+    tile_size: [0.6, 0.6]
+
+  exposed_beam:
+    name: "Exposed Beam Ceiling"
+    type: "ceiling"
+    beam_material: "wood_oak"
+    ceiling_material: "drywall_white"
+    beam_spacing: 1.0
+
+  plaster_ornate:
+    name: "Ornate Plaster Ceiling"
+    type: "ceiling"
+    color: [0.98, 0.96, 0.94]
+    roughness: 0.6
+    pattern: "plaster_moldings"
+
+  exposed_structure:
+    name: "Exposed Structure Ceiling"
+    type: "ceiling"
+    beam_material: "metal_black"
+    deck_material: "metal_grey"
+    pattern: "industrial_exposed"
+
+# =============================================================================
+# STONE MATERIALS
+# =============================================================================
+
+stone:
+  marble_white:
+    name: "White Marble"
+    type: "stone"
+    color: [0.95, 0.93, 0.9]
+    roughness: 0.1
+    pattern: "marble_veins"
+
+  marble_black:
+    name: "Black Marble"
+    type: "stone"
+    color: [0.1, 0.1, 0.12]
+    roughness: 0.1
+    pattern: "marble_veins_white"
+
+  granite:
+    name: "Granite"
+    type: "stone"
+    color: [0.4, 0.4, 0.42]
+    roughness: 0.3
+    pattern: "granite_speckle"
+
+  slate:
+    name: "Slate"
+    type: "stone"
+    color: [0.25, 0.25, 0.28]
+    roughness: 0.6
+    pattern: "slate"

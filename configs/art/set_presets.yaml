@@ -1,0 +1,632 @@
+# Set Builder Style Presets
+# Defines complete aesthetic packages for procedural set construction
+
+presets:
+  # ============================================================================
+  # MODERN RESIDENTIAL
+  # ============================================================================
+
+  modern_apartment:
+    name: "Modern Apartment"
+    style: "modern_residential"
+    period: "present"
+    description: "Contemporary urban apartment with clean lines and minimal aesthetic"
+    default_materials:
+      floor: "hardwood_oak"
+      walls: "drywall_white"
+      ceiling: "drywall_white"
+      trim: "wood_white"
+    default_props:
+      - category: "furniture"
+        style: "modern"
+        density: 0.6
+      - category: "decor"
+        style: "minimal"
+        density: 0.4
+    wall_config:
+      baseboard_height: 0.08
+      crown_molding: false
+      color: [1.0, 1.0, 1.0]
+    door_config:
+      style: "flush"
+      material: "wood_white"
+      handle_style: "lever_modern"
+      handle_material: "chrome"
+    window_config:
+      style: "double_hung"
+      frame_material: "wood_white"
+      has_curtains: true
+      curtain_style: "panel"
+    color_palette:
+      - [1.0, 1.0, 1.0]      # White
+      - [0.9, 0.9, 0.9]      # Off-white
+      - [0.3, 0.3, 0.35]     # Charcoal
+      - [0.6, 0.7, 0.6]      # Sage
+
+  modern_loft:
+    name: "Modern Loft"
+    style: "industrial"
+    period: "present"
+    description: "Open loft space with industrial elements and modern furnishings"
+    default_materials:
+      floor: "concrete_polished"
+      walls: "brick_exposed"
+      ceiling: "exposed_beam"
+      trim: "metal_black"
+    default_props:
+      - category: "furniture"
+        style: "industrial"
+        density: 0.5
+      - category: "decor"
+        style: "eclectic"
+        density: 0.6
+    wall_config:
+      baseboard_height: 0.0
+      crown_molding: false
+      color: [0.6, 0.4, 0.3]  # Brick tone
+    door_config:
+      style: "barn"
+      material: "wood_reclaimed"
+      handle_style: "bar"
+      handle_material: "iron"
+    window_config:
+      style: "picture"
+      frame_material: "metal_black"
+      has_curtains: false
+    color_palette:
+      - [0.6, 0.4, 0.3]      # Brick
+      - [0.4, 0.4, 0.4]      # Concrete
+      - [0.2, 0.2, 0.2]      # Black metal
+      - [0.8, 0.7, 0.5]      # Warm wood
+
+  # ============================================================================
+  # HISTORICAL PERIODS
+  # ============================================================================
+
+  victorian_parlor:
+    name: "Victorian Parlor"
+    style: "victorian"
+    period: "1890s"
+    description: "Ornate Victorian-era parlor with rich materials and decorative details"
+    default_materials:
+      floor: "hardwood_dark"
+      walls: "wallpaper_floral"
+      ceiling: "plaster_ornate"
+      trim: "wood_cherry"
+    default_props:
+      - category: "furniture"
+        style: "victorian"
+        density: 0.8
+      - category: "decor"
+        style: "antique"
+        density: 0.9
+    wall_config:
+      baseboard_height: 0.2
+      crown_molding: true
+      crown_molding_height: 0.15
+      wainscoting: true
+      wainscoting_height: 1.2
+      color: [0.9, 0.85, 0.7]  # Cream/paper tone
+    door_config:
+      style: "panel_6"
+      material: "wood_cherry"
+      handle_style: "knob_brass"
+      handle_material: "brass"
+    window_config:
+      style: "double_hung"
+      frame_material: "wood_cherry"
+      has_curtains: true
+      curtain_style: "drapes_heavy"
+    color_palette:
+      - [0.6, 0.2, 0.2]      # Burgundy
+      - [0.15, 0.3, 0.15]    # Forest green
+      - [0.8, 0.7, 0.5]      # Gold
+      - [0.9, 0.85, 0.7]     # Cream
+
+  art_deco_apartment:
+    name: "Art Deco Apartment"
+    style: "art_deco"
+    period: "1920s"
+    description: "Glamorous 1920s Art Deco interior with geometric patterns and rich colors"
+    default_materials:
+      floor: "marble_black_white"
+      walls: "wallpaper_geometric"
+      ceiling: "plaster_white"
+      trim: "chrome"
+    default_props:
+      - category: "furniture"
+        style: "art_deco"
+        density: 0.5
+      - category: "decor"
+        style: "glamorous"
+        density: 0.7
+    wall_config:
+      baseboard_height: 0.12
+      crown_molding: true
+      crown_molding_height: 0.1
+      color: [0.95, 0.9, 0.8]  # Champagne
+    door_config:
+      style: "panel_4"
+      material: "wood_ebony"
+      handle_style: "lever_art_deco"
+      handle_material: "brass"
+    window_config:
+      style: "casement"
+      frame_material: "metal_brass"
+      has_curtains: true
+      curtain_style: "silk_drapes"
+    color_palette:
+      - [0.0, 0.0, 0.0]      # Black
+      - [0.9, 0.85, 0.5]     # Gold
+      - [0.1, 0.1, 0.4]      # Navy
+      - [0.8, 0.2, 0.2]      # Crimson
+
+  mid_century_modern:
+    name: "Mid-Century Modern"
+    style: "mid_century"
+    period: "1960s"
+    description: "Retro 1960s aesthetic with organic forms and warm wood tones"
+    default_materials:
+      floor: "hardwood_teak"
+      walls: "drywall_pastel"
+      ceiling: "acoustic_tile"
+      trim: "wood_teak"
+    default_props:
+      - category: "furniture"
+        style: "mid_century_modern"
+        density: 0.6
+      - category: "decor"
+        style: "atomic_age"
+        density: 0.5
+    wall_config:
+      baseboard_height: 0.1
+      crown_molding: false
+      color: [0.95, 0.9, 0.8]  # Warm white
+    door_config:
+      style: "flush"
+      material: "wood_teak"
+      handle_style: "lever_modern"
+      handle_material: "brass"
+    window_config:
+      style: "picture"
+      frame_material: "wood_teak"
+      has_curtains: true
+      curtain_style: "panel"
+    color_palette:
+      - [0.55, 0.35, 0.2]    # Teak
+      - [0.9, 0.6, 0.3]      # Orange
+      - [0.3, 0.5, 0.4]      # Olive
+      - [0.7, 0.85, 0.9]     # Turquoise
+
+  # ============================================================================
+  # CORPORATE / OFFICE
+  # ============================================================================
+
+  corporate_office_80s:
+    name: "1980s Corporate Office"
+    style: "corporate"
+    period: "1980s"
+    description: "1980s corporate office with beige tones and wood paneling"
+    default_materials:
+      floor: "carpet_beige"
+      walls: "drywall_beige"
+      ceiling: "acoustic_tile"
+      trim: "wood_oak"
+    default_props:
+      - category: "furniture"
+        style: "80s_office"
+        density: 0.5
+      - category: "electronics"
+        style: "80s"
+        density: 0.4
+    wall_config:
+      baseboard_height: 0.08
+      crown_molding: false
+      color: [0.9, 0.85, 0.75]  # Beige
+    door_config:
+      style: "flush"
+      material: "wood_oak"
+      handle_style: "lever_modern"
+      handle_material: "brass"
+    window_config:
+      style: "picture"
+      frame_material: "metal_silver"
+      has_blinds: true
+      blind_type: "venetian"
+    color_palette:
+      - [0.9, 0.85, 0.75]    # Beige
+      - [0.6, 0.5, 0.4]      # Taupe
+      - [0.55, 0.35, 0.2]    # Oak
+      - [0.3, 0.45, 0.3]     # Forest
+
+  modern_office:
+    name: "Modern Office"
+    style: "office"
+    period: "present"
+    description: "Contemporary open office with minimalist aesthetic"
+    default_materials:
+      floor: "carpet_gray"
+      walls: "drywall_white"
+      ceiling: "acoustic_panel"
+      trim: "metal_aluminum"
+    default_props:
+      - category: "furniture"
+        style: "modern"
+        density: 0.6
+      - category: "electronics"
+        style: "modern"
+        density: 0.7
+    wall_config:
+      baseboard_height: 0.05
+      crown_molding: false
+      color: [0.95, 0.95, 0.95]  # Bright white
+    door_config:
+      style: "flush"
+      material: "wood_white"
+      handle_style: "lever_modern"
+      handle_material: "chrome"
+    window_config:
+      style: "picture"
+      frame_material: "metal_aluminum"
+      has_blinds: true
+      blind_type: "roller"
+    color_palette:
+      - [0.95, 0.95, 0.95]  # White
+      - [0.5, 0.5, 0.5]     # Gray
+      - [0.2, 0.4, 0.6]     # Corporate blue
+      - [0.3, 0.3, 0.3]     # Dark gray
+
+  # ============================================================================
+  # INDUSTRIAL / COMMERCIAL
+  # ============================================================================
+
+  industrial_warehouse:
+    name: "Industrial Warehouse"
+    style: "industrial"
+    period: "present"
+    description: "Raw warehouse space with exposed structure and utilitarian elements"
+    default_materials:
+      floor: "concrete_raw"
+      walls: "concrete_raw"
+      ceiling: "exposed_structure"
+      trim: "metal_rusted"
+    default_props:
+      - category: "furniture"
+        style: "industrial"
+        density: 0.3
+      - category: "storage"
+        style: "industrial"
+        density: 0.5
+    wall_config:
+      baseboard_height: 0.0
+      crown_molding: false
+      color: [0.5, 0.5, 0.5]  # Concrete gray
+    door_config:
+      style: "barn"
+      material: "metal_rusted"
+      handle_style: "industrial"
+      handle_material: "iron"
+    window_config:
+      style: "picture"
+      frame_material: "metal_black"
+      has_curtains: false
+    color_palette:
+      - [0.5, 0.5, 0.5]      # Concrete
+      - [0.3, 0.3, 0.3]      # Dark gray
+      - [0.6, 0.4, 0.3]      # Rust
+      - [0.2, 0.2, 0.2]      # Black
+
+  # ============================================================================
+  # FUTURISTIC
+  # ============================================================================
+
+  scifi_interior:
+    name: "Sci-Fi Interior"
+    style: "futuristic"
+    period: "future"
+    description: "Futuristic sci-fi interior with sleek surfaces and LED accents"
+    default_materials:
+      floor: "composite_white"
+      walls: "panel_white"
+      ceiling: "panel_white"
+      trim: "led_strip"
+    default_props:
+      - category: "furniture"
+        style: "futuristic"
+        density: 0.4
+      - category: "electronics"
+        style: "futuristic"
+        density: 0.6
+    wall_config:
+      baseboard_height: 0.0
+      crown_molding: true
+      crown_molding_height: 0.05
+      color: [0.95, 0.95, 1.0]  # Cool white
+    door_config:
+      style: "flush"
+      material: "composite_white"
+      handle_style: "touch_sensor"
+      handle_material: "chrome"
+    window_config:
+      style: "picture"
+      frame_material: "composite_white"
+      has_curtains: false
+    color_palette:
+      - [0.95, 0.95, 1.0]    # Cool white
+      - [0.2, 0.5, 0.9]      # Electric blue
+      - [0.1, 0.1, 0.15]     # Dark blue-gray
+      - [0.9, 0.9, 0.95]     # Light gray
+
+  cyberpunk_apartment:
+    name: "Cyberpunk Apartment"
+    style: "cyberpunk"
+    period: "near_future"
+    description: "Dystopian cyberpunk interior with neon accents and tech clutter"
+    default_materials:
+      floor: "concrete_stained"
+      walls: "panel_metal"
+      ceiling: "exposed_conduit"
+      trim: "neon_pink"
+    default_props:
+      - category: "furniture"
+        style: "cyberpunk"
+        density: 0.7
+      - category: "electronics"
+        style: "cyberpunk"
+        density: 0.9
+    wall_config:
+      baseboard_height: 0.03
+      crown_molding: false
+      color: [0.2, 0.2, 0.25]  # Dark gray
+    door_config:
+      style: "flush"
+      material: "metal_dark"
+      handle_style: "biometric"
+      handle_material: "chrome"
+    window_config:
+      style: "picture"
+      frame_material: "metal_dark"
+      has_blinds: true
+      blind_type: "digital"
+    color_palette:
+      - [0.2, 0.2, 0.25]     # Dark gray
+      - [1.0, 0.0, 0.5]      # Neon pink
+      - [0.0, 1.0, 1.0]      # Cyan
+      - [0.8, 0.8, 0.2]      # Yellow
+
+  # ============================================================================
+  # MINIMALIST / ZEN
+  # ============================================================================
+
+  scandinavian_modern:
+    name: "Scandinavian Modern"
+    style: "scandinavian"
+    period: "present"
+    description: "Clean Scandinavian design with light woods and neutral tones"
+    default_materials:
+      floor: "hardwood_light"
+      walls: "drywall_white"
+      ceiling: "wood_light"
+      trim: "wood_ash"
+    default_props:
+      - category: "furniture"
+        style: "scandinavian"
+        density: 0.5
+      - category: "decor"
+        style: "minimal"
+        density: 0.3
+    wall_config:
+      baseboard_height: 0.1
+      crown_molding: false
+      color: [0.98, 0.96, 0.94]  # Warm white
+    door_config:
+      style: "flush"
+      material: "wood_ash"
+      handle_style: "lever_minimal"
+      handle_material: "chrome"
+    window_config:
+      style: "picture"
+      frame_material: "wood_ash"
+      has_curtains: true
+      curtain_style: "linen"
+    color_palette:
+      - [0.98, 0.96, 0.94]  # Warm white
+      - [0.85, 0.8, 0.7]    # Light wood
+      - [0.3, 0.35, 0.3]    # Sage
+      - [0.2, 0.2, 0.2]     # Black accent
+
+  japanese_minimal:
+    name: "Japanese Minimal"
+    style: "minimalist"
+    period: "present"
+    description: "Zen-inspired Japanese minimalism with tatami and shoji elements"
+    default_materials:
+      floor: "tatami"
+      walls: "shoji_screen"
+      ceiling: "wood_bamboo"
+      trim: "wood_dark"
+    default_props:
+      - category: "furniture"
+        style: "japanese"
+        density: 0.3
+      - category: "decor"
+        style: "zen"
+        density: 0.2
+    wall_config:
+      baseboard_height: 0.0
+      crown_molding: false
+      color: [0.9, 0.85, 0.75]  # Tatami/paper tone
+    door_config:
+      style: "panel_4"
+      material: "wood_dark"
+      handle_style: "recessed"
+      handle_material: "wood"
+    window_config:
+      style: "picture"
+      frame_material: "wood_dark"
+      has_curtains: true
+      curtain_style: "shoji"
+    color_palette:
+      - [0.9, 0.85, 0.75]   # Tatami
+      - [0.3, 0.25, 0.2]    # Dark wood
+      - [0.95, 0.93, 0.88]  # Paper
+      - [0.2, 0.3, 0.2]     # Moss green
+
+# ============================================================================
+# MATERIAL DEFINITIONS
+# ============================================================================
+
+materials:
+  # Woods
+  hardwood_oak:
+    type: "wood"
+    color: [0.6, 0.4, 0.2]
+    roughness: 0.4
+
+  hardwood_dark:
+    type: "wood"
+    color: [0.3, 0.2, 0.1]
+    roughness: 0.3
+
+  hardwood_teak:
+    type: "wood"
+    color: [0.55, 0.35, 0.2]
+    roughness: 0.35
+
+  hardwood_light:
+    type: "wood"
+    color: [0.85, 0.8, 0.7]
+    roughness: 0.4
+
+  wood_white:
+    type: "wood"
+    color: [0.95, 0.95, 0.92]
+    roughness: 0.5
+
+  wood_cherry:
+    type: "wood"
+    color: [0.5, 0.25, 0.15]
+    roughness: 0.3
+
+  wood_ebony:
+    type: "wood"
+    color: [0.1, 0.08, 0.06]
+    roughness: 0.2
+
+  wood_reclaimed:
+    type: "wood"
+    color: [0.5, 0.4, 0.3]
+    roughness: 0.7
+
+  # Walls
+  drywall_white:
+    type: "drywall"
+    color: [1.0, 1.0, 1.0]
+    roughness: 0.9
+
+  drywall_beige:
+    type: "drywall"
+    color: [0.9, 0.85, 0.75]
+    roughness: 0.9
+
+  wallpaper_floral:
+    type: "wallpaper"
+    color: [0.9, 0.85, 0.7]
+    pattern: "floral_victorian"
+    roughness: 0.85
+
+  wallpaper_geometric:
+    type: "wallpaper"
+    color: [0.95, 0.9, 0.8]
+    pattern: "geometric_art_deco"
+    roughness: 0.8
+
+  brick_exposed:
+    type: "brick"
+    color: [0.6, 0.4, 0.3]
+    roughness: 0.8
+
+  concrete_polished:
+    type: "concrete"
+    color: [0.6, 0.6, 0.6]
+    roughness: 0.3
+
+  concrete_raw:
+    type: "concrete"
+    color: [0.5, 0.5, 0.5]
+    roughness: 0.9
+
+  # Metals
+  metal_chrome:
+    type: "metal"
+    color: [0.9, 0.9, 0.92]
+    metallic: 1.0
+    roughness: 0.1
+
+  metal_brass:
+    type: "metal"
+    color: [0.8, 0.7, 0.3]
+    metallic: 1.0
+    roughness: 0.2
+
+  metal_black:
+    type: "metal"
+    color: [0.1, 0.1, 0.1]
+    metallic: 0.8
+    roughness: 0.3
+
+  # Fabrics
+  fabric_neutral:
+    type: "fabric"
+    color: [0.7, 0.68, 0.65]
+    roughness: 0.95
+
+  fabric_wool:
+    type: "fabric"
+    color: [0.6, 0.58, 0.55]
+    roughness: 0.95
+
+  fabric_cotton:
+    type: "fabric"
+    color: [0.9, 0.9, 0.88]
+    roughness: 0.9
+
+  # Ceramics
+  ceramic_white:
+    type: "ceramic"
+    color: [0.98, 0.98, 0.96]
+    roughness: 0.2
+
+  ceramic_terracotta:
+    type: "ceramic"
+    color: [0.8, 0.5, 0.3]
+    roughness: 0.7
+
+# ============================================================================
+# DRESSING STYLE OVERRIDES
+# ============================================================================
+
+dressing_overrides:
+  modern_apartment:
+    default: "lived_in"
+    options: ["minimal", "lived_in", "cluttered"]
+
+  victorian_parlor:
+    default: "staged"
+    options: ["staged", "lived_in", "eclectic"]
+
+  industrial_warehouse:
+    default: "sterile"
+    options: ["sterile", "minimal", "abandoned"]
+
+  cyberpunk_apartment:
+    default: "cluttered"
+    options: ["lived_in", "cluttered", "hoarder"]
+
+  scandinavian_modern:
+    default: "minimal"
+    options: ["minimal", "lived_in", "staged"]
+
+  japanese_minimal:
+    default: "minimal"
+    options: ["minimal", "sterile", "staged"]
