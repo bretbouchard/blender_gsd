@@ -15,6 +15,12 @@ Modules:
 - dither_error: Error diffusion algorithms
 - dither_patterns: Pattern-based dithering
 - dither: Main dithering interface
+- isometric_types: Isometric and side-scroller data structures
+- isometric: Isometric camera system
+- side_scroller: Side-scroller camera system
+- sprites: Sprite sheet generator
+- tiles: Tile system
+- view_preset_loader: View preset loader
 
 Example Usage:
     from lib.retro import pixelate, PixelationConfig
@@ -40,6 +46,16 @@ Example Usage:
     from lib.retro import dither, DitherConfig
     dither_config = DitherConfig(mode="atkinson", strength=1.0)
     dithered = dither(image, dither_config)
+
+    # Isometric rendering
+    from lib.retro import IsometricConfig, create_isometric_camera_config
+    config = IsometricConfig.for_game_style("classic_pixel")
+    cam_config = create_isometric_camera_config(config)
+
+    # Sprite sheet generation
+    from lib.retro import SpriteSheetConfig, generate_sprite_sheet
+    config = SpriteSheetConfig.for_character(frame_width=32, frame_height=32)
+    result = generate_sprite_sheet(images, config)
 """
 
 from lib.retro.pixel_types import (
@@ -247,6 +263,175 @@ from lib.retro.dither import (
 
 
 # =============================================================================
+# Isometric & Side-Scroller Module Imports
+# =============================================================================
+
+from lib.retro.isometric_types import (
+    # Enums
+    IsometricAngle,
+    ViewDirection,
+    SpriteFormat,
+    TileFormat,
+    # Dataclasses
+    IsometricConfig,
+    SideScrollerConfig,
+    SpriteSheetConfig,
+    TileConfig,
+    IsometricRenderResult,
+    SpriteSheetResult,
+    TileSetResult,
+    # Angle presets
+    ISOMETRIC_ANGLES,
+    get_isometric_angle,
+    list_isometric_angles,
+    # Tile sizes
+    TILE_SIZES,
+    get_tile_size,
+    list_tile_sizes,
+)
+
+from lib.retro.isometric import (
+    # Camera config
+    CameraConfig,
+    # Main functions
+    create_isometric_camera_config,
+    set_isometric_angle,
+    calculate_isometric_rotation,
+    calculate_camera_position,
+    # Projection functions
+    project_to_isometric,
+    project_to_screen,
+    # Depth sorting
+    depth_sort_objects,
+    get_isometric_depth,
+    # Grid functions
+    create_isometric_grid_data,
+    snap_to_isometric_grid,
+    # Rendering
+    render_isometric_tile,
+    render_isometric_tile_set,
+    # Utility
+    get_tile_bounds,
+    world_to_tile,
+    tile_to_world,
+    calculate_tile_neighbors,
+)
+
+from lib.retro.side_scroller import (
+    # Dataclasses
+    ParallaxLayer,
+    SideScrollerCameraConfig,
+    # Camera functions
+    create_side_scroller_camera_config,
+    get_camera_rotation_for_view,
+    # Parallax functions
+    separate_parallax_layers,
+    calculate_parallax_offset,
+    calculate_layer_scroll_speed,
+    get_parallax_positions,
+    # Rendering
+    render_parallax_layer,
+    render_all_parallax_layers,
+    # Animation
+    create_parallax_animation,
+    animate_parallax_layers,
+    # Depth assignment
+    assign_depth_by_z,
+    assign_depth_by_collection,
+    assign_depth_by_name_pattern,
+    # Utility
+    get_layer_visibility_at_depth,
+    calculate_optimal_layer_count,
+    generate_layer_depths,
+    merge_parallax_layers,
+)
+
+from lib.retro.sprites import (
+    # Dataclasses
+    SpriteFrame,
+    # Main functions
+    generate_sprite_sheet,
+    trim_sprite,
+    calculate_pivot,
+    calculate_pivot_world,
+    # Metadata generation
+    generate_sprite_metadata,
+    export_phaser_json,
+    export_unity_json,
+    export_godot_json,
+    export_generic_json,
+    # Animation helpers
+    extract_animation_frames,
+    generate_walk_cycle_sheet,
+    generate_animation_sheet,
+    # Utility
+    get_frame_position,
+    get_frame_bounds,
+    calculate_frame_count,
+    optimize_sheet_layout,
+)
+
+from lib.retro.tiles import (
+    # Dataclasses
+    Tile,
+    TileSet,
+    # Tile set generation
+    render_tile_set,
+    create_tile_set_from_images,
+    # Tile map generation
+    generate_tile_map,
+    generate_tile_map_from_positions,
+    # Tile map export
+    export_tile_map,
+    export_tile_map_csv,
+    export_tile_map_json,
+    export_tile_map_tmx,
+    # Autotile
+    AUTOTILE_MASKS,
+    calculate_autotile_index,
+    get_autotile_neighbors,
+    create_autotile_template,
+    apply_autotile,
+    # Collision map
+    generate_collision_map,
+    export_collision_map,
+    # Utility
+    get_tile_at_position,
+    world_to_tile as tile_world_to_tile,
+    tile_to_world as tile_tile_to_world,
+    resize_tile_map,
+    flip_tile_map_horizontal,
+    flip_tile_map_vertical,
+    rotate_tile_map_90,
+)
+
+from lib.retro.view_preset_loader import (
+    # Isometric presets
+    load_isometric_preset,
+    list_isometric_presets,
+    get_isometric_preset,
+    # Side-scroller presets
+    load_side_scroller_preset,
+    list_side_scroller_presets,
+    get_side_scroller_preset,
+    # Sprite sheet presets
+    load_sprite_sheet_preset,
+    list_sprite_sheet_presets,
+    get_sprite_sheet_preset,
+    # Tile presets
+    load_tile_preset,
+    list_tile_presets,
+    get_tile_preset,
+    # Generic
+    load_view_preset,
+    list_view_presets,
+    # Cache management
+    clear_preset_cache,
+    reload_presets,
+)
+
+
+# =============================================================================
 # Public API
 # =============================================================================
 
@@ -259,6 +444,10 @@ __all__ = [
     "SubPixelLayout",
     "DitherModeEnum",
     "DitherColorSpace",
+    "IsometricAngle",
+    "ViewDirection",
+    "SpriteFormat",
+    "TileFormat",
 
     # Dataclasses
     "PixelStyle",
@@ -267,6 +456,19 @@ __all__ = [
     "ColorPalette",
     "DitherConfig",
     "DitherMatrix",
+    "IsometricConfig",
+    "SideScrollerConfig",
+    "SpriteSheetConfig",
+    "TileConfig",
+    "IsometricRenderResult",
+    "SpriteSheetResult",
+    "TileSetResult",
+    "CameraConfig",
+    "ParallaxLayer",
+    "SideScrollerCameraConfig",
+    "SpriteFrame",
+    "Tile",
+    "TileSet",
 
     # Core pixelation functions
     "pixelate",
@@ -388,7 +590,7 @@ __all__ = [
     "list_patterns",
     "get_pattern",
 
-    # Utility
+    # Dither utility
     "get_available_modes",
     "list_all_modes",
     "is_valid_mode",
@@ -396,7 +598,7 @@ __all__ = [
     "get_kernel",
     "get_kernel_names",
 
-    # Constants
+    # Dither constants
     "BAYER_2X2",
     "BAYER_4X4",
     "BAYER_8X8",
@@ -425,6 +627,177 @@ __all__ = [
     "BRICK",
     "WEAVE",
     "PATTERNS",
+
+    # ==========================================================================
+    # Isometric API
+    # ==========================================================================
+
+    # Angle presets
+    "ISOMETRIC_ANGLES",
+    "get_isometric_angle",
+    "list_isometric_angles",
+    "TILE_SIZES",
+    "get_tile_size",
+    "list_tile_sizes",
+
+    # Camera functions
+    "create_isometric_camera_config",
+    "set_isometric_angle",
+    "calculate_isometric_rotation",
+    "calculate_camera_position",
+
+    # Projection
+    "project_to_isometric",
+    "project_to_screen",
+
+    # Depth sorting
+    "depth_sort_objects",
+    "get_isometric_depth",
+
+    # Grid
+    "create_isometric_grid_data",
+    "snap_to_isometric_grid",
+
+    # Rendering
+    "render_isometric_tile",
+    "render_isometric_tile_set",
+
+    # Utility
+    "get_tile_bounds",
+    "world_to_tile",
+    "tile_to_world",
+    "calculate_tile_neighbors",
+
+    # ==========================================================================
+    # Side-Scroller API
+    # ==========================================================================
+
+    # Camera
+    "create_side_scroller_camera_config",
+    "get_camera_rotation_for_view",
+
+    # Parallax
+    "separate_parallax_layers",
+    "calculate_parallax_offset",
+    "calculate_layer_scroll_speed",
+    "get_parallax_positions",
+
+    # Rendering
+    "render_parallax_layer",
+    "render_all_parallax_layers",
+
+    # Animation
+    "create_parallax_animation",
+    "animate_parallax_layers",
+
+    # Depth assignment
+    "assign_depth_by_z",
+    "assign_depth_by_collection",
+    "assign_depth_by_name_pattern",
+
+    # Utility
+    "get_layer_visibility_at_depth",
+    "calculate_optimal_layer_count",
+    "generate_layer_depths",
+    "merge_parallax_layers",
+
+    # ==========================================================================
+    # Sprite Sheet API
+    # ==========================================================================
+
+    # Main functions
+    "generate_sprite_sheet",
+    "trim_sprite",
+    "calculate_pivot",
+    "calculate_pivot_world",
+
+    # Metadata
+    "generate_sprite_metadata",
+    "export_phaser_json",
+    "export_unity_json",
+    "export_godot_json",
+    "export_generic_json",
+
+    # Animation
+    "extract_animation_frames",
+    "generate_walk_cycle_sheet",
+    "generate_animation_sheet",
+
+    # Utility
+    "get_frame_position",
+    "get_frame_bounds",
+    "calculate_frame_count",
+    "optimize_sheet_layout",
+
+    # ==========================================================================
+    # Tile System API
+    # ==========================================================================
+
+    # Tile set generation
+    "render_tile_set",
+    "create_tile_set_from_images",
+
+    # Tile map
+    "generate_tile_map",
+    "generate_tile_map_from_positions",
+
+    # Export
+    "export_tile_map",
+    "export_tile_map_csv",
+    "export_tile_map_json",
+    "export_tile_map_tmx",
+
+    # Autotile
+    "AUTOTILE_MASKS",
+    "calculate_autotile_index",
+    "get_autotile_neighbors",
+    "create_autotile_template",
+    "apply_autotile",
+
+    # Collision
+    "generate_collision_map",
+    "export_collision_map",
+
+    # Tile utility
+    "get_tile_at_position",
+    "tile_world_to_tile",
+    "tile_tile_to_world",
+    "resize_tile_map",
+    "flip_tile_map_horizontal",
+    "flip_tile_map_vertical",
+    "rotate_tile_map_90",
+
+    # ==========================================================================
+    # View Preset API
+    # ==========================================================================
+
+    # Isometric presets
+    "load_isometric_preset",
+    "list_isometric_presets",
+    "get_isometric_preset",
+
+    # Side-scroller presets
+    "load_side_scroller_preset",
+    "list_side_scroller_presets",
+    "get_side_scroller_preset",
+
+    # Sprite sheet presets
+    "load_sprite_sheet_preset",
+    "list_sprite_sheet_presets",
+    "get_sprite_sheet_preset",
+
+    # Tile presets
+    "load_tile_preset",
+    "list_tile_presets",
+    "get_tile_preset",
+
+    # Generic
+    "load_view_preset",
+    "list_view_presets",
+
+    # Cache
+    "clear_preset_cache",
+    "reload_presets",
 ]
 
 # Add compositor functions to exports if available
@@ -446,7 +819,7 @@ if HAS_COMPOSITOR:
 # Module info
 # =============================================================================
 
-__version__ = "0.1.0"
+__version__ = "0.2.0"
 __author__ = "GSD"
 __description__ = "Retro pixel art conversion for cinematic rendering"
 
@@ -465,4 +838,8 @@ def info() -> dict:
         "has_compositor": HAS_COMPOSITOR,
         "builtin_palettes": list_builtin_palettes(),
         "profiles_available": list_profiles() if list_profiles() else [],
+        "isometric_presets": list_isometric_presets(),
+        "side_scroller_presets": list_side_scroller_presets(),
+        "sprite_sheet_presets": list_sprite_sheet_presets(),
+        "tile_presets": list_tile_presets(),
     }

@@ -1,0 +1,485 @@
+# Isometric & Side-Scroller View Presets
+# Configuration presets for game asset generation
+#
+# Usage:
+#   from lib.retro import load_view_preset
+#   config = load_view_preset("isometric", "classic_pixel")
+
+# =============================================================================
+# ISOMETRIC PRESETS
+# =============================================================================
+
+isometric_presets:
+  # Classic 2:1 pixel isometric (most common for games)
+  classic_pixel:
+    angle: "pixel"
+    tile_width: 64
+    tile_height: 32
+    depth_sorting: true
+    orthographic_scale: 10.0
+    layer_separation: ["ground", "objects", "characters"]
+    snap_to_grid: true
+
+  # True isometric (equal angles)
+  true_iso:
+    angle: "true_isometric"
+    tile_width: 64
+    tile_height: 64
+    depth_sorting: true
+    orthographic_scale: 12.0
+    layer_separation: ["ground", "objects", "characters"]
+    snap_to_grid: true
+
+  # Strategy game style (planometric)
+  strategy:
+    angle: "military"
+    tile_width: 64
+    tile_height: 64
+    depth_sorting: false
+    orthographic_scale: 15.0
+    layer_separation: ["terrain", "buildings", "units"]
+    snap_to_grid: true
+
+  # Blizzard RTS style (StarCraft, Warcraft)
+  blizzard:
+    angle: "blizzard"
+    tile_width: 64
+    tile_height: 32
+    depth_sorting: true
+    orthographic_scale: 12.0
+    layer_separation: ["ground", "doodads", "units", "fx"]
+    snap_to_grid: true
+
+  # Fallout 1/2 style
+  fallout:
+    angle: "fallout"
+    tile_width: 80
+    tile_height: 36
+    depth_sorting: true
+    orthographic_scale: 14.0
+    layer_separation: ["floor", "walls", "objects", "characters", "roof"]
+    snap_to_grid: false
+
+  # Mathematically perfect 2:1 ratio
+  pixel_perfect:
+    angle: "pixel_perfect"
+    tile_width: 64
+    tile_height: 32
+    depth_sorting: true
+    orthographic_scale: 10.0
+    layer_separation: ["ground", "objects", "characters"]
+    snap_to_grid: true
+
+  # Small tiles (mobile-friendly)
+  mobile_small:
+    angle: "pixel"
+    tile_width: 32
+    tile_height: 16
+    depth_sorting: true
+    orthographic_scale: 5.0
+    layer_separation: ["ground", "objects"]
+    snap_to_grid: true
+
+  # Large tiles (HD isometric)
+  hd_large:
+    angle: "pixel"
+    tile_width: 128
+    tile_height: 64
+    depth_sorting: true
+    orthographic_scale: 20.0
+    layer_separation: ["ground", "props", "objects", "characters", "fx"]
+    snap_to_grid: true
+
+  # Dimetric projection
+  dimetric:
+    angle: "dimetric"
+    tile_width: 48
+    tile_height: 24
+    depth_sorting: true
+    orthographic_scale: 8.0
+    layer_separation: ["ground", "objects", "characters"]
+    snap_to_grid: true
+
+
+# =============================================================================
+# SIDE-SCROLLER PRESETS
+# =============================================================================
+
+side_scroller_presets:
+  # Classic 16-bit platformer (Sonic, Mario World)
+  platformer_16bit:
+    parallax_layers: 4
+    layer_depths: [0.1, 0.3, 0.6, 1.0]
+    layer_names: ["sky", "far", "mid", "near"]
+    orthographic: true
+    view_direction: "side"
+    camera_distance: 10.0
+    scroll_speed: 1.0
+    auto_assign_depth: true
+
+  # Simple 2-layer parallax
+  simple:
+    parallax_layers: 2
+    layer_depths: [0.5, 1.0]
+    layer_names: ["background", "foreground"]
+    orthographic: true
+    view_direction: "side"
+    camera_distance: 8.0
+    scroll_speed: 1.0
+    auto_assign_depth: true
+
+  # Cinematic multi-layer
+  cinematic:
+    parallax_layers: 6
+    layer_depths: [0.1, 0.2, 0.4, 0.6, 1.0, 1.5]
+    layer_names: ["sky", "mountains", "far_city", "mid_city", "near_city", "foreground"]
+    orthographic: true
+    view_direction: "side"
+    camera_distance: 15.0
+    scroll_speed: 0.8
+    auto_assign_depth: true
+
+  # Endless runner
+  endless_runner:
+    parallax_layers: 3
+    layer_depths: [0.3, 0.7, 1.0]
+    layer_names: ["bg", "mid", "fg"]
+    orthographic: true
+    view_direction: "side"
+    camera_distance: 12.0
+    scroll_speed: 2.0
+    auto_assign_depth: true
+
+  # Minimal single layer
+  minimal:
+    parallax_layers: 1
+    layer_depths: [1.0]
+    layer_names: ["main"]
+    orthographic: true
+    view_direction: "side"
+    camera_distance: 10.0
+    scroll_speed: 1.0
+    auto_assign_depth: false
+
+  # Top-down view
+  top_down:
+    parallax_layers: 1
+    layer_depths: [1.0]
+    layer_names: ["main"]
+    orthographic: true
+    view_direction: "top"
+    camera_distance: 20.0
+    scroll_speed: 1.0
+    auto_assign_depth: false
+
+  # Front view (2.5D)
+  front_view:
+    parallax_layers: 4
+    layer_depths: [0.2, 0.5, 1.0, 2.0]
+    layer_names: ["far_bg", "mid_bg", "near_bg", "foreground"]
+    orthographic: false
+    view_direction: "front"
+    camera_distance: 15.0
+    scroll_speed: 1.0
+    auto_assign_depth: true
+
+  # 8-bit style (limited layers)
+  nes_style:
+    parallax_layers: 2
+    layer_depths: [0.4, 1.0]
+    layer_names: ["bg", "fg"]
+    orthographic: true
+    view_direction: "side"
+    camera_distance: 8.0
+    scroll_speed: 0.8
+    auto_assign_depth: false
+
+
+# =============================================================================
+# SPRITE SHEET PRESETS
+# =============================================================================
+
+sprite_sheet_presets:
+  # Standard character sheet (8x4 grid)
+  character:
+    columns: 8
+    rows: 4
+    frame_width: 32
+    frame_height: 32
+    padding: 0
+    spacing: 0
+    trim: true
+    pivot_x: 0.5
+    pivot_y: 1.0
+    generate_json: true
+    json_format: "phaser"
+
+  # Large character (HD)
+  character_hd:
+    columns: 8
+    rows: 4
+    frame_width: 64
+    frame_height: 64
+    padding: 0
+    spacing: 0
+    trim: true
+    pivot_x: 0.5
+    pivot_y: 1.0
+    generate_json: true
+    json_format: "phaser"
+
+  # Tile set (16x16 grid)
+  tileset:
+    columns: 16
+    rows: 16
+    frame_width: 16
+    frame_height: 16
+    padding: 0
+    spacing: 0
+    trim: false
+    pivot_x: 0.5
+    pivot_y: 0.5
+    generate_json: true
+    json_format: "generic"
+    power_of_two: true
+
+  # Tile set (large tiles)
+  tileset_large:
+    columns: 8
+    rows: 8
+    frame_width: 32
+    frame_height: 32
+    padding: 0
+    spacing: 0
+    trim: false
+    pivot_x: 0.5
+    pivot_y: 0.5
+    generate_json: true
+    json_format: "generic"
+    power_of_two: true
+
+  # Effects/Particles
+  effects:
+    columns: 8
+    rows: 8
+    frame_width: 64
+    frame_height: 64
+    padding: 0
+    spacing: 0
+    trim: true
+    pivot_x: 0.5
+    pivot_y: 0.5
+    generate_json: true
+    json_format: "phaser"
+
+  # UI elements
+  ui_elements:
+    columns: 10
+    rows: 10
+    frame_width: 24
+    frame_height: 24
+    padding: 2
+    spacing: 2
+    trim: true
+    pivot_x: 0.5
+    pivot_y: 0.5
+    generate_json: true
+    json_format: "generic"
+
+  # Walk cycle only
+  walk_cycle:
+    columns: 8
+    rows: 1
+    frame_width: 32
+    frame_height: 32
+    padding: 0
+    spacing: 0
+    trim: true
+    pivot_x: 0.5
+    pivot_y: 1.0
+    generate_json: true
+    json_format: "phaser"
+
+  # Full character (all animations, 4 directions)
+  character_full:
+    columns: 8
+    rows: 8
+    frame_width: 32
+    frame_height: 32
+    padding: 0
+    spacing: 0
+    trim: true
+    pivot_x: 0.5
+    pivot_y: 1.0
+    generate_json: true
+    json_format: "phaser"
+
+  # Unity format
+  unity_character:
+    columns: 8
+    rows: 4
+    frame_width: 32
+    frame_height: 32
+    padding: 0
+    spacing: 0
+    trim: true
+    pivot_x: 0.5
+    pivot_y: 1.0
+    generate_json: true
+    json_format: "unity"
+
+  # Godot format
+  godot_character:
+    columns: 8
+    rows: 4
+    frame_width: 32
+    frame_height: 32
+    padding: 0
+    spacing: 0
+    trim: true
+    pivot_x: 0.5
+    pivot_y: 1.0
+    generate_json: true
+    json_format: "godot"
+
+
+# =============================================================================
+# TILE CONFIG PRESETS
+# =============================================================================
+
+tile_presets:
+  # NES-style 16x16 tiles
+  nes:
+    tile_size: [16, 16]
+    padding: 0
+    spacing: 0
+    format: "png"
+    generate_map: true
+    map_format: "csv"
+    collision_layer: false
+    autotile: false
+
+  # SNES-style 16x16 tiles
+  snes:
+    tile_size: [16, 16]
+    padding: 0
+    spacing: 0
+    format: "png"
+    generate_map: true
+    map_format: "csv"
+    collision_layer: true
+    autotile: false
+
+  # Modern 32x32 tiles
+  modern_32:
+    tile_size: [32, 32]
+    padding: 0
+    spacing: 0
+    format: "png"
+    generate_map: true
+    map_format: "tmx"
+    collision_layer: true
+    autotile: true
+
+  # Modern 64x64 tiles
+  modern_64:
+    tile_size: [64, 64]
+    padding: 0
+    spacing: 0
+    format: "png"
+    generate_map: true
+    map_format: "tmx"
+    collision_layer: true
+    autotile: true
+
+  # Isometric 32x16 tiles
+  isometric_32:
+    tile_size: [32, 16]
+    padding: 0
+    spacing: 0
+    format: "png"
+    generate_map: true
+    map_format: "json"
+    collision_layer: true
+    autotile: false
+
+  # Isometric 64x32 tiles
+  isometric_64:
+    tile_size: [64, 32]
+    padding: 0
+    spacing: 0
+    format: "png"
+    generate_map: true
+    map_format: "json"
+    collision_layer: true
+    autotile: false
+
+  # Isometric 128x64 tiles (HD)
+  isometric_hd:
+    tile_size: [128, 64]
+    padding: 0
+    spacing: 0
+    format: "png"
+    generate_map: true
+    map_format: "json"
+    collision_layer: true
+    autotile: false
+
+  # Padded tiles (for web use)
+  padded:
+    tile_size: [32, 32]
+    padding: 2
+    spacing: 2
+    format: "png"
+    generate_map: true
+    map_format: "json"
+    collision_layer: false
+    autotile: false
+
+
+# =============================================================================
+# ANGLE DEFINITIONS (Reference)
+# =============================================================================
+
+angle_definitions:
+  true_isometric:
+    elevation: 35.264  # arctan(1/sqrt(2))
+    rotation: 45.0
+    tile_ratio: [1.0, 1.0]
+    description: "True isometric projection with equal angles"
+
+  pixel:
+    elevation: 30.0
+    rotation: 45.0
+    tile_ratio: [2.0, 1.0]
+    description: "Classic 2:1 pixel isometric (most common for games)"
+
+  pixel_perfect:
+    elevation: 26.565  # Exact arctan(1/2)
+    rotation: 45.0
+    tile_ratio: [2.0, 1.0]
+    description: "Mathematically perfect 2:1 ratio"
+
+  military:
+    elevation: 45.0
+    rotation: 45.0
+    tile_ratio: [1.0, 1.0]
+    description: "Military/strategy game style (planometric)"
+
+  dimetric:
+    elevation: 30.0
+    rotation: 30.0
+    tile_ratio: [1.5, 1.0]
+    description: "Dimetric projection with custom angles"
+
+  blizzard:
+    elevation: 30.0
+    rotation: 45.0
+    tile_ratio: [2.0, 1.0]
+    description: "Blizzard RTS style (StarCraft, Warcraft)"
+
+  fallout:
+    elevation: 27.0
+    rotation: 45.0
+    tile_ratio: [1.85, 1.0]
+    description: "Fallout 1/2 style"
