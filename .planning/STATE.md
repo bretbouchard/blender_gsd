@@ -2,22 +2,41 @@
 
 ## Current Position
 
-**Phase:** 6.3 Follow Camera System
-**Status:** Phase 6.3 (Follow Camera) complete - 37 tests passing
-**Last activity:** 2026-02-20 - Completed Phase 6.3 Follow Camera
+**Phase:** 6.4 Lighting System
+**Status:** Phase 6.4 (Lighting System) complete - 143 tests passing
+**Last activity:** 2026-02-20 - Completed Phase 6.4 Lighting System
 
-**Progress:** [██████████] 100% (Phase 6.3 Follow Camera COMPLETE)
+**Progress:** [██████████] 100% (Phase 6.4 Lighting System COMPLETE)
 
 **Version:** 0.4.0
 
-**Note:** Phase 6.3 adds cinematic follow camera with 5 modes (tight, loose, anticipatory, elastic, orbit).
+**Note:** Phase 6.4 adds comprehensive lighting system with rigs, gels, HDRI, and light linking.
+**Phase 6.3:** Follow Camera System complete with 5 modes (tight, loose, anticipatory, elastic, orbit).
 **Phase 11.0:** Production Tracking Dashboard complete with TypeScript/Vite UI.
 **Phase 11.1:** Timeline/Editorial System complete with EDL/FCPXML/OTIO support.
 **Phase 12.0:** 1-Sheet Generator complete with HTML/PDF export.
 **Phase 12.1:** Compositor complete with blend modes, color correction, cryptomatte.
 **Phase 13.0:** Rigging Foundation complete with 5 rig presets, bone utilities, weight painting.
 
-## Phase 6.2 Planning Summary
+## Phase 6.4 Planning Summary
+
+### 6.4-lighting-system (Complete)
+
+| Plan | Name | Status | Summary |
+|------|------|--------|---------|
+| 6.4-01 | Lighting System | Complete | 6.4-01-SUMMARY.md |
+
+**Delivered:**
+- light_rigs.py - Three-point soft/hard, product hero, studio high-key/low-key, positioning utilities
+- light_linking.py - Blender 4.0+ light linking with include/exclude modes
+- test_lighting.py - 32 tests for light creation and management
+- test_gel.py - 26 tests for gel/color filter system
+- test_hdri.py - 28 tests for HDRI environment lighting
+- test_light_rigs.py - 34 tests for lighting rig presets
+- test_light_linking.py - 23 tests for light linking functionality
+- 143 unit tests total
+
+## Phase 6.3 Planning Summary
 
 ### 6.2-motion-tracking (Complete)
 
