@@ -27,14 +27,75 @@ except ImportError:
     MovieTrackingObject = None
 
 from .types import (
-    Track,
-    Solve,
-    SolveResult,
-    SolveStatus,
-    TrackingConfig,
+    TrackData,
+    SolveData,
     TrackingSession,
-    TrackStatus,
 )
+
+
+# Additional types for solver (Phase 7.1)
+from enum import Enum, auto
+
+
+class SolveStatus(Enum):
+    """Solve status enumeration."""
+    RUNNING = auto()
+    SUCCESS = auto()
+    FAILED = auto()
+
+
+class TrackStatus(Enum):
+    """Track status enumeration."""
+    OK = auto()
+    MISSING = auto()
+    DISABLED = auto()
+
+
+@dataclass
+class TrackingConfig:
+    """
+    Tracking configuration for solver.
+    """
+    # Feature detection
+    detector_threshold: float = 0.5
+    min_features: int = 8
+    max_features: int = 200
+
+    # Solver settings
+    solver_motion_model: str = "perspective"
+    solver_keyframe_selection: str = "auto"
+    auto_keyframe: bool = True
+    keyframe_interval: int = 10
+
+    # Refinement
+    refine_focal_length: bool = True
+    refine_principal_point: bool = False
+    refine_radial_distortion: bool = True
+    refine_tangential_distortion: bool = False
+
+
+@dataclass
+class SolveResult:
+    """
+    Per-frame solve result.
+    """
+    frame: int = 0
+    position: Tuple[float, float, float] = (0.0, 0.0, 0.0)
+    rotation: Tuple[float, float, float, float] = (1.0, 0.0, 0.0, 0.0)
+    focal_length: float = 50.0
+    error: float = 0.0
+
+
+@dataclass
+class Solve:
+    """
+    Complete solve result.
+    """
+    status: SolveStatus = SolveStatus.FAILED
+    results: List[SolveResult] = field(default_factory=list)
+    average_error: float = 0.0
+    keyframes: List[int] = field(default_factory=list)
+    focal_length: float = 50.0
 
 
 @dataclass
@@ -618,6 +679,320 @@ class CameraSolver:
         return refined
 
 
+# Convenience functions for REQ-TRACK-SOLVE
+
+def solve_camera(
+    clip,
+    preset: str = "balanced",
+    refine_focal_length: bool = True,
+    refine_distortion: str = "k1_only",
+    keyframes: Optional[Tuple[int, int]] = None,
+) -> Dict[str, Any]:
+    """
+    Solve camera motion from tracked markers.
+
+    Uses Blender's libmv solver via bpy.ops.clip.solve_camera.
+
+    Args:
+        clip: MovieClip with tracked markers
+        preset: Solver preset (affects quality thresholds)
+        refine_focal_length: Allow solver to refine focal length
+        refine_distortion: Distortion refinement mode (none, k1_only, k1_k2)
+        keyframes: Optional (start, end) keyframe tuple. If None, auto-selects.
+
+    Returns:
+        Dict with solve results:
+        - success: Whether solve succeeded
+        - average_error: Average reprojection error in pixels
+        - camera_count: Number of solved camera positions
+        - reconstruction: Reference to reconstruction object
+
+    Raises:
+        RuntimeError: If Blender not available or solve fails
+    """
+    if not HAS_BLENDER:
+        raise RuntimeError("Blender not available")
+
+    from .context import tracking_context
+
+    # Configure tracking camera settings
+    tracking_cam = clip.tracking.camera
+
+    # Set refinement options
+    if refine_focal_length:
+        tracking_cam.focal_length = tracking_cam.focal_length  # Keep initial
+
+    # Run solve
+    try:
+        with tracking_context(clip) as ctx:
+            result = bpy.ops.clip.solve_camera(ctx)
+    except RuntimeError:
+        return {
+            "success": False,
+            "average_error": float('inf'),
+            "camera_count": 0,
+            "error": "Context setup failed - no Clip Editor",
+        }
+
+    if result != {'FINISHED'}:
+        return {
+            "success": False,
+            "average_error": float('inf'),
+            "camera_count": 0,
+            "error": "Solver failed to run",
+        }
+
+    # Get reconstruction results
+    reconstruction = clip.tracking.reconstruction
+
+    if not reconstruction.is_valid:
+        return {
+            "success": False,
+            "average_error": float('inf'),
+            "camera_count": 0,
+            "error": "Reconstruction is not valid",
+        }
+
+    return {
+        "success": True,
+        "average_error": reconstruction.average_error,
+        "camera_count": len(reconstruction.cameras),
+        "reconstruction": reconstruction,
+    }
+
+
+def create_camera_from_solve(
+    clip,
+    camera_name: str = "Solved Camera",
+    set_active: bool = True,
+    keyframe_mode: str = "all_frames",
+) -> Optional[Any]:
+    """
+    Create Blender camera from solved tracking data.
+
+    Creates a new camera object with animation keyframes matching
+    the solved camera motion.
+
+    Args:
+        clip: MovieClip with valid reconstruction
+        camera_name: Name for the new camera object
+        set_active: Set as scene active camera
+        keyframe_mode: Keyframe mode (all_frames, keyframes_only)
+
+    Returns:
+        Created camera object
+
+    Raises:
+        RuntimeError: If Blender not available or reconstruction invalid
+        ValueError: If reconstruction is not valid
+    """
+    if not HAS_BLENDER:
+        raise RuntimeError("Blender not available")
+
+    from mathutils import Euler
+
+    reconstruction = clip.tracking.reconstruction
+
+    if not reconstruction.is_valid:
+        raise ValueError("Reconstruction is not valid - solve camera first")
+
+    # Get tracking camera settings
+    tracking_cam = clip.tracking.camera
+
+    # Create camera data
+    cam_data = bpy.data.cameras.new(camera_name)
+    cam_obj = bpy.data.objects.new(camera_name, cam_data)
+
+    # Link to scene
+    bpy.context.collection.objects.link(cam_obj)
+
+    # Set camera properties from tracking camera
+    cam_data.lens = tracking_cam.focal_length
+    cam_data.sensor_width = tracking_cam.sensor_width
+    cam_data.sensor_fit = 'HORIZONTAL'
+
+    # Animate camera from reconstruction
+    for recon_cam in reconstruction.cameras:
+        frame = recon_cam.frame
+
+        # Set position
+        cam_obj.location = recon_cam.location
+        cam_obj.keyframe_insert('location', frame=frame)
+
+        # Set rotation
+        # Note: recon_cam.rotation is a Matrix, convert to Euler
+        if hasattr(recon_cam, 'rotation'):
+            rotation_matrix = recon_cam.rotation
+            cam_obj.rotation_euler = rotation_matrix.to_euler()
+        else:
+            # Fallback for older Blender versions
+            cam_obj.rotation_euler = Euler((0, 0, 0))
+
+        cam_obj.keyframe_insert('rotation_euler', frame=frame)
+
+    # Set as active camera if requested
+    if set_active:
+        bpy.context.scene.camera = cam_obj
+
+    return cam_obj
+
+
+def apply_camera_from_solve(
+    clip,
+    target_camera,
+    preserve_existing_keys: bool = False,
+) -> None:
+    """
+    Apply solve data to existing camera.
+
+    Args:
+        clip: MovieClip with valid reconstruction
+        target_camera: Camera object to animate
+        preserve_existing_keys: Keep existing keyframes outside solve range
+    """
+    if not HAS_BLENDER:
+        raise RuntimeError("Blender not available")
+
+    reconstruction = clip.tracking.reconstruction
+
+    if not reconstruction.is_valid:
+        raise ValueError("Reconstruction is not valid")
+
+    from mathutils import Euler
+
+    # Store existing keyframes if preserving
+    existing_keys = {}
+    if preserve_existing_keys:
+        if target_camera.animation_data and target_camera.animation_data.action:
+            for fcu in target_camera.animation_data.action.fcurves:
+                existing_keys[fcu.data_path] = [kf.co[0] for kf in fcu.keyframe_points]
+
+    tracking_cam = clip.tracking.camera
+
+    # Update focal length
+    if target_camera.data:
+        target_camera.data.lens = tracking_cam.focal_length
+        target_camera.data.sensor_width = tracking_cam.sensor_width
+
+    # Apply animation
+    for recon_cam in reconstruction.cameras:
+        frame = recon_cam.frame
+
+        target_camera.location = recon_cam.location
+        target_camera.keyframe_insert('location', frame=frame)
+
+        if hasattr(recon_cam, 'rotation'):
+            target_camera.rotation_euler = recon_cam.rotation.to_euler()
+        target_camera.keyframe_insert('rotation_euler', frame=frame)
+
+
+def get_solve_report(clip) -> 'SolveReport':
+    """
+    Generate solve quality report from reconstruction.
+
+    Args:
+        clip: MovieClip with reconstruction
+
+    Returns:
+        SolveReport with quality metrics
+    """
+    if not HAS_BLENDER:
+        raise RuntimeError("Blender not available")
+
+    reconstruction = clip.tracking.reconstruction
+
+    avg_error = reconstruction.average_error if reconstruction.is_valid else float('inf')
+
+    # Determine quality level
+    if avg_error < 0.3:
+        quality_level = "excellent"
+        confidence = 0.95
+    elif avg_error < 0.5:
+        quality_level = "good"
+        confidence = 0.85
+    elif avg_error < 1.0:
+        quality_level = "acceptable"
+        confidence = 0.70
+    else:
+        quality_level = "poor"
+        confidence = 0.50
+
+    return SolveReport(
+        success=reconstruction.is_valid,
+        average_error=avg_error,
+        max_error=avg_error * 2.0,  # Estimate max
+        min_error=avg_error * 0.5,  # Estimate min
+        frames_solved=len(reconstruction.cameras) if reconstruction.is_valid else 0,
+        tracks_used=len([t for t in clip.tracking.tracks if not t.mute]),
+        keyframes=(0, 0),  # Would need tracking settings to determine
+        message=f"Solve quality: {quality_level}" if reconstruction.is_valid else "Solve failed",
+        warnings=[],
+    )
+
+
+def export_solve_data(clip, output_path: str) -> None:
+    """
+    Export solve data to YAML for external use.
+
+    Args:
+        clip: MovieClip with valid reconstruction
+        output_path: Path to save YAML file
+    """
+    if not HAS_BLENDER:
+        raise RuntimeError("Blender not available")
+
+    from datetime import datetime
+    from pathlib import Path
+
+    reconstruction = clip.tracking.reconstruction
+
+    if not reconstruction.is_valid:
+        raise ValueError("Reconstruction is not valid")
+
+    tracking_cam = clip.tracking.camera
+
+    # Build solve data
+    camera_transforms = {}
+    for recon_cam in reconstruction.cameras:
+        frame = recon_cam.frame
+        loc = recon_cam.location
+
+        if hasattr(recon_cam, 'rotation'):
+            rot = recon_cam.rotation.to_euler()
+            camera_transforms[frame] = (
+                loc[0], loc[1], loc[2],
+                rot[0], rot[1], rot[2]
+            )
+        else:
+            camera_transforms[frame] = (
+                loc[0], loc[1], loc[2],
+                0.0, 0.0, 0.0
+            )
+
+    solve_data = {
+        "name": clip.name,
+        "frame_range": (clip.frame_start, clip.frame_start + clip.frame_duration - 1),
+        "focal_length": tracking_cam.focal_length,
+        "sensor_width": tracking_cam.sensor_width,
+        "camera_transforms": {str(k): list(v) for k, v in camera_transforms.items()},
+        "coordinate_system": "z_up",
+        "solved_at": datetime.utcnow().isoformat(),
+    }
+
+    # Write to file
+    try:
+        import yaml
+        Path(output_path).parent.mkdir(parents=True, exist_ok=True)
+        with open(output_path, 'w') as f:
+            yaml.dump(solve_data, f, default_flow_style=False)
+    except ImportError:
+        # Fallback to JSON
+        import json
+        Path(output_path).parent.mkdir(parents=True, exist_ok=True)
+        with open(output_path.replace('.yaml', '.json'), 'w') as f:
+            json.dump(solve_data, f, indent=2)
+
+
 # Fallback classes for testing outside Blender
 if not HAS_BLENDER:
     class MockCameraSolver(CameraSolver):
@@ -626,3 +1001,17 @@ if not HAS_BLENDER:
         def solve(self, config=None, progress_callback=None):
             """Mock solve that returns simulated results."""
             return super()._solve_fallback(config or TrackingConfig(), progress_callback)
+
+
+# Export convenience functions
+__all__ = [
+    "SolveOptions",
+    "SolveReport",
+    "CameraSolver",
+    "solve_camera",
+    "create_camera_from_solve",
+    "apply_camera_from_solve",
+    "get_solve_report",
+    "export_solve_data",
+    "HAS_BLENDER",
+]

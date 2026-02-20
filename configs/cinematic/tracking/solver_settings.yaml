@@ -1,24 +1,70 @@
 # Camera Solver Settings
 # Configures libmv camera solving parameters
 
-settings:
-  # Default solver settings
-  default:
-    description: "Standard camera solve settings"
+solver_presets:
+  # High accuracy (slower)
+  high_accuracy:
+    description: "Maximum accuracy for critical shots"
     refinement:
       refine_focal_length: true
       refine_principal_point: false
-      refine_radial_distortion: "k1_only"  # k1_only, k1_k2, none
+      refine_radial_distortion: "k1_only"  # none, k1_only, k1_k2
     motion:
       type: "perspective"  # perspective, affine
+    quality:
+      max_reprojection_error: 0.5  # Pixels
+      min_tracks_per_frame: 12
     keyframes:
       auto_select: true
-      min_keyframes: 8
-      method: "motion_analysis"  # Select frames with good parallax
+      min_separation: 10  # Frames between keyframes
+
+  # Balanced (default)
+  balanced:
+    description: "Good trade-off between speed and accuracy"
+    refinement:
+      refine_focal_length: true
+      refine_principal_point: false
+      refine_radial_distortion: "k1_only"
+    motion:
+      type: "perspective"
     quality:
-      max_reprojection_error: 1.0  # Pixels
+      max_reprojection_error: 1.0
       min_tracks_per_frame: 8
-      acceptable_error: 0.5
+    keyframes:
+      auto_select: true
+      min_separation: 5
+
+  # Fast solve
+  fast:
+    description: "Quick solve for preview"
+    refinement:
+      refine_focal_length: false
+      refine_principal_point: false
+      refine_radial_distortion: "none"
+    motion:
+      type: "affine"
+    quality:
+      max_reprojection_error: 2.0
+      min_tracks_per_frame: 6
+    keyframes:
+      auto_select: true
+      min_separation: 3
+
+  # Architectural
+  architectural:
+    description: "Optimized for buildings and interiors"
+    refinement:
+      refine_focal_length: true
+      refine_principal_point: true
+      refine_radial_distortion: "k1_k2"
+    motion:
+      type: "perspective"
+    quality:
+      max_reprojection_error: 0.7
+      min_tracks_per_frame: 10
+    keyframes:
+      auto_select: true
+      min_separation: 8
 
   # Fixed focal length (no zoom)
   fixed_focal:
@@ -29,6 +75,11 @@ settings:
       refine_radial_distortion: "k1_only"
     motion:
       type: "perspective"
+    quality:
+      max_reprojection_error: 1.0
+      min_tracks_per_frame: 8
+    keyframes:
+      auto_select: true
 
   # Zoom lens
   zoom_lens:
@@ -39,20 +90,61 @@ settings:
       refine_radial_distortion: "k1_k2"
     motion:
       type: "perspective"
+    quality:
+      max_reprojection_error: 1.0
+      min_tracks_per_frame: 10
     focal_length:
       constraints:
         min: 20.0
         max: 100.0
+    keyframes:
+      auto_select: true
 
-  # Architectural solve
-  architectural:
-    description: "Optimized for architectural scenes"
-    refinement:
-      refine_focal_length: true
-      refine_principal_point: false
-      refine_radial_distortion: "k1_only"
-    motion:
-      type: "perspective"
-    constraints:
-      prefer_vertical_lines: true
-      prefer_horizontal_lines: true
+# Quality thresholds for solve assessment
+quality_thresholds:
+  excellent:
+    reprojection_error_avg: 0.3
+    confidence: 0.95
+  good:
+    reprojection_error_avg: 0.5
+    confidence: 0.85
+  acceptable:
+    reprojection_error_avg: 1.0
+    confidence: 0.70
+  poor:
+    reprojection_error_avg: 2.0
+    confidence: 0.50
+
+# Distortion models
+distortion_models:
+  # No distortion refinement
+  none:
+    description: "Fixed distortion, no refinement"
+
+  # Simple radial distortion (k1 only)
+  k1_only:
+    description: "Refine k1 coefficient only"
+    parameters: ["k1"]
+
+  # Radial distortion (k1, k2)
+  k1_k2:
+    description: "Refine k1 and k2 coefficients"
+    parameters: ["k1", "k2"]
+
+# Motion model descriptions
+motion_models:
+  perspective:
+    description: "Full perspective camera motion"
+    use_case: "General camera moves"
+  affine:
+    description: "Affine transformation only"
+    use_case: "Simple rotation/translation"
+
+# Keyframe selection methods
+keyframe_selection:
+  auto:
+    description: "Automatic selection based on parallax"
+    parameters: ["min_separation"]
+  manual:
+    description: "User-specified keyframes"
+    parameters: ["keyframe1", "keyframe2"]
