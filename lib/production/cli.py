@@ -5,9 +5,11 @@ Command-line interface for production management.
 
 Requirements:
 - REQ-ORCH-01 through REQ-ORCH-06: Full CLI control
+- REQ-CONFIG-01 through REQ-CONFIG-06: Master config support
 - Progress display and error reporting
 
 Part of Phase 14.1: Production Orchestrator
+Part of Phase 14.2: Master Production Config
 
 Usage:
     python -m lib.production.cli run production.yaml
@@ -16,6 +18,8 @@ Usage:
     python -m lib.production.cli estimate production.yaml
     python -m lib.production.cli list
     python -m lib.production.cli create my_film
+    python -m lib.production.cli show production.yaml
+    python -m lib.production.cli check production.yaml
 """
 
 from __future__ import annotations
@@ -64,6 +68,25 @@ from lib.production.parallel_executor import (
     ParallelExecutor,
     get_parallel_estimate,
     optimize_worker_count,
+)
+
+# Master config imports (Phase 14.2)
+from lib.production.config_schema import (
+    MasterProductionConfig,
+    create_master_config_from_preset,
+)
+from lib.production.template_expansion import (
+    expand_shot_templates,
+    get_production_summary,
+    list_shot_templates,
+    list_style_presets,
+    suggest_shot_for_context,
+)
+from lib.production.config_validation import (
+    validate_master_config,
+    validate_for_execution_strict,
+    check_file_references,
+    check_shot_templates,
 )
 
 
@@ -427,6 +450,236 @@ if HAS_CLICK:
         except Exception as e:
             print_error(f"Failed to create: {e}")
             sys.exit(1)
+
+    @production.command()
+    @click.argument('yaml_path')
+    @click.option('--expand', is_flag=True, help='Show expanded configuration')
+    @click.option('--verbose', '-v', is_flag=True, help='Verbose output')
+    def show(yaml_path: str, expand: bool, verbose: bool):
+        """Show production configuration.
+
+        Displays the master production configuration with optional
+        expansion of shot templates and resolution of references.
+        """
+        print_header(f"Production Configuration: {yaml_path}")
+
+        try:
+            config = MasterProductionConfig.from_yaml(yaml_path)
+        except Exception as e:
+            print_error(f"Failed to load: {e}")
+            sys.exit(1)
+
+        # Get summary
+        summary = get_production_summary(config)
+
+        # Print basic info
+        print(colorize("  Metadata", Colors.BOLD))
+        print(f"    Title: {summary['title']}")
+        print(f"    Version: {summary['version']}")
+        print(f"    Author: {config.meta.author or 'Not specified'}")
+        print(f"    Description: {config.meta.description or 'None'}")
+        print()
+
+        # Source info
+        print(colorize("  Source", Colors.BOLD))
+        print(f"    Script: {config.source.script or 'None'}")
+        print(f"    Style Preset: {summary['style_preset']}")
+        print(f"    Reference Images: {len(config.source.reference_images)}")
+        print()
+
+        # Counts
+        print(colorize("  Contents", Colors.BOLD))
+        print(f"    Characters: {summary['character_count']}")
+        print(f"    Locations: {summary['location_count']}")
+        print(f"    Shots: {summary['shot_count']} (total: {summary['total_shot_count']})")
+        print(f"    Scenes: {summary['scene_count']} ({', '.join(map(str, summary['scenes']))})")
+        print()
+
+        # Timing
+        print(colorize("  Timing", Colors.BOLD))
+        print(f"    Total Frames: {summary['total_frames']}")
+        print(f"    Duration: {summary['total_minutes']:.1f} minutes")
+        print()
+
+        # Outputs
+        print(colorize("  Outputs", Colors.BOLD))
+        print(f"    Cinematic: {summary['cinematic_outputs']}")
+        print(f"    Retro: {summary['retro_outputs']}")
+        for output in config.outputs:
+            retro_tag = " [retro]" if output.retro and output.retro.enabled else ""
+            print(f"      - {output.name}: {output.resolution[0]}x{output.resolution[1]}{retro_tag}")
+        print()
+
+        # Render settings
+        print(colorize("  Render Settings", Colors.BOLD))
+        print(f"    Engine: {summary['render_engine']}")
+        print(f"    Samples: {summary['render_samples']}")
+        print()
+
+        # Expanded shots
+        if expand:
+            print_header("Expanded Shots")
+
+            expanded = expand_shot_templates(config)
+            for shot in expanded:
+                char_name = shot.character.name if shot.character else "-"
+                loc_name = shot.location.name if shot.location else "-"
+                costume = f" ({shot.costume})" if shot.costume else ""
+
+                print(f"  {shot.name} (Scene {shot.scene})")
+                print(f"    Template: {shot.template}")
+                print(f"    Shot Size: {shot.shot_size}")
+                print(f"    Camera: {shot.camera_angle}")
+                print(f"    Character: {char_name}{costume}")
+                print(f"    Location: {loc_name}")
+                print(f"    Frames: {shot.frame_range[0]}-{shot.frame_range[1]} ({shot.duration} frames)")
+                if shot.notes:
+                    print(f"    Notes: {shot.notes}")
+                print()
+
+    @production.command()
+    @click.argument('yaml_path')
+    @click.option('--strict', is_flag=True, help='Strict validation for execution')
+    @click.option('--check-files', is_flag=True, help='Check file references')
+    @click.option('--verbose', '-v', is_flag=True, help='Verbose output')
+    def check(yaml_path: str, strict: bool, check_files: bool, verbose: bool):
+        """Validate production configuration.
+
+        Performs comprehensive validation of the master production
+        configuration, checking for errors, warnings, and missing files.
+        """
+        print_header(f"Validation: {yaml_path}")
+
+        try:
+            config = MasterProductionConfig.from_yaml(yaml_path)
+        except Exception as e:
+            print_error(f"Failed to load: {e}")
+            sys.exit(1)
+
+        # Run validation
+        if strict:
+            result = validate_for_execution_strict(config)
+        else:
+            result = validate_master_config(config)
+
+        # Check file references if requested
+        if check_files:
+            file_issues = check_file_references(config)
+            result.issues.extend(file_issues)
+            for issue in file_issues:
+                if issue.severity == "error":
+                    result.valid = False
+
+        # Print results
+        print(f"  Valid: {colorize(str(result.valid), Colors.GREEN if result.valid else Colors.RED)}")
+        print(f"  Errors: {len(result.errors)}")
+        print(f"  Warnings: {len(result.warnings)}")
+        print(f"  Total Issues: {len(result.issues)}")
+        print()
+
+        if result.errors:
+            print_error("Errors:")
+            for error in result.errors:
+                print(f"    [{error.path}] {error.message}")
+                if error.suggestion and verbose:
+                    print(f"      Suggestion: {error.suggestion}")
+            print()
+
+        if result.warnings:
+            print_warning("Warnings:")
+            for warning in result.warnings:
+                print(f"    [{warning.path}] {warning.message}")
+                if warning.suggestion and verbose:
+                    print(f"      Suggestion: {warning.suggestion}")
+            print()
+
+        if verbose and result.issues:
+            info_issues = [i for i in result.issues if i.severity == "info"]
+            if info_issues:
+                print_info("Info:")
+                for info in info_issues:
+                    print(f"    [{info.path}] {info.message}")
+                print()
+
+        if result.valid:
+            print_success("Production is valid")
+            sys.exit(0)
+        else:
+            print_error("Production has validation errors")
+            sys.exit(1)
+
+    @production.command('list-templates')
+    @click.option('--shots', is_flag=True, help='List shot templates')
+    @click.option('--styles', is_flag=True, help='List style presets')
+    def list_templates(shots: bool, styles: bool):
+        """List available templates and presets.
+
+        Shows shot templates and style presets that can be used
+        in production configurations.
+        """
+        if not shots and not styles:
+            # Default to showing both
+            shots = True
+            styles = True
+
+        if shots:
+            print_header("Shot Templates")
+            templates = list_shot_templates()
+            for name in sorted(templates):
+                from lib.production.template_expansion import SHOT_TEMPLATES
+                info = SHOT_TEMPLATES.get(name, {})
+                desc = info.get("description", "")
+                duration = info.get("duration", "?")
+                print(f"  {name}")
+                print(f"    Description: {desc}")
+                print(f"    Default Duration: {duration} frames")
+                print()
+
+        if styles:
+            print_header("Style Presets")
+            presets = list_style_presets()
+            for name in sorted(presets):
+                from lib.production.template_expansion import STYLE_PRESETS
+                info = STYLE_PRESETS.get(name, {})
+                mood = info.get("mood", "?")
+                grade = info.get("color_grade", "?")
+                contrast = info.get("contrast", "?")
+                print(f"  {name}")
+                print(f"    Mood: {mood}")
+                print(f"    Color Grade: {grade}")
+                print(f"    Contrast: {contrast}")
+                print()
+
+    @production.command('suggest')
+    @click.option('--character', is_flag=True, help='Include character')
+    @click.option('--two-characters', is_flag=True, help='Include two characters')
+    @click.option('--location', is_flag=True, help='Include location')
+    @click.option('--action', is_flag=True, help='Action shot')
+    def suggest(character: bool, two_characters: bool, location: bool, action: bool):
+        """Suggest shot templates for context.
+
+        Provides shot template suggestions based on the scene context.
+        """
+        print_header("Shot Template Suggestions")
+
+        suggestions = suggest_shot_for_context(
+            has_character=character or two_characters,
+            has_two_characters=two_characters,
+            has_location=location,
+            is_action=action
+        )
+
+        if suggestions:
+            print("  Suggested templates:")
+            for name in suggestions:
+                from lib.production.template_expansion import SHOT_TEMPLATES
+                info = SHOT_TEMPLATES.get(name, {})
+                desc = info.get("description", "No description")
+                print(f"    {name}: {desc}")
+        else:
+            print_info("No specific suggestions for this context")
+
+        print()
 
     def _show_execution_plan(config: ProductionConfig, parallel: int) -> None:
         """Show execution plan for dry-run."""

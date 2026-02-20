@@ -14,6 +14,7 @@ Requirements:
 - REQ-ORCH-04: Progress tracking and resume
 - REQ-ORCH-05: Parallel execution where possible
 - REQ-ORCH-06: Error handling and rollback
+- REQ-CONFIG-01 through REQ-CONFIG-06: Master config support
 
 Usage:
     from lib.production import (
@@ -27,7 +28,18 @@ Usage:
     config = load_production("my_film/production.yaml")
     result = execute_production(config)
 
+    # Or use master config (Phase 14.2)
+    from lib.production import (
+        MasterProductionConfig,
+        expand_shot_templates,
+        get_production_summary,
+    )
+
+    config = MasterProductionConfig.from_yaml("production.yaml")
+    summary = get_production_summary(config)
+
 Part of Phase 14.1: Production Orchestrator
+Part of Phase 14.2: Master Production Config
 """
 
 # Core types
@@ -111,6 +123,56 @@ from .parallel_executor import (
     optimize_worker_count,
 )
 
+# Master config (Phase 14.2)
+from .config_schema import (
+    # Types
+    OutputCodec,
+    DitherMode,
+    SourceConfig,
+    CharacterDef,
+    LocationDef,
+    ShotDef,
+    RetroOutputConfig,
+    OutputDef,
+    MasterProductionConfig,
+    MASTER_CONFIG_PRESETS,
+    create_master_config_from_preset,
+)
+
+from .template_expansion import (
+    # Types
+    CompleteShotConfig,
+    # Constants
+    SHOT_TEMPLATES,
+    STYLE_PRESETS,
+    # Functions
+    expand_shot_templates,
+    resolve_character_wardrobe,
+    resolve_location,
+    apply_style_preset,
+    get_shot_template,
+    list_shot_templates,
+    list_style_presets,
+    suggest_shot_for_context,
+    expand_output_formats,
+    get_production_summary,
+)
+
+from .config_validation import (
+    validate_master_config,
+    validate_meta,
+    validate_source,
+    validate_character_defs,
+    validate_location_defs,
+    validate_shot_defs,
+    check_file_references,
+    check_character_models,
+    check_location_presets,
+    check_shot_templates,
+    validate_output_defs,
+    validate_for_execution_strict,
+)
+
 
 __all__ = [
     # Enums
@@ -182,7 +244,49 @@ __all__ = [
     "create_execution_graph",
     "get_parallel_estimate",
     "optimize_worker_count",
+
+    # Master config (Phase 14.2)
+    "OutputCodec",
+    "DitherMode",
+    "SourceConfig",
+    "CharacterDef",
+    "LocationDef",
+    "ShotDef",
+    "RetroOutputConfig",
+    "OutputDef",
+    "MasterProductionConfig",
+    "MASTER_CONFIG_PRESETS",
+    "create_master_config_from_preset",
+
+    # Template expansion
+    "CompleteShotConfig",
+    "SHOT_TEMPLATES",
+    "STYLE_PRESETS",
+    "expand_shot_templates",
+    "resolve_character_wardrobe",
+    "resolve_location",
+    "apply_style_preset",
+    "get_shot_template",
+    "list_shot_templates",
+    "list_style_presets",
+    "suggest_shot_for_context",
+    "expand_output_formats",
+    "get_production_summary",
+
+    # Config validation
+    "validate_master_config",
+    "validate_meta",
+    "validate_source",
+    "validate_character_defs",
+    "validate_location_defs",
+    "validate_shot_defs",
+    "check_file_references",
+    "check_character_models",
+    "check_location_presets",
+    "check_shot_templates",
+    "validate_output_defs",
+    "validate_for_execution_strict",
 ]
 
 
-__version__ = "0.1.0"
+__version__ = "0.2.0"

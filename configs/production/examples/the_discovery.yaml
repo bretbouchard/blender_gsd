@@ -1,0 +1,183 @@
+# The Discovery - Short Film Example
+#
+# A complete short film production demonstrating the master config schema.
+#
+# Synopsis: Alex discovers a hidden message that changes everything.
+#
+# Run with:
+#   python -m lib.production.cli validate configs/production/examples/the_discovery.yaml
+#   python -m lib.production.cli info configs/production/examples/the_discovery.yaml
+
+production:
+  # Production metadata
+  meta:
+    title: "The Discovery"
+    version: "1.0"
+    author: "Demo Director"
+    description: "A short film about discovering a hidden message"
+
+  # Source material
+  source:
+    script: "scripts/discovery.fountain"
+    style_preset: "cinematic_warm"
+    reference_images:
+      - "references/mood_board.jpg"
+      - "references/color_palette.png"
+
+  # Visual style
+  style:
+    preset: cinematic
+    era: present
+    mood: dramatic
+    color_grade: warm
+    contrast: medium
+
+  # Characters with wardrobe assignments
+  characters:
+    alex:
+      model: "assets/characters/alex.blend"
+      voice: "voice_references/alex_voice.mp3"
+      wardrobe:
+        default: "alex_casual"
+        scenes_5_8: "alex_formal"
+      notes: "Main protagonist, software developer"
+
+    sam:
+      model: "assets/characters/sam.blend"
+      voice: "voice_references/sam_voice.mp3"
+      wardrobe:
+        default: "sam_work"
+      notes: "Alex's colleague and friend"
+
+  # Locations
+  locations:
+    apartment:
+      preset: "modern_apartment"
+      hdri: "apartment_day"
+      scenes: [1, 2, 3]
+
+    office:
+      preset: "corporate_office"
+      hdri: "office_fluorescent"
+      scenes: [4, 5, 6]
+
+    rooftop:
+      preset: "urban_rooftop"
+      hdri: "city_night"
+      scenes: [7, 8]
+
+  # Shot list
+  shots:
+    # Scene 1 - Morning at apartment
+    - scene: 1
+      template: "establishing_wide"
+      location: "apartment"
+      notes: "Morning light through window"
+
+    - scene: 1
+      template: "character_cu"
+      character: "alex"
+      location: "apartment"
+      notes: "Alex wakes up, looks at phone"
+
+    # Scene 2 - Discovery
+    - scene: 2
+      template: "character_mcu"
+      character: "alex"
+      location: "apartment"
+      notes: "Alex sees the message on screen"
+
+    - scene: 2
+      template: "insert"
+      notes: "Close-up of the mysterious message"
+
+    # Scene 3 - Contemplation
+    - scene: 3
+      template: "character_ms"
+      character: "alex"
+      location: "apartment"
+      notes: "Alex paces, thinking"
+
+    # Scene 4 - Office arrival
+    - scene: 4
+      template: "establishing_wide"
+      location: "office"
+
+    - scene: 4
+      template: "two_shot"
+      character: "alex"
+      character2: "sam"
+      location: "office"
+      notes: "Alex confides in Sam"
+
+    # Scene 5 - Discussion
+    - scene: 5
+      template: "cu_dialogue"
+      character: "alex"
+      location: "office"
+
+    - scene: 5
+      template: "reverse_dialogue"
+      character: "sam"
+      location: "office"
+
+    # Scene 6 - Decision
+    - scene: 6
+      template: "character_full"
+      character: "alex"
+      location: "office"
+      notes: "Alex stands, makes a decision"
+
+    # Scene 7 - Rooftop meeting
+    - scene: 7
+      template: "establishing_aerial"
+      location: "rooftop"
+      notes: "Night city skyline"
+
+    - scene: 7
+      template: "two_shot"
+      character: "alex"
+      character2: "sam"
+      location: "rooftop"
+      notes: "Confrontation on rooftop"
+
+    # Scene 8 - Resolution
+    - scene: 8
+      template: "low_angle_hero"
+      character: "alex"
+      location: "rooftop"
+      notes: "Alex looks determined"
+
+    - scene: 8
+      template: "establishing_wide"
+      location: "rooftop"
+      notes: "Pull back to city nightscape"
+
+  # Render settings
+  render:
+    engine: "CYCLES"
+    samples: 128
+    resolution_x: 1920
+    resolution_y: 1080
+    use_denoising: true
+    quality_tier: "production"
+
+  # Output formats
+  outputs:
+    # Cinema master
+    - name: "Cinema Master"
+      format: "prores_4444"
+      resolution: [4096, 2160]
+      path: "output/cinema/"
+
+    # Web streaming
+    - name: "Web"
+      format: "h265"
+      resolution: [1920, 1080]
+      path: "output/web/"
+
+    # Festival version
+    - name: "Festival"
+      format: "prores_422"
+      resolution: [1920, 1080]
+      path: "output/festival/"

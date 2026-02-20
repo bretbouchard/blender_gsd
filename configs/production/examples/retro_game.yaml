@@ -1,0 +1,228 @@
+# Retro Game Assets - Game Asset Production Example
+#
+# A game asset production with retro/pixel art output formats.
+#
+# Synopsis: Create character sprites and backgrounds for a retro-style game.
+#
+# Run with:
+#   python -m lib.production.cli validate configs/production/examples/retro_game.yaml
+#   python -m lib.production.cli info configs/production/examples/retro_game.yaml
+
+production:
+  # Production metadata
+  meta:
+    title: "Retro Quest - Game Assets"
+    version: "1.0"
+    author: "Game Studio"
+    description: "Character sprites and backgrounds for 16-bit style game"
+
+  # Source material
+  source:
+    style_preset: "stylized"
+    reference_images:
+      - "references/character_concept.png"
+      - "references/environment_concept.png"
+
+  # Visual style
+  style:
+    preset: stylized
+    era: "1990s"
+    mood: bright
+    color_grade: saturated
+    contrast: high
+
+  # Characters
+  characters:
+    hero:
+      model: "assets/characters/hero.blend"
+      wardrobe:
+        default: "hero_default"
+        scenes_1_4: "hero_sword"
+        scenes_5_8: "hero_magic"
+      notes: "Main player character"
+
+    enemy_grunt:
+      model: "assets/characters/grunt.blend"
+      wardrobe:
+        default: "grunt_default"
+      notes: "Common enemy type"
+
+    boss:
+      model: "assets/characters/boss.blend"
+      wardrobe:
+        default: "boss_phase1"
+        scenes_3_4: "boss_phase2"
+      notes: "Boss character with multiple phases"
+
+  # Locations
+  locations:
+    forest:
+      preset: "fantasy_forest"
+      hdri: "forest_day"
+      scenes: [1, 2]
+
+    castle:
+      preset: "medieval_castle"
+      hdri: "interior_torch"
+      scenes: [3, 4]
+
+    dungeon:
+      preset: "dark_dungeon"
+      hdri: "dungeon_candles"
+      scenes: [5, 6]
+
+    boss_arena:
+      preset: "throne_room"
+      hdri: "throne_room_fire"
+      scenes: [7, 8]
+
+  # Shot list
+  shots:
+    # Hero idle animations
+    - scene: 1
+      template: "character_full"
+      character: "hero"
+      location: "forest"
+      notes: "Hero idle animation - 8 directions"
+      variations: 8
+
+    - scene: 1
+      template: "character_ms"
+      character: "hero"
+      location: "forest"
+      notes: "Hero walk cycle - 8 directions"
+      variations: 8
+
+    - scene: 1
+      template: "action_dynamic"
+      character: "hero"
+      location: "forest"
+      notes: "Hero attack animation"
+
+    # Enemy sprites
+    - scene: 2
+      template: "character_full"
+      character: "enemy_grunt"
+      location: "forest"
+      notes: "Grunt idle"
+      variations: 4
+
+    - scene: 2
+      template: "action_wide"
+      character: "enemy_grunt"
+      location: "forest"
+      notes: "Grunt attack"
+
+    # Castle backgrounds
+    - scene: 3
+      template: "establishing_wide"
+      location: "castle"
+      notes: "Castle entrance background"
+
+    - scene: 3
+      template: "character_full"
+      character: "hero"
+      location: "castle"
+      notes: "Hero in castle"
+
+    # Boss fight
+    - scene: 4
+      template: "character_full"
+      character: "boss"
+      location: "castle"
+      notes: "Boss idle"
+      variations: 2
+
+    - scene: 4
+      template: "two_shot"
+      character: "hero"
+      character2: "boss"
+      location: "castle"
+      notes: "Boss confrontation"
+
+    # Dungeon backgrounds
+    - scene: 5
+      template: "establishing_wide"
+      location: "dungeon"
+      notes: "Dungeon background"
+
+    - scene: 6
+      template: "action_wide"
+      character: "hero"
+      location: "dungeon"
+      notes: "Dungeon exploration"
+
+    # Final boss
+    - scene: 7
+      template: "establishing_wide"
+      location: "boss_arena"
+      notes: "Boss arena background"
+
+    - scene: 8
+      template: "action_dynamic"
+      character: "hero"
+      location: "boss_arena"
+      notes: "Final battle hero"
+      variations: 4
+
+    - scene: 8
+      template: "low_angle_hero"
+      character: "boss"
+      location: "boss_arena"
+      notes: "Boss dramatic shot"
+
+  # Render settings (lower quality for game assets)
+  render:
+    engine: "BLENDER_EEVEE_NEXT"
+    samples: 32
+    resolution_x: 1024
+    resolution_y: 1024
+    use_denoising: true
+    quality_tier: "preview"
+
+  # Output formats with retro configurations
+  outputs:
+    # 16-bit SNES style
+    - name: "SNES Style"
+      format: "png_sequence"
+      resolution: [256, 224]
+      path: "output/snes/"
+      retro:
+        enabled: true
+        palette: "snes"
+        dither: "error_diffusion"
+        pixel_size: 2
+        target_resolution: [256, 224]
+        crt_effects: true
+
+    # 8-bit NES style
+    - name: "NES Style"
+      format: "png_sequence"
+      resolution: [256, 240]
+      path: "output/nes/"
+      retro:
+        enabled: true
+        palette: "nes"
+        dither: "ordered"
+        pixel_size: 2
+        target_resolution: [256, 240]
+        crt_effects: true
+
+    # Game Boy style
+    - name: "Game Boy"
+      format: "png_sequence"
+      resolution: [160, 144]
+      path: "output/gameboy/"
+      retro:
+        enabled: true
+        palette: "gameboy"
+        dither: "atkinson"
+        pixel_size: 2
+        target_resolution: [160, 144]
+        crt_effects: false
+
+    # Modern reference (no retro)
+    - name: "Modern HD"
+      format: "png_sequence"
+      resolution: [1024, 1024]
+      path: "output/modern/"

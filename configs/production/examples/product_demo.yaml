@@ -1,0 +1,148 @@
+# Product Demo - Commercial Example
+#
+# A commercial/product demo production with multiple output formats.
+#
+# Synopsis: Showcase a new product with hero shots.
+#
+# Run with:
+#   python -m lib.production.cli validate configs/production/examples/product_demo.yaml
+#   python -m lib.production.cli info configs/production/examples/product_demo.yaml
+
+production:
+  # Production metadata
+  meta:
+    title: "Product Demo 2026"
+    version: "1.0"
+    author: "Marketing Team"
+    description: "Product showcase commercial with hero shots"
+
+  # Source material
+  source:
+    style_preset: "product_hero"
+    reference_images:
+      - "references/product_hero.jpg"
+      - "references/brand_guidelines.pdf"
+
+  # Visual style
+  style:
+    preset: product_hero
+    era: present
+    mood: bright
+    color_grade: neutral
+    contrast: medium
+
+  # Characters (optional for product demo)
+  characters:
+    hand_model:
+      model: "assets/hands/generic_hand.blend"
+      wardrobe:
+        default: "neutral_gloves"
+
+  # Locations
+  locations:
+    studio_white:
+      preset: "studio_white_infinite"
+      hdri: "studio_soft_box"
+
+    studio_gradient:
+      preset: "studio_gradient"
+      hdri: "studio_ring_light"
+
+    lifestyle_kitchen:
+      preset: "modern_kitchen"
+      hdri: "kitchen_morning"
+
+  # Shot list
+  shots:
+    # Hero shot sequence
+    - scene: 1
+      template: "action_wide"
+      location: "studio_white"
+      notes: "Product reveal - wide"
+
+    - scene: 1
+      template: "insert"
+      location: "studio_white"
+      notes: "Product detail close-up"
+
+    - scene: 1
+      template: "detail"
+      location: "studio_white"
+      notes: "Texture/material detail"
+
+    # Feature highlights
+    - scene: 2
+      template: "character_ms"
+      character: "hand_model"
+      location: "studio_gradient"
+      notes: "Hand interaction shot 1"
+
+    - scene: 2
+      template: "character_mcu"
+      character: "hand_model"
+      location: "studio_gradient"
+      notes: "Hand interaction shot 2"
+
+    - scene: 2
+      template: "insert"
+      location: "studio_gradient"
+      notes: "Feature detail"
+
+    # Lifestyle context
+    - scene: 3
+      template: "establishing_wide"
+      location: "lifestyle_kitchen"
+      notes: "Lifestyle establishing"
+
+    - scene: 3
+      template: "character_ms"
+      character: "hand_model"
+      location: "lifestyle_kitchen"
+      notes: "In-use context shot"
+
+    # Final hero
+    - scene: 4
+      template: "action_dynamic"
+      location: "studio_white"
+      notes: "Dynamic hero shot"
+      variations: 3  # Multiple angles
+
+    - scene: 4
+      template: "character_full"
+      location: "studio_white"
+      notes: "Product beauty shot"
+
+  # Render settings
+  render:
+    engine: "CYCLES"
+    samples: 256
+    resolution_x: 1920
+    resolution_y: 1080
+    use_denoising: true
+    quality_tier: "production"
+
+  # Output formats
+  outputs:
+    # Broadcast master
+    - name: "Broadcast"
+      format: "prores_422"
+      resolution: [1920, 1080]
+      path: "output/broadcast/"
+
+    # Social media square
+    - name: "Social Square"
+      format: "h264"
+      resolution: [1080, 1080]
+      path: "output/social_square/"
+
+    # Social media vertical
+    - name: "Social Vertical"
+      format: "h264"
+      resolution: [1080, 1920]
+      path: "output/social_vertical/"
+
+    # Web banner
+    - name: "Web Banner"
+      format: "h264"
+      resolution: [1920, 540]
+      path: "output/web_banner/"
