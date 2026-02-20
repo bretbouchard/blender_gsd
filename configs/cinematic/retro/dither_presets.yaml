@@ -1,0 +1,299 @@
+# Dither Presets
+#
+# Pre-configured dithering settings for various retro and artistic styles.
+# Each preset defines a DitherConfig with mode, strength, and other parameters.
+#
+# Usage:
+#   from lib.retro import DitherConfig, dither, load_dither_preset
+#   config = load_dither_preset("macintosh_1bit")
+#   result = dither(image, config)
+
+# =============================================================================
+# Classic Computer Presets
+# =============================================================================
+
+presets:
+  # Classic Macintosh (1984)
+  # Atkinson dithering was used in the original Macintosh software
+  macintosh_1bit:
+    mode: "atkinson"
+    strength: 1.0
+    levels: 2
+    serpentine: true
+    description: "Macintosh 1-bit with Atkinson dithering"
+
+  # Apple IIgs style
+  apple_iigs:
+    mode: "bayer_4x4"
+    strength: 0.9
+    levels: 16
+    description: "Apple IIgs 16-color ordered dither"
+
+  # Commodore 64 style
+  c64:
+    mode: "bayer_2x2"
+    strength: 1.0
+    levels: 16
+    description: "Commodore 64 16-color coarse dither"
+
+  # NES style
+  nes:
+    mode: "checkerboard"
+    strength: 1.0
+    levels: 8
+    description: "NES-style checkerboard dithering"
+
+  # SNES style
+  snes:
+    mode: "bayer_4x4"
+    strength: 0.7
+    levels: 32
+    description: "SNES-style smooth gradient dither"
+
+  # Game Boy original
+  gameboy:
+    mode: "bayer_4x4"
+    strength: 0.85
+    levels: 4
+    color_space: "luma"
+    description: "Game Boy 4-shade green palette"
+
+  # Sega Genesis/Mega Drive
+  genesis:
+    mode: "bayer_4x4"
+    strength: 0.75
+    levels: 64
+    description: "Genesis 64-color dithering"
+
+# =============================================================================
+# Print Media Presets
+# =============================================================================
+
+  # Newspaper halftone
+  newspaper:
+    mode: "halftone"
+    strength: 1.0
+    levels: 2
+    matrix_size: 2
+    description: "Newspaper halftone print effect"
+
+  # Magazine quality
+  magazine:
+    mode: "bayer_8x8"
+    strength: 0.6
+    levels: 32
+    description: "Magazine-quality fine dither"
+
+  # Comic book dots
+  comic_book:
+    mode: "dots_3x3"
+    strength: 1.0
+    levels: 4
+    description: "Ben-Day dots comic book style"
+
+  # Woodcut/lino print
+  woodcut:
+    mode: "diagonal_lines"
+    strength: 1.0
+    levels: 2
+    description: "Woodcut printing effect"
+
+# =============================================================================
+# Modern/Artistic Presets
+# =============================================================================
+
+  # Smooth modern
+  modern_smooth:
+    mode: "floyd_steinberg"
+    strength: 0.8
+    levels: 16
+    serpentine: true
+    description: "Smooth error diffusion for modern aesthetics"
+
+  # Stylized poster
+  poster:
+    mode: "bayer_4x4"
+    strength: 0.5
+    levels: 8
+    description: "Low-strength dither for posterized look"
+
+  # Retro CRT
+  crt_style:
+    mode: "bayer_8x8"
+    strength: 0.9
+    levels: 64
+    description: "CRT monitor display simulation"
+
+  # Pixel art friendly
+  pixel_art:
+    mode: "floyd_steinberg"
+    strength: 0.7
+    levels: 16
+    serpentine: false
+    description: "Error diffusion optimized for pixel art"
+
+  # Stipple effect
+  stipple:
+    mode: "random"
+    strength: 1.0
+    levels: 2
+    description: "Random stippling/pointillist effect"
+
+# =============================================================================
+# Technical Presets
+# =============================================================================
+
+  # High quality error diffusion
+  hq_error_diffusion:
+    mode: "jarvis_judice_ninke"
+    strength: 1.0
+    levels: 8
+    serpentine: true
+    description: "Highest quality error diffusion (slow)"
+
+  # Fast preview
+  fast_preview:
+    mode: "bayer_2x2"
+    strength: 1.0
+    levels: 4
+    description: "Fast coarse dithering for preview"
+
+  # Subtle dither
+  subtle:
+    mode: "bayer_8x8"
+    strength: 0.3
+    levels: 64
+    description: "Very subtle dithering for minor texture"
+
+  # Aggressive dither
+  aggressive:
+    mode: "atkinson"
+    strength: 1.0
+    levels: 2
+    description: "High-contrast 1-bit dithering"
+
+  # Crosshatch artistic
+  crosshatch_art:
+    mode: "crosshatch"
+    strength: 1.0
+    levels: 4
+    description: "Crosshatch drawing style"
+
+# =============================================================================
+# Color Space Variants
+# =============================================================================
+
+  # Perceptual dithering
+  perceptual:
+    mode: "floyd_steinberg"
+    strength: 0.9
+    levels: 16
+    color_space: "lab"
+    description: "Error diffusion in Lab color space (perceptual)"
+
+  # Luma-only dithering
+  luma_only:
+    mode: "atkinson"
+    strength: 1.0
+    levels: 8
+    color_space: "luma"
+    description: "Luminance-based dithering only"
+
+# =============================================================================
+# Pattern Presets
+# =============================================================================
+
+  # Diagonal lines
+  diagonal:
+    mode: "diagonal_lines"
+    strength: 1.0
+    levels: 4
+    description: "Diagonal line pattern"
+
+  # Horizontal lines
+  horizontal:
+    mode: "horizontal_lines"
+    strength: 1.0
+    levels: 4
+    description: "Horizontal line pattern"
+
+  # Vertical lines
+  vertical:
+    mode: "vertical_lines"
+    strength: 1.0
+    levels: 4
+    description: "Vertical line pattern"
+
+  # Diamond pattern
+  diamond:
+    mode: "diamond"
+    strength: 1.0
+    levels: 4
+    description: "Diamond pattern dithering"
+
+  # Herringbone
+  herringbone:
+    mode: "herringbone"
+    strength: 1.0
+    levels: 4
+    description: "Herringbone pattern"
+
+  # Brick pattern
+  brick:
+    mode: "brick"
+    strength: 1.0
+    levels: 4
+    description: "Brick wall pattern"
+
+  # Weave pattern
+  weave:
+    mode: "weave"
+    strength: 1.0
+    levels: 4
+    description: "Woven fabric pattern"
+
+# =============================================================================
+# Console Era Specific
+# =============================================================================
+
+  # Game Boy Color
+  gbc:
+    mode: "bayer_4x4"
+    strength: 0.8
+    levels: 16
+    description: "Game Boy Color palette dither"
+
+  # Sega Master System
+  sms:
+    mode: "bayer_2x2"
+    strength: 1.0
+    levels: 16
+    description: "Master System 16-color dither"
+
+  # PC Engine/TurboGrafx-16
+  pce:
+    mode: "bayer_4x4"
+    strength: 0.75
+    levels: 64
+    description: "PC Engine 64-color dither"
+
+  # Neo Geo
+  neogeo:
+    mode: "bayer_8x8"
+    strength: 0.6
+    levels: 256
+    description: "Neo Geo high-color dither"
+
+  # DOS EGA
+  dos_ega:
+    mode: "bayer_4x4"
+    strength: 0.9
+    levels: 16
+    description: "DOS EGA 16-color palette"
+
+  # DOS VGA
+  dos_vga:
+    mode: "bayer_4x4"
+    strength: 0.7
+    levels: 256
+    description: "DOS VGA 256-color palette"

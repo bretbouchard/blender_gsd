@@ -10,6 +10,11 @@ Modules:
 - quantizer: Color quantization algorithms
 - preset_loader: YAML profile loading
 - pixel_compositor: Blender compositor integration
+- dither_types: Dithering data structures
+- dither_ordered: Bayer and ordered dithering
+- dither_error: Error diffusion algorithms
+- dither_patterns: Pattern-based dithering
+- dither: Main dithering interface
 
 Example Usage:
     from lib.retro import pixelate, PixelationConfig
@@ -30,6 +35,11 @@ Example Usage:
     from lib.retro import load_pixel_profile
     config = load_pixel_profile("gameboy")
     result = pixelate(image, config)
+
+    # Dithering
+    from lib.retro import dither, DitherConfig
+    dither_config = DitherConfig(mode="atkinson", strength=1.0)
+    dithered = dither(image, dither_config)
 """
 
 from lib.retro.pixel_types import (
@@ -122,6 +132,121 @@ except ImportError:
 
 
 # =============================================================================
+# Dithering Module Imports
+# =============================================================================
+
+from lib.retro.dither_types import (
+    # Enums
+    DitherMode as DitherModeEnum,
+    DitherColorSpace,
+    # Dataclasses
+    DitherConfig,
+    DitherMatrix,
+    # Built-in matrices
+    BAYER_2X2,
+    BAYER_4X4,
+    BAYER_8X8,
+    CHECKERBOARD,
+    BUILTIN_MATRICES,
+    # Functions
+    get_matrix,
+    list_matrices,
+)
+
+from lib.retro.dither_ordered import (
+    # Main functions
+    ordered_dither,
+    bayer_dither,
+    checkerboard_dither,
+    halftone_dither,
+    diagonal_dither,
+    blue_noise_dither,
+    # Matrix functions
+    generate_bayer_matrix,
+    normalize_matrix,
+    get_bayer_threshold,
+    # Constants
+    BAYER_2X2_INT,
+    BAYER_4X4_INT,
+    BAYER_8X8_INT,
+)
+
+from lib.retro.dither_error import (
+    # Main functions
+    error_diffusion_dither,
+    floyd_steinberg_dither,
+    atkinson_dither,
+    sierra_dither,
+    jarvis_judice_ninke_dither,
+    stucki_dither,
+    burkes_dither,
+    # Utility functions
+    find_nearest_color,
+    quantize_to_level,
+    rgb_distance,
+    lab_distance,
+    get_kernel,
+    get_kernel_names,
+    # Constants
+    FLOYD_STEINBERG,
+    ATKINSON,
+    SIERRA_LITE,
+    SIERRA_3,
+    JARVIS_JUDICE_NINKE,
+    STUCKI,
+    BURKES,
+    ERROR_DIFFUSION_KERNELS,
+)
+
+from lib.retro.dither_patterns import (
+    # Main functions
+    pattern_dither,
+    custom_pattern_dither,
+    custom_matrix_dither,
+    stipple_dither,
+    newsprint_dither,
+    woodcut_dither,
+    # Pattern generation
+    generate_diagonal_pattern,
+    generate_dot_pattern,
+    generate_circle_pattern,
+    generate_crosshatch_pattern,
+    tile_pattern,
+    # Utility
+    list_patterns,
+    get_pattern,
+    # Constants
+    DIAGONAL_LINES,
+    HORIZONTAL_LINES,
+    VERTICAL_LINES,
+    CROSSHATCH,
+    DIAMOND,
+    DOTS_2X2,
+    DOTS_3X3,
+    CIRCLES_4X4,
+    HERRINGBONE,
+    BRICK,
+    WEAVE,
+    PATTERNS,
+)
+
+from lib.retro.dither import (
+    # Main function
+    dither,
+    # Convenience functions
+    dither_1bit,
+    dither_gameboy,
+    dither_macplus,
+    dither_newspaper,
+    # Utility functions
+    get_available_modes,
+    list_all_modes,
+    is_valid_mode,
+    get_mode_description,
+)
+
+
+# =============================================================================
 # Public API
 # =============================================================================
 
@@ -132,14 +257,18 @@ __all__ = [
     "ScalingFilter",
     "DitherMode",
     "SubPixelLayout",
+    "DitherModeEnum",
+    "DitherColorSpace",
 
     # Dataclasses
     "PixelStyle",
     "PixelationConfig",
     "PixelationResult",
     "ColorPalette",
+    "DitherConfig",
+    "DitherMatrix",
 
-    # Core functions
+    # Core pixelation functions
     "pixelate",
     "downscale_image",
     "pixelate_block",
@@ -194,6 +323,108 @@ __all__ = [
 
     # Compositor (optional)
     "HAS_COMPOSITOR",
+
+    # ==========================================================================
+    # Dithering API
+    # ==========================================================================
+
+    # Main dithering
+    "dither",
+    "DitherConfig",
+    "DitherMatrix",
+    "DitherModeEnum",
+    "DitherColorSpace",
+
+    # Ordered dithering
+    "ordered_dither",
+    "bayer_dither",
+    "checkerboard_dither",
+    "halftone_dither",
+    "diagonal_dither",
+    "blue_noise_dither",
+
+    # Error diffusion
+    "error_diffusion_dither",
+    "floyd_steinberg_dither",
+    "atkinson_dither",
+    "sierra_dither",
+    "jarvis_judice_ninke_dither",
+    "stucki_dither",
+    "burkes_dither",
+
+    # Pattern dithering
+    "pattern_dither",
+    "custom_pattern_dither",
+    "custom_matrix_dither",
+    "stipple_dither",
+    "newsprint_dither",
+    "woodcut_dither",
+
+    # Convenience functions
+    "dither_1bit",
+    "dither_gameboy",
+    "dither_macplus",
+    "dither_newspaper",
+
+    # Matrix functions
+    "generate_bayer_matrix",
+    "normalize_matrix",
+    "get_bayer_threshold",
+    "get_matrix",
+    "list_matrices",
+
+    # Color functions
+    "find_nearest_color",
+    "quantize_to_level",
+    "rgb_distance",
+    "lab_distance",
+
+    # Pattern functions
+    "generate_diagonal_pattern",
+    "generate_dot_pattern",
+    "generate_circle_pattern",
+    "generate_crosshatch_pattern",
+    "tile_pattern",
+    "list_patterns",
+    "get_pattern",
+
+    # Utility
+    "get_available_modes",
+    "list_all_modes",
+    "is_valid_mode",
+    "get_mode_description",
+    "get_kernel",
+    "get_kernel_names",
+
+    # Constants
+    "BAYER_2X2",
+    "BAYER_4X4",
+    "BAYER_8X8",
+    "CHECKERBOARD",
+    "BUILTIN_MATRICES",
+    "BAYER_2X2_INT",
+    "BAYER_4X4_INT",
+    "BAYER_8X8_INT",
+    "FLOYD_STEINBERG",
+    "ATKINSON",
+    "SIERRA_LITE",
+    "SIERRA_3",
+    "JARVIS_JUDICE_NINKE",
+    "STUCKI",
+    "BURKES",
+    "ERROR_DIFFUSION_KERNELS",
+    "DIAGONAL_LINES",
+    "HORIZONTAL_LINES",
+    "VERTICAL_LINES",
+    "CROSSHATCH",
+    "DIAMOND",
+    "DOTS_2X2",
+    "DOTS_3X3",
+    "CIRCLES_4X4",
+    "HERRINGBONE",
+    "BRICK",
+    "WEAVE",
+    "PATTERNS",
 ]
 
 # Add compositor functions to exports if available
