@@ -1,0 +1,62 @@
+# Concert Audience Configuration
+# Seated/standing crowd for events
+
+id: audience_concert
+name: "Concert Audience"
+type: audience
+
+agent:
+  mesh: "character_base"
+  rig: "human_biped"
+  animations:
+    - idle
+    - clap
+    - cheer
+    - sway
+    - sit
+
+behavior:
+  walk_speed: [0.5, 0.8]
+  run_speed: [1.5, 2.5]
+  idle_chance: 0.4
+  flee_distance: 15.0
+  group_chance: 0.5
+  group_size: [2, 4]
+  talk_chance: 0.3
+  reaction_time: 0.5
+
+spawn:
+  count: 200
+  area: [[-20, -30], [20, 30]]
+  height: 0.0
+  distribution: grid
+  seed: null
+
+avoidance:
+  radius: 0.3
+  other_agents: true
+  obstacles: false
+  strength: 0.5
+  max_force: 5.0
+
+variation:
+  scale: [0.95, 1.05]
+  colors:
+    shirt: ["#222222", "#111111", "#333333", "#1a1a1a", "#4A4A4A"]
+    pants: ["#0a0a0a", "#1a1a1a", "#222222"]
+  random_rotation: false
+  random_anim_offset: true
+  material_variants: []
+
+paths: []
+
+goals:
+  - type: look_at
+    target: [0, 0, 1.5]
+    influence: 0.8
+
+metadata:
+  description: "Concert/event audience - mostly stationary with reactions"
+  author: "GSD Animation System"
+  version: "1.0"
+  tags: ["audience", "concert", "event", "crowd"]

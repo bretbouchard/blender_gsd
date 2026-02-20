@@ -1,0 +1,103 @@
+# Limb IK Presets
+# Standard IK configurations for arms and legs
+
+presets:
+  # Left Arm IK
+  left_arm:
+    name: "left_arm_ik"
+    chain: ["upper_arm_L", "lower_arm_L"]
+    target: "ik_hand_L"
+    pole_target: "pole_elbow_L"
+    pole_angle: 0.0
+    chain_count: 2
+    iterations: 500
+    mode: two_bone
+    use_tail: false
+    stretch: 0.0
+    weight: 1.0
+    lock_rotation: false
+
+  # Right Arm IK
+  right_arm:
+    name: "right_arm_ik"
+    chain: ["upper_arm_R", "lower_arm_R"]
+    target: "ik_hand_R"
+    pole_target: "pole_elbow_R"
+    pole_angle: 0.0
+    chain_count: 2
+    iterations: 500
+    mode: two_bone
+    use_tail: false
+    stretch: 0.0
+    weight: 1.0
+    lock_rotation: false
+
+  # Left Leg IK
+  left_leg:
+    name: "left_leg_ik"
+    chain: ["thigh_L", "shin_L"]
+    target: "ik_foot_L"
+    pole_target: "pole_knee_L"
+    pole_angle: 0.0
+    chain_count: 2
+    iterations: 500
+    mode: two_bone
+    use_tail: false
+    stretch: 0.0
+    weight: 1.0
+    lock_rotation: false
+
+  # Right Leg IK
+  right_leg:
+    name: "right_leg_ik"
+    chain: ["thigh_R", "shin_R"]
+    target: "ik_foot_R"
+    pole_target: "pole_knee_R"
+    pole_angle: 0.0
+    chain_count: 2
+    iterations: 500
+    mode: two_bone
+    use_tail: false
+    stretch: 0.0
+    weight: 1.0
+    lock_rotation: false
+
+  # Arm with Stretch
+  arm_stretch:
+    name: "arm_stretch_ik"
+    chain: ["upper_arm", "lower_arm"]
+    target: "ik_hand"
+    pole_target: "pole_elbow"
+    pole_angle: 0.0
+    chain_count: 2
+    iterations: 500
+    mode: two_bone
+    use_tail: false
+    stretch: 0.5
+    weight: 1.0
+    lock_rotation: false
+
+  # Leg with Floor Contact
+  leg_floor:
+    name: "leg_floor_ik"
+    chain: ["thigh", "shin"]
+    target: "ik_foot"
+    pole_target: "pole_knee"
+    pole_angle: 0.0
+    chain_count: 2
+    iterations: 500
+    mode: two_bone
+    use_tail: false
+    stretch: 0.0
+    weight: 1.0
+    lock_rotation: true
+
+# Default settings for limb IK
+defaults:
+  chain_count: 2
+  iterations: 500
+  mode: two_bone
+  use_tail: false
+  stretch: 0.0
+  weight: 1.0
+  lock_rotation: false

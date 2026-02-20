@@ -1,0 +1,614 @@
+# Face Expression Presets
+# Phase 13.4: Face Animation (REQ-ANIM-04)
+#
+# Standard facial expressions based on Ekman's basic emotions
+# and common animation expressions.
+
+metadata:
+  version: "1.0"
+  description: "Face expression presets for character animation"
+  author: "Blender GSD"
+
+# =============================================================================
+# Shape Key Definitions
+# =============================================================================
+
+shape_keys:
+  # Brow Shape Keys
+  brow_raise_L:
+    category: expression
+    description: "Raise left eyebrow"
+    symm_group: brows
+
+  brow_raise_R:
+    category: expression
+    description: "Raise right eyebrow"
+    symm_group: brows
+
+  brow_lower_L:
+    category: expression
+    description: "Lower left eyebrow"
+    symm_group: brows
+
+  brow_lower_R:
+    category: expression
+    description: "Lower right eyebrow"
+    symm_group: brows
+
+  brow_furrow:
+    category: expression
+    description: "Furrow/bring eyebrows together"
+
+  brow_outer_up_L:
+    category: expression
+    description: "Outer left brow up (concerned)"
+    symm_group: brows
+
+  brow_outer_up_R:
+    category: expression
+    description: "Outer right brow up (concerned)"
+    symm_group: brows
+
+  # Eye Shape Keys
+  blink_L:
+    category: expression
+    description: "Left eye blink"
+    symm_group: eyes
+
+  blink_R:
+    category: expression
+    description: "Right eye blink"
+    symm_group: eyes
+
+  eye_wide_L:
+    category: expression
+    description: "Widen left eye"
+    symm_group: eyes
+
+  eye_wide_R:
+    category: expression
+    description: "Widen right eye"
+    symm_group: eyes
+
+  squint_L:
+    category: expression
+    description: "Squint left eye"
+    symm_group: eyes
+
+  squint_R:
+    category: expression
+    description: "Squint right eye"
+    symm_group: eyes
+
+  # Mouth Shape Keys
+  smile_L:
+    category: expression
+    description: "Left smile corner"
+    symm_group: mouth
+
+  smile_R:
+    category: expression
+    description: "Right smile corner"
+    symm_group: mouth
+
+  frown_L:
+    category: expression
+    description: "Left frown corner"
+    symm_group: mouth
+
+  frown_R:
+    category: expression
+    description: "Right frown corner"
+    symm_group: mouth
+
+  mouth_pucker:
+    category: expression
+    description: "Pucker lips together"
+
+  lip_funnel:
+    category: expression
+    description: "Funnel lips outward"
+
+  jaw_open:
+    category: expression
+    description: "Open jaw"
+
+  jaw_left:
+    category: expression
+    description: "Move jaw left"
+
+  jaw_right:
+    category: expression
+    description: "Move jaw right"
+
+  # Cheek/Nose Shape Keys
+  cheek_puff_L:
+    category: expression
+    description: "Puff left cheek"
+    symm_group: cheeks
+
+  cheek_puff_R:
+    category: expression
+    description: "Puff right cheek"
+    symm_group: cheeks
+
+  cheek_raise_L:
+    category: expression
+    description: "Raise left cheek (smile)"
+    symm_group: cheeks
+
+  cheek_raise_R:
+    category: expression
+    description: "Raise right cheek (smile)"
+    symm_group: cheeks
+
+  nose_wrinkle_L:
+    category: expression
+    description: "Wrinkle left side of nose"
+    symm_group: nose
+
+  nose_wrinkle_R:
+    category: expression
+    description: "Wrinkle right side of nose"
+    symm_group: nose
+
+  # Additional Expressions
+  tongue_out:
+    category: expression
+    description: "Stick tongue out"
+
+  teeth_bare:
+    category: expression
+    description: "Bare/teeth showing"
+
+# =============================================================================
+# Expression Presets
+# =============================================================================
+
+expressions:
+  # ---------------------------------------------------------------------------
+  # Neutral & Basic
+  # ---------------------------------------------------------------------------
+
+  neutral:
+    name: "Neutral"
+    category: neutral
+    description: "Resting neutral expression"
+    intensity: 1.0
+    shape_keys: {}
+
+  relaxed:
+    name: "Relaxed"
+    category: neutral
+    description: "Slightly relaxed, pleasant neutral"
+    intensity: 0.5
+    shape_keys:
+      blink_L: 0.1
+      blink_R: 0.1
+      smile_L: 0.05
+      smile_R: 0.05
+
+  # ---------------------------------------------------------------------------
+  # Happiness/Joy (Ekman Basic Emotion 1)
+  # ---------------------------------------------------------------------------
+
+  happy:
+    name: "Happy"
+    category: happy
+    description: "General happiness"
+    intensity: 1.0
+    shape_keys:
+      smile_L: 0.8
+      smile_R: 0.8
+      cheek_raise_L: 0.6
+      cheek_raise_R: 0.6
+      blink_L: 0.2
+      blink_R: 0.2
+
+  smile:
+    name: "Smile"
+    category: happy
+    description: "Simple smile"
+    intensity: 0.8
+    shape_keys:
+      smile_L: 0.7
+      smile_R: 0.7
+      cheek_raise_L: 0.4
+      cheek_raise_R: 0.4
+
+  big_smile:
+    name: "Big Smile"
+    category: happy
+    description: "Wide, happy smile"
+    intensity: 1.0
+    shape_keys:
+      smile_L: 1.0
+      smile_R: 1.0
+      cheek_raise_L: 0.8
+      cheek_raise_R: 0.8
+      jaw_open: 0.2
+
+  joy:
+    name: "Joy"
+    category: happy
+    description: "Full joy expression"
+    intensity: 1.0
+    shape_keys:
+      smile_L: 1.0
+      smile_R: 1.0
+      cheek_raise_L: 1.0
+      cheek_raise_R: 1.0
+      eye_wide_L: 0.3
+      eye_wide_R: 0.3
+      jaw_open: 0.3
+
+  # ---------------------------------------------------------------------------
+  # Sadness (Ekman Basic Emotion 2)
+  # ---------------------------------------------------------------------------
+
+  sad:
+    name: "Sad"
+    category: sad
+    description: "General sadness"
+    intensity: 1.0
+    shape_keys:
+      brow_outer_up_L: 0.6
+      brow_outer_up_R: 0.6
+      brow_furrow: 0.2
+      frown_L: 0.4
+      frown_R: 0.4
+      blink_L: 0.3
+      blink_R: 0.3
+
+  frown:
+    name: "Frown"
+    category: sad
+    description: "Simple frown"
+    intensity: 0.7
+    shape_keys:
+      frown_L: 0.5
+      frown_R: 0.5
+      brow_lower_L: 0.3
+      brow_lower_R: 0.3
+
+  crying:
+    name: "Crying"
+    category: sad
+    description: "Sad crying expression"
+    intensity: 1.0
+    shape_keys:
+      brow_outer_up_L: 0.8
+      brow_outer_up_R: 0.8
+      brow_furrow: 0.4
+      frown_L: 0.6
+      frown_R: 0.6
+      squint_L: 0.6
+      squint_R: 0.6
+      mouth_pucker: 0.3
+
+  # ---------------------------------------------------------------------------
+  # Anger (Ekman Basic Emotion 3)
+  # ---------------------------------------------------------------------------
+
+  angry:
+    name: "Angry"
+    category: angry
+    description: "General anger"
+    intensity: 1.0
+    shape_keys:
+      brow_lower_L: 0.8
+      brow_lower_R: 0.8
+      brow_furrow: 0.8
+      squint_L: 0.5
+      squint_R: 0.5
+      teeth_bare: 0.5
+
+  rage:
+    name: "Rage"
+    category: angry
+    description: "Intense anger"
+    intensity: 1.0
+    shape_keys:
+      brow_lower_L: 1.0
+      brow_lower_R: 1.0
+      brow_furrow: 1.0
+      squint_L: 0.8
+      squint_R: 0.8
+      teeth_bare: 0.8
+      jaw_open: 0.3
+
+  annoyed:
+    name: "Annoyed"
+    category: angry
+    description: "Mild annoyance"
+    intensity: 0.6
+    shape_keys:
+      brow_lower_L: 0.4
+      brow_lower_R: 0.4
+      brow_furrow: 0.3
+      squint_L: 0.3
+      squint_R: 0.3
+
+  # ---------------------------------------------------------------------------
+  # Surprise (Ekman Basic Emotion 4)
+  # ---------------------------------------------------------------------------
+
+  surprised:
+    name: "Surprised"
+    category: surprised
+    description: "General surprise"
+    intensity: 1.0
+    shape_keys:
+      brow_raise_L: 0.9
+      brow_raise_R: 0.9
+      eye_wide_L: 0.8
+      eye_wide_R: 0.8
+      jaw_open: 0.6
+
+  shocked:
+    name: "Shocked"
+    category: surprised
+    description: "Extreme surprise"
+    intensity: 1.0
+    shape_keys:
+      brow_raise_L: 1.0
+      brow_raise_R: 1.0
+      eye_wide_L: 1.0
+      eye_wide_R: 1.0
+      jaw_open: 0.9
+
+  startled:
+    name: "Startled"
+    category: surprised
+    description: "Quick surprise reaction"
+    intensity: 1.0
+    shape_keys:
+      brow_raise_L: 0.7
+      brow_raise_R: 0.7
+      eye_wide_L: 0.6
+      eye_wide_R: 0.6
+
+  # ---------------------------------------------------------------------------
+  # Fear (Ekman Basic Emotion 5)
+  # ---------------------------------------------------------------------------
+
+  fear:
+    name: "Fear"
+    category: fear
+    description: "General fear"
+    intensity: 1.0
+    shape_keys:
+      brow_raise_L: 0.7
+      brow_raise_R: 0.7
+      brow_furrow: 0.4
+      eye_wide_L: 0.7
+      eye_wide_R: 0.7
+      mouth_pucker: 0.4
+
+  terrified:
+    name: "Terrified"
+    category: fear
+    description: "Intense fear"
+    intensity: 1.0
+    shape_keys:
+      brow_raise_L: 1.0
+      brow_raise_R: 1.0
+      brow_furrow: 0.6
+      eye_wide_L: 1.0
+      eye_wide_R: 1.0
+      jaw_open: 0.7
+      teeth_bare: 0.3
+
+  worried:
+    name: "Worried"
+    category: fear
+    description: "Mild fear/concern"
+    intensity: 0.6
+    shape_keys:
+      brow_outer_up_L: 0.5
+      brow_outer_up_R: 0.5
+      brow_furrow: 0.3
+      blink_L: 0.2
+      blink_R: 0.2
+
+  # ---------------------------------------------------------------------------
+  # Disgust (Ekman Basic Emotion 6)
+  # ---------------------------------------------------------------------------
+
+  disgust:
+    name: "Disgust"
+    category: disgust
+    description: "General disgust"
+    intensity: 1.0
+    shape_keys:
+      brow_lower_L: 0.5
+      brow_lower_R: 0.5
+      squint_L: 0.5
+      squint_R: 0.5
+      nose_wrinkle_L: 0.8
+      nose_wrinkle_R: 0.8
+      frown_L: 0.3
+      frown_R: 0.3
+
+  repulsed:
+    name: "Repulsed"
+    category: disgust
+    description: "Strong disgust"
+    intensity: 1.0
+    shape_keys:
+      brow_lower_L: 0.7
+      brow_lower_R: 0.7
+      squint_L: 0.7
+      squint_R: 0.7
+      nose_wrinkle_L: 1.0
+      nose_wrinkle_R: 1.0
+      frown_L: 0.5
+      frown_R: 0.5
+      jaw_open: 0.2
+
+  # ---------------------------------------------------------------------------
+  # Contempt (Ekman Basic Emotion 7)
+  # ---------------------------------------------------------------------------
+
+  contempt:
+    name: "Contempt"
+    category: contempt
+    description: "Contempt/disapproval"
+    intensity: 1.0
+    shape_keys:
+      smile_L: 0.4  # Asymmetric smirk
+      smile_R: 0.0
+      brow_raise_R: 0.3
+      squint_R: 0.2
+
+  smirk:
+    name: "Smirk"
+    category: contempt
+    description: "Smug or sarcastic smile"
+    intensity: 0.7
+    shape_keys:
+      smile_L: 0.5
+      smile_R: 0.1
+      brow_raise_R: 0.2
+
+  # ---------------------------------------------------------------------------
+  # Additional Expressions
+  # ---------------------------------------------------------------------------
+
+  thinking:
+    name: "Thinking"
+    category: custom
+    description: "Thoughtful expression"
+    intensity: 0.6
+    shape_keys:
+      brow_raise_L: 0.3
+      brow_furrow: 0.2
+      blink_L: 0.15
+      blink_R: 0.15
+
+  confused:
+    name: "Confused"
+    category: custom
+    description: "Confused/puzzled"
+    intensity: 0.8
+    shape_keys:
+      brow_raise_L: 0.5
+      brow_raise_R: 0.3
+      brow_furrow: 0.3
+      squint_L: 0.2
+      frown_L: 0.2
+
+  sleepy:
+    name: "Sleepy"
+    category: custom
+    description: "Tired/sleepy"
+    intensity: 0.7
+    shape_keys:
+      blink_L: 0.6
+      blink_R: 0.6
+      brow_lower_L: 0.3
+      brow_lower_R: 0.3
+      jaw_open: 0.1
+
+  yawning:
+    name: "Yawning"
+    category: custom
+    description: "Yawning"
+    intensity: 1.0
+    shape_keys:
+      jaw_open: 0.9
+      squint_L: 0.5
+      squint_R: 0.5
+      brow_raise_L: 0.3
+      brow_raise_R: 0.3
+
+  blink:
+    name: "Blink"
+    category: custom
+    description: "Simple eye blink"
+    intensity: 1.0
+    shape_keys:
+      blink_L: 1.0
+      blink_R: 1.0
+
+  wink_left:
+    name: "Wink Left"
+    category: custom
+    description: "Left eye wink"
+    intensity: 0.8
+    shape_keys:
+      blink_L: 1.0
+      smile_L: 0.3
+
+  wink_right:
+    name: "Wink Right"
+    category: custom
+    description: "Right eye wink"
+    intensity: 0.8
+    shape_keys:
+      blink_R: 1.0
+      smile_R: 0.3
+
+# =============================================================================
+# Expression Groups
+# =============================================================================
+
+groups:
+  basic_emotions:
+    name: "Basic Emotions (Ekman)"
+    expressions:
+      - happy
+      - sad
+      - angry
+      - surprised
+      - fear
+      - disgust
+      - contempt
+
+  all_positive:
+    name: "Positive Expressions"
+    expressions:
+      - happy
+      - smile
+      - big_smile
+      - joy
+      - relaxed
+
+  all_negative:
+    name: "Negative Expressions"
+    expressions:
+      - sad
+      - angry
+      - fear
+      - disgust
+      - contempt
+
+  subtle:
+    name: "Subtle Expressions"
+    expressions:
+      - relaxed
+      - thinking
+      - confused
+      - worried
+      - annoyed
+
+# =============================================================================
+# Intensity Variations
+# =============================================================================
+
+intensity_presets:
+  subtle:
+    intensity: 0.3
+    description: "Subtle, barely noticeable"
+
+  mild:
+    intensity: 0.5
+    description: "Mild, noticeable"
+
+  moderate:
+    intensity: 0.7
+    description: "Moderate, clear"
+
+  strong:
+    intensity: 1.0
+    description: "Strong, exaggerated"

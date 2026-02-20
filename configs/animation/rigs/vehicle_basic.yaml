@@ -1,0 +1,180 @@
+# Vehicle Basic Rig Configuration
+# Simple vehicle rig with wheels and steering
+
+id: vehicle_basic
+name: "Basic Vehicle"
+version: "1.0"
+rig_type: vehicle_basic
+description: "Simple vehicle rig with wheels, steering, and suspension"
+
+bones:
+  # Chassis root
+  - id: chassis
+    parent: null
+    head: [0, 0, 0]
+    tail: [0, -2, 0]
+    layers: [0]
+
+  # Body
+  - id: body
+    parent: chassis
+    head: [0, 0.3, 0]
+    tail: [0, -0.8, 0]
+    layers: [0]
+    use_deform: false
+
+  # Hood
+  - id: hood
+    parent: body
+    head: [0, -0.8, 0]
+    tail: [0, -1.5, 0.1]
+    layers: [0]
+
+  # Trunk
+  - id: trunk
+    parent: body
+    head: [0, 0.3, 0]
+    tail: [0, 0.9, 0]
+    layers: [0]
+
+  # Steering wheel
+  - id: steering_column
+    parent: body
+    head: [0, -0.3, 0.5]
+    tail: [0, -0.3, 0.7]
+    layers: [1]
+  - id: steering_wheel
+    parent: steering_column
+    head: [0, -0.3, 0.7]
+    tail: [0, -0.3, 0.75]
+    layers: [1]
+    use_deform: false
+
+  # Front Left Wheel
+  - id: front_axle_L
+    parent: chassis
+    head: [0.8, -1.2, -0.3]
+    tail: [0.6, -1.2, -0.3]
+    layers: [0]
+    mirror: front_axle_R
+  - id: front_wheel_L
+    parent: front_axle_L
+    head: [0.6, -1.2, -0.3]
+    tail: [0.6, -1.2, -0.5]
+    layers: [0]
+    mirror: front_wheel_R
+
+  # Front Right Wheel
+  - id: front_axle_R
+    parent: chassis
+    head: [-0.8, -1.2, -0.3]
+    tail: [-0.6, -1.2, -0.3]
+    layers: [0]
+  - id: front_wheel_R
+    parent: front_axle_R
+    head: [-0.6, -1.2, -0.3]
+    tail: [-0.6, -1.2, -0.5]
+    layers: [0]
+
+  # Rear Left Wheel
+  - id: rear_axle_L
+    parent: chassis
+    head: [0.8, 0.8, -0.3]
+    tail: [0.6, 0.8, -0.3]
+    layers: [0]
+    mirror: rear_axle_R
+  - id: rear_wheel_L
+    parent: rear_axle_L
+    head: [0.6, 0.8, -0.3]
+    tail: [0.6, 0.8, -0.5]
+    layers: [0]
+    mirror: rear_wheel_R
+
+  # Rear Right Wheel
+  - id: rear_axle_R
+    parent: chassis
+    head: [-0.8, 0.8, -0.3]
+    tail: [-0.6, 0.8, -0.3]
+    layers: [0]
+  - id: rear_wheel_R
+    parent: rear_axle_R
+    head: [-0.6, 0.8, -0.3]
+    tail: [-0.6, 0.8, -0.5]
+    layers: [0]
+
+  # Doors
+  - id: door_L
+    parent: body
+    head: [0.6, -0.2, 0]
+    tail: [0.6, -0.2, 0]
+    layers: [2]
+    use_deform: false
+    mirror: door_R
+  - id: door_R
+    parent: body
+    head: [-0.6, -0.2, 0]
+    tail: [-0.6, -0.2, 0]
+    layers: [2]
+    use_deform: false
+
+  # Headlights
+  - id: headlight_L
+    parent: hood
+    head: [0.5, -1.4, 0.1]
+    tail: [0.5, -1.5, 0.1]
+    layers: [0]
+    mirror: headlight_R
+  - id: headlight_R
+    parent: hood
+    head: [-0.5, -1.4, 0.1]
+    tail: [-0.5, -1.5, 0.1]
+    layers: [0]
+
+  # Taillights
+  - id: taillight_L
+    parent: trunk
+    head: [0.5, 0.9, 0]
+    tail: [0.5, 1.0, 0]
+    layers: [0]
+    mirror: taillight_R
+  - id: taillight_R
+    parent: trunk
+    head: [-0.5, 0.9, 0]
+    tail: [-0.5, 1.0, 0]
+    layers: [0]
+
+constraints:
+  - bone: front_axle_L
+    type: COPY_ROTATION
+    target: SELF
+    subtarget: steering_wheel
+    influence: 0.5
+  - bone: front_axle_R
+    type: COPY_ROTATION
+    target: SELF
+    subtarget: steering_wheel
+    influence: 0.5
+    properties:
+      invert_x: true
+
+groups:
+  - name: body
+    bones: [body, hood, trunk]
+    color: THEME01
+  - name: wheels
+    bones: [front_wheel_L, front_wheel_R, rear_wheel_L, rear_wheel_R]
+    color: THEME02
+  - name: steering
+    bones: [steering_column, steering_wheel]
+    color: THEME03
+  - name: doors
+    bones: [door_L, door_R]
+    color: THEME04
+  - name: lights
+    bones: [headlight_L, headlight_R, taillight_L, taillight_R]
+    color: THEME05
+
+metadata:
+  author: "Blender GSD"
+  created: "2026-02-19"
+  tags: ["vehicle", "car", "automobile", "mechanical"]

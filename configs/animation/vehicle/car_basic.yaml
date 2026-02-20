@@ -1,0 +1,75 @@
+# Basic Car Configuration
+# Standard 4-door sedan with front steering, rear-wheel drive
+
+id: car_basic
+name: "Basic Car"
+type: automobile
+
+dimensions:
+  length: 4.5
+  width: 1.8
+  height: 1.4
+  wheelbase: 2.7
+  track_width: 1.6
+  ground_clearance: 0.15
+
+wheels:
+  - id: FL
+    position: [1.35, 0.8, 0.35]
+    radius: 0.35
+    width: 0.2
+    steering: true
+    driven: false
+    suspended: true
+
+  - id: FR
+    position: [1.35, -0.8, 0.35]
+    radius: 0.35
+    width: 0.2
+    steering: true
+    driven: false
+    suspended: true
+
+  - id: RL
+    position: [-1.35, 0.8, 0.35]
+    radius: 0.35
+    width: 0.2
+    steering: false
+    driven: true
+    suspended: true
+
+  - id: RR
+    position: [-1.35, -0.8, 0.35]
+    radius: 0.35
+    width: 0.2
+    steering: false
+    driven: true
+    suspended: true
+
+steering:
+  max_angle: 35
+  ackermann: true
+  steering_wheel_ratio: 1.0
+  speed_sensitive: false
+  return_speed: 1.0
+
+suspension:
+  type: independent
+  travel: 0.15
+  stiffness: 1.0
+  damping: 0.5
+  anti_roll: 0.3
+  preload: 0.0
+
+mesh:
+  body: "car_body.obj"
+  wheels: "car_wheel.obj"
+
+mass: 1500.0
+max_speed: 200.0
+acceleration: 8.0
+
+metadata:
+  description: "Standard 4-door sedan"
+  manufacturer: "Generic"
+  year: 2024

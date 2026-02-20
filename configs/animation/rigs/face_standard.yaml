@@ -1,0 +1,172 @@
+# Face Rig Configuration
+# Standard face rig for expressions and lip sync
+
+id: face_standard
+name: "Standard Face Rig"
+version: "1.0"
+rig_type: face_standard
+description: "Face rig for expressions, blinking, and lip sync"
+
+bones:
+  # Face root (controls entire face)
+  - id: face_root
+    parent: null
+    head: [0, -0.05, 0.95]
+    tail: [0, -0.1, 0.95]
+    layers: [0]
+
+  # Jaw
+  - id: jaw
+    parent: face_root
+    head: [0, -0.08, 0.88]
+    tail: [0, -0.15, 0.85]
+    layers: [0]
+
+  # Left Eye
+  - id: eye_L
+    parent: face_root
+    head: [0.032, -0.09, 0.98]
+    tail: [0.032, -0.12, 0.98]
+    layers: [0]
+    mirror: eye_R
+  - id: eyelid_top_L
+    parent: eye_L
+    head: [0.032, -0.095, 0.99]
+    tail: [0.032, -0.11, 0.99]
+    layers: [1]
+    mirror: eyelid_top_R
+  - id: eyelid_bottom_L
+    parent: eye_L
+    head: [0.032, -0.095, 0.97]
+    tail: [0.032, -0.11, 0.97]
+    layers: [1]
+    mirror: eyelid_bottom_R
+
+  # Right Eye
+  - id: eye_R
+    parent: face_root
+    head: [-0.032, -0.09, 0.98]
+    tail: [-0.032, -0.12, 0.98]
+    layers: [0]
+  - id: eyelid_top_R
+    parent: eye_R
+    head: [-0.032, -0.095, 0.99]
+    tail: [-0.032, -0.11, 0.99]
+    layers: [1]
+  - id: eyelid_bottom_R
+    parent: eye_R
+    head: [-0.032, -0.095, 0.97]
+    tail: [-0.032, -0.11, 0.97]
+    layers: [1]
+
+  # Left Eyebrow
+  - id: eyebrow_inner_L
+    parent: face_root
+    head: [0.015, -0.1, 1.02]
+    tail: [0.015, -0.12, 1.02]
+    layers: [0]
+    mirror: eyebrow_inner_R
+  - id: eyebrow_mid_L
+    parent: face_root
+    head: [0.035, -0.1, 1.03]
+    tail: [0.035, -0.12, 1.03]
+    layers: [0]
+    mirror: eyebrow_mid_R
+  - id: eyebrow_outer_L
+    parent: face_root
+    head: [0.055, -0.1, 1.02]
+    tail: [0.055, -0.12, 1.02]
+    layers: [0]
+    mirror: eyebrow_outer_R
+
+  # Right Eyebrow
+  - id: eyebrow_inner_R
+    parent: face_root
+    head: [-0.015, -0.1, 1.02]
+    tail: [-0.015, -0.12, 1.02]
+    layers: [0]
+  - id: eyebrow_mid_R
+    parent: face_root
+    head: [-0.035, -0.1, 1.03]
+    tail: [-0.035, -0.12, 1.03]
+    layers: [0]
+  - id: eyebrow_outer_R
+    parent: face_root
+    head: [-0.055, -0.1, 1.02]
+    tail: [-0.055, -0.12, 1.02]
+    layers: [0]
+
+  # Nose
+  - id: nose_bridge
+    parent: face_root
+    head: [0, -0.1, 1.0]
+    tail: [0, -0.12, 0.95]
+    layers: [0]
+  - id: nose_tip
+    parent: nose_bridge
+    head: [0, -0.12, 0.95]
+    tail: [0, -0.15, 0.93]
+    layers: [0]
+
+  # Mouth
+  - id: mouth_center
+    parent: jaw
+    head: [0, -0.12, 0.9]
+    tail: [0, -0.14, 0.9]
+    layers: [0]
+  - id: lip_top_center
+    parent: face_root
+    head: [0, -0.11, 0.915]
+    tail: [0, -0.13, 0.915]
+    layers: [0]
+  - id: lip_bottom_center
+    parent: jaw
+    head: [0, -0.13, 0.89]
+    tail: [0, -0.15, 0.89]
+    layers: [0]
+  - id: lip_corner_L
+    parent: jaw
+    head: [0.03, -0.11, 0.9]
+    tail: [0.03, -0.13, 0.9]
+    layers: [0]
+    mirror: lip_corner_R
+  - id: lip_corner_R
+    parent: jaw
+    head: [-0.03, -0.11, 0.9]
+    tail: [-0.03, -0.13, 0.9]
+    layers: [0]
+
+  # Cheeks
+  - id: cheek_L
+    parent: face_root
+    head: [0.05, -0.08, 0.92]
+    tail: [0.05, -0.1, 0.92]
+    layers: [0]
+    mirror: cheek_R
+  - id: cheek_R
+    parent: face_root
+    head: [-0.05, -0.08, 0.92]
+    tail: [-0.05, -0.1, 0.92]
+    layers: [0]
+
+groups:
+  - name: eyes
+    bones: [eye_L, eye_R, eyelid_top_L, eyelid_top_R, eyelid_bottom_L, eyelid_bottom_R]
+    color: THEME01
+  - name: eyebrows
+    bones: [eyebrow_inner_L, eyebrow_inner_R, eyebrow_mid_L, eyebrow_mid_R, eyebrow_outer_L, eyebrow_outer_R]
+    color: THEME02
+  - name: mouth
+    bones: [jaw, mouth_center, lip_top_center, lip_bottom_center, lip_corner_L, lip_corner_R]
+    color: THEME03
+  - name: nose
+    bones: [nose_bridge, nose_tip]
+    color: THEME04
+  - name: cheeks
+    bones: [cheek_L, cheek_R]
+    color: THEME05
+
+metadata:
+  author: "Blender GSD"
+  created: "2026-02-19"
+  tags: ["face", "expression", "lip_sync", "facial"]

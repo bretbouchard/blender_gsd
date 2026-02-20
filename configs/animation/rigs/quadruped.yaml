@@ -1,0 +1,216 @@
+# Quadruped Rig Configuration
+# 4-legged animal skeleton
+
+id: quadruped
+name: "Quadruped Animal"
+version: "1.0"
+rig_type: quadruped
+description: "4-legged animal rig for dogs, horses, and similar creatures"
+
+bones:
+  # Root
+  - id: root
+    parent: null
+    head: [0, 0, 0]
+    tail: [0, 0, 0.3]
+    layers: [0]
+
+  # Hips (pelvis)
+  - id: hips
+    parent: root
+    head: [0, 0.8, 0.4]
+    tail: [0, 0.6, 0.5]
+    layers: [0]
+
+  # Spine chain
+  - id: spine_01
+    parent: hips
+    head: [0, 0.6, 0.5]
+    tail: [0, 0.3, 0.5]
+    layers: [0]
+  - id: spine_02
+    parent: spine_01
+    head: [0, 0.3, 0.5]
+    tail: [0, 0, 0.45]
+    layers: [0]
+  - id: spine_03
+    parent: spine_02
+    head: [0, 0, 0.45]
+    tail: [0, -0.3, 0.4]
+    layers: [0]
+  - id: chest
+    parent: spine_03
+    head: [0, -0.3, 0.4]
+    tail: [0, -0.6, 0.35]
+    layers: [0]
+
+  # Neck and Head
+  - id: neck_01
+    parent: chest
+    head: [0, -0.6, 0.35]
+    tail: [0, -0.8, 0.5]
+    layers: [0]
+  - id: neck_02
+    parent: neck_01
+    head: [0, -0.8, 0.5]
+    tail: [0, -1.0, 0.6]
+    layers: [0]
+  - id: head
+    parent: neck_02
+    head: [0, -1.0, 0.6]
+    tail: [0, -1.2, 0.55]
+    layers: [0]
+  - id: jaw
+    parent: head
+    head: [0, -1.15, 0.5]
+    tail: [0, -1.3, 0.45]
+    layers: [0]
+
+  # Tail
+  - id: tail_01
+    parent: hips
+    head: [0, 0.9, 0.45]
+    tail: [0, 1.1, 0.5]
+    layers: [0]
+  - id: tail_02
+    parent: tail_01
+    head: [0, 1.1, 0.5]
+    tail: [0, 1.3, 0.55]
+    layers: [0]
+  - id: tail_03
+    parent: tail_02
+    head: [0, 1.3, 0.55]
+    tail: [0, 1.5, 0.5]
+    layers: [0]
+
+  # Front Left Leg
+  - id: front_shoulder_L
+    parent: chest
+    head: [0.15, -0.5, 0.35]
+    tail: [0.15, -0.5, 0.15]
+    layers: [0]
+    mirror: front_shoulder_R
+  - id: front_upper_leg_L
+    parent: front_shoulder_L
+    head: [0.15, -0.5, 0.15]
+    tail: [0.15, -0.45, -0.1]
+    layers: [0]
+    mirror: front_upper_leg_R
+  - id: front_lower_leg_L
+    parent: front_upper_leg_L
+    head: [0.15, -0.45, -0.1]
+    tail: [0.15, -0.4, -0.3]
+    layers: [0]
+    mirror: front_lower_leg_R
+  - id: front_foot_L
+    parent: front_lower_leg_L
+    head: [0.15, -0.4, -0.3]
+    tail: [0.15, -0.35, -0.45]
+    layers: [0]
+    mirror: front_foot_R
+
+  # Front Right Leg (mirrored)
+  - id: front_shoulder_R
+    parent: chest
+    head: [-0.15, -0.5, 0.35]
+    tail: [-0.15, -0.5, 0.15]
+    layers: [0]
+  - id: front_upper_leg_R
+    parent: front_shoulder_R
+    head: [-0.15, -0.5, 0.15]
+    tail: [-0.15, -0.45, -0.1]
+    layers: [0]
+  - id: front_lower_leg_R
+    parent: front_upper_leg_R
+    head: [-0.15, -0.45, -0.1]
+    tail: [-0.15, -0.4, -0.3]
+    layers: [0]
+  - id: front_foot_R
+    parent: front_lower_leg_R
+    head: [-0.15, -0.4, -0.3]
+    tail: [-0.15, -0.35, -0.45]
+    layers: [0]
+
+  # Back Left Leg
+  - id: back_hip_L
+    parent: hips
+    head: [0.15, 0.7, 0.4]
+    tail: [0.15, 0.7, 0.2]
+    layers: [0]
+    mirror: back_hip_R
+  - id: back_upper_leg_L
+    parent: back_hip_L
+    head: [0.15, 0.7, 0.2]
+    tail: [0.15, 0.65, -0.05]
+    layers: [0]
+    mirror: back_upper_leg_R
+  - id: back_lower_leg_L
+    parent: back_upper_leg_L
+    head: [0.15, 0.65, -0.05]
+    tail: [0.15, 0.6, -0.25]
+    layers: [0]
+    mirror: back_lower_leg_R
+  - id: back_foot_L
+    parent: back_lower_leg_L
+    head: [0.15, 0.6, -0.25]
+    tail: [0.15, 0.55, -0.4]
+    layers: [0]
+    mirror: back_foot_R
+
+  # Back Right Leg (mirrored)
+  - id: back_hip_R
+    parent: hips
+    head: [-0.15, 0.7, 0.4]
+    tail: [-0.15, 0.7, 0.2]
+    layers: [0]
+  - id: back_upper_leg_R
+    parent: back_hip_R
+    head: [-0.15, 0.7, 0.2]
+    tail: [-0.15, 0.65, -0.05]
+    layers: [0]
+  - id: back_lower_leg_R
+    parent: back_upper_leg_R
+    head: [-0.15, 0.65, -0.05]
+    tail: [-0.15, 0.6, -0.25]
+    layers: [0]
+  - id: back_foot_R
+    parent: back_lower_leg_R
+    head: [-0.15, 0.6, -0.25]
+    tail: [-0.15, 0.55, -0.4]
+    layers: [0]
+
+groups:
+  - name: spine
+    bones: [spine_01, spine_02, spine_03, chest]
+    color: THEME01
+  - name: neck_head
+    bones: [neck_01, neck_02, head, jaw]
+    color: THEME02
+  - name: tail
+    bones: [tail_01, tail_02, tail_03]
+    color: THEME03
+  - name: front_legs
+    bones: [front_shoulder_L, front_shoulder_R, front_upper_leg_L, front_upper_leg_R, front_lower_leg_L, front_lower_leg_R, front_foot_L, front_foot_R]
+    color: THEME04
+  - name: back_legs
+    bones: [back_hip_L, back_hip_R, back_upper_leg_L, back_upper_leg_R, back_lower_leg_L, back_lower_leg_R, back_foot_L, back_foot_R]
+    color: THEME05
+
+ik_chains:
+  - name: front_left_leg_ik
+    chain: [front_upper_leg_L, front_lower_leg_L]
+    chain_count: 2
+  - name: front_right_leg_ik
+    chain: [front_upper_leg_R, front_lower_leg_R]
+    chain_count: 2
+  - name: back_left_leg_ik
+    chain: [back_upper_leg_L, back_lower_leg_L]
+    chain_count: 2
+  - name: back_right_leg_ik
+    chain: [back_upper_leg_R, back_lower_leg_R]
+    chain_count: 2
+
+metadata:
+  author: "Blender GSD"
+  created: "2026-02-19"
+  tags: ["quadruped", "animal", "dog", "horse", "four_legged"]

@@ -1,0 +1,90 @@
+# Spline IK Presets
+# Curve-based IK for tentacles, spines, and flexible chains
+
+presets:
+  # Tentacle (8 bones)
+  tentacle:
+    name: "tentacle_spline"
+    chain: ["tentacle_01", "tentacle_02", "tentacle_03", "tentacle_04",
+            "tentacle_05", "tentacle_06", "tentacle_07", "tentacle_08"]
+    curve_object: "curve_tentacle"
+    chain_count: 8
+    use_curve_radius: true
+    use_stretch: true
+    use_y_stretch: true
+    even_divisions: true
+    bindings: []
+
+  # Flexible Spine (6 bones)
+  flexible_spine:
+    name: "flexible_spine_spline"
+    chain: ["spine_01", "spine_02", "spine_03", "spine_04", "spine_05", "spine_06"]
+    curve_object: "curve_spine"
+    chain_count: 6
+    use_curve_radius: false
+    use_stretch: true
+    use_y_stretch: true
+    even_divisions: true
+    bindings: []
+
+  # Snake Body (20 bones)
+  snake_body:
+    name: "snake_spline"
+    chain: ["body_01", "body_02", "body_03", "body_04", "body_05",
+            "body_06", "body_07", "body_08", "body_09", "body_10",
+            "body_11", "body_12", "body_13", "body_14", "body_15",
+            "body_16", "body_17", "body_18", "body_19", "body_20"]
+    curve_object: "curve_snake"
+    chain_count: 20
+    use_curve_radius: true
+    use_stretch: true
+    use_y_stretch: true
+    even_divisions: true
+    bindings: []
+
+  # Elephant Trunk (10 bones)
+  elephant_trunk:
+    name: "trunk_spline"
+    chain: ["trunk_01", "trunk_02", "trunk_03", "trunk_04", "trunk_05",
+            "trunk_06", "trunk_07", "trunk_08", "trunk_09", "trunk_10"]
+    curve_object: "curve_trunk"
+    chain_count: 10
+    use_curve_radius: true
+    use_stretch: true
+    use_y_stretch: false
+    even_divisions: true
+    bindings: []
+
+  # Whip (12 bones)
+  whip:
+    name: "whip_spline"
+    chain: ["whip_01", "whip_02", "whip_03", "whip_04", "whip_05", "whip_06",
+            "whip_07", "whip_08", "whip_09", "whip_10", "whip_11", "whip_12"]
+    curve_object: "curve_whip"
+    chain_count: 12
+    use_curve_radius: false
+    use_stretch: true
+    use_y_stretch: true
+    even_divisions: true
+    bindings: []
+
+  # Cat Tail (10 bones with taper)
+  cat_tail:
+    name: "cat_tail_spline"
+    chain: ["tail_01", "tail_02", "tail_03", "tail_04", "tail_05",
+            "tail_06", "tail_07", "tail_08", "tail_09", "tail_10"]
+    curve_object: "curve_cat_tail"
+    chain_count: 10
+    use_curve_radius: true
+    use_stretch: false
+    use_y_stretch: true
+    even_divisions: true
+    bindings: []
+
+# Default settings for spline IK
+defaults:
+  use_curve_radius: false
+  use_stretch: true
+  use_y_stretch: true
+  even_divisions: true
+  bindings: []

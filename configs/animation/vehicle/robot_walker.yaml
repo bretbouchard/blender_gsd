@@ -1,0 +1,75 @@
+# Walking Robot Configuration
+# Bipedal robot with mechanical joints
+
+id: robot_walker
+name: "Walking Robot"
+type: robot
+
+dimensions:
+  length: 0.8
+  width: 0.6
+  height: 2.0
+  wheelbase: 0.0
+  track_width: 0.4
+  ground_clearance: 0.0
+
+wheels:
+  # Robots don't have wheels, but we use this for foot positions
+  - id: LEFT_FOOT
+    position: [0.0, 0.2, 0.0]
+    radius: 0.15
+    width: 0.15
+    steering: false
+    driven: false
+    suspended: true
+
+  - id: RIGHT_FOOT
+    position: [0.0, -0.2, 0.0]
+    radius: 0.15
+    width: 0.15
+    steering: false
+    driven: false
+    suspended: true
+
+steering:
+  max_angle: 45
+  ackermann: false
+  steering_wheel_ratio: 1.0
+  speed_sensitive: false
+  return_speed: 1.0
+
+suspension:
+  type: independent
+  travel: 0.05
+  stiffness: 5.0
+  damping: 1.0
+  anti_roll: 0.0
+  preload: 0.0
+
+mesh:
+  body: "robot_body.obj"
+  head: "robot_head.obj"
+  left_arm: "robot_arm_left.obj"
+  right_arm: "robot_arm_right.obj"
+  left_leg: "robot_leg_left.obj"
+  right_leg: "robot_leg_right.obj"
+
+mass: 150.0
+max_speed: 10.0
+acceleration: 2.0
+
+metadata:
+  description: "Bipedal walking robot"
+  locomotion: "bipedal"
+  joints:
+    - hip_left
+    - hip_right
+    - knee_left
+    - knee_right
+    - ankle_left
+    - ankle_right
+    - shoulder_left
+    - shoulder_right
+    - elbow_left
+    - elbow_right
+  walk_cycle_frames: 24

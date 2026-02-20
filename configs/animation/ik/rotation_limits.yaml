@@ -1,0 +1,271 @@
+# Rotation Limits Presets
+# Joint rotation limits in degrees
+
+# Human Arm - Left Side
+human_arm_left:
+  upper_arm_L:
+    x_min: -90
+    x_max: 90
+    y_min: -90
+    y_max: 90
+    z_min: -90
+    z_max: 60
+    use_limits_x: true
+    use_limits_y: true
+    use_limits_z: true
+
+  lower_arm_L:
+    x_min: 0
+    x_max: 145
+    y_min: 0
+    y_max: 0
+    z_min: 0
+    z_max: 0
+    use_limits_x: true
+    use_limits_y: false
+    use_limits_z: false
+
+  hand_L:
+    x_min: -90
+    x_max: 90
+    y_min: -45
+    y_max: 45
+    z_min: -90
+    z_max: 90
+    use_limits_x: true
+    use_limits_y: true
+    use_limits_z: true
+
+# Human Arm - Right Side
+human_arm_right:
+  upper_arm_R:
+    x_min: -90
+    x_max: 90
+    y_min: -90
+    y_max: 90
+    z_min: -60
+    z_max: 90
+    use_limits_x: true
+    use_limits_y: true
+    use_limits_z: true
+
+  lower_arm_R:
+    x_min: 0
+    x_max: 145
+    y_min: 0
+    y_max: 0
+    z_min: 0
+    z_max: 0
+    use_limits_x: true
+    use_limits_y: false
+    use_limits_z: false
+
+  hand_R:
+    x_min: -90
+    x_max: 90
+    y_min: -45
+    y_max: 45
+    z_min: -90
+    z_max: 90
+    use_limits_x: true
+    use_limits_y: true
+    use_limits_z: true
+
+# Human Leg - Left Side
+human_leg_left:
+  thigh_L:
+    x_min: -120
+    x_max: 45
+    y_min: -45
+    y_max: 45
+    z_min: -45
+    z_max: 60
+    use_limits_x: true
+    use_limits_y: true
+    use_limits_z: true
+
+  shin_L:
+    x_min: 0
+    x_max: 150
+    y_min: 0
+    y_max: 0
+    z_min: 0
+    z_max: 0
+    use_limits_x: true
+    use_limits_y: false
+    use_limits_z: false
+
+  foot_L:
+    x_min: -50
+    x_max: 50
+    y_min: -25
+    y_max: 25
+    z_min: -45
+    z_max: 45
+    use_limits_x: true
+    use_limits_y: true
+    use_limits_z: true
+
+# Human Leg - Right Side
+human_leg_right:
+  thigh_R:
+    x_min: -120
+    x_max: 45
+    y_min: -45
+    y_max: 45
+    z_min: -60
+    z_max: 45
+    use_limits_x: true
+    use_limits_y: true
+    use_limits_z: true
+
+  shin_R:
+    x_min: 0
+    x_max: 150
+    y_min: 0
+    y_max: 0
+    z_min: 0
+    z_max: 0
+    use_limits_x: true
+    use_limits_y: false
+    use_limits_z: false
+
+  foot_R:
+    x_min: -50
+    x_max: 50
+    y_min: -25
+    y_max: 25
+    z_min: -45
+    z_max: 45
+    use_limits_x: true
+    use_limits_y: true
+    use_limits_z: true
+
+# Human Spine
+human_spine:
+  spine_01:
+    x_min: -30
+    x_max: 30
+    y_min: -30
+    y_max: 30
+    z_min: -30
+    z_max: 30
+    use_limits_x: true
+    use_limits_y: true
+    use_limits_z: true
+
+  spine_02:
+    x_min: -30
+    x_max: 30
+    y_min: -30
+    y_max: 30
+    z_min: -30
+    z_max: 30
+    use_limits_x: true
+    use_limits_y: true
+    use_limits_z: true
+
+  spine_03:
+    x_min: -30
+    x_max: 30
+    y_min: -45
+    y_max: 45
+    z_min: -30
+    z_max: 30
+    use_limits_x: true
+    use_limits_y: true
+    use_limits_z: true
+
+# Human Neck
+human_neck:
+  neck:
+    x_min: -45
+    x_max: 45
+    y_min: -60
+    y_max: 60
+    z_min: -45
+    z_max: 45
+    use_limits_x: true
+    use_limits_y: true
+    use_limits_z: true
+
+  head:
+    x_min: -45
+    x_max: 45
+    y_min: -75
+    y_max: 75
+    z_min: -45
+    z_max: 45
+    use_limits_x: true
+    use_limits_y: true
+    use_limits_z: true
+
+# Quadruped Front Leg
+quadruped_front_leg:
+  front_upper_leg:
+    x_min: -150
+    x_max: 90
+    y_min: -30
+    y_max: 30
+    z_min: -45
+    z_max: 45
+    use_limits_x: true
+    use_limits_y: true
+    use_limits_z: true
+
+  front_lower_leg:
+    x_min: 0
+    x_max: 150
+    y_min: 0
+    y_max: 0
+    z_min: 0
+    z_max: 0
+    use_limits_x: true
+    use_limits_y: false
+    use_limits_z: false
+
+  front_foot:
+    x_min: -60
+    x_max: 90
+    y_min: -30
+    y_max: 30
+    z_min: -30
+    z_max: 30
+    use_limits_x: true
+    use_limits_y: true
+    use_limits_z: true
+
+# Quadruped Back Leg
+quadruped_back_leg:
+  back_upper_leg:
+    x_min: -120
+    x_max: 150
+    y_min: -30
+    y_max: 30
+    z_min: -45
+    z_max: 45
+    use_limits_x: true
+    use_limits_y: true
+    use_limits_z: true
+
+  back_lower_leg:
+    x_min: 0
+    x_max: 150
+    y_min: 0
+    y_max: 0
+    z_min: 0
+    z_max: 0
+    use_limits_x: true
+    use_limits_y: false
+    use_limits_z: false
+
+  back_foot:
+    x_min: -90
+    x_max: 60
+    y_min: -30
+    y_max: 30
+    z_min: -30
+    z_max: 30
+    use_limits_x: true
+    use_limits_y: true
+    use_limits_z: true

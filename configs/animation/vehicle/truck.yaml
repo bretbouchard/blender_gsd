@@ -1,0 +1,75 @@
+# Pickup Truck Configuration
+# Full-size pickup with rear-wheel drive and stiff suspension
+
+id: truck
+name: "Pickup Truck"
+type: truck
+
+dimensions:
+  length: 5.5
+  width: 2.0
+  height: 1.9
+  wheelbase: 3.4
+  track_width: 1.8
+  ground_clearance: 0.25
+
+wheels:
+  - id: FL
+    position: [1.7, 0.9, 0.4]
+    radius: 0.4
+    width: 0.25
+    steering: true
+    driven: false
+    suspended: true
+
+  - id: FR
+    position: [1.7, -0.9, 0.4]
+    radius: 0.4
+    width: 0.25
+    steering: true
+    driven: false
+    suspended: true
+
+  - id: RL
+    position: [-1.7, 0.9, 0.4]
+    radius: 0.4
+    width: 0.25
+    steering: false
+    driven: true
+    suspended: true
+
+  - id: RR
+    position: [-1.7, -0.9, 0.4]
+    radius: 0.4
+    width: 0.25
+    steering: false
+    driven: true
+    suspended: true
+
+steering:
+  max_angle: 40
+  ackermann: true
+  steering_wheel_ratio: 1.2
+  speed_sensitive: false
+  return_speed: 0.8
+
+suspension:
+  type: solid_axle
+  travel: 0.2
+  stiffness: 1.5
+  damping: 0.6
+  anti_roll: 0.4
+  preload: 0.0
+
+mesh:
+  body: "truck_body.obj"
+  wheels: "truck_wheel.obj"
+
+mass: 2500.0
+max_speed: 160.0
+acceleration: 10.0
+
+metadata:
+  description: "Full-size pickup truck"
+  cab_style: "crew_cab"
+  bed_length: 1.7

@@ -1,0 +1,178 @@
+# Animation Layer Presets
+# Common layer stack configurations for different animation workflows
+#
+# Usage:
+#   from lib.animation.layers import apply_layer_preset
+#   apply_layer_preset(system, "character_animation")
+
+# Standard character animation layers
+character_animation:
+  name: "Character Animation"
+  description: "Standard layer setup for character animation"
+  layers:
+    - name: "Base"
+      type: "base"
+      bone_mask: []
+
+    - name: "Secondary Motion"
+      type: "additive"
+      bone_mask: ["spine*", "head*", "neck*"]
+
+    - name: "Breathing"
+      type: "additive"
+      bone_mask: ["spine*", "chest*", "shoulder*"]
+
+# Detail animation for close-ups
+detail_animation:
+  name: "Detail Animation"
+  description: "Layers for detailed close-up animation"
+  layers:
+    - name: "Base"
+      type: "base"
+      bone_mask: []
+
+    - name: "Body Detail"
+      type: "additive"
+      bone_mask: ["spine*", "hip*", "shoulder*"]
+
+    - name: "Head Detail"
+      type: "additive"
+      bone_mask: ["head*", "neck*", "jaw*"]
+
+    - name: "Hand Animation"
+      type: "override"
+      bone_mask: ["hand*", "finger*", "thumb*"]
+
+# Facial animation preset
+facial_animation:
+  name: "Facial Animation"
+  description: "Layers for detailed facial animation"
+  layers:
+    - name: "Base"
+      type: "base"
+      bone_mask: []
+
+    - name: "Brow Movement"
+      type: "additive"
+      bone_mask: ["*brow*", "*eyebrow*"]
+
+    - name: "Eye Movement"
+      type: "override"
+      bone_mask: ["*eye*"]
+
+    - name: "Mouth Movement"
+      type: "override"
+      bone_mask: ["*mouth*", "*lip*", "*jaw*"]
+
+# Locomotion preset
+locomotion:
+  name: "Locomotion"
+  description: "Layers for walk/run cycles"
+  layers:
+    - name: "Base"
+      type: "base"
+      bone_mask: []
+
+    - name: "Arm Swing"
+      type: "additive"
+      bone_mask: ["*arm*", "*shoulder*"]
+
+    - name: "Leg Motion"
+      type: "additive"
+      bone_mask: ["*leg*", "*thigh*", "*shin*", "*foot*"]
+
+    - name: "Hip Motion"
+      type: "additive"
+      bone_mask: ["hip*", "pelvis*"]
+
+# Combat animation preset
+combat_animation:
+  name: "Combat Animation"
+  description: "Layers for combat/fighting animations"
+  layers:
+    - name: "Base"
+      type: "base"
+      bone_mask: []
+
+    - name: "Body Impact"
+      type: "additive"
+      bone_mask: ["spine*", "chest*", "hip*"]
+
+    - name: "Attack Arms"
+      type: "override"
+      bone_mask: ["*arm*", "*hand*", "*shoulder*"]
+
+    - name: "Reaction"
+      type: "additive"
+      bone_mask: []
+
+# Quadruped animation preset
+quadruped_animation:
+  name: "Quadruped Animation"
+  description: "Layers for four-legged creatures"
+  layers:
+    - name: "Base"
+      type: "base"
+      bone_mask: []
+
+    - name: "Front Legs"
+      type: "additive"
+      bone_mask: ["front_leg*", "front_*leg*", "FL*", "FR*"]
+
+    - name: "Back Legs"
+      type: "additive"
+      bone_mask: ["back_leg*", "back_*leg*", "BL*", "BR*"]
+
+    - name: "Spine Motion"
+      type: "additive"
+      bone_mask: ["spine*", "back*"]
+
+    - name: "Head/Tail"
+      type: "additive"
+      bone_mask: ["head*", "neck*", "tail*"]
+
+# Minimal preset
+minimal:
+  name: "Minimal"
+  description: "Just base layer for simple animations"
+  layers:
+    - name: "Base"
+      type: "base"
+      bone_mask: []
+
+# Full production preset
+full_production:
+  name: "Full Production"
+  description: "Complete layer stack for production animation"
+  layers:
+    - name: "Base"
+      type: "base"
+      bone_mask: []
+
+    - name: "Secondary"
+      type: "additive"
+      bone_mask: []
+
+    - name: "Overlap"
+      type: "additive"
+      bone_mask: []
+
+    - name: "Detail Body"
+      type: "additive"
+      bone_mask: ["spine*", "hip*", "shoulder*"]
+
+    - name: "Detail Head"
+      type: "additive"
+      bone_mask: ["head*", "neck*"]
+
+    - name: "Hands"
+      type: "override"
+      bone_mask: ["hand*", "finger*"]
+
+    - name: "Face"
+      type: "override"
+      bone_mask: ["*eye*", "*brow*", "*mouth*"]
+
+    - name: "Polish"
+      type: "additive"
+      bone_mask: []

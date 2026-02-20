@@ -1,0 +1,90 @@
+# Walk Passing Pose
+# Mid-stride passing position of walk cycle
+
+id: walk_passing
+name: "Walk Passing"
+category: locomotion
+rig_type: human_biped
+description: "Walk cycle passing pose - mid-stride with weight transfer"
+
+bones:
+  root:
+    location: [0, 0.08, 0]
+    rotation: [0, 0, 0]
+    scale: [1, 1, 1]
+
+  spine:
+    rotation: [0, 0, 0]
+
+  spine_01:
+    rotation: [0, 0, 0]
+
+  spine_02:
+    rotation: [0, 0, 0]
+
+  spine_03:
+    rotation: [0, 0, 0]
+
+  neck:
+    rotation: [0, 0, 0]
+
+  head:
+    rotation: [0, 0, 0]
+
+  # Left arm (passing neutral)
+  shoulder_L:
+    rotation: [0, 0, 0]
+
+  upper_arm_L:
+    rotation: [0, 0, 0]
+
+  lower_arm_L:
+    rotation: [0, -15, 0]
+
+  hand_L:
+    rotation: [0, 0, 0]
+
+  # Right arm (passing neutral)
+  shoulder_R:
+    rotation: [0, 0, 0]
+
+  upper_arm_R:
+    rotation: [0, 0, 0]
+
+  lower_arm_R:
+    rotation: [0, 15, 0]
+
+  hand_R:
+    rotation: [0, 0, 0]
+
+  # Left leg (passing under body)
+  thigh_L:
+    rotation: [-20, 0, 0]
+
+  shin_L:
+    rotation: [35, 0, 0]
+
+  foot_L:
+    rotation: [0, 0, 0]
+
+  # Right leg (supporting weight)
+  thigh_R:
+    rotation: [0, 0, 0]
+
+  shin_R:
+    rotation: [0, 0, 0]
+
+  foot_R:
+    rotation: [0, 0, 0]
+
+tags:
+  - locomotion
+  - walk
+  - passing
+  - cycle
+
+metadata:
+  author: system
+  created: 2026-02-19
+  cycle_frame: 8
+  use_case: "Mid-stride passing position - highest point"

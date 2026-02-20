@@ -1,0 +1,118 @@
+# Chain IK Presets
+# Multi-bone IK chains for spines, tails, and other chains
+
+presets:
+  # Human Spine (3 bones)
+  human_spine:
+    name: "spine_ik"
+    chain: ["spine_01", "spine_02", "spine_03"]
+    target: "ik_chest"
+    pole_target: null
+    pole_angle: 0.0
+    chain_count: 3
+    iterations: 500
+    mode: chain
+    use_tail: false
+    stretch: 0.2
+    weight: 1.0
+    lock_rotation: false
+
+  # Quadruped Spine (5 bones)
+  quadruped_spine:
+    name: "quad_spine_ik"
+    chain: ["spine_01", "spine_02", "spine_03", "spine_04", "spine_05"]
+    target: "ik_hips"
+    pole_target: null
+    pole_angle: 0.0
+    chain_count: 5
+    iterations: 500
+    mode: chain
+    use_tail: false
+    stretch: 0.3
+    weight: 1.0
+    lock_rotation: false
+
+  # Long Tail (8 bones)
+  long_tail:
+    name: "tail_ik"
+    chain: ["tail_01", "tail_02", "tail_03", "tail_04", "tail_05", "tail_06", "tail_07", "tail_08"]
+    target: "ik_tail_tip"
+    pole_target: null
+    pole_angle: 0.0
+    chain_count: 8
+    iterations: 500
+    mode: chain
+    use_tail: true
+    stretch: 0.1
+    weight: 1.0
+    lock_rotation: false
+
+  # Short Tail (4 bones)
+  short_tail:
+    name: "short_tail_ik"
+    chain: ["tail_01", "tail_02", "tail_03", "tail_04"]
+    target: "ik_tail_tip"
+    pole_target: null
+    pole_angle: 0.0
+    chain_count: 4
+    iterations: 500
+    mode: chain
+    use_tail: false
+    stretch: 0.1
+    weight: 1.0
+    lock_rotation: false
+
+  # Neck Chain (3 bones)
+  neck_chain:
+    name: "neck_ik"
+    chain: ["neck_01", "neck_02", "neck_03"]
+    target: "ik_head"
+    pole_target: null
+    pole_angle: 0.0
+    chain_count: 3
+    iterations: 500
+    mode: chain
+    use_tail: false
+    stretch: 0.0
+    weight: 1.0
+    lock_rotation: false
+
+  # Horse Neck (5 bones)
+  horse_neck:
+    name: "horse_neck_ik"
+    chain: ["neck_01", "neck_02", "neck_03", "neck_04", "neck_05"]
+    target: "ik_head"
+    pole_target: null
+    pole_angle: 0.0
+    chain_count: 5
+    iterations: 500
+    mode: chain
+    use_tail: false
+    stretch: 0.15
+    weight: 1.0
+    lock_rotation: false
+
+  # Dragon Tail (12 bones)
+  dragon_tail:
+    name: "dragon_tail_ik"
+    chain: ["tail_01", "tail_02", "tail_03", "tail_04", "tail_05", "tail_06",
+            "tail_07", "tail_08", "tail_09", "tail_10", "tail_11", "tail_12"]
+    target: "ik_tail_tip"
+    pole_target: null
+    pole_angle: 0.0
+    chain_count: 12
+    iterations: 1000
+    mode: chain
+    use_tail: true
+    stretch: 0.2
+    weight: 1.0
+    lock_rotation: false
+
+# Default settings for chain IK
+defaults:
+  iterations: 500
+  mode: chain
+  use_tail: false
+  stretch: 0.1
+  weight: 1.0
+  lock_rotation: false

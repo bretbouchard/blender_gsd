@@ -1,0 +1,92 @@
+# Open Hand Pose
+# Relaxed open hand
+
+id: hand_open
+name: "Hand Open"
+category: hand
+rig_type: human_biped
+description: "Relaxed open hand with fingers spread"
+
+bones:
+  # Left hand
+  thumb_01_L:
+    rotation: [0, 0, 30]
+  thumb_02_L:
+    rotation: [0, 0, 0]
+  thumb_03_L:
+    rotation: [0, 0, 0]
+
+  index_01_L:
+    rotation: [0, 0, 0]
+  index_02_L:
+    rotation: [0, 0, 0]
+  index_03_L:
+    rotation: [0, 0, 0]
+
+  middle_01_L:
+    rotation: [0, 0, 0]
+  middle_02_L:
+    rotation: [0, 0, 0]
+  middle_03_L:
+    rotation: [0, 0, 0]
+
+  ring_01_L:
+    rotation: [0, 0, 0]
+  ring_02_L:
+    rotation: [0, 0, 0]
+  ring_03_L:
+    rotation: [0, 0, 0]
+
+  pinky_01_L:
+    rotation: [0, 0, 0]
+  pinky_02_L:
+    rotation: [0, 0, 0]
+  pinky_03_L:
+    rotation: [0, 0, 0]
+
+  # Right hand
+  thumb_01_R:
+    rotation: [0, 0, -30]
+  thumb_02_R:
+    rotation: [0, 0, 0]
+  thumb_03_R:
+    rotation: [0, 0, 0]
+
+  index_01_R:
+    rotation: [0, 0, 0]
+  index_02_R:
+    rotation: [0, 0, 0]
+  index_03_R:
+    rotation: [0, 0, 0]
+
+  middle_01_R:
+    rotation: [0, 0, 0]
+  middle_02_R:
+    rotation: [0, 0, 0]
+  middle_03_R:
+    rotation: [0, 0, 0]
+
+  ring_01_R:
+    rotation: [0, 0, 0]
+  ring_02_R:
+    rotation: [0, 0, 0]
+  ring_03_R:
+    rotation: [0, 0, 0]
+
+  pinky_01_R:
+    rotation: [0, 0, 0]
+  pinky_02_R:
+    rotation: [0, 0, 0]
+  pinky_03_R:
+    rotation: [0, 0, 0]
+
+tags:
+  - hand
+  - open
+  - relaxed
+  - gesture
+
+metadata:
+  author: system
+  created: 2026-02-19
+  use_case: "Default open hand for gestures and idle"

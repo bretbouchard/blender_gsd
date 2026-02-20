@@ -1,0 +1,62 @@
+# Bird Flock Configuration
+# Flying bird flock for sky scenes
+
+id: flock_birds
+name: "Bird Flock"
+type: creature
+
+agent:
+  mesh: "bird_base"
+  rig: "bird"
+  animations:
+    - fly
+    - glide
+    - dive
+
+behavior:
+  walk_speed: [3.0, 5.0]
+  run_speed: [8.0, 12.0]
+  idle_chance: 0.05
+  flee_distance: 20.0
+  group_chance: 0.9
+  group_size: [5, 15]
+  talk_chance: 0.0
+  reaction_time: 0.1
+
+spawn:
+  count: 30
+  area: [[-20, -20], [20, 20]]
+  height: 15.0
+  distribution: random
+  seed: null
+
+avoidance:
+  radius: 0.8
+  other_agents: true
+  obstacles: true
+  strength: 1.5
+  max_force: 15.0
+
+variation:
+  scale: [0.8, 1.2]
+  colors:
+    body: ["#333333", "#1a1a1a", "#4A4A4A", "#8B4513"]
+    wings: ["#222222", "#111111", "#333333"]
+  random_rotation: true
+  random_anim_offset: true
+  material_variants: []
+
+paths:
+  - type: curve
+    name: flight_path
+    points: []
+
+goals:
+  - type: wander
+    area: [[-50, -50, 5], [50, 50, 30]]
+
+metadata:
+  description: "Flying bird flock - uses boids flocking behavior"
+  author: "GSD Animation System"
+  version: "1.0"
+  tags: ["bird", "flock", "flying", "creature", "nature"]

@@ -1,0 +1,90 @@
+# Walk Contact Pose
+# First contact frame of walk cycle
+
+id: walk_contact
+name: "Walk Contact"
+category: locomotion
+rig_type: human_biped
+description: "Walk cycle contact pose - heel strike moment"
+
+bones:
+  root:
+    location: [0, 0, 0]
+    rotation: [0, 0, 0]
+    scale: [1, 1, 1]
+
+  spine:
+    rotation: [5, 0, 0]
+
+  spine_01:
+    rotation: [0, 0, 0]
+
+  spine_02:
+    rotation: [0, 0, 0]
+
+  spine_03:
+    rotation: [-5, 0, 0]
+
+  neck:
+    rotation: [0, 0, 0]
+
+  head:
+    rotation: [0, 0, 0]
+
+  # Left arm (swinging forward)
+  shoulder_L:
+    rotation: [0, 0, 0]
+
+  upper_arm_L:
+    rotation: [0, 25, 0]
+
+  lower_arm_L:
+    rotation: [0, -20, 0]
+
+  hand_L:
+    rotation: [0, 0, 0]
+
+  # Right arm (swinging back)
+  shoulder_R:
+    rotation: [0, 0, 0]
+
+  upper_arm_R:
+    rotation: [0, -25, 0]
+
+  lower_arm_R:
+    rotation: [0, 20, 0]
+
+  hand_R:
+    rotation: [0, 0, 0]
+
+  # Left leg (extended forward - heel strike)
+  thigh_L:
+    rotation: [-25, 0, 0]
+
+  shin_L:
+    rotation: [10, 0, 0]
+
+  foot_L:
+    rotation: [15, 0, 0]
+
+  # Right leg (push off)
+  thigh_R:
+    rotation: [20, 0, 0]
+
+  shin_R:
+    rotation: [-5, 0, 0]
+
+  foot_R:
+    rotation: [-25, 0, 0]
+
+tags:
+  - locomotion
+  - walk
+  - contact
+  - cycle
+
+metadata:
+  author: system
+  created: 2026-02-19
+  cycle_frame: 1
+  use_case: "First frame of walk cycle - heel strike"

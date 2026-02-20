@@ -1,0 +1,65 @@
+# Happy Expression
+# Smiling happy face
+
+id: face_happy
+name: "Face Happy"
+category: expression
+rig_type: human_biped
+description: "Happy smiling expression"
+
+bones:
+  # Jaw - slightly open for smile
+  jaw:
+    rotation: [5, 0, 0]
+
+  # Eyebrows - slightly raised
+  eyebrow_inner_L:
+    rotation: [0, -5, 0]
+  eyebrow_inner_R:
+    rotation: [0, 5, 0]
+  eyebrow_outer_L:
+    rotation: [0, -10, 0]
+  eyebrow_outer_R:
+    rotation: [0, 10, 0]
+
+  # Eyelids - slightly squinted
+  eyelid_upper_L:
+    rotation: [-10, 0, 0]
+  eyelid_upper_R:
+    rotation: [-10, 0, 0]
+  eyelid_lower_L:
+    rotation: [5, 0, 0]
+  eyelid_lower_R:
+    rotation: [5, 0, 0]
+
+  # Mouth - smile
+  lip_upper_L:
+    rotation: [0, 0, 10]
+  lip_upper_R:
+    rotation: [0, 0, -10]
+  lip_lower_L:
+    rotation: [0, 0, 5]
+  lip_lower_R:
+    rotation: [0, 0, -5]
+  mouth_corner_L:
+    rotation: [0, 0, -25]
+  mouth_corner_R:
+    rotation: [0, 0, 25]
+
+  # Cheeks - raised
+  cheek_L:
+    rotation: [0, 0, -15]
+  cheek_R:
+    rotation: [0, 0, 15]
+
+tags:
+  - expression
+  - face
+  - happy
+  - smile
+  - joy
+
+metadata:
+  author: system
+  created: 2026-02-19
+  use_case: "Happy expression for positive moments"

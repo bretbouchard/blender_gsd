@@ -1,0 +1,189 @@
+# Human Biped Rig Configuration
+# Standard human skeleton for character animation
+
+id: human_biped
+name: "Standard Human Biped"
+version: "1.0"
+rig_type: human_biped
+description: "Basic human skeleton for character animation with IK-ready limbs"
+
+bones:
+  # Root
+  - id: root
+    parent: null
+    head: [0, 0, 0]
+    tail: [0, 0, 0.2]
+    layers: [0]
+
+  # Hips
+  - id: hips
+    parent: root
+    head: [0, 0, 0.2]
+    tail: [0, 0, 0.25]
+    layers: [0]
+
+  # Spine chain
+  - id: spine_01
+    parent: hips
+    head: [0, 0, 0.25]
+    tail: [0, 0, 0.45]
+    layers: [0]
+  - id: spine_02
+    parent: spine_01
+    head: [0, 0, 0.45]
+    tail: [0, 0, 0.65]
+    layers: [0]
+  - id: spine_03
+    parent: spine_02
+    head: [0, 0, 0.65]
+    tail: [0, 0, 0.85]
+    layers: [0]
+
+  # Neck and Head
+  - id: neck
+    parent: spine_03
+    head: [0, 0, 0.85]
+    tail: [0, -0.05, 0.95]
+    layers: [0]
+  - id: head
+    parent: neck
+    head: [0, -0.05, 0.95]
+    tail: [0, -0.1, 1.15]
+    layers: [0]
+
+  # Left Clavicle and Arm
+  - id: shoulder_L
+    parent: spine_03
+    head: [0, 0, 0.85]
+    tail: [0.12, 0, 0.85]
+    layers: [0]
+    mirror: shoulder_R
+  - id: upper_arm_L
+    parent: shoulder_L
+    head: [0.12, 0, 0.85]
+    tail: [0.38, 0, 0.85]
+    layers: [0]
+    mirror: upper_arm_R
+  - id: lower_arm_L
+    parent: upper_arm_L
+    head: [0.38, 0, 0.85]
+    tail: [0.64, 0, 0.85]
+    layers: [0]
+    mirror: lower_arm_R
+  - id: hand_L
+    parent: lower_arm_L
+    head: [0.64, 0, 0.85]
+    tail: [0.78, 0, 0.85]
+    layers: [0]
+    mirror: hand_R
+
+  # Right Clavicle and Arm (mirrored)
+  - id: shoulder_R
+    parent: spine_03
+    head: [0, 0, 0.85]
+    tail: [-0.12, 0, 0.85]
+    layers: [0]
+  - id: upper_arm_R
+    parent: shoulder_R
+    head: [-0.12, 0, 0.85]
+    tail: [-0.38, 0, 0.85]
+    layers: [0]
+  - id: lower_arm_R
+    parent: upper_arm_R
+    head: [-0.38, 0, 0.85]
+    tail: [-0.64, 0, 0.85]
+    layers: [0]
+  - id: hand_R
+    parent: lower_arm_R
+    head: [-0.64, 0, 0.85]
+    tail: [-0.78, 0, 0.85]
+    layers: [0]
+
+  # Left Leg
+  - id: thigh_L
+    parent: hips
+    head: [0.09, 0, 0.2]
+    tail: [0.09, 0, -0.25]
+    layers: [0]
+    mirror: thigh_R
+  - id: shin_L
+    parent: thigh_L
+    head: [0.09, 0, -0.25]
+    tail: [0.09, 0, -0.7]
+    layers: [0]
+    mirror: shin_R
+  - id: foot_L
+    parent: shin_L
+    head: [0.09, 0, -0.7]
+    tail: [0.09, 0.18, -0.7]
+    layers: [0]
+    mirror: foot_R
+  - id: toe_L
+    parent: foot_L
+    head: [0.09, 0.18, -0.7]
+    tail: [0.09, 0.28, -0.7]
+    layers: [0]
+    mirror: toe_R
+
+  # Right Leg
+  - id: thigh_R
+    parent: hips
+    head: [-0.09, 0, 0.2]
+    tail: [-0.09, 0, -0.25]
+    layers: [0]
+  - id: shin_R
+    parent: thigh_R
+    head: [-0.09, 0, -0.25]
+    tail: [-0.09, 0, -0.7]
+    layers: [0]
+  - id: foot_R
+    parent: shin_R
+    head: [-0.09, 0, -0.7]
+    tail: [-0.09, 0.18, -0.7]
+    layers: [0]
+  - id: toe_R
+    parent: foot_R
+    head: [-0.09, 0.18, -0.7]
+    tail: [-0.09, 0.28, -0.7]
+    layers: [0]
+
+# Bone groups for organization
+groups:
+  - name: spine
+    bones: [spine_01, spine_02, spine_03]
+    color: THEME01
+  - name: head
+    bones: [neck, head]
+    color: THEME02
+  - name: left_arm
+    bones: [shoulder_L, upper_arm_L, lower_arm_L, hand_L]
+    color: THEME03
+  - name: right_arm
+    bones: [shoulder_R, upper_arm_R, lower_arm_R, hand_R]
+    color: THEME04
+  - name: left_leg
+    bones: [thigh_L, shin_L, foot_L, toe_L]
+    color: THEME05
+  - name: right_leg
+    bones: [thigh_R, shin_R, foot_R, toe_R]
+    color: THEME06
+
+# IK chains (for Phase 13.1)
+ik_chains:
+  - name: left_arm_ik
+    chain: [upper_arm_L, lower_arm_L]
+    chain_count: 2
+  - name: right_arm_ik
+    chain: [upper_arm_R, lower_arm_R]
+    chain_count: 2
+  - name: left_leg_ik
+    chain: [thigh_L, shin_L]
+    chain_count: 2
+  - name: right_leg_ik
+    chain: [thigh_R, shin_R]
+    chain_count: 2
+
+metadata:
+  author: "Blender GSD"
+  created: "2026-02-19"
+  tags: ["human", "biped", "character", "standard"]

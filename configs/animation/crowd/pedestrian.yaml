@@ -1,0 +1,65 @@
+# City Pedestrians Configuration
+# Standard walking crowd for urban environments
+
+id: pedestrian_city
+name: "City Pedestrians"
+type: pedestrian
+
+agent:
+  mesh: "character_base"
+  rig: "human_biped"
+  animations:
+    - walk
+    - idle
+    - talk
+    - look_around
+
+behavior:
+  walk_speed: [0.8, 1.2]
+  run_speed: [2.5, 4.0]
+  idle_chance: 0.15
+  flee_distance: 10.0
+  group_chance: 0.25
+  group_size: [2, 3]
+  talk_chance: 0.2
+  reaction_time: 0.3
+
+spawn:
+  count: 100
+  area: [[-50, -50], [50, 50]]
+  height: 0.0
+  distribution: random
+  seed: null
+
+avoidance:
+  radius: 0.4
+  other_agents: true
+  obstacles: true
+  strength: 1.0
+  max_force: 8.0
+
+variation:
+  scale: [0.95, 1.05]
+  colors:
+    shirt: ["#336699", "#993366", "#669933", "#333333", "#AA4444"]
+    pants: ["#333333", "#1a1a1a", "#4a4a4a", "#2F4F4F"]
+    shoes: ["#111111", "#4A3728", "#1C1C1C"]
+  random_rotation: true
+  random_anim_offset: true
+  material_variants: []
+
+paths:
+  - type: waypoint
+    name: main_street
+    points: [[-50, 0], [0, 0], [50, 0]]
+  - type: waypoint
+    name: cross_street
+    points: [[0, -50], [0, 0], [0, 50]]
+
+goals: []
+
+metadata:
+  description: "Standard city pedestrian crowd"
+  author: "GSD Animation System"
+  version: "1.0"
+  tags: ["urban", "pedestrian", "city", "walking"]

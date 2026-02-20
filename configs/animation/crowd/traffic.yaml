@@ -1,0 +1,74 @@
+# Vehicle Traffic Configuration
+# Road traffic simulation
+
+id: traffic_urban
+name: "Urban Traffic"
+type: vehicle
+
+agent:
+  mesh: "car_base"
+  rig: "vehicle_basic"
+  animations:
+    - drive
+    - idle
+    - turn_left
+    - turn_right
+
+behavior:
+  walk_speed: [5.0, 12.0]
+  run_speed: [15.0, 25.0]
+  idle_chance: 0.1
+  flee_distance: 5.0
+  group_chance: 0.0
+  group_size: [1, 1]
+  talk_chance: 0.0
+  reaction_time: 0.2
+
+spawn:
+  count: 50
+  area: [[-100, -10], [100, 10]]
+  height: 0.0
+  distribution: path
+  path_curve: "road_main"
+  seed: null
+
+avoidance:
+  radius: 2.0
+  other_agents: true
+  obstacles: true
+  strength: 2.0
+  max_force: 20.0
+
+variation:
+  scale: [0.95, 1.05]
+  colors:
+    body: ["#CC0000", "#0000CC", "#FFFFFF", "#333333", "#888888", "#00AA00"]
+    windows: ["#1a3a5c", "#0a2a4c", "#000000"]
+  random_rotation: false
+  random_anim_offset: true
+  material_variants:
+    - sedan
+    - suv
+    - truck
+    - van
+
+paths:
+  - type: lane
+    name: eastbound
+    points: [[-100, -3], [100, -3]]
+    direction: 1
+  - type: lane
+    name: westbound
+    points: [[100, 3], [-100, 3]]
+    direction: -1
+
+goals:
+  - type: path_end
+    despawn: true
+    respawn_delay: 5.0
+
+metadata:
+  description: "Urban vehicle traffic - follows lanes, stops at intersections"
+  author: "GSD Animation System"
+  version: "1.0"
+  tags: ["vehicle", "traffic", "car", "road", "urban"]

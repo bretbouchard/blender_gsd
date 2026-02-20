@@ -1,0 +1,64 @@
+# Neutral Expression
+# Default relaxed face
+
+id: face_neutral
+name: "Face Neutral"
+category: expression
+rig_type: human_biped
+description: "Default neutral face expression"
+
+bones:
+  # Jaw
+  jaw:
+    rotation: [0, 0, 0]
+
+  # Eyebrows - neutral
+  eyebrow_inner_L:
+    rotation: [0, 0, 0]
+  eyebrow_inner_R:
+    rotation: [0, 0, 0]
+  eyebrow_outer_L:
+    rotation: [0, 0, 0]
+  eyebrow_outer_R:
+    rotation: [0, 0, 0]
+
+  # Eyelids - open
+  eyelid_upper_L:
+    rotation: [0, 0, 0]
+  eyelid_upper_R:
+    rotation: [0, 0, 0]
+  eyelid_lower_L:
+    rotation: [0, 0, 0]
+  eyelid_lower_R:
+    rotation: [0, 0, 0]
+
+  # Mouth - neutral
+  lip_upper_L:
+    rotation: [0, 0, 0]
+  lip_upper_R:
+    rotation: [0, 0, 0]
+  lip_lower_L:
+    rotation: [0, 0, 0]
+  lip_lower_R:
+    rotation: [0, 0, 0]
+  mouth_corner_L:
+    rotation: [0, 0, 0]
+  mouth_corner_R:
+    rotation: [0, 0, 0]
+
+  # Cheeks
+  cheek_L:
+    rotation: [0, 0, 0]
+  cheek_R:
+    rotation: [0, 0, 0]
+
+tags:
+  - expression
+  - face
+  - neutral
+  - default
+
+metadata:
+  author: system
+  created: 2026-02-19
+  use_case: "Default neutral expression - baseline for all face animation"

@@ -1,0 +1,93 @@
+# Fist Pose
+# Closed fist
+
+id: hand_fist
+name: "Hand Fist"
+category: hand
+rig_type: human_biped
+description: "Closed fist - grip or punch pose"
+
+bones:
+  # Left hand
+  thumb_01_L:
+    rotation: [0, 30, 30]
+  thumb_02_L:
+    rotation: [0, 30, 0]
+  thumb_03_L:
+    rotation: [0, 20, 0]
+
+  index_01_L:
+    rotation: [0, 0, 0]
+  index_02_L:
+    rotation: [-90, 0, 0]
+  index_03_L:
+    rotation: [-45, 0, 0]
+
+  middle_01_L:
+    rotation: [0, 0, 0]
+  middle_02_L:
+    rotation: [-90, 0, 0]
+  middle_03_L:
+    rotation: [-45, 0, 0]
+
+  ring_01_L:
+    rotation: [0, 0, 0]
+  ring_02_L:
+    rotation: [-90, 0, 0]
+  ring_03_L:
+    rotation: [-45, 0, 0]
+
+  pinky_01_L:
+    rotation: [0, 0, 0]
+  pinky_02_L:
+    rotation: [-90, 0, 0]
+  pinky_03_L:
+    rotation: [-45, 0, 0]
+
+  # Right hand
+  thumb_01_R:
+    rotation: [0, 30, -30]
+  thumb_02_R:
+    rotation: [0, 30, 0]
+  thumb_03_R:
+    rotation: [0, 20, 0]
+
+  index_01_R:
+    rotation: [0, 0, 0]
+  index_02_R:
+    rotation: [-90, 0, 0]
+  index_03_R:
+    rotation: [-45, 0, 0]
+
+  middle_01_R:
+    rotation: [0, 0, 0]
+  middle_02_R:
+    rotation: [-90, 0, 0]
+  middle_03_R:
+    rotation: [-45, 0, 0]
+
+  ring_01_R:
+    rotation: [0, 0, 0]
+  ring_02_R:
+    rotation: [-90, 0, 0]
+  ring_03_R:
+    rotation: [-45, 0, 0]
+
+  pinky_01_R:
+    rotation: [0, 0, 0]
+  pinky_02_R:
+    rotation: [-90, 0, 0]
+  pinky_03_R:
+    rotation: [-45, 0, 0]
+
+tags:
+  - hand
+  - fist
+  - grip
+  - punch
+  - action
+
+metadata:
+  author: system
+  created: 2026-02-19
+  use_case: "Fist for gripping, punching, or tense moments"

@@ -1,0 +1,91 @@
+# Run Contact Pose
+# Contact frame of run cycle
+
+id: run_contact
+name: "Run Contact"
+category: locomotion
+rig_type: human_biped
+description: "Run cycle contact pose - explosive ground contact"
+
+bones:
+  root:
+    location: [0, 0.1, 0]
+    rotation: [10, 0, 0]
+    scale: [1, 1, 1]
+
+  spine:
+    rotation: [10, 0, 0]
+
+  spine_01:
+    rotation: [5, 0, 0]
+
+  spine_02:
+    rotation: [0, 0, 0]
+
+  spine_03:
+    rotation: [0, 0, 0]
+
+  neck:
+    rotation: [-10, 0, 0]
+
+  head:
+    rotation: [0, 0, 0]
+
+  # Left arm (driving forward)
+  shoulder_L:
+    rotation: [0, 0, -15]
+
+  upper_arm_L:
+    rotation: [0, 55, 0]
+
+  lower_arm_L:
+    rotation: [0, -70, 0]
+
+  hand_L:
+    rotation: [0, 0, 0]
+
+  # Right arm (driving back)
+  shoulder_R:
+    rotation: [0, 0, 15]
+
+  upper_arm_R:
+    rotation: [0, -55, 0]
+
+  lower_arm_R:
+    rotation: [0, 70, 0]
+
+  hand_R:
+    rotation: [0, 0, 0]
+
+  # Left leg (extended forward)
+  thigh_L:
+    rotation: [-45, 0, 0]
+
+  shin_L:
+    rotation: [30, 0, 0]
+
+  foot_L:
+    rotation: [20, 0, 0]
+
+  # Right leg (push off)
+  thigh_R:
+    rotation: [30, 0, 0]
+
+  shin_R:
+    rotation: [-20, 0, 0]
+
+  foot_R:
+    rotation: [-35, 0, 0]
+
+tags:
+  - locomotion
+  - run
+  - contact
+  - cycle
+  - fast
+
+metadata:
+  author: system
+  created: 2026-02-19
+  cycle_frame: 1
+  use_case: "Contact frame of run cycle - explosive landing"

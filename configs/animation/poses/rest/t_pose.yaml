@@ -1,0 +1,89 @@
+# T-Pose
+# Standard T-pose for rigging and export
+
+id: t_pose
+name: "T-Pose"
+category: rest
+rig_type: human_biped
+description: "Standard T-pose for rigging and export - arms horizontal"
+
+bones:
+  root:
+    location: [0, 0, 0]
+    rotation: [0, 0, 0]
+    scale: [1, 1, 1]
+
+  spine:
+    rotation: [0, 0, 0]
+
+  spine_01:
+    rotation: [0, 0, 0]
+
+  spine_02:
+    rotation: [0, 0, 0]
+
+  spine_03:
+    rotation: [0, 0, 0]
+
+  neck:
+    rotation: [0, 0, 0]
+
+  head:
+    rotation: [0, 0, 0]
+
+  # Left arm (T-pose: arms horizontal)
+  shoulder_L:
+    rotation: [0, 0, -70]
+
+  upper_arm_L:
+    rotation: [0, 0, 0]
+
+  lower_arm_L:
+    rotation: [0, 0, 0]
+
+  hand_L:
+    rotation: [0, 0, 0]
+
+  # Right arm (T-pose: arms horizontal)
+  shoulder_R:
+    rotation: [0, 0, 70]
+
+  upper_arm_R:
+    rotation: [0, 0, 0]
+
+  lower_arm_R:
+    rotation: [0, 0, 0]
+
+  hand_R:
+    rotation: [0, 0, 0]
+
+  # Left leg
+  thigh_L:
+    rotation: [0, 0, 0]
+
+  shin_L:
+    rotation: [0, 0, 0]
+
+  foot_L:
+    rotation: [0, 0, 0]
+
+  # Right leg
+  thigh_R:
+    rotation: [0, 0, 0]
+
+  shin_R:
+    rotation: [0, 0, 0]
+
+  foot_R:
+    rotation: [0, 0, 0]
+
+tags:
+  - rest
+  - export
+  - standard
+  - t-pose
+
+metadata:
+  author: system
+  created: 2026-02-19
+  use_case: "Default pose for rigging, export, and weight painting"

@@ -1,0 +1,234 @@
+# Robot Modular Rig Configuration
+# Configurable robot skeleton
+
+id: robot_modular
+name: "Modular Robot"
+version: "1.0"
+rig_type: robot_modular
+description: "Modular robot rig with interchangeable parts"
+
+bones:
+  # Core/Root
+  - id: core
+    parent: null
+    head: [0, 0, 0]
+    tail: [0, 0, 0.3]
+    layers: [0]
+    use_deform: false
+
+  # Torso
+  - id: torso
+    parent: core
+    head: [0, 0, 0.3]
+    tail: [0, 0, 0.6]
+    layers: [0]
+
+  # Chest plate
+  - id: chest_plate
+    parent: torso
+    head: [0, -0.1, 0.5]
+    tail: [0, -0.15, 0.5]
+    layers: [0]
+
+  # Neck and Head
+  - id: neck
+    parent: torso
+    head: [0, 0, 0.6]
+    tail: [0, 0, 0.7]
+    layers: [0]
+  - id: head
+    parent: neck
+    head: [0, 0, 0.7]
+    tail: [0, 0, 0.85]
+    layers: [0]
+  - id: visor
+    parent: head
+    head: [0, -0.08, 0.78]
+    tail: [0, -0.12, 0.78]
+    layers: [0]
+    use_deform: false
+
+  # Left Shoulder and Arm
+  - id: shoulder_L
+    parent: torso
+    head: [0.25, 0, 0.55]
+    tail: [0.35, 0, 0.55]
+    layers: [0]
+    mirror: shoulder_R
+  - id: upper_arm_L
+    parent: shoulder_L
+    head: [0.35, 0, 0.55]
+    tail: [0.35, 0, 0.35]
+    layers: [0]
+    mirror: upper_arm_R
+  - id: elbow_L
+    parent: upper_arm_L
+    head: [0.35, 0, 0.35]
+    tail: [0.35, 0, 0.33]
+    layers: [1]
+    use_deform: false
+    mirror: elbow_R
+  - id: lower_arm_L
+    parent: elbow_L
+    head: [0.35, 0, 0.33]
+    tail: [0.35, 0, 0.15]
+    layers: [0]
+    mirror: lower_arm_R
+  - id: hand_L
+    parent: lower_arm_L
+    head: [0.35, 0, 0.15]
+    tail: [0.35, 0, 0.05]
+    layers: [0]
+    mirror: hand_R
+
+  # Right Shoulder and Arm
+  - id: shoulder_R
+    parent: torso
+    head: [-0.25, 0, 0.55]
+    tail: [-0.35, 0, 0.55]
+    layers: [0]
+  - id: upper_arm_R
+    parent: shoulder_R
+    head: [-0.35, 0, 0.55]
+    tail: [-0.35, 0, 0.35]
+    layers: [0]
+  - id: elbow_R
+    parent: upper_arm_R
+    head: [-0.35, 0, 0.35]
+    tail: [-0.35, 0, 0.33]
+    layers: [1]
+    use_deform: false
+  - id: lower_arm_R
+    parent: elbow_R
+    head: [-0.35, 0, 0.33]
+    tail: [-0.35, 0, 0.15]
+    layers: [0]
+  - id: hand_R
+    parent: lower_arm_R
+    head: [-0.35, 0, 0.15]
+    tail: [-0.35, 0, 0.05]
+    layers: [0]
+
+  # Hip assembly
+  - id: hip
+    parent: core
+    head: [0, 0, 0]
+    tail: [0, 0, -0.1]
+    layers: [0]
+
+  # Left Leg
+  - id: thigh_L
+    parent: hip
+    head: [0.12, 0, -0.05]
+    tail: [0.12, 0, -0.35]
+    layers: [0]
+    mirror: thigh_R
+  - id: knee_L
+    parent: thigh_L
+    head: [0.12, 0, -0.35]
+    tail: [0.12, 0, -0.37]
+    layers: [1]
+    use_deform: false
+    mirror: knee_R
+  - id: shin_L
+    parent: knee_L
+    head: [0.12, 0, -0.37]
+    tail: [0.12, 0, -0.65]
+    layers: [0]
+    mirror: shin_R
+  - id: foot_L
+    parent: shin_L
+    head: [0.12, 0, -0.65]
+    tail: [0.12, 0.1, -0.65]
+    layers: [0]
+    mirror: foot_R
+
+  # Right Leg
+  - id: thigh_R
+    parent: hip
+    head: [-0.12, 0, -0.05]
+    tail: [-0.12, 0, -0.35]
+    layers: [0]
+  - id: knee_R
+    parent: thigh_R
+    head: [-0.12, 0, -0.35]
+    tail: [-0.12, 0, -0.37]
+    layers: [1]
+    use_deform: false
+  - id: shin_R
+    parent: knee_R
+    head: [-0.12, 0, -0.37]
+    tail: [-0.12, 0, -0.65]
+    layers: [0]
+  - id: foot_R
+    parent: shin_R
+    head: [-0.12, 0, -0.65]
+    tail: [-0.12, 0.1, -0.65]
+    layers: [0]
+
+  # Antenna
+  - id: antenna_L
+    parent: head
+    head: [0.08, 0, 0.85]
+    tail: [0.08, 0, 0.95]
+    layers: [2]
+    mirror: antenna_R
+  - id: antenna_R
+    parent: head
+    head: [-0.08, 0, 0.85]
+    tail: [-0.08, 0, 0.95]
+    layers: [2]
+
+  # Backpack/jetpack mount
+  - id: backpack
+    parent: torso
+    head: [0, 0.1, 0.45]
+    tail: [0, 0.2, 0.45]
+    layers: [2]
+    use_deform: false
+
+groups:
+  - name: core
+    bones: [core, torso, chest_plate]
+    color: THEME01
+  - name: head
+    bones: [neck, head, visor]
+    color: THEME02
+  - name: left_arm
+    bones: [shoulder_L, upper_arm_L, elbow_L, lower_arm_L, hand_L]
+    color: THEME03
+  - name: right_arm
+    bones: [shoulder_R, upper_arm_R, elbow_R, lower_arm_R, hand_R]
+    color: THEME03
+  - name: left_leg
+    bones: [thigh_L, knee_L, shin_L, foot_L]
+    color: THEME04
+  - name: right_leg
+    bones: [thigh_R, knee_R, shin_R, foot_R]
+    color: THEME04
+  - name: accessories
+    bones: [antenna_L, antenna_R, backpack]
+    color: THEME05
+
+ik_chains:
+  - name: left_arm_ik
+    chain: [upper_arm_L, lower_arm_L]
+    chain_count: 2
+  - name: right_arm_ik
+    chain: [upper_arm_R, lower_arm_R]
+    chain_count: 2
+  - name: left_leg_ik
+    chain: [thigh_L, shin_L]
+    chain_count: 2
+  - name: right_leg_ik
+    chain: [thigh_R, shin_R]
+    chain_count: 2
+
+metadata:
+  author: "Blender GSD"
+  created: "2026-02-19"
+  tags: ["robot", "modular", "mechanical", "android"]
+  custom_properties:
+    armor_style: "medium"
+    head_type: "visor"
+    hand_type: "humanoid"

@@ -1,0 +1,242 @@
+# Blocking Presets
+# Common blocking workflow configurations
+
+# Walk Cycle Blocking
+walk_cycle:
+  name: "Walk Cycle"
+  description: "Standard walk cycle blocking setup (24 frames)"
+  frame_range: [1, 24]
+  interpolation: STEPPED
+  thumbnail_size: [256, 256]
+  default_poses:
+    - frame: 1
+      description: "Contact - Left foot forward"
+      pose_type: key
+    - frame: 6
+      description: "Passing - Right leg passes left"
+      pose_type: breakdown
+    - frame: 12
+      description: "Contact - Right foot forward"
+      pose_type: key
+    - frame: 18
+      description: "Passing - Left leg passes right"
+      pose_type: breakdown
+
+# Run Cycle Blocking
+run_cycle:
+  name: "Run Cycle"
+  description: "Standard run cycle blocking setup (16 frames)"
+  frame_range: [1, 16]
+  interpolation: STEPPED
+  thumbnail_size: [256, 256]
+  default_poses:
+    - frame: 1
+      description: "Contact - Left foot landing"
+      pose_type: key
+    - frame: 4
+      description: "Passing position"
+      pose_type: breakdown
+    - frame: 8
+      description: "Contact - Right foot landing"
+      pose_type: key
+    - frame: 12
+      description: "Passing position"
+      pose_type: breakdown
+
+# Jump Animation
+jump:
+  name: "Jump"
+  description: "Single jump animation blocking (48 frames)"
+  frame_range: [1, 48]
+  interpolation: STEPPED
+  thumbnail_size: [256, 256]
+  default_poses:
+    - frame: 1
+      description: "Anticipation - Crouch"
+      pose_type: key
+    - frame: 8
+      description: "Takeoff - Extended pose"
+      pose_type: extreme
+    - frame: 16
+      description: "Apex - Highest point"
+      pose_type: key
+    - frame: 24
+      description: "Landing - Contact"
+      pose_type: key
+    - frame: 32
+      description: "Recovery - Absorb impact"
+      pose_type: breakdown
+    - frame: 48
+      description: "Settle - Return to idle"
+      pose_type: key
+
+# Idle Animation
+idle:
+  name: "Idle"
+  description: "Subtle idle breathing animation (60 frames)"
+  frame_range: [1, 60]
+  interpolation: BEZIER
+  thumbnail_size: [256, 256]
+  default_poses:
+    - frame: 1
+      description: "Breath in start"
+      pose_type: key
+    - frame: 15
+      description: "Breath in apex"
+      pose_type: extreme
+    - frame: 30
+      description: "Breath out"
+      pose_type: key
+    - frame: 45
+      description: "Breath out end"
+      pose_type: breakdown
+    - frame: 60
+      description: "Return to start"
+      pose_type: key
+
+# Sit Animation
+sit:
+  name: "Sit Down"
+  description: "Character sitting down animation (48 frames)"
+  frame_range: [1, 48]
+  interpolation: STEPPED
+  thumbnail_size: [256, 256]
+  default_poses:
+    - frame: 1
+      description: "Standing - Start pose"
+      pose_type: key
+    - frame: 12
+      description: "Lean forward - Anticipation"
+      pose_type: breakdown
+    - frame: 24
+      description: "Contact - Reaching chair"
+      pose_type: key
+    - frame: 36
+      description: "Sit down - Weight transfer"
+      pose_type: extreme
+    - frame: 48
+      description: "Settled - Final sit pose"
+      pose_type: key
+
+# Wave Animation
+wave:
+  name: "Wave"
+  description: "Hand waving gesture (30 frames)"
+  frame_range: [1, 30]
+  interpolation: STEPPED
+  thumbnail_size: [256, 256]
+  default_poses:
+    - frame: 1
+      description: "Arm at rest"
+      pose_type: key
+    - frame: 6
+      description: "Raise arm - Anticipation"
+      pose_type: breakdown
+    - frame: 12
+      description: "Wave right"
+      pose_type: extreme
+    - frame: 18
+      description: "Wave left"
+      pose_type: extreme
+    - frame: 24
+      description: "Wave right"
+      pose_type: extreme
+    - frame: 30
+      description: "Arm returns to rest"
+      pose_type: key
+
+# Dialogue/Lip Sync
+dialogue_8s:
+  name: "Dialogue (8 seconds)"
+  description: "Dialogue animation with key mouth shapes (192 frames at 24fps)"
+  frame_range: [1, 192]
+  interpolation: STEPPED
+  thumbnail_size: [256, 256]
+  default_poses: []
+  # Note: Key poses for dialogue are typically added during the process
+  # based on the actual audio and timing
+
+# Short Action (2 seconds)
+action_short:
+  name: "Short Action"
+  description: "Generic 2-second action blocking (48 frames)"
+  frame_range: [1, 48]
+  interpolation: STEPPED
+  thumbnail_size: [256, 256]
+  default_poses:
+    - frame: 1
+      description: "Start pose"
+      pose_type: key
+    - frame: 12
+      description: "Anticipation"
+      pose_type: breakdown
+    - frame: 24
+      description: "Action peak"
+      pose_type: extreme
+    - frame: 36
+      description: "Follow through"
+      pose_type: breakdown
+    - frame: 48
+      description: "End pose"
+      pose_type: key
+
+# Simple Loop (Generic)
+simple_loop:
+  name: "Simple Loop"
+  description: "Generic looping animation (32 frames)"
+  frame_range: [1, 32]
+  interpolation: STEPPED
+  thumbnail_size: [256, 256]
+  default_poses:
+    - frame: 1
+      description: "Start pose"
+      pose_type: key
+    - frame: 8
+      description: "Pose 2"
+      pose_type: breakdown
+    - frame: 16
+      description: "Midpoint"
+      pose_type: key
+    - frame: 24
+      description: "Pose 4"
+      pose_type: breakdown
+    - frame: 32
+      description: "Return to start"
+      pose_type: key
+
+# Onion Skin Presets (for onion_skin.py)
+onion_skin_minimal:
+  name: "Minimal Onion Skin"
+  description: "Just 1 frame before and after"
+  previous_frames: 1
+  next_frames: 1
+  ghost_opacity: 0.3
+  wireframe_only: false
+  max_ghosts: 2
+
+onion_skin_standard:
+  name: "Standard Onion Skin"
+  description: "2 frames before and after"
+  previous_frames: 2
+  next_frames: 2
+  ghost_opacity: 0.3
+  wireframe_only: false
+  max_ghosts: 4
+
+onion_skin_detailed:
+  name: "Detailed Onion Skin"
+  description: "3 frames before and after"
+  previous_frames: 3
+  next_frames: 3
+  ghost_opacity: 0.25
+  wireframe_only: false
+  max_ghosts: 6
+
+onion_skin_performance:
+  name: "Performance Onion Skin"
+  description: "Minimal ghosts, wireframe only"
+  previous_frames: 1
+  next_frames: 1
+  ghost_opacity: 0.3
+  wireframe_only: true
+  max_ghosts: 2
