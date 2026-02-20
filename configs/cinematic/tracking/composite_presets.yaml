@@ -1,0 +1,116 @@
+# Composite Mode Presets for Tracked Shot Assembly
+#
+# These presets configure how CG renders composite over footage.
+# Used by lib.cinematic.tracking.compositor.load_composite_preset()
+#
+# Composite Modes:
+#   over_footage: CG rendered over background footage (AlphaOver)
+#   over_plate: CG rendered over static background image (AlphaOver)
+#   multiply: CG shadows multiplied over background (MixRGB MULTIPLY)
+#   add: CG added to background for light/glow effects (MixRGB ADD)
+#   screen: Screen blend mode for light compositing (MixRGB SCREEN)
+#
+# Background Sources:
+#   footage: Use footage file from tracking session
+#   image: Use static image file
+#   none: No background (direct render)
+#
+# Usage in shot YAML:
+#   composite:
+#     preset: over_footage  # Load this preset
+#     # OR override specific settings:
+#     mode: over_footage
+#     shadow_catcher: true
+#     film_transparent: true
+
+presets:
+  # Standard CG over footage
+  over_footage:
+    name: "CG Over Footage"
+    description: "Standard compositing with CG rendered over background footage"
+    mode: "over_footage"
+    background_source: "footage"
+    shadow_catcher: true
+    film_transparent: true
+    lens_distortion:
+      apply_to_cg: true
+      st_map_path: null
+
+  # Static image plate
+  over_plate:
+    name: "CG Over Plate"
+    description: "Composite CG over static background image"
+    mode: "over_footage"
+    background_source: "image"
+    shadow_catcher: true
+    film_transparent: true
+    lens_distortion:
+      apply_to_cg: true
+      st_map_path: null
+
+  # Multiply blend for shadows only
+  shadow_multiply:
+    name: "Shadow Multiply"
+    description: "CG shadows multiplied over background"
+    mode: "multiply"
+    background_source: "footage"
+    shadow_catcher: true
+    film_transparent: false
+    lens_distortion:
+      apply_to_cg: false
+      st_map_path: null
+
+  # Additive glow
+  additive_glow:
+    name: "Additive Glow"
+    description: "CG added to background for light/glow effects"
+    mode: "add"
+    background_source: "footage"
+    shadow_catcher: false
+    film_transparent: true
+    lens_distortion:
+      apply_to_cg: true
+      st_map_path: null
+
+  # Screen blend
+  screen_blend:
+    name: "Screen Blend"
+    description: "Screen blend mode for light compositing"
+    mode: "screen"
+    background_source: "footage"
+    shadow_catcher: false
+    film_transparent: true
+    lens_distortion:
+      apply_to_cg: true
+      st_map_path: null
+
+  # Lens distortion workflow
+  with_distortion:
+    name: "With Lens Distortion"
+    description: "Apply lens distortion to CG before compositing"
+    mode: "over_footage"
+    background_source: "footage"
+    shadow_catcher: true
+    film_transparent: true
+    lens_distortion:
+      apply_to_cg: true
+      use_st_map: true
+      st_map_path: null  # Set to ST-Map file path
+
+  # Stabilized composite
+  stabilized:
+    name: "Stabilized Composite"
+    description: "Stabilize footage before compositing CG"
+    mode: "over_footage"
+    background_source: "footage"
+    shadow_catcher: true
+    film_transparent: true
+    stabilization:
+      enabled: true
+      tracks: "all"
+    lens_distortion:
+      apply_to_cg: true
+      st_map_path: null
+
+# Default preset used when none specified
+default_preset: "over_footage"

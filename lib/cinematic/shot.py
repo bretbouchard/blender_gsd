@@ -3,25 +3,46 @@ Shot Assembly Module (REQ-CINE-SHOT)
 
 Complete shot assembly from YAML configuration. Single entry point
 for creating fully-configured cinematic shots with template inheritance,
-state persistence, and render capabilities.
+state persistence, render capabilities, and tracking integration.
 
 Core Functions:
     assemble_shot: Assemble complete shot from ShotAssemblyConfig
+    assemble_tracked_shot: Assemble shot with tracking support (Phase 7.4)
     load_shot_yaml: Load shot definition from YAML file
     save_shot_state: Save shot state for version control
     render_shot: Render assembled shot
     create_shot_from_template: Create shot from template with inheritance
     edit_shot: Edit existing shot with partial overrides
+    setup_shadow_catcher: Setup shadow catcher ground plane (Phase 7.4)
+
+Extended YAML Structure (Phase 7.4):
+    shot:
+      name: composite_knob_hero
+      footage:
+        file: footage/knob_hero_4k.mp4
+        frame_range: [1, 150]
+      tracking:
+        enabled: true
+        preset: high_quality
+        solve: true
+      camera:
+        from_tracking: true
+      composite:
+        mode: over_footage
+        shadow_catcher: true
 
 Usage:
     from lib.cinematic.shot import (
-        assemble_shot, load_shot_yaml, save_shot_state,
-        render_shot, create_shot_from_template, edit_shot
+        assemble_shot, assemble_tracked_shot, load_shot_yaml, save_shot_state,
+        render_shot, create_shot_from_template, edit_shot, setup_shadow_catcher
     )
 
     # Load and assemble from YAML
     config = load_shot_yaml("shots/hero_shot.yaml")
     result = assemble_shot(config)
+
+    # Assemble with tracking (Phase 7.4)
+    result = assemble_tracked_shot("shots/tracked_shot.yaml")
 
     # Create from template
     shot = create_shot_from_template(
@@ -79,6 +100,18 @@ try:
     MODULES_AVAILABLE = True
 except ImportError:
     MODULES_AVAILABLE = False
+
+# Tracking integration (Phase 7.4)
+try:
+    from .tracking.shot_integration import (
+        assemble_shot_with_tracking,
+        TrackingShotConfig,
+        CompositeShotConfig,
+        FootageConfig,
+    )
+    TRACKING_AVAILABLE = True
+except ImportError:
+    TRACKING_AVAILABLE = False
 
 
 def load_shot_yaml(path: Path) -> ShotAssemblyConfig:
@@ -512,6 +545,173 @@ def edit_shot(config: ShotAssemblyConfig, edits: Dict[str, Any]) -> ShotAssembly
 
 
 # =============================================================================
+# SHADOW CATCHER WORKFLOW (Phase 7.4)
+# =============================================================================
+
+def setup_shadow_catcher(
+    config: Optional[Dict[str, Any]] = None,
+    scene: Any = None
+) -> Dict[str, Any]:
+    """
+    Setup shadow catcher workflow with ground plane.
+
+    Creates a ground plane with shadow catcher material and configures
+    render settings for transparent film and shadow pass.
+
+    Args:
+        config: Optional ShadowCatcherConfig dict with:
+            - enabled: bool (default True)
+            - ground_size: float (default 10.0)
+            - ground_location: tuple (default (0, 0, 0))
+            - receive_shadows: bool (default True)
+            - shadow_only: bool (default True)
+        scene: Optional scene (uses context.scene if None)
+
+    Returns:
+        Dict with 'ground_plane', 'material', 'shadow_pass_enabled'
+    """
+    result = {
+        "ground_plane": None,
+        "material": None,
+        "shadow_pass_enabled": False,
+    }
+
+    if not BLENDER_AVAILABLE:
+        return result
+
+    if scene is None:
+        scene = bpy.context.scene
+
+    # Parse config
+    if config is None:
+        config = {}
+
+    enabled = config.get('enabled', True)
+    if not enabled:
+        return result
+
+    ground_size = config.get('ground_size', 10.0)
+    ground_location = config.get('ground_location', (0, 0, 0))
+    shadow_only = config.get('shadow_only', True)
+
+    try:
+        # Create ground plane
+        ground_name = "ShadowCatcher_Ground"
+
+        # Create mesh
+        bpy.ops.mesh.primitive_plane_add(
+            size=ground_size,
+            location=ground_location
+        )
+        ground_plane = bpy.context.active_object
+        ground_plane.name = ground_name
+
+        # Create shadow catcher material
+        mat_name = "ShadowCatcher_Material"
+        if mat_name in bpy.data.materials:
+            mat = bpy.data.materials[mat_name]
+        else:
+            mat = bpy.data.materials.new(name=mat_name)
+            mat.use_nodes = True
+
+            # Clear default nodes
+            nodes = mat.node_tree.nodes
+            nodes.clear()
+
+            # Create Principled BSDF with shadow catcher settings
+            principled = nodes.new('ShaderNodeBsdfPrincipled')
+            principled.inputs['Base Color'].default_value = (0.0, 0.0, 0.0, 1.0)
+            principled.inputs['Alpha'].default_value = 0.0
+
+            # Create output node
+            output = nodes.new('ShaderNodeOutputMaterial')
+            output.location = (300, 0)
+
+            # Link nodes
+            mat.node_tree.links.new(principled.outputs['BSDF'], output.inputs['Surface'])
+
+        # Apply material to ground
+        if ground_plane.data.materials:
+            ground_plane.data.materials[0] = mat
+        else:
+            ground_plane.data.materials.append(mat)
+
+        # Set shadow method for Blender 4.x
+        if hasattr(mat, 'shadow_method'):
+            mat.shadow_method = 'CLIP'
+        if hasattr(mat, 'use_transparent_shadow'):
+            mat.use_transparent_shadow = True
+
+        # Configure render settings
+        scene.render.film_transparent = True
+
+        # Enable shadow pass
+        if scene.view_layers:
+            view_layer = scene.view_layers[0]
+            view_layer.use_pass_shadow = True
+            result["shadow_pass_enabled"] = True
+
+        result["ground_plane"] = ground_plane
+        result["material"] = mat
+
+    except Exception:
+        pass
+
+    return result
+
+
+# =============================================================================
+# TRACKING INTEGRATION (Phase 7.4)
+# =============================================================================
+
+def assemble_tracked_shot(
+    yaml_path: Path,
+    scene: Any = None
+) -> Dict[str, Any]:
+    """
+    Load and assemble shot with tracking support.
+
+    Checks for tracking config and delegates to assemble_shot_with_tracking
+    if tracking is enabled, otherwise falls back to standard assemble_shot.
+
+    Args:
+        yaml_path: Path to shot YAML file with tracking extension
+        scene: Optional scene (uses context.scene if None)
+
+    Returns:
+        Dictionary with created objects including tracking session
+    """
+    path = Path(yaml_path)
+
+    if not path.exists():
+        raise FileNotFoundError(f"Shot file not found: {path}")
+
+    # Load YAML
+    with open(path, 'r', encoding='utf-8') as f:
+        if yaml:
+            data = yaml.safe_load(f)
+        else:
+            data = json.loads(f.read())
+
+    # Check for tracking config
+    tracking_config = data.get('tracking', {})
+    if tracking_config.get('enabled') and TRACKING_AVAILABLE:
+        # Use tracking-aware assembly
+        return assemble_shot_with_tracking(data, scene)
+    else:
+        # Standard assembly
+        config = ShotAssemblyConfig.from_dict(data)
+        result = assemble_shot(config, scene)
+
+        # Add shadow catcher if configured
+        composite_config = data.get('composite', {})
+        if composite_config.get('shadow_catcher'):
+            result['shadow_catcher'] = setup_shadow_catcher(composite_config, scene)
+
+        return result
+
+
+# =============================================================================
 # MODULE EXPORTS
 # =============================================================================
 
@@ -527,6 +727,13 @@ __all__ = [
     # Template functions
     "create_shot_from_template",
     "edit_shot",
+
+    # Shadow catcher (Phase 7.4)
+    "setup_shadow_catcher",
+
+    # Tracking integration (Phase 7.4)
+    "assemble_tracked_shot",
+    "TRACKING_AVAILABLE",
 
     # Constants
     "BLENDER_AVAILABLE",
