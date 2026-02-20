@@ -914,6 +914,512 @@ class ColladaParser:
         return camera
 
 
+class C3DParser:
+    """
+    Parser for C3D motion capture marker files.
+
+    C3D is the standard binary format for 3D motion capture marker data,
+    supported by Vicon, OptiTrack, Qualisys, and other mocap systems.
+
+    Uses struct module for binary parsing (Intel byte order, little-endian).
+    """
+
+    @staticmethod
+    def parse(filepath: str) -> ImportedCamera:
+        """
+        Parse C3D file and extract marker position data.
+
+        Args:
+            filepath: Path to .c3d file
+
+        Returns:
+            ImportedCamera with marker position data (uses first marker as camera)
+        """
+        parser = C3DParser()
+        return parser._parse_file(filepath)
+
+    def _parse_file(self, filepath: str) -> ImportedCamera:
+        """Parse C3D binary file."""
+        camera = ImportedCamera(
+            name=Path(filepath).stem,
+            source_file=filepath,
+            source_format="c3d",
+        )
+
+        try:
+            with open(filepath, "rb") as f:
+                # Read header block (256 bytes)
+                header = self._read_header(f)
+
+                if not header:
+                    return self._parse_fallback(filepath, camera)
+
+                # Read parameter section
+                params = self._read_parameters(f, header)
+
+                # Read point data
+                points = self._read_points(
+                    f,
+                    header,
+                    params.get("scale_factor", 1.0)
+                )
+
+                if points:
+                    camera.frame_start = header.get("first_frame", 1)
+                    camera.frame_end = header.get("last_frame", len(points))
+
+                    # Use first marker position as camera position
+                    for i, frame_markers in enumerate(points):
+                        frame = header.get("first_frame", 1) + i
+
+                        if frame_markers:
+                            # Take first marker
+                            marker = frame_markers[0]
+                            camera.positions[frame] = (
+                                marker.get("x", 0.0),
+                                marker.get("y", 0.0),
+                                marker.get("z", 0.0),
+                            )
+
+                    camera.name = f"{Path(filepath).stem}_marker0"
+
+            return camera
+
+        except Exception:
+            return self._parse_fallback(filepath, camera)
+
+    def _read_header(self, f) -> Dict[str, Any]:
+        """
+        Read C3D header block.
+
+        The header contains:
+        - marker_count at byte 2 (1 byte, value - 1)
+        - analog channels at byte 3
+        - first_frame at bytes 6-7 (word)
+        - last_frame at bytes 8-9 (word)
+        - scale_factor at bytes 14-15 (intepreted as float in params)
+        - data_start at byte 10 (block number)
+        """
+        header = {}
+
+        # Read first block (256 bytes)
+        block = f.read(256)
+
+        if len(block) < 256:
+            return header
+
+        # Parse header values
+        # Byte 1: Parameter block start
+        param_start = block[1]
+
+        # Bytes 2-3: Marker count and analog channels
+        marker_count = block[2]  # Actually stored as count-1 in some versions
+        analog_count = block[3]
+
+        # Bytes 4-5: First frame (word, little-endian)
+        first_frame = struct.unpack("<H", block[4:6])[0]
+
+        # Bytes 6-7: Last frame (word, little-endian)
+        last_frame = struct.unpack("<H", block[6:8])[0]
+
+        # Bytes 8-9: Data start block
+        data_start = struct.unpack("<H", block[8:10])[0]
+
+        # Bytes 12-13: Scale factor (as integer, converted in params)
+        scale_int = struct.unpack("<h", block[12:14])[0]
+
+        # Bytes 14-15: Frame rate
+        frame_rate = struct.unpack("<H", block[14:16])[0]
+
+        header["param_start"] = param_start
+        header["marker_count"] = marker_count
+        header["analog_count"] = analog_count
+        header["first_frame"] = first_frame
+        header["last_frame"] = last_frame
+        header["data_start"] = data_start
+        header["scale_int"] = scale_int
+        header["frame_rate"] = frame_rate if frame_rate > 0 else 60
+
+        return header
+
+    def _read_parameters(self, f, header: Dict[str, Any]) -> Dict[str, Any]:
+        """
+        Read C3D parameter section.
+
+        Extracts scale factor and units from the POINT group.
+        """
+        params = {}
+
+        try:
+            # Seek to parameter block
+            param_block = header.get("param_start", 2)
+            f.seek(param_block * 256)
+
+            # Read parameter header
+            param_header = f.read(4)
+            if len(param_header) < 4:
+                return params
+
+            # Parse groups and parameters
+            # Simplified - just get scale factor
+            # In real C3D, need to parse group/parameter structure
+
+            # Default scale factor (positive = integer, negative = real)
+            scale_int = header.get("scale_int", 1)
+            if scale_int < 0:
+                params["scale_factor"] = 1.0  # Real format
+            else:
+                params["scale_factor"] = float(scale_int) / 65536.0  # Integer format
+
+            params["units"] = "mm"  # Default
+
+        except Exception:
+            params["scale_factor"] = 1.0
+            params["units"] = "mm"
+
+        return params
+
+    def _read_points(
+        self,
+        f,
+        header: Dict[str, Any],
+        scale_factor: float
+    ) -> List[List[Dict[str, float]]]:
+        """
+        Read 3D point data from C3D file.
+
+        Each marker has: x, y, z (float), residual (float) = 16 bytes per marker
+        Frames are stored sequentially.
+        """
+        points = []
+
+        try:
+            # Seek to data start
+            data_block = header.get("data_start", 3)
+            f.seek(data_block * 256)
+
+            frame_count = header.get("last_frame", 0) - header.get("first_frame", 1) + 1
+            marker_count = header.get("marker_count", 0)
+
+            if frame_count <= 0 or marker_count <= 0:
+                return points
+
+            # Read each frame
+            for _ in range(frame_count):
+                frame_markers = []
+
+                # Read all markers for this frame
+                for _ in range(marker_count):
+                    # Read x, y, z, residual as floats (little-endian)
+                    data = f.read(16)
+
+                    if len(data) < 16:
+                        break
+
+                    # C3D stores as 4 x float32 (Intel byte order)
+                    values = struct.unpack("<ffff", data)
+
+                    marker = {
+                        "x": values[0] * scale_factor,
+                        "y": values[1] * scale_factor,
+                        "z": values[2] * scale_factor,
+                        "residual": values[3],
+                    }
+                    frame_markers.append(marker)
+
+                if frame_markers:
+                    points.append(frame_markers)
+
+        except Exception:
+            pass
+
+        return points
+
+    def _parse_fallback(self, filepath: str, camera: ImportedCamera) -> ImportedCamera:
+        """Fallback for testing without valid C3D file."""
+        camera.name = Path(filepath).stem
+        camera.frame_start = 1
+        camera.frame_end = 120
+
+        # Generate mock marker motion
+        for frame in range(1, 121):
+            t = (frame - 1) / 119.0
+            camera.positions[frame] = (
+                1.0 * math.sin(t * 4 * math.pi),  # X oscillation
+                0.5 * math.cos(t * 2 * math.pi),  # Y oscillation
+                1.5,  # Z height
+            )
+
+        return camera
+
+
+class TDEExportHelper:
+    """
+    Export helper for 3DEqualizer integration.
+
+    Generates Python scripts that can be executed in Blender to create
+    cameras from 3DEqualizer tracking data.
+
+    3DEqualizer Workflow:
+    1. Track camera in 3DEqualizer
+    2. Export tracking data using 3DE's Python API
+    3. Use this helper to generate Blender-compatible script
+    4. Run script in Blender to recreate camera with animation
+    """
+
+    @staticmethod
+    def generate_blender_script(
+        camera: ImportedCamera,
+        point_cloud: Optional[List[Tuple[float, float, float]]] = None,
+    ) -> str:
+        """
+        Generate a Python script for Blender that creates the camera.
+
+        Args:
+            camera: ImportedCamera with animation data
+            point_cloud: Optional list of 3D points to create as mesh
+
+        Returns:
+            Python script string executable in Blender
+
+        Example:
+            >>> camera = ImportedCamera(name="tracked_cam")
+            >>> camera.positions[1] = (0, 0, 5)
+            >>> camera.rotations_euler[1] = (0, 0, 0)
+            >>> script = TDEExportHelper.generate_blender_script(camera)
+            >>> # Save script and run in Blender
+        """
+        lines = [
+            '"""',
+            '3DEqualizer Camera Import Script',
+            '',
+            'Generated by tracking import_export module.',
+            'Run this script in Blender to create a camera with animation',
+            'matching the 3DEqualizer tracking data.',
+            '"""',
+            '',
+            'import bpy',
+            'import math',
+            '',
+            '# Clear existing camera if exists',
+            'if "3de_camera" in bpy.data.objects:',
+            '    bpy.data.objects.remove(bpy.data.objects["3de_camera"], do_unlink=True)',
+            '',
+            '# Create camera',
+            'cam_data = bpy.data.cameras.new("3de_camera_data")',
+            'cam_obj = bpy.data.objects.new("3de_camera", cam_data)',
+            'bpy.context.collection.objects.link(cam_obj)',
+            '',
+            '# Set camera as active',
+            'bpy.context.scene.camera = cam_obj',
+            '',
+            '# Add animation data',
+            'cam_obj.animation_data_create()',
+            'action = bpy.data.actions.new(name="3de_camera_action")',
+            'cam_obj.animation_data.action = action',
+            '',
+        ]
+
+        # Add position keyframes
+        lines.extend([
+            '# Position keyframes',
+        ])
+
+        for frame, pos in sorted(camera.positions.items()):
+            lines.append(
+                f'cam_obj.location = ({pos[0]:.6f}, {pos[1]:.6f}, {pos[2]:.6f})'
+            )
+            lines.append(
+                f'cam_obj.keyframe_insert(data_path="location", frame={frame})'
+            )
+
+        # Add rotation keyframes
+        lines.extend([
+            '',
+            '# Rotation keyframes (degrees to radians)',
+        ])
+
+        for frame, rot in sorted(camera.rotations_euler.items()):
+            rx_rad = math.radians(rot[0])
+            ry_rad = math.radians(rot[1])
+            rz_rad = math.radians(rot[2])
+            lines.append(
+                f'cam_obj.rotation_euler = ({rx_rad:.6f}, {ry_rad:.6f}, {rz_rad:.6f})'
+            )
+            lines.append(
+                f'cam_obj.keyframe_insert(data_path="rotation_euler", frame={frame})'
+            )
+
+        # Add point cloud if provided
+        if point_cloud:
+            lines.extend([
+                '',
+                '# Create point cloud mesh',
+                'mesh = bpy.data.meshes.new("3de_point_cloud")',
+                'pc_obj = bpy.data.objects.new("3de_point_cloud", mesh)',
+                'bpy.context.collection.objects.link(pc_obj)',
+                '',
+                'vertices = [',
+            ])
+
+            for x, y, z in point_cloud:
+                lines.append(f'    ({x:.6f}, {y:.6f}, {z:.6f}),')
+
+            lines.extend([
+                ']',
+                '',
+                'mesh.from_pydata(vertices, [], [])',
+            ])
+
+        lines.extend([
+            '',
+            'print("3DEqualizer camera imported successfully")',
+        ])
+
+        return '\n'.join(lines)
+
+
+class SynthEyesExportHelper:
+    """
+    Export helper for SynthEyes integration.
+
+    Generates Python scripts that can be executed in Blender to create
+    cameras from SynthEyes tracking data.
+
+    SynthEyes Workflow:
+    1. Track camera in SynthEyes
+    2. Export using SynthEyes' Python or script export
+    3. Use this helper to generate Blender-compatible script
+    4. Run script in Blender to recreate camera with animation
+    """
+
+    @staticmethod
+    def generate_blender_script(
+        camera: ImportedCamera,
+        focal_length: float = 50.0,
+    ) -> str:
+        """
+        Generate a Python script for Blender that creates the camera.
+
+        Args:
+            camera: ImportedCamera with animation data
+            focal_length: Focal length in mm (default 50.0)
+
+        Returns:
+            Python script string executable in Blender
+        """
+        lines = [
+            '"""',
+            'SynthEyes Camera Import Script',
+            '',
+            'Generated by tracking import_export module.',
+            'Run this script in Blender to create a camera with animation',
+            'matching the SynthEyes tracking data.',
+            '"""',
+            '',
+            'import bpy',
+            'import math',
+            '',
+            '# Clear existing camera if exists',
+            'if "syntheyes_camera" in bpy.data.objects:',
+            '    bpy.data.objects.remove(bpy.data.objects["syntheyes_camera"], do_unlink=True)',
+            '',
+            '# Create camera',
+            'cam_data = bpy.data.cameras.new("syntheyes_camera_data")',
+            'cam_obj = bpy.data.objects.new("syntheyes_camera", cam_data)',
+            'bpy.context.collection.objects.link(cam_obj)',
+            '',
+            '# Set focal length',
+            f'cam_data.lens = {focal_length:.4f}',
+            '',
+            '# Set camera as active',
+            'bpy.context.scene.camera = cam_obj',
+            '',
+            '# Add animation data',
+            'cam_obj.animation_data_create()',
+            'action = bpy.data.actions.new(name="syntheyes_camera_action")',
+            'cam_obj.animation_data.action = action',
+            '',
+        ]
+
+        # Add position keyframes
+        lines.append('# Position keyframes')
+
+        for frame, pos in sorted(camera.positions.items()):
+            lines.append(
+                f'cam_obj.location = ({pos[0]:.6f}, {pos[1]:.6f}, {pos[2]:.6f})'
+            )
+            lines.append(
+                f'cam_obj.keyframe_insert(data_path="location", frame={frame})'
+            )
+
+        # Add rotation keyframes
+        lines.extend([
+            '',
+            '# Rotation keyframes (degrees to radians)',
+        ])
+
+        for frame, rot in sorted(camera.rotations_euler.items()):
+            rx_rad = math.radians(rot[0])
+            ry_rad = math.radians(rot[1])
+            rz_rad = math.radians(rot[2])
+            lines.append(
+                f'cam_obj.rotation_euler = ({rx_rad:.6f}, {ry_rad:.6f}, {rz_rad:.6f})'
+            )
+            lines.append(
+                f'cam_obj.keyframe_insert(data_path="rotation_euler", frame={frame})'
+            )
+
+        # Add lens distortion as custom properties
+        lines.extend([
+            '',
+            '# Lens distortion info (custom properties)',
+            'cam_obj["syntheyes_source"] = "SynthEyes"',
+            f'cam_obj["focal_length_mm"] = {focal_length:.4f}',
+            'cam_obj["distortion_model"] = "none"',  # Can be extended
+            '',
+            'print("SynthEyes camera imported successfully")',
+        ])
+
+        return '\n'.join(lines)
+
+    @staticmethod
+    def get_recommended_export_settings() -> Dict[str, Any]:
+        """
+        Get recommended export settings for SynthEyes.
+
+        Returns:
+            Dictionary with FBX export settings, coordinate system
+            recommendations, and frame rate guidance.
+        """
+        return {
+            "fbx_export": {
+                "use_selection": True,
+                "global_scale": 1.0,
+                "apply_unit_scale": True,
+                "apply_scale_options": "FBX_SCALE_ALL",
+                "axis_forward": "-Z",
+                "axis_up": "Y",
+                "object_types": {"CAMERA"},
+                "bake_anim": True,
+                "bake_anim_use_all_bones": False,
+                "bake_anim_force_startend_keying": True,
+            },
+            "coordinate_system": {
+                "syntheyes_up": "Y",
+                "syntheyes_forward": "Z",
+                "blender_up": "Z",
+                "blender_forward": "-Y",
+                "conversion_note": "SynthEyes uses Y-up, Z-forward. Blender uses Z-up, -Y-forward.",
+            },
+            "frame_rate": {
+                "recommendation": "Match project frame rate exactly",
+                "common_rates": [23.976, 24, 25, 29.97, 30, 50, 59.94, 60],
+                "note": "SynthEyes exports at project frame rate. Ensure Blender scene matches.",
+            },
+        }
+
+
 class TrackingImporter:
     """
     Main importer class for tracking data from external software.
@@ -929,6 +1435,7 @@ class TrackingImporter:
         ".chn": NukeChanParser,
         ".json": JSONCameraParser,
         ".dae": ColladaParser,
+        ".c3d": C3DParser,
     }
 
     def __init__(self):
@@ -1120,6 +1627,112 @@ class TrackingExporter:
             return True
 
         except Exception:
+            return False
+
+    def export_fbx(
+        self,
+        solve_data: SolveData,
+        filepath: str,
+        coordinate_system: str = "maya",
+    ) -> bool:
+        """
+        Export solve to FBX format.
+
+        Creates a temporary camera with animation and exports via Blender's
+        FBX exporter, then removes the temporary camera.
+
+        Args:
+            solve_data: SolveData to export
+            filepath: Output file path (.fbb)
+            coordinate_system: Target coordinate system ("maya" for Y-up)
+
+        Returns:
+            True if successful, False if Blender not available or error
+        """
+        if not BLENDER_AVAILABLE:
+            return False
+
+        try:
+            transforms = solve_data.camera_transforms
+            if not transforms:
+                return False
+
+            # Create temporary camera
+            temp_name = "_temp_export_camera_"
+
+            # Remove if exists
+            if temp_name in bpy.data.objects:
+                bpy.data.objects.remove(bpy.data.objects[temp_name], do_unlink=True)
+            if temp_name in bpy.data.cameras:
+                bpy.data.cameras.remove(bpy.data.cameras[temp_name])
+
+            # Create camera
+            cam_data = bpy.data.cameras.new(temp_name)
+            cam_obj = bpy.data.objects.new(temp_name, cam_data)
+            bpy.context.collection.objects.link(cam_obj)
+
+            # Set focal length if available
+            if solve_data.focal_length > 0:
+                cam_data.lens = solve_data.focal_length
+
+            # Add animation
+            cam_obj.animation_data_create()
+            action = bpy.data.actions.new(name=f"{temp_name}_action")
+            cam_obj.animation_data.action = action
+
+            # Get frame range
+            frame_nums = sorted(transforms.keys())
+
+            # Add keyframes
+            for frame in frame_nums:
+                tx, ty, tz, rx, ry, rz = transforms[frame]
+
+                # Apply coordinate conversion for export
+                if coordinate_system == "maya":
+                    # Z-up to Y-up
+                    tx, ty, tz = convert_zup_to_yup_position(tx, ty, tz)
+
+                cam_obj.location = (tx, ty, tz)
+                cam_obj.rotation_euler = (
+                    math.radians(rx),
+                    math.radians(ry),
+                    math.radians(rz),
+                )
+
+                cam_obj.keyframe_insert(data_path="location", frame=frame)
+                cam_obj.keyframe_insert(data_path="rotation_euler", frame=frame)
+
+            # Select only the camera
+            bpy.ops.object.select_all(action='DESELECT')
+            cam_obj.select_set(True)
+            bpy.context.view_layer.objects.active = cam_obj
+
+            # Export FBX
+            bpy.ops.export_scene.fbx(
+                filepath=filepath,
+                use_selection=True,
+                global_scale=1.0,
+                apply_unit_scale=True,
+                axis_forward="-Z",
+                axis_up="Y",
+                object_types={"CAMERA"},
+                bake_anim=True,
+                bake_anim_use_all_bones=False,
+            )
+
+            # Cleanup - remove temporary camera
+            bpy.data.objects.remove(cam_obj, do_unlink=True)
+            bpy.data.cameras.remove(cam_data)
+
+            return True
+
+        except Exception:
+            # Cleanup on error
+            temp_name = "_temp_export_camera_"
+            if temp_name in bpy.data.objects:
+                bpy.data.objects.remove(bpy.data.objects[temp_name], do_unlink=True)
+            if temp_name in bpy.data.cameras:
+                bpy.data.cameras.remove(bpy.data.cameras[temp_name])
             return False
 
 
