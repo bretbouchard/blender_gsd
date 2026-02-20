@@ -2,15 +2,15 @@
 
 ## Current Position
 
-**Phase:** 14.1 Production Orchestrator
-**Status:** Phase 14.1 (Production Orchestrator) complete - 44 tests passing
-**Last activity:** 2026-02-20 - Completed Phase 14.1 Production Orchestrator
+**Phase:** 14.2 Master Production Config
+**Status:** Phase 14.2 (Master Production Config) complete - 92 tests passing
+**Last activity:** 2026-02-20 - Completed Phase 14.2 Master Production Config
 
-**Progress:** [██████████] 100% (Phase 14.1 Production Orchestrator COMPLETE)
+**Progress:** [██████████] 100% (Phase 14.2 Master Production Config COMPLETE)
 
-**Version:** 0.8.0
+**Version:** 0.2.0
 
-**Note:** Phase 14.1 adds master orchestrator for one-command production execution with YAML loading, validation, 8-phase execution, parallel processing, and CLI interface.
+**Note:** Phase 14.2 adds MasterProductionConfig schema with template expansion, comprehensive validation, and CLI tools for one-shot movie generation.
 **Phase 13.4:** CRT display effects (scanlines, phosphor, curvature, bloom, aberration) with 18 presets.
 **Phase 13.3:** Isometric/side-scroller cameras, sprite sheet generation (4 formats), tile system with autotile.
 **Phase 13.2:** Dither Engine with 15+ modes (Bayer, error diffusion, patterns), 50+ presets.
@@ -33,6 +33,22 @@
 - layer_mask.py - Bone masking with patterns, sides, presets
 - layer_presets.yaml - 8 layer preset configurations
 - 56 layer unit tests
+
+## Phase 14.2 Planning Summary
+
+### 14.2-master-config (Complete)
+
+| Plan | Name | Status | Summary |
+|------|------|--------|---------|
+| 14.2-01 | Master Production Config | Complete | 14.2-01-SUMMARY.md |
+
+**Delivered:**
+- config_schema.py - MasterProductionConfig, CharacterDef, LocationDef, ShotDef, OutputDef, RetroOutputConfig
+- template_expansion.py - 16 shot templates, 8 style presets, expand_shot_templates
+- config_validation.py - validate_master_config, check_file_references, validate_for_execution_strict
+- cli.py - 4 new commands (show, check, list-templates, suggest)
+- 3 example productions (the_discovery, product_demo, retro_game)
+- 48 unit tests
 
 ## Phase 14.1 Planning Summary
 
@@ -725,7 +741,7 @@ None currently.
 ## Session Continuity
 
 **Last session:** 2026-02-20
-**Stopped at:** Completed Phase 13.4 CRT Display Effects
+**Stopped at:** Completed Phase 14.2 Master Production Config
 **Resume file:** None - Phase complete
 **Next phase:** Review requirements for next steps
 
@@ -905,4 +921,10 @@ cd tracking-ui && npm run dev   # Start dev server
 | 2026-02-20 | 14.1-01 | ThreadPoolExecutor default | Thread-safe for I/O-bound rendering tasks |
 | 2026-02-20 | 14.1-01 | Dependency graph for parallel execution | Independent shots execute concurrently |
 | 2026-02-20 | 14.1-01 | Version bump to 0.8.0 | Production Orchestrator complete |
+| 2026-02-20 | 14.2-01 | Separate schema from types.py | Clean separation of concerns |
+| 2026-02-20 | 14.2-01 | ShotDef separate from ShotConfig | Simplified YAML syntax, auto-expansion |
+| 2026-02-20 | 14.2-01 | RetroOutputConfig as nested class | Clean retro configuration in outputs |
+| 2026-02-20 | 14.2-01 | 16 shot templates | Cover standard cinematography |
+| 2026-02-20 | 14.2-01 | 8 style presets | Cover common visual styles |
+| 2026-02-20 | 14.2-01 | validate_for_execution_strict | Strict validation for execution readiness |
 
