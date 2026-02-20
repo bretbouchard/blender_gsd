@@ -1,0 +1,260 @@
+# Wardrobe YAML Schema
+# This file defines the structure for wardrobe configuration files
+
+version: "1.0"
+description: "Schema for wardrobe configuration files"
+
+# Top-level structure
+structure:
+  production_name:
+    type: string
+    description: "Name of the production"
+    optional: true
+
+  costumes:
+    type: list
+    description: "List of costume definitions"
+    item_type: costume
+
+  assignments:
+    type: list
+    description: "Scene-by-scene costume assignments"
+    item_type: assignment
+
+  changes:
+    type: list
+    description: "Documented costume changes"
+    item_type: change
+    optional: true
+
+# Costume definition
+costume:
+  name:
+    type: string
+    required: true
+    description: "Unique costume identifier"
+
+  character:
+    type: string
+    required: true
+    description: "Character who wears this costume"
+
+  pieces:
+    type: list
+    required: true
+    description: "List of costume pieces"
+    item_type: costume_piece
+
+  accessories:
+    type: list
+    description: "List of accessories"
+    item_type: costume_piece
+    optional: true
+
+  colors:
+    type: list
+    description: "Primary colors for continuity"
+    optional: true
+
+  condition:
+    type: enum
+    values: [pristine, worn, dirty, damaged, bloodied, wet, torn, burned]
+    default: pristine
+    description: "Default condition of costume"
+
+  notes:
+    type: string
+    description: "Additional notes"
+    optional: true
+
+  reference_images:
+    type: list
+    description: "Paths to reference images"
+    optional: true
+
+# Costume piece definition
+costume_piece:
+  name:
+    type: string
+    required: true
+    description: "Name of the piece"
+
+  category:
+    type: enum
+    values: [top, bottom, shoes, accessory, outerwear, underwear, headwear, jewelry, bag, eyewear]
+    required: true
+    description: "Category of the piece"
+
+  color:
+    type: string
+    required: true
+    description: "Color of the piece"
+
+  material:
+    type: string
+    required: true
+    description: "Material of the piece"
+
+  style:
+    type: enum
+    values: [casual, formal, athletic, period, fantasy, scifi, business, uniform, costume]
+    default: casual
+    description: "Style of the piece"
+
+  brand:
+    type: string
+    description: "Brand/vendor"
+    optional: true
+
+  notes:
+    type: string
+    description: "Additional notes"
+    optional: true
+
+  size:
+    type: string
+    description: "Size of the piece"
+    optional: true
+
+  quantity:
+    type: integer
+    default: 1
+    description: "Number of this piece needed"
+
+  estimated_cost:
+    type: float
+    default: 0.0
+    description: "Estimated cost in dollars"
+
+  reference_image:
+    type: string
+    description: "Path to reference image"
+    optional: true
+
+  purchase_link:
+    type: string
+    description: "URL to purchase"
+    optional: true
+
+# Assignment definition
+assignment:
+  character:
+    type: string
+    required: true
+    description: "Character name"
+
+  scene:
+    type: integer
+    required: true
+    description: "Scene number"
+
+  costume:
+    type: string
+    required: true
+    description: "Costume name to assign"
+
+  condition:
+    type: enum
+    values: [pristine, worn, dirty, damaged, bloodied, wet, torn, burned]
+    default: pristine
+    description: "Condition in this scene"
+
+  modifications:
+    type: list
+    description: "On-set modifications"
+    optional: true
+
+  notes:
+    type: string
+    description: "Additional notes"
+    optional: true
+
+  shoot_date:
+    type: string
+    format: date
+    description: "YYYY-MM-DD"
+    optional: true
+
+  continuity_photos:
+    type: list
+    description: "Paths to continuity photos"
+    optional: true
+
+# Change definition
+change:
+  character:
+    type: string
+    required: true
+
+  scene_before:
+    type: integer
+    required: true
+
+  scene_after:
+    type: integer
+    required: true
+
+  costume_before:
+    type: string
+    required: true
+
+  costume_after:
+    type: string
+    required: true
+
+  change_reason:
+    type: enum
+    values: [story, time, location, damage, weather, action, transformation]
+    default: story
+
+  notes:
+    type: string
+    optional: true
+
+  screen_time:
+    type: float
+    description: "Minutes between scenes"
+    optional: true
+
+  location_before:
+    type: string
+    optional: true
+
+  location_after:
+    type: string
+    optional: true
+
+# Valid condition progressions
+condition_rules:
+  description: "Rules for valid condition changes"
+  pristine:
+    can_become: [pristine, worn, dirty, damaged, bloodied, wet, torn, burned]
+    notes: "New costume can degrade"
+
+  worn:
+    can_become: [worn, dirty, damaged, bloodied, wet, torn, burned]
+    notes: "Can degrade further"
+
+  dirty:
+    can_become: [dirty, damaged, bloodied, wet, torn, burned, pristine]
+    notes: "Can be cleaned or degrade"
+
+  damaged:
+    can_become: [damaged, bloodied, wet, torn, burned]
+    notes: "Cannot heal"
+
+  bloodied:
+    can_become: [bloodied, dirty, wet]
+    notes: "Stain remains visible"
+
+  wet:
+    can_become: [wet, dirty, pristine]
+    notes: "Can dry"
+
+  torn:
+    can_become: [torn, damaged, bloodied]
+    notes: "Permanent damage"
+
+  burned:
+    can_become: [burned, damaged]
+    notes: "Permanent damage"

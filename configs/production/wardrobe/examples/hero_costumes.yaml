@@ -1,0 +1,242 @@
+# Hero Character Costumes
+# Example wardrobe configuration for a main character
+
+production_name: "Example Production"
+
+# Character name for this file
+character: "Hero"
+
+# Costume definitions
+costumes:
+  - name: "hero_casual"
+    character: "Hero"
+    pieces:
+      - name: "T-Shirt"
+        category: "top"
+        color: "navy blue"
+        material: "cotton"
+        style: "casual"
+        brand: ""
+        estimated_cost: 25.00
+
+      - name: "Jeans"
+        category: "bottom"
+        color: "dark blue"
+        material: "denim"
+        style: "casual"
+        estimated_cost: 60.00
+
+      - name: "Sneakers"
+        category: "shoes"
+        color: "white"
+        material: "canvas"
+        style: "casual"
+        brand: "Converse"
+        estimated_cost: 55.00
+
+    accessories:
+      - name: "Watch"
+        category: "accessory"
+        color: "silver"
+        material: "metal"
+        style: "casual"
+        estimated_cost: 150.00
+
+      - name: "Backpack"
+        category: "bag"
+        color: "black"
+        material: "nylon"
+        style: "casual"
+        estimated_cost: 45.00
+
+    colors:
+      - "navy blue"
+      - "dark blue"
+      - "white"
+      - "silver"
+      - "black"
+
+    condition: "pristine"
+    notes: "Hero's everyday casual look"
+
+  - name: "hero_formal"
+    character: "Hero"
+    pieces:
+      - name: "Suit Jacket"
+        category: "outerwear"
+        color: "charcoal"
+        material: "wool"
+        style: "formal"
+        estimated_cost: 350.00
+
+      - name: "Dress Shirt"
+        category: "top"
+        color: "white"
+        material: "cotton"
+        style: "formal"
+        estimated_cost: 75.00
+
+      - name: "Dress Pants"
+        category: "bottom"
+        color: "charcoal"
+        material: "wool"
+        style: "formal"
+        estimated_cost: 150.00
+
+      - name: "Dress Shoes"
+        category: "shoes"
+        color: "black"
+        material: "leather"
+        style: "formal"
+        estimated_cost: 180.00
+
+    accessories:
+      - name: "Tie"
+        category: "accessory"
+        color: "navy blue"
+        material: "silk"
+        style: "formal"
+        estimated_cost: 45.00
+
+      - name: "Belt"
+        category: "accessory"
+        color: "black"
+        material: "leather"
+        style: "formal"
+        estimated_cost: 50.00
+
+      - name: "Watch"
+        category: "accessory"
+        color: "silver"
+        material: "metal"
+        style: "formal"
+        estimated_cost: 150.00
+
+    colors:
+      - "charcoal"
+      - "white"
+      - "black"
+      - "navy blue"
+      - "silver"
+
+    condition: "pristine"
+    notes: "Hero's formal event attire"
+
+  - name: "hero_action"
+    character: "Hero"
+    pieces:
+      - name: "Leather Jacket"
+        category: "outerwear"
+        color: "black"
+        material: "leather"
+        style: "casual"
+        estimated_cost: 280.00
+
+      - name: "T-Shirt"
+        category: "top"
+        color: "gray"
+        material: "cotton"
+        style: "casual"
+        estimated_cost: 25.00
+
+      - name: "Cargo Pants"
+        category: "bottom"
+        color: "olive"
+        material: "cotton"
+        style: "casual"
+        estimated_cost: 65.00
+
+      - name: "Combat Boots"
+        category: "shoes"
+        color: "brown"
+        material: "leather"
+        style: "casual"
+        estimated_cost: 145.00
+
+    accessories:
+      - name: "Utility Belt"
+        category: "accessory"
+        color: "black"
+        material: "nylon"
+        style: "casual"
+        estimated_cost: 35.00
+
+    colors:
+      - "black"
+      - "gray"
+      - "olive"
+      - "brown"
+
+    condition: "pristine"
+    notes: "Hero's action sequence outfit"
+
+# Scene assignments
+assignments:
+  - scene: 1
+    costume: "hero_casual"
+    condition: "pristine"
+    notes: "Opening scene - normal day"
+
+  - scene: 2
+    costume: "hero_casual"
+    condition: "pristine"
+
+  - scene: 3
+    costume: "hero_casual"
+    condition: "pristine"
+
+  - scene: 5
+    costume: "hero_formal"
+    condition: "pristine"
+    notes: "Gala event"
+
+  - scene: 6
+    costume: "hero_formal"
+    condition: "dirty"
+    notes: "After escape through alley"
+
+  - scene: 7
+    costume: "hero_formal"
+    condition: "damaged"
+    notes: "After fight scene"
+
+  - scene: 10
+    costume: "hero_action"
+    condition: "pristine"
+    notes: "Training montage"
+
+  - scene: 11
+    costume: "hero_action"
+    condition: "worn"
+
+  - scene: 12
+    costume: "hero_action"
+    condition: "dirty"
+    notes: "After outdoor chase"
+
+  - scene: 15
+    costume: "hero_casual"
+    condition: "pristine"
+    notes: "Resolution scene"
+
+# Documented costume changes
+changes:
+  - character: "Hero"
+    scene_before: 3
+    scene_after: 5
+    costume_before: "hero_casual"
+    costume_after: "hero_formal"
+    change_reason: "location"
+    notes: "Heading to gala event"
+    screen_time: 30.0
+    location_before: "apartment"
+    location_after: "gala venue"
+
+  - character: "Hero"
+    scene_before: 7
+    scene_after: 10
+    costume_before: "hero_formal"
+    costume_after: "hero_action"
+    change_reason: "story"
+    notes: "Preparing for final confrontation"
+    screen_time: 120.0

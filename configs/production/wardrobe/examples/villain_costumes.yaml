@@ -1,0 +1,228 @@
+# Villain Character Costumes
+# Example wardrobe configuration for an antagonist character
+
+production_name: "Example Production"
+
+# Character name for this file
+character: "Villain"
+
+# Costume definitions
+costumes:
+  - name: "villain_suit"
+    character: "Villain"
+    pieces:
+      - name: "Three-Piece Suit Jacket"
+        category: "outerwear"
+        color: "black"
+        material: "wool"
+        style: "formal"
+        estimated_cost: 450.00
+
+      - name: "Dress Shirt"
+        category: "top"
+        color: "black"
+        material: "silk"
+        style: "formal"
+        estimated_cost: 125.00
+
+      - name: "Vest"
+        category: "top"
+        color: "charcoal"
+        material: "wool"
+        style: "formal"
+        estimated_cost: 175.00
+
+      - name: "Dress Pants"
+        category: "bottom"
+        color: "black"
+        material: "wool"
+        style: "formal"
+        estimated_cost: 200.00
+
+      - name: "Oxford Shoes"
+        category: "shoes"
+        color: "black"
+        material: "leather"
+        style: "formal"
+        estimated_cost: 250.00
+
+    accessories:
+      - name: "Pocket Square"
+        category: "accessory"
+        color: "crimson"
+        material: "silk"
+        style: "formal"
+        estimated_cost: 35.00
+
+      - name: "Cufflinks"
+        category: "jewelry"
+        color: "silver"
+        material: "metal"
+        style: "formal"
+        estimated_cost: 85.00
+
+      - name: "Signet Ring"
+        category: "jewelry"
+        color: "gold"
+        material: "gold"
+        style: "formal"
+        estimated_cost: 350.00
+
+    colors:
+      - "black"
+      - "charcoal"
+      - "crimson"
+      - "silver"
+      - "gold"
+
+    condition: "pristine"
+    notes: "Villain's signature elegant look"
+
+  - name: "villain_casual"
+    character: "Villain"
+    pieces:
+      - name: "Turtleneck"
+        category: "top"
+        color: "black"
+        material: "cashmere"
+        style: "casual"
+        estimated_cost: 195.00
+
+      - name: "Slacks"
+        category: "bottom"
+        color: "charcoal"
+        material: "wool"
+        style: "casual"
+        estimated_cost: 145.00
+
+      - name: "Loafers"
+        category: "shoes"
+        color: "black"
+        material: "leather"
+        style: "casual"
+        estimated_cost: 195.00
+
+    accessories:
+      - name: "Signet Ring"
+        category: "jewelry"
+        color: "gold"
+        material: "gold"
+        style: "formal"
+        estimated_cost: 350.00
+
+    colors:
+      - "black"
+      - "charcoal"
+      - "gold"
+
+    condition: "pristine"
+    notes: "Villain's off-duty elegant look"
+
+  - name: "villain_combat"
+    character: "Villain"
+    pieces:
+      - name: "Tactical Jacket"
+        category: "outerwear"
+        color: "dark gray"
+        material: "tactical nylon"
+        style: "casual"
+        estimated_cost: 285.00
+
+      - name: "Compression Shirt"
+        category: "top"
+        color: "black"
+        material: "synthetic"
+        style: "athletic"
+        estimated_cost: 45.00
+
+      - name: "Cargo Pants"
+        category: "bottom"
+        color: "dark gray"
+        material: "tactical nylon"
+        style: "casual"
+        estimated_cost: 125.00
+
+      - name: "Tactical Boots"
+        category: "shoes"
+        color: "black"
+        material: "leather"
+        style: "casual"
+        estimated_cost: 195.00
+
+    accessories:
+      - name: "Tactical Gloves"
+        category: "accessory"
+        color: "black"
+        material: "leather"
+        style: "casual"
+        estimated_cost: 55.00
+
+    colors:
+      - "dark gray"
+      - "black"
+
+    condition: "pristine"
+    notes: "Villain's action/combat outfit"
+
+# Scene assignments
+assignments:
+  - scene: 2
+    costume: "villain_suit"
+    condition: "pristine"
+    notes: "Introduction scene - boardroom"
+
+  - scene: 4
+    costume: "villain_suit"
+    condition: "pristine"
+    notes: "Meeting with associates"
+
+  - scene: 5
+    costume: "villain_suit"
+    condition: "pristine"
+    notes: "At gala - observing hero"
+
+  - scene: 8
+    costume: "villain_casual"
+    condition: "pristine"
+    notes: "Private office scene"
+
+  - scene: 9
+    costume: "villain_casual"
+    condition: "pristine"
+
+  - scene: 11
+    costume: "villain_combat"
+    condition: "pristine"
+    notes: "Preparing for confrontation"
+
+  - scene: 12
+    costume: "villain_combat"
+    condition: "worn"
+    notes: "During chase"
+
+  - scene: 14
+    costume: "villain_combat"
+    condition: "damaged"
+    notes: "Final confrontation"
+
+# Documented costume changes
+changes:
+  - character: "Villain"
+    scene_before: 5
+    scene_after: 8
+    costume_before: "villain_suit"
+    costume_after: "villain_casual"
+    change_reason: "location"
+    notes: "Returning to private lair"
+    screen_time: 45.0
+    location_before: "gala venue"
+    location_after: "private office"
+
+  - character: "Villain"
+    scene_before: 9
+    scene_after: 11
+    costume_before: "villain_casual"
+    costume_after: "villain_combat"
+    change_reason: "action"
+    notes: "Preparing for final confrontation"
+    screen_time: 60.0

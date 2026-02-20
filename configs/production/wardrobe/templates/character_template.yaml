@@ -1,0 +1,133 @@
+# Character Wardrobe Template
+# Copy this file and customize for each character
+
+production_name: ""  # e.g., "My Movie"
+
+# Character name
+character: ""  # e.g., "Hero", "Villain", "Sidekick"
+
+# Define costumes for this character
+costumes:
+  - name: ""  # e.g., "hero_casual"
+    character: ""  # Same as character above
+    pieces:
+      # Top
+      - name: ""
+        category: "top"
+        color: ""
+        material: ""
+        style: "casual"  # casual, formal, athletic, period, fantasy, scifi
+        brand: ""
+        estimated_cost: 0.0
+
+      # Bottom
+      - name: ""
+        category: "bottom"
+        color: ""
+        material: ""
+        style: "casual"
+        estimated_cost: 0.0
+
+      # Shoes
+      - name: ""
+        category: "shoes"
+        color: ""
+        material: ""
+        style: "casual"
+        estimated_cost: 0.0
+
+    # Accessories (optional)
+    accessories:
+      - name: ""
+        category: "accessory"  # accessory, jewelry, bag, eyewear, headwear
+        color: ""
+        material: ""
+        style: "casual"
+        estimated_cost: 0.0
+
+    # Primary colors for continuity tracking
+    colors:
+      - ""
+
+    condition: "pristine"  # pristine, worn, dirty, damaged, bloodied, wet, torn, burned
+    notes: ""
+
+  # Add more costumes as needed
+  # - name: "hero_formal"
+  #   ...
+
+# Scene assignments - which costume is worn in each scene
+assignments:
+  - scene: 1
+    costume: ""  # Reference the costume name above
+    condition: "pristine"
+    modifications: []  # e.g., ["rolled sleeves", "untucked"]
+    notes: ""
+
+  # Add more scene assignments
+  # - scene: 2
+  #   costume: ""
+  #   ...
+
+# Documented costume changes (optional but recommended)
+changes:
+  - character: ""  # Same as character above
+    scene_before: 0
+    scene_after: 0
+    costume_before: ""
+    costume_after: ""
+    change_reason: "story"  # story, time, location, damage, weather, action, transformation
+    notes: ""
+    screen_time: 0.0  # Minutes between scenes
+    location_before: ""
+    location_after: ""
+
+# ========================================
+# CATEGORY OPTIONS:
+# ========================================
+# top        - Shirts, blouses, sweaters, etc.
+# bottom     - Pants, skirts, shorts, etc.
+# shoes      - Footwear
+# outerwear  - Jackets, coats, blazers
+# underwear  - Base layers
+# accessory  - Scarves, gloves, belts (non-jewelry)
+# jewelry    - Rings, necklaces, earrings, watches
+# bag        - Purses, backpacks, briefcases
+# eyewear    - Glasses, sunglasses
+# headwear   - Hats, caps, helmets
+
+# ========================================
+# STYLE OPTIONS:
+# ========================================
+# casual    - Everyday wear
+# formal    - Dressy, business formal
+# athletic  - Sports, workout
+# period    - Historical/costume
+# fantasy   - Fantasy/cosplay
+# scifi     - Science fiction
+# business  - Business casual
+# uniform   - Work uniform
+# costume   - Character costume
+
+# ========================================
+# CONDITION OPTIONS:
+# ========================================
+# pristine  - New, perfect condition
+# worn      - Shows normal use
+# dirty     - Has dirt/stains
+# damaged   - Has tears, rips
+# bloodied  - Has blood stains
+# wet       - Wet from water/rain
+# torn      - Significantly torn
+# burned    - Has burn marks
+
+# ========================================
+# CHANGE REASON OPTIONS:
+# ========================================
+# story         - Plot requires the change
+# time          - Time passage in narrative
+# location      - Scene location change
+# damage        - Costume damaged in scene
+# weather       - Weather-related change
+# action        - Action sequence requires it
+# transformation - Character transformation
