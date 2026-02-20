@@ -2,15 +2,16 @@
 
 ## Current Position
 
-**Phase:** 8.1 Script Parser
-**Status:** Phase 8.1 (Script Parser) complete - 58 tests passing
-**Last activity:** 2026-02-20 - Completed Phase 8.1 Script Parser
+**Phase:** 8.2 Shot List Generator
+**Status:** Phase 8.2 (Shot List Generator) complete - 39 tests passing
+**Last activity:** 2026-02-20 - Completed Phase 8.2 Shot List Generator
 
-**Progress:** [██████████] 100% (Phase 8.1 Script Parser COMPLETE)
+**Progress:** [██████████] 100% (Phase 8.2 Shot List Generator COMPLETE)
 
-**Version:** 0.5.0
+**Version:** 0.6.0
 
-**Note:** Phase 8.1 adds screenplay parsing with Fountain and Final Draft format support, beat sheet generation, and comprehensive script analysis.
+**Note:** Phase 8.2 adds automatic shot list generation with coverage estimation, shot size suggestions, and storyboard prompt generation.
+**Phase 8.1:** Script Parser complete with Fountain/FDX parsing, beat sheets, script analysis.
 **Phase 7.1:** Object Tracking complete with markers, motion solving, follow-focus automation.
 **Phase 6.4:** Lighting System complete with rigs, gels, HDRI, and light linking.
 **Phase 6.3:** Follow Camera System complete with 5 modes (tight, loose, anticipatory, elastic, orbit).
@@ -19,6 +20,22 @@
 **Phase 12.0:** 1-Sheet Generator complete with HTML/PDF export.
 **Phase 12.1:** Compositor complete with blend modes, color correction, cryptomatte.
 **Phase 13.0:** Rigging Foundation complete with 5 rig presets, bone utilities, weight painting.
+
+## Phase 8.2 Planning Summary
+
+### 8.2-shot-list-generator (Complete)
+
+| Plan | Name | Status | Summary |
+|------|------|--------|---------|
+| 8.2-01 | Shot List Generator | Complete | 8.2-01-SUMMARY.md |
+
+**Delivered:**
+- shot_gen_types.py - ShotSuggestion, CoverageEstimate, SceneShotList, ShotList, StoryboardPrompt
+- scene_analyzer.py - Scene analysis with dialogue/action/mixed detection
+- shot_rules.py - Coverage rules engine with shot size and camera angle suggestions
+- storyboard_prompts.py - AI image prompt generation with style presets
+- shot_list_export.py - CSV, YAML, JSON, HTML, PDF export
+- 39 unit tests
 
 ## Phase 8.1 Planning Summary
 
@@ -458,6 +475,12 @@
 | 2026-02-20 | 8.1-01 | 55 lines per page estimate | Standard screenplay format convention |
 | 2026-02-20 | 8.1-01 | 5 beat structure templates | Save the Cat, Three-Act, Story Circle, Hero's Journey, Sequel Method |
 | 2026-02-20 | 8.1-01 | Version bump to 0.5.0 | Script Parser module complete |
+| 2026-02-20 | 8.2-01 | Dialogue threshold at 70% | Standard screenplay analysis convention |
+| 2026-02-20 | 8.2-01 | 8 shot size types | Industry standard coverage options |
+| 2026-02-20 | 8.2-01 | 6 camera angles | Common cinematographic vocabulary |
+| 2026-02-20 | 8.2-01 | Priority: essential/recommended/optional | Flexible scheduling for productions |
+| 2026-02-20 | 8.2-01 | Style presets for AI prompts | Easy switching between visualization styles |
+| 2026-02-20 | 8.2-01 | Version bump to 0.6.0 | Shot List Generator module complete |
 
 ## Concerns
 
@@ -466,7 +489,7 @@ None currently.
 ## Session Continuity
 
 **Last session:** 2026-02-20
-**Stopped at:** Completed Phase 8.1 Script Parser
+**Stopped at:** Completed Phase 8.2 Shot List Generator
 **Resume file:** None - Phase complete
 **Next phase:** Review requirements for next steps
 
