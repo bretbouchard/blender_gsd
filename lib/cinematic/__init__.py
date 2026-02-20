@@ -486,6 +486,36 @@ from .tracking.import_export import (
 )
 from .tracking.session_manager import TrackingSessionManager
 
+# Phase 7.4: Compositing Integration
+from .tracking.compositor import (
+    CompositeConfig,
+    create_stabilization_nodes,
+    create_corner_pin_nodes,
+    create_alpha_over_composite,
+    create_shadow_composite,
+    load_composite_preset,
+    clear_compositor_tree,
+)
+from .tracking.session import (
+    SessionStatus,
+    create_session,
+    resume_tracking,
+    load_session,
+    list_sessions,
+    get_session_status,
+)
+from .tracking.shot_integration import (
+    FootageConfig,
+    TrackingShotConfig,
+    CompositeShotConfig,
+    assemble_shot_with_tracking,
+    setup_tracked_shot,
+    apply_solved_camera,
+    setup_shot_compositing,
+    load_tracking_shot_yaml,
+    validate_tracking_shot_config,
+)
+
 # Batch Processing (Phase 7.5)
 from .batch import (
     BatchProcessor,
@@ -1042,10 +1072,34 @@ __all__ = [
     "export_tracking_blender",
     "export_tracking",
 
+    # Phase 7.4: Compositing Integration
+    "CompositeConfig",
+    "create_stabilization_nodes",
+    "create_corner_pin_nodes",
+    "create_alpha_over_composite",
+    "create_shadow_composite",
+    "load_composite_preset",
+    "clear_compositor_tree",
+    "SessionStatus",
+    "create_session",
+    "resume_tracking",
+    "load_session",
+    "list_sessions",
+    "get_session_status",
+    "FootageConfig",
+    "TrackingShotConfig",
+    "CompositeShotConfig",
+    "assemble_shot_with_tracking",
+    "setup_tracked_shot",
+    "apply_solved_camera",
+    "setup_shot_compositing",
+    "load_tracking_shot_yaml",
+    "validate_tracking_shot_config",
+
     # Constants
     "APERTURE_MIN",
     "APERTURE_MAX",
     "BLENDER_AVAILABLE",
 ]
 
-__version__ = "0.4.0"
+__version__ = "0.5.0"

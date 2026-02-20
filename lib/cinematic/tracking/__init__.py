@@ -10,6 +10,9 @@ Provides types and utilities for motion tracking workflows:
 - Preset loading (Phase 7.1)
 - Quality analysis (Phase 7.1)
 - Tracking operators (Phase 7.1)
+- Compositor integration (Phase 7.4)
+- Session persistence with resume (Phase 7.4)
+- Shot integration (Phase 7.4)
 
 Quick Start:
     from lib.cinematic.tracking import (
@@ -19,6 +22,9 @@ Quick Start:
         # Phase 7.1 additions
         tracking_context, get_tracking_preset,
         analyze_track_quality, detect_features, track_markers,
+        # Phase 7.4 additions
+        TrackingSessionManager, assemble_shot_with_tracking,
+        create_stabilization_nodes, load_composite_preset,
     )
 
     # Extract footage metadata
@@ -27,9 +33,12 @@ Quick Start:
     # Import Nuke tracking
     solve = import_nuke_chan("tracking/camera.chan")
 
-    # Session persistence
-    manager = TrackingSessionManager()
-    manager.save(session)
+    # Session persistence with resume
+    manager = create_session("footage/shot.mp4", "my_shot")
+    manager.save_checkpoint(frame=50, operation="track_forward")
+
+    # Composite preset loading
+    config = load_composite_preset("over_footage")
 """
 
 try:
@@ -216,6 +225,48 @@ from .footage_profiles import (
     get_tracking_recommendations,
 )
 
+# Phase 7.4: Compositor Integration
+from .compositor import (
+    CompositeConfig,
+    create_stabilization_nodes,
+    create_corner_pin_nodes,
+    create_alpha_over_composite,
+    create_shadow_composite,
+    create_image_node,
+    create_mix_node,
+    apply_stmap_distortion,
+    setup_lens_distortion_workflow,
+    load_composite_preset,
+    clear_compositor_tree,
+)
+
+# Phase 7.4: Session Management
+from .session import (
+    TrackingSessionManager as SessionManager,
+    SessionStatus,
+    create_session,
+    resume_tracking,
+    load_session,
+    list_sessions,
+    get_session_status,
+    export_session_report,
+    merge_sessions,
+    cleanup_old_sessions,
+)
+
+# Phase 7.4: Shot Integration
+from .shot_integration import (
+    FootageConfig,
+    TrackingShotConfig,
+    CompositeShotConfig,
+    setup_tracked_shot,
+    assemble_shot_with_tracking,
+    apply_solved_camera,
+    setup_shot_compositing,
+    load_tracking_shot_yaml,
+    validate_tracking_shot_config,
+)
+
 __all__ = [
     # Types
     "TrackData",
@@ -364,8 +415,45 @@ __all__ = [
     "ImageSequenceAnalyzer",
     "analyze_image_sequence",
     "get_tracking_recommendations",
+
+    # Phase 7.4: Compositor Integration
+    "CompositeConfig",
+    "create_stabilization_nodes",
+    "create_corner_pin_nodes",
+    "create_alpha_over_composite",
+    "create_shadow_composite",
+    "create_image_node",
+    "create_mix_node",
+    "apply_stmap_distortion",
+    "setup_lens_distortion_workflow",
+    "load_composite_preset",
+    "clear_compositor_tree",
+
+    # Phase 7.4: Session Management
+    "SessionManager",
+    "SessionStatus",
+    "create_session",
+    "resume_tracking",
+    "load_session",
+    "list_sessions",
+    "get_session_status",
+    "export_session_report",
+    "merge_sessions",
+    "cleanup_old_sessions",
+
+    # Phase 7.4: Shot Integration
+    "FootageConfig",
+    "TrackingShotConfig",
+    "CompositeShotConfig",
+    "setup_tracked_shot",
+    "assemble_shot_with_tracking",
+    "apply_solved_camera",
+    "setup_shot_compositing",
+    "load_tracking_shot_yaml",
+    "validate_tracking_shot_config",
+
     # Constants
     "BLENDER_AVAILABLE",
 ]
 
-__version__ = "1.1.0"
+__version__ = "1.2.0"
