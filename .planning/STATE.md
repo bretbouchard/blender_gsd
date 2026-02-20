@@ -2,20 +2,40 @@
 
 ## Current Position
 
-**Phase:** 13.3 Isometric & Side-Scroller
-**Status:** Phase 13.3 (Isometric & Side-Scroller) complete - 234 tests passing
-**Last activity:** 2026-02-20 - Completed Phase 13.3 Isometric & Side-Scroller
+**Phase:** 13.4 CRT Display Effects
+**Status:** Phase 13.4 (CRT Effects) complete - 254 tests passing
+**Last activity:** 2026-02-20 - Completed Phase 13.4 CRT Display Effects
 
-**Progress:** [██████████] 100% (Phase 13.3 Isometric & Side-Scroller COMPLETE)
+**Progress:** [██████████] 100% (Phase 13.4 CRT Display Effects COMPLETE)
 
 **Version:** 0.7.0
 
-**Note:** Phase 13.3 adds isometric/side-scroller cameras, sprite sheet generation (4 formats), and tile system with autotile.
+**Note:** Phase 13.4 adds CRT display effects (scanlines, phosphor, curvature, bloom, aberration) with 18 presets.
+**Phase 13.3:** Isometric/side-scroller cameras, sprite sheet generation (4 formats), tile system with autotile.
 **Phase 13.2:** Dither Engine with 15+ modes (Bayer, error diffusion, patterns), 50+ presets.
 **Phase 13.1:** Pixel Converter with 8 style modes, 3 quantization algorithms, 20+ console presets.
 **Phase 13.0:** Rigging Foundation with 5 rig presets, bone utilities, weight painting.
 **Phase 12.1:** Compositor with blend modes, color correction, cryptomatte.
 **Phase 12.0:** 1-Sheet Generator with HTML/PDF export.
+
+## Phase 13.4 Planning Summary
+
+### 13.4-crt-effects (Complete)
+
+| Plan | Name | Status | Summary |
+|------|------|--------|---------|
+| 13.4-01 | CRT Display Effects | Complete | 13.4-01-SUMMARY.md |
+
+**Delivered:**
+- crt_types.py - CRTConfig, ScanlineConfig, PhosphorConfig, CurvatureConfig, 3 enums, 12 presets
+- scanlines.py - Scanline patterns (alternate, every-line, random), overlays, GPU shaders
+- phosphor.py - Phosphor masks (RGB stripe, aperture grille, slot mask, shadow mask)
+- curvature.py - Barrel distortion, vignette, corner rounding, bilinear sampling
+- crt_effects.py - Bloom, aberration, flicker, interlace, jitter, noise, ghosting, color adjustments
+- crt_compositor.py - Blender compositor node integration
+- crt_preset_loader.py - YAML preset loading with caching
+- crt_presets.yaml - 18 presets (arcade, TV, professional, LCD, special)
+- 254 unit tests
 
 ## Phase 13.3 Planning Summary
 
@@ -451,7 +471,7 @@
 
 ## Retro Pixel Art System Module Summary
 
-**lib/retro/** (17 modules, ~7,500 lines):
+**lib/retro/** (23 modules, ~13,000 lines):
 - pixel_types.py (480 lines) - PixelStyle, PixelationConfig, PixelationResult, ColorPalette, 6 enums
 - pixelator.py (680 lines) - Main pixelation engine with 8 mode functions, dithering
 - quantizer.py (580 lines) - Median cut, K-means, Octree quantization algorithms
@@ -468,12 +488,20 @@
 - sprites.py (540 lines) - Sprite sheet generation, trimming, 4 format exporters
 - tiles.py (580 lines) - Tile sets, maps, autotile, collision, transforms
 - view_preset_loader.py (280 lines) - YAML preset loader with caching
-- __init__.py (850 lines) - Package exports (250+ exports)
+- crt_types.py (480 lines) - CRTConfig, ScanlineConfig, PhosphorConfig, CurvatureConfig, 3 enums
+- scanlines.py (420 lines) - Scanline patterns, overlays, GPU shaders
+- phosphor.py (450 lines) - Phosphor masks (RGB stripe, aperture grille, slot mask, shadow mask)
+- curvature.py (380 lines) - Barrel distortion, vignette, corner rounding
+- crt_effects.py (650 lines) - Bloom, aberration, flicker, noise, ghosting, color adjustments
+- crt_compositor.py (400 lines) - Blender compositor node integration
+- crt_preset_loader.py (265 lines) - CRT YAML preset loading with caching
+- __init__.py (1107 lines) - Package exports (350+ exports)
 
 **configs/cinematic/retro/**
 - pixel_profiles.yaml - 20+ console presets, 7 palettes, 14 resolutions
 - dither_presets.yaml - 50+ dither presets
 - view_presets.yaml - 35 view presets (9 isometric, 8 side-scroller, 10 sprite, 8 tile)
+- crt_presets.yaml - 18 CRT display presets (arcade, TV, professional, LCD, special)
 
 **Built-in Palettes:**
 - Game Boy (4 colors) - Original green monochrome
@@ -489,9 +517,9 @@
 **Sprite Formats:**
 - Phaser, Unity, Godot, Generic JSON
 
-**Total exports:** 250+
-**Total tests:** 431 (197 dither + 234 isometric)
-**Version:** 0.2.0
+**Total exports:** 350+
+**Total tests:** 685 (197 dither + 234 isometric + 254 CRT)
+**Version:** 0.3.0
 
 ## Decisions
 
@@ -629,7 +657,7 @@ None currently.
 ## Session Continuity
 
 **Last session:** 2026-02-20
-**Stopped at:** Completed Phase 10.1 Wardrobe System
+**Stopped at:** Completed Phase 13.4 CRT Display Effects
 **Resume file:** None - Phase complete
 **Next phase:** Review requirements for next steps
 
