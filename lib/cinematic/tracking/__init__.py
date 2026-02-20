@@ -191,6 +191,22 @@ from .camera_solver import (
     Solve,
 )
 
+# Phase 7.2: Footage Profiles
+from .types import RollingShutterConfig
+
+from .footage_profiles import (
+    FFprobeMetadataExtractor,
+    FootageAnalyzer,
+    RollingShutterDetector,
+    FootageProfile,
+    ContentAnalysis,
+    ImageSequenceAnalyzer,
+    extract_metadata,
+    analyze_footage,
+    analyze_image_sequence,
+    get_tracking_recommendations,
+)
+
 __all__ = [
     # Types
     "TrackData",
@@ -321,8 +337,18 @@ __all__ = [
     "TrackingConfig",
     "SolveResult",
     "Solve",
+    # Phase 7.2: Footage Profiles
+    "RollingShutterConfig",
+    "FFprobeMetadataExtractor",
+    "FootageAnalyzer",
+    "RollingShutterDetector",
+    "FootageProfile",
+    "ContentAnalysis",
+    "ImageSequenceAnalyzer",
+    "analyze_image_sequence",
+    "get_tracking_recommendations",
     # Constants
     "BLENDER_AVAILABLE",
 ]
 
-__version__ = "0.2.0"
+__version__ = "0.3.0"

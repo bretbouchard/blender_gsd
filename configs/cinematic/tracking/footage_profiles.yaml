@@ -1,0 +1,347 @@
+# Footage Profiles Configuration (REQ-CINE-MATCH)
+# Phase 7.2: Footage metadata extraction and content analysis profiles
+#
+# This file defines:
+# - Rolling shutter read times by device
+# - Content quality thresholds
+# - Tracking recommendations based on footage properties
+
+# ============================================================
+# ROLLING SHUTTER PROFILES
+# ============================================================
+# Sensor read time in seconds (lower = less rolling shutter)
+
+rolling_shutter:
+  # Thresholds for severity classification (in milliseconds)
+  severity_thresholds:
+    none: 3.0      # < 3ms considered negligible
+    low: 8.0       # 3-8ms
+    medium: 15.0   # 8-15ms
+    high: 999.0    # > 15ms (action cameras, phones)
+
+  # Device-specific read times (seconds)
+  devices:
+    # Apple iPhone series
+    iphone_14_pro:
+      read_time: 0.010
+      sensor_type: cmos
+    iphone_14_pro_max:
+      read_time: 0.012
+      sensor_type: cmos
+    iphone_15_pro:
+      read_time: 0.010
+      sensor_type: cmos
+    iphone_15_pro_max:
+      read_time: 0.012
+      sensor_type: cmos
+    iphone_13_pro:
+      read_time: 0.014
+      sensor_type: cmos
+    iphone_12_pro:
+      read_time: 0.016
+      sensor_type: cmos
+
+    # Android phones
+    pixel_8_pro:
+      read_time: 0.014
+      sensor_type: cmos
+    pixel_7_pro:
+      read_time: 0.016
+      sensor_type: cmos
+    pixel_6:
+      read_time: 0.018
+      sensor_type: cmos
+    samsung_s24_ultra:
+      read_time: 0.012
+      sensor_type: cmos
+    samsung_s23:
+      read_time: 0.014
+      sensor_type: cmos
+
+    # RED Cinema cameras
+    red_komodo_6k:
+      read_time: 0.005
+      sensor_type: cmos_global_reset
+    red_v_raptor_8k:
+      read_time: 0.004
+      sensor_type: cmos_global_reset
+    red_monstro_8k:
+      read_time: 0.004
+      sensor_type: cmos_global_reset
+
+    # ARRI cameras
+    arri_alexa_35:
+      read_time: 0.004
+      sensor_type: cmos
+    arri_alexa_mini_lf:
+      read_time: 0.004
+      sensor_type: cmos
+    arri_alexa_mini:
+      read_time: 0.005
+      sensor_type: cmos
+
+    # Blackmagic Design
+    blackmagic_ursa_12k:
+      read_time: 0.008
+      sensor_type: cmos
+    blackmagic_pocket_6k:
+      read_time: 0.010
+      sensor_type: cmos
+    blackmagic_pocket_4k:
+      read_time: 0.012
+      sensor_type: cmos
+
+    # Sony cameras
+    sony_a7s_iii:
+      read_time: 0.008
+      sensor_type: cmos
+    sony_fx6:
+      read_time: 0.008
+      sensor_type: cmos
+    sony_fx3:
+      read_time: 0.008
+      sensor_type: cmos
+    sony_a7iv:
+      read_time: 0.010
+      sensor_type: cmos
+
+    # Canon cameras
+    canon_eos_r5:
+      read_time: 0.010
+      sensor_type: cmos
+    canon_eos_r6:
+      read_time: 0.010
+      sensor_type: cmos
+    canon_c70:
+      read_time: 0.008
+      sensor_type: dgo  # Dual gain output, lower rolling shutter
+
+    # Fujifilm
+    fuji_xt5:
+      read_time: 0.012
+      sensor_type: cmos
+
+    # DJI drones
+    dji_mavic_3_pro:
+      read_time: 0.015
+      sensor_type: cmos
+    dji_inspire_3:
+      read_time: 0.012
+      sensor_type: cmos
+    dji_mini_4_pro:
+      read_time: 0.020
+      sensor_type: cmos
+
+    # Action cameras (highest rolling shutter)
+    gopro_hero_12:
+      read_time: 0.025
+      sensor_type: cmos
+    gopro_hero_11:
+      read_time: 0.028
+      sensor_type: cmos
+    dji_osmo_action:
+      read_time: 0.022
+      sensor_type: cmos
+    insta360_x3:
+      read_time: 0.030
+      sensor_type: cmos
+
+# ============================================================
+# CONTENT QUALITY THRESHOLDS
+# ============================================================
+
+content_analysis:
+  # Motion blur thresholds
+  motion_blur:
+    # Based on shutter angle (degrees)
+    # 180 = standard, 360 = heavy blur, 90 = sharp
+    low:
+      max_shutter_angle: 135
+      description: "Sharp footage, good for tracking"
+    medium:
+      min_shutter_angle: 135
+      max_shutter_angle: 225
+      description: "Standard motion blur, trackable"
+    high:
+      min_shutter_angle: 225
+      description: "Heavy blur, use larger pattern size"
+
+    # Alternative: based on frame rate and exposure
+    # blur_factor = exposure_time / frame_duration
+    blur_factors:
+      low: 0.4      # < 40% of frame duration
+      medium: 0.6   # 40-60%
+      high: 1.0     # > 60%
+
+  # Noise level thresholds
+  noise:
+    # Based on ISO or estimated noise variance
+    low:
+      max_iso: 800
+      max_noise_variance: 0.02
+      description: "Clean footage, high tracking accuracy possible"
+    medium:
+      min_iso: 800
+      max_iso: 3200
+      max_noise_variance: 0.05
+      description: "Some noise, moderate tracking quality"
+    high:
+      min_iso: 3200
+      min_noise_variance: 0.05
+      description: "Noisy footage, lower correlation threshold recommended"
+
+  # Contrast suitability
+  contrast:
+    poor:
+      max_contrast_ratio: 2.0
+      min_edge_count: 100
+      description: "Low contrast, tracking may be unreliable"
+    fair:
+      min_contrast_ratio: 2.0
+      max_contrast_ratio: 4.0
+      description: "Moderate contrast, acceptable tracking"
+    good:
+      min_contrast_ratio: 4.0
+      max_contrast_ratio: 8.0
+      description: "Good contrast, reliable tracking"
+    excellent:
+      min_contrast_ratio: 8.0
+      description: "High contrast, excellent tracking"
+
+# ============================================================
+# TRACKING RECOMMENDATIONS BY CONTENT
+# ============================================================
+
+tracking_recommendations:
+  # Default recommendations
+  default:
+    preset: balanced
+    min_correlation: 0.6
+    pattern_size: 21
+    search_size: 41
+    rolling_shutter_compensation: false
+
+  # High motion blur recommendations
+  high_motion_blur:
+    preset: precise
+    min_correlation: 0.5
+    pattern_size: 31
+    search_size: 61
+    notes:
+      - "Use larger pattern size for better tracking"
+      - "Consider frame limiting if tracking fails"
+
+  # High noise recommendations
+  high_noise:
+    preset: fast
+    min_correlation: 0.5
+    pattern_size: 21
+    search_size: 41
+    notes:
+      - "Lower correlation threshold for noisy footage"
+      - "May need more tracks for reliable solve"
+
+  # Low contrast recommendations
+  low_contrast:
+    preset: precise
+    min_correlation: 0.55
+    pattern_size: 25
+    search_size: 51
+    notes:
+      - "Lower contrast requires more precise tracking"
+      - "Increase track count for reliability"
+
+  # Rolling shutter compensation
+  rolling_shutter_compensation:
+    enabled_threshold: medium  # Enable for medium/high severity
+    max_iterations: 3
+    skew_threshold_degrees: 0.5
+
+# ============================================================
+# DEVICE DETECTION PATTERNS
+# ============================================================
+# Regex patterns for matching device models from metadata
+
+device_patterns:
+  iphone_14_pro:
+    - "iPhone14,3"
+    - "iPhone14,2"
+    - "iPhone 14 Pro"
+  iphone_14_pro_max:
+    - "iPhone14,4"
+    - "iPhone14,5"
+    - "iPhone 14 Pro Max"
+  iphone_15_pro:
+    - "iPhone15,3"
+    - "iPhone15,4"
+    - "iPhone 15 Pro"
+  iphone_15_pro_max:
+    - "iPhone15,5"
+    - "iPhone15,6"
+    - "iPhone 15 Pro Max"
+  pixel_8_pro:
+    - "Pixel 8 Pro"
+    - "Google Pixel 8 Pro"
+  samsung_s24_ultra:
+    - "SM-S928B"
+    - "Galaxy S24 Ultra"
+  gopro_hero_12:
+    - "GoPro Hero12"
+    - "Hero 12 Black"
+  dji_mavic_3_pro:
+    - "Mavic 3 Pro"
+    - "DJI Mavic 3"
+
+# ============================================================
+# QUICKTIME TAG MAPPINGS
+# ============================================================
+# Standard QuickTime/MP4 metadata tag names
+
+quicktime_tags:
+  make: "com.apple.quicktime.make"
+  model: "com.apple.quicktime.model"
+  lens: "com.apple.quicktime.lens"
+  focal_length: "com.apple.quicktime.focal_length"
+  iso: "com.apple.quicktime.iso"
+  aperture: "com.apple.quicktime.aperture"
+  white_balance: "com.apple.quicktime.white_balance"
+  creation_date: "com.apple.quicktime.creationdate"
+
+  # Android alternatives
+  android_make: "AndroidMake"
+  android_model: "AndroidModel"
+
+# ============================================================
+# ANALYSIS SETTINGS
+# ============================================================
+
+analysis:
+  # Number of frames to sample for content analysis
+  sample_frames: 10
+  sample_method: "distributed"  # "distributed" or "keyframes"
+
+  # Frame sampling interval (1 = every frame, 10 = every 10th frame)
+  sample_interval: 30
+
+  # Motion analysis settings
+  motion:
+    # Optical flow parameters
+    window_size: 15
+    max_displacement: 50  # Max pixels per frame
+
+    # Motion classification thresholds
+    static_threshold: 2.0      # < 2px avg displacement
+    handheld_threshold: 15.0   # < 15px avg displacement
+    pan_tilt_threshold: 30.0   # Consistent directional motion
+
+  # Sharpness analysis
+  sharpness:
+    method: "laplacian_variance"
+    threshold_low: 100
+    threshold_high: 500
+
+  # Contrast analysis
+  contrast:
+    method: "rms_contrast"
+    use_edge_detection: true
+    min_edges_for_tracking: 100

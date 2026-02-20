@@ -182,77 +182,158 @@ class SolveReport:
 @dataclass
 class FootageMetadata:
     """
-    Extracted video metadata from ffprobe analysis.
+    Comprehensive footage metadata with content analysis.
 
-    Contains technical metadata extracted from video files including
-    resolution, frame rate, codec, and device information.
+    Extends basic video metadata with device metadata and content quality metrics
+    for tracking workflows. Supports both video files and image sequences.
 
     Attributes:
-        filename: Source video filename
-        resolution: Video resolution (width, height) in pixels
-        frame_rate: Frame rate in frames per second
-        duration_frames: Total number of frames
+        source_path: Path to source file (video or image sequence)
+        width: Frame width in pixels
+        height: Frame height in pixels
+        fps: Frames per second
+        frame_count: Total frames
         duration_seconds: Duration in seconds
         codec: Video codec name
-        bit_depth: Bit depth per channel
-        color_space: Color space identifier
-        camera_model: Camera device model (if available)
-        focal_length: Focal length from metadata (if available)
-        iso: ISO value from metadata (if available)
-        motion_blur_level: Estimated motion blur level
-        rolling_shutter_detected: Whether rolling shutter artifacts detected
+        codec_profile: Codec profile (e.g., "High", "Main")
+        bit_depth: Bits per channel (8, 10, 12)
+        color_space: Color space (e.g., "bt709", "bt2020")
+        color_range: Color range ("limited", "full")
+        pixel_aspect_ratio: Pixel aspect ratio
+
+    Device metadata (from QuickTime tags):
+        camera_make: Camera manufacturer
+        camera_model: Camera model
+        lens_model: Lens model if available
+        focal_length_mm: Focal length in mm
+        iso: ISO value
+        aperture: Aperture as string (e.g., "f/1.8")
+        white_balance: White balance Kelvin
+
+    Content analysis:
+        motion_blur_level: "low", "medium", "high"
+        noise_level: "low", "medium", "high"
+        contrast_suitability: "poor", "fair", "good", "excellent"
+        dominant_motion: "static", "pan", "tilt", "zoom", "handheld"
     """
-    filename: str = ""
-    resolution: Tuple[int, int] = (1920, 1080)
-    frame_rate: float = 24.0
-    duration_frames: int = 0
+    source_path: str = ""
+    width: int = 1920
+    height: int = 1080
+    fps: float = 24.0
+    frame_count: int = 0
     duration_seconds: float = 0.0
     codec: str = ""
+    codec_profile: str = ""
     bit_depth: int = 8
     color_space: str = ""
-    # Device metadata (if available from QuickTime tags)
+    color_range: str = "limited"
+    pixel_aspect_ratio: float = 1.0
+    # Device metadata
+    camera_make: str = ""
     camera_model: str = ""
-    focal_length: float = 0.0
+    lens_model: str = ""
+    focal_length_mm: float = 0.0
     iso: int = 0
-    # Content analysis results
-    motion_blur_level: str = "unknown"  # low, medium, high
-    rolling_shutter_detected: bool = False
+    aperture: str = ""
+    white_balance: int = 0
+    # Content analysis
+    motion_blur_level: str = "medium"
+    noise_level: str = "medium"
+    contrast_suitability: str = "good"
+    dominant_motion: str = "handheld"
+
+    # Backward compatibility properties
+    @property
+    def resolution(self) -> Tuple[int, int]:
+        """Backward compatibility: return resolution as tuple."""
+        return (self.width, self.height)
+
+    @property
+    def duration_frames(self) -> int:
+        """Backward compatibility: return frame_count."""
+        return self.frame_count
+
+    @property
+    def frame_rate(self) -> float:
+        """Backward compatibility: return fps."""
+        return self.fps
+
+    @property
+    def focal_length(self) -> float:
+        """Backward compatibility: return focal_length_mm."""
+        return self.focal_length_mm
+
+    @property
+    def rolling_shutter_detected(self) -> bool:
+        """Backward compatibility: infer from motion_blur_level."""
+        return self.motion_blur_level == "high"
 
     def to_dict(self) -> Dict[str, Any]:
         """Convert to dictionary for serialization."""
         return {
-            "filename": self.filename,
-            "resolution": list(self.resolution),
-            "frame_rate": self.frame_rate,
-            "duration_frames": self.duration_frames,
+            "source_path": self.source_path,
+            "width": self.width,
+            "height": self.height,
+            "fps": self.fps,
+            "frame_count": self.frame_count,
             "duration_seconds": self.duration_seconds,
             "codec": self.codec,
+            "codec_profile": self.codec_profile,
             "bit_depth": self.bit_depth,
             "color_space": self.color_space,
+            "color_range": self.color_range,
+            "pixel_aspect_ratio": self.pixel_aspect_ratio,
+            "camera_make": self.camera_make,
             "camera_model": self.camera_model,
-            "focal_length": self.focal_length,
+            "lens_model": self.lens_model,
+            "focal_length_mm": self.focal_length_mm,
             "iso": self.iso,
+            "aperture": self.aperture,
+            "white_balance": self.white_balance,
             "motion_blur_level": self.motion_blur_level,
+            "noise_level": self.noise_level,
+            "contrast_suitability": self.contrast_suitability,
+            "dominant_motion": self.dominant_motion,
+            # Backward compatibility
+            "resolution": list(self.resolution),
+            "duration_frames": self.duration_frames,
+            "frame_rate": self.frame_rate,
+            "focal_length": self.focal_length,
             "rolling_shutter_detected": self.rolling_shutter_detected,
         }
 
     @classmethod
     def from_dict(cls, data: Dict[str, Any]) -> FootageMetadata:
         """Create from dictionary."""
+        # Handle both old and new field names for backward compatibility
+        width, height = data.get("width", 1920), data.get("height", 1080)
+        if "resolution" in data and isinstance(data["resolution"], (list, tuple)):
+            width, height = data["resolution"][0], data["resolution"][1]
+
         return cls(
-            filename=data.get("filename", ""),
-            resolution=tuple(data.get("resolution", (1920, 1080))),
-            frame_rate=data.get("frame_rate", 24.0),
-            duration_frames=data.get("duration_frames", 0),
+            source_path=data.get("source_path", data.get("filename", "")),
+            width=width,
+            height=height,
+            fps=data.get("fps", data.get("frame_rate", 24.0)),
+            frame_count=data.get("frame_count", data.get("duration_frames", 0)),
             duration_seconds=data.get("duration_seconds", 0.0),
             codec=data.get("codec", ""),
+            codec_profile=data.get("codec_profile", ""),
             bit_depth=data.get("bit_depth", 8),
             color_space=data.get("color_space", ""),
-            camera_model=data.get("camera_model", ""),
-            focal_length=data.get("focal_length", 0.0),
+            color_range=data.get("color_range", "limited"),
+            pixel_aspect_ratio=data.get("pixel_aspect_ratio", 1.0),
+            camera_make=data.get("camera_make", ""),
+            camera_model=data.get("camera_model", data.get("camera_model", "")),
+            lens_model=data.get("lens_model", ""),
+            focal_length_mm=data.get("focal_length_mm", data.get("focal_length", 0.0)),
             iso=data.get("iso", 0),
-            motion_blur_level=data.get("motion_blur_level", "unknown"),
-            rolling_shutter_detected=data.get("rolling_shutter_detected", False),
+            aperture=data.get("aperture", ""),
+            white_balance=data.get("white_balance", 0),
+            motion_blur_level=data.get("motion_blur_level", "medium"),
+            noise_level=data.get("noise_level", "medium"),
+            contrast_suitability=data.get("contrast_suitability", "good"),
+            dominant_motion=data.get("dominant_motion", "handheld"),
         )
 
 
@@ -1185,4 +1266,55 @@ class HandAnimation:
             frames=frames,
             frame_start=data.get("frame_start", 1),
             frame_end=data.get("frame_end", 1),
+        )
+
+
+@dataclass
+class RollingShutterConfig:
+    """
+    Rolling shutter detection/compensation configuration.
+
+    Contains results from rolling shutter analysis including
+    detected severity, estimated read time, and compensation settings.
+
+    Attributes:
+        detected: Whether rolling shutter was detected
+        severity: "none", "low", "medium", "high"
+        read_time: Sensor read time in seconds (typical: 7-16ms phones, 3-5ms cinema)
+        skew_angle: Detected skew angle in degrees
+        method: "row_rolling", "global_shutter"
+        row_count: Number of sensor rows
+        compensation_enabled: Whether to apply compensation
+    """
+    detected: bool = False
+    severity: str = "none"
+    read_time: float = 0.0
+    skew_angle: float = 0.0
+    method: str = "row_rolling"
+    row_count: int = 1080
+    compensation_enabled: bool = True
+
+    def to_dict(self) -> Dict[str, Any]:
+        """Convert to dictionary for serialization."""
+        return {
+            "detected": self.detected,
+            "severity": self.severity,
+            "read_time": self.read_time,
+            "skew_angle": self.skew_angle,
+            "method": self.method,
+            "row_count": self.row_count,
+            "compensation_enabled": self.compensation_enabled,
+        }
+
+    @classmethod
+    def from_dict(cls, data: Dict[str, Any]) -> "RollingShutterConfig":
+        """Create from dictionary."""
+        return cls(
+            detected=data.get("detected", False),
+            severity=data.get("severity", "none"),
+            read_time=data.get("read_time", 0.0),
+            skew_angle=data.get("skew_angle", 0.0),
+            method=data.get("method", "row_rolling"),
+            row_count=data.get("row_count", 1080),
+            compensation_enabled=data.get("compensation_enabled", True),
         )
