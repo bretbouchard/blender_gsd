@@ -2,14 +2,52 @@
 
 ## Current Position
 
-**Phase:** 8.0 of 8.4 (foundation) - IN PROGRESS
-**Plan:** 1 of 1 complete
-**Status:** Phase 08.0 Plan 01 Follow Camera Foundation complete
-**Last activity:** 2026-02-19 - Completed 08.0-01 Follow Camera Foundation
+**Phase:** 6.3 Follow Camera System
+**Status:** Phase 6.3 (Follow Camera) complete - 37 tests passing
+**Last activity:** 2026-02-20 - Completed Phase 6.3 Follow Camera
 
-**Progress:** [████████░░] 80% (Milestone v0.7 Follow Camera System in progress)
+**Progress:** [██████████] 100% (Phase 6.3 Follow Camera COMPLETE)
 
 **Version:** 0.4.0
+
+**Note:** Phase 6.3 adds cinematic follow camera with 5 modes (tight, loose, anticipatory, elastic, orbit).
+**Phase 11.0:** Production Tracking Dashboard complete with TypeScript/Vite UI.
+**Phase 11.1:** Timeline/Editorial System complete with EDL/FCPXML/OTIO support.
+**Phase 12.0:** 1-Sheet Generator complete with HTML/PDF export.
+**Phase 12.1:** Compositor complete with blend modes, color correction, cryptomatte.
+**Phase 13.0:** Rigging Foundation complete with 5 rig presets, bone utilities, weight painting.
+
+## Phase 6.2 Planning Summary
+
+### 6.2-motion-tracking (Complete)
+
+| Plan | Name | Status | Summary |
+|------|------|--------|---------|
+| 6.2-01 | Motion Tracking System | Complete | 6.2-01-SUMMARY.md |
+
+**Delivered:**
+- tracking_types.py - TrackingMarker, TrackingData, TrackingConfig, FollowFocusRig
+- tracking_solver.py - Position solving, velocity/acceleration calculation, prediction, smoothing
+- follow_focus.py - Focus distance calculation, rig creation, animation
+- tracking_export.py - JSON, After Effects, Nuke, Blender export
+- object_tracking_presets.yaml - 8 tracking presets
+- 38 unit tests
+
+## Phase 6.3 Planning Summary
+
+### 6.3-follow-camera (Complete)
+
+| Plan | Name | Status | Summary |
+|------|------|--------|---------|
+| 6.3-01 | Follow Camera System | Complete | 6.3-01-SUMMARY.md |
+
+**Delivered:**
+- follow_types.py - FollowConfig, FollowState, FollowRig, DeadZoneResult, FollowResult
+- follow_modes.py - 5 follow modes (tight, loose, anticipatory, elastic, orbit)
+- follow_deadzone.py - Screen position, dead zone detection, dynamic dead zones
+- follow_controller.py - Rig creation, updates, baking, preview
+- follow_presets.yaml - 12 preset configurations
+- 37 unit tests
 
 ## Phase 7.5 Planning Summary
 
@@ -351,6 +389,14 @@
 | 2026-02-19 | 07.5-05 | Version bump to 0.4.0 | MILESTONE v0.6 Motion Tracking System complete |
 | 2026-02-19 | 08.0-01 | State directories for follow_cam | Separate runtime state (solves/previews) from source files |
 | 2026-02-19 | 08.0-01 | .gitkeep for empty directories | Track state directories in git without content |
+| 2026-02-20 | 6.2-01 | Separate tracking_types.py from tracking/ | Phase 6.2 object tracking distinct from Phase 7.x camera solving |
+| 2026-02-20 | 6.2-01 | Exponential + Gaussian smoothing | Two smoothing algorithms for different use cases |
+| 2026-02-20 | 6.2-01 | Kinematic prediction equation | p_future = p_current + v*t + 0.5*a*t^2 for smooth following |
+| 2026-02-20 | 6.2-01 | Multi-format export (JSON/AE/Nuke/Blender) | Integration with post-production pipelines |
+| 2026-02-20 | 6.3-01 | Separate cinematic follow from follow_cam | Phase 6.3 cinematic modes distinct from Phase 8.x game modes |
+| 2026-02-20 | 6.3-01 | Exponential decay smoothing | Natural camera movement feel |
+| 2026-02-20 | 6.3-01 | Spring physics for elastic mode | Physically-based settling behavior with Hooke's law |
+| 2026-02-20 | 6.3-01 | Dynamic dead zones | Adapts to target speed for stable framing |
 
 ## Concerns
 
@@ -358,12 +404,126 @@ None currently.
 
 ## Session Continuity
 
-**Last session:** 2026-02-19
-**Stopped at:** Completed 08.0-01 Follow Camera Foundation
+**Last session:** 2026-02-20
+**Stopped at:** Completed Phase 6.3 Follow Camera System
 **Resume file:** None - Phase complete
-**Next phase:** Phase 08.1 (Follow Mode Implementations) or other next phase
+**Next phase:** Phase 6.4 or review requirements for next steps
 
 ## Milestone Summary
+
+### Milestone v0.7: Intelligent Follow Camera System (COMPLETE)
+
+**Version:** 0.4.0
+**Completed:** 2026-02-19
+
+**Delivered Systems:**
+- Follow Camera Foundation (08.0) - Types, modes, presets, state directories
+- Follow Camera Modes (08.1) - 8 modes: side_scroller, over_shoulder, chase, chase_side, orbit_follow, lead, aerial, free_roam
+- Obstacle Avoidance (08.2) - Collision detection, OscillationPreventer, OperatorBehavior
+- Pre-Solve System (08.3) - One-shot config, mode/framing changes, NavMesh with A*
+- Integration & Polish (08.4) - Dynamic framing, FrameAnalyzer, 356 unit tests
+
+**Total:** 10 modules, 62+ exports, ~5,000 lines, 356 tests
+
+### Milestone v0.9: Production Tracking System (Phase 11.0 COMPLETE)
+
+**Status:** Phase 11.0 complete (Dashboard UI)
+**Completed:** 2026-02-19
+
+**Delivered Systems:**
+- Production Tracking Dashboard (11.0) - TypeScript/Vite web application
+  - Kanban board with status columns
+  - Item cards with category, name, description
+  - Filter by status and category
+  - Search by name/id/description
+  - Blocker panel
+  - Item detail modal
+  - Dark theme, responsive design
+  - Read-only by design (AI handles writes)
+
+**Tech Stack:** Vite, TypeScript, Vanilla JS, CSS, YAML
+**Data:** 9 sample items, 2 blockers in .planning/tracking/
+
+**Commands:**
+```bash
+cd tracking-ui && npm run dev   # Start dev server
+```
+
+### Milestone v0.9: Timeline/Editorial System (Phase 11.1 COMPLETE)
+
+**Status:** Phase 11.1 complete (Editorial System)
+**Completed:** 2026-02-19
+
+**Delivered Systems:**
+- Timeline System (11.1) - Editorial/video editing support
+  - Timecode (SMPTE HH:MM:SS:FF) with arithmetic
+  - Clip, Track, Timeline data structures
+  - Marker and Transition support
+  - TimelineManager for operations (add/remove/move/trim/split/ripple)
+  - Transitions (cut, dissolve, wipe, fade)
+  - EDL (CMX 3600) export/import
+  - FCPXML (Final Cut Pro) export/import
+  - OTIO (OpenTimelineIO) export/import
+  - Assembly from shot lists
+  - Runtime calculation and statistics
+  - Blender VSE integration
+
+**Modules:** 7 Python modules, 50+ exports, 47 tests
+**Location:** lib/editorial/
+
+### Milestone v0.9: 1-Sheet Generator (Phase 12.0 COMPLETE)
+
+**Status:** Phase 12.0 complete
+**Completed:** 2026-02-19
+
+**Delivered Systems:**
+- 1-Sheet Generator (12.0) - Asset presentation sheets
+  - Template system with category-specific layouts
+  - Base template with hero image, metadata, dependencies
+  - Character, prop, shot templates
+  - HTML export (download)
+  - PDF export (via print)
+  - PNG export (optional, requires html2canvas)
+  - Preview modal with actions
+  - Dark/light theme support
+  - Print-optimized CSS
+
+**Tech Stack:** TypeScript, Vite, CSS
+**Modules:** 10 TypeScript files in tracking-ui/src/onesheet/
+**Integration:** 1-sheet button (📄) on item cards
+
+### Milestone v0.9: Compositor (Phase 12.1 COMPLETE)
+
+**Status:** Phase 12.1 complete
+**Completed:** 2026-02-19
+
+**Delivered Systems:**
+- Compositor (12.1) - Multi-layer compositing system
+  - Layer-based compositing with CompLayer, CompositeConfig
+  - 18 blend modes (normal, multiply, screen, overlay, add, etc.)
+  - Full color correction with presets (cinematic_warm, vintage, etc.)
+  - Cryptomatte manifest and matte extraction
+  - Blender compositor node creation
+  - Lift/Gamma/Gain, ASC CDL, curves, levels
+  - HSV adjustment, white balance
+  - Highlights/shadows control
+
+**Modules:** 6 Python modules, 100+ exports, 43 tests
+**Location:** lib/vfx/
+
+### Milestone v0.8: Anamorphic / Forced Perspective System (ALREADY IMPLEMENTED)
+
+**Version:** 0.6.0
+**Status:** Complete with 51 tests passing
+
+**Delivered Systems:**
+- Projection Foundation (9.0) - FrustumConfig, RayHit, ProjectionResult, AnamorphicProjectionConfig
+- Surface Detection (9.1) - SurfaceInfo, OcclusionResult, MultiSurfaceGroup
+- UV Generation (9.2) - UVGenerationResult, UVSeamInfo, UVLayoutConfig
+- Texture Baking (9.3) - BakeConfig, BakeResult, BakeMode, BakeFormat
+- Camera Zones (9.4) - ZoneManager, CameraZone, ZoneState, VisibilityController
+
+**Total:** 10 modules, 50+ exports, 51 tests
 
 ### Milestone v0.6: Motion Tracking System (COMPLETE)
 
