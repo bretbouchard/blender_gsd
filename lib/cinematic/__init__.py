@@ -499,6 +499,45 @@ from .tracking.types import (
 # Batch Types (from tracking.types)
 from .tracking.types import BatchJob, BatchConfig, BatchResult
 
+# Object Tracking & Follow Focus (Phase 6.2)
+from .tracking_types import (
+    SolveMethod,
+    ExportFormat,
+    TrackingMarker,
+    TrackingData,
+    TrackingConfig,
+    FollowFocusRig,
+    TrackingExportResult,
+)
+from .tracking_solver import (
+    solve_marker_position,
+    solve_tracking_data,
+    calculate_velocities,
+    calculate_accelerations,
+    interpolate_position,
+    predict_position,
+    apply_smoothing,
+    apply_gaussian_smoothing,
+)
+from .follow_focus import (
+    calculate_focus_distance as ff_calculate_focus_distance,
+    create_follow_focus_rig,
+    animate_focus_distance,
+    set_focus_mode,
+    create_focus_target_empty,
+    link_camera_to_focus_target,
+    animate_focus_target,
+    get_camera_focus_info,
+    remove_follow_focus_animation,
+)
+from .tracking_export import (
+    export_tracking_json,
+    export_tracking_ae,
+    export_tracking_nuke,
+    export_tracking_blender,
+    export_tracking,
+)
+
 __all__ = [
     # Core types
     "Transform3D",
@@ -922,6 +961,40 @@ __all__ = [
     "FingerData",
     "HandFrame",
     "HandAnimation",
+
+    # Object Tracking & Follow Focus (Phase 6.2)
+    "SolveMethod",
+    "ExportFormat",
+    "TrackingMarker",
+    "TrackingData",
+    "TrackingConfig",
+    "FollowFocusRig",
+    "TrackingExportResult",
+    # Tracking solver functions
+    "solve_marker_position",
+    "solve_tracking_data",
+    "calculate_velocities",
+    "calculate_accelerations",
+    "interpolate_position",
+    "predict_position",
+    "apply_smoothing",
+    "apply_gaussian_smoothing",
+    # Follow focus functions
+    "ff_calculate_focus_distance",
+    "create_follow_focus_rig",
+    "animate_focus_distance",
+    "set_focus_mode",
+    "create_focus_target_empty",
+    "link_camera_to_focus_target",
+    "animate_focus_target",
+    "get_camera_focus_info",
+    "remove_follow_focus_animation",
+    # Tracking export functions
+    "export_tracking_json",
+    "export_tracking_ae",
+    "export_tracking_nuke",
+    "export_tracking_blender",
+    "export_tracking",
 
     # Constants
     "APERTURE_MIN",

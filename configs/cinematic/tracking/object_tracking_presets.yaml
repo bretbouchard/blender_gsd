@@ -1,0 +1,66 @@
+# Object Tracking Presets
+# Common tracking setups for follow focus and camera following
+
+# Smooth tracking for gentle camera movements
+smooth_follow:
+  name: "Smooth Follow"
+  description: "Gentle tracking with heavy smoothing for cinematic shots"
+  solve_method: predictive
+  smoothing: 0.7
+  prediction_frames: 10
+
+# Responsive tracking for action shots
+responsive_follow:
+  name: "Responsive Follow"
+  description: "Quick tracking with minimal smoothing for action"
+  solve_method: automatic
+  smoothing: 0.2
+  prediction_frames: 3
+
+# Predictive tracking for fast subjects
+predictive_fast:
+  name: "Predictive Fast"
+  description: "Predictive tracking optimized for fast-moving subjects"
+  solve_method: predictive
+  smoothing: 0.4
+  prediction_frames: 15
+
+# Manual tracking for precision work
+manual_precise:
+  name: "Manual Precise"
+  description: "Manual tracking with no interpolation for precision work"
+  solve_method: manual
+  smoothing: 0.0
+  prediction_frames: 0
+
+# Balanced tracking for general use
+balanced:
+  name: "Balanced"
+  description: "Balanced settings for general-purpose tracking"
+  solve_method: automatic
+  smoothing: 0.5
+  prediction_frames: 5
+
+# Documentary style
+documentary:
+  name: "Documentary"
+  description: "Natural-feeling tracking for documentary style"
+  solve_method: predictive
+  smoothing: 0.6
+  prediction_frames: 8
+
+# Sports/action tracking
+sports_action:
+  name: "Sports Action"
+  description: "Fast response tracking for sports and action"
+  solve_method: automatic
+  smoothing: 0.15
+  prediction_frames: 4
+
+# Portrait/interview tracking
+portrait:
+  name: "Portrait"
+  description: "Smooth, subtle tracking for interviews and portraits"
+  solve_method: predictive
+  smoothing: 0.8
+  prediction_frames: 12
