@@ -27,11 +27,13 @@ from cinematic.tracking.import_export import (
     TrackingExporter,
     get_supported_import_formats,
     import_tracking_data,
+    import_nuke_chan,
     COORDINATE_SYSTEMS,
+    convert_yup_to_zup_position,
+    fov_to_focal_length,
 )
 from cinematic.tracking.types import (
-    Solve,
-    SolveStatus,
+    SolveData,
     TrackingSession,
 )
 from oracle import Oracle
@@ -60,8 +62,8 @@ class TestImportedCamera:
         Oracle.assert_equal(camera.name, "test_camera")
         Oracle.assert_equal(len(camera.positions), 2)
 
-    def test_to_solve(self):
-        """Test converting to Solve object."""
+    def test_to_solve_data(self):
+        """Test converting to SolveData object."""
         camera = ImportedCamera(
             name="conversion_test",
             frame_start=1,
@@ -79,24 +81,30 @@ class TestImportedCamera:
             focal_lengths={1: 50.0, 2: 50.0, 3: 50.0},
         )
 
-        solve = camera.to_solve()
+        solve_data = camera.to_solve_data()
 
-        Oracle.assert_equal(solve.status, SolveStatus.SUCCESS)
-        Oracle.assert_equal(len(solve.results), 3)
+        Oracle.assert_equal(solve_data.name, "conversion_test")
+        Oracle.assert_equal(solve_data.frame_range, (1, 5))  # Uses camera frame_start/end
+        Oracle.assert_equal(len(solve_data.camera_transforms), 3)
 
-    def test_euler_to_quaternion(self):
-        """Test Euler to quaternion conversion."""
+    def test_quaternion_to_euler(self):
+        """Test quaternion to Euler conversion."""
         camera = ImportedCamera()
 
-        # No rotation
-        quat = camera._euler_to_quaternion((0, 0, 0))
-        Oracle.assert_equal(round(quat[0], 3), 1.0)  # w = 1
+        # No rotation (identity quaternion)
+        quat = (1, 0, 0, 0)
+        euler = camera._quaternion_to_euler(quat)
+        Oracle.assert_less_than(abs(euler[0]), 0.001)
+        Oracle.assert_less_than(abs(euler[1]), 0.001)
+        Oracle.assert_less_than(abs(euler[2]), 0.001)
 
         # 90 degree Y rotation
-        quat = camera._euler_to_quaternion((0, 90, 0))
-        # Quaternion magnitude should be ~1
-        mag = math.sqrt(sum(q ** 2 for q in quat))
-        Oracle.assert_less_than(abs(mag - 1.0), 0.001)
+        # Quaternion for 90 degree rotation around Y: (cos(45), 0, sin(45), 0)
+        import math
+        quat = (math.cos(math.pi/4), 0, math.sin(math.pi/4), 0)
+        euler = camera._quaternion_to_euler(quat)
+        # Should be approximately 90 degrees around Y
+        Oracle.assert_less_than(abs(euler[1] - 90), 1.0)
 
 
 class TestFBXParser:
@@ -319,8 +327,8 @@ class TestTrackingImporter:
         with pytest.raises(ValueError):
             importer.import_camera("test.xyz")
 
-    def test_import_with_offset(self):
-        """Test importing with frame offset."""
+    def test_import_json_with_offset(self):
+        """Test importing JSON with frame offset."""
         importer = TrackingImporter()
 
         with tempfile.NamedTemporaryFile(suffix=".json", delete=False) as f:
@@ -348,8 +356,8 @@ class TestTrackingImporter:
         finally:
             os.unlink(temp_path)
 
-    def test_import_with_scale(self):
-        """Test importing with scale factor."""
+    def test_import_json_with_scale(self):
+        """Test importing JSON with scale factor."""
         importer = TrackingImporter()
 
         with tempfile.NamedTemporaryFile(suffix=".json", delete=False) as f:
@@ -374,16 +382,15 @@ class TestTrackingImporter:
         finally:
             os.unlink(temp_path)
 
-    def test_import_to_session(self):
-        """Test importing directly to session."""
+    def test_import_to_solve_data(self):
+        """Test importing to SolveData."""
         importer = TrackingImporter()
-        session = TrackingSession(name="import_test")
 
         with tempfile.NamedTemporaryFile(suffix=".json", delete=False) as f:
             import json
             data = {
                 "camera": {
-                    "name": "session_test",
+                    "name": "solve_test",
                     "frames": [
                         {"frame": 1, "position": [0, 0, 5], "rotation": [0, 0, 0]},
                     ]
@@ -393,11 +400,11 @@ class TestTrackingImporter:
             temp_path = f.name
 
         try:
-            solve = importer.import_to_session(session, temp_path)
+            solve_data = importer.import_to_solve_data(temp_path)
 
-            Oracle.assert_not_none(solve)
-            Oracle.assert_equal(len(session.solves), 1)
-            Oracle.assert_equal(session.active_solve, solve.id)
+            Oracle.assert_not_none(solve_data)
+            assert isinstance(solve_data, SolveData)
+            Oracle.assert_equal(len(solve_data.camera_transforms), 1)
 
         finally:
             os.unlink(temp_path)
@@ -406,30 +413,30 @@ class TestTrackingImporter:
 class TestTrackingExporter:
     """Tests for TrackingExporter class."""
 
-    def create_test_solve(self):
-        """Create a test solve for export."""
-        from cinematic.tracking.types import SolveResult
-
-        solve = Solve(
-            status=SolveStatus.SUCCESS,
-            results=[
-                SolveResult(frame=1, position=(0, 0, 5), rotation=(1, 0, 0, 0), focal_length=50),
-                SolveResult(frame=2, position=(1, 0, 5), rotation=(0.98, 0, 0.17, 0), focal_length=50),
-                SolveResult(frame=3, position=(2, 0, 5), rotation=(0.94, 0, 0.34, 0), focal_length=50),
-            ],
+    def create_test_solve_data(self):
+        """Create a test SolveData for export."""
+        return SolveData(
+            name="test_solve",
+            frame_range=(1, 3),
+            focal_length=50.0,
+            camera_transforms={
+                1: (0.0, 0.0, 5.0, 0.0, 0.0, 0.0),
+                2: (1.0, 0.0, 5.0, 0.0, 10.0, 0.0),
+                3: (2.0, 0.0, 5.0, 0.0, 20.0, 0.0),
+            },
+            coordinate_system="z_up",
         )
-        return solve
 
     def test_export_nuke_chan(self):
         """Test exporting to Nuke .chan format."""
         exporter = TrackingExporter()
-        solve = self.create_test_solve()
+        solve_data = self.create_test_solve_data()
 
         with tempfile.NamedTemporaryFile(suffix=".chan", delete=False) as f:
             temp_path = f.name
 
         try:
-            result = exporter.export_nuke_chan(solve, temp_path)
+            result = exporter.export_nuke_chan(solve_data, temp_path)
             Oracle.assert_true(result)
 
             # Verify file was created with content
@@ -445,13 +452,13 @@ class TestTrackingExporter:
     def test_export_json(self):
         """Test exporting to JSON format."""
         exporter = TrackingExporter()
-        solve = self.create_test_solve()
+        solve_data = self.create_test_solve_data()
 
         with tempfile.NamedTemporaryFile(suffix=".json", delete=False) as f:
             temp_path = f.name
 
         try:
-            result = exporter.export_json(solve, temp_path)
+            result = exporter.export_json(solve_data, temp_path)
             Oracle.assert_true(result)
 
             # Verify JSON structure
@@ -465,43 +472,72 @@ class TestTrackingExporter:
             if os.path.exists(temp_path):
                 os.unlink(temp_path)
 
-    def test_quaternion_to_euler(self):
-        """Test quaternion to Euler conversion."""
-        exporter = TrackingExporter()
-
-        # Identity quaternion
-        euler = exporter._quaternion_to_euler((1, 0, 0, 0))
-        Oracle.assert_less_than(abs(euler[0]), 0.001)
-        Oracle.assert_less_than(abs(euler[1]), 0.001)
-        Oracle.assert_less_than(abs(euler[2]), 0.001)
-
 
 class TestConvenienceFunctions:
     """Tests for convenience functions."""
 
-    def test_import_tracking_data(self):
-        """Test convenience import function."""
-        with tempfile.NamedTemporaryFile(suffix=".json", delete=False) as f:
-            import json
-            data = {
-                "camera": {
-                    "name": "convenience_test",
-                    "frames": [
-                        {"frame": 1, "position": [0, 0, 5], "rotation": [0, 0, 0]},
-                    ]
-                }
-            }
-            f.write(json.dumps(data).encode())
+    def test_import_nuke_chan(self):
+        """Test convenience import_nuke_chan function."""
+        with tempfile.NamedTemporaryFile(mode="w", suffix=".chan", delete=False) as f:
+            f.write("# Test chan file\n")
+            f.write("1 0.0 0.0 5.0 0.0 0.0 0.0 50.0\n")
+            f.write("2 1.0 0.0 5.0 0.0 10.0 0.0 50.0\n")
             temp_path = f.name
 
         try:
-            camera = import_tracking_data(temp_path)
+            solve_data = import_nuke_chan(temp_path)
 
-            Oracle.assert_not_none(camera)
-            Oracle.assert_equal(camera.source_format, "json")
+            Oracle.assert_not_none(solve_data)
+            assert isinstance(solve_data, SolveData)
+            Oracle.assert_equal(solve_data.coordinate_system, "z_up")
 
         finally:
             os.unlink(temp_path)
+
+    def test_import_tracking_data_chan(self):
+        """Test convenience import_tracking_data function with .chan."""
+        with tempfile.NamedTemporaryFile(mode="w", suffix=".chan", delete=False) as f:
+            f.write("# Test chan file\n")
+            f.write("1 0.0 0.0 5.0 0.0 0.0 0.0\n")
+            temp_path = f.name
+
+        try:
+            solve_data = import_tracking_data(temp_path)
+
+            Oracle.assert_not_none(solve_data)
+            assert isinstance(solve_data, SolveData)
+
+        finally:
+            os.unlink(temp_path)
+
+    def test_coordinate_conversion(self):
+        """Test coordinate conversion functions."""
+        # Y-up to Z-up
+        result = convert_yup_to_zup_position(1.0, 2.0, 3.0)
+        Oracle.assert_equal(result, (1.0, 3.0, -2.0))
+
+    def test_fov_to_focal_length(self):
+        """Test FOV to focal length conversion."""
+        # 45 degree FOV, 36mm sensor = ~43.5mm focal
+        focal = fov_to_focal_length(45.0, 36.0)
+        Oracle.assert_greater_than(focal, 40.0)
+        Oracle.assert_less_than(focal, 45.0)
+
+
+class TestCoordinateSystems:
+    """Tests for coordinate system constants."""
+
+    def test_coordinate_systems_exist(self):
+        """Test that coordinate system definitions exist."""
+        Oracle.assert_in("blender", COORDINATE_SYSTEMS)
+        Oracle.assert_in("maya", COORDINATE_SYSTEMS)
+        Oracle.assert_in("nuke", COORDINATE_SYSTEMS)
+
+    def test_blender_coordinate_system(self):
+        """Test Blender coordinate system definition."""
+        blender = COORDINATE_SYSTEMS["blender"]
+        Oracle.assert_equal(blender["up"], "Z")
+        Oracle.assert_equal(blender["forward"], "-Y")
 
 
 if __name__ == "__main__":

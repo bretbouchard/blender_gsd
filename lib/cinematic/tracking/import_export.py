@@ -703,7 +703,7 @@ class JSONCameraParser:
     """
 
     @staticmethod
-    def parse(filepath: str) -> ImportedCamera:
+    def parse(filepath: str, coordinate_system: str = "z_up") -> ImportedCamera:
         """Parse JSON camera file."""
         import json
 

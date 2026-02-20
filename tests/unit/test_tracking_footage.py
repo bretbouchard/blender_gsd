@@ -8,6 +8,7 @@ image sequence handling.
 import pytest
 import sys
 import os
+import struct
 import tempfile
 from pathlib import Path
 
@@ -301,7 +302,6 @@ class TestImageHeaderParsing:
             temp_path = f.name
 
         try:
-            import struct
             w, h = importer._get_png_dimensions(Path(temp_path))
             Oracle.assert_equal(w, 1920)
             Oracle.assert_equal(h, 1080)
