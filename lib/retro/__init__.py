@@ -2,7 +2,8 @@
 Retro Pixel Art Conversion System
 
 Transforms photorealistic renders into stylized pixel art
-across multiple retro console styles.
+across multiple retro console styles. Also includes CRT display
+effects for authentic retro monitor simulation.
 
 Modules:
 - pixel_types: Data structures and type definitions
@@ -21,6 +22,13 @@ Modules:
 - sprites: Sprite sheet generator
 - tiles: Tile system
 - view_preset_loader: View preset loader
+- crt_types: CRT display effect types and presets
+- scanlines: Scanline effect generation
+- phosphor: Phosphor mask effects
+- curvature: Screen curvature and vignette
+- crt_effects: Additional CRT effects (bloom, aberration, noise)
+- crt_compositor: Blender compositor integration for CRT
+- crt_preset_loader: CRT preset loading from YAML
 
 Example Usage:
     from lib.retro import pixelate, PixelationConfig
@@ -56,6 +64,21 @@ Example Usage:
     from lib.retro import SpriteSheetConfig, generate_sprite_sheet
     config = SpriteSheetConfig.for_character(frame_width=32, frame_height=32)
     result = generate_sprite_sheet(images, config)
+
+    # CRT display effects
+    from lib.retro import load_crt_preset, apply_all_effects
+    config = load_crt_preset("arcade_80s")
+    result = apply_all_effects(image, config)
+
+    # Custom CRT configuration
+    from lib.retro import CRTConfig, ScanlineConfig
+    config = CRTConfig(
+        name="custom",
+        scanlines=ScanlineConfig(enabled=True, intensity=0.3),
+        bloom=0.15,
+        chromatic_aberration=0.003
+    )
+    result = apply_all_effects(image, config)
 """
 
 from lib.retro.pixel_types import (
@@ -432,6 +455,139 @@ from lib.retro.view_preset_loader import (
 
 
 # =============================================================================
+# CRT Display Effects Module Imports
+# =============================================================================
+
+from lib.retro.crt_types import (
+    # Enums
+    ScanlineMode,
+    PhosphorPattern,
+    DisplayType,
+    # Dataclasses
+    ScanlineConfig,
+    PhosphorConfig,
+    CurvatureConfig,
+    CRTConfig,
+    # Built-in presets
+    CRT_PRESETS,
+    # Functions
+    get_preset as get_crt_preset_builtin,
+    list_presets as list_crt_presets_builtin,
+    get_preset_description,
+    create_custom_preset,
+    validate_config as validate_crt_config,
+)
+
+from lib.retro.scanlines import (
+    # Pattern generators
+    alternate_scanlines,
+    every_line_scanlines,
+    random_scanlines,
+    # Overlay creation
+    create_scanline_overlay,
+    create_scanline_texture,
+    # Main functions
+    apply_scanlines,
+    apply_scanlines_fast,
+    apply_scanlines_gpu,
+    get_scanline_shader_code,
+    # Utility functions
+    calculate_brightness_loss,
+    recommend_brightness_compensation,
+    estimate_scanline_visibility,
+)
+
+from lib.retro.phosphor import (
+    # Pattern generators
+    create_rgb_stripe_mask,
+    create_aperture_grille_mask,
+    create_slot_mask,
+    create_shadow_mask,
+    create_phosphor_mask,
+    # Application functions
+    apply_phosphor_mask,
+    apply_phosphor_mask_fast,
+    # Utility functions
+    get_phosphor_brightness_factor,
+    list_phosphor_patterns,
+    get_pattern_description as get_phosphor_pattern_description,
+    estimate_mask_visibility,
+    # Constants
+    PHOSPHOR_PATTERNS,
+)
+
+from lib.retro.curvature import (
+    # UV transformation
+    calculate_curved_uv,
+    calculate_barrel_distortion_grid,
+    # Vignette
+    create_vignette_mask,
+    create_corner_mask,
+    apply_vignette,
+    # Main functions
+    apply_curvature,
+    bilinear_sample,
+    apply_border,
+    combine_curvature_vignette,
+    # Utility functions
+    calculate_edge_stretch,
+    estimate_content_loss,
+    recommend_border_size,
+)
+
+from lib.retro.crt_effects import (
+    # Individual effects
+    apply_bloom,
+    apply_chromatic_aberration,
+    apply_flicker,
+    apply_interlace,
+    apply_pixel_jitter,
+    apply_noise,
+    apply_ghosting,
+    apply_color_adjustments,
+    # Pipeline
+    apply_all_effects,
+    apply_effects_fast,
+)
+
+from lib.retro.crt_compositor import (
+    # Node creation
+    create_crt_node_group,
+    create_scanline_node_config,
+    create_phosphor_node_config,
+    # Setup
+    setup_crt_compositing,
+    create_curvature_node,
+    create_scanline_node,
+    # Utilities
+    get_crt_node_group_name,
+    list_crt_node_templates,
+    get_node_template_description,
+    create_preset_nodes,
+    export_node_setup_python,
+    # Constants
+    CRT_NODE_GROUP_NAME,
+    CRT_NODE_TEMPLATES,
+)
+
+from lib.retro.crt_preset_loader import (
+    # Preset loading
+    load_crt_preset,
+    list_crt_presets,
+    get_crt_preset,
+    get_crt_preset_description,
+    # Cache management
+    clear_preset_cache as clear_crt_preset_cache,
+    reload_presets as reload_crt_presets,
+    # Convenience functions
+    get_arcade_80s,
+    get_crt_tv,
+    get_pvm,
+    get_gameboy,
+)
+
+
+# =============================================================================
 # Public API
 # =============================================================================
 
@@ -798,6 +954,110 @@ __all__ = [
     # Cache
     "clear_preset_cache",
     "reload_presets",
+
+    # ==========================================================================
+    # CRT Display Effects API
+    # ==========================================================================
+
+    # CRT Enums
+    "ScanlineMode",
+    "PhosphorPattern",
+    "DisplayType",
+
+    # CRT Dataclasses
+    "ScanlineConfig",
+    "PhosphorConfig",
+    "CurvatureConfig",
+    "CRTConfig",
+
+    # CRT Presets
+    "CRT_PRESETS",
+    "get_crt_preset_builtin",
+    "list_crt_presets_builtin",
+    "get_preset_description",
+    "create_custom_preset",
+    "validate_crt_config",
+
+    # Scanline Effects
+    "alternate_scanlines",
+    "every_line_scanlines",
+    "random_scanlines",
+    "create_scanline_overlay",
+    "create_scanline_texture",
+    "apply_scanlines",
+    "apply_scanlines_fast",
+    "apply_scanlines_gpu",
+    "get_scanline_shader_code",
+    "calculate_brightness_loss",
+    "recommend_brightness_compensation",
+    "estimate_scanline_visibility",
+
+    # Phosphor Effects
+    "create_rgb_stripe_mask",
+    "create_aperture_grille_mask",
+    "create_slot_mask",
+    "create_shadow_mask",
+    "create_phosphor_mask",
+    "apply_phosphor_mask",
+    "apply_phosphor_mask_fast",
+    "get_phosphor_brightness_factor",
+    "list_phosphor_patterns",
+    "get_phosphor_pattern_description",
+    "estimate_mask_visibility",
+    "PHOSPHOR_PATTERNS",
+
+    # Curvature Effects
+    "calculate_curved_uv",
+    "calculate_barrel_distortion_grid",
+    "create_vignette_mask",
+    "create_corner_mask",
+    "apply_vignette",
+    "apply_curvature",
+    "bilinear_sample",
+    "apply_border",
+    "combine_curvature_vignette",
+    "calculate_edge_stretch",
+    "estimate_content_loss",
+    "recommend_border_size",
+
+    # Additional CRT Effects
+    "apply_bloom",
+    "apply_chromatic_aberration",
+    "apply_flicker",
+    "apply_interlace",
+    "apply_pixel_jitter",
+    "apply_noise",
+    "apply_ghosting",
+    "apply_color_adjustments",
+    "apply_all_effects",
+    "apply_effects_fast",
+
+    # CRT Compositor
+    "create_crt_node_group",
+    "create_scanline_node_config",
+    "create_phosphor_node_config",
+    "setup_crt_compositing",
+    "create_curvature_node",
+    "create_scanline_node",
+    "get_crt_node_group_name",
+    "list_crt_node_templates",
+    "get_node_template_description",
+    "create_preset_nodes",
+    "export_node_setup_python",
+    "CRT_NODE_GROUP_NAME",
+    "CRT_NODE_TEMPLATES",
+
+    # CRT Preset Loader
+    "load_crt_preset",
+    "list_crt_presets",
+    "get_crt_preset",
+    "get_crt_preset_description",
+    "clear_crt_preset_cache",
+    "reload_crt_presets",
+    "get_arcade_80s",
+    "get_crt_tv",
+    "get_pvm",
+    "get_gameboy",
 ]
 
 # Add compositor functions to exports if available
@@ -819,7 +1079,7 @@ if HAS_COMPOSITOR:
 # Module info
 # =============================================================================
 
-__version__ = "0.2.0"
+__version__ = "0.3.0"
 __author__ = "GSD"
 __description__ = "Retro pixel art conversion for cinematic rendering"
 
@@ -842,4 +1102,5 @@ def info() -> dict:
         "side_scroller_presets": list_side_scroller_presets(),
         "sprite_sheet_presets": list_sprite_sheet_presets(),
         "tile_presets": list_tile_presets(),
+        "crt_presets": list_crt_presets(),
     }

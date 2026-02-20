@@ -1,0 +1,436 @@
+# CRT Display Effect Presets
+#
+# Authentic retro display simulation presets for various CRT and LCD technologies.
+# Each preset simulates the visual characteristics of real display hardware.
+#
+# Usage:
+#   from lib.retro.crt_types import get_preset
+#   config = get_preset("crt_arcade")
+#   result = apply_all_effects(image, config)
+
+presets:
+
+  # ==========================================================================
+  # Arcade Monitors
+  # ==========================================================================
+
+  # 80s Arcade monitor - bright, visible scanlines, slight curvature
+  arcade_80s:
+    description: "Classic 80s arcade monitor with visible scanlines and aperture grille"
+    scanlines:
+      enabled: true
+      intensity: 0.25
+      spacing: 2
+      thickness: 0.5
+      mode: alternate
+      brightness_compensation: 1.1
+    phosphor:
+      enabled: true
+      pattern: aperture_grille
+      intensity: 0.4
+      scale: 1.0
+    curvature:
+      enabled: true
+      amount: 0.08
+      vignette_amount: 0.15
+      corner_radius: 0
+      border_size: 0
+    bloom: 0.15
+    chromatic_aberration: 0.002
+    flicker: 0.0
+    noise: 0.0
+    brightness: 1.0
+    contrast: 1.0
+    saturation: 1.0
+    gamma: 2.2
+
+  # Sharp vibrant arcade - clean, bright colors
+  arcade_sharp:
+    description: "Clean arcade monitor with sharp image and vibrant colors"
+    scanlines:
+      enabled: true
+      intensity: 0.2
+      spacing: 1
+      thickness: 0.35
+      mode: alternate
+      brightness_compensation: 1.05
+    phosphor:
+      enabled: true
+      pattern: aperture_grille
+      intensity: 0.3
+      scale: 1.2
+    curvature:
+      enabled: false
+    bloom: 0.08
+    chromatic_aberration: 0.001
+    brightness: 1.15
+    contrast: 1.0
+    saturation: 1.1
+    gamma: 2.2
+
+  # ==========================================================================
+  # Consumer CRT TVs
+  # ==========================================================================
+
+  # Home CRT TV 90s - softer, more noticeable scanlines
+  crt_tv_90s:
+    description: "90s home CRT television with slot mask and visible scanlines"
+    scanlines:
+      enabled: true
+      intensity: 0.35
+      spacing: 1
+      thickness: 0.5
+      mode: alternate
+      brightness_compensation: 1.15
+    phosphor:
+      enabled: true
+      pattern: slot_mask
+      intensity: 0.5
+      scale: 1.0
+      slot_width: 2
+      slot_height: 4
+    curvature:
+      enabled: true
+      amount: 0.12
+      vignette_amount: 0.2
+      corner_radius: 0
+      border_size: 0
+    noise: 0.03
+    flicker: 0.02
+    bloom: 0.1
+    brightness: 1.0
+    contrast: 1.0
+    saturation: 1.0
+    gamma: 2.2
+
+  # Vintage TV 70s - high curvature, noise, warm colors
+  vintage_tv:
+    description: "70s vintage television with pronounced curvature and warm colors"
+    scanlines:
+      enabled: true
+      intensity: 0.35
+      spacing: 2
+      thickness: 0.6
+      mode: alternate
+      brightness_compensation: 1.2
+    phosphor:
+      enabled: true
+      pattern: slot_mask
+      intensity: 0.55
+      scale: 0.8
+    curvature:
+      enabled: true
+      amount: 0.15
+      vignette_amount: 0.25
+      corner_radius: 5
+      border_size: 0
+    noise: 0.08
+    flicker: 0.04
+    bloom: 0.2
+    brightness: 0.95
+    contrast: 1.0
+    saturation: 1.1
+    gamma: 2.0
+
+  # ==========================================================================
+  # Professional Monitors
+  # ==========================================================================
+
+  # Sony PVM professional monitor - high quality, minimal artifacts
+  sony_pvm:
+    description: "Sony PVM professional video monitor with aperture grille"
+    scanlines:
+      enabled: true
+      intensity: 0.15
+      spacing: 1
+      thickness: 0.3
+      mode: alternate
+      brightness_compensation: 1.02
+    phosphor:
+      enabled: true
+      pattern: aperture_grille
+      intensity: 0.25
+      scale: 1.0
+    curvature:
+      enabled: false
+    bloom: 0.05
+    brightness: 1.0
+    contrast: 1.0
+    saturation: 1.0
+    gamma: 2.2
+
+  # Sony Trinitron - flat CRT with aperture grille
+  trinitron:
+    description: "Sony Trinitron flat CRT with excellent color reproduction"
+    scanlines:
+      enabled: true
+      intensity: 0.2
+      spacing: 1
+      thickness: 0.4
+      mode: alternate
+      brightness_compensation: 1.05
+    phosphor:
+      enabled: true
+      pattern: aperture_grille
+      intensity: 0.35
+      scale: 1.2
+    curvature:
+      enabled: true
+      amount: 0.03
+      vignette_amount: 0.1
+      corner_radius: 0
+      border_size: 0
+    bloom: 0.1
+    brightness: 1.1
+    contrast: 1.0
+    saturation: 1.0
+    gamma: 2.2
+
+  # ==========================================================================
+  # Computer Monitors
+  # ==========================================================================
+
+  # CGA Monitor - harsh scanlines, visible phosphor
+  cga_monitor:
+    description: "IBM CGA monitor with visible RGB phosphor pattern"
+    scanlines:
+      enabled: true
+      intensity: 0.5
+      spacing: 1
+      thickness: 0.5
+      mode: alternate
+      brightness_compensation: 1.2
+    phosphor:
+      enabled: true
+      pattern: rgb
+      intensity: 0.6
+      scale: 1.0
+    curvature:
+      enabled: true
+      amount: 0.05
+      vignette_amount: 0.1
+      corner_radius: 0
+      border_size: 0
+    flicker: 0.03
+    brightness: 1.0
+    contrast: 1.0
+    saturation: 1.0
+    gamma: 2.2
+
+  # VGA Monitor - clean, minimal effects
+  vga_monitor:
+    description: "Standard VGA CRT monitor with subtle effects"
+    scanlines:
+      enabled: true
+      intensity: 0.1
+      spacing: 1
+      thickness: 0.3
+      mode: alternate
+      brightness_compensation: 1.0
+    phosphor:
+      enabled: false
+    curvature:
+      enabled: false
+    chromatic_aberration: 0.001
+    brightness: 1.0
+    contrast: 1.0
+    saturation: 1.0
+    gamma: 2.2
+
+  # ==========================================================================
+  # Console Gaming
+  # ==========================================================================
+
+  # NES on CRT - classic 8-bit console look
+  nes_crt:
+    description: "NES console on CRT TV with scanlines and slot mask"
+    scanlines:
+      enabled: true
+      intensity: 0.3
+      spacing: 1
+      thickness: 0.45
+      mode: alternate
+      brightness_compensation: 1.1
+    phosphor:
+      enabled: true
+      pattern: slot_mask
+      intensity: 0.45
+      scale: 1.0
+    curvature:
+      enabled: true
+      amount: 0.1
+      vignette_amount: 0.18
+      corner_radius: 0
+      border_size: 0
+    bloom: 0.12
+    chromatic_aberration: 0.003
+    brightness: 1.0
+    contrast: 1.0
+    saturation: 1.0
+    gamma: 2.2
+
+  # SNES on CRT - 16-bit console with richer colors
+  snes_crt:
+    description: "SNES console on CRT TV with enhanced colors"
+    scanlines:
+      enabled: true
+      intensity: 0.25
+      spacing: 1
+      thickness: 0.4
+      mode: alternate
+      brightness_compensation: 1.08
+    phosphor:
+      enabled: true
+      pattern: slot_mask
+      intensity: 0.4
+      scale: 1.0
+    curvature:
+      enabled: true
+      amount: 0.08
+      vignette_amount: 0.15
+      corner_radius: 0
+      border_size: 0
+    bloom: 0.1
+    brightness: 1.05
+    contrast: 1.0
+    saturation: 1.05
+    gamma: 2.2
+
+  # ==========================================================================
+  # LCD Displays
+  # ==========================================================================
+
+  # Game Boy LCD - ghosting, low contrast
+  gameboy_lcd:
+    description: "Nintendo Game Boy LCD with ghosting and low contrast"
+    scanlines:
+      enabled: false
+    phosphor:
+      enabled: false
+    curvature:
+      enabled: false
+    pixel_jitter: 0.02
+    ghosting: 0.3
+    brightness: 0.9
+    contrast: 1.2
+    saturation: 0.8
+    gamma: 2.4
+
+  # Portable LCD - Tiger handheld style
+  portable_lcd:
+    description: "Generic portable LCD with heavy ghosting"
+    scanlines:
+      enabled: false
+    phosphor:
+      enabled: false
+    curvature:
+      enabled: false
+    ghosting: 0.4
+    brightness: 0.9
+    contrast: 1.4
+    saturation: 0.6
+    gamma: 2.5
+
+  # Modern LCD - clean, minimal effects
+  modern_lcd:
+    description: "Clean modern LCD with minimal effects"
+    scanlines:
+      enabled: false
+    phosphor:
+      enabled: false
+    curvature:
+      enabled: false
+    chromatic_aberration: 0.001
+    brightness: 1.0
+    contrast: 1.0
+    saturation: 1.0
+    gamma: 2.2
+
+  # ==========================================================================
+  # Special Effects
+  # ==========================================================================
+
+  # Black and White CRT - like old Macintosh
+  bw_crt:
+    description: "Black and white CRT monitor for classic monochrome look"
+    scanlines:
+      enabled: true
+      intensity: 0.25
+      spacing: 2
+      thickness: 0.5
+      mode: alternate
+      brightness_compensation: 1.1
+    phosphor:
+      enabled: false
+    curvature:
+      enabled: true
+      amount: 0.08
+      vignette_amount: 0.15
+      corner_radius: 0
+      border_size: 0
+    bloom: 0.1
+    saturation: 0.0  # Force grayscale
+    brightness: 1.0
+    contrast: 1.0
+    gamma: 2.3
+
+  # Damaged CRT - heavy noise and distortion
+  damaged_crt:
+    description: "Damaged or old CRT with heavy artifacts"
+    scanlines:
+      enabled: true
+      intensity: 0.4
+      spacing: 2
+      thickness: 0.6
+      mode: random
+      brightness_compensation: 1.2
+    phosphor:
+      enabled: true
+      pattern: slot_mask
+      intensity: 0.6
+      scale: 0.8
+    curvature:
+      enabled: true
+      amount: 0.15
+      vignette_amount: 0.3
+      corner_radius: 0
+      border_size: 0
+    bloom: 0.15
+    chromatic_aberration: 0.008
+    noise: 0.12
+    flicker: 0.08
+    pixel_jitter: 0.05
+    brightness: 0.95
+    contrast: 1.1
+    saturation: 0.9
+    gamma: 2.1
+
+  # Lo-fi CRT - maximum retro effect
+  lofi_crt:
+    description: "Maximum retro effect for lo-fi aesthetic"
+    scanlines:
+      enabled: true
+      intensity: 0.45
+      spacing: 2
+      thickness: 0.55
+      mode: alternate
+      brightness_compensation: 1.25
+    phosphor:
+      enabled: true
+      pattern: shadow_mask
+      intensity: 0.65
+      scale: 0.8
+    curvature:
+      enabled: true
+      amount: 0.2
+      vignette_amount: 0.35
+      corner_radius: 10
+      border_size: 0
+    bloom: 0.25
+    chromatic_aberration: 0.01
+    noise: 0.08
+    flicker: 0.05
+    brightness: 1.0
+    contrast: 1.05
+    saturation: 0.95
+    gamma: 2.0
