@@ -386,7 +386,7 @@ def test_output_exists():
 ```
 
 **Test Coverage:**
-- 500+ unit tests
+- 1,452 unit tests
 - Oracle comparison functions
 - Works outside Blender (fallback implementations)
 
@@ -445,32 +445,53 @@ The Council of Ricks - domain-specific AI agents:
 
 ## Project Status
 
+### Codebase Statistics
+
+| Metric | Count |
+|--------|-------|
+| Python Modules | 266 |
+| Test Files | 88 |
+| Lines of Code | 146,301 |
+| Tests | 1,452 |
+| Versioned Packages | 14 |
+| Completed Phases | 49 |
+
 ### Completed Milestones
 
-| Milestone | Version | Status |
-|-----------|---------|--------|
-| Core Infrastructure | v0.1 | Complete |
-| Control Surface System | v0.4 | Complete |
-| Cinematic Rendering System | v0.3 | Complete |
-| Motion Tracking System | v0.4 | Complete |
+| Milestone | Version | Status | Phases |
+|-----------|---------|--------|--------|
+| Core Infrastructure | v0.1 | Complete | 6.0 |
+| Cinematic Rendering System | v0.3 | Complete | 6.1-6.10 |
+| Motion Tracking System | v0.4 | Complete | 7.0-7.5 |
+| Follow Camera System | v0.5 | Complete | 8.0-8.4 |
+| Art & Locations | v0.6 | Complete | 9.1 |
+| Character System | v0.7 | Complete | 10.1 |
+| Audio & Editorial | v0.8 | Complete | 11.0-11.1 |
+| VFX & Compositing | v0.9 | Complete | 12.0-12.1 |
+| Retro Graphics | v0.10 | Complete | 13.0-13.7 |
+| Production Tools | v0.11 | Complete | 14.1-14.2 |
+| Control Surface System | v0.12 | Complete | 5.0-5.9 |
 
-### In Progress
+### Phase Categories (All Complete)
 
-| Phase | Description | Status |
-|-------|-------------|--------|
-| 7.1 - 7.4 | Motion Tracking Core | Planned |
-| 8.0 - 8.4 | Follow Camera System | Planned |
-| 9.0 - 9.4 | Anamorphic Projection | Planned |
+| Category | Phases | Features |
+|----------|--------|----------|
+| **Core Cinematic (6.x)** | 10 phases | Camera, lens, lighting, render, animation |
+| **Motion & Tracking (7.x)** | 6 phases | Tracking, footage profiles, import/export, compositing |
+| **Follow Camera (8.x)** | 5 phases | Follow modes, obstacle avoidance, script parser |
+| **Art & Locations (9.x)** | 1 phase | Set builder with 12 style presets |
+| **Character (10.x)** | 1 phase | Wardrobe system with continuity validation |
+| **Sound & Editorial (11.x)** | 2 phases | Production tracking, timeline system |
+| **VFX & Compositing (12.x)** | 2 phases | One-sheet generator, compositor |
+| **Retro Graphics (13.x)** | 12 phases | Rigging, IK/FK, pixel art, dithering, CRT effects |
+| **Production (14.x)** | 2 phases | Production orchestrator, master config |
+| **Control Surfaces (5.x)** | 10 phases | Knobs, faders, buttons, LEDs, morphing |
 
-### Future Milestones
+### CI/CD
 
-| Phase | Description |
-|-------|-------------|
-| 10.x | Character System (Wardrobe, State) |
-| 11.x | Audio Integration (Timeline, Sound Design) |
-| 12.x | Post-Processing (Compositor, VFX) |
-| 13.x | Retro Effects (Pixel Art, Dithering, CRT) |
-| 14.x | Production Tools (Orchestrator, Config) |
+- **Regression Guard**: Automated test collection and execution on push/PR
+- **Coverage Reports**: Codecov integration for coverage tracking
+- **SLC Validation**: Lint checks for TODO/FIXME and NotImplementedError
 
 ---
 

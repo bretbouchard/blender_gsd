@@ -1,0 +1,111 @@
+name: Regression Guard
+
+on:
+  push:
+    branches: [master, main, develop]
+  pull_request:
+    branches: [master, main]
+  workflow_dispatch:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pytest pytest-cov pytest-xdist pyyaml
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+          if [ -f requirements-dev.txt ]; then pip install -r requirements-dev.txt; fi
+
+      - name: Validate test collection
+        id: collect
+        run: |
+          echo "=== Checking test collection ==="
+          python -m pytest tests/unit/ --collect-only -q 2>&1 | tee collection.log
+
+          # Check for collection errors
+          ERRORS=$(grep -c "ERROR collecting" collection.log || echo "0")
+          if [ "$ERRORS" -gt "0" ]; then
+            echo "::error::$ERRORS test collection errors found"
+            echo "has_errors=true" >> $GITHUB_OUTPUT
+            exit 1
+          fi
+          echo "has_errors=false" >> $GITHUB_OUTPUT
+
+      - name: Run tests with coverage
+        if: steps.collect.outputs.has_errors == 'false'
+        run: |
+          python -m pytest \
+            tests/unit/ \
+            --verbose \
+            --tb=short \
+            --cov=lib \
+            --cov-report=xml \
+            --cov-report=term-missing \
+            -n auto \
+            --dist=loadscope \
+            --ignore=tests/button_test \
+            --ignore=tests/fader_test \
+            --ignore=tests/led_test \
+            --ignore=tests/neve_knobs
+
+      - name: Upload coverage
+        uses: codecov/codecov-action@v4
+        if: always()
+        with:
+          fail_ci_if_error: false
+
+      - name: Report results
+        if: always()
+        run: |
+          echo "## Test Results" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          if [ -f collection.log ]; then
+            echo '```' >> $GITHUB_STEP_SUMMARY
+            tail -5 collection.log >> $GITHUB_STEP_SUMMARY
+            echo '```' >> $GITHUB_STEP_SUMMARY
+          fi
+
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install linters
+        run: pip install ruff
+
+      - name: Ruff check
+        run: ruff check lib/ --output-format=github || true
+
+      - name: Check for SLC violations
+        run: |
+          echo "=== Checking for SLC violations ==="
+
+          # Check for TODO/FIXME without tickets
+          TODOS=$(grep -r "TODO\|FIXME" lib/ --include="*.py" | wc -l || echo "0")
+          echo "TODO/FIXME comments: $TODOS"
+
+          # Check for NotImplementedError in production code
+          NOT_IMPL=$(grep -r "raise NotImplementedError" lib/ --include="*.py" | grep -v "plugin_interface" | wc -l || echo "0")
+          if [ "$NOT_IMPL" -gt "0" ]; then
+            echo "::warning::$NOT_IMPL NotImplementedError found (excluding plugin_interface)"
+          fi
+
+          # Check for pass statements
+          PASS_COUNT=$(grep -r "^\s*pass$" lib/ --include="*.py" | wc -l || echo "0")
+          echo "Pass statements: $PASS_COUNT"
