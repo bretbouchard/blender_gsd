@@ -1,0 +1,95 @@
+# Commercial Production Template
+#
+# Use this template for commercial and advertising productions.
+# Optimized for product showcase and brand content.
+#
+# Usage:
+#   python -m lib.production.cli create "My Commercial" --template commercial
+
+production:
+  meta:
+    title: "Commercial Title"
+    version: "1.0.0"
+    author: ""
+    description: "Commercial description"
+
+  # Visual style - product focus
+  style:
+    preset: product_hero     # cinematic, product_hero, lifestyle, stylized
+    era: present
+    mood: bright             # bright, dramatic, playful, sophisticated
+    color_grade: neutral
+    contrast: medium
+
+  # Product/props (treated as characters)
+  characters:
+    product:
+      name: "Product"
+      model: "assets/products/product.blend"
+      notes: "Hero product for showcase"
+
+  # Studio locations
+  locations:
+    studio_white:
+      name: "White Studio"
+      preset: studio_white
+      hdri: "studio_bright_4k"
+
+    studio_gradient:
+      name: "Gradient Studio"
+      preset: studio_gradient
+      backdrop_color: "#1a1a2e"
+
+  # Shot list - product showcase
+  shots:
+    - name: "hero_shot"
+      template: "product_hero"
+      scene: 1
+      character: "product"
+      location: "studio_white"
+      duration: 150
+
+    - name: "detail_close"
+      template: "product_detail"
+      scene: 2
+      character: "product"
+      duration: 90
+
+    - name: "lifestyle_wide"
+      template: "product_lifestyle"
+      scene: 3
+      character: "product"
+      location: "studio_gradient"
+      duration: 120
+
+  # High quality render settings
+  render_settings:
+    engine: CYCLES
+    samples: 256
+    resolution_x: 1920
+    resolution_y: 1080
+    use_denoising: true
+    quality_tier: production
+
+  # Multiple output formats for different platforms
+  outputs:
+    - name: "Master"
+      format: streaming_1080p
+      codec: prores_4444
+      resolution: [1920, 1080]
+      frame_rate: 30
+      output_path: "output/master/"
+
+    - name: "Social Square"
+      format: social_square
+      codec: h264
+      resolution: [1080, 1080]
+      frame_rate: 30
+      output_path: "output/social/"
+
+    - name: "Social Vertical"
+      format: social_vertical
+      codec: h264
+      resolution: [1080, 1920]
+      frame_rate: 30
+      output_path: "output/social_vertical/"

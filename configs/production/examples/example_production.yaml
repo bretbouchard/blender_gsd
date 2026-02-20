@@ -1,0 +1,151 @@
+# Example Production Configuration
+#
+# This is a complete example demonstrating all available options
+# for the production orchestrator system.
+#
+# Run with:
+#   python -m lib.production.cli validate configs/production/examples/example_production.yaml
+#   python -m lib.production.cli info configs/production/examples/example_production.yaml
+
+production:
+  # Production metadata
+  meta:
+    title: "Example Production"
+    version: "1.0.0"
+    author: "Production Team"
+    description: "Complete example demonstrating production orchestrator features"
+
+  # Script source
+  script_path: "scripts/example.fountain"
+
+  # Visual style
+  style:
+    preset: cinematic
+    era: present
+    mood: dramatic
+    color_grade: neutral
+    contrast: medium
+
+  # Characters with wardrobe assignments
+  characters:
+    alice:
+      name: "Alice"
+      model: "assets/characters/alice.blend"
+      wardrobe_assignments:
+        scenes_1_3: "alice_casual"
+        scenes_4_6: "alice_formal"
+        scenes_7_10: "alice_action"
+      variants:
+        stunt_double:
+          model: "assets/characters/alice_stunt.blend"
+      notes: "Main protagonist"
+
+    bob:
+      name: "Bob"
+      model: "assets/characters/bob.blend"
+      wardrobe_assignments:
+        scenes_1_10: "bob_default"
+      notes: "Supporting character"
+
+  # Locations
+  locations:
+    warehouse:
+      name: "Warehouse"
+      preset: industrial
+      hdri: "warehouse_4k"
+      notes: "Main action location"
+      scenes: [1, 2, 3]
+
+    office:
+      name: "Office"
+      preset: modern_office
+      hdri: "office_4k"
+      scenes: [4, 5]
+
+    rooftop:
+      name: "Rooftop"
+      preset: urban_exterior
+      hdri: "night_city_4k"
+      scenes: [6, 7, 8, 9, 10]
+
+  # Shot list with frame ranges
+  shots:
+    # Scene 1 - Warehouse
+    - name: "establishing_warehouse"
+      template: "establishing_wide"
+      scene: 1
+      location: "warehouse"
+      frame_range: [1, 120]
+      notes: "Wide establishing shot"
+
+    - name: "alice_enter"
+      template: "character_enter"
+      scene: 1
+      character: "alice"
+      location: "warehouse"
+      frame_range: [121, 240]
+
+    # Scene 2 - Confrontation
+    - name: "bob_reveal"
+      template: "character_reveal"
+      scene: 2
+      character: "bob"
+      location: "warehouse"
+      frame_range: [241, 360]
+
+    - name: "dialogue_two_shot"
+      template: "dialogue_two"
+      scene: 2
+      character: "alice"
+      location: "warehouse"
+      frame_range: [361, 600]
+      variations: 2  # Generate 2 variations
+
+    # Scene 4 - Office
+    - name: "office_establishing"
+      template: "establishing_wide"
+      scene: 4
+      location: "office"
+      frame_range: [601, 720]
+
+  # Render settings
+  render_settings:
+    engine: CYCLES
+    samples: 128
+    resolution_x: 1920
+    resolution_y: 1080
+    use_denoising: true
+    quality_tier: production
+
+  # Output formats
+  outputs:
+    # Master output
+    - name: "Master 4K"
+      format: cinema_4k
+      codec: prores_4444
+      resolution: [4096, 2160]
+      frame_rate: 24
+      output_path: "output/master_4k/"
+
+    # Streaming output
+    - name: "Streaming 1080p"
+      format: streaming_1080p
+      codec: h264
+      resolution: [1920, 1080]
+      frame_rate: 24
+      output_path: "output/streaming/"
+
+    # Retro 16-bit output
+    - name: "16-bit SNES Style"
+      format: 16bit_game
+      codec: png
+      resolution: [256, 224]
+      frame_rate: 12
+      output_path: "output/retro_snes/"
+      retro_config:
+        enabled: true
+        palette: snes
+        dither: error_diffusion
+        pixel_size: 2
+        target_resolution: [256, 224]
+        crt_effects: true

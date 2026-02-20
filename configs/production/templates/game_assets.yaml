@@ -1,0 +1,129 @@
+# Game Assets Production Template
+#
+# Use this template for creating game-ready assets with
+# retro pixel art conversion and sprite sheet generation.
+#
+# Usage:
+#   python -m lib.production.cli create "Game Assets" --template game_assets
+
+production:
+  meta:
+    title: "Game Assets Pack"
+    version: "1.0.0"
+    author: ""
+    description: "Game asset production with retro conversion"
+
+  # Visual style - stylized for games
+  style:
+    preset: stylized
+    era: present
+    mood: bright
+    color_grade: neutral
+    contrast: high
+
+  # Game characters
+  characters:
+    player:
+      name: "Player Character"
+      model: "assets/characters/player.blend"
+      notes: "Main playable character"
+
+    enemy:
+      name: "Enemy"
+      model: "assets/characters/enemy.blend"
+      notes: "Standard enemy type"
+
+  # Game locations
+  locations:
+    level1:
+      name: "Level 1"
+      preset: game_terrain
+      notes: "First game level"
+
+    dungeon:
+      name: "Dungeon"
+      preset: game_interior
+      notes: "Indoor dungeon area"
+
+  # Shot list - multiple angles for sprites
+  shots:
+    - name: "player_idle"
+      template: "game_sprite_idle"
+      scene: 1
+      character: "player"
+      duration: 24
+
+    - name: "player_walk"
+      template: "game_sprite_walk"
+      scene: 1
+      character: "player"
+      duration: 24
+
+    - name: "enemy_idle"
+      template: "game_sprite_idle"
+      scene: 2
+      character: "enemy"
+      duration: 24
+
+  # Fast preview render settings
+  render_settings:
+    engine: BLENDER_EEVEE_NEXT
+    samples: 32
+    resolution_x: 1024
+    resolution_y: 1024
+    use_denoising: true
+    quality_tier: preview
+
+  # Retro outputs for different platforms
+  outputs:
+    - name: "16-bit SNES"
+      format: 16bit_game
+      codec: png
+      resolution: [256, 256]
+      frame_rate: 12
+      output_path: "output/snes/"
+      retro_config:
+        enabled: true
+        palette: snes
+        dither: error_diffusion
+        pixel_size: 2
+        crt_effects: false
+
+    - name: "8-bit NES"
+      format: 8bit_game
+      codec: png
+      resolution: [128, 128]
+      frame_rate: 12
+      output_path: "output/nes/"
+      retro_config:
+        enabled: true
+        palette: nes
+        dither: ordered
+        pixel_size: 3
+        crt_effects: false
+
+    - name: "Game Boy"
+      format: 8bit_game
+      codec: png
+      resolution: [160, 144]
+      frame_rate: 12
+      output_path: "output/gameboy/"
+      retro_config:
+        enabled: true
+        palette: gameboy
+        dither: ordered
+        pixel_size: 1
+        crt_effects: false
+
+    - name: "CRT Preview"
+      format: streaming_1080p
+      codec: h264
+      resolution: [1920, 1080]
+      frame_rate: 12
+      output_path: "output/crt_preview/"
+      retro_config:
+        enabled: true
+        palette: snes
+        dither: error_diffusion
+        pixel_size: 4
+        crt_effects: true

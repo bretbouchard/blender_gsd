@@ -1,0 +1,104 @@
+# Short Film Production Template
+#
+# Use this template to create short film productions.
+# Copy and modify for your specific project.
+#
+# Usage:
+#   python -m lib.production.cli create "My Film" --template short_film
+
+production:
+  meta:
+    title: "Short Film Title"
+    version: "1.0.0"
+    author: ""
+    description: "Short film description"
+
+  # Script source (Fountain or Final Draft format)
+  script_path: "scripts/screenplay.fountain"
+
+  # Visual style
+  style:
+    preset: cinematic        # cinematic, documentary, commercial, stylized
+    era: present             # present, 1980s, 1990s, 2000s, future, period
+    mood: dramatic           # dramatic, comedic, suspenseful, romantic, action
+    color_grade: neutral     # neutral, warm, cool, vintage, neon
+    contrast: medium         # low, medium, high
+
+  # Character definitions
+  characters:
+    # Main character
+    hero:
+      name: "Hero"
+      model: "assets/characters/hero.blend"
+      wardrobe_assignments:
+        scenes_1_5: "hero_casual"
+        scenes_6_10: "hero_formal"
+      notes: "Main protagonist"
+
+    # Supporting character
+    villain:
+      name: "Villain"
+      model: "assets/characters/villain.blend"
+      wardrobe_assignments:
+        scenes_1_10: "villain_dark"
+
+  # Location definitions
+  locations:
+    warehouse:
+      name: "Warehouse"
+      preset: industrial      # Set builder preset
+      hdri: "abandoned_warehouse_4k"
+      notes: "Main action location"
+      scenes: [1, 2, 3]
+
+    office:
+      name: "Office Building"
+      preset: modern_office
+      hdri: "office_interior_4k"
+      scenes: [4, 5]
+
+  # Shot list
+  shots:
+    - name: "opening_establishing"
+      template: "establishing_wide"
+      scene: 1
+      location: "warehouse"
+      duration: 120
+
+    - name: "hero_intro"
+      template: "hero_cu"
+      scene: 1
+      character: "hero"
+      duration: 60
+
+    - name: "villain_reveal"
+      template: "villain_mcu"
+      scene: 2
+      character: "villain"
+      location: "warehouse"
+      duration: 90
+
+  # Render settings
+  render_settings:
+    engine: CYCLES           # CYCLES, BLENDER_EEVEE_NEXT
+    samples: 128
+    resolution_x: 1920
+    resolution_y: 1080
+    use_denoising: true
+    quality_tier: production # preview, production, archive
+
+  # Output formats
+  outputs:
+    - name: "Master"
+      format: streaming_1080p
+      codec: prores_4444
+      resolution: [1920, 1080]
+      frame_rate: 24
+      output_path: "output/master/"
+
+    - name: "Web"
+      format: streaming_1080p
+      codec: h264
+      resolution: [1920, 1080]
+      frame_rate: 24
+      output_path: "output/web/"
