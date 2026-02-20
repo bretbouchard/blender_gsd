@@ -282,6 +282,29 @@ from .hdri import (
     get_hdri_info,
     list_available_hdris,
 )
+from .light_rigs import (
+    create_light_rig,
+    create_three_point_soft,
+    create_three_point_hard,
+    create_product_hero,
+    create_studio_high_key,
+    create_studio_low_key,
+    position_key_light,
+    position_fill_light,
+    position_back_light,
+    list_light_rig_presets as list_rig_creator_presets,
+)
+from .light_linking import (
+    link_light_to_collection,
+    unlink_light_from_collection,
+    set_light_include_only,
+    set_light_exclude,
+    get_light_links,
+    clear_light_links,
+    get_objects_affected_by_light,
+    copy_light_linking,
+    is_light_linking_supported,
+)
 from .backdrops import (
     create_infinite_curve,
     create_gradient_material,
@@ -704,6 +727,29 @@ __all__ = [
     "clear_hdri",
     "get_hdri_info",
     "list_available_hdris",
+
+    # Light Rigs functions
+    "create_light_rig",
+    "create_three_point_soft",
+    "create_three_point_hard",
+    "create_product_hero",
+    "create_studio_high_key",
+    "create_studio_low_key",
+    "position_key_light",
+    "position_fill_light",
+    "position_back_light",
+    "list_rig_creator_presets",
+
+    # Light Linking functions
+    "link_light_to_collection",
+    "unlink_light_from_collection",
+    "set_light_include_only",
+    "set_light_exclude",
+    "get_light_links",
+    "clear_light_links",
+    "get_objects_affected_by_light",
+    "copy_light_linking",
+    "is_light_linking_supported",
 
     # Backdrop functions
     "create_infinite_curve",
