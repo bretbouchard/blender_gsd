@@ -1,0 +1,287 @@
+# Beat Structures Configuration
+# Defines structural templates for screenplay analysis
+
+# Blake Snyder's Save the Cat - 15-beat structure
+save_the_cat:
+  name: "Save the Cat"
+  author: "Blake Snyder"
+  beats:
+    opening_image:
+      position: 0.0
+      description: "Sets tone, mood, and starting point of story"
+      emotional_value: 0.0
+
+    setup:
+      position: 0.0
+      range_end: 0.10
+      description: "Introduce hero and their world"
+      emotional_value: 0.2
+
+    theme_stated:
+      position: 0.05
+      description: "The lesson the hero will learn"
+      emotional_value: 0.3
+
+    catalyst:
+      position: 0.10
+      description: "The event that disrupts the hero's world"
+      emotional_value: 0.0
+
+    debate:
+      position: 0.10
+      range_end: 0.20
+      description: "Hero weighs options, resists change"
+      emotional_value: -0.2
+
+    break_into_two:
+      position: 0.25
+      description: "Hero makes choice and enters Act 2"
+      emotional_value: 0.5
+
+    b_story:
+      position: 0.27
+      description: "Secondary story begins (often love interest)"
+      emotional_value: 0.3
+
+    fun_and_games:
+      position: 0.30
+      range_end: 0.50
+      description: "The promise of the premise fulfilled"
+      emotional_value: 0.6
+
+    midpoint:
+      position: 0.50
+      description: "Stakes are raised, false victory or defeat"
+      emotional_value: 0.8
+
+    bad_guys_close_in:
+      position: 0.50
+      range_end: 0.62
+      description: "Opposition intensifies"
+      emotional_value: -0.4
+
+    all_is_lost:
+      position: 0.62
+      description: "The lowest point, apparent failure"
+      emotional_value: -0.8
+
+    dark_night_of_soul:
+      position: 0.75
+      description: "Hero faces their flaw"
+      emotional_value: -0.6
+
+    break_into_three:
+      position: 0.80
+      description: "Hero finds solution"
+      emotional_value: 0.2
+
+    finale:
+      position: 0.80
+      range_end: 1.0
+      description: "Hero confronts antagonist and wins"
+      emotional_value: 0.9
+
+    final_image:
+      position: 1.0
+      description: "Proves the hero has changed"
+      emotional_value: 0.5
+
+
+# Traditional Three-Act Structure
+three_act:
+  name: "Three-Act Structure"
+  author: "Aristotle (adapted)"
+  beats:
+    setup:
+      position: 0.0
+      range_end: 0.25
+      description: "Introduce characters, world, and conflict"
+      emotional_value: 0.2
+
+    confrontation:
+      position: 0.25
+      range_end: 0.75
+      description: "Rising action, obstacles, character development"
+      emotional_value: 0.5
+
+    resolution:
+      position: 0.75
+      range_end: 1.0
+      description: "Climax and resolution"
+      emotional_value: 0.8
+
+  act_breaks:
+    act_1_end:
+      position: 0.25
+      description: "First plot point, enters new world"
+
+    act_2_midpoint:
+      position: 0.50
+      description: "Midpoint reversal, stakes raised"
+
+    act_2_end:
+      position: 0.75
+      description: "Second plot point, all is lost"
+
+    climax:
+      position: 0.90
+      description: "Final confrontation"
+
+
+# Dan Harmon's Story Circle
+story_circle:
+  name: "Story Circle"
+  author: "Dan Harmon"
+  beats:
+    you:
+      position: 0.0
+      description: "Protagonist in their comfort zone"
+      emotional_value: 0.0
+
+    need:
+      position: 0.12
+      description: "They want something"
+      emotional_value: 0.2
+
+    go:
+      position: 0.25
+      description: "They enter an unfamiliar situation"
+      emotional_value: 0.4
+
+    search:
+      position: 0.37
+      description: "They adapt to it"
+      emotional_value: 0.3
+
+    find:
+      position: 0.50
+      description: "They get what they wanted"
+      emotional_value: 0.7
+
+    take:
+      position: 0.62
+      description: "They pay a heavy price for it"
+      emotional_value: -0.7
+
+    return:
+      position: 0.75
+      description: "They return to their familiar situation"
+      emotional_value: 0.3
+
+    change:
+      position: 0.87
+      description: "Having changed"
+      emotional_value: 0.8
+
+
+# Hero's Journey (Joseph Campbell)
+heros_journey:
+  name: "Hero's Journey"
+  author: "Joseph Campbell"
+  beats:
+    ordinary_world:
+      position: 0.0
+      description: "Hero's normal life"
+      emotional_value: 0.0
+
+    call_to_adventure:
+      position: 0.08
+      description: "Challenge presented"
+      emotional_value: 0.2
+
+    refusal_of_call:
+      position: 0.12
+      description: "Hero resists"
+      emotional_value: -0.1
+
+    meeting_mentor:
+      position: 0.15
+      description: "Guidance received"
+      emotional_value: 0.3
+
+    crossing_threshold:
+      position: 0.20
+      description: "Entering special world"
+      emotional_value: 0.5
+
+    tests_allies_enemies:
+      position: 0.25
+      range_end: 0.45
+      description: "Learning the rules"
+      emotional_value: 0.4
+
+    approach:
+      position: 0.45
+      description: "Preparing for challenge"
+      emotional_value: 0.6
+
+    ordeal:
+      position: 0.50
+      description: "Facing greatest fear"
+      emotional_value: 0.8
+
+    reward:
+      position: 0.55
+      description: "Seizing the sword"
+      emotional_value: 0.9
+
+    road_back:
+      position: 0.65
+      description: "Return journey begins"
+      emotional_value: 0.4
+
+    resurrection:
+      position: 0.80
+      description: "Final test"
+      emotional_value: 0.7
+
+    return_elixir:
+      position: 0.95
+      description: "Return with treasure"
+      emotional_value: 0.8
+
+
+# Sequel Method (Michael Hauge)
+sequel_method:
+  name: "Six-Stage Plot Structure"
+  author: "Michael Hauge"
+  beats:
+    setup:
+      position: 0.0
+      range_end: 0.10
+      description: "Hero's everyday life"
+      emotional_value: 0.0
+
+    new_situation:
+      position: 0.10
+      range_end: 0.25
+      description: "Hero faces new circumstances"
+      emotional_value: 0.2
+
+    progress:
+      position: 0.25
+      range_end: 0.50
+      description: "Hero takes action"
+      emotional_value: 0.5
+
+    complications:
+      position: 0.50
+      range_end: 0.75
+      description: "Obstacles increase"
+      emotional_value: 0.3
+
+    retreat:
+      position: 0.75
+      range_end: 0.90
+      description: "Hero hits bottom"
+      emotional_value: -0.6
+
+    final_push:
+      position: 0.90
+      range_end: 1.0
+      description: "Climactic confrontation"
+      emotional_value: 1.0
+
+
+# Default structure to use
+default: save_the_cat
