@@ -1,66 +1,174 @@
-# Tracking Quality Presets
-# Configures detection algorithms and track management
+# Motion Tracking Presets
+# Configures feature detection and tracking parameters
 
 presets:
-  # High-quality tracking (slower)
+  # High-quality tracking (slower, more accurate)
   high_quality:
-    description: "High-quality tracking for production work"
+    description: "Maximum accuracy for critical shots"
     detection:
-      method: harris
-      min_corners: 200
-      quality_level: 0.02
-      min_distance: 10
-    algorithm:
-      window_size: 31
-      max_levels: 5
-    track_management:
-      drop_threshold:
-        correlation: 0.8
-        error: 3.0
+      method: "default"          # Blender's built-in detection
+      threshold: 0.3             # Corner detection threshold (0-1, lower = more features)
+      margin: 16                 # Margin from frame edges in pixels
+      min_distance: 16           # Minimum distance between features in pixels
+      min_corners: 200           # Target minimum features to detect
+    tracking:
+      motion_model: "Perspective"  # LocRot, LocRotScale, Affine, Perspective
+      correlation_min: 0.8       # Minimum correlation for valid track (0-1)
+      pattern_match: "KEYFRAME"  # KEYFRAME or PREV_FRAME
+      frames_limit: 0            # Max frames to track (0 = unlimited)
+      weight: 1.0                # Track weight for solver
+    clean:
+      frames: 8                  # Remove tracks shorter than N frames
+      error: 1.5                 # Remove tracks with error > N pixels
 
   # Balanced (default)
   balanced:
-    description: "Balanced tracking for general use"
+    description: "Good trade-off between speed and accuracy"
     detection:
-      method: fast
-      min_corners: 100
-      quality_level: 0.01
-      min_distance: 10
-    algorithm:
-      window_size: 21
-      max_levels: 3
-    track_management:
-      drop_threshold:
-        correlation: 0.7
-        error: 5.0
-
-  # Fast tracking (lower quality)
-  fast:
-    description: "Fast tracking for preview"
-    detection:
-      method: fast
-      min_corners: 50
-      quality_level: 0.005
+      method: "default"
+      threshold: 0.5
+      margin: 16
       min_distance: 8
-    algorithm:
-      window_size: 15
-      max_levels: 2
-    track_management:
-      drop_threshold:
-        correlation: 0.6
-        error: 8.0
+      min_corners: 100
+    tracking:
+      motion_model: "Perspective"
+      correlation_min: 0.7
+      pattern_match: "KEYFRAME"
+      frames_limit: 0
+      weight: 1.0
+    clean:
+      frames: 5
+      error: 2.0
 
-  # Architectural (for buildings/interiors)
-  architectural:
-    description: "Optimized for architectural footage"
+  # Fast tracking (lower quality, faster)
+  fast:
+    description: "Quick results for preview or simple shots"
     detection:
-      method: harris
+      method: "default"
+      threshold: 0.7
+      margin: 8
+      min_distance: 4
+      min_corners: 50
+    tracking:
+      motion_model: "LocRot"     # Simpler motion model
+      correlation_min: 0.6
+      pattern_match: "PREV_FRAME"
+      frames_limit: 0
+      weight: 1.0
+    clean:
+      frames: 3
+      error: 3.0
+
+  # Architectural (buildings, interiors)
+  architectural:
+    description: "Optimized for buildings and interior spaces"
+    detection:
+      method: "default"
+      threshold: 0.4
+      margin: 24
+      min_distance: 32           # Larger spacing for wider features
       min_corners: 150
-      quality_level: 0.015
-      min_distance: 12
-    algorithm:
-      window_size: 25
-      max_levels: 4
-    constraints:
-      prefer_lines: true
-      prefer_corners: true
+    tracking:
+      motion_model: "Affine"     # Better for rigid structures
+      correlation_min: 0.75
+      pattern_match: "KEYFRAME"
+      frames_limit: 0
+      weight: 1.0
+    clean:
+      frames: 8
+      error: 1.8
+
+  # Handheld camera (shaky footage)
+  handheld:
+    description: "Optimized for handheld camera motion"
+    detection:
+      method: "default"
+      threshold: 0.35
+      margin: 12
+      min_distance: 10
+      min_corners: 180
+    tracking:
+      motion_model: "Perspective"
+      correlation_min: 0.65
+      pattern_match: "PREV_FRAME"  # Better for erratic motion
+      frames_limit: 0
+      weight: 0.8
+    clean:
+      frames: 4
+      error: 2.5
+
+  # Aerial/drone footage
+  aerial:
+    description: "Optimized for aerial/drone footage"
+    detection:
+      method: "default"
+      threshold: 0.45
+      margin: 20
+      min_distance: 20
+      min_corners: 120
+    tracking:
+      motion_model: "Perspective"
+      correlation_min: 0.7
+      pattern_match: "KEYFRAME"
+      frames_limit: 0
+      weight: 1.0
+    clean:
+      frames: 6
+      error: 2.0
+
+  # Product photography (static camera, moving product)
+  product:
+    description: "Optimized for product turntable shots"
+    detection:
+      method: "default"
+      threshold: 0.4
+      margin: 32
+      min_distance: 16
+      min_corners: 80
+    tracking:
+      motion_model: "LocRotScale"
+      correlation_min: 0.75
+      pattern_match: "KEYFRAME"
+      frames_limit: 0
+      weight: 1.0
+    clean:
+      frames: 10
+      error: 1.5
+
+# Detection method descriptions
+detection_methods:
+  default:
+    description: "Blender's built-in corner detection"
+    parameters: ["threshold", "margin", "min_distance"]
+
+# Motion model descriptions
+motion_models:
+  LocRot:
+    description: "Location and rotation only"
+    dof: 6
+    use_case: "Simple camera motion"
+
+  LocRotScale:
+    description: "Location, rotation, and uniform scale"
+    dof: 7
+    use_case: "Zoom lenses"
+
+  Affine:
+    description: "Full affine transformation"
+    dof: 8
+    use_case: "Rigid objects, architectural"
+
+  Perspective:
+    description: "Full perspective transformation"
+    dof: 8
+    use_case: "General camera motion, most flexible"
+
+# Pattern matching modes
+pattern_match_modes:
+  KEYFRAME:
+    description: "Match against keyframe pattern"
+    use_case: "Stable tracking, less drift"
+
+  PREV_FRAME:
+    description: "Match against previous frame"
+    use_case: "Fast motion, rolling shutter"
