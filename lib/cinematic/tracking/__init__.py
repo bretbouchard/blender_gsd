@@ -80,6 +80,15 @@ from .import_export import (
     fov_to_focal_length,
     import_nuke_chan,
     import_tracking_data,
+    # Phase 7.3: Import Parsers
+    ColladaParser,
+    C3DParser,
+    # Phase 7.3: Export Helpers
+    TDEExportHelper,
+    SynthEyesExportHelper,
+    TrackingImporter,
+    TrackingExporter,
+    ImportedCamera,
 )
 
 from .session_manager import TrackingSessionManager
@@ -245,6 +254,14 @@ __all__ = [
     "fov_to_focal_length",
     "import_nuke_chan",
     "import_tracking_data",
+    # Phase 7.3: Import/Export
+    "ColladaParser",
+    "C3DParser",
+    "TDEExportHelper",
+    "SynthEyesExportHelper",
+    "TrackingImporter",
+    "TrackingExporter",
+    "ImportedCamera",
     # Session Management
     "TrackingSessionManager",
     # Object Trackers
@@ -351,4 +368,4 @@ __all__ = [
     "BLENDER_AVAILABLE",
 ]
 
-__version__ = "0.3.0"
+__version__ = "1.1.0"
