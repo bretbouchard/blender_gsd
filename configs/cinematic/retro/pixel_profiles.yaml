@@ -1,0 +1,459 @@
+# Pixel Art Conversion Profiles
+#
+# Pre-configured profiles for various retro console styles.
+# Each profile defines pixel style, target resolution, and processing options.
+#
+# Usage:
+#   from lib.retro.preset_loader import load_pixel_profile
+#   config = load_pixel_profile("snes")
+
+profiles:
+  # ==========================================================================
+  # Modern Pixel Art
+  # ==========================================================================
+
+  modern_pixel:
+    description: "Modern pixel art style with high color count"
+    style:
+      mode: "stylized"
+      pixel_size: 4
+      color_limit: 256
+      preserve_edges: true
+      posterize_levels: 8
+    scaling_filter: "nearest"
+    edge_detection: false
+    output_scale: 1
+
+  indie_game:
+    description: "Indie game pixel art (128x128 base)"
+    style:
+      mode: "32bit"
+      pixel_size: 4
+      color_limit: 256
+      preserve_edges: true
+    target_resolution: [128, 128]
+    scaling_filter: "nearest"
+    output_scale: 2
+
+  # ==========================================================================
+  # 16-bit Era (SNES, Genesis)
+  # ==========================================================================
+
+  snes:
+    description: "Super Nintendo style (256x224, 256 colors)"
+    style:
+      mode: "16bit"
+      pixel_size: 2
+      color_limit: 256
+      preserve_edges: true
+    target_resolution: [256, 224]
+    scaling_filter: "nearest"
+    output_scale: 1
+
+  genesis:
+    description: "Sega Genesis/Mega Drive style (320x224, 512 colors)"
+    style:
+      mode: "16bit"
+      pixel_size: 2
+      color_limit: 512
+      preserve_edges: true
+    target_resolution: [320, 224]
+    scaling_filter: "nearest"
+    output_scale: 1
+
+  snes_hi_res:
+    description: "SNES hi-res mode (512x448)"
+    style:
+      mode: "16bit"
+      pixel_size: 1
+      color_limit: 256
+      preserve_edges: true
+    target_resolution: [512, 448]
+    scaling_filter: "nearest"
+    output_scale: 1
+
+  # ==========================================================================
+  # 8-bit Era (NES, Master System)
+  # ==========================================================================
+
+  nes:
+    description: "Nintendo Entertainment System (256x240, 54 colors)"
+    style:
+      mode: "8bit"
+      pixel_size: 2
+      color_limit: 54
+      preserve_edges: true
+      posterize_levels: 4
+    target_resolution: [256, 240]
+    scaling_filter: "nearest"
+    output_scale: 1
+
+  master_system:
+    description: "Sega Master System (256x192, 64 colors)"
+    style:
+      mode: "8bit"
+      pixel_size: 2
+      color_limit: 64
+      preserve_edges: true
+    target_resolution: [256, 192]
+    scaling_filter: "nearest"
+    output_scale: 1
+
+  gameboy:
+    description: "Original Game Boy (160x144, 4 colors)"
+    style:
+      mode: "4bit"
+      pixel_size: 3
+      color_limit: 4
+      preserve_edges: true
+    target_resolution: [160, 144]
+    scaling_filter: "nearest"
+    output_scale: 2
+    palette_name: "gameboy"
+
+  gameboy_color:
+    description: "Game Boy Color (160x144, 56 colors)"
+    style:
+      mode: "8bit"
+      pixel_size: 2
+      color_limit: 56
+      preserve_edges: true
+    target_resolution: [160, 144]
+    scaling_filter: "nearest"
+    output_scale: 2
+
+  # ==========================================================================
+  # Early Home Computers
+  # ==========================================================================
+
+  c64:
+    description: "Commodore 64 (320x200, 16 colors)"
+    style:
+      mode: "8bit"
+      pixel_size: 2
+      color_limit: 16
+      preserve_edges: true
+    target_resolution: [320, 200]
+    scaling_filter: "nearest"
+    output_scale: 1
+    palette_name: "c64"
+
+  cga:
+    description: "IBM CGA (320x200, 4 colors)"
+    style:
+      mode: "2bit"
+      pixel_size: 2
+      color_limit: 4
+      preserve_edges: true
+    target_resolution: [320, 200]
+    scaling_filter: "nearest"
+    output_scale: 1
+    palette_name: "cga"
+
+  ega:
+    description: "IBM EGA (320x200, 16 colors)"
+    style:
+      mode: "4bit"
+      pixel_size: 2
+      color_limit: 16
+      preserve_edges: true
+    target_resolution: [320, 200]
+    scaling_filter: "nearest"
+    output_scale: 1
+    palette_name: "ega"
+
+  mac_plus:
+    description: "Macintosh Plus (512x342, black and white)"
+    style:
+      mode: "1bit"
+      pixel_size: 1
+      color_limit: 2
+      preserve_edges: false
+      dither_mode: "ordered"
+    target_resolution: [512, 342]
+    scaling_filter: "nearest"
+    output_scale: 1
+
+  amstrad_cpc:
+    description: "Amstrad CPC (160x200, 27 colors)"
+    style:
+      mode: "8bit"
+      pixel_size: 2
+      color_limit: 27
+      preserve_edges: true
+    target_resolution: [160, 200]
+    scaling_filter: "nearest"
+    output_scale: 2
+
+  zx_spectrum:
+    description: "ZX Spectrum (256x192, 15 colors)"
+    style:
+      mode: "8bit"
+      pixel_size: 2
+      color_limit: 15
+      preserve_edges: true
+    target_resolution: [256, 192]
+    scaling_filter: "nearest"
+    output_scale: 1
+
+  # ==========================================================================
+  # Fantasy Consoles
+  # ==========================================================================
+
+  pico8:
+    description: "PICO-8 fantasy console (128x128, 16 colors)"
+    style:
+      mode: "8bit"
+      pixel_size: 4
+      color_limit: 16
+      preserve_edges: true
+    target_resolution: [128, 128]
+    scaling_filter: "nearest"
+    output_scale: 4
+    palette_name: "pico8"
+
+  tic80:
+    description: "TIC-80 fantasy computer (240x136, 16 colors)"
+    style:
+      mode: "8bit"
+      pixel_size: 2
+      color_limit: 16
+      preserve_edges: true
+    target_resolution: [240, 136]
+    scaling_filter: "nearest"
+    output_scale: 2
+
+  # ==========================================================================
+  # Arcade Systems
+  # ==========================================================================
+
+  arcade_1980s:
+    description: "Classic arcade (256x224, 256 colors)"
+    style:
+      mode: "8bit"
+      pixel_size: 2
+      color_limit: 256
+      preserve_edges: true
+    target_resolution: [256, 224]
+    scaling_filter: "nearest"
+    output_scale: 1
+
+  neogeo:
+    description: "Neo Geo MVS (320x224, 4096 colors)"
+    style:
+      mode: "16bit"
+      pixel_size: 2
+      color_limit: 4096
+      preserve_edges: true
+    target_resolution: [320, 224]
+    scaling_filter: "nearest"
+    output_scale: 1
+
+  # ==========================================================================
+  # Handheld Systems
+  # ==========================================================================
+
+  game_gear:
+    description: "Sega Game Gear (160x144, 4096 colors)"
+    style:
+      mode: "8bit"
+      pixel_size: 2
+      color_limit: 4096
+      preserve_edges: true
+    target_resolution: [160, 144]
+    scaling_filter: "nearest"
+    output_scale: 2
+
+  atari_lynx:
+    description: "Atari Lynx (160x102, 4096 colors)"
+    style:
+      mode: "8bit"
+      pixel_size: 2
+      color_limit: 4096
+      preserve_edges: true
+    target_resolution: [160, 102]
+    scaling_filter: "nearest"
+    output_scale: 2
+
+  # ==========================================================================
+  # Artistic Styles
+  # ==========================================================================
+
+  watercolor:
+    description: "Soft, watercolor-like pixel art"
+    style:
+      mode: "stylized"
+      pixel_size: 3
+      color_limit: 64
+      preserve_edges: false
+      posterize_levels: 16
+    scaling_filter: "bilinear"
+    edge_detection: false
+    output_scale: 1
+
+  poster:
+    description: "Bold, poster-style pixel art"
+    style:
+      mode: "stylized"
+      pixel_size: 4
+      color_limit: 8
+      preserve_edges: true
+      posterize_levels: 2
+    scaling_filter: "nearest"
+    edge_detection: true
+    edge_enhancement: 0.3
+    output_scale: 1
+
+  crt_monitor:
+    description: "CRT monitor look with scanlines"
+    style:
+      mode: "16bit"
+      pixel_size: 2
+      color_limit: 256
+      preserve_edges: true
+      sub_pixel_layout: "rgb"
+    scaling_filter: "nearest"
+    output_scale: 2
+
+  lcd_handheld:
+    description: "Early LCD handheld look"
+    style:
+      mode: "2bit"
+      pixel_size: 3
+      color_limit: 4
+      preserve_edges: false
+      dither_mode: "atkinson"
+    scaling_filter: "nearest"
+    output_scale: 2
+
+
+# =============================================================================
+# Resolution Presets
+# =============================================================================
+
+resolutions:
+  square_128: [128, 128]
+  square_256: [256, 256]
+  square_512: [512, 512]
+  nes: [256, 240]
+  snes: [256, 224]
+  genesis: [320, 224]
+  gameboy: [160, 144]
+  pico8: [128, 128]
+  mac_plus: [512, 342]
+  c64: [320, 200]
+  vga: [640, 480]
+  hd: [1280, 720]
+  full_hd: [1920, 1080]
+
+
+# =============================================================================
+# Palette Presets
+# =============================================================================
+
+palettes:
+  gameboy:
+    name: "Game Boy"
+    source: "Nintendo Game Boy"
+    colors:
+      - [15, 56, 15]
+      - [48, 98, 48]
+      - [139, 172, 15]
+      - [155, 188, 15]
+
+  pico8:
+    name: "PICO-8"
+    source: "Lexaloffle PICO-8"
+    colors:
+      - [0, 0, 0]
+      - [29, 43, 83]
+      - [126, 37, 83]
+      - [0, 135, 81]
+      - [171, 82, 54]
+      - [95, 87, 79]
+      - [194, 195, 199]
+      - [255, 241, 232]
+      - [255, 0, 77]
+      - [255, 163, 0]
+      - [255, 236, 39]
+      - [0, 228, 54]
+      - [41, 173, 255]
+      - [131, 118, 156]
+      - [255, 119, 168]
+      - [255, 204, 170]
+
+  cga:
+    name: "CGA"
+    source: "IBM CGA"
+    colors:
+      - [0, 0, 0]
+      - [0, 170, 170]
+      - [170, 0, 170]
+      - [170, 170, 170]
+
+  ega:
+    name: "EGA"
+    source: "IBM EGA"
+    colors:
+      - [0, 0, 0]
+      - [0, 0, 170]
+      - [0, 170, 0]
+      - [0, 170, 170]
+      - [170, 0, 0]
+      - [170, 0, 170]
+      - [170, 85, 0]
+      - [170, 170, 170]
+      - [85, 85, 85]
+      - [85, 85, 255]
+      - [85, 255, 85]
+      - [85, 255, 255]
+      - [255, 85, 85]
+      - [255, 85, 255]
+      - [255, 255, 85]
+      - [255, 255, 255]
+
+  mac_plus:
+    name: "Mac Plus"
+    source: "Apple Macintosh Plus"
+    colors:
+      - [0, 0, 0]
+      - [255, 255, 255]
+
+  c64:
+    name: "Commodore 64"
+    source: "Commodore 64"
+    colors:
+      - [0, 0, 0]
+      - [255, 255, 255]
+      - [136, 57, 50]
+      - [103, 182, 189]
+      - [139, 63, 150]
+      - [85, 160, 73]
+      - [64, 49, 141]
+      - [191, 206, 114]
+      - [139, 84, 41]
+      - [87, 66, 0]
+      - [184, 105, 98]
+      - [80, 80, 80]
+      - [120, 120, 120]
+      - [148, 224, 137]
+      - [120, 105, 196]
+      - [159, 159, 159]
+
+  grayscale_4:
+    name: "4-Level Grayscale"
+    source: "Generic"
+    colors:
+      - [0, 0, 0]
+      - [85, 85, 85]
+      - [170, 170, 170]
+      - [255, 255, 255]
+
+  sepia_4:
+    name: "4-Level Sepia"
+    source: "Generic"
+    colors:
+      - [40, 25, 15]
+      - [110, 80, 50]
+      - [180, 140, 90]
+      - [250, 210, 160]
