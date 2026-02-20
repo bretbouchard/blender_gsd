@@ -2,39 +2,38 @@
 
 ## Current Position
 
-**Phase:** 13.2 Dither Engine
-**Status:** Phase 13.2 (Dither Engine) complete - 197 tests passing
-**Last activity:** 2026-02-20 - Completed Phase 13.2 Dither Engine
+**Phase:** 13.3 Isometric & Side-Scroller
+**Status:** Phase 13.3 (Isometric & Side-Scroller) complete - 234 tests passing
+**Last activity:** 2026-02-20 - Completed Phase 13.3 Isometric & Side-Scroller
 
-**Progress:** [██████████] 100% (Phase 13.2 Dither Engine COMPLETE)
+**Progress:** [██████████] 100% (Phase 13.3 Isometric & Side-Scroller COMPLETE)
 
 **Version:** 0.7.0
 
-**Note:** Phase 13.2 adds professional dithering with 15+ modes (Bayer, error diffusion, patterns), 50+ presets.
-**Phase 13.1:** Pixel Converter complete with 8 style modes, 3 quantization algorithms, 20+ console presets.
-**Phase 13.0:** Rigging Foundation complete with 5 rig presets, bone utilities, weight painting.
-**Phase 12.1:** Compositor complete with blend modes, color correction, cryptomatte.
-**Phase 12.0:** 1-Sheet Generator complete with HTML/PDF export.
-**Phase 11.1:** Timeline/Editorial System complete with EDL/FCPXML/OTIO support.
-**Phase 11.0:** Production Tracking Dashboard complete with TypeScript/Vite UI.
-**Phase 10.1:** Wardrobe System complete with costume tracking, continuity validation.
+**Note:** Phase 13.3 adds isometric/side-scroller cameras, sprite sheet generation (4 formats), and tile system with autotile.
+**Phase 13.2:** Dither Engine with 15+ modes (Bayer, error diffusion, patterns), 50+ presets.
+**Phase 13.1:** Pixel Converter with 8 style modes, 3 quantization algorithms, 20+ console presets.
+**Phase 13.0:** Rigging Foundation with 5 rig presets, bone utilities, weight painting.
+**Phase 12.1:** Compositor with blend modes, color correction, cryptomatte.
+**Phase 12.0:** 1-Sheet Generator with HTML/PDF export.
 
-## Phase 13.2 Planning Summary
+## Phase 13.3 Planning Summary
 
-### 13.2-dither-engine (Complete)
+### 13.3-isometric-side-scroller (Complete)
 
 | Plan | Name | Status | Summary |
 |------|------|--------|---------|
-| 13.2-01 | Dither Engine | Complete | 13.2-01-SUMMARY.md |
+| 13.3-01 | Isometric & Side-Scroller | Complete | 13.3-01-SUMMARY.md |
 
 **Delivered:**
-- dither_types.py - DitherConfig, DitherMatrix, DitherMode, DitherColorSpace enums
-- dither_ordered.py - Bayer matrices (2x2, 4x4, 8x8), checkerboard, halftone, blue noise
-- dither_error.py - Floyd-Steinberg, Atkinson, Sierra, Jarvis-Judice-Ninke, Stucki, Burkes
-- dither_patterns.py - Pattern dithering, stipple, woodcut, custom patterns
-- dither.py - Main dither() function with unified interface
-- dither_presets.yaml - 50+ presets (macintosh_1bit, snes, newspaper, etc.)
-- 47 unit tests (197 total retro module tests)
+- isometric_types.py - IsometricConfig, SideScrollerConfig, SpriteSheetConfig, TileConfig, 4 enums
+- isometric.py - Isometric camera, projection math, depth sorting, grid, rendering
+- side_scroller.py - Side-scroller camera, parallax layers, animation, depth assignment
+- sprites.py - Sprite sheet generation, trimming, metadata, 4 format exporters
+- tiles.py - Tile sets, tile maps, autotile, collision maps, transforms
+- view_preset_loader.py - YAML preset loader with caching
+- view_presets.yaml - 35 presets (9 isometric, 8 side-scroller, 10 sprite, 8 tile)
+- 234 unit tests
 
 ## Phase 13.1 Planning Summary
 
@@ -452,7 +451,7 @@
 
 ## Retro Pixel Art System Module Summary
 
-**lib/retro/** (11 modules, ~4,600 lines):
+**lib/retro/** (17 modules, ~7,500 lines):
 - pixel_types.py (480 lines) - PixelStyle, PixelationConfig, PixelationResult, ColorPalette, 6 enums
 - pixelator.py (680 lines) - Main pixelation engine with 8 mode functions, dithering
 - quantizer.py (580 lines) - Median cut, K-means, Octree quantization algorithms
@@ -463,16 +462,18 @@
 - dither_error.py (530 lines) - Error diffusion (Floyd-Steinberg, Atkinson, Sierra, JJN)
 - dither_patterns.py (440 lines) - Pattern-based dithering, stipple, woodcut
 - dither.py (380 lines) - Main dither() function with unified interface
-- __init__.py (450 lines) - Package exports (150+ exports)
+- isometric_types.py (820 lines) - IsometricConfig, SideScrollerConfig, SpriteSheetConfig, TileConfig, 4 enums
+- isometric.py (525 lines) - Isometric camera, projection, depth sorting, grid
+- side_scroller.py (470 lines) - Parallax layers, animation, depth assignment
+- sprites.py (540 lines) - Sprite sheet generation, trimming, 4 format exporters
+- tiles.py (580 lines) - Tile sets, maps, autotile, collision, transforms
+- view_preset_loader.py (280 lines) - YAML preset loader with caching
+- __init__.py (850 lines) - Package exports (250+ exports)
 
-**configs/cinematic/retro/pixel_profiles.yaml**
-- 20+ console presets (snes, nes, gameboy, pico8, genesis, etc.)
-- 7 built-in palettes (Game Boy, PICO-8, CGA, EGA, Mac Plus, C64, grayscale/sepia)
-- 14 resolution presets (nes, snes, gameboy, hd, etc.)
-
-**configs/cinematic/retro/dither_presets.yaml**
-- 50+ dither presets (macintosh_1bit, snes_gradient, newspaper, etc.)
-- Classic computer, print media, modern/artistic presets
+**configs/cinematic/retro/**
+- pixel_profiles.yaml - 20+ console presets, 7 palettes, 14 resolutions
+- dither_presets.yaml - 50+ dither presets
+- view_presets.yaml - 35 view presets (9 isometric, 8 side-scroller, 10 sprite, 8 tile)
 
 **Built-in Palettes:**
 - Game Boy (4 colors) - Original green monochrome
@@ -482,9 +483,15 @@
 - EGA (16 colors) - IBM EGA
 - Mac Plus (2 colors) - Black and white
 
-**Total exports:** 150+
-**Total tests:** 197
-**Version:** 0.1.0
+**Isometric Angles:**
+- true_isometric, pixel, pixel_perfect, military, dimetric, blizzard, fallout
+
+**Sprite Formats:**
+- Phaser, Unity, Godot, Generic JSON
+
+**Total exports:** 250+
+**Total tests:** 431 (197 dither + 234 isometric)
+**Version:** 0.2.0
 
 ## Decisions
 
@@ -788,3 +795,10 @@ cd tracking-ui && npm run dev   # Start dev server
 
 **Total:** 4 modules, 15+ exports, ~2,300 lines
 **Next:** Phase 07.5 (Advanced Features) - batch processing, object tracking, scan import, mocap
+| 2026-02-20 | 13.3-01 | 2:1 pixel ratio as default | Most common for games (SimCity, Diablo, etc.) |
+| 2026-02-20 | 13.3-01 | PIL for sprite sheet generation | Cross-platform, no Blender dependency |
+| 2026-02-20 | 13.3-01 | 4 export formats | Cover major game engines (Phaser, Unity, Godot) |
+| 2026-02-20 | 13.3-01 | 16-tile autotile template | Standard blob tile approach |
+| 2026-02-20 | 13.3-01 | YAML presets for all configs | Human-readable, easy to extend |
+| 2026-02-20 | 13.3-01 | Version bump to 0.2.0 | Isometric & Side-Scroller system complete |
+
