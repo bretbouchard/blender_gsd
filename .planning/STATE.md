@@ -2,15 +2,16 @@
 
 ## Current Position
 
-**Phase:** 7.1 Object Tracking
-**Status:** Phase 7.1 (Object Tracking) complete - 38 tests passing
-**Last activity:** 2026-02-20 - Completed Phase 7.1 Object Tracking
+**Phase:** 8.1 Script Parser
+**Status:** Phase 8.1 (Script Parser) complete - 58 tests passing
+**Last activity:** 2026-02-20 - Completed Phase 8.1 Script Parser
 
-**Progress:** [██████████] 100% (Phase 7.1 Object Tracking COMPLETE)
+**Progress:** [██████████] 100% (Phase 8.1 Script Parser COMPLETE)
 
-**Version:** 0.4.0
+**Version:** 0.5.0
 
-**Note:** Phase 7.1 adds object tracking with markers, motion solving, follow-focus automation, and multi-format export.
+**Note:** Phase 8.1 adds screenplay parsing with Fountain and Final Draft format support, beat sheet generation, and comprehensive script analysis.
+**Phase 7.1:** Object Tracking complete with markers, motion solving, follow-focus automation.
 **Phase 6.4:** Lighting System complete with rigs, gels, HDRI, and light linking.
 **Phase 6.3:** Follow Camera System complete with 5 modes (tight, loose, anticipatory, elastic, orbit).
 **Phase 11.0:** Production Tracking Dashboard complete with TypeScript/Vite UI.
@@ -18,6 +19,23 @@
 **Phase 12.0:** 1-Sheet Generator complete with HTML/PDF export.
 **Phase 12.1:** Compositor complete with blend modes, color correction, cryptomatte.
 **Phase 13.0:** Rigging Foundation complete with 5 rig presets, bone utilities, weight painting.
+
+## Phase 8.1 Planning Summary
+
+### 8.1-script-parser (Complete)
+
+| Plan | Name | Status | Summary |
+|------|------|--------|---------|
+| 8.1-01 | Script Parser | Complete | 8.1-01-SUMMARY.md |
+
+**Delivered:**
+- script_types.py - Script, Scene, Character, Location, ActionBlock, DialogueLine, Transition, Beat, BeatSheet, ScriptAnalysis
+- fountain_parser.py - Fountain format parsing with title page, scenes, dialogue, transitions
+- fdx_parser.py - Final Draft XML parsing
+- beat_generator.py - Save the Cat, Three-Act, Story Circle, Hero's Journey, Sequel Method structures
+- script_analysis.py - Comprehensive analysis with recommendations, character network, location schedule
+- beat_structures.yaml - Configuration for 5 beat structure templates
+- 58 unit tests
 
 ## Phase 7.1 Planning Summary
 
@@ -435,6 +453,11 @@
 | 2026-02-20 | 7.1-01 | Kinematic prediction formula | p_future = p_current + v*t + 0.5*a*t^2 for smooth following |
 | 2026-02-20 | 7.1-01 | Multi-format export | JSON/AE/Nuke/Blender for post-production integration |
 | 2026-02-20 | 7.1-01 | Central difference for velocity | More accurate than forward/backward for interior frames |
+| 2026-02-20 | 8.1-01 | Standard library only for parsers | No external dependencies for Fountain/FDX parsing |
+| 2026-02-20 | 8.1-01 | 1 page = 1 minute for runtime | Industry standard rule of thumb for screenplay timing |
+| 2026-02-20 | 8.1-01 | 55 lines per page estimate | Standard screenplay format convention |
+| 2026-02-20 | 8.1-01 | 5 beat structure templates | Save the Cat, Three-Act, Story Circle, Hero's Journey, Sequel Method |
+| 2026-02-20 | 8.1-01 | Version bump to 0.5.0 | Script Parser module complete |
 
 ## Concerns
 
@@ -443,7 +466,7 @@ None currently.
 ## Session Continuity
 
 **Last session:** 2026-02-20
-**Stopped at:** Completed Phase 7.1 Object Tracking
+**Stopped at:** Completed Phase 8.1 Script Parser
 **Resume file:** None - Phase complete
 **Next phase:** Review requirements for next steps
 
