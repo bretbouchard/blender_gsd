@@ -2,21 +2,37 @@
 
 ## Current Position
 
-**Phase:** 6.4 Lighting System
-**Status:** Phase 6.4 (Lighting System) complete - 143 tests passing
-**Last activity:** 2026-02-20 - Completed Phase 6.4 Lighting System
+**Phase:** 7.1 Object Tracking
+**Status:** Phase 7.1 (Object Tracking) complete - 38 tests passing
+**Last activity:** 2026-02-20 - Completed Phase 7.1 Object Tracking
 
-**Progress:** [██████████] 100% (Phase 6.4 Lighting System COMPLETE)
+**Progress:** [██████████] 100% (Phase 7.1 Object Tracking COMPLETE)
 
 **Version:** 0.4.0
 
-**Note:** Phase 6.4 adds comprehensive lighting system with rigs, gels, HDRI, and light linking.
+**Note:** Phase 7.1 adds object tracking with markers, motion solving, follow-focus automation, and multi-format export.
+**Phase 6.4:** Lighting System complete with rigs, gels, HDRI, and light linking.
 **Phase 6.3:** Follow Camera System complete with 5 modes (tight, loose, anticipatory, elastic, orbit).
 **Phase 11.0:** Production Tracking Dashboard complete with TypeScript/Vite UI.
 **Phase 11.1:** Timeline/Editorial System complete with EDL/FCPXML/OTIO support.
 **Phase 12.0:** 1-Sheet Generator complete with HTML/PDF export.
 **Phase 12.1:** Compositor complete with blend modes, color correction, cryptomatte.
 **Phase 13.0:** Rigging Foundation complete with 5 rig presets, bone utilities, weight painting.
+
+## Phase 7.1 Planning Summary
+
+### 7.1-object-tracking (Complete)
+
+| Plan | Name | Status | Summary |
+|------|------|--------|---------|
+| 7.1-01 | Object Tracking | Complete | 7.1-01-SUMMARY.md |
+
+**Delivered:**
+- tracking_types.py - TrackingMarker, TrackingData, TrackingConfig, FollowFocusRig, TrackingExportResult
+- tracking_solver.py - Position solving, velocity/acceleration, interpolation, prediction, smoothing
+- follow_focus.py - Distance calculation, rig creation, focus animation
+- tracking_export.py - JSON, After Effects (JSX), Nuke (.chan), Blender empties export
+- 38 unit tests
 
 ## Phase 6.4 Planning Summary
 
@@ -416,6 +432,9 @@
 | 2026-02-20 | 6.3-01 | Exponential decay smoothing | Natural camera movement feel |
 | 2026-02-20 | 6.3-01 | Spring physics for elastic mode | Physically-based settling behavior with Hooke's law |
 | 2026-02-20 | 6.3-01 | Dynamic dead zones | Adapts to target speed for stable framing |
+| 2026-02-20 | 7.1-01 | Kinematic prediction formula | p_future = p_current + v*t + 0.5*a*t^2 for smooth following |
+| 2026-02-20 | 7.1-01 | Multi-format export | JSON/AE/Nuke/Blender for post-production integration |
+| 2026-02-20 | 7.1-01 | Central difference for velocity | More accurate than forward/backward for interior frames |
 
 ## Concerns
 
@@ -424,9 +443,9 @@ None currently.
 ## Session Continuity
 
 **Last session:** 2026-02-20
-**Stopped at:** Completed Phase 6.3 Follow Camera System
+**Stopped at:** Completed Phase 7.1 Object Tracking
 **Resume file:** None - Phase complete
-**Next phase:** Phase 6.4 or review requirements for next steps
+**Next phase:** Review requirements for next steps
 
 ## Milestone Summary
 
