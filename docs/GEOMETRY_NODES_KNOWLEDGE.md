@@ -1,6 +1,6 @@
 # Blender 5.x Geometry Nodes Knowledge Base
 
-Compiled from 8 CGMatter tutorials covering advanced Geometry Nodes techniques.
+Compiled from 13 CGMatter tutorials covering advanced Geometry Nodes techniques.
 
 ---
 
@@ -15,6 +15,11 @@ Compiled from 8 CGMatter tutorials covering advanced Geometry Nodes techniques.
 7. [Curl Noise Particles](#7-curl-noise-particles)
 8. [Set Extension](#8-set-extension)
 9. [Blender 5.1 New Features](#9-blender-51-new-features)
+10. [Infinite Background Studio](#10-infinite-background-studio)
+11. [Volumetric Rendering](#11-volumetric-rendering)
+12. [Volume Nodes Beginner Guide](#12-volume-nodes-beginner-guide)
+13. [Building Folding Effect](#13-building-folding-effect)
+14. [Curl Effect Particles Advanced](#14-curl-effect-particles-advanced)
 
 ---
 
@@ -348,6 +353,296 @@ Shows evaluation, sync, and total times (CPU/GPU breakdown)
 
 ---
 
+## 10. Infinite Background Studio
+
+**Use Case:** Seamless studio lighting backgrounds with soft shadow falloff
+
+### Core Concept
+Create an infinite curved backdrop (photo sweep) that eliminates visible edges and produces soft shadow transitions.
+
+### Single Sweep Setup
+
+```
+Plane Mesh
+    → Tab to Edit Mode
+    → Select edge
+    → E + Z (extrude up)
+    → Right-click → Bevel Edges
+    → Increase segments (10-15 for smoothness)
+    → Tab to Object Mode
+    → Right-click → Shade Smooth
+```
+
+### Corner Sweep (Two-Wall)
+
+```
+Plane Mesh
+    → Edit Mode
+    → Select vertex
+    → Right-click → Bevel Vertices
+    → Set segments (10)
+    → Edge Mode (press 2)
+    → Select edges (Ctrl+click for path)
+    → E + Z (extrude up)
+    → Right-click → Bevel Edges
+    → Shade Smooth
+```
+
+### Studio Lighting Setup
+
+| Parameter | Recommendation |
+|-----------|----------------|
+| Object distance | Far from backdrop |
+| Light power | High (3000-5000W) |
+| Light distance | Far from subject |
+| Light size | Large for soft shadows |
+
+### Key Shortcuts
+- `G` + `Shift+Z` — Move on X/Y plane (keep on floor)
+- `G` + `Z` — Move on Z axis only
+- `S` — Scale
+- `Ctrl+B` — Bevel edges
+
+### Render Engine Notes
+- **Cycles**: Natural soft falloff
+- **Eevee**: Requires increased light size and power
+
+---
+
+## 11. Volumetric Rendering
+
+**Use Case:** Fog, smoke, god rays, atmospheric effects
+
+### Core Shader Nodes
+
+| Node | Purpose | Key Settings |
+|------|---------|--------------|
+| **Volume Scatter** | Light bouncing in volume | Density, Anisotropy |
+| **Volume Absorption** | Light absorbed in volume | Density, Color |
+| **Volume Emission** | Glowing volumes | Color, Strength |
+
+### Density Guidelines
+
+| Effect | Typical Density |
+|--------|-----------------|
+| Thin fog | 0.1 - 0.5 |
+| Thick fog | 1.0 - 5.0 |
+| Clouds | 5.0 - 50.0 |
+| Smoke | 10.0 - 100.0 |
+
+### Anisotropy
+- **-1**: Backscatter (light reflects back)
+- **0**: Isotropic (even distribution)
+- **+1**: Forward scatter (light passes through)
+
+### Performance Optimization
+
+**Compositor Method (Faster):**
+```
+World Output
+    → Separate volume pass via View Layers
+    → Compositor:
+        - Volume pass → Blur/Dof
+        - Composite back
+```
+
+### VDB Import
+```
+File → Import → OpenVDB
+    → Volume material with scatter/absorption
+    → Adjust density multiplier
+```
+
+### God Rays Effect
+```
+Spot Light → Volume Scatter in world
+    → High density near light
+    → Anisotropy 0.5+ for forward scatter
+```
+
+---
+
+## 12. Volume Nodes Beginner Guide
+
+**Video:** Mastering Blender 5.0 Volume Nodes
+
+### What is a Volume?
+- **Volume**: Container holding multiple grids
+- **Grid**: Voxel data (density, SDF, temperature, velocity)
+- **Voxel**: 3D pixel with one or more values
+
+### Grid Types
+
+| Type | Description | Background Value |
+|------|-------------|------------------|
+| **Density** | How "thick" the medium | 0 (empty) |
+| **SDF** (Signed Distance Field) | Distance to surface | Negative outside, positive inside |
+| **Velocity** | Motion vectors | (0,0,0) |
+| **Temperature** | Heat for fire/combustion | 0 |
+
+### Essential Node Workflow
+
+```
+1. Create Grid
+   Volume Cube / Points to SDF / Mesh to SDF
+
+2. Process Grid
+   Voxel Grid (cleanup)
+   Grid Dilate/Erode (morphology)
+   Grid Blur (smoothing)
+
+3. Sample/Extract
+   Sample Grid (get value at position)
+   Grid to Mesh (SDF → polygon)
+   Store Named Grid (for shaders)
+```
+
+### Common Grid Names for Shaders
+- `density` — Standard density for Volume Scatter
+- `color` — RGB grid for colored smoke
+- `velocity` — Motion blur
+- `temperature` — Fire emission
+- `flame` — Combustion intensity
+
+### SDF Tips
+- **Inside**: Positive distance values
+- **Outside**: Negative distance values (or vice versa depending on convention)
+- **Surface**: Where distance = 0
+- **Use Set Grid Background** to set the empty space value
+
+### Converting Between Types
+```
+Points → Points to SDF → Grid
+Mesh → Mesh to SDF → Grid
+Grid → Grid to Mesh → Polygon mesh
+```
+
+---
+
+## 13. Building Folding Effect
+
+**Inspired by:** Doctor Strange (2016) city folding effect
+
+### Core Concept
+Clip geometry using shader-based alpha masking, creating wedge-shaped visibility zones that animate.
+
+### Geometry Nodes Setup
+
+```
+Mesh Circle (4 vertices for square pattern)
+    → Instance on Points (cube/house)
+    → Transform Geometry (90° rotation)
+    → Store Named Attribute: "number" (vertex count)
+    → Transform Geometry (animation rotation)
+        → Time (Scene Time) → Combine XYZ → Rotation X
+```
+
+### Shader Alpha Calculation
+
+**Mathematical Principle:**
+```
+alpha = 2π / number_of_instances
+half_alpha = alpha / 2
+
+For each slice:
+    angle = half_alpha - π/2  (for left edge)
+    angle = -(half_alpha - π/2)  (for right edge)
+```
+
+### Node Setup
+
+```
+Texture Coordinate (Object)
+    → Separate XYZ
+    → Z output → Mask (Greater Than 0)
+
+    → Separate XYZ (rotated)
+        → Math: π / number
+        → Math: ÷ 2
+        → Math: - π/2
+        → Vector Rotate (Y axis)
+        → Separate XYZ → Z → Mask 1
+
+        → (Copy, multiply by -1)
+        → Vector Rotate (Y axis)
+        → Separate XYZ → Z → Mask 2
+
+    → Multiply (Mask 1 × Mask 2)
+    → Multiply with Z mask
+    → Output to Alpha (BSDF)
+```
+
+### Material Settings
+- **Material Output**: Connect to Alpha socket
+- **Blend Mode**: Alpha Blend (for Eevee)
+- **Shadow Mode**: Alpha Hashed
+
+### Animation
+- Use **Scene Time → Seconds** for rotation
+- Connect to Transform Geometry rotation
+
+### Tips
+- Decrease mask threshold for sharper edges
+- Apply same material to all instances
+- Clear parent relationships on imported models (Alt+P)
+
+---
+
+## 14. Curl Effect Particles Advanced
+
+**Extended techniques for divergence-free particle motion**
+
+### Multi-Layer Curl System
+
+```
+Particle System 1: Large curl noise
+    →
+Particle System 2: Medium curl noise
+    →
+Particle System 3: Small curl noise (detail)
+```
+
+### Curl from Different Fields
+
+| Source Field | Effect |
+|--------------|--------|
+| Noise Texture | Organic swirling |
+| Wave Texture | Periodic whirlpools |
+| Voronoi Distance | Cell-like motion |
+| Sine waves | Regular spirals |
+| Gradient of density | Smoke-like flow |
+
+### 3D Curl Calculation
+
+```
+Full curl of vector field V:
+    Curl X = dVz/dY - dVy/dZ
+    Curl Y = dVx/dZ - dVz/dX
+    Curl Z = dVy/dX - dVx/dY
+```
+
+### Performance Tips
+- Use **Repeat Zone** for substeps (5-10 per frame)
+- Cache simulation for playback
+- Lower resolution for viewport, higher for render
+
+### Artistic Control
+```
+Speed → Multiply curl field
+Turbulence → Add direct noise (breaks divergence-free)
+Confinement → Amplify curl magnitude
+```
+
+### Combining with Other Forces
+```
+Position Update = Curl Field
+                + Gravity × mass
+                + Wind × drag
+                + Attraction to target
+```
+
+---
+
 ## Quick Reference: Common Patterns
 
 ### Instance Transform Extraction
@@ -394,4 +689,4 @@ Input → Simulation Zone
 
 ---
 
-*Compiled from CGMatter tutorials - February 2026*
+*Compiled from 13 CGMatter tutorials - February 2026*

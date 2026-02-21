@@ -1,0 +1,1792 @@
+WEBVTT
+Kind: captions
+Language: en
+
+00:00:05.239 --> 00:00:05.990 align:start position:0%
+ 
+[music]
+
+00:00:05.990 --> 00:00:06.000 align:start position:0%
+[music]
+ 
+
+00:00:06.000 --> 00:00:08.150 align:start position:0%
+[music]
+Hello,<00:00:06.400><c> welcome</c><00:00:06.720><c> my</c><00:00:06.960><c> friends.</c><00:00:07.520><c> Today</c><00:00:07.759><c> I</c><00:00:08.000><c> will</c>
+
+00:00:08.150 --> 00:00:08.160 align:start position:0%
+Hello, welcome my friends. Today I will
+ 
+
+00:00:08.160 --> 00:00:10.790 align:start position:0%
+Hello, welcome my friends. Today I will
+show<00:00:08.320><c> you</c><00:00:08.480><c> a</c><00:00:08.639><c> tutorial</c><00:00:09.120><c> about</c><00:00:10.080><c> cur</c><00:00:10.400><c> nodes</c><00:00:10.639><c> in</c>
+
+00:00:10.790 --> 00:00:10.800 align:start position:0%
+show you a tutorial about cur nodes in
+ 
+
+00:00:10.800 --> 00:00:14.310 align:start position:0%
+show you a tutorial about cur nodes in
+geome<00:00:11.440><c> geometry</c><00:00:11.920><c> nodes.</c><00:00:13.120><c> Uh</c><00:00:13.519><c> it's</c><00:00:13.759><c> a</c><00:00:14.000><c> small</c>
+
+00:00:14.310 --> 00:00:14.320 align:start position:0%
+geome geometry nodes. Uh it's a small
+ 
+
+00:00:14.320 --> 00:00:16.470 align:start position:0%
+geome geometry nodes. Uh it's a small
+node<00:00:14.719><c> in</c><00:00:15.040><c> the</c><00:00:15.280><c> volume</c><00:00:15.599><c> part</c><00:00:15.839><c> of</c><00:00:16.000><c> geometry</c>
+
+00:00:16.470 --> 00:00:16.480 align:start position:0%
+node in the volume part of geometry
+ 
+
+00:00:16.480 --> 00:00:18.710 align:start position:0%
+node in the volume part of geometry
+nodes<00:00:16.880><c> but</c><00:00:17.279><c> but</c><00:00:17.520><c> it's</c><00:00:17.760><c> very</c><00:00:18.080><c> interesting.</c><00:00:18.480><c> So</c>
+
+00:00:18.710 --> 00:00:18.720 align:start position:0%
+nodes but but it's very interesting. So
+ 
+
+00:00:18.720 --> 00:00:20.710 align:start position:0%
+nodes but but it's very interesting. So
+today<00:00:18.880><c> I</c><00:00:19.119><c> will</c><00:00:19.279><c> show</c><00:00:19.439><c> you</c><00:00:19.600><c> how</c><00:00:19.760><c> to</c><00:00:20.000><c> use</c><00:00:20.240><c> it</c><00:00:20.480><c> to</c>
+
+00:00:20.710 --> 00:00:20.720 align:start position:0%
+today I will show you how to use it to
+ 
+
+00:00:20.720 --> 00:00:24.230 align:start position:0%
+today I will show you how to use it to
+make<00:00:21.760><c> uh</c><00:00:21.920><c> this</c><00:00:22.480><c> abstract</c><00:00:23.359><c> particle</c><00:00:23.760><c> effects.</c>
+
+00:00:24.230 --> 00:00:24.240 align:start position:0%
+make uh this abstract particle effects.
+ 
+
+00:00:24.240 --> 00:00:26.790 align:start position:0%
+make uh this abstract particle effects.
+Uh<00:00:24.560><c> so</c><00:00:24.800><c> before</c><00:00:25.119><c> we</c><00:00:25.439><c> start</c><00:00:25.760><c> this</c><00:00:26.080><c> tutorial</c><00:00:26.560><c> you</c>
+
+00:00:26.790 --> 00:00:26.800 align:start position:0%
+Uh so before we start this tutorial you
+ 
+
+00:00:26.800 --> 00:00:30.470 align:start position:0%
+Uh so before we start this tutorial you
+can<00:00:26.960><c> see</c><00:00:27.119><c> I</c><00:00:27.359><c> use</c><00:00:27.599><c> CH</c><00:00:28.000><c> GPT</c><00:00:28.480><c> to</c><00:00:29.760><c> uh</c><00:00:29.920><c> show</c><00:00:30.000><c> you</c><00:00:30.240><c> what</c>
+
+00:00:30.470 --> 00:00:30.480 align:start position:0%
+can see I use CH GPT to uh show you what
+ 
+
+00:00:30.480 --> 00:00:33.030 align:start position:0%
+can see I use CH GPT to uh show you what
+is<00:00:30.720><c> curl.</c><00:00:31.359><c> Uh</c><00:00:31.760><c> it's</c><00:00:32.000><c> an</c><00:00:32.239><c> interesting</c><00:00:32.640><c> effect</c>
+
+00:00:33.030 --> 00:00:33.040 align:start position:0%
+is curl. Uh it's an interesting effect
+ 
+
+00:00:33.040 --> 00:00:36.069 align:start position:0%
+is curl. Uh it's an interesting effect
+and<00:00:33.440><c> it</c><00:00:33.680><c> will</c><00:00:34.000><c> create</c><00:00:35.200><c> uh</c><00:00:35.360><c> swirling</c><00:00:35.760><c> and</c>
+
+00:00:36.069 --> 00:00:36.079 align:start position:0%
+and it will create uh swirling and
+ 
+
+00:00:36.079 --> 00:00:39.430 align:start position:0%
+and it will create uh swirling and
+turbulence<00:00:36.719><c> motion.</c><00:00:37.680><c> Uh</c><00:00:38.000><c> it</c><00:00:38.320><c> can</c><00:00:38.480><c> be</c><00:00:38.640><c> based</c><00:00:38.960><c> on</c>
+
+00:00:39.430 --> 00:00:39.440 align:start position:0%
+turbulence motion. Uh it can be based on
+ 
+
+00:00:39.440 --> 00:00:42.069 align:start position:0%
+turbulence motion. Uh it can be based on
+velocity.<00:00:40.480><c> Uh</c><00:00:40.640><c> it</c><00:00:40.960><c> also</c><00:00:41.200><c> can</c><00:00:41.360><c> be</c><00:00:41.440><c> based</c><00:00:41.680><c> on</c>
+
+00:00:42.069 --> 00:00:42.079 align:start position:0%
+velocity. Uh it also can be based on
+ 
+
+00:00:42.079 --> 00:00:44.709 align:start position:0%
+velocity. Uh it also can be based on
+other<00:00:42.320><c> attribute.</c><00:00:43.440><c> You</c><00:00:43.680><c> just</c><00:00:43.920><c> input</c><00:00:44.480><c> one</c>
+
+00:00:44.709 --> 00:00:44.719 align:start position:0%
+other attribute. You just input one
+ 
+
+00:00:44.719 --> 00:00:46.790 align:start position:0%
+other attribute. You just input one
+attribute<00:00:45.200><c> and</c><00:00:45.440><c> you</c><00:00:45.600><c> will</c><00:00:45.760><c> get</c><00:00:46.000><c> get</c><00:00:46.239><c> a</c><00:00:46.480><c> cur</c>
+
+00:00:46.790 --> 00:00:46.800 align:start position:0%
+attribute and you will get get a cur
+ 
+
+00:00:46.800 --> 00:00:50.150 align:start position:0%
+attribute and you will get get a cur
+effect.<00:00:47.600><c> So</c><00:00:48.000><c> you</c><00:00:48.320><c> can</c><00:00:48.559><c> see</c><00:00:48.800><c> here</c><00:00:49.440><c> uh</c><00:00:49.520><c> this</c><00:00:49.760><c> is</c>
+
+00:00:50.150 --> 00:00:50.160 align:start position:0%
+effect. So you can see here uh this is
+ 
+
+00:00:50.160 --> 00:00:55.990 align:start position:0%
+effect. So you can see here uh this is
+what<00:00:50.399><c> I</c><00:00:50.640><c> did.</c><00:00:52.079><c> Uh</c><00:00:53.199><c> like</c><00:00:53.520><c> I</c><00:00:53.760><c> made</c><00:00:54.000><c> a</c><00:00:54.320><c> very</c><00:00:54.640><c> simple</c>
+
+00:00:55.990 --> 00:00:56.000 align:start position:0%
+what I did. Uh like I made a very simple
+ 
+
+00:00:56.000 --> 00:00:58.709 align:start position:0%
+what I did. Uh like I made a very simple
+uh<00:00:56.160><c> VDB</c><00:00:56.960><c> simulation</c><00:00:57.600><c> and</c><00:00:58.000><c> based</c><00:00:58.239><c> on</c><00:00:58.480><c> that</c>
+
+00:00:58.709 --> 00:00:58.719 align:start position:0%
+uh VDB simulation and based on that
+ 
+
+00:00:58.719 --> 00:01:03.110 align:start position:0%
+uh VDB simulation and based on that
+simulation<00:00:59.600><c> I</c><00:01:00.160><c> distribute</c><00:01:00.719><c> points</c><00:01:02.079><c> here</c><00:01:02.719><c> and</c>
+
+00:01:03.110 --> 00:01:03.120 align:start position:0%
+simulation I distribute points here and
+ 
+
+00:01:03.120 --> 00:01:05.830 align:start position:0%
+simulation I distribute points here and
+make<00:01:03.280><c> it</c><00:01:03.600><c> move</c><00:01:05.040><c> and</c><00:01:05.280><c> you</c><00:01:05.519><c> can</c><00:01:05.600><c> see</c><00:01:05.680><c> the</c>
+
+00:01:05.830 --> 00:01:05.840 align:start position:0%
+make it move and you can see the
+ 
+
+00:01:05.840 --> 00:01:08.390 align:start position:0%
+make it move and you can see the
+geometry<00:01:06.320><c> system</c><00:01:06.640><c> here.</c><00:01:06.960><c> It's</c><00:01:07.360><c> very</c><00:01:07.920><c> simple.</c>
+
+00:01:08.390 --> 00:01:08.400 align:start position:0%
+geometry system here. It's very simple.
+ 
+
+00:01:08.400 --> 00:01:10.710 align:start position:0%
+geometry system here. It's very simple.
+Uh<00:01:08.720><c> so</c><00:01:08.960><c> let's</c><00:01:09.200><c> begin</c><00:01:09.439><c> our</c><00:01:09.680><c> tutorial</c><00:01:10.080><c> today.</c><00:01:10.479><c> So</c>
+
+00:01:10.710 --> 00:01:10.720 align:start position:0%
+Uh so let's begin our tutorial today. So
+ 
+
+00:01:10.720 --> 00:01:15.350 align:start position:0%
+Uh so let's begin our tutorial today. So
+let's<00:01:10.880><c> go</c><00:01:11.040><c> to</c><00:01:11.520><c> uh</c><00:01:11.680><c> blend</c><00:01:12.320><c> 5.0</c><00:01:12.880><c> zero</c><00:01:14.240><c> and</c><00:01:14.880><c> uh</c><00:01:15.119><c> we</c>
+
+00:01:15.350 --> 00:01:15.360 align:start position:0%
+let's go to uh blend 5.0 zero and uh we
+ 
+
+00:01:15.360 --> 00:01:17.910 align:start position:0%
+let's go to uh blend 5.0 zero and uh we
+want<00:01:15.680><c> we</c><00:01:15.920><c> need</c><00:01:16.159><c> a</c><00:01:16.400><c> cube</c><00:01:16.720><c> and</c><00:01:16.960><c> this</c><00:01:17.200><c> cube</c><00:01:17.520><c> is</c>
+
+00:01:17.910 --> 00:01:17.920 align:start position:0%
+want we need a cube and this cube is
+ 
+
+00:01:17.920 --> 00:01:19.429 align:start position:0%
+want we need a cube and this cube is
+good.
+
+00:01:19.429 --> 00:01:19.439 align:start position:0%
+good.
+ 
+
+00:01:19.439 --> 00:01:22.310 align:start position:0%
+good.
+So<00:01:20.159><c> we</c><00:01:20.400><c> need</c><00:01:20.560><c> to</c><00:01:20.720><c> just</c><00:01:21.119><c> go</c><00:01:21.360><c> to</c><00:01:21.520><c> geometry</c><00:01:21.920><c> nodes</c>
+
+00:01:22.310 --> 00:01:22.320 align:start position:0%
+So we need to just go to geometry nodes
+ 
+
+00:01:22.320 --> 00:01:25.590 align:start position:0%
+So we need to just go to geometry nodes
+here
+
+00:01:25.590 --> 00:01:25.600 align:start position:0%
+ 
+ 
+
+00:01:25.600 --> 00:01:28.310 align:start position:0%
+ 
+and<00:01:26.000><c> press</c><00:01:26.320><c> new.</c><00:01:27.040><c> Before</c><00:01:27.360><c> we</c><00:01:27.600><c> do</c><00:01:27.759><c> that,</c><00:01:28.080><c> we</c>
+
+00:01:28.310 --> 00:01:28.320 align:start position:0%
+and press new. Before we do that, we
+ 
+
+00:01:28.320 --> 00:01:32.230 align:start position:0%
+and press new. Before we do that, we
+need<00:01:28.479><c> a</c><00:01:29.680><c> uh</c><00:01:29.759><c> we</c><00:01:29.920><c> need</c><00:01:30.400><c> a</c><00:01:30.560><c> VDB</c><00:01:31.520><c> uh</c><00:01:31.600><c> simulation.</c>
+
+00:01:32.230 --> 00:01:32.240 align:start position:0%
+need a uh we need a VDB uh simulation.
+ 
+
+00:01:32.240 --> 00:01:35.190 align:start position:0%
+need a uh we need a VDB uh simulation.
+So<00:01:32.320><c> we</c><00:01:32.560><c> need</c><00:01:32.720><c> to</c><00:01:32.880><c> import</c><00:01:33.360><c> that</c><00:01:34.079><c> and</c><00:01:34.320><c> and</c><00:01:34.640><c> I</c>
+
+00:01:35.190 --> 00:01:35.200 align:start position:0%
+So we need to import that and and I
+ 
+
+00:01:35.200 --> 00:01:37.350 align:start position:0%
+So we need to import that and and I
+prepared<00:01:35.759><c> one</c>
+
+00:01:37.350 --> 00:01:37.360 align:start position:0%
+prepared one
+ 
+
+00:01:37.360 --> 00:01:41.190 align:start position:0%
+prepared one
+already.<00:01:38.000><c> Let's</c><00:01:38.400><c> let's</c><00:01:38.479><c> let's</c><00:01:39.680><c> just</c><00:01:40.000><c> find</c><00:01:40.240><c> it</c>
+
+00:01:41.190 --> 00:01:41.200 align:start position:0%
+already. Let's let's let's just find it
+ 
+
+00:01:41.200 --> 00:01:45.510 align:start position:0%
+already. Let's let's let's just find it
+here.
+
+00:01:45.510 --> 00:01:45.520 align:start position:0%
+ 
+ 
+
+00:01:45.520 --> 00:01:49.270 align:start position:0%
+ 
+here.<00:01:46.399><c> Ensure</c><00:01:46.799><c> to</c><00:01:47.040><c> choose</c><00:01:47.520><c> uh</c><00:01:47.759><c> ensure</c><00:01:48.240><c> to</c><00:01:48.960><c> add</c>
+
+00:01:49.270 --> 00:01:49.280 align:start position:0%
+here. Ensure to choose uh ensure to add
+ 
+
+00:01:49.280 --> 00:01:52.230 align:start position:0%
+here. Ensure to choose uh ensure to add
+all<00:01:49.520><c> the</c><00:01:49.680><c> VDB</c><00:01:50.159><c> files</c><00:01:50.560><c> here</c><00:01:51.360><c> and</c><00:01:51.600><c> you</c><00:01:51.840><c> will</c><00:01:52.000><c> get</c>
+
+00:01:52.230 --> 00:01:52.240 align:start position:0%
+all the VDB files here and you will get
+ 
+
+00:01:52.240 --> 00:01:55.749 align:start position:0%
+all the VDB files here and you will get
+this.<00:01:53.119><c> And</c><00:01:53.360><c> if</c><00:01:53.600><c> we</c><00:01:53.840><c> press</c><00:01:54.159><c> play,</c><00:01:55.280><c> it's</c><00:01:55.520><c> like</c>
+
+00:01:55.749 --> 00:01:55.759 align:start position:0%
+this. And if we press play, it's like
+ 
+
+00:01:55.759 --> 00:01:58.950 align:start position:0%
+this. And if we press play, it's like
+this.<00:01:56.640><c> It's</c><00:01:56.880><c> just</c><00:01:57.280><c> the</c><00:01:57.520><c> basic</c><00:01:57.920><c> animation.</c>
+
+00:01:58.950 --> 00:01:58.960 align:start position:0%
+this. It's just the basic animation.
+ 
+
+00:01:58.960 --> 00:02:02.550 align:start position:0%
+this. It's just the basic animation.
+Very<00:01:59.200><c> simple.</c><00:02:00.079><c> So</c><00:02:00.399><c> let's</c><00:02:00.640><c> go</c><00:02:00.799><c> back</c><00:02:01.040><c> to</c><00:02:02.240><c> uh</c><00:02:02.320><c> the</c>
+
+00:02:02.550 --> 00:02:02.560 align:start position:0%
+Very simple. So let's go back to uh the
+ 
+
+00:02:02.560 --> 00:02:07.670 align:start position:0%
+Very simple. So let's go back to uh the
+cube<00:02:02.960><c> and</c><00:02:03.439><c> change</c><00:02:03.680><c> the</c><00:02:03.920><c> name</c><00:02:04.159><c> to</c><00:02:05.360><c> particle</c>
+
+00:02:07.670 --> 00:02:07.680 align:start position:0%
+cube and change the name to particle
+ 
+
+00:02:07.680 --> 00:02:10.309 align:start position:0%
+cube and change the name to particle
+and<00:02:08.160><c> uh</c>
+
+00:02:10.309 --> 00:02:10.319 align:start position:0%
+and uh
+ 
+
+00:02:10.319 --> 00:02:14.470 align:start position:0%
+and uh
+the<00:02:10.640><c> VDB</c>
+
+00:02:14.470 --> 00:02:14.480 align:start position:0%
+ 
+ 
+
+00:02:14.480 --> 00:02:18.470 align:start position:0%
+ 
+reference
+
+00:02:18.470 --> 00:02:18.480 align:start position:0%
+ 
+ 
+
+00:02:18.480 --> 00:02:23.190 align:start position:0%
+ 
+and<00:02:18.959><c> remember</c><00:02:19.280><c> to</c><00:02:19.680><c> save</c><00:02:20.000><c> it</c><00:02:20.560><c> uh</c><00:02:20.959><c> first.</c><00:02:22.319><c> So,</c><00:02:22.800><c> so</c>
+
+00:02:23.190 --> 00:02:23.200 align:start position:0%
+and remember to save it uh first. So, so
+ 
+
+00:02:23.200 --> 00:02:26.390 align:start position:0%
+and remember to save it uh first. So, so
+here,
+
+00:02:26.390 --> 00:02:26.400 align:start position:0%
+ 
+ 
+
+00:02:26.400 --> 00:02:30.710 align:start position:0%
+ 
+so<00:02:26.800><c> first</c><00:02:27.200><c> I</c><00:02:27.520><c> need</c><00:02:27.760><c> to</c>
+
+00:02:30.710 --> 00:02:30.720 align:start position:0%
+so first I need to
+ 
+
+00:02:30.720 --> 00:02:33.509 align:start position:0%
+so first I need to
+transform<00:02:31.440><c> the</c><00:02:31.680><c> geometry</c>
+
+00:02:33.509 --> 00:02:33.519 align:start position:0%
+transform the geometry
+ 
+
+00:02:33.519 --> 00:02:36.070 align:start position:0%
+transform the geometry
+uh<00:02:33.599><c> to</c><00:02:33.840><c> the</c><00:02:34.080><c> same</c><00:02:34.239><c> place</c><00:02:34.800><c> as</c><00:02:35.280><c> the</c><00:02:35.680><c> VDB</c>
+
+00:02:36.070 --> 00:02:36.080 align:start position:0%
+uh to the same place as the VDB
+ 
+
+00:02:36.080 --> 00:02:41.350 align:start position:0%
+uh to the same place as the VDB
+simulation<00:02:36.800><c> through</c><00:02:37.040><c> here.</c>
+
+00:02:41.350 --> 00:02:41.360 align:start position:0%
+ 
+ 
+
+00:02:41.360 --> 00:02:43.509 align:start position:0%
+ 
+Then<00:02:41.599><c> I</c><00:02:41.920><c> will</c><00:02:42.080><c> drag</c><00:02:42.319><c> the</c><00:02:42.480><c> VDB</c><00:02:43.040><c> reference</c>
+
+00:02:43.509 --> 00:02:43.519 align:start position:0%
+Then I will drag the VDB reference
+ 
+
+00:02:43.519 --> 00:02:46.710 align:start position:0%
+Then I will drag the VDB reference
+inside<00:02:44.080><c> here.</c>
+
+00:02:46.710 --> 00:02:46.720 align:start position:0%
+inside here.
+ 
+
+00:02:46.720 --> 00:02:49.190 align:start position:0%
+inside here.
+So<00:02:46.959><c> first</c><00:02:47.280><c> we</c><00:02:47.519><c> need</c><00:02:47.680><c> to</c><00:02:48.000><c> create</c><00:02:48.480><c> the</c><00:02:48.720><c> particle</c>
+
+00:02:49.190 --> 00:02:49.200 align:start position:0%
+So first we need to create the particle
+ 
+
+00:02:49.200 --> 00:02:51.110 align:start position:0%
+So first we need to create the particle
+system.
+
+00:02:51.110 --> 00:02:51.120 align:start position:0%
+system.
+ 
+
+00:02:51.120 --> 00:02:56.070 align:start position:0%
+system.
+So<00:02:52.480><c> I</c><00:02:52.720><c> will</c><00:02:52.959><c> distribute</c><00:02:53.599><c> points</c><00:02:54.239><c> uh</c><00:02:55.040><c> I</c><00:02:55.360><c> will</c><00:02:55.760><c> I</c>
+
+00:02:56.070 --> 00:02:56.080 align:start position:0%
+So I will distribute points uh I will I
+ 
+
+00:02:56.080 --> 00:02:58.550 align:start position:0%
+So I will distribute points uh I will I
+want<00:02:56.400><c> the</c><00:02:56.640><c> points</c><00:02:57.040><c> inside</c><00:02:57.599><c> the</c><00:02:57.840><c> geometry.</c><00:02:58.400><c> So</c>
+
+00:02:58.550 --> 00:02:58.560 align:start position:0%
+want the points inside the geometry. So
+ 
+
+00:02:58.560 --> 00:03:00.949 align:start position:0%
+want the points inside the geometry. So
+I<00:02:58.720><c> will</c><00:02:58.879><c> distribute</c><00:02:59.440><c> points</c><00:03:00.319><c> inside</c><00:03:00.720><c> the</c>
+
+00:03:00.949 --> 00:03:00.959 align:start position:0%
+I will distribute points inside the
+ 
+
+00:03:00.959 --> 00:03:02.949 align:start position:0%
+I will distribute points inside the
+volume<00:03:01.360><c> but</c><00:03:01.599><c> it's</c><00:03:01.840><c> not</c><00:03:02.000><c> a</c><00:03:02.080><c> volume.</c><00:03:02.480><c> So</c><00:03:02.640><c> I</c><00:03:02.800><c> need</c>
+
+00:03:02.949 --> 00:03:02.959 align:start position:0%
+volume but it's not a volume. So I need
+ 
+
+00:03:02.959 --> 00:03:06.390 align:start position:0%
+volume but it's not a volume. So I need
+to<00:03:03.200><c> change</c><00:03:03.440><c> the</c><00:03:03.599><c> mesh</c><00:03:04.000><c> to</c><00:03:04.239><c> volume.</c>
+
+00:03:06.390 --> 00:03:06.400 align:start position:0%
+to change the mesh to volume.
+ 
+
+00:03:06.400 --> 00:03:10.309 align:start position:0%
+to change the mesh to volume.
+So<00:03:06.640><c> we</c><00:03:06.959><c> we</c><00:03:07.280><c> have</c><00:03:07.519><c> this</c>
+
+00:03:10.309 --> 00:03:10.319 align:start position:0%
+So we we have this
+ 
+
+00:03:10.319 --> 00:03:13.270 align:start position:0%
+So we we have this
+and<00:03:10.959><c> I</c><00:03:11.200><c> don't</c><00:03:11.440><c> want</c><00:03:11.840><c> the</c><00:03:12.080><c> random</c><00:03:12.480><c> effect.</c><00:03:12.959><c> I</c>
+
+00:03:13.270 --> 00:03:13.280 align:start position:0%
+and I don't want the random effect. I
+ 
+
+00:03:13.280 --> 00:03:15.670 align:start position:0%
+and I don't want the random effect. I
+want<00:03:13.440><c> a</c><00:03:13.599><c> grid.</c><00:03:14.080><c> So</c><00:03:14.400><c> but</c><00:03:14.640><c> for</c><00:03:14.879><c> you</c><00:03:15.120><c> you</c><00:03:15.360><c> can</c><00:03:15.519><c> use</c>
+
+00:03:15.670 --> 00:03:15.680 align:start position:0%
+want a grid. So but for you you can use
+ 
+
+00:03:15.680 --> 00:03:18.949 align:start position:0%
+want a grid. So but for you you can use
+the<00:03:15.920><c> random.</c><00:03:17.280><c> So</c><00:03:17.599><c> use</c><00:03:17.920><c> everything</c><00:03:18.560><c> anything</c>
+
+00:03:18.949 --> 00:03:18.959 align:start position:0%
+the random. So use everything anything
+ 
+
+00:03:18.959 --> 00:03:24.710 align:start position:0%
+the random. So use everything anything
+you<00:03:19.280><c> want.</c><00:03:20.319><c> So</c><00:03:20.640><c> 0.3</c><00:03:21.760><c> and</c><00:03:22.080><c> I</c><00:03:22.480><c> think</c><00:03:23.040><c> 0.1</c>
+
+00:03:24.710 --> 00:03:24.720 align:start position:0%
+you want. So 0.3 and I think 0.1
+ 
+
+00:03:24.720 --> 00:03:28.390 align:start position:0%
+you want. So 0.3 and I think 0.1
+just<00:03:25.040><c> for</c><00:03:25.280><c> test</c>
+
+00:03:28.390 --> 00:03:28.400 align:start position:0%
+ 
+ 
+
+00:03:28.400 --> 00:03:32.869 align:start position:0%
+ 
+and<00:03:28.879><c> uh</c><00:03:29.120><c> set</c><00:03:29.440><c> point</c><00:03:29.920><c> radius</c>
+
+00:03:32.869 --> 00:03:32.879 align:start position:0%
+and uh set point radius
+ 
+
+00:03:32.879 --> 00:03:35.990 align:start position:0%
+and uh set point radius
+to<00:03:33.280><c> make</c>
+
+00:03:35.990 --> 00:03:36.000 align:start position:0%
+to make
+ 
+
+00:03:36.000 --> 00:03:42.630 align:start position:0%
+to make
+to<00:03:36.239><c> make</c><00:03:36.480><c> it</c><00:03:36.959><c> more</c><00:03:37.200><c> clear</c><00:03:37.599><c> to</c><00:03:37.840><c> see</c><00:03:38.640><c> 0.1</c>
+
+00:03:42.630 --> 00:03:42.640 align:start position:0%
+ 
+ 
+
+00:03:42.640 --> 00:03:45.509 align:start position:0%
+ 
+yeah<00:03:43.599><c> then</c><00:03:44.400><c> yeah</c><00:03:44.640><c> I</c><00:03:44.879><c> can't</c><00:03:45.040><c> see</c><00:03:45.200><c> anything</c>
+
+00:03:45.509 --> 00:03:45.519 align:start position:0%
+yeah then yeah I can't see anything
+ 
+
+00:03:45.519 --> 00:03:47.270 align:start position:0%
+yeah then yeah I can't see anything
+inside
+
+00:03:47.270 --> 00:03:47.280 align:start position:0%
+inside
+ 
+
+00:03:47.280 --> 00:03:51.910 align:start position:0%
+inside
+but<00:03:47.599><c> I</c><00:03:48.080><c> think</c><00:03:49.360><c> I</c><00:03:49.840><c> I</c><00:03:49.920><c> think</c><00:03:50.159><c> it's</c><00:03:50.480><c> okay.</c><00:03:51.519><c> So,</c><00:03:51.680><c> we</c>
+
+00:03:51.910 --> 00:03:51.920 align:start position:0%
+but I think I I think it's okay. So, we
+ 
+
+00:03:51.920 --> 00:03:55.430 align:start position:0%
+but I think I I think it's okay. So, we
+have<00:03:52.000><c> the</c><00:03:52.239><c> particles.</c><00:03:52.879><c> Then</c><00:03:53.200><c> I</c><00:03:53.519><c> need</c><00:03:54.480><c> to</c><00:03:55.040><c> build</c>
+
+00:03:55.430 --> 00:03:55.440 align:start position:0%
+have the particles. Then I need to build
+ 
+
+00:03:55.440 --> 00:04:00.789 align:start position:0%
+have the particles. Then I need to build
+a<00:03:55.599><c> sim</c><00:03:55.920><c> uh</c><00:03:56.080><c> build</c><00:03:56.799><c> the</c><00:03:57.040><c> simulation</c><00:03:57.599><c> system.</c>
+
+00:04:00.789 --> 00:04:00.799 align:start position:0%
+ 
+ 
+
+00:04:00.799 --> 00:04:03.190 align:start position:0%
+ 
+So,<00:04:01.120><c> as</c><00:04:01.439><c> usual,</c><00:04:01.840><c> we</c><00:04:02.000><c> add</c><00:04:02.239><c> a</c><00:04:02.400><c> simulation</c><00:04:02.799><c> nodes</c>
+
+00:04:03.190 --> 00:04:03.200 align:start position:0%
+So, as usual, we add a simulation nodes
+ 
+
+00:04:03.200 --> 00:04:05.670 align:start position:0%
+So, as usual, we add a simulation nodes
+here.<00:04:03.840><c> And</c><00:04:04.159><c> as</c><00:04:04.480><c> usual,</c><00:04:04.799><c> we</c><00:04:04.959><c> need</c><00:04:05.120><c> a</c><00:04:05.360><c> set</c>
+
+00:04:05.670 --> 00:04:05.680 align:start position:0%
+here. And as usual, we need a set
+ 
+
+00:04:05.680 --> 00:04:07.589 align:start position:0%
+here. And as usual, we need a set
+position<00:04:06.080><c> here.</c>
+
+00:04:07.589 --> 00:04:07.599 align:start position:0%
+position here.
+ 
+
+00:04:07.599 --> 00:04:11.030 align:start position:0%
+position here.
+So,<00:04:07.840><c> we</c><00:04:08.080><c> will</c><00:04:08.400><c> make</c><00:04:08.560><c> it</c><00:04:08.879><c> move.</c>
+
+00:04:11.030 --> 00:04:11.040 align:start position:0%
+So, we will make it move.
+ 
+
+00:04:11.040 --> 00:04:13.270 align:start position:0%
+So, we will make it move.
+Now,<00:04:11.200><c> I</c><00:04:11.439><c> think</c><00:04:12.080><c> it's</c><00:04:12.400><c> a</c><00:04:12.560><c> little</c><00:04:12.640><c> bit</c><00:04:12.879><c> too</c><00:04:13.120><c> much</c>
+
+00:04:13.270 --> 00:04:13.280 align:start position:0%
+Now, I think it's a little bit too much
+ 
+
+00:04:13.280 --> 00:04:15.750 align:start position:0%
+Now, I think it's a little bit too much
+points<00:04:14.000><c> for</c><00:04:14.319><c> now.</c><00:04:14.720><c> And</c><00:04:14.879><c> now,</c><00:04:15.040><c> I</c><00:04:15.200><c> think</c><00:04:15.360><c> I</c><00:04:15.599><c> will</c>
+
+00:04:15.750 --> 00:04:15.760 align:start position:0%
+points for now. And now, I think I will
+ 
+
+00:04:15.760 --> 00:04:25.990 align:start position:0%
+points for now. And now, I think I will
+create<00:04:16.000><c> a</c><00:04:16.160><c> vector.</c>
+
+00:04:25.990 --> 00:04:26.000 align:start position:0%
+ 
+ 
+
+00:04:26.000 --> 00:04:27.670 align:start position:0%
+ 
+0.2.
+
+00:04:27.670 --> 00:04:27.680 align:start position:0%
+0.2.
+ 
+
+00:04:27.680 --> 00:04:30.230 align:start position:0%
+0.2.
+Yeah.<00:04:28.080><c> Then</c><00:04:28.320><c> you</c><00:04:28.639><c> can</c><00:04:29.600><c> you</c><00:04:29.840><c> can</c><00:04:29.919><c> see</c><00:04:30.080><c> the</c>
+
+00:04:30.230 --> 00:04:30.240 align:start position:0%
+Yeah. Then you can you can see the
+ 
+
+00:04:30.240 --> 00:04:33.590 align:start position:0%
+Yeah. Then you can you can see the
+volume<00:04:30.560><c> inside</c><00:04:31.759><c> the</c><00:04:31.919><c> VDB</c><00:04:32.400><c> inside</c><00:04:32.800><c> is</c><00:04:33.360><c> Yeah.</c>
+
+00:04:33.590 --> 00:04:33.600 align:start position:0%
+volume inside the VDB inside is Yeah.
+ 
+
+00:04:33.600 --> 00:04:35.510 align:start position:0%
+volume inside the VDB inside is Yeah.
+It's<00:04:33.840><c> changing.</c>
+
+00:04:35.510 --> 00:04:35.520 align:start position:0%
+It's changing.
+ 
+
+00:04:35.520 --> 00:04:38.310 align:start position:0%
+It's changing.
+So<00:04:35.759><c> this</c><00:04:36.000><c> is</c><00:04:36.160><c> the</c><00:04:36.320><c> particle</c><00:04:36.800><c> system.</c>
+
+00:04:38.310 --> 00:04:38.320 align:start position:0%
+So this is the particle system.
+ 
+
+00:04:38.320 --> 00:04:41.590 align:start position:0%
+So this is the particle system.
+It's<00:04:38.560><c> a</c><00:04:39.040><c> it's</c><00:04:39.840><c> so</c><00:04:40.240><c> simple.</c><00:04:41.040><c> This</c><00:04:41.280><c> is</c><00:04:41.360><c> the</c>
+
+00:04:41.590 --> 00:04:41.600 align:start position:0%
+It's a it's so simple. This is the
+ 
+
+00:04:41.600 --> 00:04:44.469 align:start position:0%
+It's a it's so simple. This is the
+particle<00:04:42.000><c> system.</c>
+
+00:04:44.469 --> 00:04:44.479 align:start position:0%
+particle system.
+ 
+
+00:04:44.479 --> 00:04:46.390 align:start position:0%
+particle system.
+Okay.<00:04:44.800><c> We</c><00:04:45.040><c> have</c><00:04:45.199><c> the</c><00:04:45.360><c> particle</c><00:04:45.680><c> system.</c><00:04:46.080><c> Then</c>
+
+00:04:46.390 --> 00:04:46.400 align:start position:0%
+Okay. We have the particle system. Then
+ 
+
+00:04:46.400 --> 00:04:50.150 align:start position:0%
+Okay. We have the particle system. Then
+we<00:04:46.720><c> want</c><00:04:46.960><c> to</c><00:04:47.199><c> make</c><00:04:47.360><c> it</c><00:04:47.600><c> move.</c><00:04:48.560><c> So</c><00:04:49.040><c> we</c><00:04:49.280><c> need</c><00:04:49.440><c> a</c><00:04:49.840><c> a</c>
+
+00:04:50.150 --> 00:04:50.160 align:start position:0%
+we want to make it move. So we need a a
+ 
+
+00:04:50.160 --> 00:04:52.710 align:start position:0%
+we want to make it move. So we need a a
+force.<00:04:51.040><c> We</c><00:04:51.360><c> will</c><00:04:51.600><c> get</c><00:04:51.759><c> the</c><00:04:52.000><c> force</c><00:04:52.240><c> from</c><00:04:52.560><c> the</c>
+
+00:04:52.710 --> 00:04:52.720 align:start position:0%
+force. We will get the force from the
+ 
+
+00:04:52.720 --> 00:04:56.550 align:start position:0%
+force. We will get the force from the
+VDB.<00:04:53.600><c> So</c><00:04:53.759><c> here</c><00:04:55.199><c> uh</c><00:04:55.280><c> we</c><00:04:55.520><c> can</c><00:04:55.600><c> see</c><00:04:55.680><c> the</c><00:04:55.840><c> VDB</c><00:04:56.320><c> here.</c>
+
+00:04:56.550 --> 00:04:56.560 align:start position:0%
+VDB. So here uh we can see the VDB here.
+ 
+
+00:04:56.560 --> 00:05:00.629 align:start position:0%
+VDB. So here uh we can see the VDB here.
+And<00:04:57.120><c> remember</c><00:04:57.520><c> to</c><00:04:57.759><c> turn</c><00:04:58.000><c> to</c><00:04:58.320><c> relative.</c>
+
+00:05:00.629 --> 00:05:00.639 align:start position:0%
+And remember to turn to relative.
+ 
+
+00:05:00.639 --> 00:05:03.670 align:start position:0%
+And remember to turn to relative.
+And<00:05:01.040><c> first</c><00:05:01.199><c> we</c><00:05:01.440><c> need</c><00:05:01.680><c> to</c><00:05:02.000><c> get</c><00:05:02.320><c> the</c><00:05:03.199><c> attribute</c>
+
+00:05:03.670 --> 00:05:03.680 align:start position:0%
+And first we need to get the attribute
+ 
+
+00:05:03.680 --> 00:05:06.469 align:start position:0%
+And first we need to get the attribute
+from<00:05:04.000><c> the</c><00:05:04.240><c> VDB.</c>
+
+00:05:06.469 --> 00:05:06.479 align:start position:0%
+from the VDB.
+ 
+
+00:05:06.479 --> 00:05:09.990 align:start position:0%
+from the VDB.
+So<00:05:06.720><c> we</c><00:05:06.960><c> will</c><00:05:07.199><c> use</c><00:05:07.360><c> this</c><00:05:07.680><c> one.</c>
+
+00:05:09.990 --> 00:05:10.000 align:start position:0%
+So we will use this one.
+ 
+
+00:05:10.000 --> 00:05:12.870 align:start position:0%
+So we will use this one.
+We<00:05:10.240><c> will</c><00:05:10.400><c> get</c><00:05:10.720><c> the</c><00:05:11.280><c> velocity.</c>
+
+00:05:12.870 --> 00:05:12.880 align:start position:0%
+We will get the velocity.
+ 
+
+00:05:12.880 --> 00:05:15.350 align:start position:0%
+We will get the velocity.
+So<00:05:13.039><c> you</c><00:05:13.199><c> can</c><00:05:13.360><c> see</c><00:05:13.440><c> it</c><00:05:13.680><c> has</c><00:05:13.840><c> a</c><00:05:14.080><c> velocity</c><00:05:15.039><c> but</c>
+
+00:05:15.350 --> 00:05:15.360 align:start position:0%
+So you can see it has a velocity but
+ 
+
+00:05:15.360 --> 00:05:18.950 align:start position:0%
+So you can see it has a velocity but
+it's<00:05:15.600><c> not</c><00:05:15.840><c> float</c><00:05:16.240><c> we</c><00:05:16.479><c> change</c><00:05:16.639><c> it</c><00:05:16.800><c> to</c><00:05:16.960><c> vector.</c>
+
+00:05:18.950 --> 00:05:18.960 align:start position:0%
+it's not float we change it to vector.
+ 
+
+00:05:18.960 --> 00:05:22.710 align:start position:0%
+it's not float we change it to vector.
+So<00:05:19.120><c> after</c><00:05:19.440><c> we</c><00:05:19.600><c> get</c><00:05:19.919><c> the</c><00:05:20.479><c> uh</c><00:05:20.720><c> vector</c><00:05:22.160><c> uh</c><00:05:22.320><c> get</c>
+
+00:05:22.710 --> 00:05:22.720 align:start position:0%
+So after we get the uh vector uh get
+ 
+
+00:05:22.720 --> 00:05:25.670 align:start position:0%
+So after we get the uh vector uh get
+attribute<00:05:24.160><c> uh</c><00:05:24.320><c> before</c><00:05:24.639><c> we</c><00:05:24.880><c> use</c><00:05:25.120><c> that</c><00:05:25.440><c> in</c>
+
+00:05:25.670 --> 00:05:25.680 align:start position:0%
+attribute uh before we use that in
+ 
+
+00:05:25.680 --> 00:05:28.230 align:start position:0%
+attribute uh before we use that in
+blender<00:05:26.960><c> uh</c><00:05:27.039><c> the</c><00:05:27.280><c> attribute</c><00:05:27.680><c> is</c><00:05:27.919><c> like</c><00:05:28.080><c> a</c>
+
+00:05:28.230 --> 00:05:28.240 align:start position:0%
+blender uh the attribute is like a
+ 
+
+00:05:28.240 --> 00:05:30.950 align:start position:0%
+blender uh the attribute is like a
+compressed.<00:05:29.120><c> So</c><00:05:29.280><c> we</c><00:05:29.520><c> need</c><00:05:29.759><c> to</c><00:05:30.560><c> to</c>
+
+00:05:30.950 --> 00:05:30.960 align:start position:0%
+compressed. So we need to to
+ 
+
+00:05:30.960 --> 00:05:35.110 align:start position:0%
+compressed. So we need to to
+uncompressed<00:05:31.840><c> it.</c><00:05:32.240><c> So</c><00:05:32.400><c> we</c><00:05:32.560><c> need</c><00:05:32.720><c> a</c><00:05:34.080><c> volume</c><00:05:34.960><c> uh</c>
+
+00:05:35.110 --> 00:05:35.120 align:start position:0%
+uncompressed it. So we need a volume uh
+ 
+
+00:05:35.120 --> 00:05:39.909 align:start position:0%
+uncompressed it. So we need a volume uh
+we<00:05:35.360><c> need</c><00:05:35.520><c> a</c><00:05:35.680><c> node</c><00:05:36.160><c> called</c><00:05:36.560><c> workized</c><00:05:37.919><c> grid.</c>
+
+00:05:39.909 --> 00:05:39.919 align:start position:0%
+we need a node called workized grid.
+ 
+
+00:05:39.919 --> 00:05:41.990 align:start position:0%
+we need a node called workized grid.
+So<00:05:40.160><c> we</c><00:05:40.400><c> also</c><00:05:40.639><c> change</c><00:05:40.800><c> it</c><00:05:40.960><c> to</c><00:05:41.120><c> react</c><00:05:41.600><c> connect</c>
+
+00:05:41.990 --> 00:05:42.000 align:start position:0%
+So we also change it to react connect
+ 
+
+00:05:42.000 --> 00:05:45.430 align:start position:0%
+So we also change it to react connect
+here
+
+00:05:45.430 --> 00:05:45.440 align:start position:0%
+ 
+ 
+
+00:05:45.440 --> 00:05:49.110 align:start position:0%
+ 
+and<00:05:45.919><c> after</c><00:05:46.320><c> that</c><00:05:47.120><c> uh</c><00:05:47.199><c> we</c><00:05:47.520><c> want</c><00:05:48.080><c> we</c><00:05:48.479><c> we</c><00:05:48.720><c> just</c>
+
+00:05:49.110 --> 00:05:49.120 align:start position:0%
+and after that uh we want we we just
+ 
+
+00:05:49.120 --> 00:05:52.870 align:start position:0%
+and after that uh we want we we just
+can't<00:05:49.520><c> uh</c><00:05:50.479><c> use</c><00:05:50.720><c> it</c><00:05:50.960><c> directly.</c>
+
+00:05:52.870 --> 00:05:52.880 align:start position:0%
+can't uh use it directly.
+ 
+
+00:05:52.880 --> 00:05:54.710 align:start position:0%
+can't uh use it directly.
+So
+
+00:05:54.710 --> 00:05:54.720 align:start position:0%
+So
+ 
+
+00:05:54.720 --> 00:05:56.950 align:start position:0%
+So
+uh<00:05:54.960><c> so</c><00:05:55.280><c> this</c><00:05:55.520><c> attribute</c><00:05:56.000><c> is</c><00:05:56.320><c> still</c><00:05:56.560><c> for</c><00:05:56.800><c> the</c>
+
+00:05:56.950 --> 00:05:56.960 align:start position:0%
+uh so this attribute is still for the
+ 
+
+00:05:56.960 --> 00:06:00.230 align:start position:0%
+uh so this attribute is still for the
+VDB<00:05:57.520><c> we</c><00:05:57.759><c> can't</c><00:05:57.919><c> use</c><00:05:58.160><c> it</c><00:05:58.400><c> in</c><00:05:58.800><c> mesh</c><00:05:59.280><c> like</c><00:05:59.600><c> points</c>
+
+00:06:00.230 --> 00:06:00.240 align:start position:0%
+VDB we can't use it in mesh like points
+ 
+
+00:06:00.240 --> 00:06:04.629 align:start position:0%
+VDB we can't use it in mesh like points
+edges<00:06:00.639><c> and</c><00:06:01.199><c> faces.</c><00:06:02.080><c> So,</c><00:06:02.720><c> so</c><00:06:02.960><c> we</c><00:06:03.199><c> need</c><00:06:03.360><c> a</c>
+
+00:06:04.629 --> 00:06:04.639 align:start position:0%
+edges and faces. So, so we need a
+ 
+
+00:06:04.639 --> 00:06:08.150 align:start position:0%
+edges and faces. So, so we need a
+translator<00:06:05.280><c> node</c><00:06:06.479><c> and</c><00:06:06.880><c> then</c><00:06:07.199><c> it's</c><00:06:07.600><c> got</c><00:06:07.840><c> it's</c>
+
+00:06:08.150 --> 00:06:08.160 align:start position:0%
+translator node and then it's got it's
+ 
+
+00:06:08.160 --> 00:06:11.110 align:start position:0%
+translator node and then it's got it's
+called<00:06:08.319><c> a</c><00:06:08.479><c> sample</c><00:06:09.600><c> sample</c><00:06:10.080><c> grade.</c><00:06:10.800><c> So,</c><00:06:10.880><c> it</c>
+
+00:06:11.110 --> 00:06:11.120 align:start position:0%
+called a sample sample grade. So, it
+ 
+
+00:06:11.120 --> 00:06:14.070 align:start position:0%
+called a sample sample grade. So, it
+will<00:06:11.440><c> turn</c><00:06:12.000><c> the</c><00:06:12.400><c> turn</c><00:06:12.720><c> the</c><00:06:13.120><c> volume</c><00:06:13.520><c> attribute</c>
+
+00:06:14.070 --> 00:06:14.080 align:start position:0%
+will turn the turn the volume attribute
+ 
+
+00:06:14.080 --> 00:06:17.830 align:start position:0%
+will turn the turn the volume attribute
+into<00:06:14.400><c> match</c><00:06:14.720><c> attribute.</c>
+
+00:06:17.830 --> 00:06:17.840 align:start position:0%
+ 
+ 
+
+00:06:17.840 --> 00:06:21.590 align:start position:0%
+ 
+Then,<00:06:19.039><c> so</c><00:06:19.280><c> that's</c><00:06:19.600><c> the</c><00:06:19.759><c> basic</c><00:06:20.240><c> structure.</c><00:06:21.360><c> So,</c>
+
+00:06:21.590 --> 00:06:21.600 align:start position:0%
+Then, so that's the basic structure. So,
+ 
+
+00:06:21.600 --> 00:06:23.189 align:start position:0%
+Then, so that's the basic structure. So,
+here
+
+00:06:23.189 --> 00:06:23.199 align:start position:0%
+here
+ 
+
+00:06:23.199 --> 00:06:27.590 align:start position:0%
+here
+uh<00:06:23.440><c> here</c><00:06:23.759><c> is</c><00:06:24.000><c> a</c><00:06:24.800><c> uh</c><00:06:25.199><c> velocity</c><00:06:25.680><c> attribute.</c><00:06:26.400><c> So,</c>
+
+00:06:27.590 --> 00:06:27.600 align:start position:0%
+uh here is a uh velocity attribute. So,
+ 
+
+00:06:27.600 --> 00:06:33.670 align:start position:0%
+uh here is a uh velocity attribute. So,
+we<00:06:27.919><c> will</c><00:06:28.240><c> add</c><00:06:28.400><c> a</c><00:06:28.639><c> curl</c><00:06:29.120><c> here.</c>
+
+00:06:33.670 --> 00:06:33.680 align:start position:0%
+ 
+ 
+
+00:06:33.680 --> 00:06:37.270 align:start position:0%
+ 
+So<00:06:34.000><c> here</c><00:06:35.039><c> we</c><00:06:35.520><c> will</c><00:06:35.759><c> turn</c><00:06:36.000><c> the</c><00:06:36.240><c> velocity</c><00:06:36.880><c> into</c>
+
+00:06:37.270 --> 00:06:37.280 align:start position:0%
+So here we will turn the velocity into
+ 
+
+00:06:37.280 --> 00:06:42.150 align:start position:0%
+So here we will turn the velocity into
+curl<00:06:38.080><c> into</c><00:06:38.560><c> like</c>
+
+00:06:42.150 --> 00:06:42.160 align:start position:0%
+ 
+ 
+
+00:06:42.160 --> 00:06:45.830 align:start position:0%
+ 
+into<00:06:42.479><c> a</c><00:06:42.720><c> turbulent</c><00:06:43.360><c> effect.</c>
+
+00:06:45.830 --> 00:06:45.840 align:start position:0%
+into a turbulent effect.
+ 
+
+00:06:45.840 --> 00:06:49.670 align:start position:0%
+into a turbulent effect.
+Then<00:06:46.400><c> we</c><00:06:46.720><c> connect</c><00:06:47.600><c> uh</c><00:06:47.680><c> this</c><00:06:48.000><c> attribute</c>
+
+00:06:49.670 --> 00:06:49.680 align:start position:0%
+Then we connect uh this attribute
+ 
+
+00:06:49.680 --> 00:06:53.350 align:start position:0%
+Then we connect uh this attribute
+to<00:06:49.919><c> the</c><00:06:50.160><c> particle</c><00:06:50.639><c> system</c><00:06:51.199><c> here.</c>
+
+00:06:53.350 --> 00:06:53.360 align:start position:0%
+to the particle system here.
+ 
+
+00:06:53.360 --> 00:06:57.029 align:start position:0%
+to the particle system here.
+So<00:06:53.840><c> before</c><00:06:54.080><c> we</c><00:06:54.400><c> press</c><00:06:54.720><c> play</c><00:06:55.600><c> and</c><00:06:56.080><c> we</c><00:06:56.319><c> need</c><00:06:56.800><c> to</c>
+
+00:06:57.029 --> 00:06:57.039 align:start position:0%
+So before we press play and we need to
+ 
+
+00:06:57.039 --> 00:07:01.110 align:start position:0%
+So before we press play and we need to
+tweak<00:06:57.440><c> this</c><00:06:57.840><c> uh</c><00:06:59.120><c> uh</c><00:06:59.199><c> to</c><00:06:59.520><c> tweak</c><00:06:59.840><c> this</c><00:07:00.080><c> force</c>
+
+00:07:01.110 --> 00:07:01.120 align:start position:0%
+tweak this uh uh to tweak this force
+ 
+
+00:07:01.120 --> 00:07:06.790 align:start position:0%
+tweak this uh uh to tweak this force
+just<00:07:01.440><c> make</c><00:07:01.680><c> it</c><00:07:02.319><c> like</c><00:07:02.880><c> usable.</c>
+
+00:07:06.790 --> 00:07:06.800 align:start position:0%
+ 
+ 
+
+00:07:06.800 --> 00:07:10.150 align:start position:0%
+ 
+Uh<00:07:07.199><c> we</c><00:07:07.520><c> need</c><00:07:07.759><c> to</c><00:07:08.560><c> have</c><00:07:09.039><c> normalize</c><00:07:09.680><c> where</c>
+
+00:07:10.150 --> 00:07:10.160 align:start position:0%
+Uh we need to have normalize where
+ 
+
+00:07:10.160 --> 00:07:15.110 align:start position:0%
+Uh we need to have normalize where
+normalize.
+
+00:07:15.110 --> 00:07:15.120 align:start position:0%
+ 
+ 
+
+00:07:15.120 --> 00:07:17.589 align:start position:0%
+ 
+Yeah.
+
+00:07:17.589 --> 00:07:17.599 align:start position:0%
+Yeah.
+ 
+
+00:07:17.599 --> 00:07:22.230 align:start position:0%
+Yeah.
+And<00:07:17.919><c> we</c><00:07:18.160><c> need</c><00:07:18.240><c> a</c><00:07:19.039><c> a</c><00:07:19.440><c> scale</c>
+
+00:07:22.230 --> 00:07:22.240 align:start position:0%
+And we need a a scale
+ 
+
+00:07:22.240 --> 00:07:23.830 align:start position:0%
+And we need a a scale
+here.
+
+00:07:23.830 --> 00:07:23.840 align:start position:0%
+here.
+ 
+
+00:07:23.840 --> 00:07:26.469 align:start position:0%
+here.
+Maybe<00:07:24.160><c> change</c><00:07:24.400><c> it</c><00:07:24.560><c> to</c><00:07:24.720><c> 0.1</c>
+
+00:07:26.469 --> 00:07:26.479 align:start position:0%
+Maybe change it to 0.1
+ 
+
+00:07:26.479 --> 00:07:29.990 align:start position:0%
+Maybe change it to 0.1
+to<00:07:26.639><c> make</c><00:07:26.800><c> it</c><00:07:27.039><c> safe.</c>
+
+00:07:29.990 --> 00:07:30.000 align:start position:0%
+to make it safe.
+ 
+
+00:07:30.000 --> 00:07:32.629 align:start position:0%
+to make it safe.
+And<00:07:30.319><c> yeah,</c>
+
+00:07:32.629 --> 00:07:32.639 align:start position:0%
+And yeah,
+ 
+
+00:07:32.639 --> 00:07:37.990 align:start position:0%
+And yeah,
+so<00:07:33.280><c> this</c><00:07:33.599><c> is</c>
+
+00:07:37.990 --> 00:07:38.000 align:start position:0%
+ 
+ 
+
+00:07:38.000 --> 00:07:41.749 align:start position:0%
+ 
+relay<00:07:38.400><c> it.</c><00:07:38.880><c> This</c><00:07:39.039><c> is</c><00:07:39.199><c> the</c><00:07:39.360><c> force.</c>
+
+00:07:41.749 --> 00:07:41.759 align:start position:0%
+relay it. This is the force.
+ 
+
+00:07:41.759 --> 00:07:46.309 align:start position:0%
+relay it. This is the force.
+So<00:07:42.240><c> let's</c><00:07:42.560><c> first</c><00:07:43.120><c> first</c><00:07:43.599><c> try</c><00:07:44.479><c> try</c><00:07:44.800><c> it.</c><00:07:45.919><c> Press</c>
+
+00:07:46.309 --> 00:07:46.319 align:start position:0%
+So let's first first try try it. Press
+ 
+
+00:07:46.319 --> 00:07:53.189 align:start position:0%
+So let's first first try try it. Press
+playing.
+
+00:07:53.189 --> 00:07:53.199 align:start position:0%
+ 
+ 
+
+00:07:53.199 --> 00:07:55.909 align:start position:0%
+ 
+uh<00:07:53.280><c> you</c><00:07:53.520><c> will</c><00:07:53.759><c> see</c><00:07:54.000><c> some</c><00:07:54.319><c> points</c><00:07:55.199><c> uh</c><00:07:55.440><c> yeah</c><00:07:55.680><c> the</c>
+
+00:07:55.909 --> 00:07:55.919 align:start position:0%
+uh you will see some points uh yeah the
+ 
+
+00:07:55.919 --> 00:07:58.950 align:start position:0%
+uh you will see some points uh yeah the
+points<00:07:56.240><c> is</c><00:07:56.479><c> moving</c><00:07:56.720><c> inside</c>
+
+00:07:58.950 --> 00:07:58.960 align:start position:0%
+points is moving inside
+ 
+
+00:07:58.960 --> 00:08:01.510 align:start position:0%
+points is moving inside
+so<00:07:59.199><c> that's</c><00:07:59.440><c> very</c><00:07:59.759><c> good</c><00:08:00.240><c> so</c><00:08:00.639><c> it</c><00:08:00.879><c> means</c><00:08:01.199><c> our</c>
+
+00:08:01.510 --> 00:08:01.520 align:start position:0%
+so that's very good so it means our
+ 
+
+00:08:01.520 --> 00:08:06.869 align:start position:0%
+so that's very good so it means our
+system<00:08:01.919><c> is</c><00:08:02.960><c> is</c><00:08:03.360><c> good</c><00:08:04.240><c> is</c><00:08:04.560><c> right</c>
+
+00:08:06.869 --> 00:08:06.879 align:start position:0%
+system is is good is right
+ 
+
+00:08:06.879 --> 00:08:09.830 align:start position:0%
+system is is good is right
+so<00:08:07.199><c> we</c><00:08:07.440><c> don't</c><00:08:07.680><c> want</c><00:08:08.639><c> next</c><00:08:08.879><c> part</c><00:08:09.199><c> we</c><00:08:09.440><c> don't</c><00:08:09.599><c> want</c>
+
+00:08:09.830 --> 00:08:09.840 align:start position:0%
+so we don't want next part we don't want
+ 
+
+00:08:09.840 --> 00:08:12.390 align:start position:0%
+so we don't want next part we don't want
+the<00:08:10.000><c> outside</c><00:08:10.639><c> of</c>
+
+00:08:12.390 --> 00:08:12.400 align:start position:0%
+the outside of
+ 
+
+00:08:12.400 --> 00:08:15.510 align:start position:0%
+the outside of
+uh<00:08:12.560><c> outside</c><00:08:13.520><c> points</c><00:08:14.479><c> we</c><00:08:14.720><c> just</c><00:08:14.960><c> want</c><00:08:15.280><c> the</c>
+
+00:08:15.510 --> 00:08:15.520 align:start position:0%
+uh outside points we just want the
+ 
+
+00:08:15.520 --> 00:08:19.749 align:start position:0%
+uh outside points we just want the
+points<00:08:16.080><c> uh</c><00:08:16.400><c> can</c><00:08:16.720><c> move.</c><00:08:17.919><c> So</c>
+
+00:08:19.749 --> 00:08:19.759 align:start position:0%
+points uh can move. So
+ 
+
+00:08:19.759 --> 00:08:23.110 align:start position:0%
+points uh can move. So
+here<00:08:20.240><c> there</c><00:08:20.560><c> is</c><00:08:20.720><c> a</c>
+
+00:08:23.110 --> 00:08:23.120 align:start position:0%
+here there is a
+ 
+
+00:08:23.120 --> 00:08:26.150 align:start position:0%
+here there is a
+is<00:08:23.280><c> a</c><00:08:24.080><c> very</c><00:08:24.400><c> important</c><00:08:24.960><c> step</c><00:08:25.280><c> to</c><00:08:25.599><c> store</c><00:08:25.919><c> an</c>
+
+00:08:26.150 --> 00:08:26.160 align:start position:0%
+is a very important step to store an
+ 
+
+00:08:26.160 --> 00:08:29.270 align:start position:0%
+is a very important step to store an
+attri<00:08:26.800><c> named</c><00:08:27.039><c> the</c><00:08:27.199><c> attribute</c><00:08:28.160><c> and</c><00:08:28.560><c> connect</c><00:08:28.960><c> it</c>
+
+00:08:29.270 --> 00:08:29.280 align:start position:0%
+attri named the attribute and connect it
+ 
+
+00:08:29.280 --> 00:08:32.230 align:start position:0%
+attri named the attribute and connect it
+from<00:08:29.599><c> here.</c><00:08:30.800><c> We</c><00:08:31.039><c> will</c><00:08:31.280><c> store</c><00:08:31.599><c> the</c><00:08:31.759><c> velocity</c>
+
+00:08:32.230 --> 00:08:32.240 align:start position:0%
+from here. We will store the velocity
+ 
+
+00:08:32.240 --> 00:08:35.589 align:start position:0%
+from here. We will store the velocity
+attribute.
+
+00:08:35.589 --> 00:08:35.599 align:start position:0%
+ 
+ 
+
+00:08:35.599 --> 00:08:41.110 align:start position:0%
+ 
+We<00:08:35.919><c> will</c><00:08:36.159><c> copy</c><00:08:36.560><c> the</c><00:08:36.719><c> velocity</c>
+
+00:08:41.110 --> 00:08:41.120 align:start position:0%
+ 
+ 
+
+00:08:41.120 --> 00:08:45.590 align:start position:0%
+ 
+here.<00:08:42.159><c> We</c><00:08:42.399><c> store</c><00:08:42.640><c> it</c><00:08:43.120><c> velocity</c>
+
+00:08:45.590 --> 00:08:45.600 align:start position:0%
+here. We store it velocity
+ 
+
+00:08:45.600 --> 00:08:50.710 align:start position:0%
+here. We store it velocity
+uh<00:08:45.839><c> and</c><00:08:46.240><c> store</c><00:08:46.480><c> it</c><00:08:46.640><c> as</c><00:08:46.880><c> a</c><00:08:48.320><c> vector</c><00:08:49.760><c> and</c><00:08:50.080><c> then</c><00:08:50.480><c> we</c>
+
+00:08:50.710 --> 00:08:50.720 align:start position:0%
+uh and store it as a vector and then we
+ 
+
+00:08:50.720 --> 00:08:53.670 align:start position:0%
+uh and store it as a vector and then we
+will<00:08:50.959><c> use</c><00:08:51.120><c> a</c><00:08:51.360><c> delete</c><00:08:52.240><c> attribute.</c><00:08:53.200><c> We</c><00:08:53.440><c> just</c>
+
+00:08:53.670 --> 00:08:53.680 align:start position:0%
+will use a delete attribute. We just
+ 
+
+00:08:53.680 --> 00:08:56.470 align:start position:0%
+will use a delete attribute. We just
+want<00:08:54.080><c> to</c><00:08:54.399><c> delete</c><00:08:54.800><c> outside.</c><00:08:55.360><c> The</c><00:08:55.519><c> outside</c>
+
+00:08:56.470 --> 00:08:56.480 align:start position:0%
+want to delete outside. The outside
+ 
+
+00:08:56.480 --> 00:09:01.590 align:start position:0%
+want to delete outside. The outside
+points<00:08:56.880><c> doesn't</c><00:08:57.279><c> have</c><00:08:57.600><c> any</c><00:08:57.920><c> velocity.</c>
+
+00:09:01.590 --> 00:09:01.600 align:start position:0%
+ 
+ 
+
+00:09:01.600 --> 00:09:06.310 align:start position:0%
+ 
+Uh<00:09:02.080><c> so</c><00:09:03.040><c> we</c><00:09:03.279><c> will</c><00:09:03.680><c> have</c><00:09:04.320><c> name</c><00:09:04.640><c> attribute</c><00:09:05.200><c> here</c>
+
+00:09:06.310 --> 00:09:06.320 align:start position:0%
+Uh so we will have name attribute here
+ 
+
+00:09:06.320 --> 00:09:10.389 align:start position:0%
+Uh so we will have name attribute here
+and<00:09:06.720><c> we</c><00:09:06.959><c> will</c><00:09:07.120><c> have</c><00:09:07.360><c> velocity</c>
+
+00:09:10.389 --> 00:09:10.399 align:start position:0%
+ 
+ 
+
+00:09:10.399 --> 00:09:22.870 align:start position:0%
+ 
+and<00:09:10.800><c> compare</c>
+
+00:09:22.870 --> 00:09:22.880 align:start position:0%
+ 
+ 
+
+00:09:22.880 --> 00:09:26.389 align:start position:0%
+ 
+in<00:09:23.120><c> this</c><00:09:23.360><c> step.</c><00:09:23.760><c> I</c><00:09:24.080><c> think</c><00:09:24.640><c> I</c><00:09:24.959><c> use</c><00:09:25.680><c> float.</c><00:09:26.160><c> I</c>
+
+00:09:26.389 --> 00:09:26.399 align:start position:0%
+in this step. I think I use float. I
+ 
+
+00:09:26.399 --> 00:09:32.949 align:start position:0%
+in this step. I think I use float. I
+will<00:09:26.959><c> turn</c><00:09:27.279><c> the</c><00:09:27.519><c> vector</c><00:09:27.839><c> into</c><00:09:28.080><c> float</c><00:09:29.519><c> and</c><00:09:30.720><c> yeah</c>
+
+00:09:32.949 --> 00:09:32.959 align:start position:0%
+will turn the vector into float and yeah
+ 
+
+00:09:32.959 --> 00:09:38.230 align:start position:0%
+will turn the vector into float and yeah
+if<00:09:33.440><c> it's</c><00:09:34.080><c> uh</c><00:09:34.800><c> less</c><00:09:35.440><c> than</c><00:09:35.680><c> or</c><00:09:36.080><c> equal</c><00:09:37.360><c> zero</c><00:09:38.000><c> it</c>
+
+00:09:38.230 --> 00:09:38.240 align:start position:0%
+if it's uh less than or equal zero it
+ 
+
+00:09:38.240 --> 00:09:40.230 align:start position:0%
+if it's uh less than or equal zero it
+will<00:09:38.399><c> be</c><00:09:38.640><c> deleted.</c>
+
+00:09:40.230 --> 00:09:40.240 align:start position:0%
+will be deleted.
+ 
+
+00:09:40.240 --> 00:09:42.710 align:start position:0%
+will be deleted.
+So<00:09:40.399><c> let's</c><00:09:40.720><c> press</c><00:09:41.040><c> play.</c>
+
+00:09:42.710 --> 00:09:42.720 align:start position:0%
+So let's press play.
+ 
+
+00:09:42.720 --> 00:09:47.750 align:start position:0%
+So let's press play.
+So<00:09:42.959><c> you</c><00:09:43.200><c> will</c><00:09:43.440><c> only</c><00:09:43.760><c> have</c><00:09:44.080><c> these</c><00:09:44.399><c> points.</c>
+
+00:09:47.750 --> 00:09:47.760 align:start position:0%
+ 
+ 
+
+00:09:47.760 --> 00:09:50.470 align:start position:0%
+ 
+So<00:09:47.920><c> that's</c><00:09:48.160><c> very</c><00:09:48.480><c> good.</c><00:09:49.040><c> And</c><00:09:49.360><c> let's</c><00:09:49.760><c> try</c><00:09:50.160><c> have</c>
+
+00:09:50.470 --> 00:09:50.480 align:start position:0%
+So that's very good. And let's try have
+ 
+
+00:09:50.480 --> 00:09:54.230 align:start position:0%
+So that's very good. And let's try have
+more<00:09:50.800><c> points.</c><00:09:52.160><c> So</c><00:09:52.480><c> this</c><00:09:52.880><c> system</c><00:09:53.279><c> is</c><00:09:53.760><c> almost</c>
+
+00:09:54.230 --> 00:09:54.240 align:start position:0%
+more points. So this system is almost
+ 
+
+00:09:54.240 --> 00:09:59.990 align:start position:0%
+more points. So this system is almost
+ready.
+
+00:09:59.990 --> 00:10:00.000 align:start position:0%
+ 
+ 
+
+00:10:00.000 --> 00:10:03.670 align:start position:0%
+ 
+Let's<00:10:00.320><c> have</c><00:10:00.560><c> more</c><00:10:00.720><c> points</c><00:10:01.839><c> here.</c>
+
+00:10:03.670 --> 00:10:03.680 align:start position:0%
+Let's have more points here.
+ 
+
+00:10:03.680 --> 00:10:08.389 align:start position:0%
+Let's have more points here.
+And<00:10:04.000><c> to</c><00:10:04.320><c> make</c><00:10:04.480><c> it</c><00:10:04.720><c> more</c><00:10:04.959><c> clear,</c>
+
+00:10:08.389 --> 00:10:08.399 align:start position:0%
+ 
+ 
+
+00:10:08.399 --> 00:10:12.070 align:start position:0%
+ 
+no<00:10:08.720><c> too</c><00:10:08.959><c> much.</c>
+
+00:10:12.070 --> 00:10:12.080 align:start position:0%
+ 
+ 
+
+00:10:12.080 --> 00:10:14.949 align:start position:0%
+ 
+And<00:10:12.399><c> let's</c><00:10:12.720><c> hide</c><00:10:13.120><c> the</c><00:10:13.920><c> reference.</c><00:10:14.399><c> VB</c>
+
+00:10:14.949 --> 00:10:14.959 align:start position:0%
+And let's hide the reference. VB
+ 
+
+00:10:14.959 --> 00:10:17.670 align:start position:0%
+And let's hide the reference. VB
+reference.
+
+00:10:17.670 --> 00:10:17.680 align:start position:0%
+reference.
+ 
+
+00:10:17.680 --> 00:10:25.110 align:start position:0%
+reference.
+Drag<00:10:18.079><c> it</c><00:10:18.320><c> here.</c>
+
+00:10:25.110 --> 00:10:25.120 align:start position:0%
+ 
+ 
+
+00:10:25.120 --> 00:10:29.350 align:start position:0%
+ 
+So<00:10:25.440><c> it</c><00:10:25.760><c> will</c><00:10:26.000><c> have</c><00:10:26.800><c> the</c><00:10:27.120><c> points.</c>
+
+00:10:29.350 --> 00:10:29.360 align:start position:0%
+So it will have the points.
+ 
+
+00:10:29.360 --> 00:10:32.310 align:start position:0%
+So it will have the points.
+If<00:10:29.600><c> we</c><00:10:29.839><c> see</c><00:10:30.000><c> it</c><00:10:30.160><c> from</c><00:10:30.480><c> here,</c><00:10:31.600><c> you</c><00:10:31.839><c> see</c><00:10:32.000><c> that</c>
+
+00:10:32.310 --> 00:10:32.320 align:start position:0%
+If we see it from here, you see that
+ 
+
+00:10:32.320 --> 00:10:33.910 align:start position:0%
+If we see it from here, you see that
+curve
+
+00:10:33.910 --> 00:10:33.920 align:start position:0%
+curve
+ 
+
+00:10:33.920 --> 00:10:39.509 align:start position:0%
+curve
+is<00:10:34.240><c> pretty</c><00:10:34.560><c> beautiful.</c>
+
+00:10:39.509 --> 00:10:39.519 align:start position:0%
+ 
+ 
+
+00:10:39.519 --> 00:10:42.310 align:start position:0%
+ 
+So<00:10:39.839><c> if</c><00:10:40.160><c> you</c><00:10:40.399><c> make</c><00:10:40.640><c> that</c><00:10:41.040><c> you</c><00:10:41.279><c> can</c><00:10:41.680><c> have</c><00:10:42.079><c> more</c>
+
+00:10:42.310 --> 00:10:42.320 align:start position:0%
+So if you make that you can have more
+ 
+
+00:10:42.320 --> 00:10:45.990 align:start position:0%
+So if you make that you can have more
+points<00:10:42.800><c> and</c><00:10:43.120><c> you</c><00:10:43.519><c> make</c><00:10:43.920><c> a</c><00:10:44.959><c> uh</c><00:10:45.040><c> like</c><00:10:45.279><c> a</c><00:10:45.680><c> much</c>
+
+00:10:45.990 --> 00:10:46.000 align:start position:0%
+points and you make a uh like a much
+ 
+
+00:10:46.000 --> 00:10:49.990 align:start position:0%
+points and you make a uh like a much
+better<00:10:46.320><c> simulation.</c>
+
+00:10:49.990 --> 00:10:50.000 align:start position:0%
+ 
+ 
+
+00:10:50.000 --> 00:10:53.509 align:start position:0%
+ 
+uh<00:10:50.160><c> like</c><00:10:50.560><c> my</c><00:10:50.880><c> VDB</c><00:10:51.360><c> reference</c><00:10:51.839><c> is</c><00:10:52.160><c> just</c><00:10:53.200><c> a</c><00:10:53.279><c> a</c>
+
+00:10:53.509 --> 00:10:53.519 align:start position:0%
+uh like my VDB reference is just a a
+ 
+
+00:10:53.519 --> 00:10:55.590 align:start position:0%
+uh like my VDB reference is just a a
+very<00:10:53.839><c> simple</c><00:10:54.160><c> simulation.</c><00:10:54.880><c> You</c><00:10:55.040><c> can</c><00:10:55.200><c> have</c><00:10:55.360><c> a</c>
+
+00:10:55.590 --> 00:10:55.600 align:start position:0%
+very simple simulation. You can have a
+ 
+
+00:10:55.600 --> 00:10:57.750 align:start position:0%
+very simple simulation. You can have a
+better<00:10:55.839><c> one.</c>
+
+00:10:57.750 --> 00:10:57.760 align:start position:0%
+better one.
+ 
+
+00:10:57.760 --> 00:11:01.030 align:start position:0%
+better one.
+And<00:10:58.160><c> before</c><00:10:58.640><c> I</c><00:10:58.959><c> end</c><00:10:59.279><c> this</c><00:10:59.519><c> tutorial,</c><00:11:00.160><c> there's</c>
+
+00:11:01.030 --> 00:11:01.040 align:start position:0%
+And before I end this tutorial, there's
+ 
+
+00:11:01.040 --> 00:11:04.150 align:start position:0%
+And before I end this tutorial, there's
+uh<00:11:01.279><c> two</c><00:11:01.680><c> important</c><00:11:02.560><c> uh</c><00:11:03.279><c> uh</c><00:11:03.440><c> two</c><00:11:03.760><c> important</c>
+
+00:11:04.150 --> 00:11:04.160 align:start position:0%
+uh two important uh uh two important
+ 
+
+00:11:04.160 --> 00:11:07.670 align:start position:0%
+uh two important uh uh two important
+parts<00:11:04.560><c> here.</c><00:11:05.600><c> Firstly,</c><00:11:06.079><c> the</c><00:11:06.320><c> material.</c><00:11:07.200><c> So</c><00:11:07.440><c> if</c>
+
+00:11:07.670 --> 00:11:07.680 align:start position:0%
+parts here. Firstly, the material. So if
+ 
+
+00:11:07.680 --> 00:11:09.990 align:start position:0%
+parts here. Firstly, the material. So if
+you<00:11:07.839><c> want</c><00:11:08.000><c> to</c><00:11:08.240><c> render</c><00:11:08.720><c> like</c><00:11:09.279><c> make</c><00:11:09.440><c> it</c><00:11:09.680><c> make</c>
+
+00:11:09.990 --> 00:11:10.000 align:start position:0%
+you want to render like make it make
+ 
+
+00:11:10.000 --> 00:11:12.550 align:start position:0%
+you want to render like make it make
+this<00:11:10.240><c> particle</c><00:11:10.640><c> colorful,</c><00:11:11.120><c> you</c><00:11:11.279><c> can</c><00:11:11.360><c> use</c><00:11:12.480><c> uh</c>
+
+00:11:12.550 --> 00:11:12.560 align:start position:0%
+this particle colorful, you can use uh
+ 
+
+00:11:12.560 --> 00:11:15.670 align:start position:0%
+this particle colorful, you can use uh
+the<00:11:12.800><c> velocity</c><00:11:13.279><c> here.</c><00:11:13.760><c> You</c><00:11:14.079><c> set</c><00:11:14.880><c> uh</c><00:11:15.440><c> the</c>
+
+00:11:15.670 --> 00:11:15.680 align:start position:0%
+the velocity here. You set uh the
+ 
+
+00:11:15.680 --> 00:11:19.430 align:start position:0%
+the velocity here. You set uh the
+material<00:11:16.079><c> here</c><00:11:16.320><c> and</c><00:11:16.640><c> go</c><00:11:16.800><c> to</c><00:11:16.959><c> shading.</c>
+
+00:11:19.430 --> 00:11:19.440 align:start position:0%
+material here and go to shading.
+ 
+
+00:11:19.440 --> 00:11:22.710 align:start position:0%
+material here and go to shading.
+You<00:11:19.600><c> can</c><00:11:19.839><c> have</c><00:11:20.079><c> attribute</c><00:11:20.560><c> here.</c><00:11:21.600><c> So</c><00:11:22.079><c> you</c><00:11:22.320><c> can</c>
+
+00:11:22.710 --> 00:11:22.720 align:start position:0%
+You can have attribute here. So you can
+ 
+
+00:11:22.720 --> 00:11:25.590 align:start position:0%
+You can have attribute here. So you can
+put<00:11:22.959><c> a</c><00:11:23.120><c> velocity</c><00:11:23.600><c> here</c><00:11:24.399><c> and</c><00:11:24.720><c> then</c><00:11:25.040><c> you</c><00:11:25.279><c> can</c>
+
+00:11:25.590 --> 00:11:25.600 align:start position:0%
+put a velocity here and then you can
+ 
+
+00:11:25.600 --> 00:11:27.750 align:start position:0%
+put a velocity here and then you can
+ramp<00:11:26.000><c> the</c>
+
+00:11:27.750 --> 00:11:27.760 align:start position:0%
+ramp the
+ 
+
+00:11:27.760 --> 00:11:29.829 align:start position:0%
+ramp the
+ramp<00:11:28.079><c> the</c><00:11:28.320><c> velocity.</c>
+
+00:11:29.829 --> 00:11:29.839 align:start position:0%
+ramp the velocity.
+ 
+
+00:11:29.839 --> 00:11:33.110 align:start position:0%
+ramp the velocity.
+Then<00:11:30.079><c> click</c><00:11:30.480><c> to</c><00:11:30.880><c> base</c><00:11:31.120><c> color</c><00:11:31.440><c> or</c><00:11:31.760><c> anything.</c><00:11:32.959><c> So</c>
+
+00:11:33.110 --> 00:11:33.120 align:start position:0%
+Then click to base color or anything. So
+ 
+
+00:11:33.120 --> 00:11:39.030 align:start position:0%
+Then click to base color or anything. So
+you<00:11:33.440><c> you</c><00:11:33.680><c> will</c><00:11:33.920><c> have</c><00:11:34.079><c> a</c><00:11:35.120><c> colorful</c><00:11:35.680><c> effect.</c>
+
+00:11:39.030 --> 00:11:39.040 align:start position:0%
+ 
+ 
+
+00:11:39.040 --> 00:11:43.829 align:start position:0%
+ 
+And<00:11:39.680><c> uh</c><00:11:40.320><c> then</c><00:11:40.640><c> another</c><00:11:41.120><c> part</c><00:11:41.519><c> is</c>
+
+00:11:43.829 --> 00:11:43.839 align:start position:0%
+And uh then another part is
+ 
+
+00:11:43.839 --> 00:11:46.310 align:start position:0%
+And uh then another part is
+the<00:11:44.160><c> motion</c><00:11:44.480><c> blur.</c><00:11:45.040><c> So</c><00:11:45.200><c> if</c><00:11:45.519><c> you</c><00:11:45.680><c> make</c><00:11:45.920><c> particle</c>
+
+00:11:46.310 --> 00:11:46.320 align:start position:0%
+the motion blur. So if you make particle
+ 
+
+00:11:46.320 --> 00:11:49.509 align:start position:0%
+the motion blur. So if you make particle
+system<00:11:46.800><c> in</c><00:11:47.600><c> geometry</c><00:11:48.160><c> nodes,</c><00:11:48.720><c> you</c><00:11:48.959><c> will</c><00:11:49.200><c> have</c>
+
+00:11:49.509 --> 00:11:49.519 align:start position:0%
+system in geometry nodes, you will have
+ 
+
+00:11:49.519 --> 00:11:52.550 align:start position:0%
+system in geometry nodes, you will have
+no<00:11:49.760><c> motion</c><00:11:50.160><c> blur.</c><00:11:51.120><c> So</c><00:11:51.360><c> if</c><00:11:51.680><c> you</c><00:11:51.920><c> want</c><00:11:52.160><c> that</c>
+
+00:11:52.550 --> 00:11:52.560 align:start position:0%
+no motion blur. So if you want that
+ 
+
+00:11:52.560 --> 00:11:55.430 align:start position:0%
+no motion blur. So if you want that
+motion<00:11:52.880><c> blur,</c><00:11:53.839><c> so</c><00:11:54.079><c> I</c><00:11:54.399><c> already</c><00:11:54.720><c> did</c><00:11:54.959><c> this</c><00:11:55.200><c> for</c>
+
+00:11:55.430 --> 00:11:55.440 align:start position:0%
+motion blur, so I already did this for
+ 
+
+00:11:55.440 --> 00:11:58.630 align:start position:0%
+motion blur, so I already did this for
+you.<00:11:55.920><c> I</c><00:11:56.240><c> stored</c><00:11:56.560><c> the</c><00:11:56.800><c> velocity.</c><00:11:58.240><c> So</c><00:11:58.399><c> you</c>
+
+00:11:58.630 --> 00:11:58.640 align:start position:0%
+you. I stored the velocity. So you
+ 
+
+00:11:58.640 --> 00:12:01.030 align:start position:0%
+you. I stored the velocity. So you
+already<00:11:58.959><c> have</c><00:11:59.120><c> the</c><00:11:59.360><c> velocity</c><00:12:00.480><c> and</c><00:12:00.800><c> this</c>
+
+00:12:01.030 --> 00:12:01.040 align:start position:0%
+already have the velocity and this
+ 
+
+00:12:01.040 --> 00:12:05.269 align:start position:0%
+already have the velocity and this
+velocity<00:12:01.519><c> is</c><00:12:02.880><c> um</c><00:12:03.120><c> much</c><00:12:03.440><c> better</c><00:12:03.680><c> than</c><00:12:03.920><c> the</c><00:12:04.480><c> like</c>
+
+00:12:05.269 --> 00:12:05.279 align:start position:0%
+velocity is um much better than the like
+ 
+
+00:12:05.279 --> 00:12:08.310 align:start position:0%
+velocity is um much better than the like
+basic<00:12:05.680><c> one</c><00:12:06.160><c> inside</c><00:12:06.639><c> Blender.</c><00:12:07.680><c> You</c><00:12:07.920><c> can</c><00:12:08.000><c> tweak</c>
+
+00:12:08.310 --> 00:12:08.320 align:start position:0%
+basic one inside Blender. You can tweak
+ 
+
+00:12:08.320 --> 00:12:11.509 align:start position:0%
+basic one inside Blender. You can tweak
+this<00:12:08.639><c> velocity</c>
+
+00:12:11.509 --> 00:12:11.519 align:start position:0%
+this velocity
+ 
+
+00:12:11.519 --> 00:12:13.110 align:start position:0%
+this velocity
+scale.
+
+00:12:13.110 --> 00:12:13.120 align:start position:0%
+scale.
+ 
+
+00:12:13.120 --> 00:12:16.150 align:start position:0%
+scale.
+So<00:12:13.360><c> you</c><00:12:13.600><c> can</c><00:12:13.760><c> make</c><00:12:13.920><c> it</c><00:12:14.160><c> huge,</c><00:12:14.480><c> big,</c><00:12:15.279><c> huge,</c><00:12:15.760><c> big.</c>
+
+00:12:16.150 --> 00:12:16.160 align:start position:0%
+So you can make it huge, big, huge, big.
+ 
+
+00:12:16.160 --> 00:12:19.990 align:start position:0%
+So you can make it huge, big, huge, big.
+You<00:12:16.320><c> can</c><00:12:16.480><c> make</c><00:12:16.639><c> it</c><00:12:17.600><c> uh</c><00:12:18.000><c> very</c><00:12:18.399><c> small</c><00:12:19.440><c> and</c><00:12:19.760><c> you</c>
+
+00:12:19.990 --> 00:12:20.000 align:start position:0%
+You can make it uh very small and you
+ 
+
+00:12:20.000 --> 00:12:21.670 align:start position:0%
+You can make it uh very small and you
+can<00:12:20.160><c> make</c><00:12:20.320><c> it</c><00:12:20.560><c> into</c><00:12:20.880><c> other</c><00:12:21.200><c> direction.</c>
+
+00:12:21.670 --> 00:12:21.680 align:start position:0%
+can make it into other direction.
+ 
+
+00:12:21.680 --> 00:12:24.790 align:start position:0%
+can make it into other direction.
+Anything<00:12:22.079><c> you</c><00:12:22.320><c> want.</c><00:12:23.200><c> So</c><00:12:23.600><c> you</c><00:12:24.160><c> what</c><00:12:24.399><c> you</c><00:12:24.639><c> need</c>
+
+00:12:24.790 --> 00:12:24.800 align:start position:0%
+Anything you want. So you what you need
+ 
+
+00:12:24.800 --> 00:12:30.710 align:start position:0%
+Anything you want. So you what you need
+to<00:12:24.959><c> do</c><00:12:25.120><c> is</c><00:12:25.760><c> just</c><00:12:26.160><c> uh</c><00:12:27.519><c> turn</c><00:12:27.760><c> on</c><00:12:28.000><c> motion</c><00:12:28.399><c> blur.</c><00:12:29.440><c> Uh</c>
+
+00:12:30.710 --> 00:12:30.720 align:start position:0%
+to do is just uh turn on motion blur. Uh
+ 
+
+00:12:30.720 --> 00:12:34.150 align:start position:0%
+to do is just uh turn on motion blur. Uh
+I<00:12:30.959><c> think</c><00:12:31.200><c> this</c><00:12:31.680><c> yeah</c><00:12:32.000><c> here</c><00:12:33.360><c> turn</c><00:12:33.600><c> on</c><00:12:33.839><c> motion</c>
+
+00:12:34.150 --> 00:12:34.160 align:start position:0%
+I think this yeah here turn on motion
+ 
+
+00:12:34.160 --> 00:12:37.350 align:start position:0%
+I think this yeah here turn on motion
+balloon<00:12:34.639><c> and</c><00:12:35.200><c> uh</c><00:12:36.000><c> took</c><00:12:36.320><c> a</c><00:12:36.560><c> little</c><00:12:36.800><c> part</c><00:12:37.040><c> here</c>
+
+00:12:37.350 --> 00:12:37.360 align:start position:0%
+balloon and uh took a little part here
+ 
+
+00:12:37.360 --> 00:12:39.590 align:start position:0%
+balloon and uh took a little part here
+and<00:12:37.600><c> the</c><00:12:37.839><c> most</c><00:12:38.160><c> important</c><00:12:38.720><c> you</c><00:12:38.959><c> can</c><00:12:39.120><c> scale</c><00:12:39.360><c> it</c>
+
+00:12:39.590 --> 00:12:39.600 align:start position:0%
+and the most important you can scale it
+ 
+
+00:12:39.600 --> 00:12:42.629 align:start position:0%
+and the most important you can scale it
+here<00:12:40.320><c> you</c><00:12:40.560><c> can</c><00:12:40.720><c> have</c><00:12:40.959><c> a</c><00:12:41.279><c> super</c><00:12:41.600><c> motion</c><00:12:41.839><c> blur</c><00:12:42.480><c> uh</c>
+
+00:12:42.629 --> 00:12:42.639 align:start position:0%
+here you can have a super motion blur uh
+ 
+
+00:12:42.639 --> 00:12:45.910 align:start position:0%
+here you can have a super motion blur uh
+in<00:12:43.040><c> the</c><00:12:43.839><c> particle</c><00:12:44.240><c> system.</c>
+
+00:12:45.910 --> 00:12:45.920 align:start position:0%
+in the particle system.
+ 
+
+00:12:45.920 --> 00:12:47.990 align:start position:0%
+in the particle system.
+Okay<00:12:46.240><c> I</c><00:12:46.480><c> think</c><00:12:46.720><c> this</c><00:12:46.959><c> is</c><00:12:47.120><c> the</c><00:12:47.360><c> whole</c><00:12:47.519><c> tutorial</c>
+
+00:12:47.990 --> 00:12:48.000 align:start position:0%
+Okay I think this is the whole tutorial
+ 
+
+00:12:48.000 --> 00:12:50.069 align:start position:0%
+Okay I think this is the whole tutorial
+and<00:12:48.560><c> thanks</c><00:12:48.880><c> for</c><00:12:49.120><c> watching.</c><00:12:49.360><c> If</c><00:12:49.519><c> you</c><00:12:49.680><c> like</c><00:12:49.839><c> my</c>
+
+00:12:50.069 --> 00:12:50.079 align:start position:0%
+and thanks for watching. If you like my
+ 
+
+00:12:50.079 --> 00:12:52.310 align:start position:0%
+and thanks for watching. If you like my
+video<00:12:50.480><c> please</c><00:12:50.880><c> thumbs</c><00:12:51.120><c> up</c><00:12:51.360><c> or</c><00:12:51.600><c> subscribe.</c>
+
+00:12:52.310 --> 00:12:52.320 align:start position:0%
+video please thumbs up or subscribe.
+ 
+
+00:12:52.320 --> 00:12:55.760 align:start position:0%
+video please thumbs up or subscribe.
+Okay,<00:12:52.639><c> thank</c><00:12:52.800><c> you</c><00:12:52.880><c> for</c><00:12:53.120><c> watching.</c><00:12:53.360><c> Bye-bye.</c>
+
