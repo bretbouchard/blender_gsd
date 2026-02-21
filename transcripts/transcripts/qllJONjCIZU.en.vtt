@@ -1,0 +1,2704 @@
+WEBVTT
+Kind: captions
+Language: en
+
+00:00:00.000 --> 00:00:01.910 align:start position:0%
+ 
+I'm<00:00:00.240><c> CG</c><00:00:00.640><c> Matter</c><00:00:00.960><c> and</c><00:00:01.120><c> in</c><00:00:01.360><c> this</c><00:00:01.520><c> video</c><00:00:01.760><c> I'm</c>
+
+00:00:01.910 --> 00:00:01.920 align:start position:0%
+I'm CG Matter and in this video I'm
+ 
+
+00:00:01.920 --> 00:00:03.590 align:start position:0%
+I'm CG Matter and in this video I'm
+going<00:00:02.000><c> to</c><00:00:02.080><c> show</c><00:00:02.240><c> you</c><00:00:02.399><c> how</c><00:00:02.560><c> to</c><00:00:02.720><c> do</c><00:00:02.879><c> edge</c><00:00:03.280><c> erosion</c>
+
+00:00:03.590 --> 00:00:03.600 align:start position:0%
+going to show you how to do edge erosion
+ 
+
+00:00:03.600 --> 00:00:05.670 align:start position:0%
+going to show you how to do edge erosion
+and<00:00:04.080><c> erosion</c><00:00:04.480><c> on</c><00:00:04.720><c> the</c><00:00:04.960><c> surface.</c><00:00:05.440><c> The</c>
+
+00:00:05.670 --> 00:00:05.680 align:start position:0%
+and erosion on the surface. The
+ 
+
+00:00:05.680 --> 00:00:07.510 align:start position:0%
+and erosion on the surface. The
+algorithm<00:00:06.080><c> for</c><00:00:06.240><c> edgeware</c><00:00:06.879><c> is</c><00:00:07.040><c> you</c><00:00:07.200><c> take</c><00:00:07.359><c> your</c>
+
+00:00:07.510 --> 00:00:07.520 align:start position:0%
+algorithm for edgeware is you take your
+ 
+
+00:00:07.520 --> 00:00:09.669 align:start position:0%
+algorithm for edgeware is you take your
+mesh<00:00:07.759><c> and</c><00:00:07.919><c> you</c><00:00:08.080><c> find</c><00:00:08.320><c> edges</c><00:00:08.720><c> that</c><00:00:08.960><c> are</c><00:00:09.200><c> very</c>
+
+00:00:09.669 --> 00:00:09.679 align:start position:0%
+mesh and you find edges that are very
+ 
+
+00:00:09.679 --> 00:00:11.430 align:start position:0%
+mesh and you find edges that are very
+sharp<00:00:10.000><c> in</c><00:00:10.160><c> a</c><00:00:10.320><c> sense.</c><00:00:10.559><c> We</c><00:00:10.719><c> are</c><00:00:10.880><c> then</c><00:00:11.120><c> going</c><00:00:11.200><c> to</c>
+
+00:00:11.430 --> 00:00:11.440 align:start position:0%
+sharp in a sense. We are then going to
+ 
+
+00:00:11.440 --> 00:00:13.669 align:start position:0%
+sharp in a sense. We are then going to
+thicken<00:00:11.840><c> them,</c><00:00:12.160><c> vary</c><00:00:12.480><c> the</c><00:00:12.639><c> radius,</c><00:00:13.120><c> remesh</c>
+
+00:00:13.669 --> 00:00:13.679 align:start position:0%
+thicken them, vary the radius, remesh
+ 
+
+00:00:13.679 --> 00:00:15.270 align:start position:0%
+thicken them, vary the radius, remesh
+just<00:00:13.840><c> for</c><00:00:14.000><c> safety,</c><00:00:14.559><c> apply</c><00:00:14.880><c> one</c><00:00:15.040><c> more</c>
+
+00:00:15.270 --> 00:00:15.280 align:start position:0%
+just for safety, apply one more
+ 
+
+00:00:15.280 --> 00:00:16.710 align:start position:0%
+just for safety, apply one more
+distortion,<00:00:15.920><c> and</c><00:00:16.080><c> we're</c><00:00:16.240><c> going</c><00:00:16.320><c> to</c><00:00:16.400><c> take</c><00:00:16.560><c> the</c>
+
+00:00:16.710 --> 00:00:16.720 align:start position:0%
+distortion, and we're going to take the
+ 
+
+00:00:16.720 --> 00:00:18.550 align:start position:0%
+distortion, and we're going to take the
+original<00:00:17.039><c> mesh</c><00:00:17.359><c> and</c><00:00:17.520><c> cut</c><00:00:17.760><c> out</c><00:00:17.920><c> the</c><00:00:18.160><c> new</c><00:00:18.320><c> one.</c>
+
+00:00:18.550 --> 00:00:18.560 align:start position:0%
+original mesh and cut out the new one.
+ 
+
+00:00:18.560 --> 00:00:20.310 align:start position:0%
+original mesh and cut out the new one.
+And<00:00:18.720><c> that</c><00:00:18.880><c> is</c><00:00:19.039><c> edgewware.</c><00:00:19.600><c> For</c><00:00:19.760><c> the</c><00:00:19.920><c> face</c>
+
+00:00:20.310 --> 00:00:20.320 align:start position:0%
+And that is edgewware. For the face
+ 
+
+00:00:20.320 --> 00:00:21.670 align:start position:0%
+And that is edgewware. For the face
+erosion,<00:00:20.720><c> we</c><00:00:20.880><c> are</c><00:00:20.960><c> going</c><00:00:21.039><c> to</c><00:00:21.119><c> spawn</c><00:00:21.359><c> points</c>
+
+00:00:21.670 --> 00:00:21.680 align:start position:0%
+erosion, we are going to spawn points
+ 
+
+00:00:21.680 --> 00:00:23.029 align:start position:0%
+erosion, we are going to spawn points
+all<00:00:21.920><c> over</c><00:00:22.080><c> this</c><00:00:22.240><c> mesh.</c><00:00:22.640><c> We're</c><00:00:22.800><c> going</c><00:00:22.800><c> to</c><00:00:22.960><c> get</c>
+
+00:00:23.029 --> 00:00:23.039 align:start position:0%
+all over this mesh. We're going to get
+ 
+
+00:00:23.039 --> 00:00:25.269 align:start position:0%
+all over this mesh. We're going to get
+rid<00:00:23.199><c> of</c><00:00:23.359><c> some</c><00:00:23.519><c> of</c><00:00:23.600><c> them,</c><00:00:23.840><c> remesh</c><00:00:24.640><c> cloud</c><00:00:24.960><c> using</c>
+
+00:00:25.269 --> 00:00:25.279 align:start position:0%
+rid of some of them, remesh cloud using
+ 
+
+00:00:25.279 --> 00:00:27.509 align:start position:0%
+rid of some of them, remesh cloud using
+SDFs,<00:00:26.000><c> add</c><00:00:26.160><c> a</c><00:00:26.320><c> bit</c><00:00:26.400><c> of</c><00:00:26.480><c> distortion,</c><00:00:27.119><c> and</c><00:00:27.279><c> again</c>
+
+00:00:27.509 --> 00:00:27.519 align:start position:0%
+SDFs, add a bit of distortion, and again
+ 
+
+00:00:27.519 --> 00:00:29.269 align:start position:0%
+SDFs, add a bit of distortion, and again
+take<00:00:27.760><c> our</c><00:00:27.920><c> original</c><00:00:28.240><c> and</c><00:00:28.480><c> cut</c><00:00:28.640><c> away</c><00:00:28.960><c> this.</c>
+
+00:00:29.269 --> 00:00:29.279 align:start position:0%
+take our original and cut away this.
+ 
+
+00:00:29.279 --> 00:00:30.310 align:start position:0%
+take our original and cut away this.
+This<00:00:29.519><c> video</c><00:00:29.679><c> is</c><00:00:29.840><c> brought</c><00:00:30.000><c> to</c><00:00:30.080><c> you</c><00:00:30.240><c> by</c>
+
+00:00:30.310 --> 00:00:30.320 align:start position:0%
+This video is brought to you by
+ 
+
+00:00:30.320 --> 00:00:31.910 align:start position:0%
+This video is brought to you by
+Squarespace,<00:00:30.880><c> but</c><00:00:31.039><c> we</c><00:00:31.279><c> are</c><00:00:31.439><c> going</c><00:00:31.519><c> to</c><00:00:31.679><c> talk</c>
+
+00:00:31.910 --> 00:00:31.920 align:start position:0%
+Squarespace, but we are going to talk
+ 
+
+00:00:31.920 --> 00:00:34.310 align:start position:0%
+Squarespace, but we are going to talk
+about<00:00:32.079><c> that</c><00:00:32.480><c> later.</c><00:00:33.120><c> So,</c><00:00:33.280><c> for</c><00:00:33.600><c> our</c><00:00:33.920><c> starter</c>
+
+00:00:34.310 --> 00:00:34.320 align:start position:0%
+about that later. So, for our starter
+ 
+
+00:00:34.320 --> 00:00:35.750 align:start position:0%
+about that later. So, for our starter
+mesh,<00:00:34.640><c> let's</c><00:00:34.800><c> do</c><00:00:34.960><c> something</c><00:00:35.200><c> simple</c><00:00:35.440><c> like</c><00:00:35.600><c> a</c>
+
+00:00:35.750 --> 00:00:35.760 align:start position:0%
+mesh, let's do something simple like a
+ 
+
+00:00:35.760 --> 00:00:37.670 align:start position:0%
+mesh, let's do something simple like a
+cube,<00:00:36.000><c> which</c><00:00:36.239><c> can</c><00:00:36.399><c> then</c><00:00:36.559><c> be</c><00:00:36.719><c> swapped</c><00:00:37.120><c> later.</c><00:00:37.520><c> I</c>
+
+00:00:37.670 --> 00:00:37.680 align:start position:0%
+cube, which can then be swapped later. I
+ 
+
+00:00:37.680 --> 00:00:39.510 align:start position:0%
+cube, which can then be swapped later. I
+need<00:00:37.840><c> to</c><00:00:38.000><c> isolate</c><00:00:38.480><c> the</c><00:00:38.719><c> sharp</c><00:00:39.040><c> edges</c><00:00:39.360><c> here,</c>
+
+00:00:39.510 --> 00:00:39.520 align:start position:0%
+need to isolate the sharp edges here,
+ 
+
+00:00:39.520 --> 00:00:41.350 align:start position:0%
+need to isolate the sharp edges here,
+which<00:00:39.760><c> in</c><00:00:39.920><c> this</c><00:00:40.079><c> case</c><00:00:40.160><c> is</c><00:00:40.399><c> all</c><00:00:40.559><c> the</c><00:00:40.719><c> edges.</c><00:00:41.200><c> So,</c>
+
+00:00:41.350 --> 00:00:41.360 align:start position:0%
+which in this case is all the edges. So,
+ 
+
+00:00:41.360 --> 00:00:43.510 align:start position:0%
+which in this case is all the edges. So,
+I'm<00:00:41.600><c> going</c><00:00:41.760><c> to</c><00:00:42.000><c> take</c><00:00:42.239><c> the</c><00:00:42.480><c> edge</c><00:00:42.879><c> angle</c><00:00:43.200><c> node,</c>
+
+00:00:43.510 --> 00:00:43.520 align:start position:0%
+I'm going to take the edge angle node,
+ 
+
+00:00:43.520 --> 00:00:44.950 align:start position:0%
+I'm going to take the edge angle node,
+which<00:00:43.760><c> can</c><00:00:43.920><c> give</c><00:00:44.000><c> me</c><00:00:44.160><c> the</c><00:00:44.399><c> angle</c><00:00:44.640><c> of</c><00:00:44.800><c> every</c>
+
+00:00:44.950 --> 00:00:44.960 align:start position:0%
+which can give me the angle of every
+ 
+
+00:00:44.960 --> 00:00:46.470 align:start position:0%
+which can give me the angle of every
+edge.<00:00:45.360><c> I</c><00:00:45.520><c> don't</c><00:00:45.600><c> care</c><00:00:45.760><c> about</c><00:00:45.840><c> the</c><00:00:46.079><c> sign,</c><00:00:46.239><c> if</c>
+
+00:00:46.470 --> 00:00:46.480 align:start position:0%
+edge. I don't care about the sign, if
+ 
+
+00:00:46.480 --> 00:00:47.750 align:start position:0%
+edge. I don't care about the sign, if
+it's<00:00:46.559><c> positive</c><00:00:46.879><c> or</c><00:00:47.039><c> negative.</c><00:00:47.360><c> I</c><00:00:47.520><c> just</c><00:00:47.680><c> need</c>
+
+00:00:47.750 --> 00:00:47.760 align:start position:0%
+it's positive or negative. I just need
+ 
+
+00:00:47.760 --> 00:00:49.830 align:start position:0%
+it's positive or negative. I just need
+to<00:00:47.920><c> know</c><00:00:48.160><c> is</c><00:00:48.399><c> this</c><00:00:48.559><c> angle</c><00:00:49.039><c> bigger</c><00:00:49.360><c> than</c><00:00:49.600><c> a</c>
+
+00:00:49.830 --> 00:00:49.840 align:start position:0%
+to know is this angle bigger than a
+ 
+
+00:00:49.840 --> 00:00:51.510 align:start position:0%
+to know is this angle bigger than a
+certain<00:00:50.160><c> number.</c><00:00:50.559><c> This</c><00:00:50.719><c> will</c><00:00:50.879><c> be</c><00:00:50.960><c> in</c><00:00:51.120><c> radians,</c>
+
+00:00:51.510 --> 00:00:51.520 align:start position:0%
+certain number. This will be in radians,
+ 
+
+00:00:51.520 --> 00:00:53.990 align:start position:0%
+certain number. This will be in radians,
+so<00:00:51.680><c> it's</c><00:00:51.920><c> not</c><00:00:52.000><c> like</c><00:00:52.160><c> 0</c><00:00:52.480><c> to</c><00:00:52.640><c> 90°,</c><00:00:53.199><c> it's</c><00:00:53.440><c> 0</c><00:00:53.760><c> to</c>
+
+00:00:53.990 --> 00:00:54.000 align:start position:0%
+so it's not like 0 to 90°, it's 0 to
+ 
+
+00:00:54.000 --> 00:00:55.510 align:start position:0%
+so it's not like 0 to 90°, it's 0 to
+p&lt;unk&gt;<00:00:54.239><c> over4.</c><00:00:54.800><c> So,</c><00:00:54.960><c> I'm</c><00:00:55.120><c> just</c><00:00:55.280><c> going</c><00:00:55.360><c> to</c><00:00:55.440><c> make</c>
+
+00:00:55.510 --> 00:00:55.520 align:start position:0%
+p&lt;unk&gt; over4. So, I'm just going to make
+ 
+
+00:00:55.520 --> 00:00:57.990 align:start position:0%
+p&lt;unk&gt; over4. So, I'm just going to make
+this<00:00:55.760><c> a</c><00:00:55.920><c> value</c><00:00:56.160><c> like</c><00:00:56.800><c> 6</c><00:00:56.960><c> for</c><00:00:57.199><c> now.</c><00:00:57.360><c> We</c><00:00:57.600><c> are</c><00:00:57.760><c> then</c>
+
+00:00:57.990 --> 00:00:58.000 align:start position:0%
+this a value like 6 for now. We are then
+ 
+
+00:00:58.000 --> 00:01:00.310 align:start position:0%
+this a value like 6 for now. We are then
+going<00:00:58.160><c> to</c><00:00:58.320><c> isolate</c><00:00:58.800><c> these</c><00:00:59.039><c> edges</c><00:00:59.440><c> by</c><00:00:59.760><c> doing</c><00:01:00.000><c> a</c>
+
+00:01:00.310 --> 00:01:00.320 align:start position:0%
+going to isolate these edges by doing a
+ 
+
+00:01:00.320 --> 00:01:03.189 align:start position:0%
+going to isolate these edges by doing a
+separate<00:01:01.120><c> geometry</c><00:01:01.920><c> and</c><00:01:02.160><c> let's</c><00:01:02.480><c> isolate</c><00:01:02.960><c> the</c>
+
+00:01:03.189 --> 00:01:03.199 align:start position:0%
+separate geometry and let's isolate the
+ 
+
+00:01:03.199 --> 00:01:05.350 align:start position:0%
+separate geometry and let's isolate the
+edges<00:01:03.520><c> that</c><00:01:03.760><c> fit</c><00:01:04.000><c> this</c><00:01:04.320><c> criteria.</c><00:01:04.960><c> And</c><00:01:05.199><c> then</c>
+
+00:01:05.350 --> 00:01:05.360 align:start position:0%
+edges that fit this criteria. And then
+ 
+
+00:01:05.360 --> 00:01:07.030 align:start position:0%
+edges that fit this criteria. And then
+you<00:01:05.519><c> see</c><00:01:05.680><c> there's</c><00:01:05.920><c> still</c><00:01:06.159><c> remaining</c><00:01:06.560><c> faces.</c>
+
+00:01:07.030 --> 00:01:07.040 align:start position:0%
+you see there's still remaining faces.
+ 
+
+00:01:07.040 --> 00:01:09.510 align:start position:0%
+you see there's still remaining faces.
+So<00:01:07.200><c> I</c><00:01:07.360><c> am</c><00:01:07.520><c> going</c><00:01:07.680><c> to</c><00:01:07.840><c> delete</c><00:01:08.240><c> geometry</c><00:01:08.960><c> all</c><00:01:09.200><c> the</c>
+
+00:01:09.510 --> 00:01:09.520 align:start position:0%
+So I am going to delete geometry all the
+ 
+
+00:01:09.520 --> 00:01:12.390 align:start position:0%
+So I am going to delete geometry all the
+faces.<00:01:10.159><c> So</c><00:01:10.400><c> delete</c><00:01:10.720><c> faces</c><00:01:11.280><c> only</c><00:01:11.680><c> edges</c><00:01:12.159><c> or</c><00:01:12.320><c> I</c>
+
+00:01:12.390 --> 00:01:12.400 align:start position:0%
+faces. So delete faces only edges or I
+ 
+
+00:01:12.400 --> 00:01:14.149 align:start position:0%
+faces. So delete faces only edges or I
+guess<00:01:12.560><c> only</c><00:01:12.799><c> faces.</c><00:01:13.200><c> Now</c><00:01:13.439><c> to</c><00:01:13.600><c> check</c><00:01:13.760><c> that</c><00:01:13.920><c> this</c>
+
+00:01:14.149 --> 00:01:14.159 align:start position:0%
+guess only faces. Now to check that this
+ 
+
+00:01:14.159 --> 00:01:15.830 align:start position:0%
+guess only faces. Now to check that this
+is<00:01:14.320><c> working,</c><00:01:14.640><c> I'm</c><00:01:14.960><c> going</c><00:01:15.040><c> to</c><00:01:15.200><c> take</c><00:01:15.360><c> my</c><00:01:15.600><c> cube</c>
+
+00:01:15.830 --> 00:01:15.840 align:start position:0%
+is working, I'm going to take my cube
+ 
+
+00:01:15.840 --> 00:01:17.350 align:start position:0%
+is working, I'm going to take my cube
+and<00:01:16.080><c> add</c><00:01:16.240><c> some</c><00:01:16.479><c> divisions</c><00:01:16.799><c> to</c><00:01:16.960><c> it.</c><00:01:17.200><c> So</c>
+
+00:01:17.350 --> 00:01:17.360 align:start position:0%
+and add some divisions to it. So
+ 
+
+00:01:17.360 --> 00:01:19.190 align:start position:0%
+and add some divisions to it. So
+something<00:01:17.520><c> like</c><00:01:17.759><c> 4x4.</c><00:01:18.479><c> If</c><00:01:18.640><c> I</c><00:01:18.720><c> look</c><00:01:18.880><c> at</c><00:01:19.040><c> the</c>
+
+00:01:19.190 --> 00:01:19.200 align:start position:0%
+something like 4x4. If I look at the
+ 
+
+00:01:19.200 --> 00:01:20.789 align:start position:0%
+something like 4x4. If I look at the
+result,<00:01:19.600><c> you</c><00:01:19.759><c> can</c><00:01:19.920><c> see</c><00:01:20.080><c> it's</c><00:01:20.320><c> only</c><00:01:20.560><c> those</c>
+
+00:01:20.789 --> 00:01:20.799 align:start position:0%
+result, you can see it's only those
+ 
+
+00:01:20.799 --> 00:01:22.230 align:start position:0%
+result, you can see it's only those
+harsh<00:01:21.119><c> edges.</c><00:01:21.520><c> It</c><00:01:21.680><c> doesn't</c><00:01:21.840><c> care</c><00:01:22.000><c> about</c><00:01:22.080><c> the</c>
+
+00:01:22.230 --> 00:01:22.240 align:start position:0%
+harsh edges. It doesn't care about the
+ 
+
+00:01:22.240 --> 00:01:24.070 align:start position:0%
+harsh edges. It doesn't care about the
+ones<00:01:22.479><c> in</c><00:01:22.720><c> the</c><00:01:22.799><c> middle.</c><00:01:23.200><c> Okay.</c><00:01:23.439><c> Now</c><00:01:23.680><c> let's</c><00:01:23.920><c> make</c>
+
+00:01:24.070 --> 00:01:24.080 align:start position:0%
+ones in the middle. Okay. Now let's make
+ 
+
+00:01:24.080 --> 00:01:26.469 align:start position:0%
+ones in the middle. Okay. Now let's make
+them<00:01:24.479><c> solid</c><00:01:24.880><c> in</c><00:01:25.040><c> a</c><00:01:25.200><c> sense.</c><00:01:25.439><c> Blender</c><00:01:25.840><c> 5.0</c><00:01:26.240><c> know</c>
+
+00:01:26.469 --> 00:01:26.479 align:start position:0%
+them solid in a sense. Blender 5.0 know
+ 
+
+00:01:26.479 --> 00:01:28.230 align:start position:0%
+them solid in a sense. Blender 5.0 know
+boasts<00:01:26.799><c> about</c><00:01:26.960><c> the</c><00:01:27.119><c> tube</c><00:01:27.439><c> node.</c><00:01:27.759><c> I'm</c><00:01:27.920><c> not</c><00:01:28.080><c> I'm</c>
+
+00:01:28.230 --> 00:01:28.240 align:start position:0%
+boasts about the tube node. I'm not I'm
+ 
+
+00:01:28.240 --> 00:01:29.510 align:start position:0%
+boasts about the tube node. I'm not I'm
+not<00:01:28.320><c> [&nbsp;__&nbsp;]</c><00:01:28.640><c> with</c><00:01:28.720><c> that.</c><00:01:28.880><c> I</c><00:01:29.040><c> mean,</c><00:01:29.119><c> look</c><00:01:29.360><c> look</c>
+
+00:01:29.510 --> 00:01:29.520 align:start position:0%
+not [&nbsp;__&nbsp;] with that. I mean, look look
+ 
+
+00:01:29.520 --> 00:01:30.710 align:start position:0%
+not [&nbsp;__&nbsp;] with that. I mean, look look
+at<00:01:29.600><c> this.</c><00:01:29.920><c> So,</c><00:01:30.080><c> what</c><00:01:30.240><c> I'm</c><00:01:30.400><c> going</c><00:01:30.479><c> to</c><00:01:30.560><c> use</c>
+
+00:01:30.710 --> 00:01:30.720 align:start position:0%
+at this. So, what I'm going to use
+ 
+
+00:01:30.720 --> 00:01:32.469 align:start position:0%
+at this. So, what I'm going to use
+instead<00:01:31.280><c> is</c><00:01:31.520><c> if</c><00:01:31.759><c> you</c><00:01:31.840><c> go</c><00:01:31.920><c> to</c><00:01:32.000><c> my</c><00:01:32.159><c> website</c>
+
+00:01:32.469 --> 00:01:32.479 align:start position:0%
+instead is if you go to my website
+ 
+
+00:01:32.479 --> 00:01:35.109 align:start position:0%
+instead is if you go to my website
+cgmatter.com,<00:01:33.600><c> so</c><00:01:33.759><c> cgmatter.com,</c><00:01:34.799><c> you</c><00:01:34.880><c> go</c><00:01:34.960><c> to</c>
+
+00:01:35.109 --> 00:01:35.119 align:start position:0%
+cgmatter.com, so cgmatter.com, you go to
+ 
+
+00:01:35.119 --> 00:01:36.870 align:start position:0%
+cgmatter.com, so cgmatter.com, you go to
+free<00:01:35.280><c> nodes,</c><00:01:35.680><c> you</c><00:01:35.840><c> can</c><00:01:35.920><c> get</c><00:01:36.079><c> all</c><00:01:36.240><c> the</c><00:01:36.400><c> nodes</c><00:01:36.640><c> I</c>
+
+00:01:36.870 --> 00:01:36.880 align:start position:0%
+free nodes, you can get all the nodes I
+ 
+
+00:01:36.880 --> 00:01:38.390 align:start position:0%
+free nodes, you can get all the nodes I
+use<00:01:37.040><c> for</c><00:01:37.280><c> absolutely</c><00:01:37.759><c> free.</c><00:01:38.079><c> You</c><00:01:38.240><c> don't</c><00:01:38.320><c> need</c>
+
+00:01:38.390 --> 00:01:38.400 align:start position:0%
+use for absolutely free. You don't need
+ 
+
+00:01:38.400 --> 00:01:39.990 align:start position:0%
+use for absolutely free. You don't need
+to<00:01:38.560><c> be</c><00:01:38.640><c> a</c><00:01:38.799><c> member.</c><00:01:39.040><c> And</c><00:01:39.200><c> then</c><00:01:39.360><c> with</c><00:01:39.520><c> that,</c><00:01:39.759><c> I'm</c>
+
+00:01:39.990 --> 00:01:40.000 align:start position:0%
+to be a member. And then with that, I'm
+ 
+
+00:01:40.000 --> 00:01:41.670 align:start position:0%
+to be a member. And then with that, I'm
+going<00:01:40.079><c> to</c><00:01:40.159><c> use</c><00:01:40.320><c> my</c><00:01:40.640><c> tube</c><00:01:40.960><c> node.</c><00:01:41.360><c> That's</c><00:01:41.600><c> going</c>
+
+00:01:41.670 --> 00:01:41.680 align:start position:0%
+going to use my tube node. That's going
+ 
+
+00:01:41.680 --> 00:01:43.830 align:start position:0%
+going to use my tube node. That's going
+to<00:01:41.840><c> require</c><00:01:42.159><c> that</c><00:01:42.400><c> the</c><00:01:42.640><c> input</c><00:01:43.040><c> is</c><00:01:43.200><c> a</c><00:01:43.439><c> curve.</c>
+
+00:01:43.830 --> 00:01:43.840 align:start position:0%
+to require that the input is a curve.
+ 
+
+00:01:43.840 --> 00:01:45.830 align:start position:0%
+to require that the input is a curve.
+So,<00:01:44.000><c> we're</c><00:01:44.240><c> going</c><00:01:44.240><c> to</c><00:01:44.400><c> do</c><00:01:44.479><c> a</c><00:01:44.720><c> mesh</c><00:01:45.119><c> to</c><00:01:45.360><c> curve.</c>
+
+00:01:45.830 --> 00:01:45.840 align:start position:0%
+So, we're going to do a mesh to curve.
+ 
+
+00:01:45.840 --> 00:01:47.350 align:start position:0%
+So, we're going to do a mesh to curve.
+And<00:01:45.920><c> boom.</c><00:01:46.240><c> Let's</c><00:01:46.479><c> see</c><00:01:46.560><c> that</c><00:01:46.720><c> in</c><00:01:46.880><c> solid</c><00:01:47.200><c> view.</c>
+
+00:01:47.350 --> 00:01:47.360 align:start position:0%
+And boom. Let's see that in solid view.
+ 
+
+00:01:47.360 --> 00:01:49.270 align:start position:0%
+And boom. Let's see that in solid view.
+We<00:01:47.600><c> are</c><00:01:47.680><c> going</c><00:01:47.840><c> to</c><00:01:48.079><c> decrease</c><00:01:48.560><c> the</c><00:01:48.720><c> radius,</c>
+
+00:01:49.270 --> 00:01:49.280 align:start position:0%
+We are going to decrease the radius,
+ 
+
+00:01:49.280 --> 00:01:51.030 align:start position:0%
+We are going to decrease the radius,
+fill<00:01:49.439><c> the</c><00:01:49.600><c> gaps,</c><00:01:50.000><c> and</c><00:01:50.159><c> now</c><00:01:50.320><c> we've</c><00:01:50.560><c> solidified</c>
+
+00:01:51.030 --> 00:01:51.040 align:start position:0%
+fill the gaps, and now we've solidified
+ 
+
+00:01:51.040 --> 00:01:52.789 align:start position:0%
+fill the gaps, and now we've solidified
+this.<00:01:51.360><c> In</c><00:01:51.520><c> a</c><00:01:51.680><c> case</c><00:01:51.840><c> like</c><00:01:52.079><c> this,</c><00:01:52.320><c> and</c><00:01:52.479><c> this</c><00:01:52.640><c> is</c>
+
+00:01:52.789 --> 00:01:52.799 align:start position:0%
+this. In a case like this, and this is
+ 
+
+00:01:52.799 --> 00:01:54.469 align:start position:0%
+this. In a case like this, and this is
+very<00:01:52.960><c> important,</c><00:01:53.360><c> these</c><00:01:53.680><c> curves</c><00:01:54.079><c> aren't</c>
+
+00:01:54.469 --> 00:01:54.479 align:start position:0%
+very important, these curves aren't
+ 
+
+00:01:54.479 --> 00:01:56.149 align:start position:0%
+very important, these curves aren't
+going<00:01:54.720><c> to</c><00:01:54.960><c> connect.</c><00:01:55.520><c> And</c><00:01:55.759><c> because</c><00:01:55.920><c> we're</c>
+
+00:01:56.149 --> 00:01:56.159 align:start position:0%
+going to connect. And because we're
+ 
+
+00:01:56.159 --> 00:01:57.910 align:start position:0%
+going to connect. And because we're
+doing<00:01:56.320><c> booleans,</c><00:01:56.880><c> ideally</c><00:01:57.280><c> with</c><00:01:57.439><c> manifolds,</c>
+
+00:01:57.910 --> 00:01:57.920 align:start position:0%
+doing booleans, ideally with manifolds,
+ 
+
+00:01:57.920 --> 00:02:00.069 align:start position:0%
+doing booleans, ideally with manifolds,
+we<00:01:58.079><c> want</c><00:01:58.159><c> it</c><00:01:58.320><c> to</c><00:01:58.399><c> be</c><00:01:58.560><c> one</c><00:01:58.799><c> solid</c><00:01:59.360><c> thing.</c><00:01:59.840><c> I'm</c>
+
+00:02:00.069 --> 00:02:00.079 align:start position:0%
+we want it to be one solid thing. I'm
+ 
+
+00:02:00.079 --> 00:02:01.910 align:start position:0%
+we want it to be one solid thing. I'm
+also<00:02:00.240><c> going</c><00:02:00.320><c> to</c><00:02:00.399><c> use</c><00:02:00.560><c> my</c><00:02:00.799><c> SDF</c><00:02:01.360><c> remesh</c><00:02:01.759><c> node</c>
+
+00:02:01.910 --> 00:02:01.920 align:start position:0%
+also going to use my SDF remesh node
+ 
+
+00:02:01.920 --> 00:02:03.510 align:start position:0%
+also going to use my SDF remesh node
+that<00:02:02.159><c> just</c><00:02:02.240><c> kind</c><00:02:02.320><c> of</c><00:02:02.479><c> voluminizes</c><00:02:03.119><c> this.</c><00:02:03.439><c> And</c>
+
+00:02:03.510 --> 00:02:03.520 align:start position:0%
+that just kind of voluminizes this. And
+ 
+
+00:02:03.520 --> 00:02:05.270 align:start position:0%
+that just kind of voluminizes this. And
+then<00:02:03.840><c> increase</c><00:02:04.079><c> the</c><00:02:04.320><c> quality.</c><00:02:04.799><c> Divide</c><00:02:05.119><c> this</c>
+
+00:02:05.270 --> 00:02:05.280 align:start position:0%
+then increase the quality. Divide this
+ 
+
+00:02:05.280 --> 00:02:06.950 align:start position:0%
+then increase the quality. Divide this
+by<00:02:05.520><c> 10.</c><00:02:05.920><c> This</c><00:02:06.000><c> is</c><00:02:06.159><c> kind</c><00:02:06.240><c> of</c><00:02:06.320><c> like</c><00:02:06.399><c> a</c><00:02:06.560><c> resolution</c>
+
+00:02:06.950 --> 00:02:06.960 align:start position:0%
+by 10. This is kind of like a resolution
+ 
+
+00:02:06.960 --> 00:02:08.389 align:start position:0%
+by 10. This is kind of like a resolution
+slider.<00:02:07.360><c> And</c><00:02:07.439><c> you</c><00:02:07.600><c> can</c><00:02:07.680><c> see</c><00:02:07.840><c> we</c><00:02:08.000><c> got</c><00:02:08.160><c> really</c>
+
+00:02:08.389 --> 00:02:08.399 align:start position:0%
+slider. And you can see we got really
+ 
+
+00:02:08.399 --> 00:02:10.070 align:start position:0%
+slider. And you can see we got really
+good<00:02:08.640><c> geo</c><00:02:08.959><c> here.</c><00:02:09.200><c> Now,</c><00:02:09.440><c> you</c><00:02:09.599><c> can</c><00:02:09.679><c> see</c><00:02:09.840><c> this</c>
+
+00:02:10.070 --> 00:02:10.080 align:start position:0%
+good geo here. Now, you can see this
+ 
+
+00:02:10.080 --> 00:02:11.670 align:start position:0%
+good geo here. Now, you can see this
+isn't<00:02:10.399><c> very</c><00:02:10.640><c> detailed.</c><00:02:11.120><c> It's</c><00:02:11.360><c> going</c><00:02:11.360><c> to</c><00:02:11.440><c> work.</c>
+
+00:02:11.670 --> 00:02:11.680 align:start position:0%
+isn't very detailed. It's going to work.
+ 
+
+00:02:11.680 --> 00:02:13.510 align:start position:0%
+isn't very detailed. It's going to work.
+We<00:02:11.840><c> can</c><00:02:11.920><c> cut</c><00:02:12.160><c> one</c><00:02:12.319><c> thing</c><00:02:12.480><c> from</c><00:02:12.720><c> another,</c><00:02:13.040><c> but</c><00:02:13.280><c> I</c>
+
+00:02:13.510 --> 00:02:13.520 align:start position:0%
+We can cut one thing from another, but I
+ 
+
+00:02:13.520 --> 00:02:15.190 align:start position:0%
+We can cut one thing from another, but I
+want<00:02:13.680><c> more</c><00:02:13.920><c> variety.</c><00:02:14.400><c> So,</c><00:02:14.640><c> in</c><00:02:14.800><c> this</c><00:02:14.959><c> curved</c>
+
+00:02:15.190 --> 00:02:15.200 align:start position:0%
+want more variety. So, in this curved
+ 
+
+00:02:15.200 --> 00:02:16.710 align:start position:0%
+want more variety. So, in this curved
+tube<00:02:15.520><c> node,</c><00:02:15.760><c> you</c><00:02:15.920><c> can</c><00:02:16.000><c> see</c><00:02:16.080><c> we</c><00:02:16.319><c> can</c><00:02:16.480><c> control</c>
+
+00:02:16.710 --> 00:02:16.720 align:start position:0%
+tube node, you can see we can control
+ 
+
+00:02:16.720 --> 00:02:18.710 align:start position:0%
+tube node, you can see we can control
+kind<00:02:16.959><c> of</c><00:02:17.040><c> the</c><00:02:17.200><c> size</c><00:02:17.440><c> of</c><00:02:17.520><c> this.</c><00:02:18.000><c> Let's</c><00:02:18.239><c> use</c><00:02:18.480><c> a</c>
+
+00:02:18.710 --> 00:02:18.720 align:start position:0%
+kind of the size of this. Let's use a
+ 
+
+00:02:18.720 --> 00:02:20.630 align:start position:0%
+kind of the size of this. Let's use a
+noise<00:02:19.040><c> texture</c><00:02:19.440><c> node</c><00:02:19.760><c> to</c><00:02:20.000><c> decide</c><00:02:20.319><c> that</c>
+
+00:02:20.630 --> 00:02:20.640 align:start position:0%
+noise texture node to decide that
+ 
+
+00:02:20.640 --> 00:02:22.390 align:start position:0%
+noise texture node to decide that
+radius.<00:02:21.280><c> Connect</c><00:02:21.520><c> that</c><00:02:21.680><c> into</c><00:02:21.920><c> the</c><00:02:22.080><c> radius.</c>
+
+00:02:22.390 --> 00:02:22.400 align:start position:0%
+radius. Connect that into the radius.
+ 
+
+00:02:22.400 --> 00:02:23.589 align:start position:0%
+radius. Connect that into the radius.
+And<00:02:22.560><c> we</c><00:02:22.720><c> got</c><00:02:22.800><c> to</c><00:02:22.879><c> make</c><00:02:23.040><c> sure</c><00:02:23.120><c> that,</c><00:02:23.360><c> you</c><00:02:23.520><c> know,</c>
+
+00:02:23.589 --> 00:02:23.599 align:start position:0%
+And we got to make sure that, you know,
+ 
+
+00:02:23.599 --> 00:02:25.589 align:start position:0%
+And we got to make sure that, you know,
+by<00:02:23.840><c> default</c><00:02:24.080><c> it's</c><00:02:24.319><c> around</c><00:02:24.480><c> 0.02.</c><00:02:25.120><c> So</c><00:02:25.360><c> I'm</c>
+
+00:02:25.589 --> 00:02:25.599 align:start position:0%
+by default it's around 0.02. So I'm
+ 
+
+00:02:25.599 --> 00:02:27.270 align:start position:0%
+by default it's around 0.02. So I'm
+going<00:02:25.760><c> to</c><00:02:25.920><c> map</c><00:02:26.239><c> range</c><00:02:26.560><c> to</c><00:02:26.720><c> kind</c><00:02:26.879><c> of</c><00:02:26.959><c> constrain</c>
+
+00:02:27.270 --> 00:02:27.280 align:start position:0%
+going to map range to kind of constrain
+ 
+
+00:02:27.280 --> 00:02:30.630 align:start position:0%
+going to map range to kind of constrain
+this<00:02:27.680><c> 0.01</c><00:02:28.959><c> to</c><00:02:29.200><c> like</c><00:02:29.520><c> 0.02.</c><00:02:30.319><c> You're</c><00:02:30.480><c> going</c><00:02:30.560><c> to</c>
+
+00:02:30.630 --> 00:02:30.640 align:start position:0%
+this 0.01 to like 0.02. You're going to
+ 
+
+00:02:30.640 --> 00:02:32.229 align:start position:0%
+this 0.01 to like 0.02. You're going to
+see<00:02:30.800><c> this</c><00:02:31.040><c> doesn't</c><00:02:31.280><c> like</c><00:02:31.440><c> really</c><00:02:31.680><c> do</c><00:02:31.920><c> anything</c>
+
+00:02:32.229 --> 00:02:32.239 align:start position:0%
+see this doesn't like really do anything
+ 
+
+00:02:32.239 --> 00:02:33.750 align:start position:0%
+see this doesn't like really do anything
+like<00:02:32.400><c> it</c><00:02:32.640><c> changes</c><00:02:32.800><c> it</c><00:02:32.959><c> a</c><00:02:33.120><c> little.</c><00:02:33.440><c> This</c><00:02:33.599><c> is</c>
+
+00:02:33.750 --> 00:02:33.760 align:start position:0%
+like it changes it a little. This is
+ 
+
+00:02:33.760 --> 00:02:35.430 align:start position:0%
+like it changes it a little. This is
+because<00:02:34.080><c> our</c><00:02:34.480><c> curves</c><00:02:34.879><c> don't</c><00:02:35.120><c> have</c><00:02:35.280><c> any</c>
+
+00:02:35.430 --> 00:02:35.440 align:start position:0%
+because our curves don't have any
+ 
+
+00:02:35.440 --> 00:02:37.030 align:start position:0%
+because our curves don't have any
+geometry,<00:02:36.000><c> right?</c><00:02:36.160><c> There's</c><00:02:36.400><c> one</c><00:02:36.560><c> here,</c><00:02:36.879><c> a</c>
+
+00:02:37.030 --> 00:02:37.040 align:start position:0%
+geometry, right? There's one here, a
+ 
+
+00:02:37.040 --> 00:02:38.390 align:start position:0%
+geometry, right? There's one here, a
+point<00:02:37.280><c> here.</c><00:02:37.599><c> There's</c><00:02:37.760><c> nothing</c><00:02:37.920><c> in</c><00:02:38.160><c> between</c>
+
+00:02:38.390 --> 00:02:38.400 align:start position:0%
+point here. There's nothing in between
+ 
+
+00:02:38.400 --> 00:02:40.309 align:start position:0%
+point here. There's nothing in between
+to<00:02:38.640><c> give</c><00:02:38.720><c> it</c><00:02:38.959><c> resolution.</c><00:02:39.519><c> So</c><00:02:39.760><c> finally,</c><00:02:40.080><c> I'm</c>
+
+00:02:40.309 --> 00:02:40.319 align:start position:0%
+to give it resolution. So finally, I'm
+ 
+
+00:02:40.319 --> 00:02:41.589 align:start position:0%
+to give it resolution. So finally, I'm
+going<00:02:40.400><c> to</c><00:02:40.480><c> take</c><00:02:40.640><c> this</c><00:02:40.800><c> and</c><00:02:41.040><c> I'm</c><00:02:41.200><c> going</c><00:02:41.280><c> to</c><00:02:41.360><c> run</c>
+
+00:02:41.589 --> 00:02:41.599 align:start position:0%
+going to take this and I'm going to run
+ 
+
+00:02:41.599 --> 00:02:44.390 align:start position:0%
+going to take this and I'm going to run
+a<00:02:41.920><c> reample</c><00:02:42.480><c> curve</c><00:02:42.879><c> for</c><00:02:43.120><c> like</c><00:02:43.680><c> 100</c><00:02:44.000><c> points</c><00:02:44.239><c> or</c>
+
+00:02:44.390 --> 00:02:44.400 align:start position:0%
+a reample curve for like 100 points or
+ 
+
+00:02:44.400 --> 00:02:45.910 align:start position:0%
+a reample curve for like 100 points or
+something<00:02:44.560><c> like</c><00:02:44.720><c> that.</c><00:02:44.959><c> Let's</c><00:02:45.200><c> add</c><00:02:45.440><c> even</c><00:02:45.680><c> more</c>
+
+00:02:45.910 --> 00:02:45.920 align:start position:0%
+something like that. Let's add even more
+ 
+
+00:02:45.920 --> 00:02:48.150 align:start position:0%
+something like that. Let's add even more
+variety.<00:02:46.480><c> This</c><00:02:46.720><c> can</c><00:02:46.879><c> go</c><00:02:47.120><c> lower.</c><00:02:47.760><c> This</c><00:02:47.920><c> can</c><00:02:48.080><c> go</c>
+
+00:02:48.150 --> 00:02:48.160 align:start position:0%
+variety. This can go lower. This can go
+ 
+
+00:02:48.160 --> 00:02:49.670 align:start position:0%
+variety. This can go lower. This can go
+a<00:02:48.319><c> bit</c><00:02:48.480><c> higher.</c><00:02:48.879><c> And</c><00:02:49.040><c> we</c><00:02:49.200><c> want</c><00:02:49.280><c> to</c><00:02:49.360><c> bring</c><00:02:49.519><c> up</c>
+
+00:02:49.670 --> 00:02:49.680 align:start position:0%
+a bit higher. And we want to bring up
+ 
+
+00:02:49.680 --> 00:02:52.390 align:start position:0%
+a bit higher. And we want to bring up
+the<00:02:49.920><c> contrast.</c><00:02:50.480><c> So</c><00:02:50.800><c> point4</c><00:02:51.200><c> to</c><00:02:51.680><c> 6.</c><00:02:52.080><c> Now</c><00:02:52.239><c> that</c>
+
+00:02:52.390 --> 00:02:52.400 align:start position:0%
+the contrast. So point4 to 6. Now that
+ 
+
+00:02:52.400 --> 00:02:54.070 align:start position:0%
+the contrast. So point4 to 6. Now that
+we<00:02:52.560><c> have</c><00:02:52.720><c> that,</c><00:02:52.959><c> it's</c><00:02:53.200><c> always</c><00:02:53.440><c> a</c><00:02:53.599><c> good</c><00:02:53.680><c> idea</c><00:02:53.920><c> to</c>
+
+00:02:54.070 --> 00:02:54.080 align:start position:0%
+we have that, it's always a good idea to
+ 
+
+00:02:54.080 --> 00:02:55.509 align:start position:0%
+we have that, it's always a good idea to
+consolidate.<00:02:54.640><c> So</c><00:02:54.800><c> I'm</c><00:02:54.879><c> going</c><00:02:54.959><c> to</c><00:02:55.040><c> turn</c><00:02:55.200><c> this</c>
+
+00:02:55.509 --> 00:02:55.519 align:start position:0%
+consolidate. So I'm going to turn this
+ 
+
+00:02:55.519 --> 00:02:57.270 align:start position:0%
+consolidate. So I'm going to turn this
+control<00:02:55.840><c> G</c><00:02:56.000><c> into</c><00:02:56.239><c> a</c><00:02:56.400><c> node</c><00:02:56.640><c> group.</c><00:02:56.879><c> The</c><00:02:57.120><c> only</c>
+
+00:02:57.270 --> 00:02:57.280 align:start position:0%
+control G into a node group. The only
+ 
+
+00:02:57.280 --> 00:02:58.869 align:start position:0%
+control G into a node group. The only
+thing<00:02:57.440><c> I</c><00:02:57.599><c> would</c><00:02:57.760><c> like</c><00:02:57.920><c> to</c><00:02:58.160><c> control</c><00:02:58.560><c> is</c>
+
+00:02:58.869 --> 00:02:58.879 align:start position:0%
+thing I would like to control is
+ 
+
+00:02:58.879 --> 00:03:00.949 align:start position:0%
+thing I would like to control is
+probably<00:02:59.120><c> the</c><00:02:59.440><c> kind</c><00:02:59.599><c> of</c><00:02:59.760><c> maximum</c><00:03:00.239><c> angle.</c><00:03:00.800><c> And</c>
+
+00:03:00.949 --> 00:03:00.959 align:start position:0%
+probably the kind of maximum angle. And
+ 
+
+00:03:00.959 --> 00:03:03.430 align:start position:0%
+probably the kind of maximum angle. And
+this<00:03:01.120><c> can</c><00:03:01.280><c> be</c><00:03:01.360><c> called</c><00:03:01.680><c> our</c><00:03:02.159><c> edge</c><00:03:02.720><c> selector.</c>
+
+00:03:03.430 --> 00:03:03.440 align:start position:0%
+this can be called our edge selector.
+ 
+
+00:03:03.440 --> 00:03:04.710 align:start position:0%
+this can be called our edge selector.
+And<00:03:03.599><c> then</c><00:03:03.760><c> once</c><00:03:03.920><c> we're</c><00:03:04.159><c> happy</c><00:03:04.319><c> with</c><00:03:04.480><c> our</c>
+
+00:03:04.710 --> 00:03:04.720 align:start position:0%
+And then once we're happy with our
+ 
+
+00:03:04.720 --> 00:03:06.710 align:start position:0%
+And then once we're happy with our
+distortion,<00:03:05.360><c> this</c><00:03:05.519><c> can</c><00:03:05.680><c> also</c><00:03:05.920><c> be</c><00:03:06.080><c> a</c><00:03:06.239><c> node.</c>
+
+00:03:06.710 --> 00:03:06.720 align:start position:0%
+distortion, this can also be a node.
+ 
+
+00:03:06.720 --> 00:03:08.710 align:start position:0%
+distortion, this can also be a node.
+Noisy<00:03:07.280><c> tube.</c><00:03:07.760><c> Please</c><00:03:07.920><c> don't</c><00:03:08.080><c> call</c><00:03:08.239><c> me</c><00:03:08.400><c> that.</c>
+
+00:03:08.710 --> 00:03:08.720 align:start position:0%
+Noisy tube. Please don't call me that.
+ 
+
+00:03:08.720 --> 00:03:11.190 align:start position:0%
+Noisy tube. Please don't call me that.
+Lastly,<00:03:09.120><c> we</c><00:03:09.440><c> have</c><00:03:09.599><c> our</c><00:03:09.920><c> SDF</c><00:03:10.480><c> remsh.</c><00:03:10.959><c> If</c><00:03:11.120><c> you</c>
+
+00:03:11.190 --> 00:03:11.200 align:start position:0%
+Lastly, we have our SDF remsh. If you
+ 
+
+00:03:11.200 --> 00:03:12.710 align:start position:0%
+Lastly, we have our SDF remsh. If you
+see<00:03:11.360><c> it</c><00:03:11.440><c> inflates</c><00:03:11.840><c> it</c><00:03:12.000><c> a</c><00:03:12.080><c> little,</c><00:03:12.319><c> you</c><00:03:12.480><c> can</c><00:03:12.560><c> use</c>
+
+00:03:12.710 --> 00:03:12.720 align:start position:0%
+see it inflates it a little, you can use
+ 
+
+00:03:12.720 --> 00:03:14.390 align:start position:0%
+see it inflates it a little, you can use
+this<00:03:12.959><c> threshold</c><00:03:13.440><c> slider</c><00:03:13.760><c> over</c><00:03:14.000><c> here,</c><00:03:14.159><c> which</c>
+
+00:03:14.390 --> 00:03:14.400 align:start position:0%
+this threshold slider over here, which
+ 
+
+00:03:14.400 --> 00:03:15.910 align:start position:0%
+this threshold slider over here, which
+basically<00:03:14.640><c> says</c><00:03:14.879><c> how</c><00:03:15.120><c> tight</c><00:03:15.360><c> to</c><00:03:15.440><c> the</c><00:03:15.599><c> mesh</c>
+
+00:03:15.910 --> 00:03:15.920 align:start position:0%
+basically says how tight to the mesh
+ 
+
+00:03:15.920 --> 00:03:17.509 align:start position:0%
+basically says how tight to the mesh
+should<00:03:16.080><c> you</c><00:03:16.159><c> go.</c><00:03:16.400><c> So</c><00:03:16.480><c> instead</c><00:03:16.720><c> of</c><00:03:16.959><c> 01,</c><00:03:17.280><c> let's</c>
+
+00:03:17.509 --> 00:03:17.519 align:start position:0%
+should you go. So instead of 01, let's
+ 
+
+00:03:17.519 --> 00:03:19.589 align:start position:0%
+should you go. So instead of 01, let's
+do<00:03:17.680><c> O1.</c><00:03:18.400><c> Finally,</c><00:03:18.800><c> let's</c><00:03:19.040><c> add</c><00:03:19.200><c> a</c><00:03:19.360><c> bit</c><00:03:19.440><c> more</c>
+
+00:03:19.589 --> 00:03:19.599 align:start position:0%
+do O1. Finally, let's add a bit more
+ 
+
+00:03:19.599 --> 00:03:21.270 align:start position:0%
+do O1. Finally, let's add a bit more
+detail<00:03:19.920><c> with</c><00:03:20.159><c> my</c><00:03:20.319><c> distort</c><00:03:20.720><c> node.</c><00:03:21.040><c> Again,</c>
+
+00:03:21.270 --> 00:03:21.280 align:start position:0%
+detail with my distort node. Again,
+ 
+
+00:03:21.280 --> 00:03:22.949 align:start position:0%
+detail with my distort node. Again,
+cgmatter.com.<00:03:22.319><c> I'm</c><00:03:22.560><c> going</c><00:03:22.640><c> to</c><00:03:22.720><c> take</c><00:03:22.800><c> the</c>
+
+00:03:22.949 --> 00:03:22.959 align:start position:0%
+cgmatter.com. I'm going to take the
+ 
+
+00:03:22.959 --> 00:03:24.309 align:start position:0%
+cgmatter.com. I'm going to take the
+strength,<00:03:23.280><c> bring</c><00:03:23.440><c> it</c><00:03:23.599><c> down</c><00:03:23.680><c> a</c><00:03:23.840><c> lot,</c><00:03:24.080><c> maybe</c>
+
+00:03:24.309 --> 00:03:24.319 align:start position:0%
+strength, bring it down a lot, maybe
+ 
+
+00:03:24.319 --> 00:03:26.229 align:start position:0%
+strength, bring it down a lot, maybe
+bring<00:03:24.560><c> up</c><00:03:24.720><c> the</c><00:03:24.879><c> scale</c><00:03:25.200><c> and</c><00:03:25.440><c> the</c><00:03:25.599><c> detail,</c><00:03:26.080><c> and</c>
+
+00:03:26.229 --> 00:03:26.239 align:start position:0%
+bring up the scale and the detail, and
+ 
+
+00:03:26.239 --> 00:03:27.910 align:start position:0%
+bring up the scale and the detail, and
+then<00:03:26.400><c> finally,</c><00:03:26.879><c> of</c><00:03:27.040><c> course,</c><00:03:27.200><c> bring</c><00:03:27.440><c> this</c><00:03:27.680><c> down</c>
+
+00:03:27.910 --> 00:03:27.920 align:start position:0%
+then finally, of course, bring this down
+ 
+
+00:03:27.920 --> 00:03:30.070 align:start position:0%
+then finally, of course, bring this down
+even<00:03:28.159><c> more.</c><00:03:28.640><c> So</c><00:03:28.800><c> now,</c><00:03:28.879><c> if</c><00:03:29.120><c> we</c><00:03:29.280><c> take</c><00:03:29.360><c> a</c><00:03:29.599><c> look,</c><00:03:29.840><c> we</c>
+
+00:03:30.070 --> 00:03:30.080 align:start position:0%
+even more. So now, if we take a look, we
+ 
+
+00:03:30.080 --> 00:03:31.990 align:start position:0%
+even more. So now, if we take a look, we
+have<00:03:30.159><c> our</c><00:03:30.319><c> cube.</c><00:03:30.720><c> We</c><00:03:30.879><c> selected</c><00:03:31.200><c> the</c><00:03:31.440><c> edges.</c><00:03:31.840><c> We</c>
+
+00:03:31.990 --> 00:03:32.000 align:start position:0%
+have our cube. We selected the edges. We
+ 
+
+00:03:32.000 --> 00:03:33.589 align:start position:0%
+have our cube. We selected the edges. We
+turned<00:03:32.159><c> it</c><00:03:32.319><c> into</c><00:03:32.480><c> a</c><00:03:32.640><c> mesh.</c><00:03:32.959><c> We</c><00:03:33.200><c> turned</c><00:03:33.360><c> it</c><00:03:33.519><c> into</c>
+
+00:03:33.589 --> 00:03:33.599 align:start position:0%
+turned it into a mesh. We turned it into
+ 
+
+00:03:33.599 --> 00:03:35.589 align:start position:0%
+turned it into a mesh. We turned it into
+an<00:03:33.760><c> SDF</c><00:03:34.159><c> that</c><00:03:34.319><c> we</c><00:03:34.480><c> distorted.</c><00:03:34.959><c> And</c><00:03:35.120><c> now</c><00:03:35.280><c> I</c><00:03:35.440><c> just</c>
+
+00:03:35.589 --> 00:03:35.599 align:start position:0%
+an SDF that we distorted. And now I just
+ 
+
+00:03:35.599 --> 00:03:37.190 align:start position:0%
+an SDF that we distorted. And now I just
+cut<00:03:35.840><c> one</c><00:03:36.000><c> from</c><00:03:36.239><c> another</c><00:03:36.560><c> because</c><00:03:36.799><c> these</c><00:03:37.040><c> are</c>
+
+00:03:37.190 --> 00:03:37.200 align:start position:0%
+cut one from another because these are
+ 
+
+00:03:37.200 --> 00:03:39.270 align:start position:0%
+cut one from another because these are
+both<00:03:37.440><c> manifold.</c><00:03:38.080><c> They're</c><00:03:38.319><c> good</c><00:03:38.480><c> meshes.</c><00:03:39.120><c> Good</c>
+
+00:03:39.270 --> 00:03:39.280 align:start position:0%
+both manifold. They're good meshes. Good
+ 
+
+00:03:39.280 --> 00:03:40.470 align:start position:0%
+both manifold. They're good meshes. Good
+little<00:03:39.440><c> mesh.</c><00:03:39.680><c> Good</c><00:03:39.840><c> little</c><00:03:40.000><c> mesh.</c><00:03:40.319><c> I'm</c><00:03:40.480><c> going</c>
+
+00:03:40.470 --> 00:03:40.480 align:start position:0%
+little mesh. Good little mesh. I'm going
+ 
+
+00:03:40.480 --> 00:03:42.470 align:start position:0%
+little mesh. Good little mesh. I'm going
+to<00:03:40.560><c> run</c><00:03:40.720><c> this</c><00:03:40.959><c> through</c><00:03:41.200><c> a</c><00:03:41.440><c> mesh</c><00:03:41.840><c> boolean,</c>
+
+00:03:42.470 --> 00:03:42.480 align:start position:0%
+to run this through a mesh boolean,
+ 
+
+00:03:42.480 --> 00:03:44.149 align:start position:0%
+to run this through a mesh boolean,
+taking<00:03:42.799><c> the</c><00:03:43.040><c> difference</c><00:03:43.519><c> between</c><00:03:43.920><c> our</c>
+
+00:03:44.149 --> 00:03:44.159 align:start position:0%
+taking the difference between our
+ 
+
+00:03:44.159 --> 00:03:46.149 align:start position:0%
+taking the difference between our
+original<00:03:44.560><c> and</c><00:03:44.799><c> our</c><00:03:45.040><c> distorted</c><00:03:45.519><c> one.</c><00:03:45.840><c> I</c><00:03:46.000><c> would</c>
+
+00:03:46.149 --> 00:03:46.159 align:start position:0%
+original and our distorted one. I would
+ 
+
+00:03:46.159 --> 00:03:47.750 align:start position:0%
+original and our distorted one. I would
+highly<00:03:46.480><c> recommend</c><00:03:46.879><c> using</c><00:03:47.120><c> the</c><00:03:47.280><c> manifold</c>
+
+00:03:47.750 --> 00:03:47.760 align:start position:0%
+highly recommend using the manifold
+ 
+
+00:03:47.760 --> 00:03:48.789 align:start position:0%
+highly recommend using the manifold
+mode.<00:03:48.000><c> And</c><00:03:48.159><c> let's</c><00:03:48.319><c> see</c><00:03:48.400><c> what</c><00:03:48.480><c> that</c><00:03:48.640><c> looks</c>
+
+00:03:48.789 --> 00:03:48.799 align:start position:0%
+mode. And let's see what that looks
+ 
+
+00:03:48.799 --> 00:03:50.789 align:start position:0%
+mode. And let's see what that looks
+like.<00:03:49.040><c> So</c><00:03:49.280><c> now</c><00:03:49.519><c> we</c><00:03:49.680><c> have</c><00:03:49.840><c> this</c><00:03:50.000><c> nice</c><00:03:50.239><c> edgeware</c>
+
+00:03:50.789 --> 00:03:50.799 align:start position:0%
+like. So now we have this nice edgeware
+ 
+
+00:03:50.799 --> 00:03:53.270 align:start position:0%
+like. So now we have this nice edgeware
+that<00:03:51.040><c> if</c><00:03:51.280><c> I</c><00:03:51.360><c> go</c><00:03:51.519><c> into</c><00:03:51.840><c> noisy</c><00:03:52.239><c> tube,</c><00:03:52.799><c> add</c><00:03:53.040><c> a</c>
+
+00:03:53.270 --> 00:03:53.280 align:start position:0%
+that if I go into noisy tube, add a
+ 
+
+00:03:53.280 --> 00:03:55.270 align:start position:0%
+that if I go into noisy tube, add a
+multiplier<00:03:53.920><c> to</c><00:03:54.080><c> the</c><00:03:54.319><c> radius</c><00:03:54.640><c> over</c><00:03:54.879><c> here,</c><00:03:55.120><c> set</c>
+
+00:03:55.270 --> 00:03:55.280 align:start position:0%
+multiplier to the radius over here, set
+ 
+
+00:03:55.280 --> 00:03:57.589 align:start position:0%
+multiplier to the radius over here, set
+this<00:03:55.440><c> to</c><00:03:55.599><c> multiply,</c><00:03:56.239><c> make</c><00:03:56.400><c> that</c><00:03:56.560><c> a</c><00:03:56.879><c> parameter,</c>
+
+00:03:57.589 --> 00:03:57.599 align:start position:0%
+this to multiply, make that a parameter,
+ 
+
+00:03:57.599 --> 00:03:59.830 align:start position:0%
+this to multiply, make that a parameter,
+now<00:03:57.840><c> I</c><00:03:58.080><c> can</c><00:03:58.159><c> vary</c><00:03:58.480><c> the</c><00:03:58.640><c> radius</c><00:03:59.040><c> on</c><00:03:59.280><c> the</c><00:03:59.439><c> fly.</c>
+
+00:03:59.830 --> 00:03:59.840 align:start position:0%
+now I can vary the radius on the fly.
+ 
+
+00:03:59.840 --> 00:04:02.710 align:start position:0%
+now I can vary the radius on the fly.
+Procedural<00:04:00.640><c> erosion</c><00:04:01.120><c> on</c><00:04:01.439><c> the</c><00:04:01.760><c> edges.</c><00:04:02.319><c> Now</c><00:04:02.480><c> the</c>
+
+00:04:02.710 --> 00:04:02.720 align:start position:0%
+Procedural erosion on the edges. Now the
+ 
+
+00:04:02.720 --> 00:04:04.390 align:start position:0%
+Procedural erosion on the edges. Now the
+key<00:04:02.879><c> part</c><00:04:03.040><c> of</c><00:04:03.200><c> this</c><00:04:03.360><c> is</c><00:04:03.599><c> it</c><00:04:03.760><c> works</c><00:04:03.920><c> on</c><00:04:04.159><c> any</c>
+
+00:04:04.390 --> 00:04:04.400 align:start position:0%
+key part of this is it works on any
+ 
+
+00:04:04.400 --> 00:04:06.309 align:start position:0%
+key part of this is it works on any
+mesh.<00:04:04.720><c> Any</c><00:04:04.879><c> mesh.</c><00:04:05.200><c> If</c><00:04:05.439><c> I</c><00:04:05.519><c> take</c><00:04:05.680><c> this</c><00:04:05.840><c> cube</c><00:04:06.159><c> and</c>
+
+00:04:06.309 --> 00:04:06.319 align:start position:0%
+mesh. Any mesh. If I take this cube and
+ 
+
+00:04:06.319 --> 00:04:08.869 align:start position:0%
+mesh. Any mesh. If I take this cube and
+I<00:04:06.480><c> replace</c><00:04:06.720><c> it</c><00:04:06.959><c> with</c><00:04:07.120><c> a</c><00:04:07.360><c> cylinder</c><00:04:08.000><c> like</c><00:04:08.400><c> this,</c>
+
+00:04:08.869 --> 00:04:08.879 align:start position:0%
+I replace it with a cylinder like this,
+ 
+
+00:04:08.879 --> 00:04:10.710 align:start position:0%
+I replace it with a cylinder like this,
+you<00:04:09.040><c> can</c><00:04:09.120><c> see</c><00:04:09.280><c> now</c><00:04:09.519><c> it's</c><00:04:09.840><c> eroded</c><00:04:10.239><c> only</c><00:04:10.480><c> the</c>
+
+00:04:10.710 --> 00:04:10.720 align:start position:0%
+you can see now it's eroded only the
+ 
+
+00:04:10.720 --> 00:04:12.550 align:start position:0%
+you can see now it's eroded only the
+sharp<00:04:10.959><c> edges,</c><00:04:11.360><c> not</c><00:04:11.519><c> these</c><00:04:11.760><c> ones</c><00:04:12.080><c> over</c><00:04:12.239><c> here.</c>
+
+00:04:12.550 --> 00:04:12.560 align:start position:0%
+sharp edges, not these ones over here.
+ 
+
+00:04:12.560 --> 00:04:14.390 align:start position:0%
+sharp edges, not these ones over here.
+So,<00:04:12.799><c> if</c><00:04:12.959><c> I</c><00:04:13.120><c> was</c><00:04:13.200><c> to</c><00:04:13.360><c> take</c><00:04:13.519><c> this</c><00:04:13.680><c> angle</c><00:04:14.000><c> and</c><00:04:14.239><c> make</c>
+
+00:04:14.390 --> 00:04:14.400 align:start position:0%
+So, if I was to take this angle and make
+ 
+
+00:04:14.400 --> 00:04:15.990 align:start position:0%
+So, if I was to take this angle and make
+it<00:04:14.560><c> like</c><00:04:14.720><c> too</c><00:04:15.040><c> small</c><00:04:15.200><c> of</c><00:04:15.360><c> a</c><00:04:15.519><c> number,</c><00:04:15.840><c> you're</c>
+
+00:04:15.990 --> 00:04:16.000 align:start position:0%
+it like too small of a number, you're
+ 
+
+00:04:16.000 --> 00:04:17.509 align:start position:0%
+it like too small of a number, you're
+going<00:04:16.079><c> to</c><00:04:16.160><c> see</c><00:04:16.479><c> it</c><00:04:16.720><c> kind</c><00:04:16.799><c> of</c><00:04:16.880><c> does</c><00:04:17.040><c> this</c><00:04:17.280><c> to</c>
+
+00:04:17.509 --> 00:04:17.519 align:start position:0%
+going to see it kind of does this to
+ 
+
+00:04:17.519 --> 00:04:19.030 align:start position:0%
+going to see it kind of does this to
+every<00:04:17.759><c> single</c><00:04:18.000><c> edge,</c><00:04:18.320><c> which</c><00:04:18.560><c> might</c><00:04:18.720><c> be</c><00:04:18.880><c> what</c>
+
+00:04:19.030 --> 00:04:19.040 align:start position:0%
+every single edge, which might be what
+ 
+
+00:04:19.040 --> 00:04:20.550 align:start position:0%
+every single edge, which might be what
+you<00:04:19.120><c> want.</c><00:04:19.359><c> I</c><00:04:19.600><c> assume</c><00:04:19.840><c> it</c><00:04:20.000><c> isn't.</c><00:04:20.320><c> So,</c><00:04:20.400><c> I'm</c>
+
+00:04:20.550 --> 00:04:20.560 align:start position:0%
+you want. I assume it isn't. So, I'm
+ 
+
+00:04:20.560 --> 00:04:21.830 align:start position:0%
+you want. I assume it isn't. So, I'm
+going to<00:04:20.639><c> get</c><00:04:20.799><c> rid</c><00:04:20.880><c> of</c><00:04:20.959><c> that.</c><00:04:21.359><c> In</c><00:04:21.440><c> fact,</c><00:04:21.680><c> I'm</c>
+
+00:04:21.830 --> 00:04:21.840 align:start position:0%
+going to get rid of that. In fact, I'm
+ 
+
+00:04:21.840 --> 00:04:23.350 align:start position:0%
+going to get rid of that. In fact, I'm
+going<00:04:21.919><c> to</c><00:04:22.000><c> get</c><00:04:22.079><c> rid</c><00:04:22.240><c> of</c><00:04:22.400><c> the</c><00:04:22.560><c> cylinder</c><00:04:22.960><c> and</c><00:04:23.199><c> use</c>
+
+00:04:23.350 --> 00:04:23.360 align:start position:0%
+going to get rid of the cylinder and use
+ 
+
+00:04:23.360 --> 00:04:25.110 align:start position:0%
+going to get rid of the cylinder and use
+a<00:04:23.600><c> group</c><00:04:23.919><c> input,</c><00:04:24.320><c> which</c><00:04:24.560><c> is</c><00:04:24.639><c> going</c><00:04:24.720><c> to</c><00:04:24.800><c> let</c><00:04:24.960><c> me</c>
+
+00:04:25.110 --> 00:04:25.120 align:start position:0%
+a group input, which is going to let me
+ 
+
+00:04:25.120 --> 00:04:26.950 align:start position:0%
+a group input, which is going to let me
+model<00:04:25.440><c> my</c><00:04:25.680><c> own</c><00:04:25.840><c> thing.</c><00:04:26.160><c> I</c><00:04:26.400><c> can</c><00:04:26.479><c> then</c><00:04:26.720><c> take</c>
+
+00:04:26.950 --> 00:04:26.960 align:start position:0%
+model my own thing. I can then take
+ 
+
+00:04:26.960 --> 00:04:29.270 align:start position:0%
+model my own thing. I can then take
+this,<00:04:27.280><c> I</c><00:04:27.520><c> can</c><00:04:27.680><c> insert,</c><00:04:28.240><c> I</c><00:04:28.400><c> can</c><00:04:28.560><c> extrude,</c><00:04:29.040><c> and</c>
+
+00:04:29.270 --> 00:04:29.280 align:start position:0%
+this, I can insert, I can extrude, and
+ 
+
+00:04:29.280 --> 00:04:30.790 align:start position:0%
+this, I can insert, I can extrude, and
+on<00:04:29.440><c> the</c><00:04:29.680><c> fly,</c><00:04:29.919><c> it's</c><00:04:30.160><c> going</c><00:04:30.240><c> to</c><00:04:30.320><c> add</c><00:04:30.479><c> that</c>
+
+00:04:30.790 --> 00:04:30.800 align:start position:0%
+on the fly, it's going to add that
+ 
+
+00:04:30.800 --> 00:04:33.030 align:start position:0%
+on the fly, it's going to add that
+erosion.<00:04:31.280><c> Let's</c><00:04:31.520><c> take</c><00:04:31.680><c> this,</c><00:04:32.080><c> do</c><00:04:32.320><c> a</c><00:04:32.560><c> vertex</c>
+
+00:04:33.030 --> 00:04:33.040 align:start position:0%
+erosion. Let's take this, do a vertex
+ 
+
+00:04:33.040 --> 00:04:35.189 align:start position:0%
+erosion. Let's take this, do a vertex
+bevel,<00:04:33.680><c> just</c><00:04:33.919><c> like</c><00:04:34.160><c> that.</c><00:04:34.639><c> And</c><00:04:34.720><c> you</c><00:04:34.880><c> have</c><00:04:34.960><c> your</c>
+
+00:04:35.189 --> 00:04:35.199 align:start position:0%
+bevel, just like that. And you have your
+ 
+
+00:04:35.199 --> 00:04:37.189 align:start position:0%
+bevel, just like that. And you have your
+nice<00:04:35.440><c> procedural</c><00:04:36.160><c> erosion.</c><00:04:36.639><c> Notice</c><00:04:37.040><c> this</c>
+
+00:04:37.189 --> 00:04:37.199 align:start position:0%
+nice procedural erosion. Notice this
+ 
+
+00:04:37.199 --> 00:04:39.030 align:start position:0%
+nice procedural erosion. Notice this
+isn't<00:04:37.520><c> going</c><00:04:37.600><c> to</c><00:04:37.759><c> work</c><00:04:38.080><c> on</c><00:04:38.320><c> very</c><00:04:38.639><c> smooth</c>
+
+00:04:39.030 --> 00:04:39.040 align:start position:0%
+isn't going to work on very smooth
+ 
+
+00:04:39.040 --> 00:04:41.110 align:start position:0%
+isn't going to work on very smooth
+surfaces<00:04:39.600><c> because</c><00:04:39.840><c> our</c><00:04:40.080><c> edge</c><00:04:40.320><c> angle</c><00:04:40.720><c> is</c><00:04:40.880><c> quite</c>
+
+00:04:41.110 --> 00:04:41.120 align:start position:0%
+surfaces because our edge angle is quite
+ 
+
+00:04:41.120 --> 00:04:42.550 align:start position:0%
+surfaces because our edge angle is quite
+big.<00:04:41.360><c> But</c><00:04:41.440><c> if</c><00:04:41.600><c> I</c><00:04:41.680><c> was</c><00:04:41.759><c> to</c><00:04:41.840><c> bring</c><00:04:41.919><c> this</c><00:04:42.080><c> to</c><00:04:42.240><c> zero,</c>
+
+00:04:42.550 --> 00:04:42.560 align:start position:0%
+big. But if I was to bring this to zero,
+ 
+
+00:04:42.560 --> 00:04:43.990 align:start position:0%
+big. But if I was to bring this to zero,
+you<00:04:42.720><c> can</c><00:04:42.800><c> see</c><00:04:42.960><c> all</c><00:04:43.040><c> of</c><00:04:43.120><c> the</c><00:04:43.280><c> sudden</c><00:04:43.520><c> we</c><00:04:43.680><c> have</c>
+
+00:04:43.990 --> 00:04:44.000 align:start position:0%
+you can see all of the sudden we have
+ 
+
+00:04:44.000 --> 00:04:45.590 align:start position:0%
+you can see all of the sudden we have
+erosion<00:04:44.400><c> everywhere.</c><00:04:45.040><c> And</c><00:04:45.120><c> now</c><00:04:45.280><c> I'm</c><00:04:45.440><c> going</c><00:04:45.520><c> to</c>
+
+00:04:45.590 --> 00:04:45.600 align:start position:0%
+erosion everywhere. And now I'm going to
+ 
+
+00:04:45.600 --> 00:04:47.430 align:start position:0%
+erosion everywhere. And now I'm going to
+move<00:04:45.759><c> on</c><00:04:45.919><c> to</c><00:04:46.080><c> face</c><00:04:46.560><c> erosion.</c><00:04:46.960><c> But</c><00:04:47.120><c> before</c><00:04:47.280><c> you</c>
+
+00:04:47.430 --> 00:04:47.440 align:start position:0%
+move on to face erosion. But before you
+ 
+
+00:04:47.440 --> 00:04:48.469 align:start position:0%
+move on to face erosion. But before you
+do<00:04:47.520><c> that,</c><00:04:47.759><c> there's</c><00:04:47.919><c> something</c><00:04:48.080><c> you</c><00:04:48.320><c> need</c><00:04:48.400><c> to</c>
+
+00:04:48.469 --> 00:04:48.479 align:start position:0%
+do that, there's something you need to
+ 
+
+00:04:48.479 --> 00:04:50.150 align:start position:0%
+do that, there's something you need to
+know.<00:04:48.880><c> This</c><00:04:49.040><c> video</c><00:04:49.280><c> is</c><00:04:49.440><c> sponsored</c><00:04:49.840><c> by</c>
+
+00:04:50.150 --> 00:04:50.160 align:start position:0%
+know. This video is sponsored by
+ 
+
+00:04:50.160 --> 00:04:51.510 align:start position:0%
+know. This video is sponsored by
+Squarespace.<00:04:50.800><c> Best</c><00:04:50.960><c> place</c><00:04:51.120><c> to</c><00:04:51.280><c> make</c><00:04:51.360><c> a</c>
+
+00:04:51.510 --> 00:04:51.520 align:start position:0%
+Squarespace. Best place to make a
+ 
+
+00:04:51.520 --> 00:04:52.870 align:start position:0%
+Squarespace. Best place to make a
+website.<00:04:51.840><c> In</c><00:04:52.000><c> fact,</c><00:04:52.160><c> you</c><00:04:52.320><c> already</c><00:04:52.479><c> heard</c><00:04:52.720><c> me</c>
+
+00:04:52.870 --> 00:04:52.880 align:start position:0%
+website. In fact, you already heard me
+ 
+
+00:04:52.880 --> 00:04:54.870 align:start position:0%
+website. In fact, you already heard me
+talk<00:04:53.120><c> about</c><00:04:53.280><c> my</c><00:04:53.440><c> website,</c><00:04:53.840><c> cgmatter.com,</c>
+
+00:04:54.870 --> 00:04:54.880 align:start position:0%
+talk about my website, cgmatter.com,
+ 
+
+00:04:54.880 --> 00:04:56.070 align:start position:0%
+talk about my website, cgmatter.com,
+where<00:04:55.040><c> I</c><00:04:55.199><c> said</c><00:04:55.280><c> you</c><00:04:55.520><c> could</c><00:04:55.600><c> get</c><00:04:55.680><c> those</c><00:04:55.919><c> free</c>
+
+00:04:56.070 --> 00:04:56.080 align:start position:0%
+where I said you could get those free
+ 
+
+00:04:56.080 --> 00:04:58.230 align:start position:0%
+where I said you could get those free
+nodes.<00:04:56.639><c> And</c><00:04:56.800><c> I</c><00:04:57.120><c> have</c><00:04:57.280><c> a</c><00:04:57.520><c> member</c><00:04:57.840><c> site</c><00:04:58.000><c> that</c>
+
+00:04:58.230 --> 00:04:58.240 align:start position:0%
+nodes. And I have a member site that
+ 
+
+00:04:58.240 --> 00:04:59.909 align:start position:0%
+nodes. And I have a member site that
+Squarespace<00:04:58.800><c> helps</c><00:04:59.040><c> me</c><00:04:59.199><c> make.</c><00:04:59.520><c> So,</c><00:04:59.680><c> this</c><00:04:59.840><c> is</c>
+
+00:04:59.909 --> 00:04:59.919 align:start position:0%
+Squarespace helps me make. So, this is
+ 
+
+00:04:59.919 --> 00:05:01.590 align:start position:0%
+Squarespace helps me make. So, this is
+where<00:05:00.080><c> I</c><00:05:00.240><c> have</c><00:05:00.320><c> all</c><00:05:00.560><c> the</c><00:05:00.720><c> exclusive</c><00:05:01.199><c> stuff</c><00:05:01.360><c> you</c>
+
+00:05:01.590 --> 00:05:01.600 align:start position:0%
+where I have all the exclusive stuff you
+ 
+
+00:05:01.600 --> 00:05:03.110 align:start position:0%
+where I have all the exclusive stuff you
+can<00:05:01.759><c> download.</c><00:05:02.160><c> Squarespace</c><00:05:02.720><c> makes</c><00:05:02.880><c> this</c>
+
+00:05:03.110 --> 00:05:03.120 align:start position:0%
+can download. Squarespace makes this
+ 
+
+00:05:03.120 --> 00:05:04.310 align:start position:0%
+can download. Squarespace makes this
+easy<00:05:03.440><c> because</c><00:05:03.680><c> they</c><00:05:03.840><c> have</c><00:05:04.000><c> their</c><00:05:04.160><c> own</c>
+
+00:05:04.310 --> 00:05:04.320 align:start position:0%
+easy because they have their own
+ 
+
+00:05:04.320 --> 00:05:06.070 align:start position:0%
+easy because they have their own
+built-in<00:05:04.720><c> payment</c><00:05:05.040><c> platform</c><00:05:05.440><c> that</c><00:05:05.680><c> lets</c><00:05:05.919><c> me</c>
+
+00:05:06.070 --> 00:05:06.080 align:start position:0%
+built-in payment platform that lets me
+ 
+
+00:05:06.080 --> 00:05:07.590 align:start position:0%
+built-in payment platform that lets me
+do<00:05:06.160><c> this</c><00:05:06.400><c> like</c><00:05:06.560><c> membership</c><00:05:06.960><c> thing.</c><00:05:07.280><c> You</c><00:05:07.440><c> can</c>
+
+00:05:07.590 --> 00:05:07.600 align:start position:0%
+do this like membership thing. You can
+ 
+
+00:05:07.600 --> 00:05:09.350 align:start position:0%
+do this like membership thing. You can
+see<00:05:07.680><c> they</c><00:05:07.919><c> also</c><00:05:08.080><c> have</c><00:05:08.160><c> an</c><00:05:08.400><c> asset</c><00:05:08.800><c> browser</c><00:05:09.120><c> over</c>
+
+00:05:09.350 --> 00:05:09.360 align:start position:0%
+see they also have an asset browser over
+ 
+
+00:05:09.360 --> 00:05:10.950 align:start position:0%
+see they also have an asset browser over
+here<00:05:09.520><c> where</c><00:05:09.840><c> I</c><00:05:10.080><c> can</c><00:05:10.160><c> store</c><00:05:10.479><c> all</c><00:05:10.639><c> kinds</c><00:05:10.880><c> of</c>
+
+00:05:10.950 --> 00:05:10.960 align:start position:0%
+here where I can store all kinds of
+ 
+
+00:05:10.960 --> 00:05:13.430 align:start position:0%
+here where I can store all kinds of
+assets,<00:05:11.440><c> PGs,</c><00:05:12.080><c> GIFs,</c><00:05:12.479><c> files.</c><00:05:12.800><c> If</c><00:05:12.960><c> I'm</c><00:05:13.120><c> to</c><00:05:13.280><c> make</c>
+
+00:05:13.430 --> 00:05:13.440 align:start position:0%
+assets, PGs, GIFs, files. If I'm to make
+ 
+
+00:05:13.440 --> 00:05:15.110 align:start position:0%
+assets, PGs, GIFs, files. If I'm to make
+a<00:05:13.600><c> new</c><00:05:13.680><c> page,</c><00:05:14.080><c> you</c><00:05:14.240><c> can</c><00:05:14.320><c> design</c><00:05:14.639><c> whatever,</c><00:05:14.960><c> but</c>
+
+00:05:15.110 --> 00:05:15.120 align:start position:0%
+a new page, you can design whatever, but
+ 
+
+00:05:15.120 --> 00:05:16.870 align:start position:0%
+a new page, you can design whatever, but
+I'm<00:05:15.280><c> just</c><00:05:15.440><c> going</c><00:05:15.520><c> to</c><00:05:15.600><c> add</c><00:05:15.759><c> a</c><00:05:16.000><c> blank</c><00:05:16.320><c> section.</c>
+
+00:05:16.870 --> 00:05:16.880 align:start position:0%
+I'm just going to add a blank section.
+ 
+
+00:05:16.880 --> 00:05:18.230 align:start position:0%
+I'm just going to add a blank section.
+And<00:05:16.960><c> then</c><00:05:17.120><c> to</c><00:05:17.360><c> that,</c><00:05:17.600><c> I'm</c><00:05:17.759><c> going</c><00:05:17.840><c> to</c><00:05:17.919><c> add</c><00:05:18.080><c> a</c>
+
+00:05:18.230 --> 00:05:18.240 align:start position:0%
+And then to that, I'm going to add a
+ 
+
+00:05:18.240 --> 00:05:19.830 align:start position:0%
+And then to that, I'm going to add a
+text<00:05:18.479><c> block.</c><00:05:18.800><c> Put</c><00:05:18.960><c> that</c><00:05:19.199><c> over</c><00:05:19.360><c> here.</c><00:05:19.600><c> You</c><00:05:19.759><c> are</c>
+
+00:05:19.830 --> 00:05:19.840 align:start position:0%
+text block. Put that over here. You are
+ 
+
+00:05:19.840 --> 00:05:21.189 align:start position:0%
+text block. Put that over here. You are
+going<00:05:19.919><c> to</c><00:05:20.080><c> notice</c><00:05:20.320><c> that</c><00:05:20.479><c> there's</c><00:05:20.800><c> AI</c>
+
+00:05:21.189 --> 00:05:21.199 align:start position:0%
+going to notice that there's AI
+ 
+
+00:05:21.199 --> 00:05:23.270 align:start position:0%
+going to notice that there's AI
+integration<00:05:21.680><c> natively.</c><00:05:22.240><c> So,</c><00:05:22.479><c> I</c><00:05:22.639><c> can</c><00:05:22.800><c> edit,</c>
+
+00:05:23.270 --> 00:05:23.280 align:start position:0%
+integration natively. So, I can edit,
+ 
+
+00:05:23.280 --> 00:05:26.070 align:start position:0%
+integration natively. So, I can edit,
+turn<00:05:23.440><c> on</c><00:05:23.680><c> this</c><00:05:23.840><c> AI</c><00:05:24.160><c> thing.</c><00:05:24.560><c> Tell</c><00:05:24.800><c> me</c><00:05:25.280><c> about</c><00:05:25.680><c> CG</c>
+
+00:05:26.070 --> 00:05:26.080 align:start position:0%
+turn on this AI thing. Tell me about CG
+ 
+
+00:05:26.080 --> 00:05:27.510 align:start position:0%
+turn on this AI thing. Tell me about CG
+Matter.<00:05:26.479><c> Oh</c><00:05:26.639><c> boy,</c><00:05:26.800><c> what's</c><00:05:26.960><c> it</c><00:05:27.120><c> going</c><00:05:27.199><c> to</c><00:05:27.280><c> say?</c>
+
+00:05:27.510 --> 00:05:27.520 align:start position:0%
+Matter. Oh boy, what's it going to say?
+ 
+
+00:05:27.520 --> 00:05:29.029 align:start position:0%
+Matter. Oh boy, what's it going to say?
+CG<00:05:27.840><c> Matter</c><00:05:28.080><c> is</c><00:05:28.160><c> a</c><00:05:28.320><c> content</c><00:05:28.560><c> creator</c><00:05:28.880><c> and</c>
+
+00:05:29.029 --> 00:05:29.039 align:start position:0%
+CG Matter is a content creator and
+ 
+
+00:05:29.039 --> 00:05:30.870 align:start position:0%
+CG Matter is a content creator and
+educator.<00:05:29.520><c> Damn</c><00:05:29.840><c> right</c><00:05:30.000><c> I</c><00:05:30.160><c> am.</c><00:05:30.400><c> If</c><00:05:30.560><c> all</c><00:05:30.720><c> this</c>
+
+00:05:30.870 --> 00:05:30.880 align:start position:0%
+educator. Damn right I am. If all this
+ 
+
+00:05:30.880 --> 00:05:31.830 align:start position:0%
+educator. Damn right I am. If all this
+sounds<00:05:31.039><c> good</c><00:05:31.199><c> to</c><00:05:31.280><c> you,</c><00:05:31.520><c> head</c><00:05:31.600><c> over</c><00:05:31.759><c> to</c>
+
+00:05:31.830 --> 00:05:31.840 align:start position:0%
+sounds good to you, head over to
+ 
+
+00:05:31.840 --> 00:05:33.270 align:start position:0%
+sounds good to you, head over to
+Squarespace,<00:05:32.400><c> make</c><00:05:32.479><c> a</c><00:05:32.639><c> website,</c><00:05:32.960><c> and</c><00:05:33.120><c> when</c>
+
+00:05:33.270 --> 00:05:33.280 align:start position:0%
+Squarespace, make a website, and when
+ 
+
+00:05:33.280 --> 00:05:34.790 align:start position:0%
+Squarespace, make a website, and when
+you're<00:05:33.440><c> ready</c><00:05:33.600><c> to</c><00:05:33.759><c> take</c><00:05:34.000><c> that</c><00:05:34.160><c> and</c><00:05:34.400><c> launch,</c>
+
+00:05:34.790 --> 00:05:34.800 align:start position:0%
+you're ready to take that and launch,
+ 
+
+00:05:34.800 --> 00:05:36.310 align:start position:0%
+you're ready to take that and launch,
+use<00:05:34.960><c> this</c><00:05:35.199><c> link</c><00:05:35.360><c> in</c><00:05:35.520><c> the</c><00:05:35.680><c> description</c><00:05:35.919><c> to</c><00:05:36.160><c> save</c>
+
+00:05:36.310 --> 00:05:36.320 align:start position:0%
+use this link in the description to save
+ 
+
+00:05:36.320 --> 00:05:38.150 align:start position:0%
+use this link in the description to save
+10%<00:05:36.720><c> off</c><00:05:36.880><c> your</c><00:05:37.039><c> first</c><00:05:37.199><c> purchase</c><00:05:37.520><c> of</c><00:05:37.680><c> a</c><00:05:37.919><c> website</c>
+
+00:05:38.150 --> 00:05:38.160 align:start position:0%
+10% off your first purchase of a website
+ 
+
+00:05:38.160 --> 00:05:39.909 align:start position:0%
+10% off your first purchase of a website
+or<00:05:38.479><c> domain.</c><00:05:38.880><c> And</c><00:05:39.039><c> now,</c><00:05:39.199><c> let's</c><00:05:39.360><c> do</c><00:05:39.600><c> face</c>
+
+00:05:39.909 --> 00:05:39.919 align:start position:0%
+or domain. And now, let's do face
+ 
+
+00:05:39.919 --> 00:05:41.350 align:start position:0%
+or domain. And now, let's do face
+erosion.<00:05:40.320><c> The</c><00:05:40.479><c> logic</c><00:05:40.720><c> is</c><00:05:40.880><c> going</c><00:05:40.960><c> to</c><00:05:41.039><c> be</c><00:05:41.199><c> pretty</c>
+
+00:05:41.350 --> 00:05:41.360 align:start position:0%
+erosion. The logic is going to be pretty
+ 
+
+00:05:41.360 --> 00:05:42.390 align:start position:0%
+erosion. The logic is going to be pretty
+similar.<00:05:41.840><c> We're</c><00:05:42.000><c> just</c><00:05:42.080><c> going</c><00:05:42.160><c> to</c><00:05:42.240><c> use</c>
+
+00:05:42.390 --> 00:05:42.400 align:start position:0%
+similar. We're just going to use
+ 
+
+00:05:42.400 --> 00:05:43.830 align:start position:0%
+similar. We're just going to use
+different<00:05:42.720><c> things</c><00:05:42.880><c> to</c><00:05:43.039><c> cut</c><00:05:43.280><c> away.</c><00:05:43.520><c> So,</c><00:05:43.680><c> I'm</c>
+
+00:05:43.830 --> 00:05:43.840 align:start position:0%
+different things to cut away. So, I'm
+ 
+
+00:05:43.840 --> 00:05:45.670 align:start position:0%
+different things to cut away. So, I'm
+going<00:05:43.919><c> to</c><00:05:44.080><c> take</c><00:05:44.320><c> all</c><00:05:44.560><c> of</c><00:05:44.720><c> this,</c><00:05:45.120><c> maybe</c><00:05:45.360><c> make</c><00:05:45.520><c> it</c>
+
+00:05:45.670 --> 00:05:45.680 align:start position:0%
+going to take all of this, maybe make it
+ 
+
+00:05:45.680 --> 00:05:47.670 align:start position:0%
+going to take all of this, maybe make it
+a<00:05:45.840><c> nice</c><00:05:46.080><c> node</c><00:05:46.400><c> group.</c><00:05:46.639><c> I</c><00:05:46.800><c> can</c><00:05:46.960><c> call</c><00:05:47.039><c> this</c><00:05:47.280><c> edge</c>
+
+00:05:47.670 --> 00:05:47.680 align:start position:0%
+a nice node group. I can call this edge
+ 
+
+00:05:47.680 --> 00:05:49.270 align:start position:0%
+a nice node group. I can call this edge
+erosion,<00:05:48.080><c> which</c><00:05:48.320><c> you</c><00:05:48.479><c> would</c><00:05:48.639><c> add</c><00:05:48.800><c> parameters</c>
+
+00:05:49.270 --> 00:05:49.280 align:start position:0%
+erosion, which you would add parameters
+ 
+
+00:05:49.280 --> 00:05:50.550 align:start position:0%
+erosion, which you would add parameters
+for.<00:05:49.520><c> Goodbye,</c><00:05:49.840><c> edge</c><00:05:50.160><c> erosion.</c><00:05:50.400><c> You've</c>
+
+00:05:50.550 --> 00:05:50.560 align:start position:0%
+for. Goodbye, edge erosion. You've
+ 
+
+00:05:50.560 --> 00:05:51.990 align:start position:0%
+for. Goodbye, edge erosion. You've
+served<00:05:50.800><c> us</c><00:05:50.960><c> well.</c><00:05:51.199><c> Like</c><00:05:51.360><c> I</c><00:05:51.520><c> said,</c><00:05:51.680><c> for</c><00:05:51.840><c> this</c>
+
+00:05:51.990 --> 00:05:52.000 align:start position:0%
+served us well. Like I said, for this
+ 
+
+00:05:52.000 --> 00:05:53.749 align:start position:0%
+served us well. Like I said, for this
+one,<00:05:52.160><c> we</c><00:05:52.400><c> need</c><00:05:52.479><c> to</c><00:05:52.639><c> spawn</c><00:05:53.039><c> points</c><00:05:53.360><c> on</c><00:05:53.520><c> the</c>
+
+00:05:53.749 --> 00:05:53.759 align:start position:0%
+one, we need to spawn points on the
+ 
+
+00:05:53.759 --> 00:05:55.590 align:start position:0%
+one, we need to spawn points on the
+surface.<00:05:54.160><c> I'm</c><00:05:54.479><c> going</c><00:05:54.560><c> to</c><00:05:54.800><c> distribute</c><00:05:55.280><c> points</c>
+
+00:05:55.590 --> 00:05:55.600 align:start position:0%
+surface. I'm going to distribute points
+ 
+
+00:05:55.600 --> 00:05:57.670 align:start position:0%
+surface. I'm going to distribute points
+on<00:05:55.840><c> faces.</c><00:05:56.400><c> Just</c><00:05:56.560><c> make</c><00:05:56.720><c> that</c><00:05:56.880><c> a</c><00:05:57.120><c> ridiculously</c>
+
+00:05:57.670 --> 00:05:57.680 align:start position:0%
+on faces. Just make that a ridiculously
+ 
+
+00:05:57.680 --> 00:05:59.749 align:start position:0%
+on faces. Just make that a ridiculously
+big<00:05:57.919><c> number.</c><00:05:58.240><c> I'm</c><00:05:58.400><c> talking</c><00:05:58.639><c> like</c><00:05:59.039><c> 1500</c><00:05:59.520><c> or</c>
+
+00:05:59.749 --> 00:05:59.759 align:start position:0%
+big number. I'm talking like 1500 or
+ 
+
+00:05:59.759 --> 00:06:00.950 align:start position:0%
+big number. I'm talking like 1500 or
+something<00:05:59.840><c> like</c><00:06:00.000><c> that.</c><00:06:00.400><c> And</c><00:06:00.560><c> this</c><00:06:00.800><c> will</c>
+
+00:06:00.950 --> 00:06:00.960 align:start position:0%
+something like that. And this will
+ 
+
+00:06:00.960 --> 00:06:02.710 align:start position:0%
+something like that. And this will
+dictate<00:06:01.360><c> where</c><00:06:01.600><c> our</c><00:06:02.080><c> erosion</c><00:06:02.400><c> is</c><00:06:02.560><c> going</c><00:06:02.639><c> to</c>
+
+00:06:02.710 --> 00:06:02.720 align:start position:0%
+dictate where our erosion is going to
+ 
+
+00:06:02.720 --> 00:06:04.550 align:start position:0%
+dictate where our erosion is going to
+be.<00:06:02.960><c> I</c><00:06:03.120><c> don't</c><00:06:03.280><c> want</c><00:06:03.440><c> that</c><00:06:03.759><c> everywhere.</c><00:06:04.319><c> So,</c>
+
+00:06:04.550 --> 00:06:04.560 align:start position:0%
+be. I don't want that everywhere. So,
+ 
+
+00:06:04.560 --> 00:06:06.469 align:start position:0%
+be. I don't want that everywhere. So,
+I'm<00:06:04.800><c> going</c><00:06:04.960><c> to</c><00:06:05.199><c> delete</c><00:06:05.520><c> geometry.</c><00:06:06.080><c> Where</c><00:06:06.160><c> am</c><00:06:06.319><c> I</c>
+
+00:06:06.469 --> 00:06:06.479 align:start position:0%
+I'm going to delete geometry. Where am I
+ 
+
+00:06:06.479 --> 00:06:07.670 align:start position:0%
+I'm going to delete geometry. Where am I
+going to<00:06:06.560><c> do</c><00:06:06.639><c> that,</c><00:06:06.880><c> you</c><00:06:07.039><c> ask?</c><00:06:07.360><c> Well,</c><00:06:07.520><c> I'm</c>
+
+00:06:07.670 --> 00:06:07.680 align:start position:0%
+going to do that, you ask? Well, I'm
+ 
+
+00:06:07.680 --> 00:06:09.029 align:start position:0%
+going to do that, you ask? Well, I'm
+going to<00:06:07.759><c> use</c><00:06:07.840><c> a</c><00:06:08.000><c> noise</c><00:06:08.240><c> texture.</c><00:06:08.639><c> Turn</c><00:06:08.800><c> off</c>
+
+00:06:09.029 --> 00:06:09.039 align:start position:0%
+going to use a noise texture. Turn off
+ 
+
+00:06:09.039 --> 00:06:10.629 align:start position:0%
+going to use a noise texture. Turn off
+normalize<00:06:09.600><c> so</c><00:06:09.759><c> that</c><00:06:09.919><c> this</c><00:06:10.080><c> is</c><00:06:10.160><c> positive</c><00:06:10.479><c> or</c>
+
+00:06:10.629 --> 00:06:10.639 align:start position:0%
+normalize so that this is positive or
+ 
+
+00:06:10.639 --> 00:06:12.150 align:start position:0%
+normalize so that this is positive or
+negative.<00:06:11.039><c> Delete</c><00:06:11.360><c> or</c><00:06:11.600><c> don't</c><00:06:11.759><c> delete.</c>
+
+00:06:12.150 --> 00:06:12.160 align:start position:0%
+negative. Delete or don't delete.
+ 
+
+00:06:12.160 --> 00:06:13.830 align:start position:0%
+negative. Delete or don't delete.
+Connect<00:06:12.400><c> that</c><00:06:12.639><c> here.</c><00:06:13.039><c> And</c><00:06:13.120><c> now,</c><00:06:13.280><c> when</c><00:06:13.520><c> we</c><00:06:13.680><c> play</c>
+
+00:06:13.830 --> 00:06:13.840 align:start position:0%
+Connect that here. And now, when we play
+ 
+
+00:06:13.840 --> 00:06:15.590 align:start position:0%
+Connect that here. And now, when we play
+with<00:06:14.000><c> this,</c><00:06:14.240><c> you</c><00:06:14.479><c> can</c><00:06:14.560><c> get</c><00:06:14.720><c> rid</c><00:06:14.880><c> of</c><00:06:15.120><c> points</c><00:06:15.360><c> in</c>
+
+00:06:15.590 --> 00:06:15.600 align:start position:0%
+with this, you can get rid of points in
+ 
+
+00:06:15.600 --> 00:06:17.430 align:start position:0%
+with this, you can get rid of points in
+different<00:06:15.759><c> areas.</c><00:06:16.160><c> In</c><00:06:16.319><c> fact,</c><00:06:16.720><c> we</c><00:06:16.880><c> can</c><00:06:17.039><c> bias</c>
+
+00:06:17.430 --> 00:06:17.440 align:start position:0%
+different areas. In fact, we can bias
+ 
+
+00:06:17.440 --> 00:06:19.430 align:start position:0%
+different areas. In fact, we can bias
+this<00:06:17.680><c> by</c><00:06:18.000><c> adding</c><00:06:18.319><c> or</c><00:06:18.560><c> subtracting</c><00:06:19.039><c> something.</c>
+
+00:06:19.430 --> 00:06:19.440 align:start position:0%
+this by adding or subtracting something.
+ 
+
+00:06:19.440 --> 00:06:20.629 align:start position:0%
+this by adding or subtracting something.
+So,<00:06:19.600><c> now</c><00:06:19.680><c> you</c><00:06:19.840><c> can</c><00:06:19.919><c> see</c><00:06:20.000><c> we're</c><00:06:20.240><c> getting</c><00:06:20.400><c> rid</c><00:06:20.479><c> of</c>
+
+00:06:20.629 --> 00:06:20.639 align:start position:0%
+So, now you can see we're getting rid of
+ 
+
+00:06:20.639 --> 00:06:22.710 align:start position:0%
+So, now you can see we're getting rid of
+more<00:06:20.880><c> or</c><00:06:21.120><c> less.</c><00:06:21.440><c> And</c><00:06:21.600><c> then</c><00:06:21.840><c> this</c><00:06:22.160><c> needs</c><00:06:22.400><c> to</c><00:06:22.560><c> be</c>
+
+00:06:22.710 --> 00:06:22.720 align:start position:0%
+more or less. And then this needs to be
+ 
+
+00:06:22.720 --> 00:06:24.390 align:start position:0%
+more or less. And then this needs to be
+made<00:06:22.960><c> into</c><00:06:23.199><c> a</c><00:06:23.360><c> mesh</c><00:06:23.600><c> where</c><00:06:23.759><c> we</c><00:06:23.919><c> can</c><00:06:24.000><c> cut</c><00:06:24.240><c> one</c>
+
+00:06:24.390 --> 00:06:24.400 align:start position:0%
+made into a mesh where we can cut one
+ 
+
+00:06:24.400 --> 00:06:26.710 align:start position:0%
+made into a mesh where we can cut one
+thing<00:06:24.560><c> from</c><00:06:24.880><c> another.</c><00:06:25.360><c> Well,</c><00:06:25.520><c> the</c><00:06:25.759><c> new</c><00:06:26.080><c> 5.0,</c><00:06:26.560><c> 0</c>
+
+00:06:26.710 --> 00:06:26.720 align:start position:0%
+thing from another. Well, the new 5.0, 0
+ 
+
+00:06:26.720 --> 00:06:28.550 align:start position:0%
+thing from another. Well, the new 5.0, 0
+at least<00:06:26.960><c> as</c><00:06:27.120><c> of</c><00:06:27.280><c> recording.</c><00:06:27.680><c> SDF</c><00:06:28.160><c> nodes</c><00:06:28.400><c> are</c>
+
+00:06:28.550 --> 00:06:28.560 align:start position:0%
+at least as of recording. SDF nodes are
+ 
+
+00:06:28.560 --> 00:06:29.670 align:start position:0%
+at least as of recording. SDF nodes are
+great<00:06:28.639><c> for</c><00:06:28.800><c> that.</c><00:06:28.960><c> We're</c><00:06:29.120><c> going</c><00:06:29.199><c> to</c><00:06:29.280><c> run</c><00:06:29.440><c> a</c>
+
+00:06:29.670 --> 00:06:29.680 align:start position:0%
+great for that. We're going to run a
+ 
+
+00:06:29.680 --> 00:06:32.070 align:start position:0%
+great for that. We're going to run a
+points<00:06:30.160><c> to</c><00:06:30.479><c> SDF.</c><00:06:31.120><c> This</c><00:06:31.199><c> will</c><00:06:31.360><c> make</c><00:06:31.440><c> it</c><00:06:31.600><c> a</c><00:06:31.840><c> nice</c>
+
+00:06:32.070 --> 00:06:32.080 align:start position:0%
+points to SDF. This will make it a nice
+ 
+
+00:06:32.080 --> 00:06:33.749 align:start position:0%
+points to SDF. This will make it a nice
+volutric<00:06:32.639><c> that</c><00:06:32.880><c> you</c><00:06:33.039><c> can</c><00:06:33.199><c> kind</c><00:06:33.280><c> of</c><00:06:33.440><c> make</c><00:06:33.520><c> the</c>
+
+00:06:33.749 --> 00:06:33.759 align:start position:0%
+volutric that you can kind of make the
+ 
+
+00:06:33.759 --> 00:06:35.189 align:start position:0%
+volutric that you can kind of make the
+impression<00:06:34.000><c> of</c><00:06:34.160><c> this.</c><00:06:34.479><c> For</c><00:06:34.639><c> the</c><00:06:34.880><c> size</c><00:06:35.039><c> of</c>
+
+00:06:35.189 --> 00:06:35.199 align:start position:0%
+impression of this. For the size of
+ 
+
+00:06:35.199 --> 00:06:36.790 align:start position:0%
+impression of this. For the size of
+this,<00:06:35.440><c> like</c><00:06:35.680><c> how</c><00:06:35.840><c> far</c><00:06:36.000><c> away</c><00:06:36.240><c> from</c><00:06:36.319><c> the</c><00:06:36.560><c> points</c>
+
+00:06:36.790 --> 00:06:36.800 align:start position:0%
+this, like how far away from the points
+ 
+
+00:06:36.800 --> 00:06:38.230 align:start position:0%
+this, like how far away from the points
+are<00:06:36.960><c> you</c><00:06:37.120><c> looking?</c><00:06:37.440><c> You</c><00:06:37.600><c> could</c><00:06:37.759><c> just</c><00:06:37.919><c> plug</c><00:06:38.080><c> in</c>
+
+00:06:38.230 --> 00:06:38.240 align:start position:0%
+are you looking? You could just plug in
+ 
+
+00:06:38.240 --> 00:06:40.390 align:start position:0%
+are you looking? You could just plug in
+the<00:06:38.400><c> radius,</c><00:06:38.800><c> which</c><00:06:39.039><c> we</c><00:06:39.280><c> can</c><00:06:39.440><c> modify</c><00:06:39.919><c> on</c><00:06:40.160><c> the</c>
+
+00:06:40.390 --> 00:06:40.400 align:start position:0%
+the radius, which we can modify on the
+ 
+
+00:06:40.400 --> 00:06:42.150 align:start position:0%
+the radius, which we can modify on the
+fly.<00:06:40.800><c> And</c><00:06:40.960><c> we're</c><00:06:41.120><c> going</c><00:06:41.199><c> to</c><00:06:41.280><c> take</c><00:06:41.360><c> our</c><00:06:41.600><c> voxil</c>
+
+00:06:42.150 --> 00:06:42.160 align:start position:0%
+fly. And we're going to take our voxil
+ 
+
+00:06:42.160 --> 00:06:43.990 align:start position:0%
+fly. And we're going to take our voxil
+or<00:06:42.400><c> our</c><00:06:42.800><c> resolution,</c><00:06:43.520><c> kind</c><00:06:43.600><c> of</c><00:06:43.680><c> like</c><00:06:43.840><c> the</c>
+
+00:06:43.990 --> 00:06:44.000 align:start position:0%
+or our resolution, kind of like the
+ 
+
+00:06:44.000 --> 00:06:45.749 align:start position:0%
+or our resolution, kind of like the
+inverse<00:06:44.319><c> of</c><00:06:44.400><c> it,</c><00:06:44.639><c> like</c><00:06:44.800><c> the</c><00:06:44.960><c> size</c><00:06:45.120><c> of</c><00:06:45.199><c> a</c><00:06:45.360><c> pixel.</c>
+
+00:06:45.749 --> 00:06:45.759 align:start position:0%
+inverse of it, like the size of a pixel.
+ 
+
+00:06:45.759 --> 00:06:47.430 align:start position:0%
+inverse of it, like the size of a pixel.
+And<00:06:45.840><c> I</c><00:06:46.000><c> am</c><00:06:46.160><c> going</c><00:06:46.240><c> to</c><00:06:46.319><c> bring</c><00:06:46.479><c> that</c><00:06:46.800><c> down.</c><00:06:47.280><c> Now,</c>
+
+00:06:47.430 --> 00:06:47.440 align:start position:0%
+And I am going to bring that down. Now,
+ 
+
+00:06:47.440 --> 00:06:48.469 align:start position:0%
+And I am going to bring that down. Now,
+we're<00:06:47.600><c> going</c><00:06:47.600><c> to</c><00:06:47.680><c> clean</c><00:06:47.840><c> this</c><00:06:48.000><c> up</c><00:06:48.160><c> in</c><00:06:48.319><c> a</c>
+
+00:06:48.469 --> 00:06:48.479 align:start position:0%
+we're going to clean this up in a
+ 
+
+00:06:48.479 --> 00:06:50.390 align:start position:0%
+we're going to clean this up in a
+second,<00:06:48.720><c> but</c><00:06:48.880><c> for</c><00:06:49.039><c> now,</c><00:06:49.280><c> let's</c><00:06:49.520><c> run</c><00:06:49.680><c> a</c><00:06:49.919><c> grid</c><00:06:50.240><c> to</c>
+
+00:06:50.390 --> 00:06:50.400 align:start position:0%
+second, but for now, let's run a grid to
+ 
+
+00:06:50.400 --> 00:06:52.390 align:start position:0%
+second, but for now, let's run a grid to
+mesh.<00:06:50.800><c> Turn</c><00:06:50.960><c> it</c><00:06:51.039><c> into</c><00:06:51.199><c> an</c><00:06:51.360><c> SDF</c><00:06:51.759><c> grid.</c><00:06:52.080><c> Turn</c><00:06:52.240><c> it</c>
+
+00:06:52.390 --> 00:06:52.400 align:start position:0%
+mesh. Turn it into an SDF grid. Turn it
+ 
+
+00:06:52.400 --> 00:06:54.309 align:start position:0%
+mesh. Turn it into an SDF grid. Turn it
+back<00:06:52.479><c> into</c><00:06:52.639><c> a</c><00:06:52.800><c> mesh.</c><00:06:53.039><c> SDF</c><00:06:53.520><c> is</c><00:06:53.680><c> just</c><00:06:53.759><c> a</c><00:06:53.919><c> nice</c><00:06:54.160><c> way</c>
+
+00:06:54.309 --> 00:06:54.319 align:start position:0%
+back into a mesh. SDF is just a nice way
+ 
+
+00:06:54.319 --> 00:06:55.590 align:start position:0%
+back into a mesh. SDF is just a nice way
+to<00:06:54.479><c> go</c><00:06:54.560><c> back</c><00:06:54.720><c> and</c><00:06:54.880><c> forth.</c><00:06:55.120><c> And</c><00:06:55.280><c> now</c><00:06:55.360><c> you</c><00:06:55.520><c> can</c>
+
+00:06:55.590 --> 00:06:55.600 align:start position:0%
+to go back and forth. And now you can
+ 
+
+00:06:55.600 --> 00:06:57.350 align:start position:0%
+to go back and forth. And now you can
+see<00:06:55.759><c> our</c><00:06:56.080><c> initial</c><00:06:56.400><c> point</c><00:06:56.720><c> cloud</c><00:06:56.960><c> that</c><00:06:57.199><c> we</c>
+
+00:06:57.350 --> 00:06:57.360 align:start position:0%
+see our initial point cloud that we
+ 
+
+00:06:57.360 --> 00:06:59.029 align:start position:0%
+see our initial point cloud that we
+called<00:06:57.759><c> turned</c><00:06:58.000><c> into</c><00:06:58.240><c> a</c><00:06:58.400><c> mesh.</c><00:06:58.720><c> Take</c><00:06:58.880><c> the</c>
+
+00:06:59.029 --> 00:06:59.039 align:start position:0%
+called turned into a mesh. Take the
+ 
+
+00:06:59.039 --> 00:07:00.870 align:start position:0%
+called turned into a mesh. Take the
+voxil,<00:06:59.599><c> make</c><00:06:59.680><c> it</c><00:06:59.840><c> smaller.</c><00:07:00.240><c> Now</c><00:07:00.400><c> it's</c><00:07:00.560><c> higher</c>
+
+00:07:00.870 --> 00:07:00.880 align:start position:0%
+voxil, make it smaller. Now it's higher
+ 
+
+00:07:00.880 --> 00:07:02.790 align:start position:0%
+voxil, make it smaller. Now it's higher
+resolution.<00:07:01.440><c> And</c><00:07:01.599><c> our</c><00:07:01.840><c> radius,</c><00:07:02.400><c> since</c><00:07:02.639><c> we're</c>
+
+00:07:02.790 --> 00:07:02.800 align:start position:0%
+resolution. And our radius, since we're
+ 
+
+00:07:02.800 --> 00:07:04.870 align:start position:0%
+resolution. And our radius, since we're
+using<00:07:02.960><c> that,</c><00:07:03.360><c> let's</c><00:07:03.599><c> make</c><00:07:03.759><c> that</c><00:07:04.080><c> smaller.</c><00:07:04.639><c> So</c>
+
+00:07:04.870 --> 00:07:04.880 align:start position:0%
+using that, let's make that smaller. So
+ 
+
+00:07:04.880 --> 00:07:06.950 align:start position:0%
+using that, let's make that smaller. So
+set<00:07:05.199><c> point</c><00:07:05.440><c> radius.</c><00:07:06.080><c> Divide</c><00:07:06.400><c> that</c><00:07:06.560><c> by</c><00:07:06.800><c> like</c>
+
+00:07:06.950 --> 00:07:06.960 align:start position:0%
+set point radius. Divide that by like
+ 
+
+00:07:06.960 --> 00:07:09.110 align:start position:0%
+set point radius. Divide that by like
+three.<00:07:07.360><c> Let's</c><00:07:07.680><c> go</c><00:07:07.919><c> a</c><00:07:08.240><c> little</c><00:07:08.400><c> higher</c><00:07:08.800><c> so</c><00:07:08.960><c> that</c>
+
+00:07:09.110 --> 00:07:09.120 align:start position:0%
+three. Let's go a little higher so that
+ 
+
+00:07:09.120 --> 00:07:10.550 align:start position:0%
+three. Let's go a little higher so that
+they're<00:07:09.360><c> more</c><00:07:09.520><c> connected.</c><00:07:10.000><c> And</c><00:07:10.160><c> now</c><00:07:10.400><c> we're</c>
+
+00:07:10.550 --> 00:07:10.560 align:start position:0%
+they're more connected. And now we're
+ 
+
+00:07:10.560 --> 00:07:12.390 align:start position:0%
+they're more connected. And now we're
+going<00:07:10.639><c> to</c><00:07:10.800><c> take</c><00:07:11.039><c> our</c><00:07:11.440><c> original</c><00:07:11.840><c> mesh,</c><00:07:12.240><c> which</c>
+
+00:07:12.390 --> 00:07:12.400 align:start position:0%
+going to take our original mesh, which
+ 
+
+00:07:12.400 --> 00:07:14.230 align:start position:0%
+going to take our original mesh, which
+is<00:07:12.479><c> the</c><00:07:12.639><c> Taurus,</c><00:07:13.120><c> and</c><00:07:13.360><c> of</c><00:07:13.520><c> course</c><00:07:13.759><c> subtract</c>
+
+00:07:14.230 --> 00:07:14.240 align:start position:0%
+is the Taurus, and of course subtract
+ 
+
+00:07:14.240 --> 00:07:16.230 align:start position:0%
+is the Taurus, and of course subtract
+away<00:07:14.560><c> this.</c><00:07:15.039><c> The</c><00:07:15.199><c> way</c><00:07:15.360><c> we</c><00:07:15.520><c> constructed</c><00:07:16.000><c> this</c>
+
+00:07:16.230 --> 00:07:16.240 align:start position:0%
+away this. The way we constructed this
+ 
+
+00:07:16.240 --> 00:07:18.550 align:start position:0%
+away this. The way we constructed this
+is<00:07:16.479><c> it</c><00:07:16.720><c> should</c><00:07:16.880><c> be</c><00:07:16.960><c> a</c><00:07:17.199><c> very</c><00:07:17.440><c> nice</c><00:07:17.599><c> SDF.</c><00:07:18.319><c> Should</c>
+
+00:07:18.550 --> 00:07:18.560 align:start position:0%
+is it should be a very nice SDF. Should
+ 
+
+00:07:18.560 --> 00:07:19.990 align:start position:0%
+is it should be a very nice SDF. Should
+be.<00:07:18.800><c> Connect</c><00:07:19.039><c> this</c><00:07:19.199><c> here.</c><00:07:19.520><c> Connect</c><00:07:19.759><c> this</c>
+
+00:07:19.990 --> 00:07:20.000 align:start position:0%
+be. Connect this here. Connect this
+ 
+
+00:07:20.000 --> 00:07:21.909 align:start position:0%
+be. Connect this here. Connect this
+here.<00:07:20.240><c> And</c><00:07:20.479><c> set</c><00:07:20.639><c> this</c><00:07:20.800><c> to</c><00:07:21.039><c> manifold.</c><00:07:21.599><c> And</c><00:07:21.759><c> now</c>
+
+00:07:21.909 --> 00:07:21.919 align:start position:0%
+here. And set this to manifold. And now
+ 
+
+00:07:21.919 --> 00:07:23.430 align:start position:0%
+here. And set this to manifold. And now
+we<00:07:22.000><c> preview</c><00:07:22.319><c> that.</c><00:07:22.479><c> And</c><00:07:22.720><c> now</c><00:07:22.880><c> we</c><00:07:23.039><c> have</c><00:07:23.199><c> very</c>
+
+00:07:23.430 --> 00:07:23.440 align:start position:0%
+we preview that. And now we have very
+ 
+
+00:07:23.440 --> 00:07:25.749 align:start position:0%
+we preview that. And now we have very
+nice<00:07:23.680><c> face</c><00:07:24.080><c> erosion</c><00:07:24.479><c> that</c><00:07:24.800><c> we</c><00:07:25.039><c> can</c><00:07:25.199><c> change</c><00:07:25.520><c> on</c>
+
+00:07:25.749 --> 00:07:25.759 align:start position:0%
+nice face erosion that we can change on
+ 
+
+00:07:25.759 --> 00:07:27.350 align:start position:0%
+nice face erosion that we can change on
+the<00:07:25.919><c> fly</c><00:07:26.160><c> for</c><00:07:26.479><c> erosion.</c><00:07:26.800><c> Now,</c><00:07:27.039><c> if</c><00:07:27.199><c> you're</c>
+
+00:07:27.350 --> 00:07:27.360 align:start position:0%
+the fly for erosion. Now, if you're
+ 
+
+00:07:27.360 --> 00:07:28.950 align:start position:0%
+the fly for erosion. Now, if you're
+seeing<00:07:27.520><c> kind</c><00:07:27.680><c> of</c><00:07:27.759><c> these</c><00:07:28.080><c> hovering</c><00:07:28.479><c> pieces,</c>
+
+00:07:28.950 --> 00:07:28.960 align:start position:0%
+seeing kind of these hovering pieces,
+ 
+
+00:07:28.960 --> 00:07:31.510 align:start position:0%
+seeing kind of these hovering pieces,
+right,<00:07:29.199><c> that</c><00:07:29.440><c> means</c><00:07:29.680><c> that</c><00:07:30.000><c> our</c><00:07:30.479><c> point</c><00:07:31.039><c> thing</c>
+
+00:07:31.510 --> 00:07:31.520 align:start position:0%
+right, that means that our point thing
+ 
+
+00:07:31.520 --> 00:07:33.110 align:start position:0%
+right, that means that our point thing
+kind<00:07:31.680><c> of</c><00:07:31.759><c> has</c><00:07:32.000><c> holes</c><00:07:32.240><c> in</c><00:07:32.400><c> it,</c><00:07:32.560><c> which</c><00:07:32.800><c> is</c><00:07:32.880><c> fine.</c>
+
+00:07:33.110 --> 00:07:33.120 align:start position:0%
+kind of has holes in it, which is fine.
+ 
+
+00:07:33.120 --> 00:07:34.469 align:start position:0%
+kind of has holes in it, which is fine.
+Like<00:07:33.280><c> there's</c><00:07:33.520><c> holes</c><00:07:33.759><c> between</c><00:07:33.919><c> the</c><00:07:34.080><c> points.</c>
+
+00:07:34.469 --> 00:07:34.479 align:start position:0%
+Like there's holes between the points.
+ 
+
+00:07:34.479 --> 00:07:36.309 align:start position:0%
+Like there's holes between the points.
+Bring<00:07:34.639><c> up</c><00:07:34.800><c> the</c><00:07:35.039><c> density.</c><00:07:35.520><c> Now,</c><00:07:35.759><c> the</c><00:07:36.000><c> quality</c>
+
+00:07:36.309 --> 00:07:36.319 align:start position:0%
+Bring up the density. Now, the quality
+ 
+
+00:07:36.319 --> 00:07:37.909 align:start position:0%
+Bring up the density. Now, the quality
+of<00:07:36.560><c> this</c><00:07:36.880><c> erosion</c><00:07:37.120><c> is</c><00:07:37.280><c> going</c><00:07:37.360><c> to</c><00:07:37.440><c> be</c><00:07:37.599><c> fully</c>
+
+00:07:37.909 --> 00:07:37.919 align:start position:0%
+of this erosion is going to be fully
+ 
+
+00:07:37.919 --> 00:07:39.749 align:start position:0%
+of this erosion is going to be fully
+dependent<00:07:38.319><c> on</c><00:07:38.479><c> our</c><00:07:38.720><c> noise</c><00:07:39.039><c> texture.</c><00:07:39.360><c> So,</c><00:07:39.520><c> if</c><00:07:39.680><c> I</c>
+
+00:07:39.749 --> 00:07:39.759 align:start position:0%
+dependent on our noise texture. So, if I
+ 
+
+00:07:39.759 --> 00:07:41.510 align:start position:0%
+dependent on our noise texture. So, if I
+bring<00:07:39.919><c> up</c><00:07:40.080><c> the</c><00:07:40.319><c> detail</c><00:07:40.800><c> and</c><00:07:40.960><c> then</c><00:07:41.120><c> I</c><00:07:41.280><c> bring</c><00:07:41.360><c> up</c>
+
+00:07:41.510 --> 00:07:41.520 align:start position:0%
+bring up the detail and then I bring up
+ 
+
+00:07:41.520 --> 00:07:42.870 align:start position:0%
+bring up the detail and then I bring up
+the<00:07:41.680><c> roughness,</c><00:07:42.160><c> you</c><00:07:42.240><c> can</c><00:07:42.319><c> see</c><00:07:42.479><c> now</c><00:07:42.560><c> it</c><00:07:42.720><c> looks</c>
+
+00:07:42.870 --> 00:07:42.880 align:start position:0%
+the roughness, you can see now it looks
+ 
+
+00:07:42.880 --> 00:07:44.150 align:start position:0%
+the roughness, you can see now it looks
+more<00:07:43.039><c> cut</c><00:07:43.199><c> out.</c><00:07:43.520><c> That's</c><00:07:43.680><c> going</c><00:07:43.759><c> to</c><00:07:43.840><c> be</c><00:07:44.000><c> more</c>
+
+00:07:44.150 --> 00:07:44.160 align:start position:0%
+more cut out. That's going to be more
+ 
+
+00:07:44.160 --> 00:07:46.469 align:start position:0%
+more cut out. That's going to be more
+obvious<00:07:44.720><c> as</c><00:07:44.880><c> I</c><00:07:45.039><c> take</c><00:07:45.199><c> our</c><00:07:45.440><c> SDF</c><00:07:45.919><c> and</c><00:07:46.160><c> bring</c><00:07:46.319><c> up</c>
+
+00:07:46.469 --> 00:07:46.479 align:start position:0%
+obvious as I take our SDF and bring up
+ 
+
+00:07:46.479 --> 00:07:48.150 align:start position:0%
+obvious as I take our SDF and bring up
+the<00:07:46.639><c> resolution.</c><00:07:47.199><c> And</c><00:07:47.360><c> it</c><00:07:47.520><c> computes</c><00:07:47.919><c> quite</c>
+
+00:07:48.150 --> 00:07:48.160 align:start position:0%
+the resolution. And it computes quite
+ 
+
+00:07:48.160 --> 00:07:49.830 align:start position:0%
+the resolution. And it computes quite
+fast<00:07:48.479><c> and</c><00:07:48.639><c> we</c><00:07:48.800><c> haven't</c><00:07:48.960><c> even</c><00:07:49.120><c> baked</c><00:07:49.440><c> it</c><00:07:49.599><c> yet.</c>
+
+00:07:49.830 --> 00:07:49.840 align:start position:0%
+fast and we haven't even baked it yet.
+ 
+
+00:07:49.840 --> 00:07:51.270 align:start position:0%
+fast and we haven't even baked it yet.
+One<00:07:50.080><c> thing</c><00:07:50.160><c> you</c><00:07:50.400><c> might</c><00:07:50.560><c> notice</c><00:07:50.800><c> is</c><00:07:50.960><c> wherever</c>
+
+00:07:51.270 --> 00:07:51.280 align:start position:0%
+One thing you might notice is wherever
+ 
+
+00:07:51.280 --> 00:07:53.029 align:start position:0%
+One thing you might notice is wherever
+it's<00:07:51.520><c> eroded,</c><00:07:52.000><c> it</c><00:07:52.160><c> kind</c><00:07:52.240><c> of</c><00:07:52.319><c> goes</c><00:07:52.560><c> to</c><00:07:52.720><c> the</c><00:07:52.880><c> same</c>
+
+00:07:53.029 --> 00:07:53.039 align:start position:0%
+it's eroded, it kind of goes to the same
+ 
+
+00:07:53.039 --> 00:07:54.469 align:start position:0%
+it's eroded, it kind of goes to the same
+depth.<00:07:53.360><c> And</c><00:07:53.520><c> that</c><00:07:53.680><c> makes</c><00:07:53.840><c> sense</c><00:07:54.000><c> because</c><00:07:54.240><c> our</c>
+
+00:07:54.469 --> 00:07:54.479 align:start position:0%
+depth. And that makes sense because our
+ 
+
+00:07:54.479 --> 00:07:56.070 align:start position:0%
+depth. And that makes sense because our
+guiding<00:07:54.800><c> points</c><00:07:55.039><c> are</c><00:07:55.199><c> all</c><00:07:55.440><c> the</c><00:07:55.599><c> exact</c><00:07:55.919><c> same</c>
+
+00:07:56.070 --> 00:07:56.080 align:start position:0%
+guiding points are all the exact same
+ 
+
+00:07:56.080 --> 00:07:58.710 align:start position:0%
+guiding points are all the exact same
+radius.<00:07:56.639><c> So,</c><00:07:56.800><c> what</c><00:07:57.039><c> if</c><00:07:57.120><c> we</c><00:07:57.280><c> took</c><00:07:57.599><c> our</c><00:07:57.840><c> like</c><00:07:58.160><c> SDF</c>
+
+00:07:58.710 --> 00:07:58.720 align:start position:0%
+radius. So, what if we took our like SDF
+ 
+
+00:07:58.720 --> 00:08:00.550 align:start position:0%
+radius. So, what if we took our like SDF
+grid<00:07:59.039><c> and</c><00:07:59.199><c> the</c><00:07:59.440><c> radius</c><00:07:59.759><c> that's</c><00:08:00.000><c> driving</c><00:08:00.319><c> it,</c>
+
+00:08:00.550 --> 00:08:00.560 align:start position:0%
+grid and the radius that's driving it,
+ 
+
+00:08:00.560 --> 00:08:01.830 align:start position:0%
+grid and the radius that's driving it,
+we<00:08:00.720><c> just</c><00:08:00.879><c> vary</c><00:08:01.120><c> it</c><00:08:01.280><c> a</c><00:08:01.360><c> little.</c><00:08:01.599><c> I'm</c><00:08:01.759><c> going</c><00:08:01.759><c> to</c>
+
+00:08:01.830 --> 00:08:01.840 align:start position:0%
+we just vary it a little. I'm going to
+ 
+
+00:08:01.840 --> 00:08:02.950 align:start position:0%
+we just vary it a little. I'm going to
+take<00:08:02.000><c> the</c><00:08:02.160><c> radius.</c><00:08:02.400><c> And</c><00:08:02.560><c> we</c><00:08:02.639><c> got</c><00:08:02.720><c> to</c><00:08:02.879><c> be</c>
+
+00:08:02.950 --> 00:08:02.960 align:start position:0%
+take the radius. And we got to be
+ 
+
+00:08:02.960 --> 00:08:04.869 align:start position:0%
+take the radius. And we got to be
+careful.<00:08:03.280><c> We're</c><00:08:03.440><c> going</c><00:08:03.520><c> to</c><00:08:03.680><c> multiply</c><00:08:04.319><c> by</c><00:08:04.560><c> a</c>
+
+00:08:04.869 --> 00:08:04.879 align:start position:0%
+careful. We're going to multiply by a
+ 
+
+00:08:04.879 --> 00:08:06.550 align:start position:0%
+careful. We're going to multiply by a
+random<00:08:05.280><c> number.</c><00:08:05.599><c> So,</c><00:08:05.759><c> they're</c><00:08:06.000><c> not</c><00:08:06.160><c> all</c><00:08:06.319><c> the</c>
+
+00:08:06.550 --> 00:08:06.560 align:start position:0%
+random number. So, they're not all the
+ 
+
+00:08:06.560 --> 00:08:09.189 align:start position:0%
+random number. So, they're not all the
+same.<00:08:06.879><c> Maybe</c><00:08:07.199><c> like.5</c><00:08:08.080><c> to</c><00:08:08.319><c> 1.2.</c><00:08:08.879><c> And</c><00:08:09.039><c> now,</c>
+
+00:08:09.189 --> 00:08:09.199 align:start position:0%
+same. Maybe like.5 to 1.2. And now,
+ 
+
+00:08:09.199 --> 00:08:11.350 align:start position:0%
+same. Maybe like.5 to 1.2. And now,
+let's<00:08:09.440><c> do</c><00:08:09.520><c> a</c><00:08:09.759><c> comparison.</c><00:08:10.400><c> Before,</c><00:08:10.879><c> after.</c>
+
+00:08:11.350 --> 00:08:11.360 align:start position:0%
+let's do a comparison. Before, after.
+ 
+
+00:08:11.360 --> 00:08:13.670 align:start position:0%
+let's do a comparison. Before, after.
+Before,<00:08:11.840><c> after.</c><00:08:12.240><c> To</c><00:08:12.479><c> get</c><00:08:12.639><c> this</c><00:08:12.879><c> even</c><00:08:13.199><c> higher</c>
+
+00:08:13.670 --> 00:08:13.680 align:start position:0%
+Before, after. To get this even higher
+ 
+
+00:08:13.680 --> 00:08:15.749 align:start position:0%
+Before, after. To get this even higher
+quality<00:08:14.080><c> or</c><00:08:14.400><c> more</c><00:08:14.720><c> erosion.</c><00:08:15.199><c> Here</c><00:08:15.360><c> is</c><00:08:15.599><c> what</c>
+
+00:08:15.749 --> 00:08:15.759 align:start position:0%
+quality or more erosion. Here is what
+ 
+
+00:08:15.759 --> 00:08:17.909 align:start position:0%
+quality or more erosion. Here is what
+I'm<00:08:16.080><c> going</c><00:08:16.160><c> to</c><00:08:16.319><c> do.</c><00:08:16.720><c> I'm</c><00:08:16.960><c> going</c><00:08:17.039><c> to</c><00:08:17.199><c> take</c><00:08:17.520><c> our</c>
+
+00:08:17.909 --> 00:08:17.919 align:start position:0%
+I'm going to do. I'm going to take our
+ 
+
+00:08:17.919 --> 00:08:19.990 align:start position:0%
+I'm going to do. I'm going to take our
+meshed<00:08:18.400><c> point</c><00:08:18.720><c> cloud.</c><00:08:19.120><c> And</c><00:08:19.360><c> this</c><00:08:19.759><c> is</c>
+
+00:08:19.990 --> 00:08:20.000 align:start position:0%
+meshed point cloud. And this is
+ 
+
+00:08:20.000 --> 00:08:22.230 align:start position:0%
+meshed point cloud. And this is
+something<00:08:20.319><c> that</c><00:08:20.639><c> I</c><00:08:20.879><c> can</c><00:08:21.120><c> also</c><00:08:21.440><c> distort.</c><00:08:21.919><c> Run</c>
+
+00:08:22.230 --> 00:08:22.240 align:start position:0%
+something that I can also distort. Run
+ 
+
+00:08:22.240 --> 00:08:24.469 align:start position:0%
+something that I can also distort. Run
+my<00:08:22.479><c> distort</c><00:08:23.039><c> node</c><00:08:23.360><c> inside</c><00:08:23.680><c> of</c><00:08:23.840><c> here.</c><00:08:24.319><c> Make</c>
+
+00:08:24.469 --> 00:08:24.479 align:start position:0%
+my distort node inside of here. Make
+ 
+
+00:08:24.479 --> 00:08:26.790 align:start position:0%
+my distort node inside of here. Make
+that<00:08:24.720><c> very</c><00:08:25.039><c> tiny.</c><00:08:25.599><c> More</c><00:08:25.919><c> detail,</c><00:08:26.479><c> more</c>
+
+00:08:26.790 --> 00:08:26.800 align:start position:0%
+that very tiny. More detail, more
+ 
+
+00:08:26.800 --> 00:08:28.869 align:start position:0%
+that very tiny. More detail, more
+roughness.<00:08:27.280><c> And</c><00:08:27.520><c> then</c><00:08:27.759><c> even</c><00:08:28.080><c> tinier.</c><00:08:28.639><c> So</c>
+
+00:08:28.869 --> 00:08:28.879 align:start position:0%
+roughness. And then even tinier. So
+ 
+
+00:08:28.879 --> 00:08:30.869 align:start position:0%
+roughness. And then even tinier. So
+before,<00:08:29.360><c> after.</c><00:08:29.840><c> Now,</c><00:08:30.000><c> if</c><00:08:30.240><c> you</c><00:08:30.319><c> look</c><00:08:30.400><c> at</c><00:08:30.560><c> our</c>
+
+00:08:30.869 --> 00:08:30.879 align:start position:0%
+before, after. Now, if you look at our
+ 
+
+00:08:30.879 --> 00:08:32.230 align:start position:0%
+before, after. Now, if you look at our
+erosion,<00:08:31.199><c> you</c><00:08:31.360><c> can</c><00:08:31.520><c> see</c><00:08:31.680><c> we're</c><00:08:31.919><c> kind</c><00:08:32.080><c> of</c>
+
+00:08:32.230 --> 00:08:32.240 align:start position:0%
+erosion, you can see we're kind of
+ 
+
+00:08:32.240 --> 00:08:33.750 align:start position:0%
+erosion, you can see we're kind of
+breaking<00:08:32.560><c> up</c><00:08:32.719><c> the</c><00:08:32.880><c> pattern</c><00:08:33.120><c> a</c><00:08:33.279><c> little.</c><00:08:33.519><c> For</c>
+
+00:08:33.750 --> 00:08:33.760 align:start position:0%
+breaking up the pattern a little. For
+ 
+
+00:08:33.760 --> 00:08:35.509 align:start position:0%
+breaking up the pattern a little. For
+even<00:08:33.919><c> more</c><00:08:34.080><c> detail</c><00:08:34.560><c> before</c><00:08:34.800><c> the</c><00:08:34.959><c> distortion,</c>
+
+00:08:35.509 --> 00:08:35.519 align:start position:0%
+even more detail before the distortion,
+ 
+
+00:08:35.519 --> 00:08:37.029 align:start position:0%
+even more detail before the distortion,
+you<00:08:35.680><c> just</c><00:08:35.760><c> add</c><00:08:35.919><c> a</c><00:08:36.080><c> bit</c><00:08:36.159><c> more</c><00:08:36.399><c> geo</c><00:08:36.719><c> with</c><00:08:36.800><c> a</c>
+
+00:08:37.029 --> 00:08:37.039 align:start position:0%
+you just add a bit more geo with a
+ 
+
+00:08:37.039 --> 00:08:38.790 align:start position:0%
+you just add a bit more geo with a
+subdivide.<00:08:37.519><c> And</c><00:08:37.680><c> now</c><00:08:37.919><c> you</c><00:08:38.159><c> have</c><00:08:38.320><c> more,</c><00:08:38.719><c> you</c>
+
+00:08:38.790 --> 00:08:38.800 align:start position:0%
+subdivide. And now you have more, you
+ 
+
+00:08:38.800 --> 00:08:40.469 align:start position:0%
+subdivide. And now you have more, you
+know,<00:08:38.959><c> detail.</c><00:08:39.519><c> So</c><00:08:39.680><c> let's</c><00:08:39.919><c> get</c><00:08:40.000><c> rid</c><00:08:40.159><c> of</c><00:08:40.240><c> this</c>
+
+00:08:40.469 --> 00:08:40.479 align:start position:0%
+know, detail. So let's get rid of this
+ 
+
+00:08:40.479 --> 00:08:41.990 align:start position:0%
+know, detail. So let's get rid of this
+Taurus<00:08:40.880><c> and</c><00:08:41.039><c> do</c><00:08:41.200><c> something</c><00:08:41.440><c> simple</c><00:08:41.760><c> like</c><00:08:41.839><c> a</c>
+
+00:08:41.990 --> 00:08:42.000 align:start position:0%
+Taurus and do something simple like a
+ 
+
+00:08:42.000 --> 00:08:43.829 align:start position:0%
+Taurus and do something simple like a
+cube.<00:08:42.399><c> I'm</c><00:08:42.560><c> seeing</c><00:08:42.800><c> that</c><00:08:42.959><c> the</c><00:08:43.200><c> splotches</c><00:08:43.680><c> are</c>
+
+00:08:43.829 --> 00:08:43.839 align:start position:0%
+cube. I'm seeing that the splotches are
+ 
+
+00:08:43.839 --> 00:08:45.030 align:start position:0%
+cube. I'm seeing that the splotches are
+a<00:08:44.000><c> little</c><00:08:44.080><c> too,</c><00:08:44.480><c> I</c><00:08:44.640><c> don't</c><00:08:44.640><c> know,</c><00:08:44.800><c> they're</c>
+
+00:08:45.030 --> 00:08:45.040 align:start position:0%
+a little too, I don't know, they're
+ 
+
+00:08:45.040 --> 00:08:47.030 align:start position:0%
+a little too, I don't know, they're
+splotchy.<00:08:46.000><c> So</c><00:08:46.160><c> I'm</c><00:08:46.320><c> going</c><00:08:46.399><c> to</c><00:08:46.480><c> take</c><00:08:46.560><c> the</c><00:08:46.800><c> noise</c>
+
+00:08:47.030 --> 00:08:47.040 align:start position:0%
+splotchy. So I'm going to take the noise
+ 
+
+00:08:47.040 --> 00:08:48.150 align:start position:0%
+splotchy. So I'm going to take the noise
+texture.<00:08:47.440><c> I'm</c><00:08:47.600><c> going</c><00:08:47.600><c> to</c><00:08:47.680><c> bring</c><00:08:47.839><c> down</c><00:08:48.000><c> the</c>
+
+00:08:48.150 --> 00:08:48.160 align:start position:0%
+texture. I'm going to bring down the
+ 
+
+00:08:48.160 --> 00:08:49.829 align:start position:0%
+texture. I'm going to bring down the
+scale.<00:08:48.560><c> bring</c><00:08:48.800><c> down</c><00:08:48.959><c> the</c><00:08:49.200><c> detail</c><00:08:49.440><c> a</c><00:08:49.680><c> little.</c>
+
+00:08:49.829 --> 00:08:49.839 align:start position:0%
+scale. bring down the detail a little.
+ 
+
+00:08:49.839 --> 00:08:51.110 align:start position:0%
+scale. bring down the detail a little.
+And<00:08:50.000><c> now</c><00:08:50.080><c> you</c><00:08:50.240><c> can</c><00:08:50.320><c> see</c><00:08:50.399><c> these</c><00:08:50.640><c> chunks</c><00:08:50.880><c> are</c><00:08:50.959><c> a</c>
+
+00:08:51.110 --> 00:08:51.120 align:start position:0%
+And now you can see these chunks are a
+ 
+
+00:08:51.120 --> 00:08:52.550 align:start position:0%
+And now you can see these chunks are a
+lot<00:08:51.279><c> bigger.</c><00:08:51.600><c> And</c><00:08:51.760><c> we</c><00:08:51.839><c> can</c><00:08:52.000><c> take</c><00:08:52.080><c> that</c><00:08:52.320><c> much</c>
+
+00:08:52.550 --> 00:08:52.560 align:start position:0%
+lot bigger. And we can take that much
+ 
+
+00:08:52.560 --> 00:08:54.550 align:start position:0%
+lot bigger. And we can take that much
+further.<00:08:52.880><c> So</c><00:08:53.040><c> we</c><00:08:53.279><c> erode</c><00:08:53.600><c> only</c><00:08:53.920><c> a</c><00:08:54.240><c> section</c><00:08:54.480><c> of</c>
+
+00:08:54.550 --> 00:08:54.560 align:start position:0%
+further. So we erode only a section of
+ 
+
+00:08:54.560 --> 00:08:56.389 align:start position:0%
+further. So we erode only a section of
+it.<00:08:54.800><c> And</c><00:08:54.959><c> then</c><00:08:55.120><c> we</c><00:08:55.279><c> also</c><00:08:55.519><c> run</c><00:08:55.760><c> our</c><00:08:56.000><c> edge</c>
+
+00:08:56.389 --> 00:08:56.399 align:start position:0%
+it. And then we also run our edge
+ 
+
+00:08:56.399 --> 00:08:58.230 align:start position:0%
+it. And then we also run our edge
+erosion.<00:08:56.800><c> And</c><00:08:56.959><c> that's</c><00:08:57.200><c> that.</c><00:08:57.680><c> But</c><00:08:57.839><c> right</c><00:08:58.000><c> now,</c>
+
+00:08:58.230 --> 00:08:58.240 align:start position:0%
+erosion. And that's that. But right now,
+ 
+
+00:08:58.240 --> 00:08:59.829 align:start position:0%
+erosion. And that's that. But right now,
+this<00:08:58.480><c> looks</c><00:08:58.720><c> pretty</c><00:08:58.880><c> good</c><00:08:59.040><c> to</c><00:08:59.200><c> me.</c><00:08:59.440><c> So</c><00:08:59.680><c> I'm</c>
+
+00:08:59.829 --> 00:08:59.839 align:start position:0%
+this looks pretty good to me. So I'm
+ 
+
+00:08:59.839 --> 00:09:01.269 align:start position:0%
+this looks pretty good to me. So I'm
+going<00:08:59.920><c> to</c><00:09:00.000><c> take</c><00:09:00.240><c> everything</c><00:09:00.560><c> we</c><00:09:00.800><c> did</c><00:09:00.959><c> here.</c>
+
+00:09:01.269 --> 00:09:01.279 align:start position:0%
+going to take everything we did here.
+ 
+
+00:09:01.279 --> 00:09:03.430 align:start position:0%
+going to take everything we did here.
+Ctrl<00:09:01.519><c> +</c><00:09:01.680><c> G</c><00:09:01.839><c> to</c><00:09:02.000><c> make</c><00:09:02.160><c> it</c><00:09:02.320><c> a</c><00:09:02.480><c> node</c><00:09:02.800><c> group.</c><00:09:03.040><c> So</c><00:09:03.279><c> now</c>
+
+00:09:03.430 --> 00:09:03.440 align:start position:0%
+Ctrl + G to make it a node group. So now
+ 
+
+00:09:03.440 --> 00:09:05.430 align:start position:0%
+Ctrl + G to make it a node group. So now
+we<00:09:03.600><c> have</c><00:09:03.680><c> the</c><00:09:03.839><c> whole</c><00:09:04.080><c> dream</c><00:09:04.399><c> team.</c><00:09:04.800><c> And</c><00:09:05.040><c> we</c><00:09:05.200><c> now</c>
+
+00:09:05.430 --> 00:09:05.440 align:start position:0%
+we have the whole dream team. And we now
+ 
+
+00:09:05.440 --> 00:09:06.870 align:start position:0%
+we have the whole dream team. And we now
+want<00:09:05.519><c> to</c><00:09:05.680><c> delete</c><00:09:06.000><c> some</c><00:09:06.160><c> of</c><00:09:06.240><c> the</c><00:09:06.320><c> floaters.</c>
+
+00:09:06.870 --> 00:09:06.880 align:start position:0%
+want to delete some of the floaters.
+ 
+
+00:09:06.880 --> 00:09:08.630 align:start position:0%
+want to delete some of the floaters.
+Here's<00:09:07.200><c> a</c><00:09:07.360><c> little</c><00:09:07.519><c> floater</c><00:09:07.920><c> for</c><00:09:08.000><c> example.</c><00:09:08.399><c> The</c>
+
+00:09:08.630 --> 00:09:08.640 align:start position:0%
+Here's a little floater for example. The
+ 
+
+00:09:08.640 --> 00:09:10.630 align:start position:0%
+Here's a little floater for example. The
+way<00:09:08.800><c> we</c><00:09:09.040><c> isolate</c><00:09:09.440><c> it</c><00:09:09.680><c> even</c><00:09:09.920><c> visually</c><00:09:10.320><c> is</c><00:09:10.480><c> we</c>
+
+00:09:10.630 --> 00:09:10.640 align:start position:0%
+way we isolate it even visually is we
+ 
+
+00:09:10.640 --> 00:09:12.630 align:start position:0%
+way we isolate it even visually is we
+say,<00:09:10.800><c> ah,</c><00:09:11.200><c> this</c><00:09:11.360><c> little</c><00:09:11.600><c> island</c><00:09:12.000><c> over</c><00:09:12.240><c> here</c>
+
+00:09:12.630 --> 00:09:12.640 align:start position:0%
+say, ah, this little island over here
+ 
+
+00:09:12.640 --> 00:09:14.389 align:start position:0%
+say, ah, this little island over here
+much<00:09:12.880><c> smaller</c><00:09:13.279><c> than</c><00:09:13.440><c> the</c><00:09:13.600><c> rest.</c><00:09:14.000><c> In</c><00:09:14.240><c> other</c>
+
+00:09:14.389 --> 00:09:14.399 align:start position:0%
+much smaller than the rest. In other
+ 
+
+00:09:14.399 --> 00:09:16.230 align:start position:0%
+much smaller than the rest. In other
+words,<00:09:14.640><c> I</c><00:09:14.800><c> can</c><00:09:14.959><c> take</c><00:09:15.120><c> the</c><00:09:15.279><c> mesh</c><00:09:15.680><c> island</c><00:09:16.000><c> node</c>
+
+00:09:16.230 --> 00:09:16.240 align:start position:0%
+words, I can take the mesh island node
+ 
+
+00:09:16.240 --> 00:09:17.910 align:start position:0%
+words, I can take the mesh island node
+that<00:09:16.480><c> will</c><00:09:16.640><c> tell</c><00:09:16.720><c> us</c><00:09:16.880><c> what</c><00:09:17.200><c> island</c><00:09:17.519><c> does</c><00:09:17.680><c> each</c>
+
+00:09:17.910 --> 00:09:17.920 align:start position:0%
+that will tell us what island does each
+ 
+
+00:09:17.920 --> 00:09:19.269 align:start position:0%
+that will tell us what island does each
+belong<00:09:18.160><c> to.</c><00:09:18.480><c> You</c><00:09:18.640><c> can</c><00:09:18.720><c> see</c><00:09:18.800><c> that</c><00:09:19.040><c> different</c>
+
+00:09:19.269 --> 00:09:19.279 align:start position:0%
+belong to. You can see that different
+ 
+
+00:09:19.279 --> 00:09:20.630 align:start position:0%
+belong to. You can see that different
+islands,<00:09:19.680><c> so</c><00:09:19.760><c> this</c><00:09:19.920><c> one's</c><00:09:20.160><c> purple</c><00:09:20.320><c> and</c><00:09:20.480><c> then</c>
+
+00:09:20.630 --> 00:09:20.640 align:start position:0%
+islands, so this one's purple and then
+ 
+
+00:09:20.640 --> 00:09:22.230 align:start position:0%
+islands, so this one's purple and then
+this<00:09:20.800><c> one's</c><00:09:21.040><c> yellow</c><00:09:21.279><c> or</c><00:09:21.440><c> whatever,</c><00:09:21.839><c> um,</c><00:09:22.000><c> have</c>
+
+00:09:22.230 --> 00:09:22.240 align:start position:0%
+this one's yellow or whatever, um, have
+ 
+
+00:09:22.240 --> 00:09:23.910 align:start position:0%
+this one's yellow or whatever, um, have
+different<00:09:22.480><c> values.</c><00:09:23.040><c> And</c><00:09:23.120><c> then</c><00:09:23.360><c> for</c><00:09:23.680><c> each</c>
+
+00:09:23.910 --> 00:09:23.920 align:start position:0%
+different values. And then for each
+ 
+
+00:09:23.920 --> 00:09:25.030 align:start position:0%
+different values. And then for each
+island,<00:09:24.240><c> what</c><00:09:24.399><c> I</c><00:09:24.480><c> can</c><00:09:24.560><c> do</c><00:09:24.640><c> is</c><00:09:24.800><c> I</c><00:09:24.959><c> can</c>
+
+00:09:25.030 --> 00:09:25.040 align:start position:0%
+island, what I can do is I can
+ 
+
+00:09:25.040 --> 00:09:27.269 align:start position:0%
+island, what I can do is I can
+accumulate<00:09:25.600><c> on</c><00:09:25.920><c> every</c><00:09:26.160><c> island</c><00:09:26.560><c> separately</c>
+
+00:09:27.269 --> 00:09:27.279 align:start position:0%
+accumulate on every island separately
+ 
+
+00:09:27.279 --> 00:09:30.630 align:start position:0%
+accumulate on every island separately
+the<00:09:27.600><c> face</c><00:09:28.160><c> area.</c><00:09:28.640><c> So</c><00:09:28.880><c> face</c><00:09:29.279><c> area</c><00:09:29.760><c> like</c><00:09:30.160><c> that.</c>
+
+00:09:30.630 --> 00:09:30.640 align:start position:0%
+the face area. So face area like that.
+ 
+
+00:09:30.640 --> 00:09:32.230 align:start position:0%
+the face area. So face area like that.
+What<00:09:30.880><c> does</c><00:09:31.040><c> this</c><00:09:31.200><c> mean?</c><00:09:31.440><c> This</c><00:09:31.680><c> means</c><00:09:31.839><c> that</c><00:09:32.000><c> the</c>
+
+00:09:32.230 --> 00:09:32.240 align:start position:0%
+What does this mean? This means that the
+ 
+
+00:09:32.240 --> 00:09:33.750 align:start position:0%
+What does this mean? This means that the
+total<00:09:32.640><c> is</c><00:09:32.880><c> going</c><00:09:32.959><c> to</c><00:09:33.040><c> give</c><00:09:33.120><c> me</c><00:09:33.279><c> the</c><00:09:33.440><c> total</c>
+
+00:09:33.750 --> 00:09:33.760 align:start position:0%
+total is going to give me the total
+ 
+
+00:09:33.760 --> 00:09:35.750 align:start position:0%
+total is going to give me the total
+surface<00:09:34.080><c> area</c><00:09:34.320><c> of</c><00:09:34.480><c> each</c><00:09:34.640><c> island.</c><00:09:35.200><c> And</c><00:09:35.360><c> if</c><00:09:35.519><c> that</c>
+
+00:09:35.750 --> 00:09:35.760 align:start position:0%
+surface area of each island. And if that
+ 
+
+00:09:35.760 --> 00:09:37.590 align:start position:0%
+surface area of each island. And if that
+total<00:09:36.080><c> is</c><00:09:36.240><c> very</c><00:09:36.480><c> tiny</c><00:09:36.880><c> under</c><00:09:37.120><c> a</c><00:09:37.279><c> threshold,</c>
+
+00:09:37.590 --> 00:09:37.600 align:start position:0%
+total is very tiny under a threshold,
+ 
+
+00:09:37.600 --> 00:09:39.110 align:start position:0%
+total is very tiny under a threshold,
+then<00:09:37.839><c> we're</c><00:09:38.000><c> going</c><00:09:38.080><c> to</c><00:09:38.160><c> delete</c><00:09:38.480><c> it.</c><00:09:38.720><c> Delete</c>
+
+00:09:39.110 --> 00:09:39.120 align:start position:0%
+then we're going to delete it. Delete
+ 
+
+00:09:39.120 --> 00:09:41.829 align:start position:0%
+then we're going to delete it. Delete
+geometry.<00:09:39.839><c> If</c><00:09:40.080><c> the</c><00:09:40.320><c> total</c><00:09:40.800><c> is</c><00:09:41.120><c> less</c><00:09:41.360><c> than,</c>
+
+00:09:41.829 --> 00:09:41.839 align:start position:0%
+geometry. If the total is less than,
+ 
+
+00:09:41.839 --> 00:09:43.110 align:start position:0%
+geometry. If the total is less than,
+we'll<00:09:42.080><c> figure</c><00:09:42.240><c> out</c><00:09:42.399><c> what</c><00:09:42.560><c> that</c><00:09:42.720><c> number</c><00:09:42.959><c> should</c>
+
+00:09:43.110 --> 00:09:43.120 align:start position:0%
+we'll figure out what that number should
+ 
+
+00:09:43.120 --> 00:09:44.790 align:start position:0%
+we'll figure out what that number should
+be.<00:09:43.279><c> So,</c><00:09:43.440><c> if</c><00:09:43.600><c> I</c><00:09:43.680><c> set</c><00:09:43.839><c> this</c><00:09:44.000><c> to</c><00:09:44.240><c> one,</c><00:09:44.560><c> that</c>
+
+00:09:44.790 --> 00:09:44.800 align:start position:0%
+be. So, if I set this to one, that
+ 
+
+00:09:44.800 --> 00:09:46.389 align:start position:0%
+be. So, if I set this to one, that
+already<00:09:44.959><c> cleans</c><00:09:45.200><c> it</c><00:09:45.360><c> up</c><00:09:45.600><c> perfectly</c><00:09:46.080><c> while</c>
+
+00:09:46.389 --> 00:09:46.399 align:start position:0%
+already cleans it up perfectly while
+ 
+
+00:09:46.399 --> 00:09:48.230 align:start position:0%
+already cleans it up perfectly while
+preserving<00:09:46.880><c> the</c><00:09:47.279><c> whole</c><00:09:47.519><c> thing.</c><00:09:47.839><c> So,</c><00:09:48.000><c> here</c>
+
+00:09:48.230 --> 00:09:48.240 align:start position:0%
+preserving the whole thing. So, here
+ 
+
+00:09:48.240 --> 00:09:49.990 align:start position:0%
+preserving the whole thing. So, here
+I've<00:09:48.399><c> taken</c><00:09:48.640><c> my</c><00:09:48.800><c> mesh</c><00:09:49.040><c> and</c><00:09:49.440><c> absolutely</c>
+
+00:09:49.990 --> 00:09:50.000 align:start position:0%
+I've taken my mesh and absolutely
+ 
+
+00:09:50.000 --> 00:09:51.509 align:start position:0%
+I've taken my mesh and absolutely
+destroyed<00:09:50.399><c> it.</c><00:09:50.560><c> If</c><00:09:50.720><c> I</c><00:09:50.880><c> use</c><00:09:51.040><c> my</c><00:09:51.200><c> delete</c>
+
+00:09:51.509 --> 00:09:51.519 align:start position:0%
+destroyed it. If I use my delete
+ 
+
+00:09:51.519 --> 00:09:53.190 align:start position:0%
+destroyed it. If I use my delete
+geometry,<00:09:52.080><c> you</c><00:09:52.240><c> can</c><00:09:52.320><c> see</c><00:09:52.560><c> automatically</c>
+
+00:09:53.190 --> 00:09:53.200 align:start position:0%
+geometry, you can see automatically
+ 
+
+00:09:53.200 --> 00:09:55.110 align:start position:0%
+geometry, you can see automatically
+cleans<00:09:53.440><c> it</c><00:09:53.600><c> up</c><00:09:53.839><c> actually</c><00:09:54.160><c> surprisingly</c><00:09:54.800><c> well.</c>
+
+00:09:55.110 --> 00:09:55.120 align:start position:0%
+cleans it up actually surprisingly well.
+ 
+
+00:09:55.120 --> 00:09:56.949 align:start position:0%
+cleans it up actually surprisingly well.
+So,<00:09:55.279><c> I've</c><00:09:55.519><c> been</c><00:09:55.600><c> CG</c><00:09:56.000><c> Matter.</c><00:09:56.399><c> This</c><00:09:56.560><c> has</c><00:09:56.720><c> been</c>
+
+00:09:56.949 --> 00:09:56.959 align:start position:0%
+So, I've been CG Matter. This has been
+ 
+
+00:09:56.959 --> 00:09:59.430 align:start position:0%
+So, I've been CG Matter. This has been
+Edge<00:09:57.200><c> Erosion</c><00:09:57.920><c> and</c><00:09:58.480><c> that's</c><00:09:58.720><c> about</c><00:09:58.880><c> it.</c><00:09:59.120><c> Join</c>
+
+00:09:59.430 --> 00:09:59.440 align:start position:0%
+Edge Erosion and that's about it. Join
+ 
+
+00:09:59.440 --> 00:10:01.990 align:start position:0%
+Edge Erosion and that's about it. Join
+cgadder.com.<00:10:00.399><c> I</c><00:10:00.640><c> will</c><00:10:00.800><c> see</c><00:10:00.959><c> you</c><00:10:01.360><c> next</c><00:10:01.680><c> time.</c>
+
+00:10:01.990 --> 00:10:02.000 align:start position:0%
+cgadder.com. I will see you next time.
+ 
+
+00:10:02.000 --> 00:10:04.320 align:start position:0%
+cgadder.com. I will see you next time.
+Okay,<00:10:02.240><c> bye.</c>
+
