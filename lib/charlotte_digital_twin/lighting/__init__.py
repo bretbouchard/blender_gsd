@@ -57,6 +57,9 @@ from .lighting_setup import (
     ShadowConfig,
     setup_realistic_lighting,
     configure_cycles_shadows,
+    setup_charlotte_afternoon,
+    setup_charlotte_golden_hour,
+    setup_charlotte_overcast,
 )
 
 __version__ = "1.0.0"
@@ -83,4 +86,7 @@ __all__ = [
     "ShadowConfig",
     "setup_realistic_lighting",
     "configure_cycles_shadows",
+    "setup_charlotte_afternoon",
+    "setup_charlotte_golden_hour",
+    "setup_charlotte_overcast",
 ]

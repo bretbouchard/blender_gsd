@@ -425,16 +425,71 @@ blender-gsd export-editorial --shot SHOT-002-001 --format prores
 3. [ ] Create Blender render layer templates
 4. [ ] Begin Tier 1 location building
 
-### Week 3-4 (VFX Development)
+### ✅ Week 3-4 (VFX Development) — COMPLETED
 
-1. [ ] Build Negative Man node tree (DaVinci)
-2. [ ] Create permtrails Echo preset (AE)
-3. [ ] Test Light Trails Generator (Blender)
-4. [ ] Body horror effect prototypes
+1. [x] Build Negative Man node tree (DaVinci) → See FDX vfx/negative_man/
+2. [x] Create permtrails Echo preset (AE) → See FDX vfx/permtrails/permtrails_ae_preset.jsx
+3. [x] Test Light Trails Generator (Blender) → See FDX vfx/light_trails/
+4. [x] Body horror effect prototypes → See FDX vfx/body_horror/flesh_melt_shader.py
+5. [x] 1998 Film Grade PowerGrade → See FDX vfx/film_grade/msg1998_powergrade_config.py
+6. [x] VFX Verification Checklist → See FDX vfx/verification/VFX_VERIFICATION_CHECKLIST.md
 
 ---
 
-**Document Status:** Ready for Execution — All Critical Issues Resolved
+## VFX Development Assets (PLAN-5 Complete)
+
+### Files Created in FDX GSD
+
+| File | Purpose | Location |
+|------|---------|----------|
+| VFX_DEVELOPMENT_GUIDE.md | Complete VFX documentation | vfx/ |
+| VFX_VERIFICATION_CHECKLIST.md | QA checklist for all effects | vfx/verification/ |
+| msg1998_powergrade_config.py | DaVinci PowerGrade generator | vfx/film_grade/ |
+| flesh_melt_shader.py | Blender shader setup | vfx/body_horror/ |
+| permtrails_ae_preset.jsx | After Effects preset | vfx/permtrails/ |
+
+### VFX Pipeline Status
+
+| VFX Category | Documentation | Preset/Script | Status |
+|--------------|---------------|---------------|--------|
+| Body Horror (Flesh Melt) | ✅ Complete | ✅ Blender shader | Ready |
+| Body Horror (Skin Peel) | ✅ Complete | ✅ Blender shader | Ready |
+| Body Horror (Rewind) | ✅ Complete | ⏳ Blender time remap | Pending |
+| Negative Man | ✅ Complete | ✅ DaVinci PowerGrade | Ready |
+| Permtrails | ✅ Complete | ✅ AE preset + DaVinci | Ready |
+| Light Trails | ✅ Complete | ✅ Blender shader | Ready |
+| Crowd Glow | ✅ Complete | ✅ DaVinci PowerGrade | Ready |
+| 1998 Film Grade | ✅ Complete | ✅ DaVinci PowerGrade | Ready |
+
+---
+
+**Document Status:** PLAN-5 & PLAN-6 Complete — VFX + SD Development Finished
 **Dependencies:** FDX GSD Phase 8 (Source of Truth)
 **Last Updated:** 2026-02-22
-**Version:** 2.0 — Council Findings Integrated
+**Version:** 4.0 — VFX + SD Pipeline Complete
+
+---
+
+## SD Pipeline Assets (PLAN-6 Complete)
+
+### Files Created in FDX GSD
+
+| File | Purpose | Location |
+|------|---------|----------|
+| SD_PIPELINE_GUIDE.md | Complete SD specifications | sd_pipeline/ |
+| seed_manager.py | Deterministic seed generation | sd_pipeline/scripts/ |
+| batch_generate.py | Multi-shot batch processing | sd_pipeline/scripts/ |
+| MSG1998_PROMPT_LIBRARY.json | Scene-specific prompts | sd_pipeline/prompts/ |
+| SD_VERIFICATION_CHECKLIST.md | QA checklist | sd_pipeline/verification/ |
+
+### SD Pipeline Status
+
+| Component | Documentation | Script/Config | Status |
+|-----------|---------------|---------------|--------|
+| ComfyUI Workflow | ✅ Complete | ✅ JSON template | Ready |
+| Depth ControlNet | ✅ Complete | ✅ Pre-processing | Ready |
+| Normal ControlNet | ✅ Complete | ✅ Pre-processing | Ready |
+| Seed Management | ✅ Complete | ✅ Python script | Ready |
+| Prompt Library | ✅ Complete | ✅ JSON config | Ready |
+| Batch Generation | ✅ Complete | ✅ Python script | Ready |
+| 1998 Style | ✅ Complete | ✅ Prompts defined | Ready |

@@ -112,7 +112,7 @@ class CyclesConfig:
             "adaptive_min_samples": self.adaptive_min_samples,
             "use_denoising": self.use_denoising,
             "denoiser": self.denoiser,
-            "denoising_start_sample": self.denosing_start_sample,
+            "denoising_start_sample": self.denoising_start_sample,
             "use_guiding": self.use_guiding,
             "guiding_quality": self.guiding_quality,
             "use_caustics": self.use_caustics,
@@ -312,7 +312,7 @@ def apply_cycles_config(config: CyclesConfig) -> bool:
     cycles.use_denoising = config.use_denoising
     if config.use_denoising:
         cycles.denoiser = config.denoiser
-        cycles.denoising_start_sample = config.denosing_start_sample
+        cycles.denoising_start_sample = config.denoising_start_sample
 
     # Path guiding
     cycles.use_guiding = config.use_guiding
