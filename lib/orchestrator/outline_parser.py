@@ -131,6 +131,9 @@ class OutlineParser:
         try:
             with open(path, "r") as f:
                 data = yaml.safe_load(f)
+            # Handle empty file (returns None)
+            if data is None:
+                data = {}
         except yaml.YAMLError as e:
             return ParseResult(
                 errors=[f"YAML parse error: {e}"],
