@@ -74,3 +74,7 @@ debug/
 tmp/
 temp/
 *.tmp
+
+# Large data files (>100MB, exceed GitHub limit)
+lib/charlotte_digital_twin/data/charlotte_buildings.geojson
+lib/charlotte_digital_twin/data/charlotte_osm_polygons.json
