@@ -31,6 +31,7 @@ Usage:
 """
 
 from __future__ import annotations
+from dataclasses import dataclass
 from pathlib import Path
 from typing import Dict, Any, Optional, List, Tuple
 import math
@@ -768,3 +769,164 @@ def list_backdrops() -> List[str]:
         return sorted(backdrops)
     except Exception:
         return []
+
+
+# =============================================================================
+# STUDIO BACKDROP PRESETS (7 Types)
+# =============================================================================
+
+@dataclass
+class StudioBackdropPreset:
+    """Studio backdrop preset configuration."""
+    name: str
+    backdrop_type: str
+    color_bottom: Tuple[float, float, float]
+    color_top: Tuple[float, float, float]
+    radius: float = 5.0
+    curve_height: float = 3.0
+    description: str = ""
+    shadow_catcher: bool = True
+    roughness: float = 0.5
+
+
+# Studio backdrop preset configurations
+STUDIO_BACKDROP_PRESETS: Dict[str, StudioBackdropPreset] = {
+    # 1. Seamless White (Classic product photography)
+    "seamless_white": StudioBackdropPreset(
+        name="Seamless White",
+        backdrop_type="infinite_curve",
+        color_bottom=(0.95, 0.95, 0.95),
+        color_top=(1.0, 1.0, 1.0),
+        radius=5.0,
+        curve_height=3.0,
+        description="Classic white seamless for clean product photography",
+        shadow_catcher=True,
+        roughness=0.4,
+    ),
+
+    # 2. Seamless Gray (Portrait and fashion standard)
+    "seamless_gray": StudioBackdropPreset(
+        name="Seamless Gray",
+        backdrop_type="infinite_curve",
+        color_bottom=(0.5, 0.5, 0.5),
+        color_top=(0.65, 0.65, 0.65),
+        radius=5.0,
+        curve_height=3.0,
+        description="Neutral gray seamless for portrait and fashion",
+        shadow_catcher=True,
+        roughness=0.5,
+    ),
+
+    # 3. Seamless Black (Dramatic/moody photography)
+    "seamless_black": StudioBackdropPreset(
+        name="Seamless Black",
+        backdrop_type="infinite_curve",
+        color_bottom=(0.02, 0.02, 0.02),
+        color_top=(0.08, 0.08, 0.08),
+        radius=5.0,
+        curve_height=3.0,
+        description="Black seamless for dramatic low-key photography",
+        shadow_catcher=False,  # Less shadow catching on black
+        roughness=0.3,
+    ),
+
+    # 4. Gradient Colored (Creative/product shots)
+    "gradient_blue": StudioBackdropPreset(
+        name="Gradient Blue",
+        backdrop_type="infinite_curve",
+        color_bottom=(0.1, 0.2, 0.4),
+        color_top=(0.3, 0.5, 0.8),
+        radius=5.0,
+        curve_height=3.0,
+        description="Blue gradient for creative product shots",
+        shadow_catcher=True,
+        roughness=0.5,
+    ),
+
+    # 5. Textured Paper (Simulated paper backdrop)
+    "textured_paper": StudioBackdropPreset(
+        name="Textured Paper",
+        backdrop_type="infinite_curve",
+        color_bottom=(0.9, 0.88, 0.85),
+        color_top=(0.95, 0.93, 0.9),
+        radius=4.0,
+        curve_height=2.5,
+        description="Warm textured paper look for portrait work",
+        shadow_catcher=True,
+        roughness=0.7,
+    ),
+
+    # 6. Cyclorama (Large studio curved wall)
+    "cyclorama": StudioBackdropPreset(
+        name="Cyclorama",
+        backdrop_type="infinite_curve",
+        color_bottom=(0.95, 0.95, 0.95),
+        color_top=(0.98, 0.98, 0.98),
+        radius=10.0,
+        curve_height=5.0,
+        description="Large cyclorama for automotive/full-body photography",
+        shadow_catcher=True,
+        roughness=0.35,
+    ),
+
+    # 7. Velvet/Cloth (Luxury product photography)
+    "velvet_black": StudioBackdropPreset(
+        name="Velvet Black",
+        backdrop_type="infinite_curve",
+        color_bottom=(0.01, 0.01, 0.01),
+        color_top=(0.03, 0.03, 0.03),
+        radius=4.0,
+        curve_height=2.0,
+        description="Deep black velvet for luxury product photography",
+        shadow_catcher=False,
+        roughness=0.9,  # Velvet is very rough/light-absorbing
+    ),
+}
+
+
+def get_studio_backdrop_preset(preset_name: str) -> StudioBackdropPreset:
+    """
+    Get a studio backdrop preset configuration.
+
+    Args:
+        preset_name: Name of preset
+
+    Returns:
+        StudioBackdropPreset
+
+    Raises:
+        ValueError: If preset not found
+    """
+    if preset_name not in STUDIO_BACKDROP_PRESETS:
+        available = list(STUDIO_BACKDROP_PRESETS.keys())
+        raise ValueError(f"Unknown backdrop preset: {preset_name}. Available: {available}")
+    return STUDIO_BACKDROP_PRESETS[preset_name]
+
+
+def list_studio_backdrop_presets() -> List[str]:
+    """List available studio backdrop preset names."""
+    return list(STUDIO_BACKDROP_PRESETS.keys())
+
+
+def create_studio_backdrop(preset_name: str) -> Optional[Any]:
+    """
+    Create a studio backdrop from preset.
+
+    Args:
+        preset_name: Name of studio backdrop preset
+
+    Returns:
+        Created backdrop object, or None if failed
+    """
+    preset = get_studio_backdrop_preset(preset_name)
+
+    config = BackdropConfig(
+        backdrop_type=preset.backdrop_type,
+        radius=preset.radius,
+        curve_height=preset.curve_height,
+        color_bottom=preset.color_bottom,
+        color_top=preset.color_top,
+        shadow_catcher=preset.shadow_catcher,
+    )
+
+    return create_backdrop(config)

@@ -451,3 +451,353 @@ def calculate_anticipation_offset(
 
     speed_ratio = min(speed / max_speed, 1.0)
     return anticipation_distance * speed_ratio
+
+
+# =============================================================================
+# OSCILLATION PREVENTION (Phase 8.2)
+# =============================================================================
+
+class OscillationPreventer:
+    """
+    Prevents camera position oscillation and jitter.
+
+    Detects rapid direction changes in camera movement and applies
+    damping to stabilize the camera. Part of the operator behavior
+    simulation that makes camera movement feel natural.
+
+    Configuration is typically sourced from:
+    - OperatorBehavior dataclass (reaction_delay, oscillation_threshold, etc.)
+    - prediction_settings.yaml (oscillation_prevention section)
+
+    Usage:
+        preventer = OscillationPreventer()
+
+        # Each frame, check if movement should be damped
+        new_pos, damping = preventer.filter_position(
+            target_pos,
+            current_pos,
+            dt,
+            threshold=0.1,
+            max_direction_changes=3,
+        )
+        # Apply damping factor to movement
+        filtered_pos = current_pos.lerp(target_pos, 1.0 - damping)
+
+    Part of Phase 8.2 - Obstacle Avoidance
+    Beads: blender_gsd-58
+    """
+
+    def __init__(
+        self,
+        history_size: int = 10,
+        threshold: float = 0.1,
+        max_direction_changes: int = 3,
+        damping_strength: float = 0.5,
+        min_damping_factor: float = 0.3,
+        recovery_rate: float = 0.1,
+    ):
+        """
+        Initialize oscillation preventer.
+
+        Args:
+            history_size: Number of positions to track
+            threshold: Minimum distance change before response (meters)
+            max_direction_changes: Max direction changes per second before damping
+            damping_strength: How strongly to damp when oscillation detected (0-1)
+            min_damping_factor: Minimum damping factor (prevents complete freeze)
+            recovery_rate: How fast damping decreases when stable (0-1)
+        """
+        self._position_history: List[Tuple[float, float, float]] = []
+        self._time_history: List[float] = []
+        self._direction_changes: List[float] = []  # Timestamps of direction changes
+        self._current_damping: float = 0.0
+        self._last_direction: Optional[Vector] = None
+
+        self.history_size = history_size
+        self.threshold = threshold
+        self.max_direction_changes = max_direction_changes
+        self.damping_strength = damping_strength
+        self.min_damping_factor = min_damping_factor
+        self.recovery_rate = recovery_rate
+
+    def record_position(
+        self,
+        position: Tuple[float, float, float],
+        time: float,
+    ) -> None:
+        """
+        Record camera position for oscillation analysis.
+
+        Args:
+            position: Current camera position
+            time: Current time (seconds)
+        """
+        self._position_history.append(position)
+        self._time_history.append(time)
+
+        # Trim history
+        if len(self._position_history) > self.history_size:
+            self._position_history = self._position_history[-self.history_size:]
+            self._time_history = self._time_history[-self.history_size:]
+
+    def filter_position(
+        self,
+        target_position: Tuple[float, float, float],
+        current_position: Tuple[float, float, float],
+        time: float,
+        dt: float = 1.0 / 60.0,
+    ) -> Tuple[Tuple[float, float, float], float]:
+        """
+        Filter target position to prevent oscillation.
+
+        Args:
+            target_position: Desired camera position
+            current_position: Current camera position
+            time: Current time (seconds)
+            dt: Delta time since last frame
+
+        Returns:
+            Tuple of (filtered_position, damping_factor)
+            damping_factor: 0 = no damping, 1 = maximum damping
+        """
+        target = Vector(target_position)
+        current = Vector(current_position)
+
+        # Calculate movement delta
+        delta = target - current
+        delta_length = delta.length()
+
+        # Check if movement is below threshold
+        if delta_length < self.threshold:
+            # Below threshold - no movement needed
+            self._reduce_damping(dt)
+            return current_position, self._current_damping
+
+        # Calculate movement direction
+        direction = delta.normalized()
+
+        # Track direction changes
+        if self._last_direction is not None:
+            # Dot product to detect direction change
+            dot = direction.dot(self._last_direction)
+            if dot < 0:  # Direction reversed
+                self._direction_changes.append(time)
+
+        self._last_direction = direction
+
+        # Clean up old direction changes (older than 1 second)
+        self._direction_changes = [t for t in self._direction_changes if time - t < 1.0]
+
+        # Check for oscillation
+        num_changes = len(self._direction_changes)
+        if num_changes >= self.max_direction_changes:
+            # Oscillation detected - increase damping
+            self._increase_damping(dt, num_changes)
+        else:
+            # Stable - reduce damping
+            self._reduce_damping(dt)
+
+        # Apply damping
+        if self._current_damping > 0:
+            # Interpolate between current and target based on damping
+            damping_blend = 1.0 - (self._current_damping * self.damping_strength)
+            damping_blend = max(self.min_damping_factor, damping_blend)
+            filtered = current.lerp(target, damping_blend)
+            return tuple(filtered._values), self._current_damping
+
+        return target_position, 0.0
+
+    def _increase_damping(self, dt: float, num_changes: int) -> None:
+        """
+        Increase damping when oscillation detected.
+
+        Args:
+            dt: Delta time
+            num_changes: Number of recent direction changes
+        """
+        # Scale damping based on how many direction changes
+        excess = num_changes - self.max_direction_changes
+        increase_rate = 0.5 + (excess * 0.2)  # Faster increase for more changes
+        self._current_damping = min(1.0, self._current_damping + increase_rate * dt)
+
+    def _reduce_damping(self, dt: float) -> None:
+        """
+        Reduce damping when movement is stable.
+
+        Args:
+            dt: Delta time
+        """
+        self._current_damping = max(0.0, self._current_damping - self.recovery_rate * dt)
+
+    def get_stability_score(self) -> float:
+        """
+        Get current stability score.
+
+        Returns:
+            Stability score from 0 (oscillating) to 1 (stable)
+        """
+        return 1.0 - self._current_damping
+
+    def is_oscillating(self) -> bool:
+        """
+        Check if camera is currently oscillating.
+
+        Returns:
+            True if oscillation is detected
+        """
+        return self._current_damping > 0.1
+
+    def reset(self) -> None:
+        """Reset oscillation preventer state."""
+        self._position_history.clear()
+        self._time_history.clear()
+        self._direction_changes.clear()
+        self._current_damping = 0.0
+        self._last_direction = None
+
+    @classmethod
+    def from_operator_behavior(
+        cls,
+        operator_behavior: "OperatorBehavior",
+    ) -> "OscillationPreventer":
+        """
+        Create OscillationPreventer from OperatorBehavior config.
+
+        Args:
+            operator_behavior: OperatorBehavior dataclass instance
+
+        Returns:
+            Configured OscillationPreventer instance
+        """
+        return cls(
+            history_size=operator_behavior.position_history_size,
+            threshold=operator_behavior.oscillation_threshold,
+            max_direction_changes=operator_behavior.max_direction_changes,
+            damping_strength=0.5,
+            min_damping_factor=0.3,
+            recovery_rate=0.1,
+        )
+
+
+# =============================================================================
+# OPERATOR BEHAVIOR SIMULATION (Phase 8.2)
+# =============================================================================
+
+def apply_breathing(
+    base_position: Tuple[float, float, float],
+    time: float,
+    amplitude: float = 0.01,
+    frequency: float = 0.25,
+    enabled: bool = True,
+) -> Tuple[float, float, float]:
+    """
+    Apply subtle breathing motion to camera position.
+
+    Simulates the natural sway of a human camera operator.
+
+    Args:
+        base_position: Base camera position
+        time: Current time (seconds)
+        amplitude: Breathing amplitude in meters
+        frequency: Breathing frequency in Hz
+        enabled: Whether breathing is enabled
+
+    Returns:
+        Position with breathing applied
+    """
+    if not enabled or amplitude <= 0:
+        return base_position
+
+    # Calculate breathing offset (primarily vertical)
+    breath_cycle = math.sin(time * frequency * 2 * math.pi)
+    vertical_offset = breath_cycle * amplitude
+
+    # Small horizontal sway
+    horizontal_sway = math.sin(time * frequency * 1.5 * math.pi) * amplitude * 0.3
+
+    pos = Vector(base_position)
+    pos.z += vertical_offset
+    pos.x += horizontal_sway
+
+    return tuple(pos._values)
+
+
+def apply_reaction_delay(
+    current_pos: Tuple[float, float, float],
+    target_pos: Tuple[float, float, float],
+    reaction_delay: float,
+    dt: float,
+    smoothing: float = 0.1,
+) -> Tuple[float, float, float]:
+    """
+    Apply human-like reaction delay to camera movement.
+
+    The camera doesn't instantly respond to target movement,
+    creating a more natural feel.
+
+    Args:
+        current_pos: Current camera position
+        target_pos: Target position
+        reaction_delay: Reaction time in seconds
+        dt: Delta time
+        smoothing: Additional smoothing factor
+
+    Returns:
+        Filtered position with reaction delay applied
+    """
+    if reaction_delay <= 0:
+        return target_pos
+
+    # Calculate blend based on reaction delay
+    # Lower blend = slower reaction
+    blend = min(1.0, dt / reaction_delay) * (1.0 - smoothing)
+
+    current = Vector(current_pos)
+    target = Vector(target_pos)
+
+    result = current.lerp(target, blend)
+    return tuple(result._values)
+
+
+def calculate_angle_preference(
+    current_angles: Tuple[float, float],
+    preferred_range_h: Tuple[float, float],
+    preferred_range_v: Tuple[float, float],
+    weight: float = 0.5,
+) -> Tuple[float, float]:
+    """
+    Calculate angle adjustment based on operator preferences.
+
+    Operators tend to favor certain shooting angles.
+
+    Args:
+        current_angles: Current (yaw, pitch) angles in degrees
+        preferred_range_h: Preferred horizontal angle range (min, max)
+        preferred_range_v: Preferred vertical angle range (min, max)
+        weight: How strongly to favor preferred range
+
+    Returns:
+        Adjusted (yaw, pitch) angles
+    """
+    yaw, pitch = current_angles
+    min_h, max_h = preferred_range_h
+    min_v, max_v = preferred_range_v
+
+    # Calculate how far outside preferred range
+    yaw_offset = 0.0
+    if yaw < min_h:
+        yaw_offset = min_h - yaw
+    elif yaw > max_h:
+        yaw_offset = max_h - yaw
+
+    pitch_offset = 0.0
+    if pitch < min_v:
+        pitch_offset = min_v - pitch
+    elif pitch > max_v:
+        pitch_offset = max_v - pitch
+
+    # Apply weighted adjustment
+    adjusted_yaw = yaw + yaw_offset * weight
+    adjusted_pitch = pitch + pitch_offset * weight
+
+    return adjusted_yaw, adjusted_pitch

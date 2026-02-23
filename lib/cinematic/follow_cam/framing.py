@@ -343,3 +343,138 @@ def calculate_center_weighted_framing(
         center += Vector(pos) * secondary_weight
 
     return tuple(center._values)
+
+
+# =============================================================================
+# DYNAMIC FRAMING (Phase 8.4)
+# =============================================================================
+
+def calculate_dynamic_framing(
+    target_velocity: Tuple[float, float, float],
+    current_framing: FramingResult,
+    speed_threshold: float = 2.0,
+    anticipation_factor: float = 0.3,
+) -> FramingResult:
+    """
+    Calculate dynamic framing based on target speed.
+
+    Adjusts framing to anticipate movement direction and
+    provide more lead room for fast-moving subjects.
+
+    Args:
+        target_velocity: Current target velocity (m/s)
+        current_framing: Current framing result
+        speed_threshold: Speed above which dynamic framing activates
+        anticipation_factor: How much to anticipate movement (0-1)
+
+    Returns:
+        Adjusted FramingResult with dynamic framing applied
+    """
+    velocity = Vector(target_velocity)
+    speed = velocity.length()
+
+    if speed < speed_threshold:
+        # Below threshold - use standard framing
+        return current_framing
+
+    # Calculate dynamic offset based on velocity direction
+    if speed > 0.01:
+        velocity_dir = velocity / speed
+    else:
+        velocity_dir = Vector((0, 1, 0))
+
+    # Scale anticipation by speed
+    anticipation_scale = min((speed - speed_threshold) / speed_threshold, 1.0)
+    anticipation_scale *= anticipation_factor
+
+    # Shift framing in direction of movement
+    dynamic_offset = velocity_dir * anticipation_scale
+
+    # Apply to framing result
+    new_offset = (
+        current_framing.target_offset[0] + dynamic_offset.x,
+        current_framing.target_offset[1] + dynamic_offset.y,
+        current_framing.target_offset[2] + dynamic_offset.z,
+    )
+
+    return FramingResult(
+        target_offset=new_offset,
+        horizontal_shift=current_framing.horizontal_shift + dynamic_offset.x,
+        vertical_shift=current_framing.vertical_shift + dynamic_offset.z,
+        is_within_dead_zone=current_framing.is_within_dead_zone,
+        framing_quality=current_framing.framing_quality,
+    )
+
+
+def calculate_action_framing(
+    is_action: bool,
+    action_intensity: float,
+    base_framing: FramingResult,
+    zoom_out_factor: float = 1.5,
+) -> FramingResult:
+    """
+    Calculate framing for action sequences.
+
+    During action, widen the framing to capture movement.
+
+    Args:
+        is_action: Whether action is occurring
+        action_intensity: Intensity of action (0-1)
+        base_framing: Base framing to modify
+        zoom_out_factor: How much to zoom out during action
+
+    Returns:
+        Adjusted FramingResult for action
+    """
+    if not is_action or action_intensity <= 0:
+        return base_framing
+
+    # Reduce offset to center subject more during action
+    centering = 1.0 - (action_intensity * 0.5)
+
+    new_offset = (
+        base_framing.target_offset[0] * centering,
+        base_framing.target_offset[1] * centering,
+        base_framing.target_offset[2] * centering,
+    )
+
+    # Lower quality during action is acceptable
+    quality_adjust = base_framing.framing_quality * (1.0 - action_intensity * 0.2)
+
+    return FramingResult(
+        target_offset=new_offset,
+        horizontal_shift=base_framing.horizontal_shift * centering,
+        vertical_shift=base_framing.vertical_shift * centering,
+        is_within_dead_zone=base_framing.is_within_dead_zone,
+        framing_quality=quality_adjust,
+    )
+
+
+def calculate_speed_based_distance(
+    base_distance: float,
+    target_speed: float,
+    min_distance: float = 1.0,
+    max_distance: float = 10.0,
+    speed_scale: float = 0.5,
+) -> float:
+    """
+    Calculate ideal distance based on target speed.
+
+    Faster targets need more distance to stay in frame.
+
+    Args:
+        base_distance: Default distance
+        target_speed: Current target speed (m/s)
+        min_distance: Minimum allowed distance
+        max_distance: Maximum allowed distance
+        speed_scale: How much speed affects distance
+
+    Returns:
+        Calculated ideal distance
+    """
+    # Add distance proportional to speed
+    speed_adjustment = target_speed * speed_scale
+    ideal_distance = base_distance + speed_adjustment
+
+    # Clamp to valid range
+    return max(min_distance, min(max_distance, ideal_distance))

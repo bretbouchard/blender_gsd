@@ -126,6 +126,54 @@ from .export import (
     ExportFormat,
 )
 
+# Vehicle paths (road network integration)
+from .vehicle_paths import (
+    VehiclePathSystem,
+    VehiclePath,
+    SpeedCurve,
+    PathType,
+    SpeedSegmentAdapter,
+)
+
+# Stunt driving presets
+from .stunts import (
+    StuntPresets,
+    StuntType,
+    BarrelRollConfig,
+    JTurnConfig,
+    BootlegConfig,
+    TwoWheelConfig,
+    ChaseSequenceConfig,
+)
+
+# HUD system
+from .hud import (
+    HUDSystem,
+    HUDConfig,
+    HUDMode,
+    TelemetryData,
+    HUDWidget,
+    WidgetType,
+    SteeringWidget,
+    SpeedometerWidget,
+    GearWidget,
+    GForceWidget,
+    HUD_PRESETS,
+    create_vehicle_hud,
+    get_hud_presets,
+)
+
+# Asset processor
+from .asset_processor import (
+    CarDetector,
+    CarDetectionResult,
+    LaunchControlBuilder,
+    process_blend_file,
+    process_current_scene,
+    process_supercars_assets,
+)
+
+
 __all__ = [
     # Auto-rigging
     "LaunchControlRig",
@@ -176,6 +224,41 @@ __all__ = [
     "ExportConfig",
     "BakeOptions",
     "ExportFormat",
+    # Vehicle paths
+    "VehiclePathSystem",
+    "VehiclePath",
+    "SpeedCurve",
+    "PathType",
+    "SpeedSegmentAdapter",
+    # Stunts
+    "StuntPresets",
+    "StuntType",
+    "BarrelRollConfig",
+    "JTurnConfig",
+    "BootlegConfig",
+    "TwoWheelConfig",
+    "ChaseSequenceConfig",
+    # HUD
+    "HUDSystem",
+    "HUDConfig",
+    "HUDMode",
+    "TelemetryData",
+    "HUDWidget",
+    "WidgetType",
+    "SteeringWidget",
+    "SpeedometerWidget",
+    "GearWidget",
+    "GForceWidget",
+    "HUD_PRESETS",
+    "create_vehicle_hud",
+    "get_hud_presets",
+    # Asset processor
+    "CarDetector",
+    "CarDetectionResult",
+    "LaunchControlBuilder",
+    "process_blend_file",
+    "process_current_scene",
+    "process_supercars_assets",
 ]
 
 __version__ = "0.1.0"

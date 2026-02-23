@@ -115,7 +115,6 @@ SUSPENSION_PRESETS = {
         spring_rate=28000.0,
         damping_coefficient=2800.0,
         travel=0.18,
-        damping_ratio=0.25,  # Underdamped for comfort
         anti_roll_stiffness=1500.0
     ),
 

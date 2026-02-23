@@ -162,8 +162,7 @@ CHASSIS_PRESETS = {
     "ratrod": ChassisConfig(
         ride_height=0.12,
         suspension_travel=0.15,
-        tire_radius_front=0.30,
-        tire_radius=0.38,  # Bigger rears
+        tire_radius=0.35,  # Bigger rears (using average for simplicity)
         tire_width=0.255,
         frame_style="body_on_frame",
         frame_visible=True

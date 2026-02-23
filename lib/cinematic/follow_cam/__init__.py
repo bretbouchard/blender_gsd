@@ -52,6 +52,7 @@ from .types import (
     # Data classes
     FollowTarget,
     ObstacleInfo,
+    OperatorBehavior,
     FollowCameraConfig,
     CameraState,
 )
@@ -90,6 +91,12 @@ from .prediction import (
     PredictionResult,
     predict_look_ahead,
     calculate_anticipation_offset,
+    # Oscillation prevention (Phase 8.2)
+    OscillationPreventer,
+    # Operator behavior (Phase 8.2)
+    apply_breathing,
+    apply_reaction_delay,
+    calculate_angle_preference,
 )
 
 from .framing import (
@@ -102,6 +109,10 @@ from .framing import (
     get_rule_of_thirds_lines,
     calculate_golden_ratio_offset,
     calculate_center_weighted_framing,
+    # Dynamic framing (Phase 8.4)
+    calculate_dynamic_framing,
+    calculate_action_framing,
+    calculate_speed_based_distance,
 )
 
 from .debug import (
@@ -110,6 +121,9 @@ from .debug import (
     DebugVisualizer,
     generate_hud_text,
     get_debug_stats,
+    # Frame analysis (Phase 8.4)
+    FrameAnalysis,
+    FrameAnalyzer,
 )
 
 from .pre_solve import (
@@ -118,6 +132,11 @@ from .pre_solve import (
     PreSolveResult,
     PreSolver,
     compute_pre_solve_path,
+    # One-shot configuration (Phase 8.3)
+    ModeChange,
+    FramingChange,
+    OneShotConfig,
+    create_one_shot_from_yaml,
 )
 
 from .navmesh import (
@@ -138,6 +157,7 @@ __all__ = [
     # Data classes
     "FollowTarget",
     "ObstacleInfo",
+    "OperatorBehavior",
     "FollowCameraConfig",
     "CameraState",
     # Mode calculations
@@ -164,6 +184,12 @@ __all__ = [
     "PredictionResult",
     "predict_look_ahead",
     "calculate_anticipation_offset",
+    # Oscillation prevention (Phase 8.2)
+    "OscillationPreventer",
+    # Operator behavior (Phase 8.2)
+    "apply_breathing",
+    "apply_reaction_delay",
+    "calculate_angle_preference",
     # Framing
     "FramingResult",
     "calculate_framing_offset",
@@ -173,16 +199,28 @@ __all__ = [
     "get_rule_of_thirds_lines",
     "calculate_golden_ratio_offset",
     "calculate_center_weighted_framing",
+    # Dynamic framing (Phase 8.4)
+    "calculate_dynamic_framing",
+    "calculate_action_framing",
+    "calculate_speed_based_distance",
     # Debug
     "DebugConfig",
     "DebugVisualizer",
     "generate_hud_text",
     "get_debug_stats",
+    # Frame analysis (Phase 8.4)
+    "FrameAnalysis",
+    "FrameAnalyzer",
     # Pre-solve
     "PreSolveStage",
     "PreSolveResult",
     "PreSolver",
     "compute_pre_solve_path",
+    # One-shot configuration (Phase 8.3)
+    "ModeChange",
+    "FramingChange",
+    "OneShotConfig",
+    "create_one_shot_from_yaml",
     # Navmesh
     "NavMeshConfig",
     "NavMesh",

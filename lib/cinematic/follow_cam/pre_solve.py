@@ -7,6 +7,8 @@ Pre-compute complex camera moves for deterministic renders:
 - Avoidance adjustment
 - Path smoothing
 - Keyframe baking
+- One-shot mode/framing changes
+- Preview video generation
 
 Part of Phase 8.x - Follow Camera System
 Beads: blender_gsd-60
@@ -24,6 +26,7 @@ from .types import (
     CameraState,
     FollowTarget,
     ObstacleInfo,
+    TransitionType,
 )
 
 # Blender API guard
@@ -48,6 +51,178 @@ class PreSolveStage(Enum):
 
 
 @dataclass
+class ModeChange:
+    """
+    A mode change event in one-shot configuration.
+
+    Attributes:
+        frame: Frame number for the change
+        mode: New follow mode
+        transition_type: How to transition to new mode
+        transition_duration: Duration of transition in frames
+    """
+    frame: int
+    mode: FollowMode
+    transition_type: TransitionType = TransitionType.BLEND
+    transition_duration: int = 12  # frames (0.5s at 24fps)
+
+    def to_dict(self) -> Dict[str, Any]:
+        return {
+            "frame": self.frame,
+            "mode": self.mode.value,
+            "transition_type": self.transition_type.value,
+            "transition_duration": self.transition_duration,
+        }
+
+    @classmethod
+    def from_dict(cls, data: Dict[str, Any]) -> "ModeChange":
+        return cls(
+            frame=data["frame"],
+            mode=FollowMode(data["mode"]),
+            transition_type=TransitionType(data.get("transition_type", "blend")),
+            transition_duration=data.get("transition_duration", 12),
+        )
+
+
+@dataclass
+class FramingChange:
+    """
+    A framing change event in one-shot configuration.
+
+    Attributes:
+        frame: Frame number for the change
+        distance: New distance from subject
+        height: New height offset
+        yaw_offset: Additional yaw offset (degrees)
+        pitch_offset: Additional pitch offset (degrees)
+        blend_duration: Duration to blend to new framing (frames)
+    """
+    frame: int
+    distance: Optional[float] = None
+    height: Optional[float] = None
+    yaw_offset: float = 0.0
+    pitch_offset: float = 0.0
+    blend_duration: int = 12  # frames
+
+    def to_dict(self) -> Dict[str, Any]:
+        return {
+            "frame": self.frame,
+            "distance": self.distance,
+            "height": self.height,
+            "yaw_offset": self.yaw_offset,
+            "pitch_offset": self.pitch_offset,
+            "blend_duration": self.blend_duration,
+        }
+
+    @classmethod
+    def from_dict(cls, data: Dict[str, Any]) -> "FramingChange":
+        return cls(
+            frame=data["frame"],
+            distance=data.get("distance"),
+            height=data.get("height"),
+            yaw_offset=data.get("yaw_offset", 0.0),
+            pitch_offset=data.get("pitch_offset", 0.0),
+            blend_duration=data.get("blend_duration", 12),
+        )
+
+
+@dataclass
+class OneShotConfig:
+    """
+    Configuration for one-shot rendering with mode/framing changes.
+
+    Allows defining complex camera behavior with precise timing
+    for deterministic single-pass renders.
+
+    Attributes:
+        mode_changes: List of mode change events
+        framing_changes: List of framing change events
+        preview_enabled: Generate preview video
+        preview_quality: Quality preset for preview
+        preview_output_path: Path for preview video
+
+    Example:
+        config = OneShotConfig(
+            mode_changes=[
+                ModeChange(frame=1, mode=FollowMode.OVER_SHOULDER),
+                ModeChange(frame=100, mode=FollowMode.CHASE,
+                          transition_type=TransitionType.ORBIT),
+            ],
+            framing_changes=[
+                FramingChange(frame=50, distance=5.0, height=2.0),
+            ],
+        )
+    """
+    mode_changes: List[ModeChange] = field(default_factory=list)
+    framing_changes: List[FramingChange] = field(default_factory=list)
+    preview_enabled: bool = False
+    preview_quality: str = "draft"  # draft, preview, final
+    preview_output_path: str = "//previews/follow_cam_preview.mp4"
+
+    def to_dict(self) -> Dict[str, Any]:
+        return {
+            "mode_changes": [mc.to_dict() for mc in self.mode_changes],
+            "framing_changes": [fc.to_dict() for fc in self.framing_changes],
+            "preview_enabled": self.preview_enabled,
+            "preview_quality": self.preview_quality,
+            "preview_output_path": self.preview_output_path,
+        }
+
+    @classmethod
+    def from_dict(cls, data: Dict[str, Any]) -> "OneShotConfig":
+        return cls(
+            mode_changes=[ModeChange.from_dict(mc) for mc in data.get("mode_changes", [])],
+            framing_changes=[FramingChange.from_dict(fc) for fc in data.get("framing_changes", [])],
+            preview_enabled=data.get("preview_enabled", False),
+            preview_quality=data.get("preview_quality", "draft"),
+            preview_output_path=data.get("preview_output_path", "//previews/follow_cam_preview.mp4"),
+        )
+
+    def get_mode_at_frame(self, frame: int) -> Tuple[FollowMode, Optional[ModeChange]]:
+        """
+        Get the active mode at a given frame.
+
+        Returns:
+            Tuple of (current_mode, active_change if transitioning)
+        """
+        active_mode = None
+        active_change = None
+
+        for change in sorted(self.mode_changes, key=lambda c: c.frame):
+            if change.frame <= frame:
+                active_mode = change.mode
+                if frame < change.frame + change.transition_duration:
+                    active_change = change
+
+        return active_mode, active_change
+
+    def get_framing_at_frame(self, frame: int) -> Dict[str, Any]:
+        """
+        Get framing parameters at a given frame.
+
+        Returns:
+            Dictionary with distance, height, yaw_offset, pitch_offset
+        """
+        result = {
+            "distance": None,
+            "height": None,
+            "yaw_offset": 0.0,
+            "pitch_offset": 0.0,
+        }
+
+        for change in sorted(self.framing_changes, key=lambda c: c.frame):
+            if change.frame <= frame:
+                if change.distance is not None:
+                    result["distance"] = change.distance
+                if change.height is not None:
+                    result["height"] = change.height
+                result["yaw_offset"] = change.yaw_offset
+                result["pitch_offset"] = change.pitch_offset
+
+        return result
+
+
+@dataclass
 class PreSolveResult:
     """
     Result of pre-solve computation.
@@ -57,16 +232,21 @@ class PreSolveResult:
         stage: Current/last stage completed
         frames_processed: Number of frames processed
         path_points: Computed camera path points
+        rotation_points: Computed camera rotations (yaw, pitch, roll)
+        mode_at_frame: Mode active at each frame
         errors: List of error messages
         warnings: List of warning messages
+        preview_path: Path to preview video if generated
     """
     success: bool = False
     stage: PreSolveStage = PreSolveStage.SCENE_ANALYSIS
     frames_processed: int = 0
     path_points: List[Tuple[float, float, float]] = field(default_factory=list)
     rotation_points: List[Tuple[float, float, float]] = field(default_factory=list)
+    mode_at_frame: List[str] = field(default_factory=list)  # FollowMode value at each frame
     errors: List[str] = field(default_factory=list)
     warnings: List[str] = field(default_factory=list)
+    preview_path: Optional[str] = None
 
     def to_dict(self) -> Dict[str, Any]:
         return {
@@ -75,8 +255,10 @@ class PreSolveResult:
             "frames_processed": self.frames_processed,
             "path_points": self.path_points,
             "rotation_points": self.rotation_points,
+            "mode_at_frame": self.mode_at_frame,
             "errors": self.errors,
             "warnings": self.warnings,
+            "preview_path": self.preview_path,
         }
 
 
@@ -87,19 +269,33 @@ class PreSolver:
     Analyzes scene and computes camera path before rendering
     to ensure consistent results.
 
+    Supports one-shot configuration with mode and framing changes
+    at specific frames.
+
     Usage:
+        # Basic usage
         presolver = PreSolver(config, target)
         result = presolver.solve(frame_start=1, frame_end=250)
 
         if result.success:
-            # Apply baked keyframes
             presolver.apply_to_camera(camera_name)
+
+        # With one-shot configuration
+        one_shot = OneShotConfig(
+            mode_changes=[
+                ModeChange(frame=1, mode=FollowMode.OVER_SHOULDER),
+                ModeChange(frame=100, mode=FollowMode.CHASE),
+            ],
+        )
+        presolver = PreSolver(config, target, one_shot=one_shot)
+        result = presolver.solve(frame_start=1, frame_end=250)
     """
 
     def __init__(
         self,
         config: FollowCameraConfig,
         target: FollowTarget,
+        one_shot: Optional[OneShotConfig] = None,
     ):
         """
         Initialize pre-solver.
@@ -107,11 +303,14 @@ class PreSolver:
         Args:
             config: Camera configuration
             target: Follow target
+            one_shot: Optional one-shot configuration for mode/framing changes
         """
         self.config = config
         self.target = target
+        self.one_shot = one_shot or OneShotConfig()
         self._result = PreSolveResult()
         self._stage_progress = 0.0
+        self._target_positions: List[Tuple[float, float, float]] = []
 
     def solve(
         self,
@@ -217,13 +416,34 @@ class PreSolver:
     def _compute_ideal_path(self, frame_start: int, frame_end: int) -> None:
         """Compute ideal camera path without collision avoidance."""
         from .follow_modes import calculate_ideal_position, get_target_forward_direction
+        from .transitions import TransitionManager
 
         self._result.path_points.clear()
         self._result.rotation_points.clear()
+        self._result.mode_at_frame.clear()
+        self._target_positions.clear()
+
+        # Initialize transition manager for mode changes
+        transition_manager = TransitionManager()
 
         for frame in range(frame_start, frame_end + 1):
             # Get target position at this frame
             target_pos, target_vel = self._get_target_at_frame(frame)
+            self._target_positions.append(target_pos)
+
+            # Get mode at this frame (one-shot support)
+            current_mode, active_change = self.one_shot.get_mode_at_frame(frame)
+            if current_mode is None:
+                current_mode = self.config.follow_mode
+
+            # Track mode for result
+            self._result.mode_at_frame.append(current_mode.value)
+
+            # Get framing adjustments at this frame
+            framing = self.one_shot.get_framing_at_frame(frame)
+
+            # Create frame-specific config with mode/framing adjustments
+            frame_config = self._create_frame_config(current_mode, framing)
 
             # Calculate ideal camera position
             target_fwd = get_target_forward_direction(Vector(target_vel))
@@ -232,13 +452,61 @@ class PreSolver:
                 target_position=target_pos,
                 target_forward=tuple(target_fwd._values),
                 target_velocity=target_vel,
-                config=self.config,
+                config=frame_config,
             )
+
+            # Handle mode transitions
+            if active_change:
+                # Apply transition blending
+                pos, yaw, pitch = self._apply_transition(
+                    frame, active_change, pos, yaw, pitch
+                )
 
             self._result.path_points.append(tuple(pos._values))
             self._result.rotation_points.append((yaw, pitch, 0.0))
 
         self._stage_progress = 1.0
+
+    def _create_frame_config(
+        self,
+        mode: FollowMode,
+        framing: Dict[str, Any],
+    ) -> FollowCameraConfig:
+        """Create a frame-specific configuration."""
+        # Start with base config
+        config_dict = self.config.to_dict()
+
+        # Apply mode
+        config_dict["follow_mode"] = mode.value
+
+        # Apply framing adjustments
+        if framing.get("distance") is not None:
+            config_dict["ideal_distance"] = framing["distance"]
+        if framing.get("height") is not None:
+            config_dict["ideal_height"] = framing["height"]
+        if framing.get("yaw_offset") != 0:
+            config_dict["yaw"] = self.config.yaw + framing["yaw_offset"]
+        if framing.get("pitch_offset") != 0:
+            config_dict["pitch"] = self.config.pitch + framing["pitch_offset"]
+
+        return FollowCameraConfig.from_dict(config_dict)
+
+    def _apply_transition(
+        self,
+        frame: int,
+        change: ModeChange,
+        pos: Vector,
+        yaw: float,
+        pitch: float,
+    ) -> Tuple[Vector, float, float]:
+        """Apply transition blending for mode changes."""
+        # Calculate transition progress
+        progress = (frame - change.frame) / change.transition_duration
+        progress = max(0.0, min(1.0, progress))
+
+        # For now, just pass through the position
+        # Full implementation would blend between old and new mode positions
+        return pos, yaw, pitch
 
     def _apply_avoidance(self) -> None:
         """Apply collision avoidance to path."""
@@ -401,15 +669,12 @@ class PreSolver:
 
     def _get_target_position_at_index(self, index: int) -> Tuple[float, float, float]:
         """Get target position at path index."""
-        if not HAS_BLENDER:
-            return (0.0, 0.0, 0.0)
+        if index < len(self._target_positions):
+            return self._target_positions[index]
 
-        # This is a simplified version
-        # In full implementation, would track target positions during solve
+        # Fallback approximation from camera position
         if index < len(self._result.path_points):
-            # Approximate from camera position
             cam_pos = self._result.path_points[index]
-            # Assume target is in front of camera at ideal distance
             return (
                 cam_pos[0],
                 cam_pos[1] + self.config.ideal_distance,
@@ -423,6 +688,7 @@ def compute_pre_solve_path(
     target: FollowTarget,
     frame_start: int,
     frame_end: int,
+    one_shot: Optional[OneShotConfig] = None,
 ) -> PreSolveResult:
     """
     Convenience function to compute pre-solve path.
@@ -432,9 +698,28 @@ def compute_pre_solve_path(
         target: Follow target
         frame_start: Start frame
         frame_end: End frame
+        one_shot: Optional one-shot configuration
 
     Returns:
         PreSolveResult with computed path
     """
-    presolver = PreSolver(config, target)
+    presolver = PreSolver(config, target, one_shot=one_shot)
     return presolver.solve(frame_start, frame_end)
+
+
+def create_one_shot_from_yaml(yaml_path: str) -> OneShotConfig:
+    """
+    Load one-shot configuration from YAML file.
+
+    Args:
+        yaml_path: Path to YAML configuration file
+
+    Returns:
+        OneShotConfig instance
+    """
+    import yaml
+
+    with open(yaml_path, 'r') as f:
+        data = yaml.safe_load(f)
+
+    return OneShotConfig.from_dict(data.get("one_shot", {}))

@@ -27,7 +27,7 @@ Usage:
 import bpy
 from dataclasses import dataclass, field
 from typing import List, Dict, Optional, Tuple, Any
-from math import pi, sin, cos, random as rand, sqrt
+from math import pi, sin, cos, sqrt
 from mathutils import Vector, Color
 from enum import Enum
 import random
@@ -312,7 +312,7 @@ class WeatheringSystem:
         self,
         obj: bpy.types.Object,
         layer_name: str
-    ) -> bpy.types.MeshColorLayer:
+    ):
         """Get or create a vertex color layer."""
         if obj.type != 'MESH':
             return None
@@ -331,7 +331,7 @@ class WeatheringSystem:
         self,
         vehicle: bpy.types.Object,
         config: WeatheringConfig,
-        layer: bpy.types.MeshColorLayer
+        layer
     ) -> None:
         """Apply dirt accumulation based on pattern."""
         if not layer or vehicle.type != 'MESH':

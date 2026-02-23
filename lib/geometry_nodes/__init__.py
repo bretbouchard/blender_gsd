@@ -26,6 +26,14 @@ Extended Components (Phase 5):
     StudioSetup: Complete studio lighting setup
     VolumetricTools: Volumetric rendering utilities
 
+Scene Generation Components (Phase 6):
+    RoomBuilder: Build rooms from BSP floor plans
+    RoadBuilder: Build roads from L-system networks
+    FurnitureScatterer: Scatter furniture in rooms
+    AssetInstanceLibrary: Manage asset instances
+    LODManager: Level-of-detail system
+    CullingManager: Frustum and distance culling
+
 Usage:
     from lib.geometry_nodes import NodeTreeBuilder, SimulationBuilder
 
@@ -50,6 +58,14 @@ Usage:
     # Create fur system
     from lib.geometry_nodes import FurSystem
     fur = FurSystem(surface_mesh, builder).set_density(1000).build()
+
+    # Build room from floor plan
+    from lib.geometry_nodes import RoomBuilder, build_rooms
+    rooms = build_rooms(floor_plan_dict)
+
+    # Scatter furniture
+    from lib.geometry_nodes import FurnitureScatterer
+    result = FurnitureScatterer().scatter(room_bounds, "living_room")
 
 Compatibility:
     - Blender 4.x
@@ -104,6 +120,81 @@ __all__ = [
     "create_quick_fog",
     "create_quick_smoke",
     "create_quick_cloud",
+
+    # Room Builder (Phase 6)
+    "WallType",
+    "OpeningType",
+    "WallSpec",
+    "OpeningSpec",
+    "RoomGeometry",
+    "STANDARD_DOORS",
+    "STANDARD_WINDOWS",
+    "WALL_MATERIALS",
+    "RoomBuilder",
+    "RoomBuilderGN",
+    "build_rooms",
+    "rooms_to_gn_format",
+
+    # Road Builder (Phase 6)
+    "RoadType",
+    "LaneType",
+    "IntersectionType",
+    "LaneSpec",
+    "RoadSegment",
+    "IntersectionGeometry",
+    "RoadNetwork",
+    "ROAD_TEMPLATES",
+    "SURFACE_MATERIALS",
+    "RoadBuilder",
+    "RoadBuilderGN",
+    "build_road_network",
+    "network_to_gn_format",
+
+    # Scatter System (Phase 6)
+    "PlacementStrategy",
+    "FurnitureCategory",
+    "FurnitureBounds",
+    "PlacementConstraint",
+    "FurnitureItem",
+    "PlacedItem",
+    "ScatterResult",
+    "FURNITURE_CATALOG",
+    "ROOM_FURNITURE_SETS",
+    "FurnitureScatterer",
+    "scatter_furniture",
+
+    # Asset Instances (Phase 6)
+    "AssetType",
+    "AssetFormat",
+    "AssetReference",
+    "InstanceSpec",
+    "InstancePool",
+    "ScaleNormalizer",
+    "AssetInstanceLibrary",
+    "create_asset_id",
+
+    # LOD System (Phase 6)
+    "LODStrategy",
+    "LODQuality",
+    "LODLevel",
+    "LODConfig",
+    "LODState",
+    "DEFAULT_LOD_CONFIGS",
+    "LODManager",
+    "LODSelector",
+    "create_lod_config",
+
+    # Culling System (Phase 6)
+    "CullingType",
+    "Frustum",
+    "CullingConfig",
+    "CullingResult",
+    "InstanceBounds",
+    "CullingManager",
+    "OcclusionCuller",
+    "create_frustum_from_camera",
+    "cull_instances",
+
     # Version info
     "__version__",
     "__author__",
@@ -137,6 +228,82 @@ from .volumes import (
     create_quick_fog,
     create_quick_smoke,
     create_quick_cloud,
+)
+
+# Phase 6: Scene Generation components
+from .room_builder import (
+    WallType,
+    OpeningType,
+    WallSpec,
+    OpeningSpec,
+    RoomGeometry,
+    STANDARD_DOORS,
+    STANDARD_WINDOWS,
+    WALL_MATERIALS,
+    RoomBuilder,
+    RoomBuilderGN,
+    build_rooms,
+    rooms_to_gn_format,
+)
+from .road_builder import (
+    RoadType,
+    LaneType,
+    IntersectionType,
+    LaneSpec,
+    RoadSegment,
+    IntersectionGeometry,
+    RoadNetwork,
+    ROAD_TEMPLATES,
+    SURFACE_MATERIALS,
+    RoadBuilder,
+    RoadBuilderGN,
+    build_road_network,
+    network_to_gn_format,
+)
+from .scatter import (
+    PlacementStrategy,
+    FurnitureCategory,
+    FurnitureBounds,
+    PlacementConstraint,
+    FurnitureItem,
+    PlacedItem,
+    ScatterResult,
+    FURNITURE_CATALOG,
+    ROOM_FURNITURE_SETS,
+    FurnitureScatterer,
+    scatter_furniture,
+)
+from .asset_instances import (
+    AssetType,
+    AssetFormat,
+    AssetReference,
+    InstanceSpec,
+    InstancePool,
+    ScaleNormalizer,
+    AssetInstanceLibrary,
+    create_asset_id,
+)
+from .lod_system import (
+    LODStrategy,
+    LODQuality,
+    LODLevel,
+    LODConfig,
+    LODState,
+    DEFAULT_LOD_CONFIGS,
+    LODManager,
+    LODSelector,
+    create_lod_config,
+)
+from .culling import (
+    CullingType,
+    Frustum,
+    CullingConfig,
+    CullingResult,
+    InstanceBounds,
+    CullingManager,
+    OcclusionCuller,
+    create_frustum_from_camera,
+    cull_instances,
 )
 
 

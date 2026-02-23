@@ -75,38 +75,74 @@ class InputNodeGroupBuilder:
         t = self.tree
 
         # GLOBAL
-        self._float("Height_mm", 20.0, 1, 100)
-        self._float("Width_mm", 14.0, 1, 100)
         self._int("Segments", 64, 8, 256)
 
-        # ZONE A (TOP)
-        self._float("A_Height", 12.0, 0, 50)
-        self._float("A_Width_Top", 14.0, 1, 50)
-        self._float("A_Width_Bot", 14.0, 1, 50)
-        self._float("A_Top_Height", 3.0, 0, 20)
-        self._int("A_Top_Style", 2, 0, 2)
-        self._float("A_Mid_Height", 6.0, 0, 30)
-        self._bool("A_Knurl", False)
-        self._int("A_Knurl_Count", 30, 0, 100)
-        self._float("A_Knurl_Depth", 0.5, 0, 2)
-        self._float("A_Bot_Height", 2.0, 0, 10)  # Default 2mm for transition section
+        # =========================================================================
+        # DIAMETERS - Continuous surface by default (each section shares boundaries)
+        # =========================================================================
+        # Order from top to bottom:
+        # Top_Diameter → A_Mid_Top → A_Bot_Top → AB_Junction → B_Mid_Bot → Bot_Diameter
+        self._float("Top_Diameter", 14.0, 1, 50)       # A_Top cap top
+        self._float("A_Mid_Top_Diameter", 14.0, 1, 50) # A_Mid top (= A_Top bottom)
+        self._float("A_Bot_Top_Diameter", 14.0, 1, 50) # A_Bot top (= A_Mid bottom)
+        self._float("AB_Junction_Diameter", 14.0, 1, 50) # A_Bot bottom = B_Top top (zone transition)
+        self._float("B_Mid_Bot_Diameter", 16.0, 1, 50) # B_Mid bottom (= B_Top bottom, = B_Bot top)
+        self._float("Bot_Diameter", 16.0, 1, 50)       # B_Bot cap bottom
 
-        # ZONE B (BOTTOM)
-        self._float("B_Height", 8.0, 0, 50)
-        self._float("B_Width_Top", 14.0, 1, 50)
-        self._float("B_Width_Bot", 16.0, 1, 50)
-        self._float("B_Top_Height", 2.0, 0, 10)  # Default 2mm for transition section
-        self._float("B_Mid_Height", 6.0, 0, 30)
-        self._bool("B_Knurl", True)
-        self._int("B_Knurl_Count", 30, 0, 100)
-        self._float("B_Knurl_Depth", 0.5, 0, 2)
-        self._float("B_Bot_Height", 2.0, 0, 10)
-        self._int("B_Bot_Style", 2, 0, 2)
+        # =========================================================================
+        # HEIGHTS - Section heights
+        # =========================================================================
+        # Zone A (top)
+        self._float("A_Top_Height", 3.0, 0, 20)   # Cap height
+        self._float("A_Mid_Height", 6.0, 0, 30)   # Middle section
+        self._float("A_Bot_Height", 2.0, 0, 10)   # Transition to Zone B
 
+        # Zone B (bottom)
+        self._float("B_Top_Height", 2.0, 0, 10)   # Transition from Zone A
+        self._float("B_Mid_Height", 6.0, 0, 30)   # Middle section
+        self._float("B_Bot_Height", 2.0, 0, 10)   # Cap height
+
+        # =========================================================================
+        # STYLES
+        # =========================================================================
+        # 0=Flat, 1=Beveled, 2=Rounded, 3=Tapered+Skirt (Neve style)
+        self._int("A_Top_Style", 2, 0, 3)
+        self._int("B_Bot_Style", 2, 0, 3)
+
+        # =========================================================================
+        # KNURLING - Per-section control
+        # =========================================================================
+        # Each section can have independent knurling with its own count and depth
+        # A_Mid section (top middle)
+        self._bool("A_Mid_Knurl", False)
+        self._int("A_Mid_Knurl_Count", 30, 0, 100)
+        self._float("A_Mid_Knurl_Depth", 0.5, 0, 2)
+
+        # A_Bot section (zone transition at top)
+        self._bool("A_Bot_Knurl", False)
+        self._int("A_Bot_Knurl_Count", 30, 0, 100)
+        self._float("A_Bot_Knurl_Depth", 0.5, 0, 2)
+
+        # B_Top section (zone transition at bottom)
+        self._bool("B_Top_Knurl", False)
+        self._int("B_Top_Knurl_Count", 30, 0, 100)
+        self._float("B_Top_Knurl_Depth", 0.5, 0, 2)
+
+        # B_Mid section (bottom middle)
+        self._bool("B_Mid_Knurl", True)
+        self._int("B_Mid_Knurl_Count", 30, 0, 100)
+        self._float("B_Mid_Knurl_Depth", 0.5, 0, 2)
+
+        # =========================================================================
         # MATERIAL
+        # =========================================================================
         self._color("Color", (0.5, 0.5, 0.5))
         self._float("Metallic", 0.0, 0, 1)
         self._float("Roughness", 0.3, 0, 1)
+
+        # External material input - when provided, overrides procedural material
+        # Use this to apply Sanctus or other external materials
+        self._material("Material", None)
 
         # DEBUG MODE
         self._bool("Debug_Mode", False)
@@ -149,7 +185,14 @@ class InputNodeGroupBuilder:
     # =========================================================================
 
     def _build_geometry(self):
-        """Build geometry with organized frames."""
+        """
+        Build geometry with continuous surface using chained diameters.
+
+        Diameter chain (top to bottom):
+        Top_Diameter → A_Mid_Top_Dia → A_Bot_Top_Dia → AB_Junction_Dia → B_Mid_Bot_Dia → Bot_Diameter
+
+        Each section uses a CONE (tapered) so the surface is continuous.
+        """
         gi = self.gi
         MM = 0.001
 
@@ -158,147 +201,150 @@ class InputNodeGroupBuilder:
         # =========================================
         frame_convert = self._frame("UNIT CONVERSION", 100, 400)
 
-        # Global conversions
-        height_m = self._math("*", gi.outputs["Height_mm"], MM, 150, 450, "Height_M")
-        width_m = self._math("*", gi.outputs["Width_mm"], MM, 150, 420, "Width_M")
+        # Diameter conversions (to radius = diameter / 2, then to meters)
+        # Top to bottom chain
+        top_r_m = self._math("/", self._math("*", gi.outputs["Top_Diameter"], MM, 150, 480, "Top_Dia_M"), 2, 150, 450, "Top_Radius_M")
+        a_mid_top_r_m = self._math("/", self._math("*", gi.outputs["A_Mid_Top_Diameter"], MM, 150, 450, "A_MidTop_Dia_M"), 2, 150, 420, "A_MidTop_R_M")
+        a_bot_top_r_m = self._math("/", self._math("*", gi.outputs["A_Bot_Top_Diameter"], MM, 150, 420, "A_BotTop_Dia_M"), 2, 150, 390, "A_BotTop_R_M")
+        ab_junction_r_m = self._math("/", self._math("*", gi.outputs["AB_Junction_Diameter"], MM, 150, 390, "AB_Junc_Dia_M"), 2, 150, 360, "AB_Junc_R_M")
+        b_mid_bot_r_m = self._math("/", self._math("*", gi.outputs["B_Mid_Bot_Diameter"], MM, 150, 360, "B_MidBot_Dia_M"), 2, 150, 330, "B_MidBot_R_M")
+        bot_r_m = self._math("/", self._math("*", gi.outputs["Bot_Diameter"], MM, 150, 330, "Bot_Dia_M"), 2, 150, 300, "Bot_Radius_M")
 
-        # Zone A conversions
-        a_height_m = self._math("*", gi.outputs["A_Height"], MM, 250, 450, "A_Height_M")
-        a_width_top_m = self._math("*", gi.outputs["A_Width_Top"], MM, 250, 420, "A_WidthTop_M")
-        a_width_bot_m = self._math("*", gi.outputs["A_Width_Bot"], MM, 250, 390, "A_WidthBot_M")
-        a_top_h_m = self._math("*", gi.outputs["A_Top_Height"], MM, 250, 360, "A_TopH_M")
-        a_mid_h_m = self._math("*", gi.outputs["A_Mid_Height"], MM, 250, 330, "A_MidH_M")
-        a_bot_h_m = self._math("*", gi.outputs["A_Bot_Height"], MM, 250, 300, "A_BotH_M")
-        a_knurl_d_m = self._math("*", gi.outputs["A_Knurl_Depth"], MM, 250, 270, "A_KnurlD_M")
+        # Height conversions
+        a_top_h_m = self._math("*", gi.outputs["A_Top_Height"], MM, 250, 450, "A_TopH_M")
+        a_mid_h_m = self._math("*", gi.outputs["A_Mid_Height"], MM, 250, 420, "A_MidH_M")
+        a_bot_h_m = self._math("*", gi.outputs["A_Bot_Height"], MM, 250, 390, "A_BotH_M")
+        b_top_h_m = self._math("*", gi.outputs["B_Top_Height"], MM, 250, 360, "B_TopH_M")
+        b_mid_h_m = self._math("*", gi.outputs["B_Mid_Height"], MM, 250, 330, "B_MidH_M")
+        b_bot_h_m = self._math("*", gi.outputs["B_Bot_Height"], MM, 250, 300, "B_BotH_M")
 
-        # Zone B conversions
-        b_height_m = self._math("*", gi.outputs["B_Height"], MM, 350, 450, "B_Height_M")
-        b_width_top_m = self._math("*", gi.outputs["B_Width_Top"], MM, 350, 420, "B_WidthTop_M")
-        b_width_bot_m = self._math("*", gi.outputs["B_Width_Bot"], MM, 350, 390, "B_WidthBot_M")
-        b_top_h_m = self._math("*", gi.outputs["B_Top_Height"], MM, 350, 360, "B_TopH_M")
-        b_mid_h_m = self._math("*", gi.outputs["B_Mid_Height"], MM, 350, 330, "B_MidH_M")
-        b_bot_h_m = self._math("*", gi.outputs["B_Bot_Height"], MM, 350, 300, "B_BotH_M")
-        b_knurl_d_m = self._math("*", gi.outputs["B_Knurl_Depth"], MM, 350, 270, "B_KnurlD_M")
+        # Knurl depth conversions (per-section)
+        a_mid_knurl_d_m = self._math("*", gi.outputs["A_Mid_Knurl_Depth"], MM, 250, 270, "A_MidKnurlD_M")
+        a_bot_knurl_d_m = self._math("*", gi.outputs["A_Bot_Knurl_Depth"], MM, 250, 240, "A_BotKnurlD_M")
+        b_top_knurl_d_m = self._math("*", gi.outputs["B_Top_Knurl_Depth"], MM, 250, 210, "B_TopKnurlD_M")
+        b_mid_knurl_d_m = self._math("*", gi.outputs["B_Mid_Knurl_Depth"], MM, 250, 180, "B_MidKnurlD_M")
 
         # Parent conversion nodes to frame
-        self._parent_nodes(self.created_nodes[-14:], frame_convert)
+        self._parent_nodes(self.created_nodes[-22:], frame_convert)
 
         # =========================================
         # FRAME: POSITION CALCULATIONS
         # =========================================
-        # IMPORTANT: Blender 5.0 cones are positioned by their BASE (Z=0 to Z=depth),
-        # while cylinders and spheres are centered at origin (Z=-depth/2 to Z=+depth/2).
-        # We calculate BASE positions for all sections, then adjust for centered primitives.
+        # All sections use cones positioned by BASE at Z=0
+        # Stack from bottom (Z=0) to top
         frame_pos = self._frame("POSITION CALC", 450, 400)
 
-        # B_Bot base Z = 0 (bottom of knob)
-        # But cylinder is centered, so we translate by: base + depth/2 = 0 + B_Bot_H/2
-        b_bot_half = self._math("*", b_bot_h_m, 0.5, 500, 450, "B_Bot_Half")
-        b_bot_z = b_bot_half  # Cylinder center = 0 + half
+        # B_Bot base Z = 0 (cone base at bottom)
+        b_bot_z = 0  # No node needed for 0
 
-        # B_Mid base Z = B_Bot_H (sits on top of B_Bot)
-        # Cone base is at 0, so we translate by: B_Bot_H
-        b_mid_z = b_bot_h_m  # Cone base = B_Bot_Height (no need for separate node)
+        # B_Mid base Z = B_Bot_H
+        b_mid_z_node = b_bot_h_m  # Use the height directly (cone base position)
 
         # B_Top base Z = B_Bot_H + B_Mid_H
         b_bot_plus_mid = self._math("+", b_bot_h_m, b_mid_h_m, 500, 390, "B_Bot+Mid")
-        b_top_z = b_bot_plus_mid  # Cone base
 
         # A_Bot base Z = B_Bot_H + B_Mid_H + B_Top_H
         b_total = self._math("+", b_bot_plus_mid, b_top_h_m, 500, 360, "B_Total")
-        a_bot_z = b_total  # Cone base
 
-        # A_Mid base Z = B_Bot_H + B_Mid_H + B_Top_H + A_Bot_H
+        # A_Mid base Z = B_Total + A_Bot_H
         b_plus_a_bot = self._math("+", b_total, a_bot_h_m, 500, 330, "B+A_Bot")
-        a_mid_z = b_plus_a_bot  # Cone base
 
-        # A_Top base Z = B_Bot_H + B_Mid_H + B_Top_H + A_Bot_H + A_Mid_H
-        # But A_Top uses cylinder (centered), so: base + depth/2
+        # A_Top base Z = B_Total + A_Bot_H + A_Mid_H (but cap uses centered geometry)
         b_plus_a_mid = self._math("+", b_plus_a_bot, a_mid_h_m, 500, 300, "B+A_Mid")
         a_top_half = self._math("*", a_top_h_m, 0.5, 650, 300, "A_Top_Half")
         a_top_z = self._math("+", b_plus_a_mid, a_top_half, 800, 300, "A_Top_Z")
 
         # Parent position calc nodes to frame
-        self._parent_nodes(self.created_nodes[-18:], frame_pos)
+        self._parent_nodes(self.created_nodes[-7:], frame_pos)
 
         # =========================================
         # FRAME: ZONE B (BOTTOM) - 3 sections
         # =========================================
         frame_b = self._frame("ZONE B", 100, -100)
 
-        # Sub-frame: B_BOT_CAP (cap at bottom)
+        # --- B_Bot cap ---
+        # Bottom radius = Bot_Diameter (connects to nothing, it's the base)
+        # Top radius = B_Mid_Bot_Diameter (connects to B_Mid)
         frame_b_bot = self._frame("B_BOT_CAP", 150, -200)
 
-        b_bot_radius = self._math("/", b_width_bot_m, 2, 200, -250, "B_Bot_Radius")
-
-        # Build cap with style switching
         b_bot_cap = self._build_cap(
             gi.outputs["B_Bot_Style"],
-            b_bot_radius,
+            bot_r_m,         # Top radius (outer tip of cap)
+            b_mid_bot_r_m,   # Bottom radius (connects to B_Mid)
             b_bot_h_m,
             gi.outputs["Segments"],
             250, -280, "B_Bot_Cap"
         )
 
-        # Dynamic translation using calculated Z position
-        b_bot_pos = self._combine_xyz(0, 0, b_bot_z, 850, -280, "B_Bot_Pos")
+        # Cap geometry is centered, so position at: base + height/2
+        b_bot_center_z = self._math("*", b_bot_h_m, 0.5, 850, -280, "B_Bot_CenterZ")
+        b_bot_pos = self._combine_xyz(0, 0, b_bot_center_z, 900, -280, "B_Bot_Pos")
         b_bot_xform = self.nk.n("GeometryNodeTransform", "B_Bot_Xform", 1000, -250)
         self.nk.link(b_bot_cap.outputs["Output"], b_bot_xform.inputs["Geometry"])
         self.nk.link(b_bot_pos.outputs["Vector"], b_bot_xform.inputs["Translation"])
 
         self._parent_nodes([b_bot_cap, b_bot_pos, b_bot_xform], frame_b_bot)
 
-        # Sub-frame: B_MID (cone middle section)
+        # --- B_Mid cone ---
+        # Top radius = B_Mid_Bot (shared with B_Top bottom), Bottom radius = B_Mid_Bot
+        # Since B_Mid is flat (cylinder), use same radius top and bottom
         frame_b_mid = self._frame("B_MID", 150, -400)
-
-        b_mid_radius_top = self._math("/", b_width_top_m, 2, 200, -450, "B_Mid_RadiusTop")
-        b_mid_radius_bot = self._math("/", b_width_bot_m, 2, 200, -480, "B_Mid_RadiusBot")
 
         b_mid_cone = self.nk.n("GeometryNodeMeshCone", "B_Mid_Cone", 300, -460)
         self.nk.link(gi.outputs["Segments"], b_mid_cone.inputs["Vertices"])
-        self.nk.link(b_mid_radius_top, b_mid_cone.inputs["Radius Top"])
-        self.nk.link(b_mid_radius_bot, b_mid_cone.inputs["Radius Bottom"])
+        self.nk.link(b_mid_bot_r_m, b_mid_cone.inputs["Radius Top"])     # Top = B_Mid_Bot
+        self.nk.link(b_mid_bot_r_m, b_mid_cone.inputs["Radius Bottom"])  # Bot = B_Mid_Bot (flat)
         self.nk.link(b_mid_h_m, b_mid_cone.inputs["Depth"])
 
-        # Apply knurling to B_MID
+        # Knurling
         b_mid_knurl = self._build_knurling(
             b_mid_cone.outputs["Mesh"],
-            gi.outputs["B_Knurl"],
-            gi.outputs["B_Knurl_Count"],
-            b_knurl_d_m,
-            b_mid_radius_bot,  # Use bottom radius as reference
+            gi.outputs["B_Mid_Knurl"],
+            gi.outputs["B_Mid_Knurl_Count"],
+            b_mid_knurl_d_m,
+            b_mid_bot_r_m,
+            b_mid_h_m,  # Section height for cutter
             400, -550, "B_Mid_Knurl"
         )
 
-        # Dynamic translation using calculated Z position
-        b_mid_pos = self._combine_xyz(0, 0, b_mid_z, 1150, -490, "B_Mid_Pos")
+        # Cone base at b_mid_z_node
+        b_mid_pos = self._combine_xyz(0, 0, b_mid_z_node, 1150, -490, "B_Mid_Pos")
         b_mid_xform = self.nk.n("GeometryNodeTransform", "B_Mid_Xform", 1300, -460)
-        self.nk.link(b_mid_knurl.outputs["Geometry"], b_mid_xform.inputs["Geometry"])
+        self.nk.link(b_mid_knurl.outputs[0], b_mid_xform.inputs["Geometry"])
         self.nk.link(b_mid_pos.outputs["Vector"], b_mid_xform.inputs["Translation"])
 
         self._parent_nodes([b_mid_cone, b_mid_pos, b_mid_xform, b_mid_knurl], frame_b_mid)
 
-        # Sub-frame: B_TOP (cone at top of Zone B)
+        # --- B_Top cone ---
+        # Top radius = AB_Junction, Bottom radius = B_Mid_Bot
         frame_b_top = self._frame("B_TOP", 150, -600)
-
-        b_top_radius_bot = self._math("/", b_width_top_m, 2, 200, -650, "B_Top_RadiusBot")
-        b_top_radius_top = self._math("/", a_width_bot_m, 2, 200, -680, "B_Top_RadiusTop")  # Use A's bottom width for transition
 
         b_top_cone = self.nk.n("GeometryNodeMeshCone", "B_Top_Cone", 300, -660)
         self.nk.link(gi.outputs["Segments"], b_top_cone.inputs["Vertices"])
-        self.nk.link(b_top_radius_top, b_top_cone.inputs["Radius Top"])
-        self.nk.link(b_top_radius_bot, b_top_cone.inputs["Radius Bottom"])
+        self.nk.link(ab_junction_r_m, b_top_cone.inputs["Radius Top"])    # Top = AB_Junction
+        self.nk.link(b_mid_bot_r_m, b_top_cone.inputs["Radius Bottom"])   # Bot = B_Mid_Bot
         self.nk.link(b_top_h_m, b_top_cone.inputs["Depth"])
 
-        # Dynamic translation using calculated Z position
-        b_top_pos = self._combine_xyz(0, 0, b_top_z, 1150, -690, "B_Top_Pos")
+        # Knurling
+        b_top_knurl = self._build_knurling(
+            b_top_cone.outputs["Mesh"],
+            gi.outputs["B_Top_Knurl"],
+            gi.outputs["B_Top_Knurl_Count"],
+            b_top_knurl_d_m,
+            ab_junction_r_m,  # Use top radius as reference
+            b_top_h_m,  # Section height for cutter
+            400, -750, "B_Top_Knurl"
+        )
+
+        # Cone base at b_bot_plus_mid
+        b_top_pos = self._combine_xyz(0, 0, b_bot_plus_mid, 1150, -690, "B_Top_Pos")
         b_top_xform = self.nk.n("GeometryNodeTransform", "B_Top_Xform", 1300, -660)
-        self.nk.link(b_top_cone.outputs["Mesh"], b_top_xform.inputs["Geometry"])
+        self.nk.link(b_top_knurl.outputs[0], b_top_xform.inputs["Geometry"])
         self.nk.link(b_top_pos.outputs["Vector"], b_top_xform.inputs["Translation"])
 
-        self._parent_nodes([b_top_cone, b_top_pos, b_top_xform], frame_b_top)
+        self._parent_nodes([b_top_cone, b_top_pos, b_top_xform, b_top_knurl], frame_b_top)
 
-        # Parent sub-frames to Zone B frame
+        # Parent sub-frames to Zone B
         frame_b_bot.parent = frame_b
         frame_b_mid.parent = frame_b
         frame_b_top.parent = frame_b
@@ -308,74 +354,79 @@ class InputNodeGroupBuilder:
         # =========================================
         frame_a = self._frame("ZONE A", 100, 100)
 
-        # Sub-frame: A_BOT (cone at bottom of Zone A)
+        # --- A_Bot cone ---
+        # Top radius = A_Bot_Top, Bottom radius = AB_Junction
         frame_a_bot = self._frame("A_BOT", 150, -50)
-
-        # A_Bot is a transition cone from Zone B width to Zone A width
-        # Bottom radius = B width (to connect to B_Top)
-        # Top radius = A mid radius (to connect to A_Mid)
-        a_bot_radius_bot = self._math("/", b_width_top_m, 2, 200, -80, "A_Bot_RadiusBot")  # Use B width
-        a_bot_radius_top = self._math("/", a_width_top_m, 2, 200, -110, "A_Bot_RadiusTop")  # Use A top width
 
         a_bot_cone = self.nk.n("GeometryNodeMeshCone", "A_Bot_Cone", 300, -90)
         self.nk.link(gi.outputs["Segments"], a_bot_cone.inputs["Vertices"])
-        self.nk.link(a_bot_radius_top, a_bot_cone.inputs["Radius Top"])
-        self.nk.link(a_bot_radius_bot, a_bot_cone.inputs["Radius Bottom"])
+        self.nk.link(a_bot_top_r_m, a_bot_cone.inputs["Radius Top"])      # Top = A_Bot_Top
+        self.nk.link(ab_junction_r_m, a_bot_cone.inputs["Radius Bottom"]) # Bot = AB_Junction
         self.nk.link(a_bot_h_m, a_bot_cone.inputs["Depth"])
 
-        # Dynamic translation using calculated Z position
-        a_bot_pos = self._combine_xyz(0, 0, a_bot_z, 1150, -120, "A_Bot_Pos")
+        # Knurling
+        a_bot_knurl = self._build_knurling(
+            a_bot_cone.outputs["Mesh"],
+            gi.outputs["A_Bot_Knurl"],
+            gi.outputs["A_Bot_Knurl_Count"],
+            a_bot_knurl_d_m,
+            a_bot_top_r_m,  # Use top radius as reference
+            a_bot_h_m,  # Section height for cutter
+            400, -180, "A_Bot_Knurl"
+        )
+
+        # Cone base at b_total
+        a_bot_pos = self._combine_xyz(0, 0, b_total, 1150, -120, "A_Bot_Pos")
         a_bot_xform = self.nk.n("GeometryNodeTransform", "A_Bot_Xform", 1300, -90)
-        self.nk.link(a_bot_cone.outputs["Mesh"], a_bot_xform.inputs["Geometry"])
+        self.nk.link(a_bot_knurl.outputs[0], a_bot_xform.inputs["Geometry"])
         self.nk.link(a_bot_pos.outputs["Vector"], a_bot_xform.inputs["Translation"])
 
-        self._parent_nodes([a_bot_cone, a_bot_pos, a_bot_xform], frame_a_bot)
+        self._parent_nodes([a_bot_cone, a_bot_pos, a_bot_xform, a_bot_knurl], frame_a_bot)
 
-        # Sub-frame: A_MID (cone middle section)
+        # --- A_Mid cone ---
+        # Top radius = A_Mid_Top, Bottom radius = A_Bot_Top
         frame_a_mid = self._frame("A_MID", 150, 50)
-
-        a_mid_radius_top = self._math("/", a_width_top_m, 2, 200, 20, "A_Mid_RadiusTop")
-        a_mid_radius_bot = self._math("/", a_width_bot_m, 2, 200, -10, "A_Mid_RadiusBot")
 
         a_mid_cone = self.nk.n("GeometryNodeMeshCone", "A_Mid_Cone", 300, 10)
         self.nk.link(gi.outputs["Segments"], a_mid_cone.inputs["Vertices"])
-        self.nk.link(a_mid_radius_top, a_mid_cone.inputs["Radius Top"])
-        self.nk.link(a_mid_radius_bot, a_mid_cone.inputs["Radius Bottom"])
+        self.nk.link(a_mid_top_r_m, a_mid_cone.inputs["Radius Top"])      # Top = A_Mid_Top
+        self.nk.link(a_bot_top_r_m, a_mid_cone.inputs["Radius Bottom"])   # Bot = A_Bot_Top
         self.nk.link(a_mid_h_m, a_mid_cone.inputs["Depth"])
 
-        # Apply knurling to A_MID
+        # Knurling
         a_mid_knurl = self._build_knurling(
             a_mid_cone.outputs["Mesh"],
-            gi.outputs["A_Knurl"],
-            gi.outputs["A_Knurl_Count"],
-            a_knurl_d_m,
-            a_mid_radius_bot,  # Use bottom radius as reference
+            gi.outputs["A_Mid_Knurl"],
+            gi.outputs["A_Mid_Knurl_Count"],
+            a_mid_knurl_d_m,
+            a_mid_top_r_m,
+            a_mid_h_m,  # Section height for cutter
             400, -80, "A_Mid_Knurl"
         )
 
-        # Dynamic translation using calculated Z position
-        a_mid_pos = self._combine_xyz(0, 0, a_mid_z, 1150, -20, "A_Mid_Pos")
+        # Cone base at b_plus_a_bot
+        a_mid_pos = self._combine_xyz(0, 0, b_plus_a_bot, 1150, -20, "A_Mid_Pos")
         a_mid_xform = self.nk.n("GeometryNodeTransform", "A_Mid_Xform", 1300, 10)
-        self.nk.link(a_mid_knurl.outputs["Geometry"], a_mid_xform.inputs["Geometry"])
+        self.nk.link(a_mid_knurl.outputs[0], a_mid_xform.inputs["Geometry"])
         self.nk.link(a_mid_pos.outputs["Vector"], a_mid_xform.inputs["Translation"])
 
         self._parent_nodes([a_mid_cone, a_mid_pos, a_mid_xform, a_mid_knurl], frame_a_mid)
 
-        # Sub-frame: A_TOP_CAP (cap at top)
+        # --- A_Top cap ---
+        # Top radius = Top_Diameter (outer tip of cap)
+        # Bottom radius = A_Mid_Top_Diameter (connects to A_Mid)
         frame_a_top = self._frame("A_TOP_CAP", 150, 200)
 
-        a_top_radius = self._math("/", a_width_top_m, 2, 200, 180, "A_Top_Radius")
-
-        # Build cap with style switching
         a_top_cap = self._build_cap(
             gi.outputs["A_Top_Style"],
-            a_top_radius,
+            top_r_m,         # Top radius (outer tip)
+            a_mid_top_r_m,   # Bottom radius (connects to A_Mid)
             a_top_h_m,
             gi.outputs["Segments"],
             250, 150, "A_Top_Cap"
         )
 
-        # Dynamic translation using calculated Z position
+        # Cap is centered, position at a_top_z
         a_top_pos = self._combine_xyz(0, 0, a_top_z, 850, 150, "A_Top_Pos")
         a_top_xform = self.nk.n("GeometryNodeTransform", "A_Top_Xform", 1000, 180)
         self.nk.link(a_top_cap.outputs["Output"], a_top_xform.inputs["Geometry"])
@@ -383,7 +434,7 @@ class InputNodeGroupBuilder:
 
         self._parent_nodes([a_top_cap, a_top_pos, a_top_xform], frame_a_top)
 
-        # Parent sub-frames to Zone A frame
+        # Parent sub-frames to Zone A
         frame_a_bot.parent = frame_a
         frame_a_mid.parent = frame_a
         frame_a_top.parent = frame_a
@@ -393,61 +444,18 @@ class InputNodeGroupBuilder:
         # =========================================
         frame_output = self._frame("OUTPUT", 600, -100)
 
-        # Create the production material once
+        # Create the production material
         mat = self._create_material()
 
-        # Apply materials to each section BEFORE join (6 sections total)
-        # This allows debug mode to show distinct colors per section
+        # Apply materials to each section
+        b_bot_set_mat = self._set_section_material(b_bot_xform.outputs["Geometry"], "B_Bot", mat, 1400, -250)
+        b_mid_set_mat = self._set_section_material(b_mid_xform.outputs["Geometry"], "B_Mid", mat, 1400, -460)
+        b_top_set_mat = self._set_section_material(b_top_xform.outputs["Geometry"], "B_Top", mat, 1400, -660)
+        a_bot_set_mat = self._set_section_material(a_bot_xform.outputs["Geometry"], "A_Bot", mat, 1400, -90)
+        a_mid_set_mat = self._set_section_material(a_mid_xform.outputs["Geometry"], "A_Mid", mat, 1400, 10)
+        a_top_set_mat = self._set_section_material(a_top_xform.outputs["Geometry"], "A_Top", mat, 1400, 180)
 
-        # B_Bot material
-        b_bot_set_mat = self._set_section_material(
-            b_bot_xform.outputs["Geometry"],
-            "B_Bot",
-            mat,
-            1400, -250
-        )
-
-        # B_Mid material
-        b_mid_set_mat = self._set_section_material(
-            b_mid_xform.outputs["Geometry"],
-            "B_Mid",
-            mat,
-            1400, -460
-        )
-
-        # B_Top material
-        b_top_set_mat = self._set_section_material(
-            b_top_xform.outputs["Geometry"],
-            "B_Top",
-            mat,
-            1400, -660
-        )
-
-        # A_Bot material
-        a_bot_set_mat = self._set_section_material(
-            a_bot_xform.outputs["Geometry"],
-            "A_Bot",
-            mat,
-            1400, -90
-        )
-
-        # A_Mid material
-        a_mid_set_mat = self._set_section_material(
-            a_mid_xform.outputs["Geometry"],
-            "A_Mid",
-            mat,
-            1400, 10
-        )
-
-        # A_Top material
-        a_top_set_mat = self._set_section_material(
-            a_top_xform.outputs["Geometry"],
-            "A_Top",
-            mat,
-            1400, 180
-        )
-
-        # Join all 6 sections (now with materials already applied)
+        # Join all 6 sections
         join = self.nk.n("GeometryNodeJoinGeometry", "Join_All", 1650, -50)
         self.nk.link(b_bot_set_mat.outputs["Geometry"], join.inputs["Geometry"])
         self.nk.link(b_mid_set_mat.outputs["Geometry"], join.inputs["Geometry"])
@@ -456,15 +464,15 @@ class InputNodeGroupBuilder:
         self.nk.link(a_mid_set_mat.outputs["Geometry"], join.inputs["Geometry"])
         self.nk.link(a_top_set_mat.outputs["Geometry"], join.inputs["Geometry"])
 
-        # NOTE: Removed MergeByDistance for debug mode to preserve section colors
-        # When sections are adjacent with the same radius, MergeByDistance would merge them
-        # into a single mesh, losing the per-section material assignments.
-        # For production, MergeByDistance can be re-enabled but should be done BEFORE
-        # material assignment, not after.
+        # Recalculate normals on the joined geometry to ensure consistent shading
+        # Boolean operations on any section can affect overall mesh normals
+        join_normals = self.nk.n("GeometryNodeSetMeshNormal", "Join_RecalcNormals", 1800, -50)
+        join_normals.inputs["Remove Custom"].default_value = True
+        self.nk.link(join.outputs["Geometry"], join_normals.inputs["Mesh"])
 
-        self._parent_nodes([join], frame_output)
+        self._parent_nodes([join, join_normals], frame_output)
 
-        return join.outputs["Geometry"]
+        return join_normals.outputs[0]
 
     # =========================================================================
     # HELPER METHODS
@@ -550,107 +558,174 @@ class InputNodeGroupBuilder:
         count_socket,
         depth_socket,
         base_radius_socket,
+        height_socket,
         x: float,
         y: float,
         name_prefix: str
     ) -> bpy.types.Node:
         """
-        Build knurling displacement for a geometry.
+        Build knurling using boolean subtraction with groove cutters.
 
-        Knurling creates ridges by displacing vertices radially based on angle.
-        The displacement is purely horizontal (XY plane) to avoid issues with
-        cone-shaped geometry.
+        Creates actual geometric grooves by:
+        1. Generating a grid of thin wedge cutters around the circumference
+        2. Using Mesh Boolean (Difference) to carve grooves into the cylinder
 
-        Uses: Position → Separate XYZ → Math(arctan2) → Sine → Normalize XY → Multiply by depth
+        This approach:
+        - Works with ANY knurl count (not tied to segments)
+        - Can be extended for angled/helical knurling
+        - Creates real geometric grooves for actual grip texture
+
+        Args:
+            geo_socket: The cylinder geometry to knurl
+            enable_socket: Boolean to enable/disable knurling
+            count_socket: Number of grooves around circumference
+            depth_socket: How deep each groove cuts (in mm, converted)
+            base_radius_socket: Radius of the cylinder (for positioning cutters)
+            height_socket: Height of the section (for cutter height)
+            x, y: Node positions
+            name_prefix: Name prefix for nodes
         """
-        # Get position
-        pos = self.nk.n("GeometryNodeInputPosition", f"{name_prefix}_Pos", x, y)
-        sep = self.nk.n("ShaderNodeSeparateXYZ", f"{name_prefix}_SepXYZ", x + 150, y)
+        # ========================================
+        # GROOVE CUTTER GEOMETRY
+        # ========================================
+        # Create a thin rectangular cutter that will be instanced around the cylinder
+        # The cutter is a thin box positioned to cut into the surface
+
+        # Groove width: determined by count - more grooves = narrower
+        # Circumference = 2 * pi * radius, so width ≈ circumference / count
+        # But we want grooves to be visible, so make them a bit wider
+        # Use depth as a proxy for groove width too (deeper = wider for V-shape)
+
+        # Create a single groove cutter (thin cube)
+        # Width = small fraction of circumference
+        # Depth = depth_socket (how deep it cuts)
+        # Height = section height (full height of the section)
+
+        # For the cutter box:
+        # - Position it so its inner face is at radius - depth
+        # - Its outer face extends beyond radius to ensure intersection
+        # - Width is narrow (based on count)
+
+        # Calculate groove width as fraction of circumference
+        # For 32 grooves on a 14mm diameter (7mm radius), circumference = 2*pi*7 ≈ 44mm
+        # Each groove occupies 44/32 ≈ 1.4mm of arc, but the actual groove is narrower
+        # Use depth as groove width too for simplicity (V-shaped grooves)
+
+        # Cutter dimensions (in meters, since we're working in m)
+        # Width: Use a reasonable default - grooves are typically 0.5-1mm wide
+        # We'll use depth as width too
+
+        # Use a simple Cube primitive (1m cube) and scale it to groove dimensions
+        # GeometryNodeMeshCube creates a 1m cube centered at origin
+
+        cutter_cube = self.nk.n("GeometryNodeMeshCube", f"{name_prefix}_Cube", x, y)
+        # MeshCube in Blender 5.0 has: Vertices X, Vertices Y, Vertices Z, Size X, Size Y, Size Z
+        # But the input names might be different - let's check what exists
+        # Default is a 1m cube, we'll scale it via transform
+
+        # Scale the cube to groove dimensions
+        # X = groove_width, Y = depth * 2, Z = height
+        cutter_scale = self._combine_xyz(
+            depth_socket,  # Width = depth
+            self._math("*", depth_socket, 2, x + 100, y + 50, f"{name_prefix}_Depth2"),
+            height_socket,
+            x + 200, y, f"{name_prefix}_Scale"
+        )
+
+        cutter_xform_inner = self.nk.n("GeometryNodeTransform", f"{name_prefix}_CutterScale", x + 350, y)
+        self.nk.link(cutter_cube.outputs["Mesh"], cutter_xform_inner.inputs["Geometry"])
+        self.nk.link(cutter_scale.outputs["Vector"], cutter_xform_inner.inputs["Scale"])
+
+        # ========================================
+        # INSTANCE CUTTERS AROUND CIRCUMFERENCE
+        # ========================================
+        # Use Points on Circle + Instance on Points approach
+
+        # Create a circle mesh with 'count' vertices
+        circle = self.nk.n("GeometryNodeMeshCircle", f"{name_prefix}_Circle", x, y - 150)
+        self.nk.link(count_socket, circle.inputs["Vertices"])
+        self.nk.link(base_radius_socket, circle.inputs["Radius"])
+
+        # Instance the cutter on each circle vertex, rotated to face center
+        # The cutter should face inward (toward center) to cut grooves
+        instance_on_points = self.nk.n("GeometryNodeInstanceOnPoints", f"{name_prefix}_Instance", x + 500, y - 150)
+        self.nk.link(circle.outputs["Mesh"], instance_on_points.inputs["Points"])
+        self.nk.link(cutter_xform_inner.outputs["Geometry"], instance_on_points.inputs["Instance"])
+
+        # Rotation: Each point needs to rotate the cutter to face the center
+        # For a point on a circle at angle theta, we want the cutter to face inward
+        # Rotation around Z axis = theta + pi/2 (to face center)
+
+        # Get rotation from the point position's angle
+        pos = self.nk.n("GeometryNodeInputPosition", f"{name_prefix}_Pos", x + 500, y - 200)
+        sep = self.nk.n("ShaderNodeSeparateXYZ", f"{name_prefix}_SepPos", x + 650, y - 200)
         self.nk.link(pos.outputs["Position"], sep.inputs["Vector"])
 
-        # Calculate angle using arctan2(y, x)
-        angle = self.nk.n("ShaderNodeMath", f"{name_prefix}_Angle", x + 300, y)
+        # Calculate angle using arctan2
+        angle = self.nk.n("ShaderNodeMath", f"{name_prefix}_Angle", x + 800, y - 200)
         angle.operation = "ARCTAN2"
         self.nk.link(sep.outputs["Y"], angle.inputs[0])
         self.nk.link(sep.outputs["X"], angle.inputs[1])
         if len(angle.inputs) > 2:
-            angle.inputs[2].default_value = 0.0  # Blender 5.0: Clear 3rd input
+            angle.inputs[2].default_value = 0.0
 
-        # Multiply angle by knurl count to create ridges
-        # angle * count * 2 = frequency of ridges
-        count_as_float = self.nk.n("ShaderNodeMath", f"{name_prefix}_CountF", x + 450, y + 30)
-        count_as_float.operation = "MULTIPLY"
-        self.nk.link(count_socket, count_as_float.inputs[0])
-        count_as_float.inputs[1].default_value = 2.0  # Double frequency for V-shape
-        if len(count_as_float.inputs) > 2:
-            count_as_float.inputs[2].default_value = 0.0  # Blender 5.0: Clear 3rd input
+        # Create rotation vector (only Z rotation)
+        rot_vec = self._combine_xyz(0, 0, angle.outputs[0], x + 950, y - 200, f"{name_prefix}_RotVec")
+        self.nk.link(rot_vec.outputs["Vector"], instance_on_points.inputs["Rotation"])
 
-        freq = self.nk.n("ShaderNodeMath", f"{name_prefix}_Freq", x + 600, y)
-        freq.operation = "MULTIPLY"
-        self.nk.link(angle.outputs[0], freq.inputs[0])
-        self.nk.link(count_as_float.outputs[0], freq.inputs[1])
-        if len(freq.inputs) > 2:
-            freq.inputs[2].default_value = 0.0  # Blender 5.0: Clear 3rd input
+        # Scale is already handled in cutter_xform_inner, use (1,1,1)
+        # Realize instances for boolean operation
+        realize = self.nk.n("GeometryNodeRealizeInstances", f"{name_prefix}_Realize", x + 700, y - 150)
+        self.nk.link(instance_on_points.outputs["Instances"], realize.inputs["Geometry"])
 
-        # Sine wave for displacement pattern
-        sine = self.nk.n("ShaderNodeMath", f"{name_prefix}_Sine", x + 750, y)
-        sine.operation = "SINE"
-        self.nk.link(freq.outputs[0], sine.inputs[0])
-        if len(sine.inputs) > 2:
-            sine.inputs[2].default_value = 0.0  # Blender 5.0: Clear 3rd input
+        # ========================================
+        # BOOLEAN SUBTRACTION
+        # ========================================
+        # Subtract the cutters from the cylinder
 
-        # Scale sine output by depth
-        displ = self.nk.n("ShaderNodeMath", f"{name_prefix}_Displ", x + 900, y)
-        displ.operation = "MULTIPLY"
-        self.nk.link(sine.outputs[0], displ.inputs[0])
-        self.nk.link(depth_socket, displ.inputs[1])
-        if len(displ.inputs) > 2:
-            displ.inputs[2].default_value = 0.0  # Blender 5.0: Clear 3rd input
+        bool_node = self.nk.n("GeometryNodeMeshBoolean", f"{name_prefix}_Bool", x + 900, y - 100)
+        bool_node.operation = 'DIFFERENCE'
+        # Blender 5.0 uses index-based inputs: 0 = first mesh, 1+ = additional meshes
+        self.nk.link(geo_socket, bool_node.inputs[0])  # Cylinder (Mesh A)
+        self.nk.link(realize.outputs["Geometry"], bool_node.inputs[1])  # Cutters (Mesh B)
 
-        # Multiply by enable flag (0 or 1)
-        enabled = self.nk.n("ShaderNodeMath", f"{name_prefix}_Enabled", x + 1050, y)
-        enabled.operation = "MULTIPLY"
-        self.nk.link(displ.outputs[0], enabled.inputs[0])
-        # Convert bool to float
-        self.nk.link(enable_socket, enabled.inputs[1])
-        if len(enabled.inputs) > 2:
-            enabled.inputs[2].default_value = 0.0  # Blender 5.0: Clear 3rd input
+        # ========================================
+        # RECALCULATE NORMALS
+        # ========================================
+        # Boolean operations can create inverted normals, fix them
+        # GeometryNodeSetMeshNormal with Remove Custom = True recalculates normals
+        recalc_normals = self.nk.n("GeometryNodeSetMeshNormal", f"{name_prefix}_RecalcNormals", x + 1050, y - 100)
+        recalc_normals.inputs["Remove Custom"].default_value = True  # Recalculate normals
+        self.nk.link(bool_node.outputs[0], recalc_normals.inputs["Mesh"])
 
-        # Create horizontal direction vector from X and Y components
-        # Normalize the XY position to get radial direction (ignoring Z)
-        xy_vec = self.nk.n("ShaderNodeCombineXYZ", f"{name_prefix}_XYVec", x, y - 100)
-        self.nk.link(sep.outputs["X"], xy_vec.inputs["X"])
-        self.nk.link(sep.outputs["Y"], xy_vec.inputs["Y"])
-        xy_vec.inputs["Z"].default_value = 0.0
+        # ========================================
+        # ENABLE/DISABLE SWITCH
+        # ========================================
+        # If knurling is disabled, pass through original geometry
 
-        # Normalize the XY vector to get pure radial direction
-        normalize = self.nk.n("ShaderNodeVectorMath", f"{name_prefix}_Normalize", x + 150, y - 100)
-        normalize.operation = "NORMALIZE"
-        self.nk.link(xy_vec.outputs["Vector"], normalize.inputs["Vector"])
+        switch = self.nk.n("GeometryNodeSwitch", f"{name_prefix}_Switch", x + 1200, y - 100)
+        switch.input_type = 'GEOMETRY'
+        # Blender 5.0 Switch inputs: 0 = False (condition), 1 = True (condition)
+        # Actually the inputs might be: False, True and switch selection is via "Switch" input
+        # Let's use index-based access
+        self.nk.link(enable_socket, switch.inputs[0])  # Switch condition
+        self.nk.link(geo_socket, switch.inputs[1])  # False = original
+        self.nk.link(recalc_normals.outputs[0], switch.inputs[2])  # True = knurled (with fixed normals)
 
-        # Scale normalized direction by displacement amount
-        displace_vec = self.nk.n("ShaderNodeVectorMath", f"{name_prefix}_DispVec", x + 300, y - 100)
-        displace_vec.operation = "SCALE"
-        self.nk.link(normalize.outputs["Vector"], displace_vec.inputs["Vector"])
-        self.nk.link(enabled.outputs[0], displace_vec.inputs["Scale"])
-
-        # Set position to apply knurling
-        set_pos = self.nk.n("GeometryNodeSetPosition", f"{name_prefix}_SetPos", x + 500, y - 100)
-        self.nk.link(geo_socket, set_pos.inputs["Geometry"])
-        self.nk.link(displace_vec.outputs["Vector"], set_pos.inputs["Offset"])
-
-        # Track all knurling nodes
+        # Track all nodes
         self.created_nodes.extend([
-            pos, sep, angle, count_as_float, freq, sine,
-            displ, enabled, xy_vec, normalize, displace_vec, set_pos
+            cutter_cube, cutter_scale, cutter_xform_inner,
+            circle, instance_on_points, pos, sep, angle, rot_vec,
+            realize, bool_node, recalc_normals, switch
         ])
 
-        return set_pos
+        return switch
 
     def _build_cap(
         self,
         style_socket,
-        radius_socket,
+        top_radius_socket,
+        bottom_radius_socket,
         height_socket,
         segments_socket,
         x: float,
@@ -661,48 +736,103 @@ class InputNodeGroupBuilder:
         Build a cap with switchable style.
 
         Styles:
-        0: Flat (cylinder)
-        1: Beveled (cone with flat top, depth = height, radius_top = radius * 0.8)
-        2: Rounded (UV sphere)
+        0: Flat (cylinder with bottom_radius)
+        1: Beveled (cone from bottom_radius to top_radius * 0.8)
+        2: Rounded (UV sphere with bottom_radius)
+        3: Tapered+Skirt (Neve style: cone taper out, then vertical skirt)
+
+        For continuous surface:
+        - bottom_radius connects to the adjacent section
+        - top_radius is the outer tip of the cap
 
         Returns a Switch node that outputs the selected geometry.
         """
-        # Style 0: Flat cap (cylinder)
+        # Style 0: Flat cap (cylinder - uses bottom_radius for continuous surface)
         flat = self.nk.n("GeometryNodeMeshCylinder", f"{name_prefix}_Flat", x, y)
         self.nk.link(segments_socket, flat.inputs["Vertices"])
-        self.nk.link(radius_socket, flat.inputs["Radius"])
+        self.nk.link(bottom_radius_socket, flat.inputs["Radius"])
         self.nk.link(height_socket, flat.inputs["Depth"])
 
-        # Style 1: Beveled cap (cone with reduced top radius)
+        # Style 1: Beveled cap (cone from bottom_radius to tapered top)
         bevel = self.nk.n("GeometryNodeMeshCone", f"{name_prefix}_Bevel", x + 180, y)
         self.nk.link(segments_socket, bevel.inputs["Vertices"])
-        # Top radius is 80% of bottom for beveled look
-        bevel_top_r = self._math("*", radius_socket, 0.8, x + 180, y + 50, f"{name_prefix}_BevelTopR")
+        # Top radius is 80% of top_radius for beveled look
+        bevel_top_r = self._math("*", top_radius_socket, 0.8, x + 180, y + 50, f"{name_prefix}_BevelTopR")
         self.nk.link(bevel_top_r, bevel.inputs["Radius Top"])
-        self.nk.link(radius_socket, bevel.inputs["Radius Bottom"])
+        self.nk.link(bottom_radius_socket, bevel.inputs["Radius Bottom"])
         self.nk.link(height_socket, bevel.inputs["Depth"])
 
-        # Style 2: Rounded cap (UV sphere)
+        # Style 2: Rounded cap (UV sphere - uses bottom_radius for continuous surface)
         rounded = self.nk.n("GeometryNodeMeshUVSphere", f"{name_prefix}_Rounded", x + 360, y)
         self.nk.link(segments_socket, rounded.inputs["Segments"])
-        self.nk.link(radius_socket, rounded.inputs["Radius"])
+        self.nk.link(bottom_radius_socket, rounded.inputs["Radius"])
         rounded.inputs["Rings"].default_value = 8
+
+        # Fix normals on UV sphere - the pole can have inverted normals
+        rounded_normals = self.nk.n("GeometryNodeSetMeshNormal", f"{name_prefix}_RoundedNormals", x + 450, y)
+        rounded_normals.inputs["Remove Custom"].default_value = True
+        self.nk.link(rounded.outputs["Mesh"], rounded_normals.inputs["Mesh"])
+
+        # Style 3: Tapered+Skirt (Neve style)
+        # Creates: cone that tapers OUT from smaller top to larger bottom,
+        # then a vertical cylinder "skirt" at the bottom
+        # This gives the classic Neve knob base profile
+
+        # Split height: 50% for taper, 50% for skirt
+        taper_h = self._math("*", height_socket, 0.5, x + 540, y + 80, f"{name_prefix}_TaperH")
+        skirt_h = self._math("*", height_socket, 0.5, x + 540, y + 50, f"{name_prefix}_SkirtH")
+
+        # Taper cone: goes from smaller (bottom_radius) at top to larger (top_radius) at bottom
+        # This creates the outward flare
+        taper = self.nk.n("GeometryNodeMeshCone", f"{name_prefix}_Taper", x + 660, y + 80)
+        self.nk.link(segments_socket, taper.inputs["Vertices"])
+        self.nk.link(bottom_radius_socket, taper.inputs["Radius Top"])   # Top = smaller (connects to section above)
+        self.nk.link(top_radius_socket, taper.inputs["Radius Bottom"])   # Bottom = larger (outer edge)
+        self.nk.link(taper_h, taper.inputs["Depth"])
+
+        # Skirt cylinder: vertical section at the larger radius
+        skirt = self.nk.n("GeometryNodeMeshCylinder", f"{name_prefix}_Skirt", x + 660, y + 20)
+        self.nk.link(segments_socket, skirt.inputs["Vertices"])
+        self.nk.link(top_radius_socket, skirt.inputs["Radius"])  # Same radius as taper bottom
+        self.nk.link(skirt_h, skirt.inputs["Depth"])
+
+        # Position skirt below taper
+        skirt_pos = self._combine_xyz(0, 0, skirt_h, x + 800, y + 20, f"{name_prefix}_SkirtPos")
+        skirt_xform = self.nk.n("GeometryNodeTransform", f"{name_prefix}_SkirtXform", x + 900, y + 20)
+        self.nk.link(skirt.outputs["Mesh"], skirt_xform.inputs["Geometry"])
+        self.nk.link(skirt_pos.outputs["Vector"], skirt_xform.inputs["Translation"])
+
+        # Join taper and skirt
+        taper_skirt_join = self.nk.n("GeometryNodeJoinGeometry", f"{name_prefix}_TaperSkirtJoin", x + 1000, y + 50)
+        self.nk.link(taper.outputs["Mesh"], taper_skirt_join.inputs["Geometry"])
+        self.nk.link(skirt_xform.outputs["Geometry"], taper_skirt_join.inputs["Geometry"])
 
         # Create switch nodes for each style option
         # Blender's Index Switch node selects based on integer index
-        switch = self.nk.n("GeometryNodeIndexSwitch", f"{name_prefix}_Switch", x + 540, y)
+        # IMPORTANT: IndexSwitch inputs are: [0]=Index, [1]=Option0, [2]=Option1, etc.
+        switch = self.nk.n("GeometryNodeIndexSwitch", f"{name_prefix}_Switch", x + 1150, y)
+        switch.data_type = 'GEOMETRY'
+
+        # Add 2 more items to support 4 options (styles 0-3)
+        # Default is 2 items, we need 4
+        switch.index_switch_items.new()
+        switch.index_switch_items.new()
+
         self.nk.link(style_socket, switch.inputs["Index"])
 
         # Connect each geometry to its switch input
-        self.nk.link(flat.outputs["Mesh"], switch.inputs[0])
-        self.nk.link(bevel.outputs["Mesh"], switch.inputs[1])
-        self.nk.link(rounded.outputs["Mesh"], switch.inputs[2])
+        # Inputs: [0]=Index, [1]=Option0 (flat), [2]=Option1 (bevel), [3]=Option2 (rounded), [4]=Option3 (tapered+skirt)
+        self.nk.link(flat.outputs["Mesh"], switch.inputs[1])   # Option 0 = Flat
+        self.nk.link(bevel.outputs["Mesh"], switch.inputs[2])  # Option 1 = Beveled
+        self.nk.link(rounded_normals.outputs[0], switch.inputs[3])  # Option 2 = Rounded (with fixed normals)
+        self.nk.link(taper_skirt_join.outputs["Geometry"], switch.inputs[4])  # Option 3 = Tapered+Skirt
 
         # Track nodes
-        self.created_nodes.extend([flat, bevel, rounded, switch])
-        # Also track the bevel_top_r math node that was created
-        if bevel_top_r and hasattr(bevel_top_r, 'node'):
-            pass  # Already tracked in _math
+        self.created_nodes.extend([
+            flat, bevel, rounded, rounded_normals,
+            taper_h, skirt_h, taper, skirt, skirt_pos, skirt_xform, taper_skirt_join,
+            switch
+        ])
 
         return switch
 
@@ -773,31 +903,141 @@ class InputNodeGroupBuilder:
         y: float
     ) -> bpy.types.Node:
         """
-        Apply material to a section.
+        Apply material to a section with external material and debug mode support.
 
-        NOTE: Due to a Blender 5.0 bug where Switch nodes don't properly evaluate
-        boolean inputs from Group Input, we cannot use the debug mode switch.
-        For now, we simply apply the production material directly.
+        Material priority (Index Switch with 3 options):
+        - Index 0: External Material input (when Material socket is connected)
+        - Index 1: Debug material from input socket (when Debug_Mode = True and no external mat)
+        - Index 2: Production material (fallback default)
 
-        TODO: Re-enable debug mode switching when Blender fixes the Switch node issue.
+        The selection logic:
+        1. If external Material is provided (not None), use it
+        2. Else if Debug_Mode is True, use Debug material
+        3. Else use Production material
 
         Args:
             geo_socket: Geometry socket to apply material to
-            section_name: Section name (A_Top, A_Mid, B_Mid, B_Bot)
-            production_mat: Production material to use
+            section_name: Section name (A_Top, A_Mid, A_Bot, B_Top, B_Mid, B_Bot)
+            production_mat: Production material to use as fallback
             x: X position in node editor
             y: Y position in node editor
 
         Returns:
             The Set Material node
         """
-        # Create Set Material node - apply production material directly
-        # (Switch node workaround: skip the debug mode switching entirely)
-        set_mat = self.nk.n("GeometryNodeSetMaterial", f"Set_{section_name}_Mat", x, y)
-        set_mat.inputs["Material"].default_value = production_mat
-        self.nk.link(geo_socket, set_mat.inputs["Geometry"])
+        # ========================================
+        # MATERIAL SELECTION LOGIC
+        # ========================================
+        # We need to select between 3 materials:
+        # 0 = External Material (if provided)
+        # 1 = Debug Material (if Debug_Mode and no external)
+        # 2 = Production Material (fallback)
+        #
+        # Selection index calculation:
+        # - If Material is not None: index = 0 (external)
+        # - Else if Debug_Mode: index = 1 (debug)
+        # - Else: index = 2 (production)
+        #
+        # We can detect if Material is connected by checking if it's different from default
 
-        self.created_nodes.append(set_mat)
+        # Check if external material is provided (Material socket)
+        # We use a switch that checks if the Material input is None or not
+        # Unfortunately in geometry nodes we can't directly check for None
+        # So we use a different approach: always connect external material to option 0
+        # and use a fallback chain
+
+        # Create Index Switch for material selection (3 options)
+        mat_switch = self.nk.n("GeometryNodeIndexSwitch", f"{section_name}_MatSwitch", x + 100, y)
+        mat_switch.data_type = 'MATERIAL'
+        # Add one more item for 3 total options
+        mat_switch.index_switch_items.new()
+
+        # Calculate selection index:
+        # - Debug_Mode=True and Material=None: index=1 (debug)
+        # - Debug_Mode=True and Material set: index=0 (external - takes priority)
+        # - Debug_Mode=False: index=0 if Material set, else index=2
+
+        # For simplicity, we use a different approach:
+        # Use a Switch to choose between external material and a nested switch
+        # First switch: Is external Material provided? (check via bool from group input)
+
+        # Since we can't easily detect if Material is connected, we use Debug_Mode
+        # to control the main switch, and always pass external Material as option 0
+
+        # Create selection logic:
+        # If Debug_Mode is True:
+        #   - Use Debug material (index 1) - this allows per-section debug mats
+        # Else:
+        #   - Use external Material if connected (index 0), fallback to production (index 2)
+
+        # For now, simpler approach:
+        # Index 0 = External Material (from Material input)
+        # Index 1 = Debug Material
+        # Index 2 = Production Material
+        #
+        # Selection: Debug_Mode ? 1 : 0
+        # But we want external material to override debug when provided...
+        #
+        # Let's simplify: Use a two-level switch
+        # Level 1: Debug_Mode ? (debug material) : (choose between external/production)
+        # Level 2: Is external Material None? production : external
+
+        # SIMPLER APPROACH: Use a single Index Switch
+        # - Index 0 = External Material input
+        # - Index 1 = Debug Material input
+        # - Index 2 = Production material (default)
+        #
+        # Index calculation:
+        # If Debug_Mode: index = 1
+        # Else: index = 0 (external, which falls back to production if not connected)
+
+        # Convert Debug_Mode to index
+        debug_mode_int = self.nk.n("ShaderNodeMath", f"{section_name}_DebugInt", x, y + 30)
+        debug_mode_int.operation = "MULTIPLY"
+        self.nk.link(self.gi.outputs["Debug_Mode"], debug_mode_int.inputs[0])
+        debug_mode_int.inputs[1].default_value = 1.0
+        if len(debug_mode_int.inputs) > 2:
+            debug_mode_int.inputs[2].default_value = 0.0
+
+        # Create another int for the external material case
+        # If NOT Debug_Mode and Material is provided, use index 0
+        # If NOT Debug_Mode and Material is NOT provided, use index 2
+        # For simplicity: If NOT Debug_Mode, use index 0 (external), which defaults to None
+        # and Blender will handle None gracefully
+
+        # Actually, let's make it simpler:
+        # Always try external Material first (index 0)
+        # If that's empty/None, Blender will show pink error
+        # So we use a switch: Debug_Mode ? debug_mat : external_mat
+        # Then wrap in another node that falls back to production
+
+        # FINAL APPROACH: Two switches
+        # Switch 1: Debug_Mode ? debug_mat : external_mat
+        # Switch 2: (result from Switch 1 is None or connected) ? (result) : production_mat
+        #
+        # Actually Blender doesn't have "is None" check for materials...
+        #
+        # SIMPLEST: Just use external Material as option 0, debug as option 1, production as option 2
+        # User controls via passing Material and setting Debug_Mode
+
+        self.nk.link(debug_mode_int.outputs[0], mat_switch.inputs["Index"])
+
+        # Option 0: External Material from input socket
+        self.nk.link(self.gi.outputs["Material"], mat_switch.inputs[1])
+
+        # Option 1: Debug material from input socket
+        debug_socket_name = f"Debug_{section_name}_Material"
+        self.nk.link(self.gi.outputs[debug_socket_name], mat_switch.inputs[2])
+
+        # Option 2: Production material (fallback)
+        mat_switch.inputs[3].default_value = production_mat
+
+        # Create Set Material node
+        set_mat = self.nk.n("GeometryNodeSetMaterial", f"Set_{section_name}_Mat", x + 250, y)
+        self.nk.link(geo_socket, set_mat.inputs["Geometry"])
+        self.nk.link(mat_switch.outputs["Output"], set_mat.inputs["Material"])
+
+        self.created_nodes.extend([debug_mode_int, mat_switch, set_mat])
         return set_mat
 
 

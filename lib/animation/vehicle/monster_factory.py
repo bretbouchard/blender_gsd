@@ -24,7 +24,7 @@ Usage:
 import bpy
 from dataclasses import dataclass, field
 from typing import List, Dict, Optional, Tuple, Any
-from math import pi, sin, cos, random
+from math import pi, sin, cos
 from mathutils import Vector, Matrix, Euler
 from enum import Enum
 import random

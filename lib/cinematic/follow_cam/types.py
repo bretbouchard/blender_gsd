@@ -187,6 +187,105 @@ class ObstacleInfo:
 
 
 @dataclass
+class OperatorBehavior:
+    """
+    Configuration for human-like camera operator behavior.
+
+    Simulates skilled camera operator tendencies including:
+    - Reaction delay (human response time)
+    - Angle preferences (preferred shooting angles)
+    - Natural breathing (subtle movement)
+    - Decision weights (priority ranking)
+
+    Part of Phase 8.2 - Obstacle Avoidance
+    Beads: blender_gsd-57
+
+    Attributes:
+        reaction_delay: Human response time in seconds
+        avoid_jerky_motion: Prevent sudden camera movements
+        min_movement_time: Minimum duration for any adjustment
+        horizontal_angle_range: Preferred horizontal shooting angles (degrees)
+        vertical_angle_range: Preferred vertical shooting angles (degrees)
+        breathing_enabled: Enable subtle breathing movement
+        breathing_amplitude: Breathing movement amplitude in meters
+        breathing_frequency: Breathing frequency in Hz
+        weight_visibility: Priority weight for visibility
+        weight_composition: Priority weight for composition
+        weight_smoothness: Priority weight for smoothness
+        weight_distance: Priority weight for distance maintenance
+        oscillation_threshold: Minimum distance change before response
+        position_history_size: Number of positions to track for oscillation
+        max_direction_changes: Max direction changes per second before damping
+    """
+
+    # Human response simulation
+    reaction_delay: float = 0.1  # Seconds - human reaction time
+    avoid_jerky_motion: bool = True
+    min_movement_time: float = 0.3  # Seconds for any adjustment
+
+    # Angle preferences (degrees)
+    horizontal_angle_range: Tuple[float, float] = (-45.0, 45.0)
+    vertical_angle_range: Tuple[float, float] = (10.0, 30.0)
+
+    # Natural breathing
+    breathing_enabled: bool = True
+    breathing_amplitude: float = 0.01  # Meters
+    breathing_frequency: float = 0.25  # Hz (breaths per second)
+
+    # Decision weights (must sum to roughly 2.5 for normalization)
+    weight_visibility: float = 1.0
+    weight_composition: float = 0.7
+    weight_smoothness: float = 0.5
+    weight_distance: float = 0.3
+
+    # Anti-oscillation
+    oscillation_threshold: float = 0.1  # Min distance before response
+    position_history_size: int = 10
+    max_direction_changes: int = 3  # Per second before damping
+
+    def to_dict(self) -> Dict[str, Any]:
+        """Convert to dictionary for serialization."""
+        return {
+            "reaction_delay": self.reaction_delay,
+            "avoid_jerky_motion": self.avoid_jerky_motion,
+            "min_movement_time": self.min_movement_time,
+            "horizontal_angle_range": list(self.horizontal_angle_range),
+            "vertical_angle_range": list(self.vertical_angle_range),
+            "breathing_enabled": self.breathing_enabled,
+            "breathing_amplitude": self.breathing_amplitude,
+            "breathing_frequency": self.breathing_frequency,
+            "weight_visibility": self.weight_visibility,
+            "weight_composition": self.weight_composition,
+            "weight_smoothness": self.weight_smoothness,
+            "weight_distance": self.weight_distance,
+            "oscillation_threshold": self.oscillation_threshold,
+            "position_history_size": self.position_history_size,
+            "max_direction_changes": self.max_direction_changes,
+        }
+
+    @classmethod
+    def from_dict(cls, data: Dict[str, Any]) -> "OperatorBehavior":
+        """Create from dictionary."""
+        return cls(
+            reaction_delay=data.get("reaction_delay", 0.1),
+            avoid_jerky_motion=data.get("avoid_jerky_motion", True),
+            min_movement_time=data.get("min_movement_time", 0.3),
+            horizontal_angle_range=tuple(data.get("horizontal_angle_range", (-45.0, 45.0))),
+            vertical_angle_range=tuple(data.get("vertical_angle_range", (10.0, 30.0))),
+            breathing_enabled=data.get("breathing_enabled", True),
+            breathing_amplitude=data.get("breathing_amplitude", 0.01),
+            breathing_frequency=data.get("breathing_frequency", 0.25),
+            weight_visibility=data.get("weight_visibility", 1.0),
+            weight_composition=data.get("weight_composition", 0.7),
+            weight_smoothness=data.get("weight_smoothness", 0.5),
+            weight_distance=data.get("weight_distance", 0.3),
+            oscillation_threshold=data.get("oscillation_threshold", 0.1),
+            position_history_size=data.get("position_history_size", 10),
+            max_direction_changes=data.get("max_direction_changes", 3),
+        )
+
+
+@dataclass
 class FollowCameraConfig:
     """
     Complete configuration for follow camera system.
@@ -311,6 +410,9 @@ class FollowCameraConfig:
     update_frequency: int = 60
     prediction_enabled: bool = True
 
+    # Operator behavior (Phase 8.2)
+    operator_behavior: OperatorBehavior = field(default_factory=OperatorBehavior)
+
     def to_dict(self) -> Dict[str, Any]:
         """Convert to dictionary for serialization."""
         return {
@@ -348,6 +450,7 @@ class FollowCameraConfig:
             "headroom": self.headroom,
             "update_frequency": self.update_frequency,
             "prediction_enabled": self.prediction_enabled,
+            "operator_behavior": self.operator_behavior.to_dict(),
         }
 
     @classmethod
@@ -391,6 +494,7 @@ class FollowCameraConfig:
             headroom=data.get("headroom", 1.1),
             update_frequency=data.get("update_frequency", 60),
             prediction_enabled=data.get("prediction_enabled", True),
+            operator_behavior=OperatorBehavior.from_dict(data.get("operator_behavior", {})),
         )
 
 

@@ -488,3 +488,254 @@ def get_debug_stats(
         "collision_enabled": config.collision_enabled,
         "prediction_enabled": config.prediction_enabled,
     }
+
+
+# =============================================================================
+# FRAME-BY-FRAME ANALYSIS (Phase 8.4)
+# =============================================================================
+
+@dataclass
+class FrameAnalysis:
+    """
+    Analysis data for a single frame.
+
+    Attributes:
+        frame: Frame number
+        timestamp: Time in seconds
+        camera_position: Camera world position
+        camera_rotation: Camera Euler rotation
+        target_position: Target world position
+        target_velocity: Target velocity vector
+        mode: Current follow mode
+        distance: Distance to target
+        framing_quality: Framing quality score (0-1)
+        obstacle_count: Number of obstacles detected
+        is_occluded: Whether target is occluded
+        oscillation_detected: Whether oscillation was detected
+        damping_applied: Damping factor applied
+        transition_active: Whether in transition
+        transition_progress: Transition progress (0-1)
+        warnings: List of warning messages
+    """
+    frame: int = 0
+    timestamp: float = 0.0
+    camera_position: Tuple[float, float, float] = (0.0, 0.0, 0.0)
+    camera_rotation: Tuple[float, float, float] = (0.0, 0.0, 0.0)
+    target_position: Tuple[float, float, float] = (0.0, 0.0, 0.0)
+    target_velocity: Tuple[float, float, float] = (0.0, 0.0, 0.0)
+    mode: str = "over_shoulder"
+    distance: float = 3.0
+    framing_quality: float = 1.0
+    obstacle_count: int = 0
+    is_occluded: bool = False
+    oscillation_detected: bool = False
+    damping_applied: float = 0.0
+    transition_active: bool = False
+    transition_progress: float = 0.0
+    warnings: List[str] = field(default_factory=list)
+
+    def to_dict(self) -> Dict[str, Any]:
+        """Convert to dictionary for JSON serialization."""
+        return {
+            "frame": self.frame,
+            "timestamp": self.timestamp,
+            "camera_position": list(self.camera_position),
+            "camera_rotation": list(self.camera_rotation),
+            "target_position": list(self.target_position),
+            "target_velocity": list(self.target_velocity),
+            "mode": self.mode,
+            "distance": self.distance,
+            "framing_quality": self.framing_quality,
+            "obstacle_count": self.obstacle_count,
+            "is_occluded": self.is_occluded,
+            "oscillation_detected": self.oscillation_detected,
+            "damping_applied": self.damping_applied,
+            "transition_active": self.transition_active,
+            "transition_progress": self.transition_progress,
+            "warnings": self.warnings,
+        }
+
+
+class FrameAnalyzer:
+    """
+    Records and analyzes camera behavior frame-by-frame.
+
+    Collects detailed per-frame data for troubleshooting
+    and optimization.
+
+    Usage:
+        analyzer = FrameAnalyzer()
+
+        # Each frame
+        analysis = analyzer.analyze_frame(
+            frame=frame_number,
+            camera_state=current_state,
+            config=config,
+            framing_quality=quality,
+            damping=damping_factor,
+        )
+
+        # Get report
+        report = analyzer.generate_report()
+        analyzer.save_report("analysis.json")
+    """
+
+    def __init__(self, max_frames: int = 10000):
+        """
+        Initialize frame analyzer.
+
+        Args:
+            max_frames: Maximum frames to record
+        """
+        self._frames: List[FrameAnalysis] = []
+        self._max_frames = max_frames
+
+    def analyze_frame(
+        self,
+        frame: int,
+        camera_state: CameraState,
+        config: FollowCameraConfig,
+        framing_quality: float = 1.0,
+        damping: float = 0.0,
+        oscillation_detected: bool = False,
+        is_occluded: bool = False,
+        fps: float = 60.0,
+    ) -> FrameAnalysis:
+        """
+        Analyze a single frame.
+
+        Args:
+            frame: Frame number
+            camera_state: Current camera state
+            config: Camera configuration
+            framing_quality: Current framing quality (0-1)
+            damping: Damping factor applied
+            oscillation_detected: Whether oscillation was detected
+            is_occluded: Whether target is occluded
+            fps: Frames per second for timestamp calculation
+
+        Returns:
+            FrameAnalysis with recorded data
+        """
+        warnings = []
+
+        # Generate warnings for problematic conditions
+        if is_occluded:
+            warnings.append("Target occluded")
+
+        if oscillation_detected:
+            warnings.append("Oscillation detected")
+
+        if damping > 0.5:
+            warnings.append(f"High damping: {damping:.2f}")
+
+        if framing_quality < 0.5:
+            warnings.append(f"Low framing quality: {framing_quality:.2f}")
+
+        if camera_state.distance < config.min_distance:
+            warnings.append(f"Below min distance: {camera_state.distance:.2f}")
+
+        if camera_state.distance > config.max_distance:
+            warnings.append(f"Above max distance: {camera_state.distance:.2f}")
+
+        analysis = FrameAnalysis(
+            frame=frame,
+            timestamp=frame / fps,
+            camera_position=camera_state.position,
+            camera_rotation=camera_state.rotation,
+            target_position=camera_state.target_position,
+            target_velocity=camera_state.target_velocity,
+            mode=camera_state.current_mode.value,
+            distance=camera_state.distance,
+            framing_quality=framing_quality,
+            obstacle_count=len(camera_state.obstacles),
+            is_occluded=is_occluded,
+            oscillation_detected=oscillation_detected,
+            damping_applied=damping,
+            transition_active=camera_state.is_transitioning,
+            transition_progress=camera_state.transition_progress,
+            warnings=warnings,
+        )
+
+        # Add to history
+        self._frames.append(analysis)
+
+        # Trim if needed
+        if len(self._frames) > self._max_frames:
+            self._frames.pop(0)
+
+        return analysis
+
+    def generate_report(self) -> Dict[str, Any]:
+        """
+        Generate analysis report.
+
+        Returns:
+            Dictionary with statistics and problem frames
+        """
+        if not self._frames:
+            return {"error": "No frames recorded"}
+
+        # Calculate statistics
+        avg_quality = sum(f.framing_quality for f in self._frames) / len(self._frames)
+        avg_distance = sum(f.distance for f in self._frames) / len(self._frames)
+        occluded_frames = sum(1 for f in self._frames if f.is_occluded)
+        oscillation_frames = sum(1 for f in self._frames if f.oscillation_detected)
+        transition_frames = sum(1 for f in self._frames if f.transition_active)
+
+        # Find problem frames
+        problem_frames = [
+            f.to_dict() for f in self._frames
+            if f.is_occluded or f.oscillation_detected or len(f.warnings) > 0
+        ]
+
+        # Calculate mode distribution
+        mode_counts: Dict[str, int] = {}
+        for f in self._frames:
+            mode_counts[f.mode] = mode_counts.get(f.mode, 0) + 1
+
+        return {
+            "summary": {
+                "total_frames": len(self._frames),
+                "duration_seconds": self._frames[-1].timestamp if self._frames else 0,
+                "average_framing_quality": avg_quality,
+                "average_distance": avg_distance,
+                "occluded_frame_count": occluded_frames,
+                "occluded_percentage": (occluded_frames / len(self._frames)) * 100,
+                "oscillation_frame_count": oscillation_frames,
+                "oscillation_percentage": (oscillation_frames / len(self._frames)) * 100,
+                "transition_frame_count": transition_frames,
+                "problem_frame_count": len(problem_frames),
+            },
+            "mode_distribution": mode_counts,
+            "problem_frames": problem_frames[:100],  # Limit to 100 for report
+        }
+
+    def save_report(self, filepath: str) -> bool:
+        """
+        Save report to JSON file.
+
+        Args:
+            filepath: Path to save report
+
+        Returns:
+            True if successful
+        """
+        import json
+
+        try:
+            report = self.generate_report()
+            with open(filepath, 'w') as f:
+                json.dump(report, f, indent=2)
+            return True
+        except Exception as e:
+            print(f"Failed to save report: {e}")
+            return False
+
+    def get_frames(self) -> List[FrameAnalysis]:
+        """Get all recorded frames."""
+        return self._frames.copy()
+
+    def clear(self) -> None:
+        """Clear all recorded frames."""
+        self._frames.clear()
