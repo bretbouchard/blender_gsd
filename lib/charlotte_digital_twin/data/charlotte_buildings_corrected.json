@@ -1,0 +1,278 @@
+{
+  "metadata": {
+    "source": "CTBUH cross-referenced with OSM",
+    "total_buildings": 10,
+    "errors_corrected": 5
+  },
+  "ctbuh_verified": {
+    "Bank of America Corporate Center": {
+      "height_m": 265.0,
+      "height_ft": 871.0,
+      "floors": 60,
+      "year": 1992,
+      "address": "100 North Tryon Street",
+      "notes": "Tallest in NC, CTBUH verified"
+    },
+    "550 South Tryon": {
+      "height_m": 240.0,
+      "height_ft": 786.5,
+      "floors": 48,
+      "year": 2010,
+      "address": "550 South Tryon Street",
+      "notes": "Formerly Duke Energy Center, CTBUH verified"
+    },
+    "Truist Center": {
+      "height_m": 201.0,
+      "height_ft": 659.0,
+      "floors": 47,
+      "year": 2002,
+      "address": "214 North Tryon Street",
+      "notes": "Formerly Hearst Tower, CTBUH verified"
+    },
+    "Bank of America Tower": {
+      "height_m": 193.0,
+      "height_ft": 632.0,
+      "floors": 33,
+      "year": 2019,
+      "address": "150 North College Street",
+      "notes": "CTBUH verified"
+    },
+    "Duke Energy Plaza": {
+      "height_m": 192.0,
+      "height_ft": 629.0,
+      "floors": 40,
+      "year": 2023,
+      "address": "400 South Tryon Street",
+      "notes": "Newest addition, CTBUH verified"
+    },
+    "One Wells Fargo Center": {
+      "height_m": 179.0,
+      "height_ft": 588.0,
+      "floors": 42,
+      "year": 1988,
+      "address": "301 South College Street",
+      "notes": "Nicknamed 'The Jukebox', CTBUH verified"
+    },
+    "The Vue": {
+      "height_m": 176.0,
+      "height_ft": 576.0,
+      "floors": 51,
+      "year": 2010,
+      "address": "227 East 5th Street",
+      "notes": "Tallest residential in Charlotte, CTBUH verified"
+    },
+    "Three Wells Fargo Center": {
+      "height_m": 137.0,
+      "height_ft": 449.0,
+      "floors": 32,
+      "year": 2000,
+      "address": "401 South College Street",
+      "notes": "CTBUH verified"
+    },
+    "Fifth Third Center": {
+      "height_m": 136.0,
+      "height_ft": 446.0,
+      "floors": 30,
+      "year": 1997,
+      "address": "201 North Tryon Street",
+      "notes": "CTBUH verified"
+    },
+    "Museum Tower": {
+      "height_m": 138.6,
+      "height_ft": 455.0,
+      "floors": 43,
+      "year": 2019,
+      "address": "401 Graham Street",
+      "notes": "CTBUH verified"
+    }
+  },
+  "corrected_buildings": [
+    {
+      "name": "Bank of America Corporate Center",
+      "height_m": 265.0,
+      "height_ft": 871.0,
+      "floors": 60,
+      "year_built": 1992,
+      "address": "100 North Tryon Street",
+      "source": "CTBUH",
+      "osm_id": 341587198,
+      "osm_name": "Bank of America",
+      "osm_height": "265",
+      "osm_floors": "88",
+      "corrected": true,
+      "notes": "Tallest in NC, CTBUH verified"
+    },
+    {
+      "name": "550 South Tryon",
+      "height_m": 240.0,
+      "height_ft": 786.5,
+      "floors": 48,
+      "year_built": 2010,
+      "address": "550 South Tryon Street",
+      "source": "CTBUH",
+      "osm_id": 120628260,
+      "osm_name": "550 South Tryon",
+      "osm_height": "57",
+      "osm_floors": "54",
+      "corrected": true,
+      "notes": "Formerly Duke Energy Center, CTBUH verified"
+    },
+    {
+      "name": "Truist Center",
+      "height_m": 201.0,
+      "height_ft": 659.0,
+      "floors": 47,
+      "year_built": 2002,
+      "address": "214 North Tryon Street",
+      "source": "CTBUH",
+      "osm_id": 131139746,
+      "osm_name": "Truist Center",
+      "osm_height": "200",
+      "osm_floors": "47",
+      "corrected": true,
+      "notes": "Formerly Hearst Tower, CTBUH verified"
+    },
+    {
+      "name": "Bank of America Tower",
+      "height_m": 193.0,
+      "height_ft": 632.0,
+      "floors": 33,
+      "year_built": 2019,
+      "address": "150 North College Street",
+      "source": "CTBUH",
+      "osm_id": 341587198,
+      "osm_name": "Bank of America",
+      "osm_height": "265",
+      "osm_floors": "88",
+      "corrected": true,
+      "notes": "CTBUH verified"
+    },
+    {
+      "name": "Duke Energy Plaza",
+      "height_m": 192.0,
+      "height_ft": 629.0,
+      "floors": 40,
+      "year_built": 2023,
+      "address": "400 South Tryon Street",
+      "source": "CTBUH",
+      "osm_id": 461397324,
+      "osm_name": "Duke Energy",
+      "osm_height": "74",
+      "osm_floors": "13",
+      "corrected": true,
+      "notes": "Newest addition, CTBUH verified"
+    },
+    {
+      "name": "One Wells Fargo Center",
+      "height_m": 179.0,
+      "height_ft": 588.0,
+      "floors": 42,
+      "year_built": 1988,
+      "address": "301 South College Street",
+      "source": "CTBUH",
+      "osm_id": null,
+      "osm_name": null,
+      "osm_height": null,
+      "osm_floors": null,
+      "corrected": true,
+      "notes": "Nicknamed 'The Jukebox', CTBUH verified"
+    },
+    {
+      "name": "The Vue",
+      "height_m": 176.0,
+      "height_ft": 576.0,
+      "floors": 51,
+      "year_built": 2010,
+      "address": "227 East 5th Street",
+      "source": "CTBUH",
+      "osm_id": 498311840,
+      "osm_name": "The VUE",
+      "osm_height": "180",
+      "osm_floors": "",
+      "corrected": true,
+      "notes": "Tallest residential in Charlotte, CTBUH verified"
+    },
+    {
+      "name": "Three Wells Fargo Center",
+      "height_m": 137.0,
+      "height_ft": 449.0,
+      "floors": 32,
+      "year_built": 2000,
+      "address": "401 South College Street",
+      "source": "CTBUH",
+      "osm_id": 1046919930,
+      "osm_name": "Three Wells Fargo Center",
+      "osm_height": "137",
+      "osm_floors": "32",
+      "corrected": true,
+      "notes": "CTBUH verified"
+    },
+    {
+      "name": "Fifth Third Center",
+      "height_m": 136.0,
+      "height_ft": 446.0,
+      "floors": 30,
+      "year_built": 1997,
+      "address": "201 North Tryon Street",
+      "source": "CTBUH",
+      "osm_id": 498314236,
+      "osm_name": "Fifth Third Center",
+      "osm_height": "136",
+      "osm_floors": "30",
+      "corrected": true,
+      "notes": "CTBUH verified"
+    },
+    {
+      "name": "Museum Tower",
+      "height_m": 138.6,
+      "height_ft": 455.0,
+      "floors": 43,
+      "year_built": 2019,
+      "address": "401 Graham Street",
+      "source": "CTBUH",
+      "osm_id": 649245473,
+      "osm_name": "Museum Tower",
+      "osm_height": "138.6",
+      "osm_floors": "43",
+      "corrected": true,
+      "notes": "CTBUH verified"
+    }
+  ],
+  "errors_found": [
+    {
+      "osm_name": "550 South Tryon",
+      "ctbuh_name": "550 South Tryon",
+      "field": "height",
+      "osm_value": "57.0m",
+      "correct_value": "240.0m (786.5ft)"
+    },
+    {
+      "osm_name": "550 South Tryon",
+      "ctbuh_name": "550 South Tryon",
+      "field": "floors",
+      "osm_value": 54,
+      "correct_value": 48
+    },
+    {
+      "osm_name": "Bank of America",
+      "ctbuh_name": "Bank of America Corporate Center",
+      "field": "floors",
+      "osm_value": 88,
+      "correct_value": 60
+    },
+    {
+      "osm_name": "Duke Energy",
+      "ctbuh_name": "Duke Energy Plaza",
+      "field": "height",
+      "osm_value": "74.0m",
+      "correct_value": "192.0m (629.0ft)"
+    },
+    {
+      "osm_name": "Duke Energy",
+      "ctbuh_name": "Duke Energy Plaza",
+      "field": "floors",
+      "osm_value": 13,
+      "correct_value": 40
+    }
+  ]
+}
