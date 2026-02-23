@@ -19,6 +19,7 @@ from lib.cinematic.light_linking import (
     copy_light_linking,
     is_light_linking_supported,
     BLENDER_40_MIN,
+    BLENDER_AVAILABLE,
 )
 
 
@@ -109,6 +110,7 @@ class TestSetLightExclude:
 class TestGetLightLinks:
     """Tests for querying light linking configuration."""
 
+    @pytest.mark.skipif(BLENDER_AVAILABLE, reason="Test requires Blender to be unavailable, but bpy is mocked")
     def test_blender_unavailable(self):
         """Test returns default dict when Blender not available."""
         result = get_light_links("test_light")
@@ -120,6 +122,7 @@ class TestGetLightLinks:
         assert result["blocker_objects"] == []
         assert result["supported"] is False
 
+    @pytest.mark.skipif(BLENDER_AVAILABLE, reason="Test requires Blender to be unavailable, but bpy is mocked")
     def test_nonexistent_light(self):
         """Test with nonexistent light name."""
         result = get_light_links("nonexistent")

@@ -35,13 +35,13 @@ class TestEnums:
     def test_furniture_material_values(self):
         """Test FurnitureMaterial enum values."""
         assert FurnitureMaterial.WOOD.value == "wood"
-        assert FurnitureMaterial.METAL.value == "metal"
+        assert FurnitureMaterial.STEEL.value == "steel"
         assert FurnitureMaterial.CONCRETE.value == "concrete"
-        assert FurnitureMaterial.PLASTIC.value == "plastic"
+        assert FurnitureMaterial.RECYCLED_PLASTIC.value == "recycled_plastic"
 
     def test_mounting_type_values(self):
         """Test MountingType enum values."""
-        assert MountingType.SURFACE.value == "surface"
+        assert MountingType.SURFACE_MOUNTED.value == "surface_mounted"
         assert MountingType.EMBEDDED.value == "embedded"
         assert MountingType.FREESTANDING.value == "freestanding"
 
@@ -53,9 +53,9 @@ class TestFurnitureSpec:
         """Test creating FurnitureSpec with defaults."""
         spec = FurnitureSpec()
         assert spec.furniture_id == ""
-        assert spec.category == ""
-        assert spec.material == ""
-        assert spec.width == 1.0
+        assert spec.category == "bench"
+        assert spec.materials == []
+        assert spec.width == 1.5
 
     def test_create_with_values(self):
         """Test creating FurnitureSpec with values."""
@@ -63,7 +63,7 @@ class TestFurnitureSpec:
             furniture_id="bench_01",
             category="bench",
             name="Park Bench",
-            material="wood",
+            materials=["wood", "cast_iron"],
             width=1.8,
             depth=0.6,
             height=0.8,
@@ -71,7 +71,7 @@ class TestFurnitureSpec:
         )
         assert spec.furniture_id == "bench_01"
         assert spec.width == 1.8
-        assert spec.material == "wood"
+        assert "wood" in spec.materials
 
     def test_to_dict(self):
         """Test FurnitureSpec serialization."""
@@ -99,7 +99,7 @@ class TestFurnitureInstance:
             spec=spec,
             position=(10.0, 20.0, 0.0),
             rotation=90.0,
-            scale=1.0,
+            zone="sidewalk",
         )
         assert instance.instance_id == "furniture_01"
         assert instance.position == (10.0, 20.0, 0.0)
@@ -178,9 +178,10 @@ class TestFurniturePlacer:
     def test_place_benches_along_path(self):
         """Test placing benches along path."""
         placer = FurniturePlacer()
-        path = [(0, 0), (10, 0), (20, 0), (30, 0)]
+        # place_benches_along_path expects list of (start, end) tuples
+        path_segments = [((0, 0), (10, 0)), ((10, 0), (20, 0)), ((20, 0), (30, 0))]
         benches = placer.place_benches_along_path(
-            path=path,
+            path_segments=path_segments,
             spacing=10.0,
             offset=2.0,
         )
@@ -189,7 +190,7 @@ class TestFurniturePlacer:
     def test_place_benches_empty_path(self):
         """Test placing benches on empty path."""
         placer = FurniturePlacer()
-        benches = placer.place_benches_along_path(path=[])
+        benches = placer.place_benches_along_path(path_segments=[])
         assert len(benches) == 0
 
     def test_place_bollards_along_edge(self):
@@ -205,21 +206,28 @@ class TestFurniturePlacer:
     def test_place_trash_receptacles(self):
         """Test placing trash receptacles."""
         placer = FurniturePlacer()
-        positions = [(0, 0, 0), (10, 0, 0), (20, 0, 0)]
-        receptacles = placer.place_trash_receptacles(positions=positions)
-        assert len(receptacles) == 3
+        # place_trash_receptacles expects bench placements, not positions
+        bench = FurnitureInstance(
+            instance_id="bench_0",
+            spec=BENCH_CATALOG.get("BENCH-MODERN-4FT"),
+            position=(0, 0, 0),
+        )
+        receptacles = placer.place_trash_receptacles(bench_placements=[bench])
+        assert len(receptacles) == 1
 
     def test_place_bike_racks(self):
         """Test placing bike racks."""
         placer = FurniturePlacer()
-        positions = [(0, 0, 0)]
-        racks = placer.place_bike_racks(positions=positions)
+        # place_bike_racks expects list of (x, y) tuples (corners)
+        corners = [(0, 0)]
+        racks = placer.place_bike_racks(corners=corners)
         assert len(racks) == 1
 
     def test_place_planters(self):
         """Test placing planters."""
         placer = FurniturePlacer()
-        positions = [(0, 0, 0), (5, 0, 0)]
+        # place_planters expects list of (x, y) tuples
+        positions = [(0, 0), (5, 0)]
         planters = placer.place_planters(positions=positions)
         assert len(planters) == 2
 
@@ -239,8 +247,10 @@ class TestFurnitureEdgeCases:
     def test_very_long_path(self):
         """Test placing on very long path."""
         placer = FurniturePlacer()
-        path = [(i * 10, 0) for i in range(100)]
-        benches = placer.place_benches_along_path(path=path, spacing=20.0)
+        # Create segments from points
+        points = [(i * 10, 0) for i in range(100)]
+        path_segments = [(points[i], points[i + 1]) for i in range(len(points) - 1)]
+        benches = placer.place_benches_along_path(path_segments=path_segments, spacing=20.0)
         assert len(benches) > 0
 
     def test_very_close_spacing(self):
@@ -253,12 +263,13 @@ class TestFurnitureEdgeCases:
         )
         assert len(bollards) > 0
 
-    def test_rotated_bench(self):
-        """Test placing rotated bench."""
+    def test_alternating_side_benches(self):
+        """Test placing benches with alternating side."""
         placer = FurniturePlacer()
+        path_segments = [((0, 0), (10, 0)), ((10, 0), (20, 0))]
         benches = placer.place_benches_along_path(
-            path=[(0, 0), (10, 0)],
-            rotation_offset=45.0,
+            path_segments=path_segments,
+            side="alternating",
         )
-        if benches:
-            assert benches[0].rotation != 0.0 or benches[0].rotation == 0.0
+        # Check that benches were placed
+        assert isinstance(benches, list)

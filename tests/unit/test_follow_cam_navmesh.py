@@ -18,6 +18,7 @@ from lib.cinematic.follow_cam.navmesh import (
     NavCell,
     smooth_path,
     simplify_path,
+    HAS_BLENDER,
 )
 
 
@@ -137,6 +138,7 @@ class TestNavMesh:
         assert navmesh.config is not None
         compare_numbers(navmesh.config.cell_size, 0.5)
 
+    @pytest.mark.skipif(HAS_BLENDER, reason="Test requires real Blender to be unavailable")
     def test_generate_from_scene_without_blender(self):
         """Generate should return False without Blender."""
         navmesh = NavMesh()

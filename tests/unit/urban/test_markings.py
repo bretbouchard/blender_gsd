@@ -34,10 +34,10 @@ class TestEnums:
     def test_marking_type_values(self):
         """Test MarkingType enum values."""
         assert MarkingType.SOLID_LINE.value == "solid_line"
-        assert MarkingType.DASHED_LINE.value == "dashed_line"
-        assert MarkingType.CROSSWALK.value == "crosswalk"
+        assert MarkingType.BROKEN_LINE.value == "broken_line"
+        assert MarkingType.STANDARD_CROSSWALK.value == "standard_crosswalk"
         assert MarkingType.STOP_BAR.value == "stop_bar"
-        assert MarkingType.ARROW.value == "arrow"
+        assert MarkingType.STRAIGHT_ARROW.value == "straight_arrow"
 
     def test_marking_material_values(self):
         """Test MarkingMaterial enum values."""
@@ -53,7 +53,7 @@ class TestMarkingSpec:
         """Test creating MarkingSpec with defaults."""
         spec = MarkingSpec()
         assert spec.marking_id == ""
-        assert spec.marking_type == ""
+        assert spec.marking_type == "solid_line"
         assert spec.color == "white"
         assert spec.width == 0.15
 
@@ -62,7 +62,6 @@ class TestMarkingSpec:
         spec = MarkingSpec(
             marking_id="solid_white",
             marking_type="solid_line",
-            name="Solid White Line",
             color="white",
             width=0.15,
             material="thermoplastic",
@@ -85,7 +84,8 @@ class TestMarkingInstance:
         """Test creating MarkingInstance with defaults."""
         instance = MarkingInstance()
         assert instance.instance_id == ""
-        assert instance.position == (0.0, 0.0, 0.0)
+        assert instance.start == (0.0, 0.0)
+        assert instance.end == (1.0, 0.0)
         assert instance.rotation == 0.0
 
     def test_create_with_values(self):
@@ -94,12 +94,13 @@ class TestMarkingInstance:
         instance = MarkingInstance(
             instance_id="marking_01",
             spec=spec,
-            position=(10.0, 5.0, 0.0),
+            start=(0.0, 0.0),
+            end=(10.0, 5.0),
             rotation=90.0,
-            scale=1.0,
         )
         assert instance.instance_id == "marking_01"
-        assert instance.position == (10.0, 5.0, 0.0)
+        assert instance.start == (0.0, 0.0)
+        assert instance.end == (10.0, 5.0)
 
     def test_to_dict(self):
         """Test MarkingInstance serialization."""
@@ -114,27 +115,28 @@ class TestCrosswalkGeometry:
     def test_create_default(self):
         """Test creating CrosswalkGeometry with defaults."""
         geom = CrosswalkGeometry()
-        assert geom.style == "zebra"
+        assert geom.marking_type == "CW-CONTINENTAL"
         assert geom.width == 3.0
-        assert geom.stripe_width == 0.4
-        assert geom.stripe_gap == 0.6
+        assert geom.length == 6.0
+        assert geom.stripes == []
 
     def test_create_with_values(self):
         """Test creating CrosswalkGeometry with values."""
         geom = CrosswalkGeometry(
-            style="continental",
+            marking_type="CW-ZEBRA",
             width=4.0,
-            stripe_width=0.5,
-            stripe_gap=0.5,
+            length=8.0,
+            direction=45.0,
         )
-        assert geom.style == "continental"
+        assert geom.marking_type == "CW-ZEBRA"
         assert geom.width == 4.0
+        assert geom.length == 8.0
 
     def test_to_dict(self):
         """Test CrosswalkGeometry serialization."""
-        geom = CrosswalkGeometry(style="ladder")
+        geom = CrosswalkGeometry(marking_type="CW-LADDER")
         result = geom.to_dict()
-        assert result["style"] == "ladder"
+        assert result["marking_type"] == "CW-LADDER"
 
 
 class TestMarkingCatalogs:
@@ -172,21 +174,22 @@ class TestMarkingPlacer:
     def test_place_lane_markings(self):
         """Test placing lane markings."""
         placer = MarkingPlacer()
+        # place_lane_markings expects list of (start, end) tuples
+        road_segments = [((0, 0), (100, 0))]
         markings = placer.place_lane_markings(
-            start=(0, 0),
-            end=(100, 0),
-            marking_type="dashed_line",
-            offset=0.0,
+            road_segments=road_segments,
+            lane_count=2,
+            lane_width=3.5,
         )
         assert isinstance(markings, list)
 
-    def test_place_lane_markings_solid(self):
-        """Test placing solid lane markings."""
+    def test_place_lane_markings_multiple_segments(self):
+        """Test placing lane markings on multiple segments."""
         placer = MarkingPlacer()
+        road_segments = [((0, 0), (50, 0)), ((50, 0), (100, 0))]
         markings = placer.place_lane_markings(
-            start=(0, 0),
-            end=(50, 0),
-            marking_type="solid_line",
+            road_segments=road_segments,
+            lane_count=2,
         )
         assert isinstance(markings, list)
 
@@ -195,17 +198,19 @@ class TestMarkingPlacer:
         placer = MarkingPlacer()
         crosswalk = placer.place_crosswalk(
             position=(50, 0, 0),
-            width=4.0,
             direction=0.0,
+            width=4.0,
+            length=6.0,
         )
         assert crosswalk is not None
+        assert isinstance(crosswalk, CrosswalkGeometry)
 
     def test_place_crosswalks_at_intersection(self):
         """Test placing crosswalks at intersection."""
         placer = MarkingPlacer()
         crosswalks = placer.place_crosswalks_at_intersection(
             position=(0, 0, 0),
-            num_approaches=4,
+            intersection_type="4way",
             road_width=10.0,
         )
         assert len(crosswalks) == 4
@@ -213,18 +218,21 @@ class TestMarkingPlacer:
     def test_place_stop_bars(self):
         """Test placing stop bars."""
         placer = MarkingPlacer()
-        positions = [(0, 0, 0), (10, 0, 0)]
-        stop_bars = placer.place_stop_bars(positions=positions, width=3.0)
-        assert len(stop_bars) == 2
+        stop_bars = placer.place_stop_bars(
+            intersection_position=(0, 0, 0),
+            approach_angles=[0, 90, 180, 270],
+        )
+        assert len(stop_bars) == 4
 
     def test_place_lane_arrows(self):
         """Test placing lane arrows."""
         placer = MarkingPlacer()
+        # place_lane_arrows expects list of (x, y) points forming a centerline
+        lane_centerline = [(0, 0), (50, 0), (100, 0)]
         arrows = placer.place_lane_arrows(
-            position=(50, 0, 0),
-            arrow_type="straight",
-            num_lanes=2,
-            lane_width=3.5,
+            lane_centerline=lane_centerline,
+            arrow_type="ARROW-STRAIGHT",
+            spacing=30.0,
         )
         assert len(arrows) > 0
 
@@ -244,10 +252,9 @@ class TestMarkingEdgeCases:
     def test_very_long_road(self):
         """Test markings on very long road."""
         placer = MarkingPlacer()
+        road_segments = [((0, 0), (1000, 0))]
         markings = placer.place_lane_markings(
-            start=(0, 0),
-            end=(1000, 0),
-            marking_type="dashed_line",
+            road_segments=road_segments,
         )
         assert len(markings) > 0
 
@@ -255,24 +262,39 @@ class TestMarkingEdgeCases:
         """Test markings on curved road."""
         placer = MarkingPlacer()
         # Multiple segments simulating a curve
-        markings = []
-        markings.extend(placer.place_lane_markings(
-            start=(0, 0),
-            end=(50, 0),
-        ))
-        markings.extend(placer.place_lane_markings(
-            start=(50, 0),
-            end=(100, 25),
-        ))
+        road_segments = [
+            ((0, 0), (50, 0)),
+            ((50, 0), (100, 25)),
+        ]
+        markings = placer.place_lane_markings(road_segments=road_segments)
         assert len(markings) > 0
 
     def test_crosswalk_different_styles(self):
         """Test crosswalk with different styles."""
         placer = MarkingPlacer()
-        for style in ["zebra", "continental", "ladder"]:
-            geom = CrosswalkGeometry(style=style)
+        for style in ["CW-ZEBRA", "CW-CONTINENTAL", "CW-LADDER", "CW-STANDARD"]:
             crosswalk = placer.place_crosswalk(
                 position=(0, 0, 0),
-                geometry=geom,
+                direction=0.0,
+                marking_type=style,
             )
             assert crosswalk is not None
+            assert crosswalk.marking_type == style
+
+    def test_crosswalk_at_roundabout(self):
+        """Test placing crosswalks at roundabout."""
+        placer = MarkingPlacer()
+        crosswalks = placer.place_crosswalks_at_intersection(
+            position=(0, 0, 0),
+            intersection_type="roundabout",
+        )
+        assert len(crosswalks) == 4
+
+    def test_crosswalk_at_3way(self):
+        """Test placing crosswalks at 3-way intersection."""
+        placer = MarkingPlacer()
+        crosswalks = placer.place_crosswalks_at_intersection(
+            position=(0, 0, 0),
+            intersection_type="3way",
+        )
+        assert len(crosswalks) == 3

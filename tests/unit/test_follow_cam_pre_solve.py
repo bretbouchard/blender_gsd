@@ -17,6 +17,7 @@ from lib.cinematic.follow_cam.pre_solve import (
     PreSolveResult,
     PreSolver,
     compute_pre_solve_path,
+    HAS_BLENDER,
 )
 from lib.cinematic.follow_cam.types import (
     FollowCameraConfig,
@@ -147,6 +148,7 @@ class TestPreSolver:
         assert isinstance(result, PreSolveResult)
         assert result.frames_processed == 10
 
+    @pytest.mark.skipif(HAS_BLENDER, reason="Test requires real Blender to be unavailable")
     def test_solve_progresses_through_stages(self):
         """Solve should progress through all stages."""
         config = FollowCameraConfig(
@@ -210,6 +212,7 @@ class TestPreSolver:
         # Should return False without Blender
         assert result is False
 
+    @pytest.mark.skipif(HAS_BLENDER, reason="Test requires real Blender to be unavailable")
     def test_get_target_at_frame_without_blender(self):
         """Get target at frame should return zeros without Blender."""
         config = FollowCameraConfig()
@@ -243,6 +246,7 @@ class TestComputePreSolvePath:
         assert isinstance(result, PreSolveResult)
         assert result.frames_processed == 10
 
+    @pytest.mark.skipif(HAS_BLENDER, reason="Test requires real Blender to be unavailable")
     def test_propagates_to_solver(self):
         """Function should create solver and call solve."""
         config = FollowCameraConfig(

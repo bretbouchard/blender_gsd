@@ -11,6 +11,37 @@ from unittest.mock import MagicMock
 # Mock Blender modules BEFORE any other imports
 # This must be done at module level to work for all test files
 mock_bpy = MagicMock()
+
+
+class CallableProperty:
+    """Descriptor that allows a property to be called like a method.
+
+    This is needed because this project has some code using .length (property)
+    and some code using .length() (method). The real mathutils.Vector uses
+    .length as a property.
+    """
+    def __init__(self, getter):
+        self.getter = getter
+
+    def __get__(self, obj, objtype=None):
+        if obj is None:
+            return self
+        # Return a callable that returns the value
+        # This allows both vec.length and vec.length() to work
+        value = self.getter(obj)
+
+        class CallableValue(float):
+            """A float that can be called."""
+            def __new__(cls, val):
+                return float.__new__(cls, val)
+
+            def __call__(self):
+                return float(self)
+
+        return CallableValue(value)
+
+
+mock_bpy = MagicMock()
 mock_bpy.ops = MagicMock()
 mock_bpy.data = MagicMock()
 mock_bpy.context = MagicMock()
@@ -29,35 +60,140 @@ sys.modules['bmesh'] = MagicMock()
 
 # Mock mathutils
 class MockVector:
+    """Mock Vector class that mimics mathutils.Vector for testing outside Blender."""
     def __init__(self, values):
-        self.values = list(values)
+        if isinstance(values, MockVector):
+            self.values = list(values.values)
+        else:
+            self.values = list(values)
+
     def __getitem__(self, index):
         return self.values[index]
+
+    def __setitem__(self, index, value):
+        self.values[index] = value
+
     def __len__(self):
         return len(self.values)
+
+    @property
+    def x(self):
+        return self.values[0] if len(self.values) > 0 else 0.0
+
+    @x.setter
+    def x(self, value):
+        if len(self.values) > 0:
+            self.values[0] = value
+
+    @property
+    def y(self):
+        return self.values[1] if len(self.values) > 1 else 0.0
+
+    @y.setter
+    def y(self, value):
+        if len(self.values) > 1:
+            self.values[1] = value
+
+    @property
+    def z(self):
+        return self.values[2] if len(self.values) > 2 else 0.0
+
+    @z.setter
+    def z(self, value):
+        if len(self.values) > 2:
+            self.values[2] = value
+
     def normalized(self):
         length = sum(v * v for v in self.values) ** 0.5
         if length == 0:
             return MockVector(self.values)
         return MockVector([v / length for v in self.values])
+
+    def normalize(self):
+        """In-place normalization. Returns self for chaining."""
+        length = sum(v * v for v in self.values) ** 0.5
+        if length > 0:
+            self.values = [v / length for v in self.values]
+        return self
+
     def __add__(self, other):
         if isinstance(other, MockVector):
             return MockVector([a + b for a, b in zip(self.values, other.values)])
         return MockVector([a + other for a in self.values])
+
     def __sub__(self, other):
         if isinstance(other, MockVector):
             return MockVector([a - b for a, b in zip(self.values, other.values)])
         return MockVector([a - other for a in self.values])
+
     def __mul__(self, other):
         if isinstance(other, MockVector):
             return MockVector([a * b for a, b in zip(self.values, other.values)])
         return MockVector([a * other for a in self.values])
+
+    def __rmul__(self, other):
+        return self.__mul__(other)
+
+    def __truediv__(self, other):
+        if isinstance(other, MockVector):
+            return MockVector([a / b for a, b in zip(self.values, other.values)])
+        return MockVector([a / other for a in self.values])
+
+    def __neg__(self):
+        return MockVector([-a for a in self.values])
+
+    @CallableProperty
     def length(self):
+        """Return the length of the vector.
+
+        Note: Uses CallableProperty descriptor to support both:
+        - vec.length (property access - correct mathutils API)
+        - vec.length() (method call - legacy code in this project)
+        """
         return sum(v * v for v in self.values) ** 0.5
+
+    def magnitude(self):
+        """Alias for length."""
+        return self.length
+
     def to_tuple(self):
         return tuple(self.values)
+
     def to_4x4(self):
         return self
+
+    def lerp(self, other, factor):
+        """Linear interpolation between this vector and another."""
+        if isinstance(other, MockVector):
+            return MockVector([a + (b - a) * factor for a, b in zip(self.values, other.values)])
+        return MockVector([a + (other - a) * factor for a in self.values])
+
+    def cross(self, other):
+        """Cross product with another vector."""
+        if not isinstance(other, MockVector):
+            raise TypeError("cross product requires MockVector")
+        a = self.values
+        b = other.values
+        return MockVector([
+            a[1] * b[2] - a[2] * b[1],
+            a[2] * b[0] - a[0] * b[2],
+            a[0] * b[1] - a[1] * b[0],
+        ])
+
+    def dot(self, other):
+        """Dot product with another vector."""
+        if isinstance(other, MockVector):
+            return sum(a * b for a, b in zip(self.values, other.values))
+        return sum(a * other for a in self.values)
+
+    def copy(self):
+        """Return a copy of this vector."""
+        return MockVector(self.values)
+
+    @property
+    def _values(self):
+        """Alias for values to match fallback Vector class in source code."""
+        return self.values
 
 class MockMatrix:
     def __init__(self, rows=None):
@@ -147,6 +283,7 @@ def mock_mathutils():
             return MockVector([a * other for a in self.values])
 
         def length(self):
+            """Return the length of the vector (method to match mathutils API)."""
             return sum(v * v for v in self.values) ** 0.5
 
         def to_tuple(self):

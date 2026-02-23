@@ -23,6 +23,7 @@ from lib.cinematic.projection.visibility import (
     setup_visibility_for_projection,
     evaluate_visibility_for_frame,
     bake_visibility_animation,
+    HAS_BLENDER,
 )
 
 from lib.cinematic.projection.zones import (
@@ -443,6 +444,7 @@ class TestEvaluateVisibilityForFrame:
 class TestBakeVisibilityAnimation:
     """Unit tests for bake_visibility_animation function."""
 
+    @pytest.mark.skipif(HAS_BLENDER, reason="Test requires real Blender to be unavailable")
     def test_requires_blender(self):
         """Should raise RuntimeError without Blender."""
         controller = VisibilityController()

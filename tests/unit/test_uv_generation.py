@@ -22,6 +22,7 @@ from lib.cinematic.projection.uv_generation import (
     apply_uv_seams,
     optimize_uv_layout,
     validate_uv_layout,
+    HAS_BLENDER,
 )
 
 from lib.cinematic.projection.types import (
@@ -208,6 +209,7 @@ class TestUVSeamInfo:
 class TestGenerateUVsFromProjection:
     """Unit tests for generate_uvs_from_projection function."""
 
+    @pytest.mark.skipif(HAS_BLENDER, reason="Test requires real Blender to be unavailable")
     def test_requires_blender(self):
         """Should raise RuntimeError without Blender."""
         # Create a mock projection result
@@ -224,6 +226,7 @@ class TestGenerateUVsFromProjection:
 class TestGenerateUVsForSurface:
     """Unit tests for generate_uvs_for_surface function."""
 
+    @pytest.mark.skipif(HAS_BLENDER, reason="Test requires real Blender to be unavailable")
     def test_requires_blender(self):
         """Should raise RuntimeError without Blender."""
         surface = SurfaceInfo(object_name="Floor")
@@ -236,6 +239,7 @@ class TestGenerateUVsForSurface:
 class TestDetectUVSeams:
     """Unit tests for detect_uv_seams function."""
 
+    @pytest.mark.skipif(HAS_BLENDER, reason="Test requires real Blender to be unavailable")
     def test_requires_blender(self):
         """Should raise RuntimeError without Blender."""
         surface = SurfaceInfo(object_name="Floor")
@@ -248,6 +252,7 @@ class TestDetectUVSeams:
 class TestApplyUVSeams:
     """Unit tests for apply_uv_seams function."""
 
+    @pytest.mark.skipif(HAS_BLENDER, reason="Test requires real Blender to be unavailable")
     def test_requires_blender(self):
         """Should raise RuntimeError without Blender."""
         surface = SurfaceInfo(object_name="Floor")
@@ -262,6 +267,7 @@ class TestApplyUVSeams:
 class TestOptimizeUVLayout:
     """Unit tests for optimize_uv_layout function."""
 
+    @pytest.mark.skipif(HAS_BLENDER, reason="Test requires real Blender to be unavailable")
     def test_requires_blender(self):
         """Should raise RuntimeError without Blender."""
         surface = SurfaceInfo(object_name="Floor")
@@ -275,6 +281,7 @@ class TestOptimizeUVLayout:
 class TestValidateUVLayout:
     """Unit tests for validate_uv_layout function."""
 
+    @pytest.mark.skipif(HAS_BLENDER, reason="Test requires real Blender to be unavailable")
     def test_requires_blender(self):
         """Should raise RuntimeError without Blender."""
         surface = SurfaceInfo(object_name="Floor")

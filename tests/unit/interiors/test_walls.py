@@ -312,8 +312,19 @@ class TestWallBuilderEdgeCases:
         plan = FloorPlan(dimensions=(10, 4), rooms=[room1, room2])
         geometry = builder.build_from_plan(plan)
 
-        # Should have 6 unique walls (shared wall deduplication)
-        assert len(geometry.segments) == 6
+        # Room1 has 4 walls: (0,0)-(5,0), (5,0)-(5,4), (5,4)-(0,4), (0,4)-(0,0)
+        # Room2 has 4 walls: (5,0)-(10,0), (10,0)-(10,4), (10,4)-(5,4), (5,4)-(5,0)
+        # The shared wall (5,0)-(5,4) from room1 and (5,4)-(5,0) from room2 are deduped
+        # Total: 8 - 1 = 7 unique walls
+        assert len(geometry.segments) == 7
+
+        # Verify deduplication: check only one interior wall (the shared one)
+        interior_count = sum(1 for s in geometry.segments if s.wall_type == "interior")
+        assert interior_count == 1
+
+        # Verify the rest are exterior
+        exterior_count = sum(1 for s in geometry.segments if s.wall_type == "exterior")
+        assert exterior_count == 6
 
     def test_room_with_no_polygon(self):
         """Test handling room with empty polygon."""

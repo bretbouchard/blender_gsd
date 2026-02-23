@@ -13,303 +13,245 @@ class TestDriversModule:
 
     def test_module_imports(self):
         """Test that the drivers module can be imported."""
-        try:
-            from lib.utils import drivers
-            assert drivers is not None
-        except ImportError:
-            pytest.skip("drivers module not available")
+        from lib.utils import drivers
+        assert drivers is not None
 
-    def test_module_exports(self):
-        """Test module __all__ exports."""
-        try:
-            from lib.utils.drivers import __all__
-            assert isinstance(__all__, list)
-            assert len(__all__) > 0
-        except (ImportError, AttributeError):
-            pytest.skip("drivers module __all__ not available")
+    def test_module_exports_functions(self):
+        """Test module exports expected functions."""
+        from lib.utils import drivers
+        assert hasattr(drivers, 'add_safe_driver')
+        assert hasattr(drivers, 'remove_driver')
+        assert hasattr(drivers, 'get_drivers')
+        assert hasattr(drivers, 'repair_drivers')
+        assert hasattr(drivers, 'validate_driver_expression')
+        assert hasattr(drivers, 'DriverBuilder')
 
 
-class TestDriverExpressionParser:
-    """Tests for driver expression parsing."""
+class TestDataClasses:
+    """Tests for driver data classes."""
 
-    def test_parse_simple_expression(self):
-        """Test parsing simple driver expressions."""
-        try:
-            from lib.utils.drivers import parse_driver_expression
-            result = parse_driver_expression("var * 2")
-            assert result is not None
-        except (ImportError, AttributeError):
-            pytest.skip("parse_driver_expression not available")
+    def test_driver_variable_creation(self):
+        """Test creating a DriverVariable."""
+        from lib.utils.drivers import DriverVariable
+        var = DriverVariable(
+            name="distance",
+            target_object="Vehicle",
+            data_path="location[0]"
+        )
+        assert var.name == "distance"
+        assert var.target_object == "Vehicle"
+        assert var.data_path == "location[0]"
+        assert var.transform_space == 'WORLD_SPACE'
 
-    def test_parse_complex_expression(self):
-        """Test parsing complex driver expressions."""
-        try:
-            from lib.utils.drivers import parse_driver_expression
-            result = parse_driver_expression("sin(var) * cos(var) + 0.5")
-            assert result is not None
-        except (ImportError, AttributeError):
-            pytest.skip("parse_driver_expression not available")
-
-    def test_parse_invalid_expression(self):
-        """Test parsing invalid expressions."""
-        try:
-            from lib.utils.drivers import parse_driver_expression
-            with pytest.raises((ValueError, SyntaxError)):
-                parse_driver_expression("invalid!!!")
-        except (ImportError, AttributeError):
-            pytest.skip("parse_driver_expression not available")
+    def test_driver_info_creation(self):
+        """Test creating a DriverInfo."""
+        from lib.utils.drivers import DriverInfo
+        info = DriverInfo(
+            object_name="Wheel",
+            data_path="rotation_euler",
+            array_index=1,
+            expression="distance / radius",
+            variables={"distance": ("Vehicle", "location[0]")}
+        )
+        assert info.object_name == "Wheel"
+        assert info.data_path == "rotation_euler"
+        assert info.array_index == 1
+        assert info.expression == "distance / radius"
 
 
-class TestDriverVariableExtractor:
-    """Tests for extracting variables from driver expressions."""
+class TestDriverBuilder:
+    """Tests for the DriverBuilder fluent API."""
 
-    def test_extract_single_variable(self):
-        """Test extracting a single variable."""
-        try:
-            from lib.utils.drivers import extract_driver_variables
-            variables = extract_driver_variables("var + 1")
-            assert "var" in variables
-        except (ImportError, AttributeError):
-            pytest.skip("extract_driver_variables not available")
+    def test_builder_creation(self):
+        """Test creating a DriverBuilder."""
+        from lib.utils.drivers import DriverBuilder
+        builder = DriverBuilder(None, "location", 0)
+        assert builder.data_path == "location"
+        assert builder.array_index == 0
+        assert builder.expression == "0"
 
-    def test_extract_multiple_variables(self):
-        """Test extracting multiple variables."""
-        try:
-            from lib.utils.drivers import extract_driver_variables
-            variables = extract_driver_variables("var1 + var2 * var3")
-            assert "var1" in variables
-            assert "var2" in variables
-            assert "var3" in variables
-        except (ImportError, AttributeError):
-            pytest.skip("extract_driver_variables not available")
+    def test_builder_variable(self):
+        """Test adding variable via builder."""
+        from lib.utils.drivers import DriverBuilder
+        builder = DriverBuilder(None, "location", 0)
+        result = builder.variable("distance", None, "location[0]")
+        assert result is builder  # Fluent API
+        assert "distance" in builder.variables
 
-    def test_extract_builtin_functions_excluded(self):
-        """Test that builtin functions are not extracted as variables."""
-        try:
-            from lib.utils.drivers import extract_driver_variables
-            variables = extract_driver_variables("sin(var) + cos(var)")
-            assert "sin" not in variables
-            assert "cos" not in variables
-            assert "var" in variables
-        except (ImportError, AttributeError):
-            pytest.skip("extract_driver_variables not available")
+    def test_builder_average(self):
+        """Test setting driver type to AVERAGE."""
+        from lib.utils.drivers import DriverBuilder
+        builder = DriverBuilder(None, "location", 0)
+        result = builder.average()
+        assert result is builder
+        assert builder.driver_type == 'AVERAGE'
+
+    def test_builder_summation(self):
+        """Test setting driver type to SUM."""
+        from lib.utils.drivers import DriverBuilder
+        builder = DriverBuilder(None, "location", 0)
+        result = builder.summation()
+        assert result is builder
+        assert builder.driver_type == 'SUM'
+
+    def test_builder_transform_channel(self):
+        """Test adding transform channel variable."""
+        from lib.utils.drivers import DriverBuilder
+        builder = DriverBuilder(None, "location", 0)
+        result = builder.transform_channel("pos", None, 'LOC_X')
+        assert result is builder
+        assert "pos" in builder.variables
 
 
 class TestDriverValidation:
-    """Tests for driver validation."""
+    """Tests for driver validation functions."""
 
     def test_validate_expression_valid(self):
         """Test validating a valid expression."""
-        try:
-            from lib.utils.drivers import validate_driver_expression
-            result = validate_driver_expression("var * 2 + 1")
-            assert result is True
-        except (ImportError, AttributeError):
-            pytest.skip("validate_driver_expression not available")
+        from lib.utils.drivers import validate_driver_expression
+        is_valid, error = validate_driver_expression("var * 2 + 1")
+        assert is_valid is True
+        assert error is None
 
     def test_validate_expression_empty(self):
         """Test validating an empty expression."""
-        try:
-            from lib.utils.drivers import validate_driver_expression
-            result = validate_driver_expression("")
-            assert result is False
-        except (ImportError, AttributeError):
-            pytest.skip("validate_driver_expression not available")
+        from lib.utils.drivers import validate_driver_expression
+        is_valid, error = validate_driver_expression("")
+        assert is_valid is False
+        assert error == "Empty expression"
 
-    def test_validate_expression_dangerous(self):
-        """Test validating potentially dangerous expressions."""
-        try:
-            from lib.utils.drivers import validate_driver_expression
-            # Should reject dangerous function calls
-            result = validate_driver_expression("__import__('os').system('rm -rf /')")
-            assert result is False
-        except (ImportError, AttributeError):
-            pytest.skip("validate_driver_expression not available")
+    def test_validate_expression_whitespace_only(self):
+        """Test validating whitespace-only expression."""
+        from lib.utils.drivers import validate_driver_expression
+        is_valid, error = validate_driver_expression("   ")
+        assert is_valid is False
+        assert error == "Empty expression"
 
+    def test_validate_expression_unbalanced_parens_open(self):
+        """Test validating expression with unbalanced open parens."""
+        from lib.utils.drivers import validate_driver_expression
+        is_valid, error = validate_driver_expression("(var + 1")
+        assert is_valid is False
+        assert error == "Unbalanced parentheses"
 
-class TestDriverBuiltinFunctions:
-    """Tests for driver builtin functions."""
+    def test_validate_expression_unbalanced_parens_close(self):
+        """Test validating expression with unbalanced close parens."""
+        from lib.utils.drivers import validate_driver_expression
+        is_valid, error = validate_driver_expression("var + 1)")
+        assert is_valid is False
+        assert error == "Unbalanced parentheses"
 
-    def test_builtin_list(self):
-        """Test getting list of builtin functions."""
-        try:
-            from lib.utils.drivers import DRIVER_BUILTINS
-            assert isinstance(DRIVER_BUILTINS, (list, set, tuple))
-            # Common math functions should be included
-            assert "sin" in DRIVER_BUILTINS or "math.sin" in DRIVER_BUILTINS
-        except (ImportError, AttributeError):
-            pytest.skip("DRIVER_BUILTINS not available")
-
-    def test_is_builtin_function(self):
-        """Test checking if a function is a builtin."""
-        try:
-            from lib.utils.drivers import is_builtin_function
-            assert is_builtin_function("sin") is True
-            assert is_builtin_function("custom_var") is False
-        except (ImportError, AttributeError):
-            pytest.skip("is_builtin_function not available")
-
-
-class TestDriverExpressionBuilder:
-    """Tests for building driver expressions."""
-
-    def test_build_simple_expression(self):
-        """Test building a simple expression."""
-        try:
-            from lib.utils.drivers import build_driver_expression
-            expr = build_driver_expression(
-                operation="multiply",
-                variables=["var1", "var2"]
-            )
-            assert "var1" in expr
-            assert "var2" in expr
-        except (ImportError, AttributeError):
-            pytest.skip("build_driver_expression not available")
-
-    def test_build_conditional_expression(self):
-        """Test building a conditional expression."""
-        try:
-            from lib.utils.drivers import build_driver_expression
-            expr = build_driver_expression(
-                operation="if_else",
-                condition="var1 > 0.5",
-                true_value="var2",
-                false_value="0"
-            )
-            assert "var1" in expr
-        except (ImportError, AttributeError):
-            pytest.skip("build_driver_expression not available")
+    def test_validate_expression_complex_valid(self):
+        """Test validating complex valid expression."""
+        from lib.utils.drivers import validate_driver_expression
+        is_valid, error = validate_driver_expression("sin(var) * cos(var) + 0.5")
+        assert is_valid is True
+        assert error is None
 
 
 class TestDriverUtilities:
     """Tests for driver utility functions."""
 
-    def test_sanitize_variable_name(self):
-        """Test sanitizing variable names."""
-        try:
-            from lib.utils.drivers import sanitize_variable_name
-            # Valid names should pass through
-            assert sanitize_variable_name("my_var") == "my_var"
-            # Invalid chars should be replaced
-            result = sanitize_variable_name("my-var!")
-            assert "-" not in result
-            assert "!" not in result
-        except (ImportError, AttributeError):
-            pytest.skip("sanitize_variable_name not available")
+    def test_fix_driver_expression_no_change(self):
+        """Test fixing expression with no renames."""
+        from lib.utils.drivers import fix_driver_expression
+        result = fix_driver_expression("var * 2", {})
+        assert result == "var * 2"
 
-    def test_evaluate_expression_safe(self):
-        """Test safe expression evaluation."""
-        try:
-            from lib.utils.drivers import evaluate_expression_safe
-            result = evaluate_expression_safe("2 + 2", {})
-            assert result == 4
-        except (ImportError, AttributeError):
-            pytest.skip("evaluate_expression_safe not available")
-
-    def test_evaluate_with_variables(self):
-        """Test expression evaluation with variables."""
-        try:
-            from lib.utils.drivers import evaluate_expression_safe
-            result = evaluate_expression_safe(
-                "a + b",
-                {"a": 10, "b": 5}
-            )
-            assert result == 15
-        except (ImportError, AttributeError):
-            pytest.skip("evaluate_expression_safe not available")
-
-    def test_evaluate_math_functions(self):
-        """Test expression evaluation with math functions."""
-        try:
-            from lib.utils.drivers import evaluate_expression_safe
-            import math
-            result = evaluate_expression_safe(
-                "sin(0)",
-                {},
-                allow_math=True
-            )
-            assert abs(result - 0.0) < 0.0001
-        except (ImportError, AttributeError):
-            pytest.skip("evaluate_expression_safe not available")
+    def test_fix_driver_expression_with_rename(self):
+        """Test fixing expression with renames."""
+        from lib.utils.drivers import fix_driver_expression
+        result = fix_driver_expression(
+            "old_name * 2",
+            {"old_name": "new_name"}
+        )
+        assert result == "new_name * 2"
 
 
-class TestDriverTemplates:
-    """Tests for driver templates."""
+class TestDriverFunctionsNoBlender:
+    """Tests for driver functions that handle no-Blender gracefully."""
 
-    def test_template_exists(self):
-        """Test that driver templates exist."""
-        try:
-            from lib.utils.drivers import DRIVER_TEMPLATES
-            assert isinstance(DRIVER_TEMPLATES, dict)
-        except (ImportError, AttributeError):
-            pytest.skip("DRIVER_TEMPLATES not available")
+    def test_add_safe_driver_no_blender(self):
+        """Test add_safe_driver when Blender not available."""
+        from lib.utils.drivers import add_safe_driver, HAS_BLENDER
+        if HAS_BLENDER:
+            pytest.skip("Blender is available, skipping no-Blender test")
+        result = add_safe_driver(None, "location", 0)
+        assert result is None
 
-    def test_get_template(self):
-        """Test getting a driver template."""
-        try:
-            from lib.utils.drivers import get_driver_template
-            template = get_driver_template("linear")
-            assert template is not None
-        except (ImportError, AttributeError):
-            pytest.skip("get_driver_template not available")
+    def test_get_drivers_no_blender(self):
+        """Test get_drivers when Blender not available."""
+        from lib.utils.drivers import get_drivers, HAS_BLENDER
+        if HAS_BLENDER:
+            pytest.skip("Blender is available, skipping no-Blender test")
+        result = get_drivers(None)
+        assert result == []
 
-    def test_list_templates(self):
-        """Test listing available templates."""
-        try:
-            from lib.utils.drivers import list_driver_templates
-            templates = list_driver_templates()
-            assert isinstance(templates, (list, tuple))
-        except (ImportError, AttributeError):
-            pytest.skip("list_driver_templates not available")
+    def test_find_drivers_with_object_no_blender(self):
+        """Test find_drivers_with_object when Blender not available."""
+        from lib.utils.drivers import find_drivers_with_object, HAS_BLENDER
+        if HAS_BLENDER:
+            pytest.skip("Blender is available, skipping no-Blender test")
+        result = find_drivers_with_object("SomeObject")
+        assert result == []
 
+    def test_find_drivers_with_expression_no_blender(self):
+        """Test find_drivers_with_expression when Blender not available."""
+        from lib.utils.drivers import find_drivers_with_expression, HAS_BLENDER
+        if HAS_BLENDER:
+            pytest.skip("Blender is available, skipping no-Blender test")
+        result = find_drivers_with_expression(".*")
+        assert result == []
 
-class TestDriverPathParsing:
-    """Tests for driver path parsing."""
+    def test_repair_drivers_no_blender(self):
+        """Test repair_drivers when Blender not available."""
+        from lib.utils.drivers import repair_drivers, HAS_BLENDER
+        if HAS_BLENDER:
+            pytest.skip("Blender is available, skipping no-Blender test")
+        result = repair_drivers(None)
+        assert result == []
 
-    def test_parse_rna_path_simple(self):
-        """Test parsing simple RNA path."""
-        try:
-            from lib.utils.drivers import parse_rna_path
-            result = parse_rna_path('["my_property"]')
-            assert result is not None
-            assert result.get('property') == 'my_property'
-        except (ImportError, AttributeError):
-            pytest.skip("parse_rna_path not available")
+    def test_remove_driver_no_blender(self):
+        """Test remove_driver when Blender not available."""
+        from lib.utils.drivers import remove_driver, HAS_BLENDER
+        if HAS_BLENDER:
+            pytest.skip("Blender is available, skipping no-Blender test")
+        result = remove_driver(None, "location")
+        assert result is False
 
-    def test_parse_rna_path_nested(self):
-        """Test parsing nested RNA path."""
-        try:
-            from lib.utils.drivers import parse_rna_path
-            result = parse_rna_path('modifiers["Subdivision"].levels')
-            assert result is not None
-        except (ImportError, AttributeError):
-            pytest.skip("parse_rna_path not available")
-
-    def test_parse_rna_path_location(self):
-        """Test parsing location RNA path."""
-        try:
-            from lib.utils.drivers import parse_rna_path
-            result = parse_rna_path('location[0]')
-            assert result is not None
-        except (ImportError, AttributeError):
-            pytest.skip("parse_rna_path not available")
+    def test_validate_all_drivers_no_blender(self):
+        """Test validate_all_drivers when Blender not available."""
+        from lib.utils.drivers import validate_all_drivers, HAS_BLENDER
+        if HAS_BLENDER:
+            pytest.skip("Blender is available, skipping no-Blender test")
+        result = validate_all_drivers()
+        assert result == {}
 
 
-class TestDriverCopyFunctions:
-    """Tests for driver copy utilities (bpy-dependent, structure only)."""
+class TestCommonDriverPatterns:
+    """Tests for common driver pattern functions."""
 
-    def test_copy_driver_function_exists(self):
-        """Test copy_driver function exists."""
-        try:
-            from lib.utils.drivers import copy_driver
-            assert callable(copy_driver)
-        except ImportError:
-            pytest.skip("copy_driver not available")
+    def test_create_wheel_rotation_driver_no_blender(self):
+        """Test create_wheel_rotation_driver when Blender not available."""
+        from lib.utils.drivers import create_wheel_rotation_driver, HAS_BLENDER
+        if HAS_BLENDER:
+            pytest.skip("Blender is available, skipping no-Blender test")
+        result = create_wheel_rotation_driver(None, None, 0.35, 'Y')
+        assert result is None
 
-    def test_paste_driver_function_exists(self):
-        """Test paste_driver function exists."""
-        try:
-            from lib.utils.drivers import paste_driver
-            assert callable(paste_driver)
-        except ImportError:
-            pytest.skip("paste_driver not available")
+    def test_create_ik_influence_driver_no_blender(self):
+        """Test create_ik_influence_driver when Blender not available."""
+        from lib.utils.drivers import create_ik_influence_driver, HAS_BLENDER
+        if HAS_BLENDER:
+            pytest.skip("Blender is available, skipping no-Blender test")
+        result = create_ik_influence_driver(None, "bone", "property")
+        assert result is None
+
+    def test_create_visibility_driver_no_blender(self):
+        """Test create_visibility_driver when Blender not available."""
+        from lib.utils.drivers import create_visibility_driver, HAS_BLENDER
+        if HAS_BLENDER:
+            pytest.skip("Blender is available, skipping no-Blender test")
+        # This one uses DriverBuilder which also returns None without Blender
+        result = create_visibility_driver(None, None, "property")
+        assert result is None

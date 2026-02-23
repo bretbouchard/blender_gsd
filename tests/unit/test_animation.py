@@ -429,10 +429,28 @@ class TestBoneUtils:
 
     def test_get_bone_length(self):
         """Should calculate bone length."""
-        # Mock bone object
+        # Create a mock bone with indexable head/tail attributes
+        # The function tries mathutils.Vector first, then falls back to indexing
         class MockBone:
-            head = (0, 0, 0)
-            tail = (0, 0, 2)
+            def __init__(self):
+                self._head = [0, 0, 0]
+                self._tail = [0, 0, 2]
+
+            @property
+            def head(self):
+                return self._head
+
+            @head.setter
+            def head(self, value):
+                self._head = list(value)
+
+            @property
+            def tail(self):
+                return self._tail
+
+            @tail.setter
+            def tail(self, value):
+                self._tail = list(value)
 
         bone = MockBone()
         length = get_bone_length(bone)
@@ -440,9 +458,27 @@ class TestBoneUtils:
 
     def test_get_bone_direction(self):
         """Should calculate bone direction."""
+        # Create a mock bone with indexable head/tail attributes
         class MockBone:
-            head = (0, 0, 0)
-            tail = (0, 0, 5)
+            def __init__(self):
+                self._head = [0, 0, 0]
+                self._tail = [0, 0, 5]
+
+            @property
+            def head(self):
+                return self._head
+
+            @head.setter
+            def head(self, value):
+                self._head = list(value)
+
+            @property
+            def tail(self):
+                return self._tail
+
+            @tail.setter
+            def tail(self, value):
+                self._tail = list(value)
 
         bone = MockBone()
         direction = get_bone_direction(bone)

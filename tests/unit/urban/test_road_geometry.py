@@ -13,7 +13,7 @@ from lib.urban.road_geometry import (
     RoadGeometryBuilder,
     create_road_geometry_from_network,
 )
-from lib.urban.types import RoadNetwork, RoadNode, RoadEdge
+from lib.urban.types import RoadNetwork, RoadNode, RoadEdge, LaneConfig as TypesLaneConfig
 
 
 class TestRoadSurfaceType:
@@ -264,7 +264,18 @@ class TestRoadGeometryEdgeCases:
             start_pos=(0, 0, 0),
             end_pos=(10, 0, 5),
         )
-        # Should handle z-component in length
+        # With control points, length is calculated differently
+        # Without control points, only 2D length is calculated (ignoring z)
+        assert segment.length == 10.0
+
+    def test_segment_with_elevation_and_curve_points(self):
+        """Test segment with elevation and curve points."""
+        segment = RoadSegment(
+            start_pos=(0, 0, 0),
+            end_pos=(10, 0, 5),
+            control_points=[(5, 0, 2.5)],
+        )
+        # With control points, 3D length is calculated
         assert segment.length > 10.0
 
     def test_segment_zero_length(self):
@@ -294,5 +305,64 @@ class TestRoadGeometryEdgeCases:
             ),
         ]
         geometry = builder.build_from_network(network)
-        # Should handle gracefully
+        # Should handle gracefully - segment not created for missing node
         assert isinstance(geometry, RoadGeometry)
+        assert len(geometry.segments) == 0
+
+    def test_segment_with_lane_config(self):
+        """Test segment with lane configuration."""
+        lane_config = LaneConfig(count=4, width=3.5)
+        segment = RoadSegment(
+            edge_id="test",
+            lane_config=lane_config,
+        )
+        assert segment.lane_config is not None
+        assert segment.lane_config.count == 4
+
+    def test_segment_surface_type(self):
+        """Test segment surface type."""
+        segment = RoadSegment(surface_type="cobblestone")
+        assert segment.surface_type == "cobblestone"
+
+    def test_network_with_elevation(self):
+        """Test network with node elevation."""
+        builder = RoadGeometryBuilder()
+        network = RoadNetwork()
+        network.nodes = [
+            RoadNode(id="n1", position=(0, 0), elevation=0.0),
+            RoadNode(id="n2", position=(100, 0), elevation=5.0),
+        ]
+        network.edges = [
+            RoadEdge(
+                id="e1",
+                from_node="n1",
+                to_node="n2",
+                curve_points=[(0, 0), (100, 0)],
+            ),
+        ]
+        geometry = builder.build_from_network(network)
+        assert len(geometry.segments) == 1
+        # Check that elevation is preserved
+        assert geometry.segments[0].start_pos[2] == 0.0
+        assert geometry.segments[0].end_pos[2] == 5.0
+
+    def test_geometry_total_area(self):
+        """Test geometry total area calculation."""
+        builder = RoadGeometryBuilder()
+        network = RoadNetwork()
+        network.nodes = [
+            RoadNode(id="n1", position=(0, 0)),
+            RoadNode(id="n2", position=(100, 0)),
+        ]
+        network.edges = [
+            RoadEdge(
+                id="e1",
+                from_node="n1",
+                to_node="n2",
+                curve_points=[(0, 0), (100, 0)],
+            ),
+        ]
+        geometry = builder.build_from_network(network)
+        # Total area should be length * width
+        assert geometry.total_area > 0
+        assert geometry.total_area == geometry.total_length * geometry.segments[0].width

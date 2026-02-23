@@ -5,6 +5,7 @@ Tests run WITHOUT Blender (bpy) by testing only non-Blender-dependent code paths
 """
 
 import pytest
+import warnings
 from unittest.mock import patch, MagicMock
 
 
@@ -13,324 +14,365 @@ class TestLimitsModule:
 
     def test_module_imports(self):
         """Test that the limits module can be imported."""
+        from lib.utils import limits
+        assert limits is not None
+
+    def test_module_exports_functions(self):
+        """Test module exports expected functions."""
+        from lib.utils import limits
+        assert hasattr(limits, 'check_limit')
+        assert hasattr(limits, 'get_limit')
+        assert hasattr(limits, 'set_limit')
+        assert hasattr(limits, 'get_all_limits')
+        assert hasattr(limits, 'LIMITS')
+
+
+class TestLimitConfig:
+    """Tests for LimitConfig dataclass."""
+
+    def test_limit_config_creation(self):
+        """Test creating a LimitConfig."""
+        from lib.utils.limits import LimitConfig
+        config = LimitConfig(
+            value=100,
+            warn_threshold=0.8,
+            error_threshold=1.5,
+            description="Test limit",
+            category="test"
+        )
+        assert config.value == 100
+        assert config.warn_threshold == 0.8
+        assert config.error_threshold == 1.5
+        assert config.description == "Test limit"
+        assert config.category == "test"
+
+    def test_limit_config_defaults(self):
+        """Test LimitConfig default values."""
+        from lib.utils.limits import LimitConfig
+        config = LimitConfig(value=100)
+        assert config.warn_threshold == 0.8
+        assert config.error_threshold == 1.5
+        assert config.description == ""
+        assert config.category == "general"
+
+
+class TestLimitWarning:
+    """Tests for LimitWarning exception class."""
+
+    def test_limit_warning_creation(self):
+        """Test creating a LimitWarning."""
+        from lib.utils.limits import LimitWarning
+        warning = LimitWarning("max_particles", 5000, 5000, 1.0)
+        assert warning.limit_name == "max_particles"
+        assert warning.current == 5000
+        assert warning.limit == 5000
+        assert warning.threshold == 1.0
+        assert "EXCEEDED" in str(warning)
+
+    def test_limit_warning_below_threshold(self):
+        """Test LimitWarning message below 100%."""
+        from lib.utils.limits import LimitWarning
+        warning = LimitWarning("max_particles", 4000, 5000, 0.8)
+        assert "WARNING" in str(warning)
+        assert "80%" in str(warning)
+
+
+class TestLimitExceededError:
+    """Tests for LimitExceededError exception class."""
+
+    def test_limit_exceeded_error(self):
+        """Test raising LimitExceededError."""
+        from lib.utils.limits import LimitExceededError
+        with pytest.raises(LimitExceededError):
+            raise LimitExceededError("Limit exceeded")
+
+
+class TestCheckLimit:
+    """Tests for check_limit function."""
+
+    def test_check_limit_within_limit(self):
+        """Test check_limit when within limit."""
+        from lib.utils.limits import check_limit
+        result = check_limit('max_particles', 1000)
+        assert result is True
+
+    def test_check_limit_at_warning_threshold(self):
+        """Test check_limit at warning threshold."""
+        from lib.utils.limits import check_limit, LIMITS
+        limit_value = LIMITS['max_particles'].value
+        warn_value = int(limit_value * 0.8)
+        with warnings.catch_warnings(record=True) as w:
+            warnings.simplefilter("always")
+            result = check_limit('max_particles', warn_value)
+            assert result is True
+            assert len(w) >= 1
+            assert "80%" in str(w[0].message)
+
+    def test_check_limit_exceeded(self):
+        """Test check_limit when limit exceeded."""
+        from lib.utils.limits import check_limit, LIMITS
+        limit_value = LIMITS['max_particles'].value
+        with warnings.catch_warnings(record=True) as w:
+            warnings.simplefilter("always")
+            result = check_limit('max_particles', limit_value + 100)
+            assert result is False
+            assert len(w) >= 1
+
+    def test_check_limit_exceeded_warn_only(self):
+        """Test check_limit with warn_only=True."""
+        from lib.utils.limits import check_limit, LIMITS
+        limit_value = LIMITS['max_particles'].value
+        with warnings.catch_warnings(record=True) as w:
+            warnings.simplefilter("always")
+            result = check_limit('max_particles', limit_value + 100, warn_only=True)
+            assert result is True  # warn_only returns True even when exceeded
+
+    def test_check_limit_unknown_limit(self):
+        """Test check_limit with unknown limit name."""
+        from lib.utils.limits import check_limit
+        with pytest.raises(KeyError):
+            check_limit('unknown_limit', 100)
+
+    def test_check_limit_raise_on_exceed(self):
+        """Test check_limit with raise_on_exceed=True."""
+        from lib.utils.limits import check_limit, LimitExceededError, LIMITS
+        limit_value = LIMITS['max_particles'].value
+        with pytest.raises(LimitExceededError):
+            check_limit('max_particles', limit_value + 100, raise_on_exceed=True)
+
+
+class TestGetLimit:
+    """Tests for get_limit function."""
+
+    def test_get_limit_exists(self):
+        """Test get_limit for existing limit."""
+        from lib.utils.limits import get_limit, LIMITS
+        result = get_limit('max_particles')
+        assert result == LIMITS['max_particles'].value
+
+    def test_get_limit_unknown(self):
+        """Test get_limit for unknown limit."""
+        from lib.utils.limits import get_limit
+        with pytest.raises(KeyError):
+            get_limit('unknown_limit')
+
+
+class TestSetLimit:
+    """Tests for set_limit function."""
+
+    def test_set_limit_existing(self):
+        """Test set_limit for existing limit."""
+        from lib.utils.limits import set_limit, get_limit, LIMITS
+        original = get_limit('max_particles')
         try:
-            from lib.utils import limits
-            assert limits is not None
-        except ImportError:
-            pytest.skip("limits module not available")
+            set_limit('max_particles', 9999)
+            assert get_limit('max_particles') == 9999
+        finally:
+            LIMITS['max_particles'].value = original
 
-    def test_module_exports(self):
-        """Test module __all__ exports."""
+    def test_set_limit_new(self):
+        """Test set_limit for new limit."""
+        from lib.utils.limits import set_limit, get_limit, LIMITS
         try:
-            from lib.utils.limits import __all__
-            assert isinstance(__all__, list)
-        except (ImportError, AttributeError):
-            pytest.skip("limits module __all__ not available")
+            set_limit('test_limit_new', 500, description="Test limit")
+            assert get_limit('test_limit_new') == 500
+        finally:
+            if 'test_limit_new' in LIMITS:
+                del LIMITS['test_limit_new']
 
 
-class TestClampFunctions:
-    """Tests for clamp utility functions."""
+class TestGetAllLimits:
+    """Tests for get_all_limits function."""
 
-    def test_clamp_within_range(self):
-        """Test clamping value within range."""
-        try:
-            from lib.utils.limits import clamp
-            result = clamp(5, 0, 10)
-            assert result == 5
-        except (ImportError, AttributeError):
-            pytest.skip("clamp not available")
-
-    def test_clamp_below_min(self):
-        """Test clamping value below minimum."""
-        try:
-            from lib.utils.limits import clamp
-            result = clamp(-5, 0, 10)
-            assert result == 0
-        except (ImportError, AttributeError):
-            pytest.skip("clamp not available")
-
-    def test_clamp_above_max(self):
-        """Test clamping value above maximum."""
-        try:
-            from lib.utils.limits import clamp
-            result = clamp(15, 0, 10)
-            assert result == 10
-        except (ImportError, AttributeError):
-            pytest.skip("clamp not available")
-
-    def test_clamp_float_values(self):
-        """Test clamping float values."""
-        try:
-            from lib.utils.limits import clamp
-            result = clamp(0.5, 0.0, 1.0)
-            assert abs(result - 0.5) < 0.0001
-        except (ImportError, AttributeError):
-            pytest.skip("clamp not available")
-
-    def test_clamp_negative_range(self):
-        """Test clamping in negative range."""
-        try:
-            from lib.utils.limits import clamp
-            result = clamp(-15, -20, -10)
-            assert result == -15
-        except (ImportError, AttributeError):
-            pytest.skip("clamp not available")
+    def test_get_all_limits(self):
+        """Test get_all_limits returns dict."""
+        from lib.utils.limits import get_all_limits
+        result = get_all_limits()
+        assert isinstance(result, dict)
+        assert 'max_particles' in result
+        assert 'value' in result['max_particles']
+        assert 'description' in result['max_particles']
+        assert 'category' in result['max_particles']
 
 
-class TestWrapFunctions:
-    """Tests for wrap/modulo utility functions."""
+class TestGetLimitsByCategory:
+    """Tests for get_limits_by_category function."""
 
-    def test_wrap_within_range(self):
-        """Test wrapping value within range."""
-        try:
-            from lib.utils.limits import wrap
-            result = wrap(5, 0, 10)
-            assert result == 5
-        except (ImportError, AttributeError):
-            pytest.skip("wrap not available")
+    def test_get_limits_by_category(self):
+        """Test getting limits by category."""
+        from lib.utils.limits import get_limits_by_category
+        result = get_limits_by_category('performance')
+        assert isinstance(result, dict)
+        # Should include max_particles which is in performance category
+        assert 'max_particles' in result
 
-    def test_wrap_above_max(self):
-        """Test wrapping value above maximum."""
-        try:
-            from lib.utils.limits import wrap
-            result = wrap(12, 0, 10)
-            assert result == 2
-        except (ImportError, AttributeError):
-            pytest.skip("wrap not available")
-
-    def test_wrap_below_min(self):
-        """Test wrapping value below minimum."""
-        try:
-            from lib.utils.limits import wrap
-            result = wrap(-3, 0, 10)
-            assert result == 7
-        except (ImportError, AttributeError):
-            pytest.skip("wrap not available")
-
-    def test_wrap_angle(self):
-        """Test wrapping angle values."""
-        try:
-            from lib.utils.limits import wrap_angle
-            result = wrap_angle(370, 0, 360)
-            assert result == 10
-        except (ImportError, AttributeError):
-            pytest.skip("wrap_angle not available")
+    def test_get_limits_by_category_empty(self):
+        """Test getting limits for non-existent category."""
+        from lib.utils.limits import get_limits_by_category
+        result = get_limits_by_category('nonexistent_category')
+        assert result == {}
 
 
-class TestNormalizeFunctions:
-    """Tests for normalize utility functions."""
+class TestPerformanceMetric:
+    """Tests for PerformanceMetric dataclass."""
 
-    def test_normalize_0_to_1(self):
-        """Test normalizing to 0-1 range."""
-        try:
-            from lib.utils.limits import normalize
-            result = normalize(50, 0, 100)
-            assert abs(result - 0.5) < 0.0001
-        except (ImportError, AttributeError):
-            pytest.skip("normalize not available")
+    def test_performance_metric_creation(self):
+        """Test creating a PerformanceMetric."""
+        from lib.utils.limits import PerformanceMetric
+        metric = PerformanceMetric(name="test_operation")
+        assert metric.name == "test_operation"
+        assert metric.total_time == 0.0
+        assert metric.call_count == 0
+        assert metric.max_time == 0.0
 
-    def test_normalize_negative_range(self):
-        """Test normalizing negative range."""
-        try:
-            from lib.utils.limits import normalize
-            result = normalize(0, -100, 100)
-            assert abs(result - 0.5) < 0.0001
-        except (ImportError, AttributeError):
-            pytest.skip("normalize not available")
+    def test_performance_metric_avg_time(self):
+        """Test PerformanceMetric avg_time property."""
+        from lib.utils.limits import PerformanceMetric
+        metric = PerformanceMetric(name="test", total_time=1.0, call_count=10)
+        assert metric.avg_time == 0.1
 
-    def test_normalize_at_min(self):
-        """Test normalizing at minimum."""
-        try:
-            from lib.utils.limits import normalize
-            result = normalize(0, 0, 100)
-            assert result == 0
-        except (ImportError, AttributeError):
-            pytest.skip("normalize not available")
-
-    def test_normalize_at_max(self):
-        """Test normalizing at maximum."""
-        try:
-            from lib.utils.limits import normalize
-            result = normalize(100, 0, 100)
-            assert abs(result - 1.0) < 0.0001
-        except (ImportError, AttributeError):
-            pytest.skip("normalize not available")
+    def test_performance_metric_avg_time_zero_calls(self):
+        """Test PerformanceMetric avg_time with zero calls."""
+        from lib.utils.limits import PerformanceMetric
+        metric = PerformanceMetric(name="test")
+        assert metric.avg_time == 0.0
 
 
-class TestRemapFunctions:
-    """Tests for remap utility functions."""
+class TestTimedDecorator:
+    """Tests for timed decorator."""
 
-    def test_remap_simple(self):
-        """Test simple remapping."""
-        try:
-            from lib.utils.limits import remap
-            result = remap(50, 0, 100, 0, 1)
-            assert abs(result - 0.5) < 0.0001
-        except (ImportError, AttributeError):
-            pytest.skip("remap not available")
+    def test_timed_decorator(self):
+        """Test timed decorator tracks metrics."""
+        from lib.utils.limits import timed, get_performance_report, reset_performance_metrics
+        reset_performance_metrics()
 
-    def test_remap_different_ranges(self):
-        """Test remapping between different ranges."""
-        try:
-            from lib.utils.limits import remap
-            result = remap(5, 0, 10, 0, 100)
-            assert result == 50
-        except (ImportError, AttributeError):
-            pytest.skip("remap not available")
+        @timed('test_timed_func', target_ms=1000)
+        def test_func():
+            return 42
 
-    def test_remap_negative_to_positive(self):
-        """Test remapping negative to positive range."""
-        try:
-            from lib.utils.limits import remap
-            result = remap(0, -1, 1, 0, 100)
-            assert result == 50
-        except (ImportError, AttributeError):
-            pytest.skip("remap not available")
+        result = test_func()
+        assert result == 42
 
-    def test_remap_with_clamp(self):
-        """Test remapping with clamping."""
-        try:
-            from lib.utils.limits import remap_clamped
-            result = remap_clamped(150, 0, 100, 0, 1)
-            assert abs(result - 1.0) < 0.0001
-        except (ImportError, AttributeError):
-            pytest.skip("remap_clamped not available")
+        report = get_performance_report()
+        assert 'test_timed_func' in report
+        assert report['test_timed_func']['call_count'] == 1
+
+    def test_timed_decorator_default_name(self):
+        """Test timed decorator uses function name by default."""
+        from lib.utils.limits import timed, get_performance_report, reset_performance_metrics
+        reset_performance_metrics()
+
+        @timed()
+        def my_test_function():
+            return "done"
+
+        my_test_function()
+        report = get_performance_report()
+        assert 'my_test_function' in report
 
 
-class TestSmoothStepFunctions:
-    """Tests for smooth step interpolation."""
+class TestGetPerformanceReport:
+    """Tests for get_performance_report function."""
 
-    def test_smooth_step_at_edges(self):
-        """Test smooth step at edge values."""
-        try:
-            from lib.utils.limits import smooth_step
-            assert smooth_step(0, 1, 0) == 0
-            assert smooth_step(0, 1, 1) == 1
-        except (ImportError, AttributeError):
-            pytest.skip("smooth_step not available")
-
-    def test_smooth_step_middle(self):
-        """Test smooth step at middle value."""
-        try:
-            from lib.utils.limits import smooth_step
-            result = smooth_step(0, 1, 0.5)
-            assert 0 < result < 1
-        except (ImportError, AttributeError):
-            pytest.skip("smooth_step not available")
-
-    def test_smoother_step(self):
-        """Test smoother step (Ken Perlin's version)."""
-        try:
-            from lib.utils.limits import smoother_step
-            result = smoother_step(0, 1, 0.5)
-            assert 0 < result < 1
-        except (ImportError, AttributeError):
-            pytest.skip("smoother_step not available")
+    def test_get_performance_report(self):
+        """Test getting performance report."""
+        from lib.utils.limits import get_performance_report
+        result = get_performance_report()
+        assert isinstance(result, dict)
 
 
-class TestLimitRange:
-    """Tests for LimitRange dataclass."""
+class TestResetPerformanceMetrics:
+    """Tests for reset_performance_metrics function."""
 
-    def test_limit_range_creation(self):
-        """Test creating a LimitRange."""
-        try:
-            from lib.utils.limits import LimitRange
-            limit = LimitRange(min_value=0, max_value=100)
-            assert limit.min_value == 0
-            assert limit.max_value == 100
-        except (ImportError, AttributeError):
-            pytest.skip("LimitRange not available")
+    def test_reset_performance_metrics(self):
+        """Test resetting performance metrics."""
+        from lib.utils.limits import (
+            reset_performance_metrics, timed, get_performance_report
+        )
+        reset_performance_metrics()
 
-    def test_limit_range_clamp(self):
-        """Test LimitRange clamp method."""
-        try:
-            from lib.utils.limits import LimitRange
-            limit = LimitRange(min_value=0, max_value=100)
-            assert limit.clamp(50) == 50
-            assert limit.clamp(-10) == 0
-            assert limit.clamp(150) == 100
-        except (ImportError, AttributeError):
-            pytest.skip("LimitRange not available")
+        @timed('test_reset_func')
+        def test_func():
+            pass
 
-    def test_limit_range_normalize(self):
-        """Test LimitRange normalize method."""
-        try:
-            from lib.utils.limits import LimitRange
-            limit = LimitRange(min_value=0, max_value=100)
-            result = limit.normalize(50)
-            assert abs(result - 0.5) < 0.0001
-        except (ImportError, AttributeError):
-            pytest.skip("LimitRange not available")
+        test_func()
+        assert 'test_reset_func' in get_performance_report()
 
-    def test_limit_range_contains(self):
-        """Test LimitRange contains check."""
-        try:
-            from lib.utils.limits import LimitRange
-            limit = LimitRange(min_value=0, max_value=100)
-            assert limit.contains(50) is True
-            assert limit.contains(-10) is False
-            assert limit.contains(150) is False
-        except (ImportError, AttributeError):
-            pytest.skip("LimitRange not available")
-
-    def test_limit_range_span(self):
-        """Test LimitRange span property."""
-        try:
-            from lib.utils.limits import LimitRange
-            limit = LimitRange(min_value=0, max_value=100)
-            assert limit.span == 100
-        except (ImportError, AttributeError):
-            pytest.skip("LimitRange not available")
+        reset_performance_metrics()
+        # After reset, the metric should be gone or reset
+        report = get_performance_report()
+        if 'test_reset_func' in report:
+            assert report['test_reset_func']['call_count'] == 0
 
 
-class TestCommonLimits:
-    """Tests for common limit constants."""
+class TestLimitContext:
+    """Tests for limit_context context manager."""
+
+    def test_limit_context(self):
+        """Test limit_context temporarily changes limit."""
+        from lib.utils.limits import limit_context, get_limit, LIMITS
+        original = get_limit('max_particles')
+
+        with limit_context('max_particles', 99999):
+            assert get_limit('max_particles') == 99999
+
+        assert get_limit('max_particles') == original
+
+    def test_limit_context_unknown_limit(self):
+        """Test limit_context with unknown limit (no-op)."""
+        from lib.utils.limits import limit_context
+        # Should not raise, just do nothing
+        with limit_context('unknown_limit', 100):
+            pass
+
+
+class TestPerformanceBlock:
+    """Tests for performance_block context manager."""
+
+    def test_performance_block(self):
+        """Test performance_block times execution."""
+        from lib.utils.limits import performance_block, get_performance_report, reset_performance_metrics
+        reset_performance_metrics()
+
+        with performance_block('test_block', target_ms=1000) as metric:
+            pass
+
+        assert metric.elapsed > 0
+        assert metric.elapsed_ms > 0
+
+        report = get_performance_report()
+        assert 'test_block' in report
+        assert report['test_block']['call_count'] == 1
+
+    def test_performance_block_no_warn(self):
+        """Test performance_block with warn=False."""
+        from lib.utils.limits import performance_block, reset_performance_metrics
+        reset_performance_metrics()
+
+        with performance_block('test_block_no_warn', target_ms=0.001, warn=False) as metric:
+            pass
+
+        # Should not raise even if target exceeded
+
+
+class TestDefaultLimits:
+    """Tests for default LIMITS dictionary."""
+
+    def test_limits_dict_exists(self):
+        """Test that LIMITS dict exists and has entries."""
+        from lib.utils.limits import LIMITS
+        assert isinstance(LIMITS, dict)
+        assert len(LIMITS) > 0
 
     def test_common_limits_exist(self):
-        """Test that common limit constants exist."""
-        try:
-            from lib.utils.limits import COMMON_LIMITS
-            assert isinstance(COMMON_LIMITS, dict)
-        except (ImportError, AttributeError):
-            pytest.skip("COMMON_LIMITS not available")
-
-    def test_get_limit_function(self):
-        """Test getting a limit by name."""
-        try:
-            from lib.utils.limits import get_limit
-            limit = get_limit("rotation")
-            assert limit is not None
-        except (ImportError, AttributeError):
-            pytest.skip("get_limit not available")
-
-
-class TestEpsilonComparisons:
-    """Tests for epsilon-based comparisons."""
-
-    def test_approximately_equal(self):
-        """Test approximate equality."""
-        try:
-            from lib.utils.limits import approximately_equal
-            assert approximately_equal(1.0, 1.0000001) is True
-            assert approximately_equal(1.0, 1.1) is False
-        except (ImportError, AttributeError):
-            pytest.skip("approximately_equal not available")
-
-    def test_is_zero(self):
-        """Test zero check with epsilon."""
-        try:
-            from lib.utils.limits import is_zero
-            assert is_zero(0.0) is True
-            assert is_zero(0.0000001) is True
-            assert is_zero(0.1) is False
-        except (ImportError, AttributeError):
-            pytest.skip("is_zero not available")
-
-    def test_epsilon_constant(self):
-        """Test epsilon constant."""
-        try:
-            from lib.utils.limits import EPSILON
-            assert EPSILON > 0
-            assert EPSILON < 0.001
-        except (ImportError, AttributeError):
-            pytest.skip("EPSILON not available")
+        """Test that common limits are defined."""
+        from lib.utils.limits import LIMITS
+        expected_limits = [
+            'max_particles',
+            'max_bones',
+            'max_render_samples',
+            'max_texture_size',
+            'max_undo_steps',
+        ]
+        for limit_name in expected_limits:
+            assert limit_name in LIMITS, f"Expected limit '{limit_name}' not found"

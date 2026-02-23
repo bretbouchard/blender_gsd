@@ -434,9 +434,28 @@ class TestHasAlpha:
         assert material_builder._has_alpha(Path("test.bmp")) is False
 
 
+# Check if we're running with real Blender (not mocked)
+def _real_blender_available():
+    """Check if real Blender is available (not mocked)."""
+    try:
+        import bpy
+        # Check if it's the real bpy by looking for a real attribute
+        # The mock doesn't have __name__ properly set
+        return hasattr(bpy, '__name__') and bpy.__name__ == 'bpy'
+    except ImportError:
+        return False
+
+
+requires_real_blender = pytest.mark.skipif(
+    not _real_blender_available(),
+    reason="Requires real Blender (bpy is mocked in test environment)"
+)
+
+
 class TestBuildFromTextures:
     """Tests for build_from_textures method."""
 
+    @requires_real_blender
     def test_build_requires_blender(self, material_builder, temp_texture_dir):
         """build_from_textures should require Blender."""
         with pytest.raises(ImportError):
@@ -445,6 +464,7 @@ class TestBuildFromTextures:
                 temp_texture_dir,
             )
 
+    @requires_real_blender
     def test_build_empty_directory(self, material_builder, tmp_path):
         """Should return error for empty directory."""
         empty_dir = tmp_path / "empty"
@@ -458,6 +478,7 @@ class TestBuildFromTextures:
 class TestBuildFromKitBashTextures:
     """Tests for build_from_kitbash_textures method."""
 
+    @requires_real_blender
     def test_build_requires_blender(self, material_builder, temp_texture_dir):
         """build_from_kitbash_textures should require Blender."""
         with pytest.raises(ImportError):
@@ -467,6 +488,7 @@ class TestBuildFromKitBashTextures:
                 "KB3D_WZT",
             )
 
+    @requires_real_blender
     def test_nonexistent_directory_requires_blender(self, material_builder):
         """Should require Blender even for nonexistent directory."""
         # The function imports bpy before checking directory existence
@@ -481,11 +503,13 @@ class TestBuildFromKitBashTextures:
 class TestBuildFromTextureSet:
     """Tests for _build_from_texture_set method."""
 
+    @requires_real_blender
     def test_build_requires_blender(self, material_builder, sample_texture_set):
         """_build_from_texture_set should require Blender."""
         with pytest.raises(ImportError):
             material_builder._build_from_texture_set("test", sample_texture_set)
 
+    @requires_real_blender
     def test_empty_texture_set(self, material_builder):
         """Should return error for empty texture set."""
         empty_set = TextureSet(name="empty")
@@ -767,6 +791,7 @@ class TestDetectTexturePrefix:
 class TestConvertPack:
     """Tests for convert_pack method."""
 
+    @requires_real_blender
     def test_convert_requires_blender(self, converter, temp_pack_dir, tmp_path):
         """convert_pack should require Blender."""
         output_dir = tmp_path / "output"
@@ -778,6 +803,7 @@ class TestConvertPack:
                 output_dir=output_dir,
             )
 
+    @requires_real_blender
     def test_convert_no_source_files(self, converter, tmp_path):
         """Should return error when no source files found."""
         empty_dir = tmp_path / "empty"
@@ -800,6 +826,7 @@ class TestConvertPack:
 class TestBatchConvert:
     """Tests for batch_convert method."""
 
+    @requires_real_blender
     def test_batch_convert_requires_blender(self, converter, tmp_path):
         """batch_convert should require Blender."""
         source_root = tmp_path / "source"
@@ -835,6 +862,7 @@ class TestBatchConvert:
 class TestImportMethods:
     """Tests for _import_obj and _import_fbx methods."""
 
+    @requires_real_blender
     def test_import_obj_requires_blender(self, converter, tmp_path):
         """_import_obj should require Blender."""
         obj_file = tmp_path / "test.obj"
@@ -843,6 +871,7 @@ class TestImportMethods:
         with pytest.raises(ImportError):
             converter._import_obj(obj_file)
 
+    @requires_real_blender
     def test_import_fbx_requires_blender(self, converter, tmp_path):
         """_import_fbx should require Blender."""
         fbx_file = tmp_path / "test.fbx"
@@ -859,6 +888,7 @@ class TestImportMethods:
 class TestSplitByMaterial:
     """Tests for _split_by_material method."""
 
+    @requires_real_blender
     def test_split_requires_blender(self, converter, tmp_path):
         """_split_by_material should require Blender."""
         mock_obj = MagicMock()
@@ -875,6 +905,7 @@ class TestSplitByMaterial:
 class TestMarkAsAsset:
     """Tests for _mark_as_asset method."""
 
+    @requires_real_blender
     def test_mark_requires_blender(self, converter):
         """_mark_as_asset should require Blender."""
         mock_obj = MagicMock()
@@ -890,6 +921,7 @@ class TestMarkAsAsset:
 class TestBuildMaterials:
     """Tests for _build_materials method."""
 
+    @requires_real_blender
     def test_build_materials_requires_blender(self, converter, tmp_path):
         """_build_materials should require Blender."""
         result = ConversionResult(pack_name="Test")

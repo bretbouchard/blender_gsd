@@ -61,6 +61,7 @@ class TestValidateAreaShape:
 class TestCreateLight:
     """Tests for create_light function."""
 
+    @pytest.mark.skipif(BLENDER_AVAILABLE, reason="Test requires real Blender to be unavailable")
     def test_create_area_light_config(self):
         """Test creating area light from config."""
         config = LightConfig(
@@ -81,6 +82,7 @@ class TestCreateLight:
         result = create_light(config)
         assert result is None
 
+    @pytest.mark.skipif(BLENDER_AVAILABLE, reason="Test requires real Blender to be unavailable")
     def test_create_spot_light_config(self):
         """Test creating spot light from config."""
         config = LightConfig(
@@ -94,6 +96,7 @@ class TestCreateLight:
         result = create_light(config)
         assert result is None  # Blender not available
 
+    @pytest.mark.skipif(BLENDER_AVAILABLE, reason="Test requires real Blender to be unavailable")
     def test_create_point_light_config(self):
         """Test creating point light from config."""
         config = LightConfig(
@@ -106,6 +109,7 @@ class TestCreateLight:
         result = create_light(config)
         assert result is None  # Blender not available
 
+    @pytest.mark.skipif(BLENDER_AVAILABLE, reason="Test requires real Blender to be unavailable")
     def test_create_sun_light_config(self):
         """Test creating sun light from config."""
         config = LightConfig(
@@ -124,6 +128,7 @@ class TestCreateLight:
 class TestConvenienceFunctions:
     """Tests for convenience light creation functions."""
 
+    @pytest.mark.skipif(BLENDER_AVAILABLE, reason="Test requires real Blender to be unavailable")
     def test_create_area_light_default(self):
         """Test area light with default parameters."""
         result = create_area_light(
@@ -133,6 +138,7 @@ class TestConvenienceFunctions:
         )
         assert result is None  # Blender not available
 
+    @pytest.mark.skipif(BLENDER_AVAILABLE, reason="Test requires real Blender to be unavailable")
     def test_create_area_light_rectangle(self):
         """Test rectangular area light."""
         result = create_area_light(
@@ -144,6 +150,7 @@ class TestConvenienceFunctions:
         )
         assert result is None
 
+    @pytest.mark.skipif(BLENDER_AVAILABLE, reason="Test requires real Blender to be unavailable")
     def test_create_spot_light_degrees(self):
         """Test spot light with degrees conversion."""
         result = create_spot_light(
@@ -154,6 +161,7 @@ class TestConvenienceFunctions:
         )
         assert result is None
 
+    @pytest.mark.skipif(BLENDER_AVAILABLE, reason="Test requires real Blender to be unavailable")
     def test_create_point_light(self):
         """Test point light creation."""
         result = create_point_light(
@@ -163,6 +171,7 @@ class TestConvenienceFunctions:
         )
         assert result is None
 
+    @pytest.mark.skipif(BLENDER_AVAILABLE, reason="Test requires real Blender to be unavailable")
     def test_create_sun_light(self):
         """Test sun light creation."""
         result = create_sun_light(
@@ -171,6 +180,7 @@ class TestConvenienceFunctions:
         )
         assert result is None
 
+    @pytest.mark.skipif(BLENDER_AVAILABLE, reason="Test requires real Blender to be unavailable")
     def test_create_area_light_with_temperature(self):
         """Test area light with color temperature."""
         result = create_area_light(
@@ -241,6 +251,7 @@ class TestLightManagement:
 class TestApplyLightingRig:
     """Tests for apply_lighting_rig function."""
 
+    @pytest.mark.skipif(BLENDER_AVAILABLE, reason="Test requires real Blender to be unavailable")
     def test_apply_rig_blender_unavailable(self):
         """Test that apply_lighting_rig handles missing Blender gracefully."""
         result = apply_lighting_rig("three_point_soft")
@@ -251,6 +262,7 @@ class TestApplyLightingRig:
             "total_lights": 0
         }
 
+    @pytest.mark.skipif(BLENDER_AVAILABLE, reason="Test requires real Blender to be unavailable")
     def test_apply_rig_with_target_position(self):
         """Test applying rig with custom target position."""
         result = apply_lighting_rig(
@@ -259,6 +271,7 @@ class TestApplyLightingRig:
         )
         assert result["total_lights"] == 0
 
+    @pytest.mark.skipif(BLENDER_AVAILABLE, reason="Test requires real Blender to be unavailable")
     def test_apply_rig_with_intensity_scale(self):
         """Test applying rig with intensity scaling."""
         result = apply_lighting_rig(
