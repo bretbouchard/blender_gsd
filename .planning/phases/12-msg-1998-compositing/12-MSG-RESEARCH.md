@@ -117,7 +117,7 @@ This phase handles the **Stable Diffusion compositing pipeline** for MSG 1998, c
 
 **Positive (Shared across all shots):**
 ```
-1998 film stock, Kodak Vision3 500T 5219,
+1998 film stock, Kodak Vision 500T 5279,
 35mm anamorphic lens, 2.39:1 aspect ratio,
 film grain, organic texture, practical lighting,
 period accurate 1998 New York City,
@@ -125,6 +125,11 @@ Matthew Libatique cinematography style,
 handheld camera, documentary feel,
 no digital artifacts, no modern elements
 ```
+
+**⚠️ CRITICAL: Film Stock Accuracy**
+- **CORRECT:** Kodak Vision 500T 5279 (1996-2002 era)
+- **WRONG:** Kodak Vision3 500T 5219 (introduced 2007 - NOT period accurate)
+- See FDX GSD 08-TECH-GAPS.md for full film stock specifications
 
 **Negative (Shared across all shots):**
 ```
@@ -311,9 +316,16 @@ output/
 
 ### LUT Recommendations
 
-- **Kodak Vision3 500T 5219** - Primary look
-- **Print Film Emulation** - For final output
+- **Kodak Vision 500T 5279** - Primary look (1996-2002 era, NOT Vision3)
+- **Print Film Emulation (Kodak 2383)** - For release print look
 - **Bleach Bypass** - For specific scenes (optional)
+
+**Period-Accurate 1998 Film Stocks:**
+| Stock | Type | Notes |
+|-------|------|-------|
+| Kodak 5289/7289 | 500T | Pre-Vision3 tungsten |
+| Kodak Vision 500T 5279 | 500T | Primary stock (1996-2002) |
+| Fuji 8572 | 500T | Reala 500 alternative |
 
 ---
 

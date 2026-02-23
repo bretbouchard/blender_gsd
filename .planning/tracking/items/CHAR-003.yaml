@@ -1,0 +1,16 @@
+id: CHAR-003
+name: "Mentor"
+category: character
+status: complete
+description: "Wise guide who helps the hero on their journey"
+source:
+  spec: specs/characters/mentor.md
+  created_by: bret
+  created_at: 2026-02-15
+blockers: []
+depends_on: []
+assigned_to: bret
+notes: "Complete with full rig and blend shapes. Ready for animation."
+images:
+  - .gsd-state/onesheets/CHAR-003-hero.png
+onesheet: .gsd-state/onesheets/CHAR-003.html

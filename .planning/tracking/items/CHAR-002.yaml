@@ -1,0 +1,17 @@
+id: CHAR-002
+name: "Villain"
+category: character
+status: planned
+description: "Primary antagonist - charismatic but dangerous"
+source:
+  spec: specs/characters/villain.md
+  created_by: bret
+  created_at: 2026-02-19
+blockers:
+  - "Waiting on hero design finalization"
+depends_on:
+  - WARD-002
+assigned_to: null
+notes: "Waiting for hero to be finalized before starting on counter-design"
+images: []
+onesheet: null

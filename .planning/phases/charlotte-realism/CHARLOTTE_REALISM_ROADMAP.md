@@ -1,15 +1,15 @@
 # Charlotte Digital Twin - Photorealism Roadmap
 
 **Project**: Charlotte I-277 Highway Scene
-**Status**: ✅ **IMPLEMENTATION COMPLETE** (2026-02-22)
+**Status**: ✅ **IMPLEMENTATION COMPLETE + LED FACADE SYSTEM** (2026-02-22)
 **Previous State**: Basic 3D road ribbons on flat ground
-**Current State**: Full photorealism system with materials, lighting, infrastructure, and effects
+**Current State**: Full photorealism system with materials, lighting, infrastructure, effects, AND LED building facades
 
 ---
 
 ## Implementation Summary
 
-All 7 phases (R1-R7) have been successfully implemented. The Charlotte Digital Twin now includes:
+All 7 phases (R1-R7) have been successfully implemented PLUS Charlotte LED Facade System. The Charlotte Digital Twin now includes:
 
 | Phase | Description | Status | Deliverables |
 |-------|-------------|--------|--------------|
@@ -20,6 +20,50 @@ All 7 phases (R1-R7) have been successfully implemented. The Charlotte Digital T
 | R5 | Buildings | ✅ Complete | `lib/charlotte_digital_twin/buildings/` (extraction, materials) |
 | R6 | Hero Car | ✅ Complete | `lib/charlotte_digital_twin/vehicles/` (model, animation) |
 | R7 | Weather & Time | ✅ Complete | `lib/charlotte_digital_twin/effects/` (time of day, weather) |
+| **LED** | **Charlotte LED Facades** | ✅ **NEW** | `lib/charlotte_digital_twin/buildings/led_facade.py`, `charlotte_skyline.py` |
+
+---
+
+## LED Facade System (NEW)
+
+### Key Buildings with LED Support
+
+| Building | LED Count | Floors | Key Feature |
+|----------|-----------|--------|-------------|
+| Duke Energy Center | ~2,500 | 48 | Programmable RGB, hourly shows |
+| Bank of America Center | ~350 | 60 | Granite crown accent lighting |
+| Truist Center | ~500 | 46 | Art-deco architectural lighting |
+
+### LED System Features
+
+- **Programmable Colors**: Panthers blue, Christmas (red/green), Halloween (orange/purple), etc.
+- **Animation Types**: Static, pulse, wave, chase, rainbow, sparkle, breathe, cascade
+- **Presets**: Panthers game mode, holiday schedules, night scene setup
+- **Materials**: Emissive glass panels with configurable brightness
+
+### Usage Example
+
+```python
+from lib.charlotte_digital_twin import (
+    CharlotteSkylineBuilder,
+    LEDColor,
+    create_charlotte_skyline,
+)
+
+# Create full skyline with LED buildings
+skyline = create_charlotte_skyline()
+
+# Set Panthers mode (all LED buildings to blue)
+builder = CharlotteSkylineBuilder()
+builder.set_panthers_mode()
+```
+
+### Reference Photos
+
+- **36+ image URLs** documented in `.planning/research/CHARLOTTE_LED_IMAGE_URLS.md`
+- **Duke Energy Center specs** in `.planning/research/DUKE_ENERGY_CENTER_LED_FACADE.md`
+- Free Wikimedia Commons images (30+)
+- Stock photos from HelloRF, 新片场
 
 ---
 

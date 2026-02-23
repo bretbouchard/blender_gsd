@@ -1,0 +1,17 @@
+id: CHAR-001
+name: "Hero Character"
+category: character
+status: in_progress
+description: "Main protagonist of the story - the relatable everyman who becomes extraordinary"
+source:
+  spec: specs/characters/hero.md
+  created_by: bret
+  created_at: 2026-02-19
+blockers: []
+depends_on:
+  - WARD-001
+  - PROP-015
+assigned_to: bret
+notes: "Concept approved, modeling in progress. Face sculpt 80% complete."
+images: []
+onesheet: null

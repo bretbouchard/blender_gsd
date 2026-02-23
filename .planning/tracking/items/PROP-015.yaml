@@ -1,0 +1,15 @@
+id: PROP-015
+name: "Hero's Weapon"
+category: prop
+status: planned
+description: "Signature weapon/tool that the hero uses"
+source:
+  spec: specs/props/hero-weapon.md
+  created_by: bret
+  created_at: 2026-02-19
+blockers: []
+depends_on: []
+assigned_to: null
+notes: "Design sketches approved, ready for modeling"
+images: []
+onesheet: null

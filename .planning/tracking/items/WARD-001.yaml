@@ -1,0 +1,15 @@
+id: WARD-001
+name: "Hero Costume"
+category: wardrobe
+status: in_progress
+description: "Everyday wear plus hero's signature jacket"
+source:
+  spec: specs/wardrobe/hero-costume.md
+  created_by: bret
+  created_at: 2026-02-18
+blockers: []
+depends_on: []
+assigned_to: bret
+notes: "Jacket modeled, working on pants and boots"
+images: []
+onesheet: null

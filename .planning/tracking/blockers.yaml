@@ -1,0 +1,17 @@
+# Active Blockers
+# Track what's blocking production progress
+
+blockers:
+  - id: BLK-001
+    reason: "Waiting on story approval for artifact design"
+    blocking_since: 2026-02-18
+    blocking_items:
+      - PROP-016
+    resolution: null
+
+  - id: BLK-002
+    reason: "Waiting on hero design finalization"
+    blocking_since: 2026-02-17
+    blocking_items:
+      - CHAR-002
+    resolution: null

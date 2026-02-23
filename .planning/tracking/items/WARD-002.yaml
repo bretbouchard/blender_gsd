@@ -1,0 +1,16 @@
+id: WARD-002
+name: "Villain Outfit"
+category: wardrobe
+status: vague
+description: "Antagonist's distinctive look - sleek, imposing"
+source:
+  spec: specs/wardrobe/villain-outfit.md
+  created_by: bret
+  created_at: 2026-02-19
+blockers: []
+depends_on:
+  - CHAR-002
+assigned_to: null
+notes: "Need to define silhouette and color palette"
+images: []
+onesheet: null

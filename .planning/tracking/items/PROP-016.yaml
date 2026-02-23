@@ -1,0 +1,16 @@
+id: PROP-016
+name: "Ancient Artifact"
+category: prop
+status: blocked
+description: "Key story object that drives the plot"
+source:
+  spec: specs/props/artifact.md
+  created_by: bret
+  created_at: 2026-02-19
+blockers:
+  - "Waiting on story approval for artifact design"
+depends_on: []
+assigned_to: null
+notes: "Concept art started but blocked on story decisions"
+images: []
+onesheet: null

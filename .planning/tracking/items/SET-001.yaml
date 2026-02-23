@@ -1,0 +1,15 @@
+id: SET-001
+name: "Main Village"
+category: set
+status: in_progress
+description: "Central location where most of the story takes place"
+source:
+  spec: specs/sets/village.md
+  created_by: bret
+  created_at: 2026-02-17
+blockers: []
+depends_on: []
+assigned_to: bret
+notes: "Layout complete, dressing in progress. 60% done."
+images: []
+onesheet: null

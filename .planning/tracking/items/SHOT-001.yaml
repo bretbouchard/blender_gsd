@@ -1,0 +1,16 @@
+id: SHOT-001
+name: "Opening Shot"
+category: shot
+status: planned
+description: "Wide establishing shot of the world"
+source:
+  spec: specs/shots/opening.yaml
+  created_by: bret
+  created_at: 2026-02-19
+blockers: []
+depends_on:
+  - SET-001
+assigned_to: null
+notes: "Storyboarded, waiting for set completion"
+images: []
+onesheet: null

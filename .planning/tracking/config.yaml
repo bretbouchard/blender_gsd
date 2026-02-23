@@ -1,0 +1,52 @@
+# Production Tracking Configuration
+# Defines categories and statuses for items
+
+categories:
+  - id: character
+    name: Characters
+    color: "#3498db"
+
+  - id: wardrobe
+    name: Wardrobe
+    color: "#9b59b6"
+
+  - id: prop
+    name: Props
+    color: "#e67e22"
+
+  - id: set
+    name: Sets
+    color: "#27ae60"
+
+  - id: shot
+    name: Shots
+    color: "#e74c3c"
+
+  - id: asset
+    name: Assets
+    color: "#1abc9c"
+
+  - id: audio
+    name: Audio
+    color: "#f39c12"
+
+statuses:
+  - id: complete
+    name: Complete
+    color: "#27ae60"
+
+  - id: in_progress
+    name: In Progress
+    color: "#f1c40f"
+
+  - id: planned
+    name: Planned
+    color: "#3498db"
+
+  - id: vague
+    name: Vague
+    color: "#95a5a6"
+
+  - id: blocked
+    name: Blocked
+    color: "#e74c3c"
