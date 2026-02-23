@@ -1,0 +1,144 @@
+======================================================================
+BLENDER BATCH PREVIEW GENERATION - DIRECTORY LISTING
+Generated: 2026-02-22 01:06:52
+======================================================================
+
+Root: /Volumes/Storage/3d/kitbash/converted_assets
+Total directories with .blend files: 98
+Total .blend files: 2398
+
+----------------------------------------------------------------------
+DIRECTORIES (sorted by category)
+----------------------------------------------------------------------
+
+## kpacks (68 dirs, 2161 files)
+
+  [ 105 files]  /Volumes/Storage/3d/kitbash/converted_assets/kpacks/202_SYMBOLS_VOL_001
+  [  34 files]  /Volumes/Storage/3d/kitbash/converted_assets/kpacks/Arch-2050
+  [  39 files]  /Volumes/Storage/3d/kitbash/converted_assets/kpacks/Arch-Panels
+  [  38 files]  /Volumes/Storage/3d/kitbash/converted_assets/kpacks/DM+
+  [  50 files]  /Volumes/Storage/3d/kitbash/converted_assets/kpacks/DM-
+  [  61 files]  /Volumes/Storage/3d/kitbash/converted_assets/kpacks/DM-Arrays
+  [  31 files]  /Volumes/Storage/3d/kitbash/converted_assets/kpacks/DM-Cables
+  [  49 files]  /Volumes/Storage/3d/kitbash/converted_assets/kpacks/DM-Decals
+  [  76 files]  /Volumes/Storage/3d/kitbash/converted_assets/kpacks/DM-Gui
+  [  11 files]  /Volumes/Storage/3d/kitbash/converted_assets/kpacks/DM-Other
+  [  49 files]  /Volumes/Storage/3d/kitbash/converted_assets/kpacks/DM-Solids
+  [  37 files]  /Volumes/Storage/3d/kitbash/converted_assets/kpacks/DM-Vents-Ribs
+  [  44 files]  /Volumes/Storage/3d/kitbash/converted_assets/kpacks/DM-Widgets
+  [  26 files]  /Volumes/Storage/3d/kitbash/converted_assets/kpacks/Dosch-2.1
+  [  24 files]  /Volumes/Storage/3d/kitbash/converted_assets/kpacks/Dots
+  [  20 files]  /Volumes/Storage/3d/kitbash/converted_assets/kpacks/Dots-Custom
+  [  64 files]  /Volumes/Storage/3d/kitbash/converted_assets/kpacks/Dots-Materials
+  [   6 files]  /Volumes/Storage/3d/kitbash/converted_assets/kpacks/Dune
+  [  25 files]  /Volumes/Storage/3d/kitbash/converted_assets/kpacks/Ft_Metal_Mats
+  [  25 files]  /Volumes/Storage/3d/kitbash/converted_assets/kpacks/HEXES Mini Pack 04 - 3D Mesh Inserts
+  [   1 files]  /Volumes/Storage/3d/kitbash/converted_assets/kpacks/Hexes Mini Pack 04 - Decals
+  [  21 files]  /Volumes/Storage/3d/kitbash/converted_assets/kpacks/IH-steam
+  [  48 files]  /Volumes/Storage/3d/kitbash/converted_assets/kpacks/Just Panels - 2D1
+  [  48 files]  /Volumes/Storage/3d/kitbash/converted_assets/kpacks/Just Panels - 2D2
+  [  48 files]  /Volumes/Storage/3d/kitbash/converted_assets/kpacks/Just Panels - 2D3
+  [  48 files]  /Volumes/Storage/3d/kitbash/converted_assets/kpacks/Just Panels - 3D1
+  [   3 files]  /Volumes/Storage/3d/kitbash/converted_assets/kpacks/Just Panels - Basic
+  [  20 files]  /Volumes/Storage/3d/kitbash/converted_assets/kpacks/Just Panels - Screw Heads
+  [  11 files]  /Volumes/Storage/3d/kitbash/converted_assets/kpacks/Just Panels -3D2
+  [  16 files]  /Volumes/Storage/3d/kitbash/converted_assets/kpacks/KB 01 Box Cores
+  [  38 files]  /Volumes/Storage/3d/kitbash/converted_assets/kpacks/KB 02 Rectangular Cores
+  [  13 files]  /Volumes/Storage/3d/kitbash/converted_assets/kpacks/KB 03 Circular Cores
+  [  31 files]  /Volumes/Storage/3d/kitbash/converted_assets/kpacks/KB 04 Frames
+  [  13 files]  /Volumes/Storage/3d/kitbash/converted_assets/kpacks/KB 05 Hydraulic
+  [  44 files]  /Volumes/Storage/3d/kitbash/converted_assets/kpacks/KB 06 Panel Boxes
+  [  26 files]  /Volumes/Storage/3d/kitbash/converted_assets/kpacks/KB 07 Swivels
+  [  15 files]  /Volumes/Storage/3d/kitbash/converted_assets/kpacks/KB 08 Tools
+  [  30 files]  /Volumes/Storage/3d/kitbash/converted_assets/kpacks/KB 09 Tube
+  [  10 files]  /Volumes/Storage/3d/kitbash/converted_assets/kpacks/KB 10 Cannister
+  [  32 files]  /Volumes/Storage/3d/kitbash/converted_assets/kpacks/KB 11 Connectors
+  [  55 files]  /Volumes/Storage/3d/kitbash/converted_assets/kpacks/KB 12 Brackets
+  [  26 files]  /Volumes/Storage/3d/kitbash/converted_assets/kpacks/KB 13 Collars
+  [  19 files]  /Volumes/Storage/3d/kitbash/converted_assets/kpacks/KB 14 Plates
+  [  24 files]  /Volumes/Storage/3d/kitbash/converted_assets/kpacks/KB 15 Square Caps
+  [  64 files]  /Volumes/Storage/3d/kitbash/converted_assets/kpacks/KB 16 Covers
+  [  55 files]  /Volumes/Storage/3d/kitbash/converted_assets/kpacks/KB 17 Round Caps
+  [  31 files]  /Volumes/Storage/3d/kitbash/converted_assets/kpacks/MA-Cutters-Complex
+  [  52 files]  /Volumes/Storage/3d/kitbash/converted_assets/kpacks/MA-Cutters-Medium
+  [  52 files]  /Volumes/Storage/3d/kitbash/converted_assets/kpacks/MA-Cutters-Simple
+  [   4 files]  /Volumes/Storage/3d/kitbash/converted_assets/kpacks/MA-Decals
+  [  19 files]  /Volumes/Storage/3d/kitbash/converted_assets/kpacks/MA-Grids-Design
+  [   9 files]  /Volumes/Storage/3d/kitbash/converted_assets/kpacks/MA-Objects-Anim
+  [   8 files]  /Volumes/Storage/3d/kitbash/converted_assets/kpacks/MA-Objects-Arch
+  [  20 files]  /Volumes/Storage/3d/kitbash/converted_assets/kpacks/MA-Objects-Complex
+  [  33 files]  /Volumes/Storage/3d/kitbash/converted_assets/kpacks/MA-Objects-Controls
+  [  18 files]  /Volumes/Storage/3d/kitbash/converted_assets/kpacks/MA-Objects-Shapes
+  [  77 files]  /Volumes/Storage/3d/kitbash/converted_assets/kpacks/MA-Objects-Tech
+  [  71 files]  /Volumes/Storage/3d/kitbash/converted_assets/kpacks/NV-KBK00-Baseforms
+  [  40 files]  /Volumes/Storage/3d/kitbash/converted_assets/kpacks/Plating
+  [  16 files]  /Volumes/Storage/3d/kitbash/converted_assets/kpacks/SPOCK_KPACK-v1
+  [  27 files]  /Volumes/Storage/3d/kitbash/converted_assets/kpacks/SS-BOT LVL GREEBLES
+  [   2 files]  /Volumes/Storage/3d/kitbash/converted_assets/kpacks/SS-CHARACTERS
+  [   8 files]  /Volumes/Storage/3d/kitbash/converted_assets/kpacks/SS-CITY HEROES
+  [   5 files]  /Volumes/Storage/3d/kitbash/converted_assets/kpacks/SS-PANEL HEROES
+  [  36 files]  /Volumes/Storage/3d/kitbash/converted_assets/kpacks/SS-PROPS
+  [  28 files]  /Volumes/Storage/3d/kitbash/converted_assets/kpacks/SS-TOP LVL GREEBLES
+  [  25 files]  /Volumes/Storage/3d/kitbash/converted_assets/kpacks/sc_FINGERPRINTS AND SMUDGES
+  [   7 files]  /Volumes/Storage/3d/kitbash/converted_assets/kpacks/xCapsules
+
+## plugins (10 dirs, 85 files)
+
+  [  24 files]  /Volumes/Storage/3d/kitbash/converted_assets/plugins/CarMaterials_Glossy
+  [  24 files]  /Volumes/Storage/3d/kitbash/converted_assets/plugins/CarMaterials_Matt
+  [  23 files]  /Volumes/Storage/3d/kitbash/converted_assets/plugins/CarMaterials_Metallic
+  [   7 files]  /Volumes/Storage/3d/kitbash/converted_assets/plugins/PlatingGenerator
+  [   1 files]  /Volumes/Storage/3d/kitbash/converted_assets/plugins/ProceduralBuilding
+  [   1 files]  /Volumes/Storage/3d/kitbash/converted_assets/plugins/ScifiFlex_CITOPIA
+  [   1 files]  /Volumes/Storage/3d/kitbash/converted_assets/plugins/ScifiFlex_PANELX
+  [   1 files]  /Volumes/Storage/3d/kitbash/converted_assets/plugins/ScifiFlex_PANELY
+  [   1 files]  /Volumes/Storage/3d/kitbash/converted_assets/plugins/ShwiftyShaders
+  [   2 files]  /Volumes/Storage/3d/kitbash/converted_assets/plugins/TrashKit
+
+## root (20 dirs, 152 files)
+
+  [  10 files]  /Volumes/Storage/3d/kitbash/converted_assets/3DKitbashing
+  [   1 files]  /Volumes/Storage/3d/kitbash/converted_assets/Aftermath
+  [   1 files]  /Volumes/Storage/3d/kitbash/converted_assets/Americana
+  [   1 files]  /Volumes/Storage/3d/kitbash/converted_assets/Aristocracy
+  [   1 files]  /Volumes/Storage/3d/kitbash/converted_assets/Art Deco
+  [   1 files]  /Volumes/Storage/3d/kitbash/converted_assets/Atompunk
+  [  86 files]  /Volumes/Storage/3d/kitbash/converted_assets/Benianus
+  [   1 files]  /Volumes/Storage/3d/kitbash/converted_assets/Brooklyn
+  [   1 files]  /Volumes/Storage/3d/kitbash/converted_assets/Brutalist
+  [   1 files]  /Volumes/Storage/3d/kitbash/converted_assets/Cyberdistrict
+  [   1 files]  /Volumes/Storage/3d/kitbash/converted_assets/Dieselpunk
+  [   8 files]  /Volumes/Storage/3d/kitbash/converted_assets/Dune
+  [   1 files]  /Volumes/Storage/3d/kitbash/converted_assets/Edo Japan
+  [   1 files]  /Volumes/Storage/3d/kitbash/converted_assets/LA Downtown
+  [   3 files]  /Volumes/Storage/3d/kitbash/converted_assets/MechWarrior
+  [   1 files]  /Volumes/Storage/3d/kitbash/converted_assets/Savage
+  [   1 files]  /Volumes/Storage/3d/kitbash/converted_assets/Sci-Fi Industrial
+  [  19 files]  /Volumes/Storage/3d/kitbash/converted_assets/Spock
+  [   2 files]  /Volumes/Storage/3d/kitbash/converted_assets/Veh Supercars
+  [  11 files]  /Volumes/Storage/3d/kitbash/converted_assets/Vitaly
+
+======================================================================
+INSTRUCTIONS FOR BATCH PREVIEW GENERATION
+======================================================================
+
+1. Open Blender (fresh session with NO files open)
+
+2. Go to: File → Data Previews → Batch Generate Previews
+
+3. In the file browser that opens:
+   - Navigate to one of the directory paths listed above
+   - Click "Batch Generate Previews" button
+   - Wait for processing to complete
+
+4. Repeat for each directory (or process in batches)
+
+5. Tips:
+   - Process similar-sized directories together
+   - Larger directories (100+ files) will take longer
+   - Previews are saved automatically to each .blend file
+
+NOTES:
+- Do NOT run this on files currently open in Blender
+- Processing involves rendering, so it takes time
+- You can close Blender and resume anytime - previews are per-file

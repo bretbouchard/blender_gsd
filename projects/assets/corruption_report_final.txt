@@ -1,0 +1,446 @@
+======================================================================
+BLENDED FILE CORRUPTION DIAGNOSTIC REPORT
+Generated: 2026-02-22T01:51:02.973053
+======================================================================
+
+## SUMMARY
+
+Total .blend files scanned: 2398
+  Valid files:       2017 (84.1%)
+  Corrupted:            0 (0.0%)
+  Suspicious size:    381 (15.9%)
+  Empty (0 bytes):      0 (0.0%)
+
+## SIZE DISTRIBUTION (files under 1KB)
+
+     17 bytes:  381 files
+
+## DIRECTORIES WITH CORRUPTION
+
+  kpacks/MA-Objects-Tech/
+    Valid: 0, Corrupted: 77 (100%)
+  kpacks/NV-KBK00-Baseforms/
+    Valid: 0, Corrupted: 71 (100%)
+  kpacks/Plating/
+    Valid: 0, Corrupted: 40 (100%)
+  kpacks/SS-PROPS/
+    Valid: 0, Corrupted: 36 (100%)
+  kpacks/SS-TOP LVL GREEBLES/
+    Valid: 0, Corrupted: 28 (100%)
+  kpacks/SS-BOT LVL GREEBLES/
+    Valid: 0, Corrupted: 27 (100%)
+  kpacks/sc_FINGERPRINTS AND SMUDGES/
+    Valid: 0, Corrupted: 25 (100%)
+  kpacks/MA-Objects-Controls/
+    Valid: 12, Corrupted: 21 (64%)
+  kpacks/MA-Objects-Shapes/
+    Valid: 0, Corrupted: 18 (100%)
+  kpacks/SPOCK_KPACK-v1/
+    Valid: 0, Corrupted: 16 (100%)
+  kpacks/SS-CITY HEROES/
+    Valid: 0, Corrupted: 8 (100%)
+  kpacks/xCapsules/
+    Valid: 0, Corrupted: 7 (100%)
+  kpacks/SS-PANEL HEROES/
+    Valid: 0, Corrupted: 5 (100%)
+  kpacks/SS-CHARACTERS/
+    Valid: 0, Corrupted: 2 (100%)
+
+## ALL CORRUPTED/SUSPICIOUS FILES
+
+### Suspicious Size (381 files)
+
+  [   17b] kpacks/MA-Objects-Controls/f_sidebuttons_assets.blend
+  [   17b] kpacks/MA-Objects-Controls/f_sm_display_assets.blend
+  [   17b] kpacks/MA-Objects-Controls/f_sm_highknob_assets.blend
+  [   17b] kpacks/MA-Objects-Controls/f_sm_latch1_assets.blend
+  [   17b] kpacks/MA-Objects-Controls/f_switch_assets.blend
+  [   17b] kpacks/MA-Objects-Controls/flat-screen-01_assets.blend
+  [   17b] kpacks/MA-Objects-Controls/KBD-BASIC01_assets.blend
+  [   17b] kpacks/MA-Objects-Controls/KBD-FULL_assets.blend
+  [   17b] kpacks/MA-Objects-Controls/KBN-NUMPAD-01_assets.blend
+  [   17b] kpacks/MA-Objects-Controls/mx_hook2_assets.blend
+  [   17b] kpacks/MA-Objects-Controls/mx_hook_assets.blend
+  [   17b] kpacks/MA-Objects-Controls/mx_hops_watchface_assets.blend
+  [   17b] kpacks/MA-Objects-Controls/mx_iv-switch1_assets.blend
+  [   17b] kpacks/MA-Objects-Controls/mx_knob_assets.blend
+  [   17b] kpacks/MA-Objects-Controls/mx_knobins1_assets.blend
+  [   17b] kpacks/MA-Objects-Controls/mx_knobins2_assets.blend
+  [   17b] kpacks/MA-Objects-Controls/mx_powerbutton_assets.blend
+  [   17b] kpacks/MA-Objects-Controls/mx_screen1_assets.blend
+  [   17b] kpacks/MA-Objects-Controls/mx_turncrank_assets.blend
+  [   17b] kpacks/MA-Objects-Controls/SYD-BUTTONS2_assets.blend
+  [   17b] kpacks/MA-Objects-Controls/SYD-MON2_assets.blend
+  [   17b] kpacks/MA-Objects-Shapes/cw-CubeBasicCutter_assets.blend
+  [   17b] kpacks/MA-Objects-Shapes/cw-DynoBullet-S_assets.blend
+  [   17b] kpacks/MA-Objects-Shapes/cw-DynoKitbox_assets.blend
+  [   17b] kpacks/MA-Objects-Shapes/cw-DynoKitboxS_assets.blend
+  [   17b] kpacks/MA-Objects-Shapes/cw-DynoKitboxSoft_assets.blend
+  [   17b] kpacks/MA-Objects-Shapes/cw-DynoKitboxSoftS_assets.blend
+  [   17b] kpacks/MA-Objects-Shapes/cw-DynoTri_assets.blend
+  [   17b] kpacks/MA-Objects-Shapes/cw-DynoTriS_assets.blend
+  [   17b] kpacks/MA-Objects-Shapes/cw-DynoTriSoft_assets.blend
+  [   17b] kpacks/MA-Objects-Shapes/cw-DynoTriSoftS_assets.blend
+  [   17b] kpacks/MA-Objects-Shapes/cw-DynSolid-01_assets.blend
+  [   17b] kpacks/MA-Objects-Shapes/cw-solid-02_assets.blend
+  [   17b] kpacks/MA-Objects-Shapes/cw-solid-03_assets.blend
+  [   17b] kpacks/MA-Objects-Shapes/cw-solid-05_assets.blend
+  [   17b] kpacks/MA-Objects-Shapes/mx_iv-notch1_assets.blend
+  [   17b] kpacks/MA-Objects-Shapes/mx_iv-notch_assets.blend
+  [   17b] kpacks/MA-Objects-Shapes/mx_knotch_assets.blend
+  [   17b] kpacks/MA-Objects-Shapes/mx_nodule_plus_assets.blend
+  [   17b] kpacks/MA-Objects-Tech/a_kit_ops_logo_assets.blend
+  [   17b] kpacks/MA-Objects-Tech/bc_complex1_1_assets.blend
+  [   17b] kpacks/MA-Objects-Tech/bolt_assets.blend
+  [   17b] kpacks/MA-Objects-Tech/box_cut2_1_assets.blend
+  [   17b] kpacks/MA-Objects-Tech/button_test1_assets.blend
+  [   17b] kpacks/MA-Objects-Tech/c_chip2_assets.blend
+  [   17b] kpacks/MA-Objects-Tech/c_chip3_assets.blend
+  [   17b] kpacks/MA-Objects-Tech/c_chip_assets.blend
+  [   17b] kpacks/MA-Objects-Tech/c_chip_tee_assets.blend
+  [   17b] kpacks/MA-Objects-Tech/c_chipset_assets.blend
+  [   17b] kpacks/MA-Objects-Tech/c_double_assets.blend
+  [   17b] kpacks/MA-Objects-Tech/c_round1_assets.blend
+  [   17b] kpacks/MA-Objects-Tech/c_round2_assets.blend
+  [   17b] kpacks/MA-Objects-Tech/c_round_assets.blend
+  [   17b] kpacks/MA-Objects-Tech/circular_insert1_1_assets.blend
+  [   17b] kpacks/MA-Objects-Tech/circular_quad_assets.blend
+  [   17b] kpacks/MA-Objects-Tech/circular_single_assets.blend
+  [   17b] kpacks/MA-Objects-Tech/circular_tee_assets.blend
+  [   17b] kpacks/MA-Objects-Tech/consoledisp_double_assets.blend
+  [   17b] kpacks/MA-Objects-Tech/cw-led1_assets.blend
+  [   17b] kpacks/MA-Objects-Tech/cw-led_assets.blend
+  [   17b] kpacks/MA-Objects-Tech/disp_panel_assets.blend
+  [   17b] kpacks/MA-Objects-Tech/f_adv_latch_assets.blend
+  [   17b] kpacks/MA-Objects-Tech/f_bigtwistknob_assets.blend
+  [   17b] kpacks/MA-Objects-Tech/f_buttonpanel_assets.blend
+  [   17b] kpacks/MA-Objects-Tech/f_highknob_assets.blend
+  [   17b] kpacks/MA-Objects-Tech/f_insert1_assets.blend
+  [   17b] kpacks/MA-Objects-Tech/f_insert_assets.blend
+  [   17b] kpacks/MA-Objects-Tech/f_inserthole_assets.blend
+  [   17b] kpacks/MA-Objects-Tech/fd_circular_assets.blend
+  [   17b] kpacks/MA-Objects-Tech/gn_sidelatch_assets.blend
+  [   17b] kpacks/MA-Objects-Tech/grate_cut1_1_assets.blend
+  [   17b] kpacks/MA-Objects-Tech/grating_plate_assets.blend
+  [   17b] kpacks/MA-Objects-Tech/hookcut1_1_assets.blend
+  [   17b] kpacks/MA-Objects-Tech/hookcut1_2_assets.blend
+  [   17b] kpacks/MA-Objects-Tech/mx_circular1_assets.blend
+  [   17b] kpacks/MA-Objects-Tech/mx_circular_complex_assets.blend
+  [   17b] kpacks/MA-Objects-Tech/mx_circular_slide_assets.blend
+  [   17b] kpacks/MA-Objects-Tech/mx_circularcomplex1_assets.blend
+  [   17b] kpacks/MA-Objects-Tech/mx_complex_digg_in_assets.blend
+  [   17b] kpacks/MA-Objects-Tech/mx_cstepins1_assets.blend
+  [   17b] kpacks/MA-Objects-Tech/mx_floorplate_assets.blend
+  [   17b] kpacks/MA-Objects-Tech/mx_gren_A_assets.blend
+  [   17b] kpacks/MA-Objects-Tech/mx_handle_assets.blend
+  [   17b] kpacks/MA-Objects-Tech/mx_hex_multi_assets.blend
+  [   17b] kpacks/MA-Objects-Tech/mx_hex_single_assets.blend
+  [   17b] kpacks/MA-Objects-Tech/mx_hopslogo_assets.blend
+  [   17b] kpacks/MA-Objects-Tech/mx_iv-circleHole(3)_assets.blend
+  [   17b] kpacks/MA-Objects-Tech/mx_iv-circleHole_assets.blend
+  [   17b] kpacks/MA-Objects-Tech/mx_iv-insert1_assets.blend
+  [   17b] kpacks/MA-Objects-Tech/mx_lite_test_assets.blend
+  [   17b] kpacks/MA-Objects-Tech/mx_lo_circular1_assets.blend
+  [   17b] kpacks/MA-Objects-Tech/mx_lo_circular_assets.blend
+  [   17b] kpacks/MA-Objects-Tech/mx_plate_disc1_assets.blend
+  [   17b] kpacks/MA-Objects-Tech/mx_plate_disc2_assets.blend
+  [   17b] kpacks/MA-Objects-Tech/mx_plating1_assets.blend
+  [   17b] kpacks/MA-Objects-Tech/mx_plating2_assets.blend
+  [   17b] kpacks/MA-Objects-Tech/mx_plating3_assets.blend
+  [   17b] kpacks/MA-Objects-Tech/mx_plating4_assets.blend
+  [   17b] kpacks/MA-Objects-Tech/mx_rivet1_assets.blend
+  [   17b] kpacks/MA-Objects-Tech/mx_sideslot1_assets.blend
+  [   17b] kpacks/MA-Objects-Tech/mxkb_test1_assets.blend
+  [   17b] kpacks/MA-Objects-Tech/nn_grate_assets.blend
+  [   17b] kpacks/MA-Objects-Tech/ob_circular1_1_assets.blend
+  [   17b] kpacks/MA-Objects-Tech/ob_circular1_3_assets.blend
+  [   17b] kpacks/MA-Objects-Tech/prox_pipe1_assets.blend
+  [   17b] kpacks/MA-Objects-Tech/side_bar1_1_assets.blend
+  [   17b] kpacks/MA-Objects-Tech/side_panel_assets.blend
+  [   17b] kpacks/MA-Objects-Tech/slope_box1_1_assets.blend
+  [   17b] kpacks/MA-Objects-Tech/slope_box_assets.blend
+  [   17b] kpacks/MA-Objects-Tech/slope_part1_assets.blend
+  [   17b] kpacks/MA-Objects-Tech/slope_part_assets.blend
+  [   17b] kpacks/MA-Objects-Tech/testbox_assets.blend
+  [   17b] kpacks/MA-Objects-Tech/vents1_1_assets.blend
+  [   17b] kpacks/MA-Objects-Tech/vents1_2_assets.blend
+  [   17b] kpacks/MA-Objects-Tech/vp_anglecuts1_assets.blend
+  [   17b] kpacks/MA-Objects-Tech/vp_grating_inset_assets.blend
+  [   17b] kpacks/NV-KBK00-Baseforms/bolt_001_assets.blend
+  [   17b] kpacks/NV-KBK00-Baseforms/bolt_002_assets.blend
+  [   17b] kpacks/NV-KBK00-Baseforms/bolt_003_assets.blend
+  [   17b] kpacks/NV-KBK00-Baseforms/bolt_004_assets.blend
+  [   17b] kpacks/NV-KBK00-Baseforms/bolt_005_assets.blend
+  [   17b] kpacks/NV-KBK00-Baseforms/bolt_006_assets.blend
+  [   17b] kpacks/NV-KBK00-Baseforms/bolt_007_assets.blend
+  [   17b] kpacks/NV-KBK00-Baseforms/cable_001_assets.blend
+  [   17b] kpacks/NV-KBK00-Baseforms/cable_002_assets.blend
+  [   17b] kpacks/NV-KBK00-Baseforms/cable_003_assets.blend
+  [   17b] kpacks/NV-KBK00-Baseforms/corner_001_assets.blend
+  [   17b] kpacks/NV-KBK00-Baseforms/corner_002_assets.blend
+  [   17b] kpacks/NV-KBK00-Baseforms/corner_003_assets.blend
+  [   17b] kpacks/NV-KBK00-Baseforms/cutter_001_assets.blend
+  [   17b] kpacks/NV-KBK00-Baseforms/cutter_002_assets.blend
+  [   17b] kpacks/NV-KBK00-Baseforms/cutter_003_assets.blend
+  [   17b] kpacks/NV-KBK00-Baseforms/cutter_004_assets.blend
+  [   17b] kpacks/NV-KBK00-Baseforms/cutter_005_assets.blend
+  [   17b] kpacks/NV-KBK00-Baseforms/cutter_006_assets.blend
+  [   17b] kpacks/NV-KBK00-Baseforms/cutter_007_assets.blend
+  [   17b] kpacks/NV-KBK00-Baseforms/cutter_008_assets.blend
+  [   17b] kpacks/NV-KBK00-Baseforms/cutter_009_assets.blend
+  [   17b] kpacks/NV-KBK00-Baseforms/cutter_010_assets.blend
+  [   17b] kpacks/NV-KBK00-Baseforms/cutter_011_assets.blend
+  [   17b] kpacks/NV-KBK00-Baseforms/cutter_012_assets.blend
+  [   17b] kpacks/NV-KBK00-Baseforms/cutter_013_assets.blend
+  [   17b] kpacks/NV-KBK00-Baseforms/cutter_014_assets.blend
+  [   17b] kpacks/NV-KBK00-Baseforms/cutter_015_assets.blend
+  [   17b] kpacks/NV-KBK00-Baseforms/cyl_001_assets.blend
+  [   17b] kpacks/NV-KBK00-Baseforms/cyl_001b_assets.blend
+  [   17b] kpacks/NV-KBK00-Baseforms/cyl_002_assets.blend
+  [   17b] kpacks/NV-KBK00-Baseforms/cyl_002b_assets.blend
+  [   17b] kpacks/NV-KBK00-Baseforms/cyl_003_assets.blend
+  [   17b] kpacks/NV-KBK00-Baseforms/cyl_003b_assets.blend
+  [   17b] kpacks/NV-KBK00-Baseforms/cyl_004_assets.blend
+  [   17b] kpacks/NV-KBK00-Baseforms/cyl_004b_assets.blend
+  [   17b] kpacks/NV-KBK00-Baseforms/cyl_005_assets.blend
+  [   17b] kpacks/NV-KBK00-Baseforms/cyl_005b_assets.blend
+  [   17b] kpacks/NV-KBK00-Baseforms/cyl_006_assets.blend
+  [   17b] kpacks/NV-KBK00-Baseforms/cyl_006b_assets.blend
+  [   17b] kpacks/NV-KBK00-Baseforms/cyl_007_assets.blend
+  [   17b] kpacks/NV-KBK00-Baseforms/cyl_008_assets.blend
+  [   17b] kpacks/NV-KBK00-Baseforms/cyl_009_assets.blend
+  [   17b] kpacks/NV-KBK00-Baseforms/cyl_010_assets.blend
+  [   17b] kpacks/NV-KBK00-Baseforms/grid_001_assets.blend
+  [   17b] kpacks/NV-KBK00-Baseforms/grid_002_assets.blend
+  [   17b] kpacks/NV-KBK00-Baseforms/handle_001_assets.blend
+  [   17b] kpacks/NV-KBK00-Baseforms/handle_002_assets.blend
+  [   17b] kpacks/NV-KBK00-Baseforms/handle_003_assets.blend
+  [   17b] kpacks/NV-KBK00-Baseforms/handle_004_assets.blend
+  [   17b] kpacks/NV-KBK00-Baseforms/handle_005_assets.blend
+  [   17b] kpacks/NV-KBK00-Baseforms/handle_006_assets.blend
+  [   17b] kpacks/NV-KBK00-Baseforms/handle_007_assets.blend
+  [   17b] kpacks/NV-KBK00-Baseforms/lead_001_assets.blend
+  [   17b] kpacks/NV-KBK00-Baseforms/lead_002_assets.blend
+  [   17b] kpacks/NV-KBK00-Baseforms/mp_001_assets.blend
+  [   17b] kpacks/NV-KBK00-Baseforms/mp_002_assets.blend
+  [   17b] kpacks/NV-KBK00-Baseforms/mp_003_assets.blend
+  [   17b] kpacks/NV-KBK00-Baseforms/mp_004_assets.blend
+  [   17b] kpacks/NV-KBK00-Baseforms/mp_005_assets.blend
+  [   17b] kpacks/NV-KBK00-Baseforms/mp_006_assets.blend
+  [   17b] kpacks/NV-KBK00-Baseforms/mp_007_assets.blend
+  [   17b] kpacks/NV-KBK00-Baseforms/mp_008_assets.blend
+  [   17b] kpacks/NV-KBK00-Baseforms/mp_009_assets.blend
+  [   17b] kpacks/NV-KBK00-Baseforms/mp_010_assets.blend
+  [   17b] kpacks/NV-KBK00-Baseforms/mp_011_assets.blend
+  [   17b] kpacks/NV-KBK00-Baseforms/mp_012_assets.blend
+  [   17b] kpacks/NV-KBK00-Baseforms/mp_013_assets.blend
+  [   17b] kpacks/NV-KBK00-Baseforms/rib_001_assets.blend
+  [   17b] kpacks/NV-KBK00-Baseforms/rib_002_assets.blend
+  [   17b] kpacks/NV-KBK00-Baseforms/rib_003_assets.blend
+  [   17b] kpacks/Plating/FloorL01_assets.blend
+  [   17b] kpacks/Plating/FloorL02_assets.blend
+  [   17b] kpacks/Plating/FloorL02A_assets.blend
+  [   17b] kpacks/Plating/FloorL03_assets.blend
+  [   17b] kpacks/Plating/FloorL04_assets.blend
+  [   17b] kpacks/Plating/PBlockPanl01_assets.blend
+  [   17b] kpacks/Plating/PBlockPanl02_assets.blend
+  [   17b] kpacks/Plating/PBlockPanl03_assets.blend
+  [   17b] kpacks/Plating/PBlockPanl04_assets.blend
+  [   17b] kpacks/Plating/PBlockPanl05_assets.blend
+  [   17b] kpacks/Plating/PBlockPanl06_assets.blend
+  [   17b] kpacks/Plating/PBlockPanl07_assets.blend
+  [   17b] kpacks/Plating/PBlockPanl08_assets.blend
+  [   17b] kpacks/Plating/Plating01_assets.blend
+  [   17b] kpacks/Plating/Plating02_assets.blend
+  [   17b] kpacks/Plating/Plating03_assets.blend
+  [   17b] kpacks/Plating/Plating04_assets.blend
+  [   17b] kpacks/Plating/Plating05_assets.blend
+  [   17b] kpacks/Plating/Plating06_assets.blend
+  [   17b] kpacks/Plating/Plating07_assets.blend
+  [   17b] kpacks/Plating/Plating08_assets.blend
+  [   17b] kpacks/Plating/Plating09_assets.blend
+  [   17b] kpacks/Plating/Plating10_assets.blend
+  [   17b] kpacks/Plating/Plating11_assets.blend
+  [   17b] kpacks/Plating/Plating12_assets.blend
+  [   17b] kpacks/Plating/Plating13_assets.blend
+  [   17b] kpacks/Plating/Plating14_assets.blend
+  [   17b] kpacks/Plating/Plating15_assets.blend
+  [   17b] kpacks/Plating/Plating16_assets.blend
+  [   17b] kpacks/Plating/Plating17_assets.blend
+  [   17b] kpacks/Plating/RPanel01_assets.blend
+  [   17b] kpacks/Plating/RPanel02_assets.blend
+  [   17b] kpacks/Plating/RPanel03_assets.blend
+  [   17b] kpacks/Plating/RPanel03B_assets.blend
+  [   17b] kpacks/Plating/RPanel03C_assets.blend
+  [   17b] kpacks/Plating/RPanel04_assets.blend
+  [   17b] kpacks/Plating/RPanel04B_assets.blend
+  [   17b] kpacks/Plating/RPanel04C_assets.blend
+  [   17b] kpacks/Plating/RPanel04D_assets.blend
+  [   17b] kpacks/Plating/TrimSheet_assets.blend
+  [   17b] kpacks/sc_FINGERPRINTS AND SMUDGES/FINGERS 1_2K_assets.blend
+  [   17b] kpacks/sc_FINGERPRINTS AND SMUDGES/FINGERS 2_2K_assets.blend
+  [   17b] kpacks/sc_FINGERPRINTS AND SMUDGES/FINGERS 3_2K_assets.blend
+  [   17b] kpacks/sc_FINGERPRINTS AND SMUDGES/FINGERS 4_2K_assets.blend
+  [   17b] kpacks/sc_FINGERPRINTS AND SMUDGES/FINGERS 5_2K_assets.blend
+  [   17b] kpacks/sc_FINGERPRINTS AND SMUDGES/HANDS_SMUDGES 10_2K_assets.blend
+  [   17b] kpacks/sc_FINGERPRINTS AND SMUDGES/HANDS_SMUDGES 11_2K_assets.blend
+  [   17b] kpacks/sc_FINGERPRINTS AND SMUDGES/HANDS_SMUDGES 1_2K_assets.blend
+  [   17b] kpacks/sc_FINGERPRINTS AND SMUDGES/HANDS_SMUDGES 2_2K_assets.blend
+  [   17b] kpacks/sc_FINGERPRINTS AND SMUDGES/HANDS_SMUDGES 3_2K_assets.blend
+  [   17b] kpacks/sc_FINGERPRINTS AND SMUDGES/HANDS_SMUDGES 4_2K_assets.blend
+  [   17b] kpacks/sc_FINGERPRINTS AND SMUDGES/HANDS_SMUDGES 5_2K_assets.blend
+  [   17b] kpacks/sc_FINGERPRINTS AND SMUDGES/HANDS_SMUDGES 6_2K_assets.blend
+  [   17b] kpacks/sc_FINGERPRINTS AND SMUDGES/HANDS_SMUDGES 7_2K_assets.blend
+  [   17b] kpacks/sc_FINGERPRINTS AND SMUDGES/HANDS_SMUDGES 8_2K_assets.blend
+  [   17b] kpacks/sc_FINGERPRINTS AND SMUDGES/HANDS_SMUDGES 9_2K_assets.blend
+  [   17b] kpacks/sc_FINGERPRINTS AND SMUDGES/TIPS 1_2K_assets.blend
+  [   17b] kpacks/sc_FINGERPRINTS AND SMUDGES/TIPS 2_2K_assets.blend
+  [   17b] kpacks/sc_FINGERPRINTS AND SMUDGES/TIPS 3_2K_assets.blend
+  [   17b] kpacks/sc_FINGERPRINTS AND SMUDGES/TIPS 4_2K_assets.blend
+  [   17b] kpacks/sc_FINGERPRINTS AND SMUDGES/TIPS 5_2K_assets.blend
+  [   17b] kpacks/sc_FINGERPRINTS AND SMUDGES/TIPS 6_2K_assets.blend
+  [   17b] kpacks/sc_FINGERPRINTS AND SMUDGES/TIPS 7_2K_assets.blend
+  [   17b] kpacks/sc_FINGERPRINTS AND SMUDGES/TIPS 8_2K_assets.blend
+  [   17b] kpacks/sc_FINGERPRINTS AND SMUDGES/TIPS 9_2K_assets.blend
+  [   17b] kpacks/SPOCK_KPACK-v1/corridor-cutter_assets.blend
+  [   17b] kpacks/SPOCK_KPACK-v1/cw-gen-material_assets.blend
+  [   17b] kpacks/SPOCK_KPACK-v1/cw-spock-multi_assets.blend
+  [   17b] kpacks/SPOCK_KPACK-v1/cw-spock-wear-LG_assets.blend
+  [   17b] kpacks/SPOCK_KPACK-v1/cw-spock-wear-SM_assets.blend
+  [   17b] kpacks/SPOCK_KPACK-v1/Display01_assets.blend
+  [   17b] kpacks/SPOCK_KPACK-v1/Display02_assets.blend
+  [   17b] kpacks/SPOCK_KPACK-v1/Display03_assets.blend
+  [   17b] kpacks/SPOCK_KPACK-v1/Display04_assets.blend
+  [   17b] kpacks/SPOCK_KPACK-v1/Display05_assets.blend
+  [   17b] kpacks/SPOCK_KPACK-v1/SPOCK logo_assets.blend
+  [   17b] kpacks/SPOCK_KPACK-v1/Switch-Bank-01_assets.blend
+  [   17b] kpacks/SPOCK_KPACK-v1/switch-bank-02_assets.blend
+  [   17b] kpacks/SPOCK_KPACK-v1/Switch-Bank-03_assets.blend
+  [   17b] kpacks/SPOCK_KPACK-v1/Switch-Bank-04_assets.blend
+  [   17b] kpacks/SPOCK_KPACK-v1/switch-bank-05_assets.blend
+  [   17b] kpacks/SS-BOT LVL GREEBLES/greeble_btm01_assets.blend
+  [   17b] kpacks/SS-BOT LVL GREEBLES/greeble_btm02_assets.blend
+  [   17b] kpacks/SS-BOT LVL GREEBLES/greeble_btm03_assets.blend
+  [   17b] kpacks/SS-BOT LVL GREEBLES/greeble_btm04_assets.blend
+  [   17b] kpacks/SS-BOT LVL GREEBLES/greeble_btm05_assets.blend
+  [   17b] kpacks/SS-BOT LVL GREEBLES/greeble_btm06_assets.blend
+  [   17b] kpacks/SS-BOT LVL GREEBLES/greeble_btm07_assets.blend
+  [   17b] kpacks/SS-BOT LVL GREEBLES/greeble_btm08_assets.blend
+  [   17b] kpacks/SS-BOT LVL GREEBLES/greeble_btm09_assets.blend
+  [   17b] kpacks/SS-BOT LVL GREEBLES/greeble_btm10_assets.blend
+  [   17b] kpacks/SS-BOT LVL GREEBLES/greeble_btm11_assets.blend
+  [   17b] kpacks/SS-BOT LVL GREEBLES/greeble_btm12_assets.blend
+  [   17b] kpacks/SS-BOT LVL GREEBLES/greeble_btm13_assets.blend
+  [   17b] kpacks/SS-BOT LVL GREEBLES/greeble_btm14_assets.blend
+  [   17b] kpacks/SS-BOT LVL GREEBLES/greeble_btm15_assets.blend
+  [   17b] kpacks/SS-BOT LVL GREEBLES/greeble_btm16_assets.blend
+  [   17b] kpacks/SS-BOT LVL GREEBLES/greeble_btm17_assets.blend
+  [   17b] kpacks/SS-BOT LVL GREEBLES/greeble_btm18_assets.blend
+  [   17b] kpacks/SS-BOT LVL GREEBLES/greeble_btm19_assets.blend
+  [   17b] kpacks/SS-BOT LVL GREEBLES/greeble_btm20_assets.blend
+  [   17b] kpacks/SS-BOT LVL GREEBLES/greeble_btm21_assets.blend
+  [   17b] kpacks/SS-BOT LVL GREEBLES/greeble_btm22_assets.blend
+  [   17b] kpacks/SS-BOT LVL GREEBLES/greeble_btm23_assets.blend
+  [   17b] kpacks/SS-BOT LVL GREEBLES/greeble_btm24_assets.blend
+  [   17b] kpacks/SS-BOT LVL GREEBLES/greeble_btm25_assets.blend
+  [   17b] kpacks/SS-BOT LVL GREEBLES/greeble_btm26_assets.blend
+  [   17b] kpacks/SS-BOT LVL GREEBLES/greeble_btm27_assets.blend
+  [   17b] kpacks/SS-CHARACTERS/2K-Sam-crouch_assets.blend
+  [   17b] kpacks/SS-CHARACTERS/2K-Sam-standing_assets.blend
+  [   17b] kpacks/SS-CITY HEROES/city lights_assets.blend
+  [   17b] kpacks/SS-CITY HEROES/city_hero01_assets.blend
+  [   17b] kpacks/SS-CITY HEROES/city_hero02_assets.blend
+  [   17b] kpacks/SS-CITY HEROES/city_hero03_assets.blend
+  [   17b] kpacks/SS-CITY HEROES/city_hero04_assets.blend
+  [   17b] kpacks/SS-CITY HEROES/city_hero05_assets.blend
+  [   17b] kpacks/SS-CITY HEROES/cw-city-base_assets.blend
+  [   17b] kpacks/SS-CITY HEROES/cw-gen-material_assets.blend
+  [   17b] kpacks/SS-PANEL HEROES/greeble01_assets.blend
+  [   17b] kpacks/SS-PANEL HEROES/greeble02_assets.blend
+  [   17b] kpacks/SS-PANEL HEROES/greeble03_assets.blend
+  [   17b] kpacks/SS-PANEL HEROES/greeble04_assets.blend
+  [   17b] kpacks/SS-PANEL HEROES/greeble05_assets.blend
+  [   17b] kpacks/SS-PROPS/antenna-01_assets.blend
+  [   17b] kpacks/SS-PROPS/antenna-02_assets.blend
+  [   17b] kpacks/SS-PROPS/antenna-03_assets.blend
+  [   17b] kpacks/SS-PROPS/buttress-01_assets.blend
+  [   17b] kpacks/SS-PROPS/buttress-02_assets.blend
+  [   17b] kpacks/SS-PROPS/carrierbot_assets.blend
+  [   17b] kpacks/SS-PROPS/CLASIKCORP - 3 COMBOS - 2K_assets.blend
+  [   17b] kpacks/SS-PROPS/CLASIKCORP - BLOCK 1 - 2K_assets.blend
+  [   17b] kpacks/SS-PROPS/CLASIKCORP - CERTS 2 - 2K_assets.blend
+  [   17b] kpacks/SS-PROPS/CLASIKCORP - DIRECTIONAL 1 - 2K_assets.blend
+  [   17b] kpacks/SS-PROPS/CLASIKCORP - ICONS 2 - 2K_assets.blend
+  [   17b] kpacks/SS-PROPS/CLASIKCORP - LOGO 1 - 2K_assets.blend
+  [   17b] kpacks/SS-PROPS/CLASIKCORP - NUMBERS 3 - 2K_assets.blend
+  [   17b] kpacks/SS-PROPS/corridor1_assets.blend
+  [   17b] kpacks/SS-PROPS/cw-gen-material_assets.blend
+  [   17b] kpacks/SS-PROPS/cw_dirt_2022_assets.blend
+  [   17b] kpacks/SS-PROPS/cw_Hex_Interior_assets.blend
+  [   17b] kpacks/SS-PROPS/Greeble-01_assets.blend
+  [   17b] kpacks/SS-PROPS/Greeble-02_assets.blend
+  [   17b] kpacks/SS-PROPS/Greeble-03_assets.blend
+  [   17b] kpacks/SS-PROPS/Greeble-04_assets.blend
+  [   17b] kpacks/SS-PROPS/Greeble-05_assets.blend
+  [   17b] kpacks/SS-PROPS/Greeble-06_assets.blend
+  [   17b] kpacks/SS-PROPS/Greeble-07_assets.blend
+  [   17b] kpacks/SS-PROPS/Greeble-08_assets.blend
+  [   17b] kpacks/SS-PROPS/Greeble-09_assets.blend
+  [   17b] kpacks/SS-PROPS/Greeble-11_assets.blend
+  [   17b] kpacks/SS-PROPS/Greeble10_assets.blend
+  [   17b] kpacks/SS-PROPS/GUI-1x1 (5)_assets.blend
+  [   17b] kpacks/SS-PROPS/GUI-1x1 (6)_assets.blend
+  [   17b] kpacks/SS-PROPS/GUI-2048-hero (2)_assets.blend
+  [   17b] kpacks/SS-PROPS/Man_50-01_assets.blend
+  [   17b] kpacks/SS-PROPS/scene1_assets.blend
+  [   17b] kpacks/SS-PROPS/scene2_assets.blend
+  [   17b] kpacks/SS-PROPS/scene3_assets.blend
+  [   17b] kpacks/SS-PROPS/scene4_assets.blend
+  [   17b] kpacks/SS-TOP LVL GREEBLES/greeble_top01_assets.blend
+  [   17b] kpacks/SS-TOP LVL GREEBLES/greeble_top02_assets.blend
+  [   17b] kpacks/SS-TOP LVL GREEBLES/greeble_top03_assets.blend
+  [   17b] kpacks/SS-TOP LVL GREEBLES/greeble_top04_assets.blend
+  [   17b] kpacks/SS-TOP LVL GREEBLES/greeble_top05_assets.blend
+  [   17b] kpacks/SS-TOP LVL GREEBLES/greeble_top06_assets.blend
+  [   17b] kpacks/SS-TOP LVL GREEBLES/greeble_top07_assets.blend
+  [   17b] kpacks/SS-TOP LVL GREEBLES/greeble_top08_assets.blend
+  [   17b] kpacks/SS-TOP LVL GREEBLES/greeble_top09_assets.blend
+  [   17b] kpacks/SS-TOP LVL GREEBLES/greeble_top10_assets.blend
+  [   17b] kpacks/SS-TOP LVL GREEBLES/greeble_top11_assets.blend
+  [   17b] kpacks/SS-TOP LVL GREEBLES/greeble_top12_assets.blend
+  [   17b] kpacks/SS-TOP LVL GREEBLES/greeble_top13_assets.blend
+  [   17b] kpacks/SS-TOP LVL GREEBLES/greeble_top14_assets.blend
+  [   17b] kpacks/SS-TOP LVL GREEBLES/greeble_top15_assets.blend
+  [   17b] kpacks/SS-TOP LVL GREEBLES/greeble_top16_assets.blend
+  [   17b] kpacks/SS-TOP LVL GREEBLES/greeble_top17_assets.blend
+  [   17b] kpacks/SS-TOP LVL GREEBLES/greeble_top18_assets.blend
+  [   17b] kpacks/SS-TOP LVL GREEBLES/greeble_top19_assets.blend
+  [   17b] kpacks/SS-TOP LVL GREEBLES/greeble_top20_assets.blend
+  [   17b] kpacks/SS-TOP LVL GREEBLES/greeble_top21_assets.blend
+  [   17b] kpacks/SS-TOP LVL GREEBLES/greeble_top22_assets.blend
+  [   17b] kpacks/SS-TOP LVL GREEBLES/greeble_top23_assets.blend
+  [   17b] kpacks/SS-TOP LVL GREEBLES/greeble_top24_assets.blend
+  [   17b] kpacks/SS-TOP LVL GREEBLES/greeble_top25_assets.blend
+  [   17b] kpacks/SS-TOP LVL GREEBLES/greeble_top26_assets.blend
+  [   17b] kpacks/SS-TOP LVL GREEBLES/greeble_top27_assets.blend
+  [   17b] kpacks/SS-TOP LVL GREEBLES/greeble_top28_assets.blend
+  [   17b] kpacks/xCapsules/Capsule-00_assets.blend
+  [   17b] kpacks/xCapsules/Capsule-01_assets.blend
+  [   17b] kpacks/xCapsules/Capsule-03_assets.blend
+  [   17b] kpacks/xCapsules/Capsule-04_assets.blend
+  [   17b] kpacks/xCapsules/Capsule-08_assets.blend
+  [   17b] kpacks/xCapsules/Capsule-20_assets.blend
+  [   17b] kpacks/xCapsules/Capsule-27_assets.blend
+
+
+## RECOVERY RECOMMENDATIONS
+
+1. Files with suspicious sizes (17, 32, 64 bytes) are likely
+   write failures - check if original source files exist.
+
+2. Re-run conversion scripts on corrupted directories.
+
+3. Check external drive health with Disk Utility.
+
+4. Consider copying source files to internal drive before
+   conversion to avoid external drive write issues.

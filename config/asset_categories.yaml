@@ -1,0 +1,275 @@
+# Asset Categorization Rules
+# Used for auto-tagging and categorizing 3D assets
+
+version: "1.0"
+description: "Asset categorization rules for auto-tagging"
+
+categories:
+  # KitBash3D and similar modular packs
+  - name: "kitbash"
+    patterns:
+      - "*KitBash*"
+      - "*KB3D*"
+      - "*kitbash*"
+      - "*Kitbash*"
+    keywords:
+      - "kitbash"
+      - "modular"
+      - "kit"
+    tags:
+      - "modular"
+      - "kit"
+      - "assets"
+    confidence: 0.95
+
+  # Vehicles and transportation
+  - name: "vehicle"
+    patterns:
+      - "*car*"
+      - "*truck*"
+      - "*vehicle*"
+      - "*mech*"
+      - "*robot*"
+      - "*aircraft*"
+      - "*spaceship*"
+    keywords:
+      - "car"
+      - "truck"
+      - "vehicle"
+      - "mech"
+      - "robot"
+      - "vitaly"
+      - "bulgarov"
+      - "auto"
+      - "transportation"
+    tags:
+      - "transportation"
+      - "mechanical"
+      - "wheeled"
+    confidence: 0.9
+
+  # Sci-Fi and futuristic
+  - name: "sci_fi"
+    patterns:
+      - "*cyberpunk*"
+      - "*scifi*"
+      - "*sci-fi*"
+      - "*futuristic*"
+      - "*neon*"
+      - "*spaceship*"
+      - "*atompunk*"
+      - "*dieselpunk*"
+    keywords:
+      - "cyberpunk"
+      - "scifi"
+      - "futuristic"
+      - "neon"
+      - "tech"
+      - "space"
+      - "hologram"
+    tags:
+      - "futuristic"
+      - "technology"
+      - "science-fiction"
+    confidence: 0.9
+
+  # Architecture and buildings
+  - name: "architecture"
+    patterns:
+      - "*building*"
+      - "*house*"
+      - "*architecture*"
+      - "*skyscraper*"
+      - "*office*"
+      - "*brutalist*"
+      - "*artdeco*"
+      - "*art_deco*"
+    keywords:
+      - "building"
+      - "house"
+      - "architecture"
+      - "structure"
+      - "facade"
+    tags:
+      - "structure"
+      - "environment"
+      - "urban"
+    confidence: 0.85
+
+  # VFX and effects
+  - name: "vfx"
+    patterns:
+      - "*fx*"
+      - "*vfx*"
+      - "*particle*"
+      - "*explosion*"
+      - "*smoke*"
+      - "*fire*"
+    keywords:
+      - "vfx"
+      - "fx"
+      - "particle"
+      - "simulation"
+      - "effect"
+      - "alpha"
+    tags:
+      - "effects"
+      - "simulation"
+      - "compositing"
+    confidence: 0.85
+
+  # Characters and figures
+  - name: "character"
+    patterns:
+      - "*character*"
+      - "*human*"
+      - "*person*"
+      - "*figure*"
+      - "*rig*"
+    keywords:
+      - "character"
+      - "human"
+      - "person"
+      - "figure"
+      - "rigged"
+      - "animation-ready"
+    tags:
+      - "rigged"
+      - "animated"
+      - "biped"
+    confidence: 0.85
+
+  # Furniture and interior
+  - name: "furniture"
+    patterns:
+      - "*chair*"
+      - "*table*"
+      - "*sofa*"
+      - "*furniture*"
+      - "*desk*"
+      - "*cabinet*"
+      - "*shelf*"
+    keywords:
+      - "chair"
+      - "table"
+      - "sofa"
+      - "furniture"
+      - "desk"
+      - "interior"
+    tags:
+      - "interior"
+      - "prop"
+      - "indoor"
+    confidence: 0.85
+
+  # Fantasy and medieval
+  - name: "fantasy"
+    patterns:
+      - "*fantasy*"
+      - "*medieval*"
+      - "*castle*"
+      - "*dragon*"
+      - "*magic*"
+      - "*savage*"
+    keywords:
+      - "fantasy"
+      - "medieval"
+      - "magic"
+      - "castle"
+      - "dragon"
+      - "sword"
+    tags:
+      - "fantasy"
+      - "medieval"
+      - "magical"
+    confidence: 0.85
+
+  # Environment and landscapes
+  - name: "environment"
+    patterns:
+      - "*terrain*"
+      - "*landscape*"
+      - "*environment*"
+      - "*nature*"
+      - "*mountain*"
+      - "*forest*"
+    keywords:
+      - "terrain"
+      - "landscape"
+      - "environment"
+      - "nature"
+      - "outdoor"
+    tags:
+      - "outdoor"
+      - "landscape"
+      - "natural"
+    confidence: 0.8
+
+  # Electronics and technology
+  - name: "electronics"
+    patterns:
+      - "*computer*"
+      - "*screen*"
+      - "*monitor*"
+      - "*phone*"
+      - "*device*"
+    keywords:
+      - "electronic"
+      - "device"
+      - "tech"
+      - "screen"
+    tags:
+      - "technology"
+      - "device"
+      - "prop"
+    confidence: 0.8
+
+  # Weapons and military
+  - name: "weapon"
+    patterns:
+      - "*weapon*"
+      - "*gun*"
+      - "*rifle*"
+      - "*sword*"
+      - "*knife*"
+    keywords:
+      - "weapon"
+      - "gun"
+      - "firearm"
+      - "military"
+    tags:
+      - "weapon"
+      - "military"
+      - "prop"
+    confidence: 0.85
+
+  # Industrial and machinery
+  - name: "industrial"
+    patterns:
+      - "*industrial*"
+      - "*factory*"
+      - "*machine*"
+      - "*pipe*"
+      - "*tank*"
+    keywords:
+      - "industrial"
+      - "factory"
+      - "machinery"
+      - "heavy"
+    tags:
+      - "industrial"
+      - "machinery"
+      - "heavy"
+    confidence: 0.8
+
+  # Props (generic)
+  - name: "prop"
+    patterns:
+      - "*prop*"
+      - "*object*"
+    keywords:
+      - "prop"
+    tags:
+      - "prop"
+      - "generic"
+    confidence: 0.5

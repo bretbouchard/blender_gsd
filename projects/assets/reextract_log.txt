@@ -1,0 +1,2022 @@
+Re-Extract Log - 2026-02-22T01:48:45.098159
+Total corrupted files: 1005
+============================================================
+
+[1] 421.blend -> KB 04 Frames/421_assets.blend
+  OK: 2 objects, 1 materials
+[2] 453.blend -> KB 04 Frames/453_assets.blend
+  OK: 2 objects, 1 materials
+[3] 457.blend -> KB 04 Frames/457_assets.blend
+  OK: 2 objects, 1 materials
+[4] 459.blend -> KB 04 Frames/459_assets.blend
+  OK: 2 objects, 1 materials
+[5] 002.blend -> KB 05 Hydraulic/002_assets.blend
+  OK: 46 objects, 1 materials
+[6] 045.blend -> KB 05 Hydraulic/045_assets.blend
+  OK: 24 objects, 1 materials
+[7] 047.blend -> KB 05 Hydraulic/047_assets.blend
+  OK: 23 objects, 1 materials
+[8] 050.blend -> KB 05 Hydraulic/050_assets.blend
+  OK: 7 objects, 1 materials
+[9] 083.blend -> KB 05 Hydraulic/083_assets.blend
+  OK: 33 objects, 1 materials
+[10] 095.blend -> KB 05 Hydraulic/095_assets.blend
+  OK: 39 objects, 1 materials
+[11] 096.blend -> KB 05 Hydraulic/096_assets.blend
+  OK: 36 objects, 1 materials
+[12] 097.blend -> KB 05 Hydraulic/097_assets.blend
+  OK: 26 objects, 1 materials
+[13] 100.blend -> KB 05 Hydraulic/100_assets.blend
+  OK: 66 objects, 1 materials
+[14] 101.blend -> KB 05 Hydraulic/101_assets.blend
+  OK: 32 objects, 1 materials
+[15] 102.blend -> KB 05 Hydraulic/102_assets.blend
+  OK: 42 objects, 1 materials
+[16] 105.blend -> KB 05 Hydraulic/105_assets.blend
+  OK: 54 objects, 1 materials
+[17] 107.blend -> KB 05 Hydraulic/107_assets.blend
+  OK: 20 objects, 1 materials
+[18] 046.blend -> KB 06 Panel Boxes/046_assets.blend
+  OK: 273 objects, 1 materials
+[19] 049.blend -> KB 06 Panel Boxes/049_assets.blend
+  OK: 26 objects, 1 materials
+[20] 104.blend -> KB 06 Panel Boxes/104_assets.blend
+  OK: 41 objects, 1 materials
+[21] 157.blend -> KB 06 Panel Boxes/157_assets.blend
+  OK: 2 objects, 1 materials
+[22] 199.blend -> KB 06 Panel Boxes/199_assets.blend
+  OK: 2 objects, 1 materials
+[23] 206.blend -> KB 06 Panel Boxes/206_assets.blend
+  OK: 2 objects, 1 materials
+[24] 207.blend -> KB 06 Panel Boxes/207_assets.blend
+  OK: 2 objects, 1 materials
+[25] 208.blend -> KB 06 Panel Boxes/208_assets.blend
+  OK: 2 objects, 1 materials
+[26] 209.blend -> KB 06 Panel Boxes/209_assets.blend
+  OK: 2 objects, 1 materials
+[27] 210.blend -> KB 06 Panel Boxes/210_assets.blend
+  OK: 2 objects, 1 materials
+[28] 221.blend -> KB 06 Panel Boxes/221_assets.blend
+  OK: 2 objects, 1 materials
+[29] 226.blend -> KB 06 Panel Boxes/226_assets.blend
+  OK: 2 objects, 1 materials
+[30] 234.blend -> KB 06 Panel Boxes/234_assets.blend
+  OK: 2 objects, 1 materials
+[31] 235.blend -> KB 06 Panel Boxes/235_assets.blend
+  OK: 2 objects, 1 materials
+[32] 245.blend -> KB 06 Panel Boxes/245_assets.blend
+  OK: 2 objects, 1 materials
+[33] 254.blend -> KB 06 Panel Boxes/254_assets.blend
+  OK: 2 objects, 1 materials
+[34] 262.blend -> KB 06 Panel Boxes/262_assets.blend
+  OK: 2 objects, 1 materials
+[35] 269.blend -> KB 06 Panel Boxes/269_assets.blend
+  OK: 2 objects, 1 materials
+[36] 272.blend -> KB 06 Panel Boxes/272_assets.blend
+  OK: 2 objects, 1 materials
+[37] 274.blend -> KB 06 Panel Boxes/274_assets.blend
+  OK: 2 objects, 1 materials
+[38] 275.blend -> KB 06 Panel Boxes/275_assets.blend
+  OK: 2 objects, 1 materials
+[39] 277.blend -> KB 06 Panel Boxes/277_assets.blend
+  OK: 2 objects, 1 materials
+[40] 283.blend -> KB 06 Panel Boxes/283_assets.blend
+  OK: 2 objects, 1 materials
+[41] 294.blend -> KB 06 Panel Boxes/294_assets.blend
+  OK: 2 objects, 1 materials
+[42] 304.blend -> KB 06 Panel Boxes/304_assets.blend
+  OK: 2 objects, 1 materials
+[43] 317.blend -> KB 06 Panel Boxes/317_assets.blend
+  OK: 2 objects, 1 materials
+[44] 318.blend -> KB 06 Panel Boxes/318_assets.blend
+  OK: 2 objects, 1 materials
+[45] 328.blend -> KB 06 Panel Boxes/328_assets.blend
+  OK: 2 objects, 1 materials
+[46] 329.blend -> KB 06 Panel Boxes/329_assets.blend
+  OK: 2 objects, 1 materials
+[47] 339.blend -> KB 06 Panel Boxes/339_assets.blend
+  OK: 2 objects, 1 materials
+[48] 342.blend -> KB 06 Panel Boxes/342_assets.blend
+  OK: 2 objects, 1 materials
+[49] 349.blend -> KB 06 Panel Boxes/349_assets.blend
+  OK: 2 objects, 1 materials
+[50] 350.blend -> KB 06 Panel Boxes/350_assets.blend
+  OK: 2 objects, 1 materials
+[51] 364.blend -> KB 06 Panel Boxes/364_assets.blend
+  OK: 2 objects, 1 materials
+[52] 370.blend -> KB 06 Panel Boxes/370_assets.blend
+  OK: 2 objects, 1 materials
+[53] 383.blend -> KB 06 Panel Boxes/383_assets.blend
+  OK: 2 objects, 1 materials
+[54] 402.blend -> KB 06 Panel Boxes/402_assets.blend
+  OK: 2 objects, 1 materials
+[55] 404.blend -> KB 06 Panel Boxes/404_assets.blend
+  OK: 2 objects, 1 materials
+[56] 412.blend -> KB 06 Panel Boxes/412_assets.blend
+  OK: 2 objects, 1 materials
+[57] 417.blend -> KB 06 Panel Boxes/417_assets.blend
+  OK: 2 objects, 1 materials
+[58] 439.blend -> KB 06 Panel Boxes/439_assets.blend
+  OK: 2 objects, 1 materials
+[59] 452.blend -> KB 06 Panel Boxes/452_assets.blend
+  OK: 2 objects, 1 materials
+[60] 461.blend -> KB 06 Panel Boxes/461_assets.blend
+  OK: 2 objects, 1 materials
+[61] 481.blend -> KB 06 Panel Boxes/481_assets.blend
+  OK: 2 objects, 1 materials
+[62] 012.blend -> KB 07 Swivels/012_assets.blend
+  OK: 21 objects, 1 materials
+[63] 026.blend -> KB 07 Swivels/026_assets.blend
+  OK: 81 objects, 1 materials
+[64] 027.blend -> KB 07 Swivels/027_assets.blend
+  OK: 269 objects, 1 materials
+[65] 033.blend -> KB 07 Swivels/033_assets.blend
+  OK: 8 objects, 1 materials
+[66] 034.blend -> KB 07 Swivels/034_assets.blend
+  OK: 8 objects, 1 materials
+[67] 037.blend -> KB 07 Swivels/037_assets.blend
+  OK: 9 objects, 1 materials
+[68] 044.blend -> KB 07 Swivels/044_assets.blend
+  OK: 29 objects, 1 materials
+[69] 057.blend -> KB 07 Swivels/057_assets.blend
+  OK: 11 objects, 1 materials
+[70] 075.blend -> KB 07 Swivels/075_assets.blend
+  OK: 30 objects, 1 materials
+[71] 089.blend -> KB 07 Swivels/089_assets.blend
+  OK: 26 objects, 1 materials
+[72] 092.blend -> KB 07 Swivels/092_assets.blend
+  OK: 11 objects, 1 materials
+[73] 103.blend -> KB 07 Swivels/103_assets.blend
+  OK: 41 objects, 1 materials
+[74] 121.blend -> KB 07 Swivels/121_assets.blend
+  OK: 2 objects, 1 materials
+[75] 132.blend -> KB 07 Swivels/132_assets.blend
+  OK: 2 objects, 1 materials
+[76] 256.blend -> KB 07 Swivels/256_assets.blend
+  OK: 2 objects, 1 materials
+[77] 259.blend -> KB 07 Swivels/259_assets.blend
+  OK: 2 objects, 1 materials
+[78] 271.blend -> KB 07 Swivels/271_assets.blend
+  OK: 2 objects, 1 materials
+[79] 306.blend -> KB 07 Swivels/306_assets.blend
+  OK: 2 objects, 1 materials
+[80] 307.blend -> KB 07 Swivels/307_assets.blend
+  OK: 2 objects, 1 materials
+[81] 354.blend -> KB 07 Swivels/354_assets.blend
+  OK: 2 objects, 1 materials
+[82] 432.blend -> KB 07 Swivels/432_assets.blend
+  OK: 2 objects, 1 materials
+[83] 476.blend -> KB 07 Swivels/476_assets.blend
+  OK: 2 objects, 1 materials
+[84] 478.blend -> KB 07 Swivels/478_assets.blend
+  OK: 2 objects, 1 materials
+[85] 484.blend -> KB 07 Swivels/484_assets.blend
+  OK: 2 objects, 1 materials
+[86] 509.blend -> KB 07 Swivels/509_assets.blend
+  OK: 2 objects, 1 materials
+[87] 510.blend -> KB 07 Swivels/510_assets.blend
+  OK: 2 objects, 1 materials
+[88] 038.blend -> KB 08 Tools/038_assets.blend
+  OK: 64 objects, 1 materials
+[89] 070.blend -> KB 08 Tools/070_assets.blend
+  OK: 6 objects, 1 materials
+[90] 074.blend -> KB 08 Tools/074_assets.blend
+  OK: 29 objects, 1 materials
+[91] 076.blend -> KB 08 Tools/076_assets.blend
+  OK: 92 objects, 1 materials
+[92] 077.blend -> KB 08 Tools/077_assets.blend
+  OK: 46 objects, 1 materials
+[93] 084.blend -> KB 08 Tools/084_assets.blend
+  OK: 27 objects, 1 materials
+[94] 091.blend -> KB 08 Tools/091_assets.blend
+  OK: 19 objects, 1 materials
+[95] 093.blend -> KB 08 Tools/093_assets.blend
+  OK: 50 objects, 1 materials
+[96] 094.blend -> KB 08 Tools/094_assets.blend
+  OK: 43 objects, 1 materials
+[97] 098.blend -> KB 08 Tools/098_assets.blend
+  OK: 28 objects, 1 materials
+[98] 099.blend -> KB 08 Tools/099_assets.blend
+  OK: 80 objects, 1 materials
+[99] 141.blend -> KB 08 Tools/141_assets.blend
+  OK: 2 objects, 1 materials
+[100] 204.blend -> KB 08 Tools/204_assets.blend
+  OK: 2 objects, 1 materials
+[101] 338.blend -> KB 08 Tools/338_assets.blend
+  OK: 2 objects, 1 materials
+[102] 492.blend -> KB 08 Tools/492_assets.blend
+  OK: 2 objects, 1 materials
+[103] 129.blend -> KB 09 Tube/129_assets.blend
+  OK: 2 objects, 1 materials
+[104] 163.blend -> KB 09 Tube/163_assets.blend
+  OK: 5 objects, 1 materials
+[105] 165.blend -> KB 09 Tube/165_assets.blend
+  OK: 2 objects, 1 materials
+[106] 175.blend -> KB 09 Tube/175_assets.blend
+  OK: 2 objects, 1 materials
+[107] 184.blend -> KB 09 Tube/184_assets.blend
+  OK: 2 objects, 1 materials
+[108] 186.blend -> KB 09 Tube/186_assets.blend
+  OK: 2 objects, 1 materials
+[109] 190.blend -> KB 09 Tube/190_assets.blend
+  OK: 2 objects, 1 materials
+[110] 191.blend -> KB 09 Tube/191_assets.blend
+  OK: 2 objects, 1 materials
+[111] 211.blend -> KB 09 Tube/211_assets.blend
+  OK: 2 objects, 1 materials
+[112] 236.blend -> KB 09 Tube/236_assets.blend
+  OK: 2 objects, 1 materials
+[113] 249.blend -> KB 09 Tube/249_assets.blend
+  OK: 2 objects, 1 materials
+[114] 255.blend -> KB 09 Tube/255_assets.blend
+  OK: 2 objects, 1 materials
+[115] 257.blend -> KB 09 Tube/257_assets.blend
+  OK: 2 objects, 1 materials
+[116] 258.blend -> KB 09 Tube/258_assets.blend
+  OK: 2 objects, 1 materials
+[117] 267.blend -> KB 09 Tube/267_assets.blend
+  OK: 2 objects, 1 materials
+[118] 268.blend -> KB 09 Tube/268_assets.blend
+  OK: 2 objects, 1 materials
+[119] 284.blend -> KB 09 Tube/284_assets.blend
+  OK: 2 objects, 1 materials
+[120] 288.blend -> KB 09 Tube/288_assets.blend
+  OK: 2 objects, 1 materials
+[121] 343.blend -> KB 09 Tube/343_assets.blend
+  OK: 2 objects, 1 materials
+[122] 345.blend -> KB 09 Tube/345_assets.blend
+  OK: 2 objects, 1 materials
+[123] 376.blend -> KB 09 Tube/376_assets.blend
+  OK: 2 objects, 1 materials
+[124] 379.blend -> KB 09 Tube/379_assets.blend
+  OK: 2 objects, 1 materials
+[125] 381.blend -> KB 09 Tube/381_assets.blend
+  OK: 2 objects, 1 materials
+[126] 390.blend -> KB 09 Tube/390_assets.blend
+  OK: 2 objects, 1 materials
+[127] 391.blend -> KB 09 Tube/391_assets.blend
+  OK: 2 objects, 1 materials
+[128] 434.blend -> KB 09 Tube/434_assets.blend
+  OK: 2 objects, 1 materials
+[129] 440.blend -> KB 09 Tube/440_assets.blend
+  OK: 2 objects, 1 materials
+[130] 451.blend -> KB 09 Tube/451_assets.blend
+  OK: 2 objects, 1 materials
+[131] 477.blend -> KB 09 Tube/477_assets.blend
+  OK: 2 objects, 1 materials
+[132] 482.blend -> KB 09 Tube/482_assets.blend
+  OK: 2 objects, 1 materials
+[133] 007.blend -> KB 10 Cannister/007_assets.blend
+  OK: 3 objects, 1 materials
+[134] 008.blend -> KB 10 Cannister/008_assets.blend
+  OK: 23 objects, 1 materials
+[135] 073.blend -> KB 10 Cannister/073_assets.blend
+  OK: 95 objects, 1 materials
+[136] 078.blend -> KB 10 Cannister/078_assets.blend
+  OK: 38 objects, 1 materials
+[137] 106.blend -> KB 10 Cannister/106_assets.blend
+  OK: 36 objects, 1 materials
+[138] 202.blend -> KB 10 Cannister/202_assets.blend
+  OK: 2 objects, 1 materials
+[139] 273.blend -> KB 10 Cannister/273_assets.blend
+  OK: 2 objects, 1 materials
+[140] 316.blend -> KB 10 Cannister/316_assets.blend
+  OK: 2 objects, 1 materials
+[141] 320.blend -> KB 10 Cannister/320_assets.blend
+  OK: 2 objects, 1 materials
+[142] 498.blend -> KB 10 Cannister/498_assets.blend
+  OK: 2 objects, 1 materials
+[143] 043.blend -> KB 11 Connectors/043_assets.blend
+  OK: 79 objects, 2 materials
+[144] 051.blend -> KB 11 Connectors/051_assets.blend
+  OK: 45 objects, 1 materials
+[145] 071.blend -> KB 11 Connectors/071_assets.blend
+  OK: 16 objects, 1 materials
+[146] 108.blend -> KB 11 Connectors/108_assets.blend
+  OK: 2 objects, 1 materials
+[147] 109.blend -> KB 11 Connectors/109_assets.blend
+  OK: 2 objects, 1 materials
+[148] 119.blend -> KB 11 Connectors/119_assets.blend
+  OK: 2 objects, 1 materials
+[149] 120.blend -> KB 11 Connectors/120_assets.blend
+  OK: 2 objects, 1 materials
+[150] 124.blend -> KB 11 Connectors/124_assets.blend
+  OK: 2 objects, 1 materials
+[151] 126.blend -> KB 11 Connectors/126_assets.blend
+  OK: 2 objects, 1 materials
+[152] 128.blend -> KB 11 Connectors/128_assets.blend
+  OK: 2 objects, 1 materials
+[153] 130.blend -> KB 11 Connectors/130_assets.blend
+  OK: 2 objects, 1 materials
+[154] 134.blend -> KB 11 Connectors/134_assets.blend
+  OK: 2 objects, 1 materials
+[155] 147.blend -> KB 11 Connectors/147_assets.blend
+  OK: 2 objects, 1 materials
+[156] 172.blend -> KB 11 Connectors/172_assets.blend
+  OK: 2 objects, 1 materials
+[157] 195.blend -> KB 11 Connectors/195_assets.blend
+  OK: 2 objects, 1 materials
+[158] 196.blend -> KB 11 Connectors/196_assets.blend
+  OK: 2 objects, 1 materials
+[159] 222.blend -> KB 11 Connectors/222_assets.blend
+  OK: 2 objects, 1 materials
+[160] 247.blend -> KB 11 Connectors/247_assets.blend
+  OK: 2 objects, 1 materials
+[161] 276.blend -> KB 11 Connectors/276_assets.blend
+  OK: 2 objects, 1 materials
+[162] 331.blend -> KB 11 Connectors/331_assets.blend
+  OK: 2 objects, 1 materials
+[163] 337.blend -> KB 11 Connectors/337_assets.blend
+  OK: 2 objects, 1 materials
+[164] 375.blend -> KB 11 Connectors/375_assets.blend
+  OK: 2 objects, 1 materials
+[165] 380.blend -> KB 11 Connectors/380_assets.blend
+  OK: 2 objects, 1 materials
+[166] 384.blend -> KB 11 Connectors/384_assets.blend
+  OK: 2 objects, 1 materials
+[167] 389.blend -> KB 11 Connectors/389_assets.blend
+  OK: 2 objects, 1 materials
+[168] 394.blend -> KB 11 Connectors/394_assets.blend
+  OK: 2 objects, 1 materials
+[169] 444.blend -> KB 11 Connectors/444_assets.blend
+  OK: 2 objects, 1 materials
+[170] 467.blend -> KB 11 Connectors/467_assets.blend
+  OK: 2 objects, 1 materials
+[171] 474.blend -> KB 11 Connectors/474_assets.blend
+  OK: 2 objects, 1 materials
+[172] 475.blend -> KB 11 Connectors/475_assets.blend
+  OK: 2 objects, 1 materials
+[173] 508.blend -> KB 11 Connectors/508_assets.blend
+  OK: 2 objects, 1 materials
+[174] 512.blend -> KB 11 Connectors/512_assets.blend
+  OK: 2 objects, 1 materials
+[175] 112.blend -> KB 12 Brackets/112_assets.blend
+  OK: 2 objects, 1 materials
+[176] 113.blend -> KB 12 Brackets/113_assets.blend
+  OK: 2 objects, 1 materials
+[177] 114.blend -> KB 12 Brackets/114_assets.blend
+  OK: 2 objects, 1 materials
+[178] 115.blend -> KB 12 Brackets/115_assets.blend
+  OK: 2 objects, 1 materials
+[179] 116.blend -> KB 12 Brackets/116_assets.blend
+  OK: 2 objects, 1 materials
+[180] 117.blend -> KB 12 Brackets/117_assets.blend
+  OK: 2 objects, 1 materials
+[181] 118.blend -> KB 12 Brackets/118_assets.blend
+  OK: 2 objects, 1 materials
+[182] 144.blend -> KB 12 Brackets/144_assets.blend
+  OK: 2 objects, 1 materials
+[183] 154.blend -> KB 12 Brackets/154_assets.blend
+  OK: 2 objects, 1 materials
+[184] 158.blend -> KB 12 Brackets/158_assets.blend
+  OK: 2 objects, 1 materials
+[185] 162.blend -> KB 12 Brackets/162_assets.blend
+  OK: 2 objects, 1 materials
+[186] 177.blend -> KB 12 Brackets/177_assets.blend
+  OK: 2 objects, 1 materials
+[187] 178.blend -> KB 12 Brackets/178_assets.blend
+  OK: 2 objects, 1 materials
+[188] 180.blend -> KB 12 Brackets/180_assets.blend
+  OK: 2 objects, 1 materials
+[189] 181.blend -> KB 12 Brackets/181_assets.blend
+  OK: 2 objects, 1 materials
+[190] 189.blend -> KB 12 Brackets/189_assets.blend
+  OK: 2 objects, 1 materials
+[191] 227.blend -> KB 12 Brackets/227_assets.blend
+  OK: 2 objects, 1 materials
+[192] 228.blend -> KB 12 Brackets/228_assets.blend
+  OK: 2 objects, 1 materials
+[193] 241.blend -> KB 12 Brackets/241_assets.blend
+  OK: 2 objects, 1 materials
+[194] 251.blend -> KB 12 Brackets/251_assets.blend
+  OK: 2 objects, 1 materials
+[195] 252.blend -> KB 12 Brackets/252_assets.blend
+  OK: 2 objects, 1 materials
+[196] 260.blend -> KB 12 Brackets/260_assets.blend
+  OK: 2 objects, 1 materials
+[197] 264.blend -> KB 12 Brackets/264_assets.blend
+  OK: 2 objects, 1 materials
+[198] 265.blend -> KB 12 Brackets/265_assets.blend
+  OK: 2 objects, 1 materials
+[199] 270.blend -> KB 12 Brackets/270_assets.blend
+  OK: 2 objects, 1 materials
+[200] 278.blend -> KB 12 Brackets/278_assets.blend
+  OK: 2 objects, 1 materials
+[201] 280.blend -> KB 12 Brackets/280_assets.blend
+  OK: 2 objects, 1 materials
+[202] 282.blend -> KB 12 Brackets/282_assets.blend
+  OK: 2 objects, 1 materials
+[203] 300.blend -> KB 12 Brackets/300_assets.blend
+  OK: 2 objects, 1 materials
+[204] 308.blend -> KB 12 Brackets/308_assets.blend
+  OK: 2 objects, 1 materials
+[205] 332.blend -> KB 12 Brackets/332_assets.blend
+  OK: 2 objects, 1 materials
+[206] 333.blend -> KB 12 Brackets/333_assets.blend
+  OK: 2 objects, 1 materials
+[207] 334.blend -> KB 12 Brackets/334_assets.blend
+  OK: 2 objects, 1 materials
+[208] 341.blend -> KB 12 Brackets/341_assets.blend
+  OK: 2 objects, 1 materials
+[209] 347.blend -> KB 12 Brackets/347_assets.blend
+  OK: 2 objects, 1 materials
+[210] 355.blend -> KB 12 Brackets/355_assets.blend
+  OK: 2 objects, 1 materials
+[211] 392.blend -> KB 12 Brackets/392_assets.blend
+  OK: 2 objects, 1 materials
+[212] 396.blend -> KB 12 Brackets/396_assets.blend
+  OK: 2 objects, 1 materials
+[213] 401.blend -> KB 12 Brackets/401_assets.blend
+  OK: 2 objects, 1 materials
+[214] 409.blend -> KB 12 Brackets/409_assets.blend
+  OK: 2 objects, 1 materials
+[215] 410.blend -> KB 12 Brackets/410_assets.blend
+  OK: 2 objects, 1 materials
+[216] 415.blend -> KB 12 Brackets/415_assets.blend
+  OK: 2 objects, 1 materials
+[217] 416.blend -> KB 12 Brackets/416_assets.blend
+  OK: 2 objects, 1 materials
+[218] 422.blend -> KB 12 Brackets/422_assets.blend
+  OK: 2 objects, 1 materials
+[219] 423.blend -> KB 12 Brackets/423_assets.blend
+  OK: 2 objects, 1 materials
+[220] 425.blend -> KB 12 Brackets/425_assets.blend
+  OK: 2 objects, 1 materials
+[221] 431.blend -> KB 12 Brackets/431_assets.blend
+  OK: 2 objects, 1 materials
+[222] 433.blend -> KB 12 Brackets/433_assets.blend
+  OK: 2 objects, 1 materials
+[223] 435.blend -> KB 12 Brackets/435_assets.blend
+  OK: 4 objects, 5 materials
+[224] 436.blend -> KB 12 Brackets/436_assets.blend
+  OK: 2 objects, 1 materials
+[225] 441.blend -> KB 12 Brackets/441_assets.blend
+  OK: 2 objects, 1 materials
+[226] 442.blend -> KB 12 Brackets/442_assets.blend
+  OK: 2 objects, 1 materials
+[227] 473.blend -> KB 12 Brackets/473_assets.blend
+  OK: 2 objects, 1 materials
+[228] 491.blend -> KB 12 Brackets/491_assets.blend
+  OK: 2 objects, 1 materials
+[229] 501.blend -> KB 12 Brackets/501_assets.blend
+  OK: 2 objects, 1 materials
+[230] 122.blend -> KB 13 Collars/122_assets.blend
+  OK: 2 objects, 1 materials
+[231] 148.blend -> KB 13 Collars/148_assets.blend
+  OK: 2 objects, 1 materials
+[232] 159.blend -> KB 13 Collars/159_assets.blend
+  OK: 2 objects, 1 materials
+[233] 164.blend -> KB 13 Collars/164_assets.blend
+  OK: 2 objects, 1 materials
+[234] 168.blend -> KB 13 Collars/168_assets.blend
+  OK: 2 objects, 1 materials
+[235] 169.blend -> KB 13 Collars/169_assets.blend
+  OK: 2 objects, 1 materials
+[236] 170.blend -> KB 13 Collars/170_assets.blend
+  OK: 2 objects, 1 materials
+[237] 174.blend -> KB 13 Collars/174_assets.blend
+  OK: 2 objects, 1 materials
+[238] 187.blend -> KB 13 Collars/187_assets.blend
+  OK: 2 objects, 1 materials
+[239] 193.blend -> KB 13 Collars/193_assets.blend
+  OK: 2 objects, 1 materials
+[240] 225.blend -> KB 13 Collars/225_assets.blend
+  OK: 2 objects, 1 materials
+[241] 239.blend -> KB 13 Collars/239_assets.blend
+  OK: 2 objects, 1 materials
+[242] 289.blend -> KB 13 Collars/289_assets.blend
+  OK: 2 objects, 1 materials
+[243] 313.blend -> KB 13 Collars/313_assets.blend
+  OK: 2 objects, 1 materials
+[244] 322.blend -> KB 13 Collars/322_assets.blend
+  OK: 2 objects, 1 materials
+[245] 327.blend -> KB 13 Collars/327_assets.blend
+  OK: 2 objects, 1 materials
+[246] 346.blend -> KB 13 Collars/346_assets.blend
+  OK: 2 objects, 1 materials
+[247] 348.blend -> KB 13 Collars/348_assets.blend
+  OK: 2 objects, 1 materials
+[248] 399.blend -> KB 13 Collars/399_assets.blend
+  OK: 2 objects, 1 materials
+[249] 468.blend -> KB 13 Collars/468_assets.blend
+  OK: 2 objects, 1 materials
+[250] 469.blend -> KB 13 Collars/469_assets.blend
+  OK: 2 objects, 1 materials
+[251] 472.blend -> KB 13 Collars/472_assets.blend
+  OK: 2 objects, 1 materials
+[252] 479.blend -> KB 13 Collars/479_assets.blend
+  OK: 2 objects, 1 materials
+[253] 480.blend -> KB 13 Collars/480_assets.blend
+  OK: 2 objects, 1 materials
+[254] 487.blend -> KB 13 Collars/487_assets.blend
+  OK: 2 objects, 1 materials
+[255] 490.blend -> KB 13 Collars/490_assets.blend
+  OK: 2 objects, 1 materials
+[256] 111.blend -> KB 14 Plates/111_assets.blend
+  OK: 2 objects, 1 materials
+[257] 125.blend -> KB 14 Plates/125_assets.blend
+  OK: 2 objects, 1 materials
+[258] 182.blend -> KB 14 Plates/182_assets.blend
+  OK: 2 objects, 1 materials
+[259] 183.blend -> KB 14 Plates/183_assets.blend
+  OK: 2 objects, 1 materials
+[260] 197.blend -> KB 14 Plates/197_assets.blend
+  OK: 2 objects, 1 materials
+[261] 200.blend -> KB 14 Plates/200_assets.blend
+  OK: 2 objects, 1 materials
+[262] 292.blend -> KB 14 Plates/292_assets.blend
+  OK: 2 objects, 1 materials
+[263] 297.blend -> KB 14 Plates/297_assets.blend
+  OK: 2 objects, 1 materials
+[264] 311.blend -> KB 14 Plates/311_assets.blend
+  OK: 2 objects, 1 materials
+[265] 357.blend -> KB 14 Plates/357_assets.blend
+  OK: 2 objects, 1 materials
+[266] 395.blend -> KB 14 Plates/395_assets.blend
+  OK: 2 objects, 1 materials
+[267] 437.blend -> KB 14 Plates/437_assets.blend
+  OK: 2 objects, 1 materials
+[268] 447.blend -> KB 14 Plates/447_assets.blend
+  OK: 2 objects, 1 materials
+[269] 448.blend -> KB 14 Plates/448_assets.blend
+  OK: 2 objects, 1 materials
+[270] 462.blend -> KB 14 Plates/462_assets.blend
+  OK: 2 objects, 1 materials
+[271] 495.blend -> KB 14 Plates/495_assets.blend
+  OK: 2 objects, 1 materials
+[272] 496.blend -> KB 14 Plates/496_assets.blend
+  OK: 2 objects, 1 materials
+[273] 497.blend -> KB 14 Plates/497_assets.blend
+  OK: 2 objects, 1 materials
+[274] 511.blend -> KB 14 Plates/511_assets.blend
+  OK: 2 objects, 1 materials
+[275] 188.blend -> KB 15 Square Caps/188_assets.blend
+  OK: 2 objects, 1 materials
+[276] 223.blend -> KB 15 Square Caps/223_assets.blend
+  OK: 2 objects, 1 materials
+[277] 248.blend -> KB 15 Square Caps/248_assets.blend
+  OK: 2 objects, 1 materials
+[278] 295.blend -> KB 15 Square Caps/295_assets.blend
+  OK: 2 objects, 1 materials
+[279] 298.blend -> KB 15 Square Caps/298_assets.blend
+  OK: 2 objects, 1 materials
+[280] 309.blend -> KB 15 Square Caps/309_assets.blend
+  OK: 2 objects, 1 materials
+[281] 321.blend -> KB 15 Square Caps/321_assets.blend
+  OK: 2 objects, 1 materials
+[282] 326.blend -> KB 15 Square Caps/326_assets.blend
+  OK: 2 objects, 1 materials
+[283] 330.blend -> KB 15 Square Caps/330_assets.blend
+  OK: 2 objects, 1 materials
+[284] 336.blend -> KB 15 Square Caps/336_assets.blend
+  OK: 2 objects, 1 materials
+[285] 344.blend -> KB 15 Square Caps/344_assets.blend
+  OK: 2 objects, 1 materials
+[286] 352.blend -> KB 15 Square Caps/352_assets.blend
+  OK: 2 objects, 1 materials
+[287] 353.blend -> KB 15 Square Caps/353_assets.blend
+  OK: 2 objects, 1 materials
+[288] 356.blend -> KB 15 Square Caps/356_assets.blend
+  OK: 2 objects, 1 materials
+[289] 398.blend -> KB 15 Square Caps/398_assets.blend
+  OK: 2 objects, 1 materials
+[290] 424.blend -> KB 15 Square Caps/424_assets.blend
+  OK: 2 objects, 1 materials
+[291] 470.blend -> KB 15 Square Caps/470_assets.blend
+  OK: 2 objects, 1 materials
+[292] 483.blend -> KB 15 Square Caps/483_assets.blend
+  OK: 2 objects, 1 materials
+[293] 500.blend -> KB 15 Square Caps/500_assets.blend
+  OK: 2 objects, 1 materials
+[294] 502.blend -> KB 15 Square Caps/502_assets.blend
+  OK: 2 objects, 1 materials
+[295] 503.blend -> KB 15 Square Caps/503_assets.blend
+  OK: 2 objects, 1 materials
+[296] 504.blend -> KB 15 Square Caps/504_assets.blend
+  OK: 2 objects, 1 materials
+[297] 505.blend -> KB 15 Square Caps/505_assets.blend
+  OK: 2 objects, 1 materials
+[298] 507.blend -> KB 15 Square Caps/507_assets.blend
+  OK: 2 objects, 1 materials
+[299] 137.blend -> KB 16 Covers/137_assets.blend
+  OK: 2 objects, 1 materials
+[300] 138.blend -> KB 16 Covers/138_assets.blend
+  OK: 2 objects, 1 materials
+[301] 140.blend -> KB 16 Covers/140_assets.blend
+  OK: 2 objects, 1 materials
+[302] 152.blend -> KB 16 Covers/152_assets.blend
+  OK: 2 objects, 1 materials
+[303] 185.blend -> KB 16 Covers/185_assets.blend
+  OK: 2 objects, 1 materials
+[304] 194.blend -> KB 16 Covers/194_assets.blend
+  OK: 2 objects, 1 materials
+[305] 198.blend -> KB 16 Covers/198_assets.blend
+  OK: 2 objects, 1 materials
+[306] 201.blend -> KB 16 Covers/201_assets.blend
+  OK: 2 objects, 1 materials
+[307] 214.blend -> KB 16 Covers/214_assets.blend
+  OK: 2 objects, 1 materials
+[308] 219.blend -> KB 16 Covers/219_assets.blend
+  OK: 2 objects, 1 materials
+[309] 229.blend -> KB 16 Covers/229_assets.blend
+  OK: 2 objects, 1 materials
+[310] 230.blend -> KB 16 Covers/230_assets.blend
+  OK: 2 objects, 1 materials
+[311] 231.blend -> KB 16 Covers/231_assets.blend
+  OK: 2 objects, 1 materials
+[312] 232.blend -> KB 16 Covers/232_assets.blend
+  OK: 2 objects, 1 materials
+[313] 233.blend -> KB 16 Covers/233_assets.blend
+  OK: 2 objects, 1 materials
+[314] 237.blend -> KB 16 Covers/237_assets.blend
+  OK: 2 objects, 1 materials
+[315] 240.blend -> KB 16 Covers/240_assets.blend
+  OK: 2 objects, 1 materials
+[316] 242.blend -> KB 16 Covers/242_assets.blend
+  OK: 2 objects, 1 materials
+[317] 243.blend -> KB 16 Covers/243_assets.blend
+  OK: 2 objects, 1 materials
+[318] 253.blend -> KB 16 Covers/253_assets.blend
+  OK: 2 objects, 1 materials
+[319] 266.blend -> KB 16 Covers/266_assets.blend
+  OK: 2 objects, 1 materials
+[320] 279.blend -> KB 16 Covers/279_assets.blend
+  OK: 2 objects, 1 materials
+[321] 286.blend -> KB 16 Covers/286_assets.blend
+  OK: 2 objects, 1 materials
+[322] 287.blend -> KB 16 Covers/287_assets.blend
+  OK: 2 objects, 1 materials
+[323] 290.blend -> KB 16 Covers/290_assets.blend
+  OK: 2 objects, 1 materials
+[324] 293.blend -> KB 16 Covers/293_assets.blend
+  OK: 2 objects, 1 materials
+[325] 299.blend -> KB 16 Covers/299_assets.blend
+  OK: 2 objects, 1 materials
+[326] 302.blend -> KB 16 Covers/302_assets.blend
+  OK: 2 objects, 1 materials
+[327] 310.blend -> KB 16 Covers/310_assets.blend
+  OK: 2 objects, 1 materials
+[328] 314.blend -> KB 16 Covers/314_assets.blend
+  OK: 2 objects, 1 materials
+[329] 315.blend -> KB 16 Covers/315_assets.blend
+  OK: 2 objects, 1 materials
+[330] 319.blend -> KB 16 Covers/319_assets.blend
+  OK: 2 objects, 1 materials
+[331] 325.blend -> KB 16 Covers/325_assets.blend
+  OK: 2 objects, 1 materials
+[332] 335.blend -> KB 16 Covers/335_assets.blend
+  OK: 2 objects, 1 materials
+[333] 351.blend -> KB 16 Covers/351_assets.blend
+  OK: 2 objects, 1 materials
+[334] 363.blend -> KB 16 Covers/363_assets.blend
+  OK: 2 objects, 1 materials
+[335] 365.blend -> KB 16 Covers/365_assets.blend
+  OK: 2 objects, 1 materials
+[336] 367.blend -> KB 16 Covers/367_assets.blend
+  OK: 2 objects, 1 materials
+[337] 368.blend -> KB 16 Covers/368_assets.blend
+  OK: 2 objects, 1 materials
+[338] 369.blend -> KB 16 Covers/369_assets.blend
+  OK: 2 objects, 1 materials
+[339] 371.blend -> KB 16 Covers/371_assets.blend
+  OK: 2 objects, 1 materials
+[340] 374.blend -> KB 16 Covers/374_assets.blend
+  OK: 2 objects, 1 materials
+[341] 377.blend -> KB 16 Covers/377_assets.blend
+  OK: 2 objects, 1 materials
+[342] 382.blend -> KB 16 Covers/382_assets.blend
+  OK: 2 objects, 1 materials
+[343] 386.blend -> KB 16 Covers/386_assets.blend
+  OK: 2 objects, 1 materials
+[344] 387.blend -> KB 16 Covers/387_assets.blend
+  OK: 2 objects, 1 materials
+[345] 403.blend -> KB 16 Covers/403_assets.blend
+  OK: 2 objects, 1 materials
+[346] 407.blend -> KB 16 Covers/407_assets.blend
+  OK: 2 objects, 1 materials
+[347] 408.blend -> KB 16 Covers/408_assets.blend
+  OK: 2 objects, 1 materials
+[348] 411.blend -> KB 16 Covers/411_assets.blend
+  OK: 2 objects, 1 materials
+[349] 413.blend -> KB 16 Covers/413_assets.blend
+  OK: 2 objects, 1 materials
+[350] 418.blend -> KB 16 Covers/418_assets.blend
+  OK: 2 objects, 1 materials
+[351] 419.blend -> KB 16 Covers/419_assets.blend
+  OK: 2 objects, 1 materials
+[352] 420.blend -> KB 16 Covers/420_assets.blend
+  OK: 2 objects, 1 materials
+[353] 428.blend -> KB 16 Covers/428_assets.blend
+  OK: 2 objects, 1 materials
+[354] 429.blend -> KB 16 Covers/429_assets.blend
+  OK: 2 objects, 1 materials
+[355] 438.blend -> KB 16 Covers/438_assets.blend
+  OK: 2 objects, 1 materials
+[356] 443.blend -> KB 16 Covers/443_assets.blend
+  OK: 2 objects, 1 materials
+[357] 446.blend -> KB 16 Covers/446_assets.blend
+  OK: 2 objects, 1 materials
+[358] 454.blend -> KB 16 Covers/454_assets.blend
+  OK: 2 objects, 1 materials
+[359] 455.blend -> KB 16 Covers/455_assets.blend
+  OK: 2 objects, 1 materials
+[360] 458.blend -> KB 16 Covers/458_assets.blend
+  OK: 2 objects, 1 materials
+[361] 460.blend -> KB 16 Covers/460_assets.blend
+  OK: 2 objects, 1 materials
+[362] 499.blend -> KB 16 Covers/499_assets.blend
+  OK: 2 objects, 1 materials
+[363] 086.blend -> KB 17 Round Caps/086_assets.blend
+  OK: 3 objects, 1 materials
+[364] 123.blend -> KB 17 Round Caps/123_assets.blend
+  OK: 2 objects, 1 materials
+[365] 135.blend -> KB 17 Round Caps/135_assets.blend
+  OK: 2 objects, 1 materials
+[366] 136.blend -> KB 17 Round Caps/136_assets.blend
+  OK: 2 objects, 1 materials
+[367] 142.blend -> KB 17 Round Caps/142_assets.blend
+  OK: 2 objects, 1 materials
+[368] 143.blend -> KB 17 Round Caps/143_assets.blend
+  OK: 2 objects, 1 materials
+[369] 146.blend -> KB 17 Round Caps/146_assets.blend
+  OK: 2 objects, 1 materials
+[370] 149.blend -> KB 17 Round Caps/149_assets.blend
+  OK: 2 objects, 1 materials
+[371] 150.blend -> KB 17 Round Caps/150_assets.blend
+  OK: 2 objects, 1 materials
+[372] 151.blend -> KB 17 Round Caps/151_assets.blend
+  OK: 2 objects, 1 materials
+[373] 153.blend -> KB 17 Round Caps/153_assets.blend
+  OK: 2 objects, 1 materials
+[374] 160.blend -> KB 17 Round Caps/160_assets.blend
+  OK: 2 objects, 1 materials
+[375] 167.blend -> KB 17 Round Caps/167_assets.blend
+  OK: 2 objects, 1 materials
+[376] 171.blend -> KB 17 Round Caps/171_assets.blend
+  OK: 2 objects, 1 materials
+[377] 173.blend -> KB 17 Round Caps/173_assets.blend
+  OK: 2 objects, 1 materials
+[378] 203.blend -> KB 17 Round Caps/203_assets.blend
+  OK: 2 objects, 1 materials
+[379] 213.blend -> KB 17 Round Caps/213_assets.blend
+  OK: 2 objects, 1 materials
+[380] 215.blend -> KB 17 Round Caps/215_assets.blend
+  OK: 2 objects, 1 materials
+[381] 216.blend -> KB 17 Round Caps/216_assets.blend
+  OK: 2 objects, 1 materials
+[382] 217.blend -> KB 17 Round Caps/217_assets.blend
+  OK: 2 objects, 1 materials
+[383] 218.blend -> KB 17 Round Caps/218_assets.blend
+  OK: 2 objects, 1 materials
+[384] 238.blend -> KB 17 Round Caps/238_assets.blend
+  OK: 2 objects, 1 materials
+[385] 244.blend -> KB 17 Round Caps/244_assets.blend
+  OK: 2 objects, 1 materials
+[386] 246.blend -> KB 17 Round Caps/246_assets.blend
+  OK: 2 objects, 1 materials
+[387] 281.blend -> KB 17 Round Caps/281_assets.blend
+  OK: 2 objects, 1 materials
+[388] 303.blend -> KB 17 Round Caps/303_assets.blend
+  OK: 2 objects, 1 materials
+[389] 323.blend -> KB 17 Round Caps/323_assets.blend
+  OK: 2 objects, 1 materials
+[390] 324.blend -> KB 17 Round Caps/324_assets.blend
+  OK: 2 objects, 1 materials
+[391] 358.blend -> KB 17 Round Caps/358_assets.blend
+  OK: 2 objects, 1 materials
+[392] 359.blend -> KB 17 Round Caps/359_assets.blend
+  OK: 2 objects, 1 materials
+[393] 366.blend -> KB 17 Round Caps/366_assets.blend
+  OK: 2 objects, 1 materials
+[394] 385.blend -> KB 17 Round Caps/385_assets.blend
+  OK: 2 objects, 1 materials
+[395] 388.blend -> KB 17 Round Caps/388_assets.blend
+  OK: 2 objects, 1 materials
+[396] 393.blend -> KB 17 Round Caps/393_assets.blend
+  OK: 2 objects, 1 materials
+[397] 397.blend -> KB 17 Round Caps/397_assets.blend
+  OK: 2 objects, 1 materials
+[398] 400.blend -> KB 17 Round Caps/400_assets.blend
+  OK: 2 objects, 1 materials
+[399] 405.blend -> KB 17 Round Caps/405_assets.blend
+  OK: 2 objects, 1 materials
+[400] 406.blend -> KB 17 Round Caps/406_assets.blend
+  OK: 2 objects, 1 materials
+[401] 414.blend -> KB 17 Round Caps/414_assets.blend
+  OK: 2 objects, 1 materials
+[402] 426.blend -> KB 17 Round Caps/426_assets.blend
+  OK: 2 objects, 1 materials
+[403] 427.blend -> KB 17 Round Caps/427_assets.blend
+  OK: 2 objects, 1 materials
+[404] 430.blend -> KB 17 Round Caps/430_assets.blend
+  OK: 2 objects, 1 materials
+[405] 450.blend -> KB 17 Round Caps/450_assets.blend
+  OK: 2 objects, 1 materials
+[406] 456.blend -> KB 17 Round Caps/456_assets.blend
+  OK: 2 objects, 1 materials
+[407] 463.blend -> KB 17 Round Caps/463_assets.blend
+  OK: 2 objects, 1 materials
+[408] 464.blend -> KB 17 Round Caps/464_assets.blend
+  OK: 2 objects, 1 materials
+[409] 465.blend -> KB 17 Round Caps/465_assets.blend
+  OK: 2 objects, 1 materials
+[410] 471.blend -> KB 17 Round Caps/471_assets.blend
+  OK: 2 objects, 1 materials
+[411] 485.blend -> KB 17 Round Caps/485_assets.blend
+  OK: 2 objects, 1 materials
+[412] 486.blend -> KB 17 Round Caps/486_assets.blend
+  OK: 2 objects, 1 materials
+[413] 488.blend -> KB 17 Round Caps/488_assets.blend
+  OK: 2 objects, 1 materials
+[414] 489.blend -> KB 17 Round Caps/489_assets.blend
+  OK: 2 objects, 1 materials
+[415] 493.blend -> KB 17 Round Caps/493_assets.blend
+  OK: 2 objects, 1 materials
+[416] 494.blend -> KB 17 Round Caps/494_assets.blend
+  OK: 2 objects, 1 materials
+[417] 506.blend -> KB 17 Round Caps/506_assets.blend
+  OK: 2 objects, 1 materials
+[418] adv_cube1_7.blend -> MA-Cutters-Complex/adv_cube1_7_assets.blend
+  OK: 29 objects, 1 materials
+[419] adv_cube2_8.blend -> MA-Cutters-Complex/adv_cube2_8_assets.blend
+  OK: 22 objects, 2 materials
+[420] adv_cube3_4.blend -> MA-Cutters-Complex/adv_cube3_4_assets.blend
+  OK: 21 objects, 5 materials
+[421] adv_cube4_3.blend -> MA-Cutters-Complex/adv_cube4_3_assets.blend
+  OK: 3 objects, 0 materials
+[422] adv_cube4_4.blend -> MA-Cutters-Complex/adv_cube4_4_assets.blend
+  OK: 3 objects, 0 materials
+[423] adv_cube4_5.blend -> MA-Cutters-Complex/adv_cube4_5_assets.blend
+  OK: 3 objects, 0 materials
+[424] adv_cube6_7.blend -> MA-Cutters-Complex/adv_cube6_7_assets.blend
+  OK: 3 objects, 1 materials
+[425] adv_cube7_5.blend -> MA-Cutters-Complex/adv_cube7_5_assets.blend
+  OK: 3 objects, 1 materials
+[426] circular_piping.blend -> MA-Cutters-Complex/circular_piping_assets.blend
+  OK: 2 objects, 1 materials
+[427] complex1.blend -> MA-Cutters-Complex/complex1_assets.blend
+  OK: 11 objects, 0 materials
+[428] cut_test1_1.blend -> MA-Cutters-Complex/cut_test1_1_assets.blend
+  OK: 2 objects, 0 materials
+[429] cut_test1_2.blend -> MA-Cutters-Complex/cut_test1_2_assets.blend
+  OK: 2 objects, 0 materials
+[430] cut_test1.blend -> MA-Cutters-Complex/cut_test1_assets.blend
+  OK: 2 objects, 0 materials
+[431] cutout_adv.blend -> MA-Cutters-Complex/cutout_adv_assets.blend
+  OK: 2 objects, 0 materials
+[432] doggy.blend -> MA-Cutters-Complex/doggy_assets.blend
+  OK: 2 objects, 1 materials
+[433] dyna_cert1.blend -> MA-Cutters-Complex/dyna_cert1_assets.blend
+  OK: 53 objects, 0 materials
+[434] dyna_cert2.blend -> MA-Cutters-Complex/dyna_cert2_assets.blend
+  OK: 36 objects, 0 materials
+[435] dyna_cert4.blend -> MA-Cutters-Complex/dyna_cert4_assets.blend
+  OK: 38 objects, 0 materials
+[436] grate_simple1_1.blend -> MA-Cutters-Complex/grate_simple1_1_assets.blend
+  OK: 5 objects, 0 materials
+[437] latch_cut1_1.blend -> MA-Cutters-Complex/latch_cut1_1_assets.blend
+  OK: 7 objects, 0 materials
+[438] lite_cut1_1.blend -> MA-Cutters-Complex/lite_cut1_1_assets.blend
+  OK: 4 objects, 1 materials
+[439] lite_cut1_2.blend -> MA-Cutters-Complex/lite_cut1_2_assets.blend
+  OK: 4 objects, 1 materials
+[440] lite_cut1_3.blend -> MA-Cutters-Complex/lite_cut1_3_assets.blend
+  OK: 4 objects, 1 materials
+[441] mx_boxtopcutin.blend -> MA-Cutters-Complex/mx_boxtopcutin_assets.blend
+  OK: 2 objects, 0 materials
+[442] pipeset_1_1.blend -> MA-Cutters-Complex/pipeset_1_1_assets.blend
+  OK: 2 objects, 0 materials
+[443] pipeset_1_2.blend -> MA-Cutters-Complex/pipeset_1_2_assets.blend
+  OK: 2 objects, 0 materials
+[444] rarm_circular.blend -> MA-Cutters-Complex/rarm_circular_assets.blend
+  OK: 2 objects, 0 materials
+[445] rarm_circular_cross.blend -> MA-Cutters-Complex/rarm_circular_cross_assets.blend
+  OK: 3 objects, 0 materials
+[446] rarm_circular_m.blend -> MA-Cutters-Complex/rarm_circular_m_assets.blend
+  OK: 2 objects, 0 materials
+[447] test1_1.blend -> MA-Cutters-Complex/test1_1_assets.blend
+  OK: 5 objects, 1 materials
+[448] vp_testpart.blend -> MA-Cutters-Complex/vp_testpart_assets.blend
+  OK: 3 objects, 0 materials
+[449] adv_cube2_3.blend -> MA-Cutters-Medium/adv_cube2_3_assets.blend
+  OK: 3 objects, 0 materials
+[450] adv_cube2_4.blend -> MA-Cutters-Medium/adv_cube2_4_assets.blend
+  OK: 3 objects, 0 materials
+[451] adv_cube2_5.blend -> MA-Cutters-Medium/adv_cube2_5_assets.blend
+  OK: 3 objects, 0 materials
+[452] adv_cube2_6.blend -> MA-Cutters-Medium/adv_cube2_6_assets.blend
+  OK: 3 objects, 0 materials
+[453] adv_cube2_7.blend -> MA-Cutters-Medium/adv_cube2_7_assets.blend
+  OK: 3 objects, 0 materials
+[454] adv_cube3_1.blend -> MA-Cutters-Medium/adv_cube3_1_assets.blend
+  OK: 3 objects, 1 materials
+[455] adv_cube3_2.blend -> MA-Cutters-Medium/adv_cube3_2_assets.blend
+  OK: 3 objects, 1 materials
+[456] adv_cube3_3.blend -> MA-Cutters-Medium/adv_cube3_3_assets.blend
+  OK: 5 objects, 1 materials
+[457] adv_cube4_1.blend -> MA-Cutters-Medium/adv_cube4_1_assets.blend
+  OK: 3 objects, 0 materials
+[458] adv_cube4_2.blend -> MA-Cutters-Medium/adv_cube4_2_assets.blend
+  OK: 3 objects, 0 materials
+[459] adv_cube5_1.blend -> MA-Cutters-Medium/adv_cube5_1_assets.blend
+  OK: 3 objects, 1 materials
+[460] adv_cube5_2.blend -> MA-Cutters-Medium/adv_cube5_2_assets.blend
+  OK: 4 objects, 1 materials
+[461] adv_cube5_3.blend -> MA-Cutters-Medium/adv_cube5_3_assets.blend
+  OK: 3 objects, 1 materials
+[462] adv_cube6_1.blend -> MA-Cutters-Medium/adv_cube6_1_assets.blend
+  OK: 3 objects, 1 materials
+[463] adv_cube6_2.blend -> MA-Cutters-Medium/adv_cube6_2_assets.blend
+  OK: 3 objects, 1 materials
+[464] adv_cube6_3.blend -> MA-Cutters-Medium/adv_cube6_3_assets.blend
+  OK: 3 objects, 1 materials
+[465] adv_cube6_4.blend -> MA-Cutters-Medium/adv_cube6_4_assets.blend
+  OK: 3 objects, 1 materials
+[466] adv_cube6_5.blend -> MA-Cutters-Medium/adv_cube6_5_assets.blend
+  OK: 3 objects, 1 materials
+[467] adv_cube6_6.blend -> MA-Cutters-Medium/adv_cube6_6_assets.blend
+  OK: 3 objects, 1 materials
+[468] adv_cube6_8.blend -> MA-Cutters-Medium/adv_cube6_8_assets.blend
+  OK: 4 objects, 1 materials
+[469] adv_cube7_1.blend -> MA-Cutters-Medium/adv_cube7_1_assets.blend
+  OK: 3 objects, 1 materials
+[470] adv_cube7_2.blend -> MA-Cutters-Medium/adv_cube7_2_assets.blend
+  OK: 3 objects, 1 materials
+[471] adv_cube7_3.blend -> MA-Cutters-Medium/adv_cube7_3_assets.blend
+  OK: 3 objects, 1 materials
+[472] adv_cube7_4.blend -> MA-Cutters-Medium/adv_cube7_4_assets.blend
+  OK: 3 objects, 1 materials
+[473] Cast-Rib-Cutter-2.blend -> MA-Cutters-Medium/Cast-Rib-Cutter-2_assets.blend
+  OK: 2 objects, 0 materials
+[474] Cast-Rib-Cutter-3.blend -> MA-Cutters-Medium/Cast-Rib-Cutter-3_assets.blend
+  OK: 2 objects, 0 materials
+[475] Cast-Rib-Cutter.blend -> MA-Cutters-Medium/Cast-Rib-Cutter_assets.blend
+  OK: 2 objects, 0 materials
+[476] circulartankcert.blend -> MA-Cutters-Medium/circulartankcert_assets.blend
+  OK: 2 objects, 0 materials
+[477] cutout1_2.blend -> MA-Cutters-Medium/cutout1_2_assets.blend
+  OK: 2 objects, 0 materials
+[478] gn_trighole1_1.blend -> MA-Cutters-Medium/gn_trighole1_1_assets.blend
+  OK: 3 objects, 0 materials
+[479] gn_trighole.blend -> MA-Cutters-Medium/gn_trighole_assets.blend
+  OK: 3 objects, 0 materials
+[480] gun_cut1_1.blend -> MA-Cutters-Medium/gun_cut1_1_assets.blend
+  OK: 2 objects, 0 materials
+[481] gun_trigger_1.blend -> MA-Cutters-Medium/gun_trigger_1_assets.blend
+  OK: 2 objects, 0 materials
+[482] half_round1_1.blend -> MA-Cutters-Medium/half_round1_1_assets.blend
+  OK: 3 objects, 0 materials
+[483] half_round1_2.blend -> MA-Cutters-Medium/half_round1_2_assets.blend
+  OK: 2 objects, 0 materials
+[484] half_round1.blend -> MA-Cutters-Medium/half_round1_assets.blend
+  OK: 2 objects, 0 materials
+[485] hlcut1_1.blend -> MA-Cutters-Medium/hlcut1_1_assets.blend
+  OK: 2 objects, 1 materials
+[486] lite_cut1_1.blend -> MA-Cutters-Medium/lite_cut1_1_assets.blend
+  OK: 4 objects, 1 materials
+[487] lite_cut1_2.blend -> MA-Cutters-Medium/lite_cut1_2_assets.blend
+  OK: 4 objects, 1 materials
+[488] lite_cut1_3.blend -> MA-Cutters-Medium/lite_cut1_3_assets.blend
+  OK: 4 objects, 1 materials
+[489] mx_circularnotch_sm.blend -> MA-Cutters-Medium/mx_circularnotch_sm_assets.blend
+  OK: 2 objects, 0 materials
+[490] mx_cutout1.blend -> MA-Cutters-Medium/mx_cutout1_assets.blend
+  OK: 2 objects, 0 materials
+[491] mx_doubletris.blend -> MA-Cutters-Medium/mx_doubletris_assets.blend
+  OK: 2 objects, 0 materials
+[492] mx_sidecut1_1.blend -> MA-Cutters-Medium/mx_sidecut1_1_assets.blend
+  OK: 2 objects, 0 materials
+[493] mx_smrivet.blend -> MA-Cutters-Medium/mx_smrivet_assets.blend
+  OK: 2 objects, 0 materials
+[494] pillar_cut1_1.blend -> MA-Cutters-Medium/pillar_cut1_1_assets.blend
+  OK: 3 objects, 0 materials
+[495] pillar_cut1_2.blend -> MA-Cutters-Medium/pillar_cut1_2_assets.blend
+  OK: 3 objects, 0 materials
+[496] pillar_cut1.blend -> MA-Cutters-Medium/pillar_cut1_assets.blend
+  OK: 2 objects, 0 materials
+[497] vp_circular1.blend -> MA-Cutters-Medium/vp_circular1_assets.blend
+  OK: 2 objects, 0 materials
+[498] vp_gratecable1.blend -> MA-Cutters-Medium/vp_gratecable1_assets.blend
+  OK: 2 objects, 0 materials
+[499] vp_hookcut.blend -> MA-Cutters-Medium/vp_hookcut_assets.blend
+  OK: 3 objects, 0 materials
+[500] vp_xparts1.blend -> MA-Cutters-Medium/vp_xparts1_assets.blend
+  OK: 6 objects, 2 materials
+[501] adv_cube1_1.blend -> MA-Cutters-Simple/adv_cube1_1_assets.blend
+  OK: 3 objects, 1 materials
+[502] adv_cube1_2.blend -> MA-Cutters-Simple/adv_cube1_2_assets.blend
+  OK: 3 objects, 1 materials
+[503] adv_cube1_3.blend -> MA-Cutters-Simple/adv_cube1_3_assets.blend
+  OK: 3 objects, 1 materials
+[504] adv_cube1_4.blend -> MA-Cutters-Simple/adv_cube1_4_assets.blend
+  OK: 3 objects, 1 materials
+[505] adv_cube1_5.blend -> MA-Cutters-Simple/adv_cube1_5_assets.blend
+  OK: 3 objects, 1 materials
+[506] adv_cube1_6.blend -> MA-Cutters-Simple/adv_cube1_6_assets.blend
+  OK: 3 objects, 1 materials
+[507] adv_cube2_1.blend -> MA-Cutters-Simple/adv_cube2_1_assets.blend
+  OK: 3 objects, 0 materials
+[508] adv_cube2_2.blend -> MA-Cutters-Simple/adv_cube2_2_assets.blend
+  OK: 3 objects, 0 materials
+[509] box_cut1_1.blend -> MA-Cutters-Simple/box_cut1_1_assets.blend
+  OK: 2 objects, 0 materials
+[510] circular_1.blend -> MA-Cutters-Simple/circular_1_assets.blend
+  OK: 2 objects, 0 materials
+[511] circular_angle.blend -> MA-Cutters-Simple/circular_angle_assets.blend
+  OK: 2 objects, 0 materials
+[512] cut-trim.blend -> MA-Cutters-Simple/cut-trim_assets.blend
+  OK: 2 objects, 0 materials
+[513] cutline_simple1r1a.blend -> MA-Cutters-Simple/cutline_simple1r1a_assets.blend
+  OK: 3 objects, 0 materials
+[514] cutout1_1.blend -> MA-Cutters-Simple/cutout1_1_assets.blend
+  OK: 2 objects, 0 materials
+[515] cw-Chamf-Cutter.blend -> MA-Cutters-Simple/cw-Chamf-Cutter_assets.blend
+  OK: 2 objects, 0 materials
+[516] cw-chamfer-all-cutter.blend -> MA-Cutters-Simple/cw-chamfer-all-cutter_assets.blend
+  OK: 2 objects, 0 materials
+[517] cw-DynoKitboxDiff.blend -> MA-Cutters-Simple/cw-DynoKitboxDiff_assets.blend
+  OK: 2 objects, 0 materials
+[518] cw-SimpHole.blend -> MA-Cutters-Simple/cw-SimpHole_assets.blend
+  OK: 2 objects, 0 materials
+[519] cw-SlopeCutter.blend -> MA-Cutters-Simple/cw-SlopeCutter_assets.blend
+  OK: 2 objects, 0 materials
+[520] f_side_cutter_round.blend -> MA-Cutters-Simple/f_side_cutter_round_assets.blend
+  OK: 2 objects, 0 materials
+[521] fd_xhookoffset.blend -> MA-Cutters-Simple/fd_xhookoffset_assets.blend
+  OK: 6 objects, 0 materials
+[522] grate_simple.blend -> MA-Cutters-Simple/grate_simple_assets.blend
+  OK: 2 objects, 0 materials
+[523] GRID-CUT_1x1.blend -> MA-Cutters-Simple/GRID-CUT_1x1_assets.blend
+  OK: 2 objects, 0 materials
+[524] GRID-CUT_1x2.blend -> MA-Cutters-Simple/GRID-CUT_1x2_assets.blend
+  OK: 2 objects, 0 materials
+[525] GRID-CUT_1x3.blend -> MA-Cutters-Simple/GRID-CUT_1x3_assets.blend
+  OK: 2 objects, 0 materials
+[526] holecutset.blend -> MA-Cutters-Simple/holecutset_assets.blend
+  OK: 2 objects, 0 materials
+[527] mx_cutout2.blend -> MA-Cutters-Simple/mx_cutout2_assets.blend
+  OK: 2 objects, 0 materials
+[528] mx_inset1.blend -> MA-Cutters-Simple/mx_inset1_assets.blend
+  OK: 2 objects, 0 materials
+[529] mx_knotch2.blend -> MA-Cutters-Simple/mx_knotch2_assets.blend
+  OK: 2 objects, 0 materials
+[530] mx_nodule_sub.blend -> MA-Cutters-Simple/mx_nodule_sub_assets.blend
+  OK: 2 objects, 0 materials
+[531] mx_nodule_sub_sm.blend -> MA-Cutters-Simple/mx_nodule_sub_sm_assets.blend
+  OK: 2 objects, 0 materials
+[532] mx_squareHoles.blend -> MA-Cutters-Simple/mx_squareHoles_assets.blend
+  OK: 2 objects, 0 materials
+[533] mx_trench_part.blend -> MA-Cutters-Simple/mx_trench_part_assets.blend
+  OK: 2 objects, 0 materials
+[534] plating1_1.blend -> MA-Cutters-Simple/plating1_1_assets.blend
+  OK: 2 objects, 0 materials
+[535] plating1_2.blend -> MA-Cutters-Simple/plating1_2_assets.blend
+  OK: 2 objects, 0 materials
+[536] platingundercut1_1.blend -> MA-Cutters-Simple/platingundercut1_1_assets.blend
+  OK: 2 objects, 1 materials
+[537] sim_cube1_1.blend -> MA-Cutters-Simple/sim_cube1_1_assets.blend
+  OK: 3 objects, 1 materials
+[538] sim_cube1_2.blend -> MA-Cutters-Simple/sim_cube1_2_assets.blend
+  OK: 3 objects, 1 materials
+[539] sim_cube1_3.blend -> MA-Cutters-Simple/sim_cube1_3_assets.blend
+  OK: 4 objects, 1 materials
+[540] sim_cube1_4.blend -> MA-Cutters-Simple/sim_cube1_4_assets.blend
+  OK: 6 objects, 1 materials
+[541] sim_cutin1_1.blend -> MA-Cutters-Simple/sim_cutin1_1_assets.blend
+  OK: 3 objects, 0 materials
+[542] sim_cutin1_2.blend -> MA-Cutters-Simple/sim_cutin1_2_assets.blend
+  OK: 3 objects, 0 materials
+[543] sim_slope1_1.blend -> MA-Cutters-Simple/sim_slope1_1_assets.blend
+  OK: 3 objects, 0 materials
+[544] sim_slope1_2.blend -> MA-Cutters-Simple/sim_slope1_2_assets.blend
+  OK: 3 objects, 0 materials
+[545] sim_slope1_3.blend -> MA-Cutters-Simple/sim_slope1_3_assets.blend
+  OK: 3 objects, 0 materials
+[546] sim_slope1_4.blend -> MA-Cutters-Simple/sim_slope1_4_assets.blend
+  OK: 3 objects, 0 materials
+[547] slope1_1.blend -> MA-Cutters-Simple/slope1_1_assets.blend
+  OK: 2 objects, 0 materials
+[548] slope_cut1_1.blend -> MA-Cutters-Simple/slope_cut1_1_assets.blend
+  OK: 2 objects, 1 materials
+[549] vp_circular2.blend -> MA-Cutters-Simple/vp_circular2_assets.blend
+  OK: 2 objects, 0 materials
+[550] vp_gridholes.blend -> MA-Cutters-Simple/vp_gridholes_assets.blend
+  OK: 2 objects, 1 materials
+[551] vp_sideslope.blend -> MA-Cutters-Simple/vp_sideslope_assets.blend
+  OK: 2 objects, 0 materials
+[552] xpath.blend -> MA-Cutters-Simple/xpath_assets.blend
+  OK: 4 objects, 0 materials
+[553] EEVEE-Materials.blend -> MA-Decals/EEVEE-Materials_assets.blend
+  OK: 2 objects, 1 materials
+[554] KIT-OPS.blend -> MA-Decals/KIT-OPS_assets.blend
+  OK: 2 objects, 1 materials
+[555] NITROX-3D.blend -> MA-Decals/NITROX-3D_assets.blend
+  OK: 2 objects, 1 materials
+[556] SKETCH-STYLE.blend -> MA-Decals/SKETCH-STYLE_assets.blend
+  OK: 2 objects, 1 materials
+[557] GOLDEN.blend -> MA-Grids-Design/GOLDEN_assets.blend
+  OK: 2 objects, 0 materials
+[558] GRID_1x1.blend -> MA-Grids-Design/GRID_1x1_assets.blend
+  OK: 2 objects, 0 materials
+[559] GRID_1x2.blend -> MA-Grids-Design/GRID_1x2_assets.blend
+  OK: 2 objects, 0 materials
+[560] GRID_1x3.blend -> MA-Grids-Design/GRID_1x3_assets.blend
+  OK: 2 objects, 0 materials
+[561] GRID_1x4.blend -> MA-Grids-Design/GRID_1x4_assets.blend
+  OK: 2 objects, 0 materials
+[562] GRID_1x5.blend -> MA-Grids-Design/GRID_1x5_assets.blend
+  OK: 2 objects, 0 materials
+[563] GRID_1x6.blend -> MA-Grids-Design/GRID_1x6_assets.blend
+  OK: 2 objects, 0 materials
+[564] GRID_2x2.blend -> MA-Grids-Design/GRID_2x2_assets.blend
+  OK: 2 objects, 0 materials
+[565] GRID_2x3.blend -> MA-Grids-Design/GRID_2x3_assets.blend
+  OK: 2 objects, 0 materials
+[566] GRID_2x4.blend -> MA-Grids-Design/GRID_2x4_assets.blend
+  OK: 2 objects, 0 materials
+[567] GRID_3x3.blend -> MA-Grids-Design/GRID_3x3_assets.blend
+  OK: 2 objects, 0 materials
+[568] GRID_3x4.blend -> MA-Grids-Design/GRID_3x4_assets.blend
+  OK: 2 objects, 0 materials
+[569] GRID_3x5.blend -> MA-Grids-Design/GRID_3x5_assets.blend
+  OK: 2 objects, 0 materials
+[570] GRID_4x4.blend -> MA-Grids-Design/GRID_4x4_assets.blend
+  OK: 2 objects, 0 materials
+[571] GRID_4x5.blend -> MA-Grids-Design/GRID_4x5_assets.blend
+  OK: 2 objects, 0 materials
+[572] GRID_5x5.blend -> MA-Grids-Design/GRID_5x5_assets.blend
+  OK: 2 objects, 0 materials
+[573] GRID_5x6.blend -> MA-Grids-Design/GRID_5x6_assets.blend
+  OK: 2 objects, 0 materials
+[574] GRID_6x6.blend -> MA-Grids-Design/GRID_6x6_assets.blend
+  OK: 2 objects, 0 materials
+[575] TRI_right.blend -> MA-Grids-Design/TRI_right_assets.blend
+  OK: 2 objects, 0 materials
+[576] ani_cpu_fan.blend -> MA-Objects-Anim/ani_cpu_fan_assets.blend
+  OK: 7 objects, 0 materials
+[577] ani_drivergear1.blend -> MA-Objects-Anim/ani_drivergear1_assets.blend
+  OK: 5 objects, 4 materials
+[578] ani_misslepod1(rapid).blend -> MA-Objects-Anim/ani_misslepod1(rapid)_assets.blend
+  OK: 10 objects, 0 materials
+[579] ani_misslepod1.blend -> MA-Objects-Anim/ani_misslepod1_assets.blend
+  OK: 10 objects, 0 materials
+[580] ani_ob_circular1_1a.blend -> MA-Objects-Anim/ani_ob_circular1_1a_assets.blend
+  OK: 5 objects, 0 materials
+[581] ani_piston1_1.blend -> MA-Objects-Anim/ani_piston1_1_assets.blend
+  OK: 13 objects, 0 materials
+[582] ani_propellar1_1.blend -> MA-Objects-Anim/ani_propellar1_1_assets.blend
+  OK: 5 objects, 0 materials
+[583] ani_round1_1(simple).blend -> MA-Objects-Anim/ani_round1_1(simple)_assets.blend
+  OK: 10 objects, 0 materials
+[584] ani_round1_1.blend -> MA-Objects-Anim/ani_round1_1_assets.blend
+  OK: 10 objects, 0 materials
+[585] Arch_barstool.blend -> MA-Objects-Arch/Arch_barstool_assets.blend
+  OK: 3 objects, 1 materials
+[586] arch_brickwall.blend -> MA-Objects-Arch/arch_brickwall_assets.blend
+  OK: 2 objects, 0 materials
+[587] arch_deep_interior_window_portal.blend -> MA-Objects-Arch/arch_deep_interior_window_portal_assets.blend
+  OK: 6 objects, 1 materials
+[588] arch_door1.blend -> MA-Objects-Arch/arch_door1_assets.blend
+  OK: 7 objects, 1 materials
+[589] arch_door.blend -> MA-Objects-Arch/arch_door_assets.blend
+  OK: 7 objects, 1 materials
+[590] arch_interior_window_portal.blend -> MA-Objects-Arch/arch_interior_window_portal_assets.blend
+  OK: 6 objects, 0 materials
+[591] arch_window1.blend -> MA-Objects-Arch/arch_window1_assets.blend
+  OK: 4 objects, 0 materials
+[592] Wooden.blend -> MA-Objects-Arch/Wooden_assets.blend
+  OK: 2 objects, 1 materials
+[593] arc_reactor.blend -> MA-Objects-Complex/arc_reactor_assets.blend
+  OK: 17 objects, 0 materials
+[594] cw-Mon-03.blend -> MA-Objects-Complex/cw-Mon-03_assets.blend
+  OK: 12 objects, 6 materials
+[595] cylinoid_extension_1.blend -> MA-Objects-Complex/cylinoid_extension_1_assets.blend
+  OK: 5 objects, 0 materials
+[596] cylinoid_extension.blend -> MA-Objects-Complex/cylinoid_extension_assets.blend
+  OK: 5 objects, 0 materials
+[597] dyna_cert1.blend -> MA-Objects-Complex/dyna_cert1_assets.blend
+  OK: 53 objects, 0 materials
+[598] dyna_cert3.blend -> MA-Objects-Complex/dyna_cert3_assets.blend
+  OK: 22 objects, 3 materials
+[599] f_camera.blend -> MA-Objects-Complex/f_camera_assets.blend
+  OK: 4 objects, 6 materials
+[600] f_cameye.blend -> MA-Objects-Complex/f_cameye_assets.blend
+  OK: 4 objects, 4 materials
+[601] f_handlatch.blend -> MA-Objects-Complex/f_handlatch_assets.blend
+  OK: 5 objects, 3 materials
+[602] grate_slope2.blend -> MA-Objects-Complex/grate_slope2_assets.blend
+  OK: 3 objects, 0 materials
+[603] grate_slope.blend -> MA-Objects-Complex/grate_slope_assets.blend
+  OK: 3 objects, 1 materials
+[604] mx_complex_digg_in2.blend -> MA-Objects-Complex/mx_complex_digg_in2_assets.blend
+  OK: 10 objects, 0 materials
+[605] mx_complex_digg_in3.blend -> MA-Objects-Complex/mx_complex_digg_in3_assets.blend
+  OK: 12 objects, 0 materials
+[606] mx_complex_digg_in.blend -> MA-Objects-Complex/mx_complex_digg_in_assets.blend
+  OK: 37 objects, 0 materials
+[607] mx_latchdoor1.blend -> MA-Objects-Complex/mx_latchdoor1_assets.blend
+  OK: 43 objects, 0 materials
+[608] mx_latchdoor.blend -> MA-Objects-Complex/mx_latchdoor_assets.blend
+  OK: 14 objects, 0 materials
+[609] mx_latchingassembly.blend -> MA-Objects-Complex/mx_latchingassembly_assets.blend
+  OK: 7 objects, 0 materials
+[610] mx_turbine1.blend -> MA-Objects-Complex/mx_turbine1_assets.blend
+  OK: 3 objects, 0 materials
+[611] mx_xcomplex.blend -> MA-Objects-Complex/mx_xcomplex_assets.blend
+  OK: 4 objects, 0 materials
+[612] ob_circular1_2.blend -> MA-Objects-Complex/ob_circular1_2_assets.blend
+  OK: 4 objects, 0 materials
+[613] f_adv_latch.blend -> MA-Objects-Controls/f_adv_latch_assets.blend
+  OK: 4 objects, 5 materials
+[614] f_bigtwistknob.blend -> MA-Objects-Controls/f_bigtwistknob_assets.blend
+  OK: 5 objects, 2 materials
+[615] f_buttonpanel.blend -> MA-Objects-Controls/f_buttonpanel_assets.blend
+  OK: 5 objects, 5 materials
+[616] f_highknob.blend -> MA-Objects-Controls/f_highknob_assets.blend
+  OK: 5 objects, 3 materials
+[617] f_knobset.blend -> MA-Objects-Controls/f_knobset_assets.blend
+  OK: 6 objects, 5 materials
+[618] f_lg_latch1.blend -> MA-Objects-Controls/f_lg_latch1_assets.blend
+  OK: 4 objects, 6 materials
+[619] f_mechanical_override.blend -> MA-Objects-Controls/f_mechanical_override_assets.blend
+  OK: 6 objects, 8 materials
+[620] f_numerical_input_alt.blend -> MA-Objects-Controls/f_numerical_input_alt_assets.blend
+  OK: 6 objects, 5 materials
+[621] f_numerical_input.blend -> MA-Objects-Controls/f_numerical_input_assets.blend
+  OK: 5 objects, 4 materials
+[622] f_override_latch.blend -> MA-Objects-Controls/f_override_latch_assets.blend
+  OK: 10 objects, 7 materials
+[623] f_powerConduit.blend -> MA-Objects-Controls/f_powerConduit_assets.blend
+  OK: 5 objects, 3 materials
+[624] f_screwlatch.blend -> MA-Objects-Controls/f_screwlatch_assets.blend
+  OK: 4 objects, 3 materials
+[625] f_sidebuttons.blend -> MA-Objects-Controls/f_sidebuttons_assets.blend
+  OK: 5 objects, 2 materials
+[626] f_sm_display.blend -> MA-Objects-Controls/f_sm_display_assets.blend
+  OK: 5 objects, 2 materials
+[627] f_sm_highknob.blend -> MA-Objects-Controls/f_sm_highknob_assets.blend
+  OK: 5 objects, 4 materials
+[628] f_sm_latch1.blend -> MA-Objects-Controls/f_sm_latch1_assets.blend
+  OK: 4 objects, 6 materials
+[629] f_switch.blend -> MA-Objects-Controls/f_switch_assets.blend
+  OK: 4 objects, 6 materials
+[630] flat-screen-01.blend -> MA-Objects-Controls/flat-screen-01_assets.blend
+  OK: 14 objects, 7 materials
+[631] KBD-BASIC01.blend -> MA-Objects-Controls/KBD-BASIC01_assets.blend
+  OK: 3 objects, 1 materials
+[632] KBD-FULL.blend -> MA-Objects-Controls/KBD-FULL_assets.blend
+  OK: 4 objects, 2 materials
+[633] KBN-NUMPAD-01.blend -> MA-Objects-Controls/KBN-NUMPAD-01_assets.blend
+  OK: 3 objects, 1 materials
+[634] mx_hook2.blend -> MA-Objects-Controls/mx_hook2_assets.blend
+  OK: 5 objects, 0 materials
+[635] mx_hook.blend -> MA-Objects-Controls/mx_hook_assets.blend
+  OK: 4 objects, 0 materials
+[636] mx_hops_watchface.blend -> MA-Objects-Controls/mx_hops_watchface_assets.blend
+  OK: 23 objects, 0 materials
+[637] mx_iv-switch1.blend -> MA-Objects-Controls/mx_iv-switch1_assets.blend
+  OK: 5 objects, 0 materials
+[638] mx_knob.blend -> MA-Objects-Controls/mx_knob_assets.blend
+  OK: 3 objects, 0 materials
+[639] mx_knobins1.blend -> MA-Objects-Controls/mx_knobins1_assets.blend
+  OK: 4 objects, 0 materials
+[640] mx_knobins2.blend -> MA-Objects-Controls/mx_knobins2_assets.blend
+  OK: 4 objects, 0 materials
+[641] mx_powerbutton.blend -> MA-Objects-Controls/mx_powerbutton_assets.blend
+  OK: 3 objects, 0 materials
+[642] mx_screen1.blend -> MA-Objects-Controls/mx_screen1_assets.blend
+  OK: 5 objects, 0 materials
+[643] mx_turncrank.blend -> MA-Objects-Controls/mx_turncrank_assets.blend
+  OK: 11 objects, 0 materials
+[644] SYD-BUTTONS2.blend -> MA-Objects-Controls/SYD-BUTTONS2_assets.blend
+  OK: 41 objects, 6 materials
+[645] SYD-MON2.blend -> MA-Objects-Controls/SYD-MON2_assets.blend
+  OK: 10 objects, 4 materials
+[646] cw-CubeBasicCutter.blend -> MA-Objects-Shapes/cw-CubeBasicCutter_assets.blend
+  OK: 2 objects, 0 materials
+[647] cw-DynoBullet-S.blend -> MA-Objects-Shapes/cw-DynoBullet-S_assets.blend
+  OK: 2 objects, 0 materials
+[648] cw-DynoKitbox.blend -> MA-Objects-Shapes/cw-DynoKitbox_assets.blend
+  OK: 2 objects, 0 materials
+[649] cw-DynoKitboxS.blend -> MA-Objects-Shapes/cw-DynoKitboxS_assets.blend
+  OK: 2 objects, 0 materials
+[650] cw-DynoKitboxSoft.blend -> MA-Objects-Shapes/cw-DynoKitboxSoft_assets.blend
+  OK: 2 objects, 0 materials
+[651] cw-DynoKitboxSoftS.blend -> MA-Objects-Shapes/cw-DynoKitboxSoftS_assets.blend
+  OK: 2 objects, 0 materials
+[652] cw-DynoTri.blend -> MA-Objects-Shapes/cw-DynoTri_assets.blend
+  OK: 2 objects, 0 materials
+[653] cw-DynoTriS.blend -> MA-Objects-Shapes/cw-DynoTriS_assets.blend
+  OK: 2 objects, 0 materials
+[654] cw-DynoTriSoft.blend -> MA-Objects-Shapes/cw-DynoTriSoft_assets.blend
+  OK: 2 objects, 0 materials
+[655] cw-DynoTriSoftS.blend -> MA-Objects-Shapes/cw-DynoTriSoftS_assets.blend
+  OK: 2 objects, 0 materials
+[656] cw-DynSolid-01.blend -> MA-Objects-Shapes/cw-DynSolid-01_assets.blend
+  OK: 2 objects, 0 materials
+[657] cw-solid-02.blend -> MA-Objects-Shapes/cw-solid-02_assets.blend
+  OK: 2 objects, 0 materials
+[658] cw-solid-03.blend -> MA-Objects-Shapes/cw-solid-03_assets.blend
+  OK: 2 objects, 0 materials
+[659] cw-solid-05.blend -> MA-Objects-Shapes/cw-solid-05_assets.blend
+  OK: 2 objects, 0 materials
+[660] mx_iv-notch1.blend -> MA-Objects-Shapes/mx_iv-notch1_assets.blend
+  OK: 2 objects, 0 materials
+[661] mx_iv-notch.blend -> MA-Objects-Shapes/mx_iv-notch_assets.blend
+  OK: 2 objects, 1 materials
+[662] mx_knotch.blend -> MA-Objects-Shapes/mx_knotch_assets.blend
+  OK: 2 objects, 0 materials
+[663] mx_nodule_plus.blend -> MA-Objects-Shapes/mx_nodule_plus_assets.blend
+  OK: 2 objects, 0 materials
+[664] a_kit_ops_logo.blend -> MA-Objects-Tech/a_kit_ops_logo_assets.blend
+  OK: 4 objects, 1 materials
+[665] bc_complex1_1.blend -> MA-Objects-Tech/bc_complex1_1_assets.blend
+  OK: 3 objects, 1 materials
+[666] bolt.blend -> MA-Objects-Tech/bolt_assets.blend
+  OK: 3 objects, 1 materials
+[667] box_cut2_1.blend -> MA-Objects-Tech/box_cut2_1_assets.blend
+  OK: 5 objects, 0 materials
+[668] button_test1.blend -> MA-Objects-Tech/button_test1_assets.blend
+  OK: 4 objects, 0 materials
+[669] c_chip2.blend -> MA-Objects-Tech/c_chip2_assets.blend
+  OK: 3 objects, 0 materials
+[670] c_chip3.blend -> MA-Objects-Tech/c_chip3_assets.blend
+  OK: 3 objects, 0 materials
+[671] c_chip.blend -> MA-Objects-Tech/c_chip_assets.blend
+  OK: 3 objects, 0 materials
+[672] c_chip_tee.blend -> MA-Objects-Tech/c_chip_tee_assets.blend
+  OK: 3 objects, 0 materials
+[673] c_chipset.blend -> MA-Objects-Tech/c_chipset_assets.blend
+  OK: 7 objects, 3 materials
+[674] c_double.blend -> MA-Objects-Tech/c_double_assets.blend
+  OK: 3 objects, 0 materials
+[675] c_round1.blend -> MA-Objects-Tech/c_round1_assets.blend
+  OK: 3 objects, 0 materials
+[676] c_round2.blend -> MA-Objects-Tech/c_round2_assets.blend
+  OK: 3 objects, 0 materials
+[677] c_round.blend -> MA-Objects-Tech/c_round_assets.blend
+  OK: 3 objects, 0 materials
+[678] circular_insert1_1.blend -> MA-Objects-Tech/circular_insert1_1_assets.blend
+  OK: 6 objects, 0 materials
+[679] circular_quad.blend -> MA-Objects-Tech/circular_quad_assets.blend
+  OK: 3 objects, 0 materials
+[680] circular_single.blend -> MA-Objects-Tech/circular_single_assets.blend
+  OK: 3 objects, 0 materials
+[681] circular_tee.blend -> MA-Objects-Tech/circular_tee_assets.blend
+  OK: 10 objects, 0 materials
+[682] consoledisp_double.blend -> MA-Objects-Tech/consoledisp_double_assets.blend
+  OK: 3 objects, 0 materials
+[683] cw-led1.blend -> MA-Objects-Tech/cw-led1_assets.blend
+  OK: 4 objects, 2 materials
+[684] cw-led.blend -> MA-Objects-Tech/cw-led_assets.blend
+  OK: 3 objects, 1 materials
+[685] disp_panel.blend -> MA-Objects-Tech/disp_panel_assets.blend
+  OK: 3 objects, 0 materials
+[686] f_adv_latch.blend -> MA-Objects-Tech/f_adv_latch_assets.blend
+  OK: 4 objects, 5 materials
+[687] f_bigtwistknob.blend -> MA-Objects-Tech/f_bigtwistknob_assets.blend
+  OK: 5 objects, 2 materials
+[688] f_buttonpanel.blend -> MA-Objects-Tech/f_buttonpanel_assets.blend
+  OK: 5 objects, 5 materials
+[689] f_highknob.blend -> MA-Objects-Tech/f_highknob_assets.blend
+  OK: 5 objects, 3 materials
+[690] f_insert1.blend -> MA-Objects-Tech/f_insert1_assets.blend
+  OK: 4 objects, 3 materials
+[691] f_insert.blend -> MA-Objects-Tech/f_insert_assets.blend
+  OK: 4 objects, 3 materials
+[692] f_inserthole.blend -> MA-Objects-Tech/f_inserthole_assets.blend
+  OK: 4 objects, 4 materials
+[693] fd_circular.blend -> MA-Objects-Tech/fd_circular_assets.blend
+  OK: 3 objects, 0 materials
+[694] gn_sidelatch.blend -> MA-Objects-Tech/gn_sidelatch_assets.blend
+  OK: 5 objects, 0 materials
+[695] grate_cut1_1.blend -> MA-Objects-Tech/grate_cut1_1_assets.blend
+  OK: 3 objects, 0 materials
+[696] grating_plate.blend -> MA-Objects-Tech/grating_plate_assets.blend
+  OK: 4 objects, 3 materials
+[697] hookcut1_1.blend -> MA-Objects-Tech/hookcut1_1_assets.blend
+  OK: 2 objects, 0 materials
+[698] hookcut1_2.blend -> MA-Objects-Tech/hookcut1_2_assets.blend
+  OK: 5 objects, 0 materials
+[699] mx_circular1.blend -> MA-Objects-Tech/mx_circular1_assets.blend
+  OK: 5 objects, 2 materials
+[700] mx_circular_complex.blend -> MA-Objects-Tech/mx_circular_complex_assets.blend
+  OK: 4 objects, 0 materials
+[701] mx_circular_slide.blend -> MA-Objects-Tech/mx_circular_slide_assets.blend
+  OK: 3 objects, 0 materials
+[702] mx_circularcomplex1.blend -> MA-Objects-Tech/mx_circularcomplex1_assets.blend
+  OK: 3 objects, 0 materials
+[703] mx_complex_digg_in.blend -> MA-Objects-Tech/mx_complex_digg_in_assets.blend
+  OK: 37 objects, 0 materials
+[704] mx_cstepins1.blend -> MA-Objects-Tech/mx_cstepins1_assets.blend
+  OK: 15 objects, 0 materials
+[705] mx_floorplate.blend -> MA-Objects-Tech/mx_floorplate_assets.blend
+  OK: 11 objects, 0 materials
+[706] mx_gren_A.blend -> MA-Objects-Tech/mx_gren_A_assets.blend
+  OK: 30 objects, 0 materials
+[707] mx_handle.blend -> MA-Objects-Tech/mx_handle_assets.blend
+  OK: 2 objects, 0 materials
+[708] mx_hex_multi.blend -> MA-Objects-Tech/mx_hex_multi_assets.blend
+  OK: 26 objects, 4 materials
+[709] mx_hex_single.blend -> MA-Objects-Tech/mx_hex_single_assets.blend
+  OK: 3 objects, 3 materials
+[710] mx_hopslogo.blend -> MA-Objects-Tech/mx_hopslogo_assets.blend
+  OK: 3 objects, 1 materials
+[711] mx_iv-circleHole(3).blend -> MA-Objects-Tech/mx_iv-circleHole(3)_assets.blend
+  OK: 6 objects, 1 materials
+[712] mx_iv-circleHole.blend -> MA-Objects-Tech/mx_iv-circleHole_assets.blend
+  OK: 3 objects, 1 materials
+[713] mx_iv-insert1.blend -> MA-Objects-Tech/mx_iv-insert1_assets.blend
+  OK: 5 objects, 3 materials
+[714] mx_lite_test.blend -> MA-Objects-Tech/mx_lite_test_assets.blend
+  OK: 6 objects, 2 materials
+[715] mx_lo_circular1.blend -> MA-Objects-Tech/mx_lo_circular1_assets.blend
+  OK: 4 objects, 0 materials
+[716] mx_lo_circular.blend -> MA-Objects-Tech/mx_lo_circular_assets.blend
+  OK: 3 objects, 0 materials
+[717] mx_plate_disc1.blend -> MA-Objects-Tech/mx_plate_disc1_assets.blend
+  OK: 3 objects, 0 materials
+[718] mx_plate_disc2.blend -> MA-Objects-Tech/mx_plate_disc2_assets.blend
+  OK: 3 objects, 0 materials
+[719] mx_plating1.blend -> MA-Objects-Tech/mx_plating1_assets.blend
+  OK: 4 objects, 1 materials
+[720] mx_plating2.blend -> MA-Objects-Tech/mx_plating2_assets.blend
+  OK: 3 objects, 1 materials
+[721] mx_plating3.blend -> MA-Objects-Tech/mx_plating3_assets.blend
+  OK: 3 objects, 1 materials
+[722] mx_plating4.blend -> MA-Objects-Tech/mx_plating4_assets.blend
+  OK: 5 objects, 0 materials
+[723] mx_rivet1.blend -> MA-Objects-Tech/mx_rivet1_assets.blend
+  OK: 2 objects, 0 materials
+[724] mx_sideslot1.blend -> MA-Objects-Tech/mx_sideslot1_assets.blend
+  OK: 3 objects, 0 materials
+[725] mxkb_test1.blend -> MA-Objects-Tech/mxkb_test1_assets.blend
+  OK: 4 objects, 0 materials
+[726] nn_grate.blend -> MA-Objects-Tech/nn_grate_assets.blend
+  OK: 3 objects, 0 materials
+[727] ob_circular1_1.blend -> MA-Objects-Tech/ob_circular1_1_assets.blend
+  OK: 4 objects, 0 materials
+[728] ob_circular1_3.blend -> MA-Objects-Tech/ob_circular1_3_assets.blend
+  OK: 4 objects, 0 materials
+[729] prox_pipe1.blend -> MA-Objects-Tech/prox_pipe1_assets.blend
+  OK: 4 objects, 0 materials
+[730] side_bar1_1.blend -> MA-Objects-Tech/side_bar1_1_assets.blend
+  OK: 3 objects, 1 materials
+[731] side_panel.blend -> MA-Objects-Tech/side_panel_assets.blend
+  OK: 3 objects, 0 materials
+[732] slope_box1_1.blend -> MA-Objects-Tech/slope_box1_1_assets.blend
+  OK: 3 objects, 0 materials
+[733] slope_box.blend -> MA-Objects-Tech/slope_box_assets.blend
+  OK: 3 objects, 0 materials
+[734] slope_part1.blend -> MA-Objects-Tech/slope_part1_assets.blend
+  OK: 6 objects, 0 materials
+[735] slope_part.blend -> MA-Objects-Tech/slope_part_assets.blend
+  OK: 6 objects, 0 materials
+[736] testbox.blend -> MA-Objects-Tech/testbox_assets.blend
+  OK: 3 objects, 1 materials
+[737] vents1_1.blend -> MA-Objects-Tech/vents1_1_assets.blend
+  OK: 3 objects, 1 materials
+[738] vents1_2.blend -> MA-Objects-Tech/vents1_2_assets.blend
+  OK: 3 objects, 0 materials
+[739] vp_anglecuts1.blend -> MA-Objects-Tech/vp_anglecuts1_assets.blend
+  OK: 2 objects, 0 materials
+[740] vp_grating_inset.blend -> MA-Objects-Tech/vp_grating_inset_assets.blend
+  OK: 3 objects, 0 materials
+[741] bolt_001.blend -> NV-KBK00-Baseforms/bolt_001_assets.blend
+  OK: 3 objects, 0 materials
+[742] bolt_002.blend -> NV-KBK00-Baseforms/bolt_002_assets.blend
+  OK: 3 objects, 0 materials
+[743] bolt_003.blend -> NV-KBK00-Baseforms/bolt_003_assets.blend
+  OK: 5 objects, 0 materials
+[744] bolt_004.blend -> NV-KBK00-Baseforms/bolt_004_assets.blend
+  OK: 3 objects, 0 materials
+[745] bolt_005.blend -> NV-KBK00-Baseforms/bolt_005_assets.blend
+  OK: 3 objects, 0 materials
+[746] bolt_006.blend -> NV-KBK00-Baseforms/bolt_006_assets.blend
+  OK: 3 objects, 0 materials
+[747] bolt_007.blend -> NV-KBK00-Baseforms/bolt_007_assets.blend
+  OK: 3 objects, 0 materials
+[748] cable_001.blend -> NV-KBK00-Baseforms/cable_001_assets.blend
+  OK: 3 objects, 0 materials
+[749] cable_002.blend -> NV-KBK00-Baseforms/cable_002_assets.blend
+  OK: 3 objects, 0 materials
+[750] cable_003.blend -> NV-KBK00-Baseforms/cable_003_assets.blend
+  OK: 3 objects, 0 materials
+[751] corner_001.blend -> NV-KBK00-Baseforms/corner_001_assets.blend
+  OK: 2 objects, 0 materials
+[752] corner_002.blend -> NV-KBK00-Baseforms/corner_002_assets.blend
+  OK: 2 objects, 0 materials
+[753] corner_003.blend -> NV-KBK00-Baseforms/corner_003_assets.blend
+  OK: 2 objects, 0 materials
+[754] cutter_001.blend -> NV-KBK00-Baseforms/cutter_001_assets.blend
+  OK: 2 objects, 0 materials
+[755] cutter_002.blend -> NV-KBK00-Baseforms/cutter_002_assets.blend
+  OK: 2 objects, 0 materials
+[756] cutter_003.blend -> NV-KBK00-Baseforms/cutter_003_assets.blend
+  OK: 3 objects, 0 materials
+[757] cutter_004.blend -> NV-KBK00-Baseforms/cutter_004_assets.blend
+  OK: 2 objects, 0 materials
+[758] cutter_005.blend -> NV-KBK00-Baseforms/cutter_005_assets.blend
+  OK: 2 objects, 0 materials
+[759] cutter_006.blend -> NV-KBK00-Baseforms/cutter_006_assets.blend
+  OK: 2 objects, 0 materials
+[760] cutter_007.blend -> NV-KBK00-Baseforms/cutter_007_assets.blend
+  OK: 2 objects, 0 materials
+[761] cutter_008.blend -> NV-KBK00-Baseforms/cutter_008_assets.blend
+  OK: 3 objects, 0 materials
+[762] cutter_009.blend -> NV-KBK00-Baseforms/cutter_009_assets.blend
+  OK: 3 objects, 0 materials
+[763] cutter_010.blend -> NV-KBK00-Baseforms/cutter_010_assets.blend
+  OK: 2 objects, 0 materials
+[764] cutter_011.blend -> NV-KBK00-Baseforms/cutter_011_assets.blend
+  OK: 2 objects, 0 materials
+[765] cutter_012.blend -> NV-KBK00-Baseforms/cutter_012_assets.blend
+  OK: 3 objects, 0 materials
+[766] cutter_013.blend -> NV-KBK00-Baseforms/cutter_013_assets.blend
+  OK: 3 objects, 0 materials
+[767] cutter_014.blend -> NV-KBK00-Baseforms/cutter_014_assets.blend
+  OK: 3 objects, 0 materials
+[768] cutter_015.blend -> NV-KBK00-Baseforms/cutter_015_assets.blend
+  OK: 2 objects, 0 materials
+[769] cyl_001.blend -> NV-KBK00-Baseforms/cyl_001_assets.blend
+  OK: 2 objects, 0 materials
+[770] cyl_001b.blend -> NV-KBK00-Baseforms/cyl_001b_assets.blend
+  OK: 6 objects, 0 materials
+[771] cyl_002.blend -> NV-KBK00-Baseforms/cyl_002_assets.blend
+  OK: 4 objects, 0 materials
+[772] cyl_002b.blend -> NV-KBK00-Baseforms/cyl_002b_assets.blend
+  OK: 4 objects, 0 materials
+[773] cyl_003.blend -> NV-KBK00-Baseforms/cyl_003_assets.blend
+  OK: 7 objects, 0 materials
+[774] cyl_003b.blend -> NV-KBK00-Baseforms/cyl_003b_assets.blend
+  OK: 7 objects, 0 materials
+[775] cyl_004.blend -> NV-KBK00-Baseforms/cyl_004_assets.blend
+  OK: 3 objects, 0 materials
+[776] cyl_004b.blend -> NV-KBK00-Baseforms/cyl_004b_assets.blend
+  OK: 3 objects, 0 materials
+[777] cyl_005.blend -> NV-KBK00-Baseforms/cyl_005_assets.blend
+  OK: 11 objects, 0 materials
+[778] cyl_005b.blend -> NV-KBK00-Baseforms/cyl_005b_assets.blend
+  OK: 11 objects, 0 materials
+[779] cyl_006.blend -> NV-KBK00-Baseforms/cyl_006_assets.blend
+  OK: 11 objects, 1 materials
+[780] cyl_006b.blend -> NV-KBK00-Baseforms/cyl_006b_assets.blend
+  OK: 11 objects, 1 materials
+[781] cyl_007.blend -> NV-KBK00-Baseforms/cyl_007_assets.blend
+  OK: 3 objects, 0 materials
+[782] cyl_008.blend -> NV-KBK00-Baseforms/cyl_008_assets.blend
+  OK: 2 objects, 0 materials
+[783] cyl_009.blend -> NV-KBK00-Baseforms/cyl_009_assets.blend
+  OK: 2 objects, 0 materials
+[784] cyl_010.blend -> NV-KBK00-Baseforms/cyl_010_assets.blend
+  OK: 2 objects, 0 materials
+[785] grid_001.blend -> NV-KBK00-Baseforms/grid_001_assets.blend
+  OK: 4 objects, 0 materials
+[786] grid_002.blend -> NV-KBK00-Baseforms/grid_002_assets.blend
+  OK: 6 objects, 0 materials
+[787] handle_001.blend -> NV-KBK00-Baseforms/handle_001_assets.blend
+  OK: 2 objects, 0 materials
+[788] handle_002.blend -> NV-KBK00-Baseforms/handle_002_assets.blend
+  OK: 3 objects, 0 materials
+[789] handle_003.blend -> NV-KBK00-Baseforms/handle_003_assets.blend
+  OK: 3 objects, 0 materials
+[790] handle_004.blend -> NV-KBK00-Baseforms/handle_004_assets.blend
+  OK: 4 objects, 0 materials
+[791] handle_005.blend -> NV-KBK00-Baseforms/handle_005_assets.blend
+  OK: 6 objects, 0 materials
+[792] handle_006.blend -> NV-KBK00-Baseforms/handle_006_assets.blend
+  OK: 5 objects, 0 materials
+[793] handle_007.blend -> NV-KBK00-Baseforms/handle_007_assets.blend
+  OK: 3 objects, 0 materials
+[794] lead_001.blend -> NV-KBK00-Baseforms/lead_001_assets.blend
+  OK: 6 objects, 0 materials
+[795] lead_002.blend -> NV-KBK00-Baseforms/lead_002_assets.blend
+  OK: 5 objects, 0 materials
+[796] mp_001.blend -> NV-KBK00-Baseforms/mp_001_assets.blend
+  OK: 6 objects, 0 materials
+[797] mp_002.blend -> NV-KBK00-Baseforms/mp_002_assets.blend
+  OK: 2 objects, 0 materials
+[798] mp_003.blend -> NV-KBK00-Baseforms/mp_003_assets.blend
+  OK: 2 objects, 0 materials
+[799] mp_004.blend -> NV-KBK00-Baseforms/mp_004_assets.blend
+  OK: 2 objects, 0 materials
+[800] mp_005.blend -> NV-KBK00-Baseforms/mp_005_assets.blend
+  OK: 2 objects, 0 materials
+[801] mp_006.blend -> NV-KBK00-Baseforms/mp_006_assets.blend
+  OK: 2 objects, 0 materials
+[802] mp_007.blend -> NV-KBK00-Baseforms/mp_007_assets.blend
+  OK: 2 objects, 0 materials
+[803] mp_008.blend -> NV-KBK00-Baseforms/mp_008_assets.blend
+  OK: 2 objects, 0 materials
+[804] mp_009.blend -> NV-KBK00-Baseforms/mp_009_assets.blend
+  OK: 2 objects, 0 materials
+[805] mp_010.blend -> NV-KBK00-Baseforms/mp_010_assets.blend
+  OK: 2 objects, 0 materials
+[806] mp_011.blend -> NV-KBK00-Baseforms/mp_011_assets.blend
+  OK: 2 objects, 0 materials
+[807] mp_012.blend -> NV-KBK00-Baseforms/mp_012_assets.blend
+  OK: 2 objects, 0 materials
+[808] mp_013.blend -> NV-KBK00-Baseforms/mp_013_assets.blend
+  OK: 2 objects, 0 materials
+[809] rib_001.blend -> NV-KBK00-Baseforms/rib_001_assets.blend
+  OK: 3 objects, 0 materials
+[810] rib_002.blend -> NV-KBK00-Baseforms/rib_002_assets.blend
+  OK: 3 objects, 0 materials
+[811] rib_003.blend -> NV-KBK00-Baseforms/rib_003_assets.blend
+  OK: 2 objects, 0 materials
+[812] FloorL01.blend -> Plating/FloorL01_assets.blend
+  OK: 7 objects, 5 materials
+[813] FloorL02.blend -> Plating/FloorL02_assets.blend
+  OK: 8 objects, 3 materials
+[814] FloorL02A.blend -> Plating/FloorL02A_assets.blend
+  OK: 8 objects, 4 materials
+[815] FloorL03.blend -> Plating/FloorL03_assets.blend
+  OK: 4 objects, 3 materials
+[816] FloorL04.blend -> Plating/FloorL04_assets.blend
+  OK: 6 objects, 2 materials
+[817] PBlockPanl01.blend -> Plating/PBlockPanl01_assets.blend
+  OK: 3 objects, 1 materials
+[818] PBlockPanl02.blend -> Plating/PBlockPanl02_assets.blend
+  OK: 3 objects, 1 materials
+[819] PBlockPanl03.blend -> Plating/PBlockPanl03_assets.blend
+  OK: 3 objects, 1 materials
+[820] PBlockPanl04.blend -> Plating/PBlockPanl04_assets.blend
+  OK: 3 objects, 1 materials
+[821] PBlockPanl05.blend -> Plating/PBlockPanl05_assets.blend
+  OK: 3 objects, 1 materials
+[822] PBlockPanl06.blend -> Plating/PBlockPanl06_assets.blend
+  OK: 3 objects, 1 materials
+[823] PBlockPanl07.blend -> Plating/PBlockPanl07_assets.blend
+  OK: 3 objects, 1 materials
+[824] PBlockPanl08.blend -> Plating/PBlockPanl08_assets.blend
+  OK: 3 objects, 1 materials
+[825] Plating01.blend -> Plating/Plating01_assets.blend
+  OK: 5 objects, 1 materials
+[826] Plating02.blend -> Plating/Plating02_assets.blend
+  OK: 5 objects, 1 materials
+[827] Plating03.blend -> Plating/Plating03_assets.blend
+  OK: 4 objects, 0 materials
+[828] Plating04.blend -> Plating/Plating04_assets.blend
+  OK: 4 objects, 1 materials
+[829] Plating05.blend -> Plating/Plating05_assets.blend
+  OK: 11 objects, 2 materials
+[830] Plating06.blend -> Plating/Plating06_assets.blend
+  OK: 20 objects, 0 materials
+[831] Plating07.blend -> Plating/Plating07_assets.blend
+  OK: 9 objects, 6 materials
+[832] Plating08.blend -> Plating/Plating08_assets.blend
+  OK: 25 objects, 23 materials
+[833] Plating09.blend -> Plating/Plating09_assets.blend
+  OK: 22 objects, 20 materials
+[834] Plating10.blend -> Plating/Plating10_assets.blend
+  OK: 3 objects, 1 materials
+[835] Plating11.blend -> Plating/Plating11_assets.blend
+  OK: 3 objects, 0 materials
+[836] Plating12.blend -> Plating/Plating12_assets.blend
+  OK: 3 objects, 2 materials
+[837] Plating13.blend -> Plating/Plating13_assets.blend
+  OK: 3 objects, 1 materials
+[838] Plating14.blend -> Plating/Plating14_assets.blend
+  OK: 3 objects, 0 materials
+[839] Plating15.blend -> Plating/Plating15_assets.blend
+  OK: 3 objects, 0 materials
+[840] Plating16.blend -> Plating/Plating16_assets.blend
+  OK: 3 objects, 1 materials
+[841] Plating17.blend -> Plating/Plating17_assets.blend
+  OK: 3 objects, 0 materials
+[842] RPanel01.blend -> Plating/RPanel01_assets.blend
+  OK: 3 objects, 1 materials
+[843] RPanel02.blend -> Plating/RPanel02_assets.blend
+  OK: 3 objects, 1 materials
+[844] RPanel03.blend -> Plating/RPanel03_assets.blend
+  OK: 3 objects, 1 materials
+[845] RPanel03B.blend -> Plating/RPanel03B_assets.blend
+  OK: 3 objects, 1 materials
+[846] RPanel03C.blend -> Plating/RPanel03C_assets.blend
+  OK: 3 objects, 1 materials
+[847] RPanel04.blend -> Plating/RPanel04_assets.blend
+  OK: 3 objects, 1 materials
+[848] RPanel04B.blend -> Plating/RPanel04B_assets.blend
+  OK: 3 objects, 1 materials
+[849] RPanel04C.blend -> Plating/RPanel04C_assets.blend
+  OK: 3 objects, 1 materials
+[850] RPanel04D.blend -> Plating/RPanel04D_assets.blend
+  OK: 3 objects, 1 materials
+[851] TrimSheet.blend -> Plating/TrimSheet_assets.blend
+  OK: 28 objects, 16 materials
+[852] FINGERS 1_2K.blend -> sc_FINGERPRINTS AND SMUDGES/FINGERS 1_2K_assets.blend
+  OK: 2 objects, 1 materials
+[853] FINGERS 2_2K.blend -> sc_FINGERPRINTS AND SMUDGES/FINGERS 2_2K_assets.blend
+  OK: 2 objects, 1 materials
+[854] FINGERS 3_2K.blend -> sc_FINGERPRINTS AND SMUDGES/FINGERS 3_2K_assets.blend
+  OK: 2 objects, 1 materials
+[855] FINGERS 4_2K.blend -> sc_FINGERPRINTS AND SMUDGES/FINGERS 4_2K_assets.blend
+  OK: 2 objects, 1 materials
+[856] FINGERS 5_2K.blend -> sc_FINGERPRINTS AND SMUDGES/FINGERS 5_2K_assets.blend
+  OK: 2 objects, 1 materials
+[857] HANDS_SMUDGES 10_2K.blend -> sc_FINGERPRINTS AND SMUDGES/HANDS_SMUDGES 10_2K_assets.blend
+  OK: 2 objects, 1 materials
+[858] HANDS_SMUDGES 11_2K.blend -> sc_FINGERPRINTS AND SMUDGES/HANDS_SMUDGES 11_2K_assets.blend
+  OK: 2 objects, 1 materials
+[859] HANDS_SMUDGES 1_2K.blend -> sc_FINGERPRINTS AND SMUDGES/HANDS_SMUDGES 1_2K_assets.blend
+  OK: 2 objects, 1 materials
+[860] HANDS_SMUDGES 2_2K.blend -> sc_FINGERPRINTS AND SMUDGES/HANDS_SMUDGES 2_2K_assets.blend
+  OK: 2 objects, 1 materials
+[861] HANDS_SMUDGES 3_2K.blend -> sc_FINGERPRINTS AND SMUDGES/HANDS_SMUDGES 3_2K_assets.blend
+  OK: 2 objects, 1 materials
+[862] HANDS_SMUDGES 4_2K.blend -> sc_FINGERPRINTS AND SMUDGES/HANDS_SMUDGES 4_2K_assets.blend
+  OK: 2 objects, 1 materials
+[863] HANDS_SMUDGES 5_2K.blend -> sc_FINGERPRINTS AND SMUDGES/HANDS_SMUDGES 5_2K_assets.blend
+  OK: 2 objects, 1 materials
+[864] HANDS_SMUDGES 6_2K.blend -> sc_FINGERPRINTS AND SMUDGES/HANDS_SMUDGES 6_2K_assets.blend
+  OK: 2 objects, 1 materials
+[865] HANDS_SMUDGES 7_2K.blend -> sc_FINGERPRINTS AND SMUDGES/HANDS_SMUDGES 7_2K_assets.blend
+  OK: 2 objects, 1 materials
+[866] HANDS_SMUDGES 8_2K.blend -> sc_FINGERPRINTS AND SMUDGES/HANDS_SMUDGES 8_2K_assets.blend
+  OK: 2 objects, 1 materials
+[867] HANDS_SMUDGES 9_2K.blend -> sc_FINGERPRINTS AND SMUDGES/HANDS_SMUDGES 9_2K_assets.blend
+  OK: 2 objects, 1 materials
+[868] TIPS 1_2K.blend -> sc_FINGERPRINTS AND SMUDGES/TIPS 1_2K_assets.blend
+  OK: 2 objects, 1 materials
+[869] TIPS 2_2K.blend -> sc_FINGERPRINTS AND SMUDGES/TIPS 2_2K_assets.blend
+  OK: 2 objects, 1 materials
+[870] TIPS 3_2K.blend -> sc_FINGERPRINTS AND SMUDGES/TIPS 3_2K_assets.blend
+  OK: 2 objects, 1 materials
+[871] TIPS 4_2K.blend -> sc_FINGERPRINTS AND SMUDGES/TIPS 4_2K_assets.blend
+  OK: 2 objects, 1 materials
+[872] TIPS 5_2K.blend -> sc_FINGERPRINTS AND SMUDGES/TIPS 5_2K_assets.blend
+  OK: 2 objects, 1 materials
+[873] TIPS 6_2K.blend -> sc_FINGERPRINTS AND SMUDGES/TIPS 6_2K_assets.blend
+  OK: 2 objects, 1 materials
+[874] TIPS 7_2K.blend -> sc_FINGERPRINTS AND SMUDGES/TIPS 7_2K_assets.blend
+  OK: 2 objects, 1 materials
+[875] TIPS 8_2K.blend -> sc_FINGERPRINTS AND SMUDGES/TIPS 8_2K_assets.blend
+  OK: 2 objects, 1 materials
+[876] TIPS 9_2K.blend -> sc_FINGERPRINTS AND SMUDGES/TIPS 9_2K_assets.blend
+  OK: 2 objects, 1 materials
+[877] corridor-cutter.blend -> SPOCK_KPACK-v1/corridor-cutter_assets.blend
+  OK: 2 objects, 1 materials
+[878] cw-gen-material.blend -> SPOCK_KPACK-v1/cw-gen-material_assets.blend
+  OK: 2 objects, 1 materials
+[879] cw-spock-multi.blend -> SPOCK_KPACK-v1/cw-spock-multi_assets.blend
+  OK: 2 objects, 1 materials
+[880] cw-spock-wear-LG.blend -> SPOCK_KPACK-v1/cw-spock-wear-LG_assets.blend
+  OK: 2 objects, 1 materials
+[881] cw-spock-wear-SM.blend -> SPOCK_KPACK-v1/cw-spock-wear-SM_assets.blend
+  OK: 2 objects, 1 materials
+[882] Display01.blend -> SPOCK_KPACK-v1/Display01_assets.blend
+  OK: 2 objects, 8 materials
+[883] Display02.blend -> SPOCK_KPACK-v1/Display02_assets.blend
+  OK: 2 objects, 9 materials
+[884] Display03.blend -> SPOCK_KPACK-v1/Display03_assets.blend
+  OK: 2 objects, 10 materials
+[885] Display04.blend -> SPOCK_KPACK-v1/Display04_assets.blend
+  OK: 2 objects, 8 materials
+[886] Display05.blend -> SPOCK_KPACK-v1/Display05_assets.blend
+  OK: 2 objects, 10 materials
+[887] SPOCK logo.blend -> SPOCK_KPACK-v1/SPOCK logo_assets.blend
+  OK: 2 objects, 1 materials
+[888] Switch-Bank-01.blend -> SPOCK_KPACK-v1/Switch-Bank-01_assets.blend
+  OK: 2 objects, 7 materials
+[889] switch-bank-02.blend -> SPOCK_KPACK-v1/switch-bank-02_assets.blend
+  OK: 2 objects, 8 materials
+[890] Switch-Bank-03.blend -> SPOCK_KPACK-v1/Switch-Bank-03_assets.blend
+  OK: 2 objects, 7 materials
+[891] Switch-Bank-04.blend -> SPOCK_KPACK-v1/Switch-Bank-04_assets.blend
+  OK: 2 objects, 6 materials
+[892] switch-bank-05.blend -> SPOCK_KPACK-v1/switch-bank-05_assets.blend
+  OK: 2 objects, 7 materials
+[893] greeble_btm01.blend -> SS-BOT LVL GREEBLES/greeble_btm01_assets.blend
+  OK: 6 objects, 4 materials
+[894] greeble_btm02.blend -> SS-BOT LVL GREEBLES/greeble_btm02_assets.blend
+  OK: 4 objects, 4 materials
+[895] greeble_btm03.blend -> SS-BOT LVL GREEBLES/greeble_btm03_assets.blend
+  OK: 4 objects, 2 materials
+[896] greeble_btm04.blend -> SS-BOT LVL GREEBLES/greeble_btm04_assets.blend
+  OK: 14 objects, 4 materials
+[897] greeble_btm05.blend -> SS-BOT LVL GREEBLES/greeble_btm05_assets.blend
+  OK: 2 objects, 2 materials
+[898] greeble_btm06.blend -> SS-BOT LVL GREEBLES/greeble_btm06_assets.blend
+  OK: 2 objects, 2 materials
+[899] greeble_btm07.blend -> SS-BOT LVL GREEBLES/greeble_btm07_assets.blend
+  OK: 2 objects, 4 materials
+[900] greeble_btm08.blend -> SS-BOT LVL GREEBLES/greeble_btm08_assets.blend
+  OK: 2 objects, 4 materials
+[901] greeble_btm09.blend -> SS-BOT LVL GREEBLES/greeble_btm09_assets.blend
+  OK: 7 objects, 2 materials
+[902] greeble_btm10.blend -> SS-BOT LVL GREEBLES/greeble_btm10_assets.blend
+  OK: 2 objects, 4 materials
+[903] greeble_btm11.blend -> SS-BOT LVL GREEBLES/greeble_btm11_assets.blend
+  OK: 2 objects, 3 materials
+[904] greeble_btm12.blend -> SS-BOT LVL GREEBLES/greeble_btm12_assets.blend
+  OK: 2 objects, 2 materials
+[905] greeble_btm13.blend -> SS-BOT LVL GREEBLES/greeble_btm13_assets.blend
+  OK: 2 objects, 3 materials
+[906] greeble_btm14.blend -> SS-BOT LVL GREEBLES/greeble_btm14_assets.blend
+  OK: 2 objects, 3 materials
+[907] greeble_btm15.blend -> SS-BOT LVL GREEBLES/greeble_btm15_assets.blend
+  OK: 2 objects, 3 materials
+[908] greeble_btm16.blend -> SS-BOT LVL GREEBLES/greeble_btm16_assets.blend
+  OK: 2 objects, 3 materials
+[909] greeble_btm17.blend -> SS-BOT LVL GREEBLES/greeble_btm17_assets.blend
+  OK: 2 objects, 3 materials
+[910] greeble_btm18.blend -> SS-BOT LVL GREEBLES/greeble_btm18_assets.blend
+  OK: 2 objects, 3 materials
+[911] greeble_btm19.blend -> SS-BOT LVL GREEBLES/greeble_btm19_assets.blend
+  OK: 2 objects, 3 materials
+[912] greeble_btm20.blend -> SS-BOT LVL GREEBLES/greeble_btm20_assets.blend
+  OK: 2 objects, 3 materials
+[913] greeble_btm21.blend -> SS-BOT LVL GREEBLES/greeble_btm21_assets.blend
+  OK: 2 objects, 3 materials
+[914] greeble_btm22.blend -> SS-BOT LVL GREEBLES/greeble_btm22_assets.blend
+  OK: 2 objects, 1 materials
+[915] greeble_btm23.blend -> SS-BOT LVL GREEBLES/greeble_btm23_assets.blend
+  OK: 2 objects, 5 materials
+[916] greeble_btm24.blend -> SS-BOT LVL GREEBLES/greeble_btm24_assets.blend
+  OK: 2 objects, 2 materials
+[917] greeble_btm25.blend -> SS-BOT LVL GREEBLES/greeble_btm25_assets.blend
+  OK: 2 objects, 4 materials
+[918] greeble_btm26.blend -> SS-BOT LVL GREEBLES/greeble_btm26_assets.blend
+  OK: 2 objects, 3 materials
+[919] greeble_btm27.blend -> SS-BOT LVL GREEBLES/greeble_btm27_assets.blend
+  OK: 2 objects, 4 materials
+[920] 2K-Sam-crouch.blend -> SS-CHARACTERS/2K-Sam-crouch_assets.blend
+  OK: 2 objects, 2 materials
+[921] 2K-Sam-standing.blend -> SS-CHARACTERS/2K-Sam-standing_assets.blend
+  OK: 2 objects, 2 materials
+[922] city lights.blend -> SS-CITY HEROES/city lights_assets.blend
+  OK: 2 objects, 1 materials
+[923] city_hero01.blend -> SS-CITY HEROES/city_hero01_assets.blend
+  OK: 2 objects, 3 materials
+[924] city_hero02.blend -> SS-CITY HEROES/city_hero02_assets.blend
+  OK: 2 objects, 5 materials
+[925] city_hero03.blend -> SS-CITY HEROES/city_hero03_assets.blend
+  OK: 2 objects, 5 materials
+[926] city_hero04.blend -> SS-CITY HEROES/city_hero04_assets.blend
+  OK: 2 objects, 11 materials
+[927] city_hero05.blend -> SS-CITY HEROES/city_hero05_assets.blend
+  OK: 2 objects, 14 materials
+[928] cw-city-base.blend -> SS-CITY HEROES/cw-city-base_assets.blend
+  OK: 2 objects, 1 materials
+[929] cw-gen-material.blend -> SS-CITY HEROES/cw-gen-material_assets.blend
+  OK: 2 objects, 1 materials
+[930] greeble01.blend -> SS-PANEL HEROES/greeble01_assets.blend
+  OK: 2 objects, 4 materials
+[931] greeble02.blend -> SS-PANEL HEROES/greeble02_assets.blend
+  OK: 2 objects, 17 materials
+[932] greeble03.blend -> SS-PANEL HEROES/greeble03_assets.blend
+  OK: 2 objects, 6 materials
+[933] greeble04.blend -> SS-PANEL HEROES/greeble04_assets.blend
+  OK: 2 objects, 4 materials
+[934] greeble05.blend -> SS-PANEL HEROES/greeble05_assets.blend
+  OK: 2 objects, 3 materials
+[935] antenna-01.blend -> SS-PROPS/antenna-01_assets.blend
+  OK: 2 objects, 3 materials
+[936] antenna-02.blend -> SS-PROPS/antenna-02_assets.blend
+  OK: 2 objects, 5 materials
+[937] antenna-03.blend -> SS-PROPS/antenna-03_assets.blend
+  OK: 2 objects, 8 materials
+[938] buttress-01.blend -> SS-PROPS/buttress-01_assets.blend
+  OK: 2 objects, 1 materials
+[939] buttress-02.blend -> SS-PROPS/buttress-02_assets.blend
+  OK: 2 objects, 1 materials
+[940] carrierbot.blend -> SS-PROPS/carrierbot_assets.blend
+  OK: 65 objects, 16 materials
+[941] CLASIKCORP - 3 COMBOS - 2K.blend -> SS-PROPS/CLASIKCORP - 3 COMBOS - 2K_assets.blend
+  OK: 2 objects, 1 materials
+[942] CLASIKCORP - BLOCK 1 - 2K.blend -> SS-PROPS/CLASIKCORP - BLOCK 1 - 2K_assets.blend
+  OK: 2 objects, 1 materials
+[943] CLASIKCORP - CERTS 2 - 2K.blend -> SS-PROPS/CLASIKCORP - CERTS 2 - 2K_assets.blend
+  OK: 2 objects, 1 materials
+[944] CLASIKCORP - DIRECTIONAL 1 - 2K.blend -> SS-PROPS/CLASIKCORP - DIRECTIONAL 1 - 2K_assets.blend
+  OK: 2 objects, 1 materials
+[945] CLASIKCORP - ICONS 2 - 2K.blend -> SS-PROPS/CLASIKCORP - ICONS 2 - 2K_assets.blend
+  OK: 2 objects, 1 materials
+[946] CLASIKCORP - LOGO 1 - 2K.blend -> SS-PROPS/CLASIKCORP - LOGO 1 - 2K_assets.blend
+  OK: 2 objects, 1 materials
+[947] CLASIKCORP - NUMBERS 3 - 2K.blend -> SS-PROPS/CLASIKCORP - NUMBERS 3 - 2K_assets.blend
+  OK: 2 objects, 1 materials
+[948] corridor1.blend -> SS-PROPS/corridor1_assets.blend
+  OK: 14 objects, 4 materials
+[949] cw-gen-material.blend -> SS-PROPS/cw-gen-material_assets.blend
+  OK: 2 objects, 1 materials
+[950] cw_dirt_2022.blend -> SS-PROPS/cw_dirt_2022_assets.blend
+  OK: 2 objects, 1 materials
+[951] cw_Hex_Interior.blend -> SS-PROPS/cw_Hex_Interior_assets.blend
+  OK: 2 objects, 1 materials
+[952] Greeble-01.blend -> SS-PROPS/Greeble-01_assets.blend
+  OK: 2 objects, 2 materials
+[953] Greeble-02.blend -> SS-PROPS/Greeble-02_assets.blend
+  OK: 3 objects, 2 materials
+[954] Greeble-03.blend -> SS-PROPS/Greeble-03_assets.blend
+  OK: 2 objects, 2 materials
+[955] Greeble-04.blend -> SS-PROPS/Greeble-04_assets.blend
+  OK: 2 objects, 1 materials
+[956] Greeble-05.blend -> SS-PROPS/Greeble-05_assets.blend
+  OK: 4 objects, 2 materials
+[957] Greeble-06.blend -> SS-PROPS/Greeble-06_assets.blend
+  OK: 2 objects, 2 materials
+[958] Greeble-07.blend -> SS-PROPS/Greeble-07_assets.blend
+  OK: 4 objects, 2 materials
+[959] Greeble-08.blend -> SS-PROPS/Greeble-08_assets.blend
+  OK: 4 objects, 2 materials
+[960] Greeble-09.blend -> SS-PROPS/Greeble-09_assets.blend
+  OK: 2 objects, 2 materials
+[961] Greeble-11.blend -> SS-PROPS/Greeble-11_assets.blend
+  OK: 2 objects, 2 materials
+[962] Greeble10.blend -> SS-PROPS/Greeble10_assets.blend
+  OK: 2 objects, 3 materials
+[963] GUI-1x1 (5).blend -> SS-PROPS/GUI-1x1 (5)_assets.blend
+  OK: 2 objects, 1 materials
+[964] GUI-1x1 (6).blend -> SS-PROPS/GUI-1x1 (6)_assets.blend
+  OK: 2 objects, 1 materials
+[965] GUI-2048-hero (2).blend -> SS-PROPS/GUI-2048-hero (2)_assets.blend
+  OK: 2 objects, 1 materials
+[966] Man_50-01.blend -> SS-PROPS/Man_50-01_assets.blend
+  OK: 19 objects, 3 materials
+[967] scene1.blend -> SS-PROPS/scene1_assets.blend
+  OK: 2 objects, 1 materials
+[968] scene2.blend -> SS-PROPS/scene2_assets.blend
+  OK: 2 objects, 1 materials
+[969] scene3.blend -> SS-PROPS/scene3_assets.blend
+  OK: 2 objects, 1 materials
+[970] scene4.blend -> SS-PROPS/scene4_assets.blend
+  OK: 2 objects, 1 materials
+[971] greeble_top01.blend -> SS-TOP LVL GREEBLES/greeble_top01_assets.blend
+  OK: 2 objects, 3 materials
+[972] greeble_top02.blend -> SS-TOP LVL GREEBLES/greeble_top02_assets.blend
+  OK: 2 objects, 2 materials
+[973] greeble_top03.blend -> SS-TOP LVL GREEBLES/greeble_top03_assets.blend
+  OK: 2 objects, 2 materials
+[974] greeble_top04.blend -> SS-TOP LVL GREEBLES/greeble_top04_assets.blend
+  OK: 2 objects, 2 materials
+[975] greeble_top05.blend -> SS-TOP LVL GREEBLES/greeble_top05_assets.blend
+  OK: 2 objects, 2 materials
+[976] greeble_top06.blend -> SS-TOP LVL GREEBLES/greeble_top06_assets.blend
+  OK: 2 objects, 2 materials
+[977] greeble_top07.blend -> SS-TOP LVL GREEBLES/greeble_top07_assets.blend
+  OK: 2 objects, 2 materials
+[978] greeble_top08.blend -> SS-TOP LVL GREEBLES/greeble_top08_assets.blend
+  OK: 2 objects, 2 materials
+[979] greeble_top09.blend -> SS-TOP LVL GREEBLES/greeble_top09_assets.blend
+  OK: 2 objects, 2 materials
+[980] greeble_top10.blend -> SS-TOP LVL GREEBLES/greeble_top10_assets.blend
+  OK: 2 objects, 2 materials
+[981] greeble_top11.blend -> SS-TOP LVL GREEBLES/greeble_top11_assets.blend
+  OK: 2 objects, 2 materials
+[982] greeble_top12.blend -> SS-TOP LVL GREEBLES/greeble_top12_assets.blend
+  OK: 2 objects, 2 materials
+[983] greeble_top13.blend -> SS-TOP LVL GREEBLES/greeble_top13_assets.blend
+  OK: 2 objects, 2 materials
+[984] greeble_top14.blend -> SS-TOP LVL GREEBLES/greeble_top14_assets.blend
+  OK: 2 objects, 3 materials
+[985] greeble_top15.blend -> SS-TOP LVL GREEBLES/greeble_top15_assets.blend
+  OK: 2 objects, 3 materials
+[986] greeble_top16.blend -> SS-TOP LVL GREEBLES/greeble_top16_assets.blend
+  OK: 2 objects, 4 materials
+[987] greeble_top17.blend -> SS-TOP LVL GREEBLES/greeble_top17_assets.blend
+  OK: 2 objects, 2 materials
+[988] greeble_top18.blend -> SS-TOP LVL GREEBLES/greeble_top18_assets.blend
+  OK: 2 objects, 4 materials
+[989] greeble_top19.blend -> SS-TOP LVL GREEBLES/greeble_top19_assets.blend
+  OK: 2 objects, 2 materials
+[990] greeble_top20.blend -> SS-TOP LVL GREEBLES/greeble_top20_assets.blend
+  OK: 2 objects, 2 materials
+[991] greeble_top21.blend -> SS-TOP LVL GREEBLES/greeble_top21_assets.blend
+  OK: 2 objects, 3 materials
+[992] greeble_top22.blend -> SS-TOP LVL GREEBLES/greeble_top22_assets.blend
+  OK: 2 objects, 3 materials
+[993] greeble_top23.blend -> SS-TOP LVL GREEBLES/greeble_top23_assets.blend
+  OK: 2 objects, 4 materials
+[994] greeble_top24.blend -> SS-TOP LVL GREEBLES/greeble_top24_assets.blend
+  OK: 2 objects, 5 materials
+[995] greeble_top25.blend -> SS-TOP LVL GREEBLES/greeble_top25_assets.blend
+  OK: 2 objects, 4 materials
+[996] greeble_top26.blend -> SS-TOP LVL GREEBLES/greeble_top26_assets.blend
+  OK: 2 objects, 1 materials
+[997] greeble_top27.blend -> SS-TOP LVL GREEBLES/greeble_top27_assets.blend
+  OK: 2 objects, 4 materials
+[998] greeble_top28.blend -> SS-TOP LVL GREEBLES/greeble_top28_assets.blend
+  OK: 2 objects, 4 materials
+[999] Capsule-00.blend -> xCapsules/Capsule-00_assets.blend
+  OK: 31 objects, 15 materials
+[1000] Capsule-01.blend -> xCapsules/Capsule-01_assets.blend
+  OK: 30 objects, 14 materials
+[1001] Capsule-03.blend -> xCapsules/Capsule-03_assets.blend
+  OK: 30 objects, 14 materials
+[1002] Capsule-04.blend -> xCapsules/Capsule-04_assets.blend
+  OK: 33 objects, 15 materials
+[1003] Capsule-08.blend -> xCapsules/Capsule-08_assets.blend
+  OK: 33 objects, 15 materials
+[1004] Capsule-20.blend -> xCapsules/Capsule-20_assets.blend
+  OK: 30 objects, 14 materials
+[1005] Capsule-27.blend -> xCapsules/Capsule-27_assets.blend
+  OK: 30 objects, 14 materials
+
+============================================================
+SUMMARY
+  Success:  1005
+  Failed:   0
+  Skipped:  0
+  Objects:  5665
+  Materials: 1308

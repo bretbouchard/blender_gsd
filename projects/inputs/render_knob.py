@@ -76,6 +76,15 @@ def setup_scene():
     back_light.data.energy = 1.5
     back_light.rotation_euler = (math.radians(120), 0, 0)
 
+    # Top fill light - illuminates rounded cap tops from angle views
+    # Without this, UV sphere caps appear dark when viewed from side angles
+    # because the curved surface catches less light from the key/fill lights
+    bpy.ops.object.light_add(type='SUN', location=(0, 0, 1))
+    top_light = bpy.context.active_object
+    top_light.name = "Top_Fill_Light"
+    top_light.data.energy = 1.2  # Moderate intensity for natural look
+    top_light.rotation_euler = (math.radians(0), 0, 0)  # Pointing straight down
+
     # Render settings
     scene = bpy.context.scene
     scene.render.engine = 'CYCLES'
@@ -123,20 +132,20 @@ def create_knob_with_settings(
         if item.item_type == 'SOCKET' and item.in_out == 'INPUT':
             socket_map[item.name] = item.identifier
 
-    # In debug mode, apply tapered widths so all 6 sections are visible
+    # In debug mode, apply tapered diameters so all 6 sections are visible
     # When sections have the same radius, they form a continuous cylinder
     # and material boundaries become invisible
     if debug_mode:
         settings = settings.copy()  # Don't modify original
-        # Zone A: Make each section visually distinct
-        # A_Top is smallest, A_Mid medium, A_Bot largest in Zone A
-        original_width = max(settings.get("A_Width_Top", 14.0), settings.get("A_Width_Bot", 14.0))
-        settings["A_Width_Top"] = original_width * 0.6   # 60% - smallest
-        settings["A_Width_Bot"] = original_width * 0.85  # 85% - medium
-        # Zone B: Taper larger at bottom
-        settings["B_Width_Top"] = original_width * 0.85  # Match A_Bot for seamless transition
-        settings["B_Width_Bot"] = original_width * 1.15  # 115% - largest
-        print(f"    Debug widths: A_Top={settings['A_Width_Top']:.1f}, A_Bot={settings['A_Width_Bot']:.1f}, B_Top={settings['B_Width_Top']:.1f}, B_Bot={settings['B_Width_Bot']:.1f}")
+        # Taper from top to bottom for visible sections
+        # Chain: Top → A_Mid_Top → A_Bot_Top → AB_Junction → B_Mid_Bot → Bot
+        settings["Top_Diameter"] = 8.0        # Smallest (A_Top cap top)
+        settings["A_Mid_Top_Diameter"] = 10.0  # A_Mid top
+        settings["A_Bot_Top_Diameter"] = 12.0  # A_Bot top
+        settings["AB_Junction_Diameter"] = 14.0  # Zone transition
+        settings["B_Mid_Bot_Diameter"] = 16.0  # B_Mid bottom
+        settings["Bot_Diameter"] = 18.0        # Largest (B_Bot cap bottom)
+        print(f"    Debug diameters: Top={settings['Top_Diameter']:.1f} → Bot={settings['Bot_Diameter']:.1f}")
 
     # Apply settings using identifier-based access
     for key, value in settings.items():
@@ -220,7 +229,7 @@ def main(debug_mode: bool = False, debug_preset: str = "rainbow"):
     mode_suffix = "_debug" if debug_mode else ""
 
     print("=" * 60)
-    print("Universal Input System - Knob Renders")
+    print("Universal Input System - Knob Renders (Base Shape Only)")
     if debug_mode:
         print(f"DEBUG MODE: {debug_preset} preset")
     print("=" * 60)
@@ -228,121 +237,128 @@ def main(debug_mode: bool = False, debug_preset: str = "rainbow"):
     # Setup scene
     setup_scene()
 
-    # Define render configurations
+    # Define render configurations - Testing boolean-based knurling
     configs = [
+        # Test 1: No knurling, rounded caps - baseline
         {
-            "name": "default_rounded",
-            "description": "Default knob with rounded caps (no knurling)",
+            "name": "no_knurl_rounded",
+            "description": "Baseline: Rounded caps, no knurling",
             "settings": {
-                "Height_mm": 30.0,
-                "Width_mm": 14.0,
                 "Segments": 64,
-                "A_Height": 15.0,
-                "A_Width_Top": 14.0,
-                "A_Width_Bot": 14.0,
+                "Top_Diameter": 14.0,
+                "A_Mid_Top_Diameter": 14.0,
+                "A_Bot_Top_Diameter": 14.0,
+                "AB_Junction_Diameter": 14.0,
+                "B_Mid_Bot_Diameter": 14.0,
+                "Bot_Diameter": 14.0,
                 "A_Top_Height": 3.0,
-                "A_Top_Style": 2,  # Rounded
                 "A_Mid_Height": 6.0,
-                "A_Bot_Height": 2.0,  # NEW: transition section
-                "A_Knurl": False,
-                "B_Height": 12.0,
-                "B_Width_Top": 14.0,
-                "B_Width_Bot": 16.0,
-                "B_Top_Height": 2.0,  # NEW: transition section
+                "A_Bot_Height": 2.0,
+                "B_Top_Height": 2.0,
                 "B_Mid_Height": 6.0,
-                "B_Knurl": False,
                 "B_Bot_Height": 2.0,
+                "A_Top_Style": 2,  # Rounded
                 "B_Bot_Style": 2,  # Rounded
-                "Color": (0.4, 0.4, 0.45),
-                "Metallic": 0.3,
-                "Roughness": 0.4,
+                # NO knurling
+                "A_Mid_Knurl": False,
+                "A_Bot_Knurl": False,
+                "B_Top_Knurl": False,
+                "B_Mid_Knurl": False,
+                "Color": (0.5, 0.5, 0.52),
+                "Metallic": 0.0,
+                "Roughness": 0.5,
             }
         },
+        # Test 2: 20 grooves, 0.5 depth
         {
-            "name": "knurled_neve",
-            "description": "Neve-style knob with knurling",
+            "name": "knurl_20_depth05",
+            "description": "20 grooves, 0.5mm depth",
             "settings": {
-                "Height_mm": 30.0,
-                "Width_mm": 14.0,
                 "Segments": 64,
-                "A_Height": 15.0,
-                "A_Width_Top": 14.0,
-                "A_Width_Bot": 14.0,
+                "Top_Diameter": 14.0,
+                "A_Mid_Top_Diameter": 14.0,
+                "A_Bot_Top_Diameter": 14.0,
+                "AB_Junction_Diameter": 14.0,
+                "B_Mid_Bot_Diameter": 14.0,
+                "Bot_Diameter": 14.0,
                 "A_Top_Height": 3.0,
-                "A_Top_Style": 2,  # Rounded
                 "A_Mid_Height": 6.0,
-                "A_Bot_Height": 2.0,  # NEW
-                "A_Knurl": True,
-                "A_Knurl_Count": 30,
-                "A_Knurl_Depth": 0.3,
-                "B_Height": 12.0,
-                "B_Width_Top": 14.0,
-                "B_Width_Bot": 16.0,
-                "B_Top_Height": 2.0,  # NEW
+                "A_Bot_Height": 2.0,
+                "B_Top_Height": 2.0,
                 "B_Mid_Height": 6.0,
-                "B_Knurl": True,
-                "B_Knurl_Count": 40,
-                "B_Knurl_Depth": 0.5,
                 "B_Bot_Height": 2.0,
-                "B_Bot_Style": 2,  # Rounded
-                "Color": (0.6, 0.55, 0.5),
-                "Metallic": 0.5,
-                "Roughness": 0.3,
+                "A_Top_Style": 2,
+                "B_Bot_Style": 2,
+                "A_Mid_Knurl": False,
+                "A_Bot_Knurl": False,
+                "B_Top_Knurl": False,
+                "B_Mid_Knurl": True,
+                "B_Mid_Knurl_Count": 20,
+                "B_Mid_Knurl_Depth": 0.5,
+                "Color": (0.5, 0.5, 0.52),
+                "Metallic": 0.0,
+                "Roughness": 0.5,
             }
         },
+        # Test 3: 40 grooves, 0.3 depth
         {
-            "name": "flat_cap",
-            "description": "Knob with flat cap style",
+            "name": "knurl_40_depth03",
+            "description": "40 grooves, 0.3mm depth",
             "settings": {
-                "Height_mm": 30.0,
-                "Width_mm": 14.0,
-                "Segments": 32,
-                "A_Height": 15.0,
-                "A_Width_Top": 14.0,
-                "A_Width_Bot": 14.0,
+                "Segments": 64,
+                "Top_Diameter": 14.0,
+                "A_Mid_Top_Diameter": 14.0,
+                "A_Bot_Top_Diameter": 14.0,
+                "AB_Junction_Diameter": 14.0,
+                "B_Mid_Bot_Diameter": 14.0,
+                "Bot_Diameter": 14.0,
                 "A_Top_Height": 3.0,
-                "A_Top_Style": 0,  # Flat
                 "A_Mid_Height": 6.0,
-                "A_Bot_Height": 2.0,  # NEW
-                "A_Knurl": False,
-                "B_Height": 12.0,
-                "B_Width_Top": 14.0,
-                "B_Width_Bot": 16.0,
-                "B_Top_Height": 2.0,  # NEW
+                "A_Bot_Height": 2.0,
+                "B_Top_Height": 2.0,
                 "B_Mid_Height": 6.0,
-                "B_Knurl": False,
                 "B_Bot_Height": 2.0,
-                "B_Bot_Style": 0,  # Flat
-                "Color": (0.2, 0.2, 0.25),
-                "Metallic": 0.7,
-                "Roughness": 0.2,
+                "A_Top_Style": 2,
+                "B_Bot_Style": 2,
+                "A_Mid_Knurl": False,
+                "A_Bot_Knurl": False,
+                "B_Top_Knurl": False,
+                "B_Mid_Knurl": True,
+                "B_Mid_Knurl_Count": 40,
+                "B_Mid_Knurl_Depth": 0.3,
+                "Color": (0.5, 0.5, 0.52),
+                "Metallic": 0.0,
+                "Roughness": 0.5,
             }
         },
+        # Test 4: 60 grooves, 0.2 depth
         {
-            "name": "beveled_cap",
-            "description": "Knob with beveled cap style",
+            "name": "knurl_60_depth02",
+            "description": "60 grooves, 0.2mm depth",
             "settings": {
-                "Height_mm": 30.0,
-                "Width_mm": 14.0,
-                "Segments": 48,
-                "A_Height": 15.0,
-                "A_Width_Top": 14.0,
-                "A_Width_Bot": 14.0,
-                "A_Top_Height": 4.0,
-                "A_Top_Style": 1,  # Beveled
-                "A_Mid_Height": 5.0,
-                "A_Bot_Height": 2.0,  # NEW
-                "A_Knurl": False,
-                "B_Height": 12.0,
-                "B_Width_Top": 14.0,
-                "B_Width_Bot": 16.0,
-                "B_Top_Height": 2.0,  # NEW
+                "Segments": 64,
+                "Top_Diameter": 14.0,
+                "A_Mid_Top_Diameter": 14.0,
+                "A_Bot_Top_Diameter": 14.0,
+                "AB_Junction_Diameter": 14.0,
+                "B_Mid_Bot_Diameter": 14.0,
+                "Bot_Diameter": 14.0,
+                "A_Top_Height": 3.0,
+                "A_Mid_Height": 6.0,
+                "A_Bot_Height": 2.0,
+                "B_Top_Height": 2.0,
                 "B_Mid_Height": 6.0,
-                "B_Knurl": False,
-                "B_Bot_Height": 3.0,
-                "B_Bot_Style": 1,  # Beveled
-                "Color": (0.7, 0.65, 0.6),
-                "Metallic": 0.2,
+                "B_Bot_Height": 2.0,
+                "A_Top_Style": 2,
+                "B_Bot_Style": 2,
+                "A_Mid_Knurl": False,
+                "A_Bot_Knurl": False,
+                "B_Top_Knurl": False,
+                "B_Mid_Knurl": True,
+                "B_Mid_Knurl_Count": 60,
+                "B_Mid_Knurl_Depth": 0.2,
+                "Color": (0.5, 0.5, 0.52),
+                "Metallic": 0.0,
                 "Roughness": 0.5,
             }
         },

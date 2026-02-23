@@ -1,0 +1,379 @@
+# =============================================================================
+# ASSET REGISTRY - Master Configuration for All 3D Assets
+# =============================================================================
+#
+# This is the single source of truth for all asset sources, conversions,
+# and library paths. Scripts read from this file - update it to add new assets.
+#
+# Structure:
+# - sources: Where assets come from (original files)
+# - conversions: How to convert them for Blender Asset Browser
+# - libraries: Where converted assets live (asset browser reads these)
+#
+# Last Updated: 2025-02-22
+# =============================================================================
+
+# -----------------------------------------------------------------------------
+# GLOBAL SETTINGS
+# -----------------------------------------------------------------------------
+
+settings:
+  storage_root: "/Volumes/Storage/3d"
+  output_root: "/Volumes/Storage/3d/kitbash/converted_assets"
+  default_author: "Unknown"
+  generate_previews: true
+  pack_textures: true
+
+# -----------------------------------------------------------------------------
+# KITBASH3D KITS
+# -----------------------------------------------------------------------------
+
+kitbash3d:
+  # Source directory for all KitBash3D kits
+  source_root: "/Volumes/Storage/3d/kitbash"
+
+  kits:
+    # =========================================================================
+    # CATEGORY A: OBJ/FBX with Textures
+    # =========================================================================
+
+    - name: "Aftermath"
+      status: "completed"
+      source_dir: "KitBash3D - Aftermath"
+      kit_type: "obj_fbx"
+      texture_dir: "KB3DTextures"
+      texture_prefix: "KB3D_WZT"
+      obj_file: "Kitbash3d_Warzone2.obj"
+      object_count: 575
+      material_count: 17
+      tags: ["post-apocalyptic", "destruction", "ruins", "warzone"]
+
+    - name: "Aristocracy"
+      status: "pending"
+      source_dir: "Kitbash3D - Aristocracy"
+      kit_type: "obj_fbx"
+      texture_dir: "KB3DTextures"
+      texture_prefix: "KB3D"
+      obj_file: "Kitbash3d_Aristocracy_MiniKit.obj"
+      tags: ["elegant", "luxury", "palace", "royal"]
+
+    - name: "Dieselpunk"
+      status: "pending"
+      source_dir: "KitBash3D - Dieselpunk"
+      kit_type: "obj_fbx"
+      texture_dir: "KB3DTextures/2k"
+      texture_prefix: "KB3D_DPK"
+      obj_file: "kb3d_dieselpunk-native.obj"
+      tags: ["wwii", "industrial", "mechanical", "oil", "retro"]
+
+    - name: "Sci-Fi Industrial"
+      status: "pending"
+      source_dir: "KitBash3D - Sci-Fi Industrial"
+      kit_type: "obj_fbx"
+      texture_dir: "KB3DTextures"
+      texture_prefix: "KB3D_SF"
+      obj_file: "KB3D_SciFiIndustrial.obj"
+      tags: ["scifi", "industrial", "factory", "machinery"]
+
+    - name: "Savage"
+      status: "pending"
+      source_dir: "KitBash3D - Savage"
+      kit_type: "hybrid"
+      texture_dir: "KB3DTextures"
+      texture_prefix: "KB3D"
+      notes: "Check FBX+OBJ folder for source files"
+      tags: ["tribal", "primal", "natural", "primitive"]
+
+    - name: "Veh Supercars"
+      status: "pending"
+      source_dir: "KitBash3D - Veh Supercars"
+      kit_type: "hybrid"
+      texture_dir: "KB3DTextures"
+      texture_prefix: "KB3D"
+      tags: ["vehicles", "cars", "sports", "racing"]
+
+    # =========================================================================
+    # CATEGORY B: Native Blend Files
+    # =========================================================================
+
+    - name: "Americana"
+      status: "pending"
+      source_dir: "KitBash3D - Americana"
+      kit_type: "native_blend"
+      blend_file: "Blender/americana.blend"
+      tags: ["usa", "suburban", "small-town", "mid-century"]
+
+    - name: "Atompunk"
+      status: "pending"
+      source_dir: "KitBash3D - Atompunk"
+      kit_type: "native_blend"
+      blend_file: "kb3d_atompunk-native.blend"
+      tags: ["1950s", "retro-futuristic", "nuclear", "vintage-scifi"]
+
+    - name: "Art Deco"
+      status: "pending"
+      source_dir: "Kitbash3D - Art Deco"
+      kit_type: "native_blend"
+      blend_file: "Art Deco.blend"
+      texture_dir: "TEXTURES"
+      tags: ["1920s", "elegant", "geometric", "luxury", "architecture"]
+
+    - name: "Brooklyn"
+      status: "pending"
+      source_dir: "Kitbash3D - Brooklyn"
+      kit_type: "native_blend"
+      blend_file: "Blender/brooklyn.blend"
+      tags: ["urban", "new-york", "city", "brownstone"]
+
+    - name: "Brutalist"
+      status: "pending"
+      source_dir: "Kitbash3D - Brutalist"
+      kit_type: "native_blend"
+      blend_file: "brutalist.blend"
+      texture_dir: "Textures"
+      tags: ["concrete", "bold", "raw", "architectural", "modern"]
+
+    - name: "Cyberdistrict"
+      status: "pending"
+      source_dir: "Kitbash3D - cyberdistrict"
+      kit_type: "native_blend"
+      blend_file: "kb3d_cyberdistrict-native.blend"
+      tags: ["cyberpunk", "neon", "urban", "tech", "asian-city"]
+
+    - name: "LA Downtown"
+      status: "pending"
+      source_dir: "KitBash3D - LA Downtown"
+      kit_type: "native_blend"
+      blend_file: "KB3D_DTLA-Native.blend"
+      texture_dir: "KB3DTextures"
+      tags: ["los-angeles", "downtown", "city", "urban"]
+
+    - name: "Edo Japan"
+      status: "pending"
+      source_dir: "KitBash3D - Edo Japan"
+      kit_type: "fbx_only"
+      fbx_file: "KITBASH3D_EDOJAPAN.fbx"
+      notes: "FBX only, may need manual texture assignment"
+      tags: ["japan", "edo", "traditional", "samurai", "temple"]
+
+# -----------------------------------------------------------------------------
+# KPACKS (Community Collections)
+# -----------------------------------------------------------------------------
+
+kpacks:
+  source_root: "/Volumes/Storage/3d/kitbash/kpacks"
+  output_dir: "/Volumes/Storage/3d/kitbash/converted_assets/kpacks"
+
+  collections:
+    - name: "Neon District"
+      status: "pending"
+      tags: ["cyberpunk", "neon", "urban"]
+
+    - name: "Space Station"
+      status: "pending"
+      tags: ["scifi", "space", "orbital"]
+
+    # Add more kpack collections as discovered
+
+# -----------------------------------------------------------------------------
+# PLUGIN ASSETS
+# -----------------------------------------------------------------------------
+
+plugins:
+  output_dir: "/Volumes/Storage/3d/kitbash/converted_assets/plugins"
+
+  sources:
+    # Car Transportation Materials
+    - name: "CarMaterials_Glossy"
+      author: "Car Transportation"
+      source: "/Volumes/Storage/3d/animation/plugins/Car Transportation v4/data/materials/glossy"
+      recursive: true
+      asset_types: ["material"]
+      tags: ["car", "paint", "glossy", "automotive"]
+
+    - name: "CarMaterials_Matt"
+      author: "Car Transportation"
+      source: "/Volumes/Storage/3d/animation/plugins/Car Transportation v4/data/materials/matt"
+      recursive: true
+      asset_types: ["material"]
+      tags: ["car", "paint", "matt", "automotive"]
+
+    - name: "CarMaterials_Metallic"
+      author: "Car Transportation"
+      source: "/Volumes/Storage/3d/animation/plugins/Car Transportation v4/data/materials/metallic"
+      recursive: true
+      asset_types: ["material"]
+      tags: ["car", "paint", "metallic", "automotive"]
+
+    # ScifiFlex dpacks
+    - name: "ScifiFlex_CITOPIA"
+      author: "ScifiFlex"
+      source: "/Volumes/Storage/3d/animation/plugins/scififlex/dpacks/CITOPIA"
+      recursive: true
+      tags: ["scifi", "panels", "citopia"]
+
+    - name: "ScifiFlex_EXXODUS"
+      author: "ScifiFlex"
+      source: "/Volumes/Storage/3d/animation/plugins/scififlex/dpacks/EXXODUS"
+      recursive: true
+      tags: ["scifi", "panels", "exxodus"]
+
+    - name: "ScifiFlex_INDUSTRIA"
+      author: "ScifiFlex"
+      source: "/Volumes/Storage/3d/animation/plugins/scififlex/dpacks/INDUSTRIA"
+      recursive: true
+      tags: ["scifi", "panels", "industrial"]
+
+    - name: "ScifiFlex_PANELX"
+      author: "ScifiFlex"
+      source: "/Volumes/Storage/3d/animation/plugins/scififlex/dpacks/PANEL-X"
+      recursive: true
+      tags: ["scifi", "panels"]
+
+    - name: "ScifiFlex_PANELY"
+      author: "ScifiFlex"
+      source: "/Volumes/Storage/3d/animation/plugins/scififlex/dpacks/PANEL-Y"
+      recursive: true
+      tags: ["scifi", "panels"]
+
+    - name: "ScifiFlex_PIPER"
+      author: "ScifiFlex"
+      source: "/Volumes/Storage/3d/animation/plugins/scififlex/dpacks/PIPER"
+      recursive: true
+      tags: ["scifi", "pipes"]
+
+    - name: "ScifiFlex_RIYA"
+      author: "ScifiFlex"
+      source: "/Volumes/Storage/3d/animation/plugins/scififlex/dpacks/RIYA"
+      recursive: true
+      tags: ["scifi", "panels"]
+
+    # Trash Kit
+    - name: "TrashKit"
+      author: "Trash Kit"
+      source: "/Volumes/Storage/3d/animation/plugins/Blender Market – Trash Kit - 3d Assetkit"
+      recursive: false
+      tags: ["debris", "trash", "rubbish", "urban"]
+
+    # Shaders
+    - name: "ShwiftyShaders"
+      author: "Shwifty"
+      source: "/Volumes/Storage/3d/animation/plugins/Shwifty Shaders v1.2"
+      recursive: false
+      include_node_groups: true
+      asset_types: ["material", "node_group"]
+      tags: ["shader", "procedural"]
+
+    # Procedural Building
+    - name: "ProceduralBuilding"
+      author: "PBG"
+      source: "/Volumes/Storage/3d/animation/plugins/Procedural Building Generator 2"
+      recursive: false
+      tags: ["building", "procedural", "architecture"]
+
+    # Plating Generator
+    - name: "PlatingGenerator"
+      author: "Plating Generator"
+      source: "/Volumes/Storage/3d/animation/plugins/Plating Generator and Greebles v2.0/plating_generator_greebles_2.0.0_samples_unzip.me"
+      recursive: false
+      tags: ["plating", "greebles", "detail", "panels"]
+
+# -----------------------------------------------------------------------------
+# STORAGE COLLECTIONS
+# -----------------------------------------------------------------------------
+
+storage_collections:
+  output_dir: "/Volumes/Storage/3d/kitbash/converted_assets"
+
+  collections:
+    - name: "MechWarrior"
+      description: "Large mech models"
+      source_root: "/Volumes/Storage/3d/kitbash/mech warrior/blender"
+      blend_files:
+        - "mech_1.blend"
+        - "mech_2.blend"
+        - "mech_3.blend"
+      recursive: false
+      tags: ["mech", "robot", "giant", "military"]
+
+    - name: "Dune"
+      description: "Dune landscape packs"
+      source_root: "/Volumes/Storage/3d/kitbash/dpacks"
+      recursive: true
+      tags: ["dune", "desert", "landscape", "sand"]
+
+    - name: "VFX"
+      description: "200+ VFX assets - particles, energy, shockwaves"
+      source_root: "/Volumes/Storage/3d/animation/VFX Asset Library - 200 FX Alpha"
+      recursive: true
+      asset_types: ["object", "material", "node_group"]
+      tags: ["vfx", "particles", "energy", "shockwave", "effects"]
+
+# -----------------------------------------------------------------------------
+# OTHER ASSETS
+# -----------------------------------------------------------------------------
+
+other_assets:
+  output_dir: "/Volumes/Storage/3d/kitbash/converted_assets/other"
+
+  sources:
+    - name: "Charlotte Digital Twin"
+      source: "/Volumes/Storage/3d/my 3d designs/Charlotte Digital Twin"
+      recursive: true
+      tags: ["charlotte", "city", "digital-twin"]
+
+    - name: "Personal Designs"
+      source: "/Volumes/Storage/3d/my 3d designs"
+      recursive: true
+      tags: ["personal", "custom"]
+
+# -----------------------------------------------------------------------------
+# BLENDER ASSET LIBRARIES
+# These are the directories Blender's Asset Browser reads from
+# -----------------------------------------------------------------------------
+
+asset_libraries:
+  - name: "KitBash3D"
+    path: "/Volumes/Storage/3d/kitbash/converted_assets/kitbash3d"
+    description: "All KitBash3D converted kits"
+
+  - name: "Kpacks"
+    path: "/Volumes/Storage/3d/kitbash/converted_assets/kpacks"
+    description: "Community kpack collections"
+
+  - name: "Plugins"
+    path: "/Volumes/Storage/3d/kitbash/converted_assets/plugins"
+    description: "Plugin assets - materials, node groups, samples"
+
+  - name: "VFX"
+    path: "/Volumes/Storage/3d/kitbash/converted_assets/VFX"
+    description: "Visual effects assets"
+
+  - name: "Personal"
+    path: "/Volumes/Storage/3d/kitbash/converted_assets/other"
+    description: "Personal designs and misc assets"
+
+# -----------------------------------------------------------------------------
+# CONVERSION STATUS TRACKING
+# -----------------------------------------------------------------------------
+
+status:
+  # Summary counts (update manually or via script)
+  kitbash3d:
+    total: 16
+    completed: 1
+    pending: 15
+
+  plugins:
+    total: 14
+    completed: 0
+    pending: 14
+
+  collections:
+    total: 3
+    completed: 0
+    pending: 3
+
+  # Last conversion run
+  last_run: null
+  next_action: "Generate missing previews for converted assets"

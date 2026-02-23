@@ -1,0 +1,2 @@
+var i={blockers:[{id:"BLK-001",reason:"Waiting on story approval for artifact design",blocking_since:new Date(17713728e5),blocking_items:["PROP-016"],resolution:null},{id:"BLK-002",reason:"Waiting on hero design finalization",blocking_since:new Date(17712864e5),blocking_items:["CHAR-002"],resolution:null}]},n=i.blockers;export{n as blockers,i as default};
+//# sourceMappingURL=blockers-aXfo_T2t.js.map

@@ -68,3 +68,36 @@ index:
   last_updated: null
   blend_count: 3090
   categories_indexed: []
+
+# Security Configuration
+security:
+  # Whitelisted directories for asset access
+  allowed_paths:
+    - "/Volumes/Storage/3d"
+    - "~/Documents/Blender"
+
+  # Maximum file size in MB
+  max_file_size_mb: 500
+
+  # Allowed file extensions
+  allowed_extensions:
+    - ".blend"
+    - ".fbx"
+    - ".obj"
+    - ".glb"
+    - ".gltf"
+    - ".stl"
+    - ".abc"
+    - ".dae"
+
+  # Audit logging
+  audit:
+    enabled: true
+    log_path: ".gsd-state/audit.log"
+    # Events to log: "all", "access", "denied", "none"
+    log_level: "access"
+
+  # Rate limiting
+  rate_limit:
+    enabled: true
+    max_requests_per_minute: 100

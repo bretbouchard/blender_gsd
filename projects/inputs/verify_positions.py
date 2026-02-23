@@ -23,6 +23,19 @@ ng = create_input_node_group("Verify_Fix")
 mod = obj.modifiers.new(name="Test", type='NODES')
 mod.node_group = ng
 
+# Build socket map for setting values
+socket_map = {}
+for item in ng.interface.items_tree:
+    if item.item_type == 'SOCKET' and item.in_out == 'INPUT':
+        socket_map[item.name] = item.identifier
+
+# Set FLAT caps for accurate position verification
+# (Rounded spheres extend beyond the expected height)
+mod[socket_map["B_Bot_Style"]] = 0  # Flat cylinder
+mod[socket_map["A_Top_Style"]] = 0  # Flat cylinder
+mod[socket_map["A_Knurl"]] = False  # Disable knurling
+mod[socket_map["B_Knurl"]] = False  # Disable knurling
+
 # Get default values from interface
 defaults = {}
 for item in ng.interface.items_tree:
