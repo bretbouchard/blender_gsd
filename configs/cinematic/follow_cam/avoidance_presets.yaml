@@ -1,0 +1,242 @@
+# Obstacle Avoidance Presets
+# Configuration for camera collision detection and obstacle response
+#
+# Part of Phase 8.2 - Obstacle Avoidance
+# Beads: blender_gsd-57
+
+# ============================================================================
+# COLLISION DETECTION SETTINGS
+# ============================================================================
+collision_detection:
+  # Raycast detection
+  raycast:
+    enabled: true
+    resolution: [3, 3]  # 3x3 grid of rays
+    max_distance: 10.0
+
+  # Spherecast for larger collision volume
+  spherecast:
+    enabled: true
+    radius: 0.3
+    max_distance: 10.0
+
+  # Frustum obstruction check
+  frustum_check:
+    enabled: true
+    check_occlusion: true
+
+  # Layers to check for collision
+  layers:
+    - "geometry"
+    - "dynamic"
+    - "foliage"
+
+  # Objects to ignore
+  ignore:
+    subject: true
+    transparent_patterns:
+      - "*_glass*"
+      - "*_water*"
+      - "*_fog*"
+    trigger_patterns:
+      - "*_trigger*"
+      - "*_volume*"
+
+# ============================================================================
+# OBSTACLE RESPONSE SETTINGS
+# ============================================================================
+obstacle_response:
+  # Response when obstacle is between camera and subject
+  between_camera_and_subject:
+    push_forward:
+      condition: "distance < 5.0"
+      min_distance: 0.5
+    orbit_away:
+      condition: "can_orbit"
+      angle: 45.0  # degrees
+    raise_up:
+      condition: "can_raise"
+      max_height: 3.0
+    zoom_through:
+      condition: "transparent_obstacle"
+
+  # Response when camera is backing into something
+  camera_backing:
+    action: "push_forward"
+    min_distance: 0.5
+
+  # Response when obstacle is to the side
+  camera_side:
+    action: "slide_away"
+    slide_distance: 0.5
+
+  # Smoothing for all avoidance movements
+  smoothing:
+    position: 0.15
+    rotation: 0.1
+    avoid_jitter: true
+
+# ============================================================================
+# PREDICTION AVOIDANCE
+# ============================================================================
+prediction_avoidance:
+  enabled: true
+  frames_ahead: 30
+  sample_rate: 5
+
+  pre_avoid:
+    enabled: true
+    start_distance: 3.0
+    blend_duration: 0.5
+
+# ============================================================================
+# OCCLUSION HANDLING
+# ============================================================================
+occlusion_handling:
+  on_occlusion:
+    detection_method: "sample_points"
+    sample_points: 9
+
+  response_priority:
+    - reposition_camera
+    - push_through
+    - cut_away
+
+  on_partial_occlusion:
+    threshold: 0.5
+    action: "reposition_camera"
+
+# ============================================================================
+# OPERATOR BEHAVIOR (Human-like camera operation)
+# ============================================================================
+operator_behavior:
+  human_like:
+    # Human response simulation
+    reaction_delay: 0.1  # seconds
+    avoid_jerky_motion: true
+    min_movement_time: 0.3  # seconds
+
+    # Angle preferences (degrees)
+    angle_preference:
+      horizontal: [-45.0, 45.0]
+      vertical: [10.0, 30.0]
+
+    # Natural breathing
+    breathing:
+      enabled: true
+      amplitude: 0.01  # meters
+      frequency: 0.25  # Hz
+
+  # Decision weights (higher = more important)
+  decision_weights:
+    visibility: 1.0
+    composition: 0.7
+    smoothness: 0.5
+    distance: 0.3
+
+# ============================================================================
+# ANTI-OSCILLATION
+# ============================================================================
+anti_oscillation:
+  enabled: true
+  oscillation_threshold: 0.1  # meters
+  position_history_size: 10
+  max_direction_changes: 3  # per second
+  damping_strength: 0.5
+  min_damping_factor: 0.3
+
+# ============================================================================
+# PRESETS
+# ============================================================================
+
+# Default balanced settings
+default:
+  collision_detection:
+    raycast:
+      enabled: true
+      resolution: [3, 3]
+    spherecast:
+      enabled: true
+      radius: 0.3
+  operator_behavior:
+    human_like:
+      reaction_delay: 0.1
+      breathing:
+        enabled: true
+
+# Aggressive - fast response, tighter margins
+aggressive:
+  collision_detection:
+    raycast:
+      resolution: [5, 5]
+    spherecast:
+      radius: 0.2
+  obstacle_response:
+    smoothing:
+      position: 0.08
+      rotation: 0.05
+  operator_behavior:
+    human_like:
+      reaction_delay: 0.05
+      breathing:
+        enabled: false
+
+# Cautious - slow response, larger margins
+cautious:
+  collision_detection:
+    raycast:
+      resolution: [3, 3]
+    spherecast:
+      radius: 0.5
+  obstacle_response:
+    smoothing:
+      position: 0.25
+      rotation: 0.2
+  operator_behavior:
+    human_like:
+      reaction_delay: 0.2
+      min_movement_time: 0.5
+
+# Cinematic - human-like operator behavior
+cinematic:
+  collision_detection:
+    raycast:
+      resolution: [3, 3]
+    spherecast:
+      radius: 0.35
+  operator_behavior:
+    human_like:
+      reaction_delay: 0.15
+      avoid_jerky_motion: true
+      min_movement_time: 0.4
+      breathing:
+        enabled: true
+        amplitude: 0.015
+        frequency: 0.2
+  decision_weights:
+    visibility: 0.8
+    composition: 1.0
+    smoothness: 0.8
+    distance: 0.4
+
+# Game - fast, no breathing, priority on visibility
+game:
+  collision_detection:
+    raycast:
+      resolution: [3, 3]
+    spherecast:
+      radius: 0.25
+  obstacle_response:
+    smoothing:
+      position: 0.05
+      rotation: 0.03
+  operator_behavior:
+    human_like:
+      reaction_delay: 0.02
+      breathing:
+        enabled: false
+  decision_weights:
+    visibility: 1.0
+    composition: 0.3
+    smoothness: 0.3
+    distance: 0.2

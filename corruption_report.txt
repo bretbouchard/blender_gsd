@@ -1,0 +1,33 @@
+======================================================================
+BLENDED FILE CORRUPTION DIAGNOSTIC REPORT
+Generated: 2026-02-22T02:25:12.076352
+======================================================================
+
+## SUMMARY
+
+Total .blend files scanned: 2398
+  Valid files:       2398 (100.0%)
+  Corrupted:            0 (0.0%)
+  Suspicious size:      0 (0.0%)
+  Empty (0 bytes):      0 (0.0%)
+
+## SIZE DISTRIBUTION (files under 1KB)
+
+
+## DIRECTORIES WITH CORRUPTION
+
+
+## ALL CORRUPTED/SUSPICIOUS FILES
+
+
+## RECOVERY RECOMMENDATIONS
+
+1. Files with suspicious sizes (17, 32, 64 bytes) are likely
+   write failures - check if original source files exist.
+
+2. Re-run conversion scripts on corrupted directories.
+
+3. Check external drive health with Disk Utility.
+
+4. Consider copying source files to internal drive before
+   conversion to avoid external drive write issues.

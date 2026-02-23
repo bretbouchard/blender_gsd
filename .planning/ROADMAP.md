@@ -658,6 +658,7 @@ Plans:
 ### Phase 8.0: Follow Camera Foundation (REQ-FOLLOW-01)
 **Priority**: P1 | **Est. Effort**: 2-3 days
 **Beads**: `blender_gsd-51`
+**Plans:** 1 plan
 
 **Dependencies:**
 - Depends on: 6.1, 6.5
@@ -686,18 +687,15 @@ configs/cinematic/follow_cam/
 └── prediction_settings.yaml
 ```
 
-**Tasks**:
-- [ ] Create `lib/cinematic/follow_cam/` module structure
-- [ ] Implement FollowMode enum (8 modes)
-- [ ] Define FollowTarget, ObstacleInfo, FollowCameraConfig types
-- [ ] Create configuration directory structure
-- [ ] Implement state persistence
+Plans:
+- [ ] 08.0-01-PLAN.md - Create follow camera module structure, types, and configuration
 
 ---
 
 ### Phase 8.1: Follow Camera Modes (REQ-FOLLOW-MODE)
 **Priority**: P0 | **Est. Effort**: 5-7 days
 **Beads**: `blender_gsd-52`, `blender_gsd-53`, `blender_gsd-54`, `blender_gsd-55`, `blender_gsd-56`
+**Plans:** 3 plans
 
 **Dependencies:**
 - Depends on: 8.0
@@ -717,17 +715,15 @@ configs/cinematic/follow_cam/
 7. **Aerial** - Top-down or high-angle following
 8. **Free Roam** - Game-style free camera with collision
 
-**Tasks**:
-- [ ] Implement side-scroller mode with axis locking
-- [ ] Implement over-shoulder mode with offset positioning
-- [ ] Implement chase mode with speed-based distance
-- [ ] Implement chase-side mode with side selection
-- [ ] Implement orbit-follow mode with rotation
-- [ ] Implement lead mode with look-ahead positioning
-- [ ] Implement aerial mode with height/angle control
-- [ ] Implement free roam mode with collision
-- [ ] Implement mode transitions (cut, blend, orbit, dolly)
-- [ ] Create presets for each mode
+**Wave Structure**:
+- **Wave 1**: Type definitions and YAML presets
+- **Wave 2**: All 8 mode implementations
+- **Wave 3**: Transitions and unit tests
+
+Plans:
+- [ ] 08.1-01-PLAN.md - Define Follow Camera Type System and YAML presets
+- [ ] 08.1-02-PLAN.md - Implement all 8 follow camera mode calculations
+- [ ] 08.1-03-PLAN.md - Implement mode transitions and unit tests
 
 **Acceptance Criteria**:
 - [ ] All 8 modes produce correct camera positioning
@@ -901,8 +897,8 @@ tests/unit/
 
 | Phase | Requirements | Priority | Est. Days | Beads | Plans |
 |-------|-------------|----------|-----------|-------|-------|
-| 8.0 | FOLLOW-01 | P1 | 2-3 | blender_gsd-51 | - |
-| 8.1 | FOLLOW-MODE | P0 | 5-7 | blender_gsd-52..56 | - |
+| 8.0 | FOLLOW-01 | P1 | 2-3 | blender_gsd-51 | 1 |
+| 8.1 | FOLLOW-MODE | P0 | 5-7 | blender_gsd-52..56 | 3 |
 | 8.2 | FOLLOW-AVOID, FOLLOW-PREDICT | P0 | 8-11 | blender_gsd-57..59 | 3 |
 | 8.3 | FOLLOW-SOLVE, FOLLOW-ENV | P0 | 7-9 | blender_gsd-60, blender_gsd-61 | - |
 | 8.4 | FOLLOW-INTEGRATE, FOLLOW-FRAME, FOLLOW-DEBUG | P1 | 7-10 | blender_gsd-62, blender_gsd-63 | - |
@@ -1092,6 +1088,533 @@ lib/cinematic/projection/
 
 ---
 
+## Milestone: v0.9 - Production Tracking System
+**Target**: TBD
+**Requirements**: `.planning/REQUIREMENTS_PRODUCTION_TRACKING.md`
+
+### Phase 11.0: Production Tracking Dashboard (REQ-TRACK-01, REQ-TRACK-03)
+**Priority**: P1 | **Est. Effort**: 2-3 days
+**Plans:** 1 plan
+
+**Goal**: Build a simple TypeScript UI to VIEW all production elements with status, blockers, and source traceability.
+
+**Key Features**:
+- Kanban board with status columns (complete/in_progress/planned/vague/blocked)
+- Item cards with category, name, description, images
+- Filter by status and category
+- Search by name/id
+- Blocker panel always visible
+- Link to source spec for each item
+- All data in YAML files (no database)
+- **Read-only by design** - AI handles writes
+
+**Write Model**: The UI is read-only. To add/edit items, talk to Claude:
+> "Add a new character CHAR-003 named 'Villain' with status planned"
+> "Mark WARD-015 as complete"
+> "Add blocker to PROP-003: waiting on concept approval"
+
+The AI edits the YAML files directly. No backend needed.
+
+**Philosophy**: If we need fancy UI tools, we're doing it wrong. Keep it simple, uniform, fluid.
+
+**Tech Stack**:
+- TypeScript + Vite
+- YAML files for data
+- No framework, minimal CSS
+- No backend server
+
+Plans:
+- [ ] 11.0-PLAN.md - Read-only tracking UI with board, filters, blocker panel
+
+---
+
+### Production Tracking Summary
+
+| Phase | Requirements | Priority | Est. Days |
+|-------|-------------|----------|-----------|
+| 11.0 | TRACK-01, TRACK-03 | P1 | 2-3 |
+
+**Total**: 2-3 days
+
+**Asset Categories**:
+| Category | Examples |
+|----------|----------|
+| character | Hero, NPC, creature |
+| wardrobe | Costume pieces, accessories |
+| prop | Hand props, set dressing |
+| set | Environments, locations |
+| shot | Camera shots, sequences |
+| asset | Control surfaces, products |
+| audio | Music, SFX, dialogue |
+
+---
+
+## Milestone: v0.10 - Asset 1-Sheet System
+**Target**: TBD
+**Requirements**: `.planning/REQUIREMENTS_PRODUCTION_TRACKING.md` (REQ-ONESHEET-01, REQ-ONESHEET-02)
+
+### Phase 12.0: 1-Sheet Generator (REQ-ONESHEET-01)
+**Priority**: P1 | **Est. Effort**: 2-3 days
+**Depends on**: Phase 11.0
+
+**Goal**: Generate presentable 1-sheets from tracked assets with images and descriptions.
+
+**1-Sheet Structure**:
+```
++----------------------------------+
+|  [Hero Image - Main Product Shot]|
+|                                  |
+|  ASSET NAME                      |
+|  Category: Character | Status: ✓ |
+|                                  |
+|  Description:                    |
+|  Brief description of asset...   |
+|                                  |
+|  [Thumb 1] [Thumb 2] [Thumb 3]   |
+|                                  |
+|  Dependencies:                   |
+|  → WARD-001 (Hero Costume)       |
+|                                  |
+|  Source: specs/characters/hero   |
+|  Created: 2026-02-19 by bret     |
++----------------------------------+
+```
+
+**Output Formats**: HTML, PDF, PNG
+
+**Key Features**:
+- Auto-generate from asset data
+- Template system for different categories
+- Hero image + thumbnails
+- Status and metadata
+- Dependency chain
+- Source traceability
+
+Plans:
+- [ ] 12.0-PLAN.md - 1-sheet templates, export (HTML/PDF/PNG), preview modal
+
+---
+
+### Phase 12.1: Product Shot Integration (REQ-ONESHEET-02)
+**Priority**: P2 | **Est. Effort**: 3-4 days
+**Depends on**: Phase 12.0
+
+**Goal**: Integrate with render pipeline to generate product shots for 1-sheets.
+
+**Shot Types**:
+| Shot Type | Purpose |
+|-----------|---------|
+| hero | Main hero shot, dramatic |
+| beauty | Clean product shot on backdrop |
+| detail | Close-up of details |
+| context | In-context/environment shot |
+| turntable | 360° rotation (animated) |
+
+**Key Features**:
+- Define shot templates per category
+- Batch generate product shots
+- Auto-attach to asset record
+- Trigger from tracking board
+
+---
+
+### 1-Sheet System Summary
+
+| Phase | Requirements | Priority | Est. Days |
+|-------|-------------|----------|-----------|
+| 12.0 | ONESHEET-01 | P1 | 2-3 |
+| 12.1 | ONESHEET-02 | P2 | 3-4 |
+
+**Total**: 5-7 days
+
+---
+
+## Milestone: v0.11 - Character & Object Animation System
+**Target**: TBD
+**Requirements**: `.planning/REQUIREMENTS_ANIMATION.md`
+
+### Phase 13.0: Rigging Foundation (REQ-ANIM-01)
+**Priority**: P0 | **Est. Effort**: 5-7 days
+
+**Goal**: Create and manage skeletal hierarchies for any animatable entity.
+
+**Entity Types**:
+| Entity | Bone Structure | Notes |
+|--------|---------------|-------|
+| Human | Biped rig (60-100 bones) | Standard skeleton |
+| Face | Face rig (50-100 bones) | Shape keys + bones |
+| Quadruped | Quad rig (40-80 bones) | Dogs, horses, etc |
+| Vehicle | Wheel/suspension rig | Mechanical articulation |
+| Robot | Custom rig | Mechanical or organic |
+| Prop | Simple rig | Doors, levers, etc |
+
+**Key Features**:
+- Rig template system (human_biped, face_standard, vehicle_basic, etc)
+- Auto-rig from mesh (bone placement from geometry)
+- Bone hierarchy management
+- Weight painting automation
+- Rig import/export (BVH, FBX)
+
+---
+
+### Phase 13.1: IK/FK System (REQ-ANIM-02, REQ-ANIM-03)
+**Priority**: P0 | **Est. Effort**: 4-5 days
+
+**Goal**: Animate limbs with inverse/forward kinematics.
+
+**IK Types**:
+| Type | Use Case |
+|------|----------|
+| Two-bone IK | Arms, legs |
+| Chain IK | Spines, tails |
+| Spline IK | Spines, tentacles |
+| Floor IK | Keep feet on ground |
+
+**Key Features**:
+- Two-bone IK solver (standard limb)
+- Pole targets (elbow/knee direction)
+- IK/FK blending (seamless switching)
+- Joint rotation limits
+
+---
+
+### Phase 13.2: Pose Library (REQ-ANIM-04)
+**Priority**: P1 | **Est. Effort**: 3-4 days
+
+**Goal**: Save, organize, and blend reusable poses.
+
+**Pose Types**:
+| Type | Examples |
+|------|----------|
+| Rest | T-pose, A-pose, standing |
+| Action | Walk, run, jump, sit |
+| Expression | Happy, sad, angry, neutral |
+| Hand | Fist, point, grip, open |
+
+**Key Features**:
+- Pose capture from current rig state
+- Pose library with categories
+- Pose blending (mix multiple poses)
+- Pose mirroring
+
+---
+
+### Phase 13.3: Blocking System (REQ-ANIM-05)
+**Priority**: P1 | **Est. Effort**: 3-4 days
+
+**Goal**: Rough animation pass to establish timing and key poses.
+
+**Workflow**:
+```
+Storyboards → Key Poses (Blocking) → Breakdowns → Splining → Polish
+```
+
+**Key Features**:
+- Stepped interpolation mode
+- Key pose markers on timeline
+- Pose thumbnails on timeline
+- Copy/paste poses between frames
+- Onion skinning (show adjacent poses)
+
+---
+
+### Phase 13.4: Face Animation (REQ-ANIM-06)
+**Priority**: P1 | **Est. Effort**: 4-5 days
+
+**Goal**: Animate facial expressions and lip sync.
+
+**Face Rig Components**:
+| Component | Bones/Controls |
+|-----------|---------------|
+| Eyes | Eye L/R, eyelids, eyebrows |
+| Mouth | Jaw, lips, corners |
+| Brows | Inner/outer brows |
+| Cheeks | Cheek raise/squint |
+
+**Key Features**:
+- Face rig template
+- Shape key system for expressions
+- Viseme library (lip sync shapes)
+- Expression presets
+- Audio-driven lip sync
+
+---
+
+### Phase 13.5: Crowd System (REQ-ANIM-07)
+**Priority**: P2 | **Est. Effort**: 2-3 days
+
+**Goal**: Integrate crowd simulation plugins into GSD workflow.
+
+**Approach**: Use existing plugins rather than building from scratch.
+
+**Plugin Options**:
+| Plugin | Best For |
+|--------|----------|
+| BlenderCrowd | Pedestrians, general crowds |
+| CrowdSim3D | Large scale simulations |
+| Boids (built-in) | Flocks, herds, swarms |
+
+**Key Features**:
+- Plugin integration layer
+- Behavior state configuration
+- Export to GSD pipeline
+- Crowd asset tracking
+
+---
+
+### Phase 13.6: Vehicle Animation (REQ-ANIM-08)
+**Priority**: P2 | **Est. Effort**: 2-3 days
+
+**Goal**: Integrate vehicle animation plugins into GSD workflow.
+
+**Approach**: Use existing plugins rather than building from scratch.
+
+**Plugin Options**:
+| Plugin | Best For |
+|--------|----------|
+| Vehicle Rigger | Cars, trucks |
+| MCamTools | Vehicle camera rigs |
+| Blender Physics | Basic vehicle motion |
+
+**Key Features**:
+- Plugin integration layer
+- Vehicle rig templates
+- Export to GSD pipeline
+- Vehicle asset tracking
+
+---
+
+### Phase 13.7: Animation Layers (REQ-ANIM-09)
+**Priority**: P2 | **Est. Effort**: 4-5 days
+
+**Goal**: Non-destructive animation editing with multiple layers.
+
+**Layer Types**:
+| Layer | Purpose |
+|-------|---------|
+| Base | Foundation motion |
+| Detail | Secondary motion added |
+| Override | Replace specific bones |
+| Additive | Add motion on top |
+
+**Key Features**:
+- Create/delete layers
+- Layer opacity/mixing
+- Layer masking
+- Solo/mute layers
+- Non-destructive editing
+
+---
+
+### Animation System Summary
+
+| Phase | Requirements | Priority | Est. Days |
+|-------|-------------|----------|-----------|
+| 13.0 | ANIM-01 (Rigging) | P0 | 5-7 |
+| 13.1 | ANIM-02, ANIM-03 (IK/FK) | P0 | 4-5 |
+| 13.2 | ANIM-04 (Pose Library) | P1 | 3-4 |
+| 13.3 | ANIM-05 (Blocking) | P1 | 3-4 |
+| 13.4 | ANIM-06 (Face) | P1 | 4-5 |
+| 13.5 | ANIM-07 (Crowds - Plugin Integration) | P2 | 2-3 |
+| 13.6 | ANIM-08 (Vehicles - Plugin Integration) | P2 | 2-3 |
+| 13.7 | ANIM-09 (Layers) | P2 | 4-5 |
+
+**Total P0**: 9-12 days
+**Total P1**: 10-13 days
+**Total P2**: 8-11 days
+**Grand Total**: 27-36 days
+
+**Plugin Strategy**: Crowds and vehicles use existing Blender plugins (BlenderCrowd, Vehicle Rigger, etc.) with GSD integration layer.
+
+---
+
+## Milestone: v0.12 - Charlotte Digital Twin Core Geometry Pipeline
+**Target**: 2026-02
+**Requirements**: `.planning/REQUIREMENTS_CHARLOTTE_GEOMETRY.md`
+**Version**: 0.1.0
+
+### Phase 15.0: Geometry Foundation & Coordinate System (REQ-GEO-01)
+**Priority**: P0 | **Est. Effort**: 1 day
+**Plans:** 1 plan
+
+**Dependencies:**
+- Depends on: Charlotte Digital Twin data acquisition (existing)
+- Enables: 15.1, 15.2, 15.3, 15.4
+- Critical Path: Yes
+
+**Goal**: Establish geometry module structure with coordinate transformation from WGS84 to Blender.
+
+**Tasks**:
+- [ ] Create `lib/charlotte_digital_twin/geometry/` module structure
+- [ ] Implement WGS84 to UTM Zone 17N conversion for Charlotte
+- [ ] Implement local scene origin and scale factor (meters to Blender units)
+- [ ] Create coordinate transformer utilities
+
+**Deliverables**:
+```
+lib/charlotte_digital_twin/geometry/
+├── __init__.py
+├── types.py              # GeometryConfig, SceneOrigin, CoordinateTransformer
+├── coordinates.py        # WGS84 → UTM → Local conversion
+└── scale.py              # Scene scale and unit management
+```
+
+**Acceptance Criteria**:
+- [ ] Convert lat/lon to Blender world coordinates
+- [ ] Configurable scene origin (default: Charlotte center)
+- [ ] 1 meter = 1 Blender unit scale
+
+---
+
+### Phase 15.1: Road Network Geometry (REQ-GEO-02)
+**Priority**: P0 | **Est. Effort**: 2 days
+**Plans:** 1 plan
+
+**Dependencies:**
+- Depends on: 15.0
+- Enables: 15.2, 15.5
+- Critical Path: Yes
+
+**Goal**: Convert OSM road data to Blender curve/mesh geometry with proper materials.
+
+**Tasks**:
+- [ ] Create RoadNetworkProcessor to build connected road graph
+- [ ] Convert OSM ways to Blender curves (poly/bezier)
+- [ ] Generate road mesh with proper width per highway type
+- [ ] Apply ground texture materials from lib/materials/ground_textures/
+- [ ] UV unwrap roads along path
+
+**Deliverables**:
+```
+lib/charlotte_digital_twin/geometry/
+├── road_processor.py     # Road network graph building
+├── road_geometry.py      # Curve → mesh conversion
+├── road_materials.py     # OSM tags → material selection
+└── road_uv.py            # UV unwrapping utilities
+```
+
+**Acceptance Criteria**:
+- [ ] Download Charlotte OSM data → visible road network in Blender
+- [ ] Roads connect at intersections
+- [ ] Different materials for different road types (highway, residential, etc.)
+
+---
+
+### Phase 15.2: Building Geometry (REQ-GEO-03)
+**Priority**: P1 | **Est. Effort**: 1 day
+**Plans:** 1 plan
+
+**Dependencies:**
+- Depends on: 15.0, 15.1
+- Enables: 15.5
+- Critical Path: No
+
+**Goal**: Extrude OSM building footprints to 3D geometry.
+
+**Tasks**:
+- [ ] Parse OSM building footprint coordinates
+- [ ] Extrude footprints to proper height (from tags or estimation)
+- [ ] Apply building materials based on type
+- [ ] Support multi-building generation
+
+**Deliverables**:
+```
+lib/charlotte_digital_twin/geometry/
+├── building_processor.py  # Building footprint processing
+├── building_geometry.py   # Extrusion and mesh creation
+└── building_materials.py  # Material assignment
+```
+
+**Acceptance Criteria**:
+- [ ] Building footprints extrude to correct heights
+- [ ] Buildings placed at correct locations
+- [ ] Materials vary by building type
+
+---
+
+### Phase 15.3: POI Geometry (REQ-GEO-04)
+**Priority**: P2 | **Est. Effort**: 1 day
+**Plans:** 1 plan
+
+**Dependencies:**
+- Depends on: 15.0
+- Enables: 15.5
+- Critical Path: No
+
+**Goal**: Place POI markers and placeholder geometry.
+
+**Tasks**:
+- [ ] Create POIGeometryGenerator
+- [ ] Place marker objects at POI locations
+- [ ] Scale markers by importance score
+- [ ] Support custom POI models
+
+**Deliverables**:
+```
+lib/charlotte_digital_twin/geometry/
+├── poi_geometry.py       # POI placement and scaling
+└── poi_models.py         # POI model definitions
+```
+
+**Acceptance Criteria**:
+- [ ] POI markers visible at correct locations
+- [ ] Importance scaling works
+- [ ] Custom models load correctly
+
+---
+
+### Phase 15.4: Scene Assembly (REQ-GEO-05)
+**Priority**: P0 | **Est. Effort**: 1 day
+**Plans:** 1 plan
+
+**Dependencies:**
+- Depends on: 15.0, 15.1, 15.2
+- Enables: User workflows
+- Critical Path: Yes
+
+**Goal**: High-level API to assemble complete Charlotte scenes.
+
+**Tasks**:
+- [ ] Create CharlotteSceneBuilder class
+- [ ] Support area selection (bbox, named areas)
+- [ ] Support detail level configuration
+- [ ] Generate complete scene from single call
+
+**Deliverables**:
+```
+lib/charlotte_digital_twin/geometry/
+├── scene_builder.py      # CharlotteSceneBuilder class
+└── scene_presets.yaml    # Scene templates (downtown, highway, etc.)
+```
+
+**Acceptance Criteria**:
+- [ ] Single call generates complete scene
+- [ ] Scene templates work
+- [ ] Bounding box filtering works
+
+---
+
+### Charlotte Geometry Summary
+
+| Phase | Requirements | Priority | Est. Days | Plans |
+|-------|-------------|----------|-----------|-------|
+| 15.0 | GEO-01 (Coordinates) | P0 | 1 | 1 |
+| 15.1 | GEO-02 (Roads) | P0 | 2 | 1 |
+| 15.2 | GEO-03 (Buildings) | P1 | 1 | 1 |
+| 15.3 | GEO-04 (POIs) | P2 | 1 | 1 |
+| 15.4 | GEO-05 (Assembly) | P0 | 1 | 1 |
+
+**Total**: 6 days, 5 plans
+
+**Key Features**:
+- **Coordinate transformation** - WGS84 to Blender world
+- **Road network** - Connected curves with materials
+- **Building extrusion** - 3D from 2D footprints
+- **POI placement** - Markers scaled by importance
+- **Scene assembly** - One-call scene generation
+
+---
+
 ## Future Considerations
 
 ### Not Yet Scheduled
@@ -1101,3 +1624,6 @@ lib/cinematic/projection/
 - Real-time collaboration
 - Physical simulation (springs, dampers)
 - Audio-reactive visualization
+- Real elevation data (OpenTopography API)
+- Traffic flow visualization
+- Weather effects

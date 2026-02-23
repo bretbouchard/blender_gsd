@@ -1,0 +1,216 @@
+# Motion Prediction Settings
+# Configuration for camera trajectory prediction and look-ahead
+#
+# Part of Phase 8.2 - Obstacle Avoidance
+# Beads: blender_gsd-58
+
+# ============================================================================
+# TRAJECTORY PREDICTION
+# ============================================================================
+trajectory_prediction:
+  enabled: true
+
+  # Prediction methods (can be blended)
+  methods:
+    # Velocity-based prediction
+    velocity:
+      enabled: true
+      frames: 30
+
+    # Path-following prediction
+    path:
+      enabled: false
+      path_object: null
+
+    # Animation keyframe prediction
+    animation:
+      enabled: true
+      read_ahead: true
+
+    # Physics simulation prediction
+    physics:
+      enabled: false
+      simulation_steps: 30
+
+  # How to blend multiple predictions
+  blend_method: "weighted"
+  weights:
+    velocity: 0.5
+    animation: 0.5
+
+# ============================================================================
+# LOOK-AHEAD SETTINGS
+# ============================================================================
+look_ahead:
+  enabled: true
+  time_ahead: 0.5  # seconds
+  blend_factor: 0.3
+  apply_to:
+    position: true
+    rotation: true
+    fov: false
+  smoothing: 0.2
+
+  # Corner prediction for anticipating turns
+  corners:
+    enabled: true
+    detect_path_change: true
+    early_turn_factor: 0.3
+
+# ============================================================================
+# SPEED ANTICIPATION
+# ============================================================================
+speed_anticipation:
+  enabled: true
+
+  behaviors:
+    # When subject is accelerating
+    accelerating:
+      distance_multiplier: 1.2
+      fov_increase: 5.0  # degrees
+
+    # When subject is decelerating
+    decelerating:
+      distance_multiplier: 0.9
+      fov_decrease: 3.0  # degrees
+
+    # When subject is turning
+    turning:
+      distance_multiplier: 1.1
+      orbit_bias: "outside"
+
+# ============================================================================
+# CORNER PREDICTION
+# ============================================================================
+corner_prediction:
+  enabled: true
+  detection_window_frames: 5
+  angle_threshold_degrees: 30.0
+  prediction_smoothing: 0.15
+  early_turn_enabled: true
+  early_turn_factor: 0.3
+
+# ============================================================================
+# OSCILLATION PREVENTION
+# ============================================================================
+oscillation_prevention:
+  enabled: true
+  threshold: 0.1  # meters
+  history_size: 10
+  max_direction_changes: 3  # per second
+  damping_strength: 0.5
+  min_damping_factor: 0.3
+  recovery_rate: 0.1  # how fast damping decreases when stable
+
+# ============================================================================
+# PREDICTION MODES (Presets)
+# ============================================================================
+
+# Default balanced prediction
+default:
+  trajectory_prediction:
+    enabled: true
+    blend_method: "weighted"
+  look_ahead:
+    enabled: true
+    time_ahead: 0.5
+    blend_factor: 0.3
+  corner_prediction:
+    enabled: true
+  oscillation_prevention:
+    enabled: true
+
+# Aggressive - longer look-ahead, higher confidence
+aggressive:
+  trajectory_prediction:
+    enabled: true
+    methods:
+      velocity:
+        frames: 60
+    weights:
+      velocity: 0.7
+      animation: 0.3
+  look_ahead:
+    time_ahead: 1.0
+    blend_factor: 0.5
+  corner_prediction:
+    early_turn_factor: 0.5
+
+# Conservative - shorter look-ahead, lower blend
+conservative:
+  trajectory_prediction:
+    enabled: true
+    methods:
+      velocity:
+        frames: 15
+  look_ahead:
+    time_ahead: 0.25
+    blend_factor: 0.15
+  corner_prediction:
+    early_turn_factor: 0.15
+
+# Vehicle - optimized for car/vehicle following
+vehicle:
+  trajectory_prediction:
+    enabled: true
+    methods:
+      velocity:
+        enabled: true
+        frames: 45
+      physics:
+        enabled: true
+        simulation_steps: 20
+    weights:
+      velocity: 0.6
+      physics: 0.4
+  look_ahead:
+    time_ahead: 0.75
+    blend_factor: 0.4
+  corner_prediction:
+    enabled: true
+    angle_threshold_degrees: 20.0
+    early_turn_factor: 0.4
+  speed_anticipation:
+    behaviors:
+      accelerating:
+        distance_multiplier: 1.3
+        fov_increase: 8.0
+      turning:
+        distance_multiplier: 1.2
+        orbit_bias: "outside"
+
+# Character - optimized for character following
+character:
+  trajectory_prediction:
+    enabled: true
+    methods:
+      velocity:
+        enabled: true
+        frames: 20
+      animation:
+        enabled: true
+        read_ahead: true
+    weights:
+      velocity: 0.4
+      animation: 0.6
+  look_ahead:
+    time_ahead: 0.3
+    blend_factor: 0.25
+  corner_prediction:
+    enabled: true
+    angle_threshold_degrees: 45.0
+    early_turn_factor: 0.2
+  oscillation_prevention:
+    threshold: 0.05
+    damping_strength: 0.3
+
+# Disabled - prediction off
+disabled:
+  trajectory_prediction:
+    enabled: false
+  look_ahead:
+    enabled: false
+  corner_prediction:
+    enabled: false
+  speed_anticipation:
+    enabled: false

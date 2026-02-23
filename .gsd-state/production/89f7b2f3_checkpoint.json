@@ -1,0 +1,17 @@
+{
+  "state": {
+    "production_id": "89f7b2f3",
+    "started_at": "2026-02-20T08:03:57.334515",
+    "updated_at": "2026-02-20T08:03:57.334558",
+    "current_phase": "validate",
+    "current_shot": 0,
+    "completed_shots": [],
+    "failed_shots": [],
+    "checkpoint_path": "./.gsd-state/production/89f7b2f3_checkpoint.json",
+    "status": "failed",
+    "progress": 0.0,
+    "error_message": "Validation failed: Character model file not found: assets/hero.blend; HDRI file not found: warehouse_4k"
+  },
+  "config_path": "",
+  "timestamp": "2026-02-20T08:03:57.334573"
+}
