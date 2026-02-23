@@ -1,0 +1,44 @@
+{
+  "version": "1.0",
+  "description": "Sample road networks for L-system testing",
+  "networks": [
+    {
+      "id": "simple_grid",
+      "axiom": "road",
+      "iterations": 2,
+      "seed": 42,
+      "rules": {
+        "road": "road+road"
+      },
+      "expected_nodes": 5,
+      "expected_edges": 4,
+      "validity_checks": {
+        "all_nodes_connected": true,
+        "no_duplicate_edges": true,
+        "valid_geometry": true
+      }
+    },
+    {
+      "id": "branching_roads",
+      "axiom": "road",
+      "iterations": 3,
+      "seed": 100,
+      "rules": {
+        "road": "road+road",
+        "+": "turn[road]turn"
+      },
+      "expected_min_nodes": 4,
+      "validity_checks": {
+        "all_nodes_connected": true
+      }
+    },
+    {
+      "id": "single_segment",
+      "axiom": "road",
+      "iterations": 0,
+      "seed": 1,
+      "expected_nodes": 2,
+      "expected_edges": 1
+    }
+  ]
+}

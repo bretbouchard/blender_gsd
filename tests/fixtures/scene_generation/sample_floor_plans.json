@@ -1,0 +1,46 @@
+{
+  "version": "1.0",
+  "description": "Sample floor plans for BSP solver testing",
+  "floor_plans": [
+    {
+      "id": "simple_5room",
+      "dimensions": {"width": 10.0, "height": 8.0},
+      "room_count": 5,
+      "seed": 42,
+      "expected_rooms": [
+        {"id": "room_0", "type": "living_room", "approx_area": 16.0},
+        {"id": "room_1", "type": "kitchen", "approx_area": 12.0},
+        {"id": "room_2", "type": "bedroom", "approx_area": 14.0},
+        {"id": "room_3", "type": "bathroom", "approx_area": 8.0},
+        {"id": "room_4", "type": "hallway", "approx_area": 10.0}
+      ],
+      "expected_connections": 4,
+      "validity_checks": {
+        "all_rooms_connected": true,
+        "no_overlapping_rooms": true,
+        "min_room_area": 6.0
+      }
+    },
+    {
+      "id": "large_office",
+      "dimensions": {"width": 20.0, "height": 15.0},
+      "room_count": 8,
+      "seed": 123,
+      "expected_rooms": 8,
+      "expected_connections": 7,
+      "validity_checks": {
+        "all_rooms_connected": true,
+        "no_overlapping_rooms": true,
+        "min_room_area": 10.0
+      }
+    },
+    {
+      "id": "single_room",
+      "dimensions": {"width": 5.0, "height": 5.0},
+      "room_count": 1,
+      "seed": 1,
+      "expected_rooms": 1,
+      "expected_connections": 0
+    }
+  ]
+}
