@@ -12,6 +12,20 @@ Example:
     ...     "/Volumes/Storage/3d/kitbash/converted_assets/Aftermath",
     ... )
 
+Asset Library Usage:
+    >>> from lib.assets import AssetLibrary, KitBashIndexer
+    >>> library = AssetLibrary()
+    >>> library.add_search_path("~/assets")
+    >>> results = library.search("chair", category="furniture")
+    >>>
+    >>> indexer = KitBashIndexer()
+    >>> pack = indexer.index_pack("/path/to/KitBash3D.blend")
+
+Asset Extraction Usage:
+    >>> from lib.assets import AssetExtractor
+    >>> extractor = AssetExtractor()
+    >>> obj = extractor.append_object("/path/to/file.blend", "Cube")
+
 Standalone usage:
     # Run from command line:
     blender --background --python - <<EOF
@@ -32,6 +46,20 @@ Standalone usage:
 from .converter import KitBashConverter, ConversionResult, PackInfo
 from .material_builder import PBRMaterialBuilder, TextureSet, MaterialBuildResult
 
+# Asset library and indexing
+from .asset_library import (
+    AssetLibrary,
+    KitBashIndexer,
+    AssetExtractor,
+    AssetType,
+    AssetSource,
+    AssetMetadata,
+    KitBashPack,
+    create_asset_library,
+    create_kitbash_indexer,
+    create_asset_extractor,
+)
+
 # Optional: Register Blender operators if running in Blender
 try:
     from .operators import register, unregister
@@ -42,12 +70,26 @@ except ImportError:
     unregister = None
 
 __all__ = [
+    # Converter
     "KitBashConverter",
     "ConversionResult",
     "PackInfo",
+    # Material builder
     "PBRMaterialBuilder",
     "TextureSet",
     "MaterialBuildResult",
+    # Asset library
+    "AssetLibrary",
+    "KitBashIndexer",
+    "AssetExtractor",
+    "AssetType",
+    "AssetSource",
+    "AssetMetadata",
+    "KitBashPack",
+    "create_asset_library",
+    "create_kitbash_indexer",
+    "create_asset_extractor",
+    # Operators
     "register",
     "unregister",
 ]

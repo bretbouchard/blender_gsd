@@ -1,0 +1,3573 @@
+MSG-1998 Building List
+======================================================================
+
+Name: 10 Hudson Yards
+  Current Height: 272.8m
+  Width: 93.7m
+  Depth: 76.6m
+  Collection: Buildings
+
+Name: 100 West 37th Street
+  Current Height: 0.0m
+  Width: 13.7m
+  Depth: 27.1m
+  Collection: Buildings
+
+Name: 1001 Sixth Avenue
+  Current Height: 20.0m
+  Width: 40.6m
+  Depth: 40.2m
+  Collection: Buildings
+
+Name: 12 Penn Plaza
+  Current Height: 21.0m
+  Width: 36.0m
+  Depth: 38.0m
+  Collection: Buildings
+
+Name: 1400 Broadway
+  Current Height: 20.0m
+  Width: 71.0m
+  Depth: 68.1m
+  Collection: Buildings
+
+Name: 1407 Broadway
+  Current Height: 20.0m
+  Width: 91.8m
+  Depth: 102.5m
+  Collection: Buildings
+
+Name: 15 Penn Plaza
+  Current Height: 0.0m
+  Width: 49.7m
+  Depth: 77.2m
+  Collection: Buildings
+
+Name: 30 Hudson Yards
+  Current Height: 395.0m
+  Width: 116.9m
+  Depth: 97.1m
+  Collection: Buildings
+
+Name: 34th Street–Herald Square
+  Current Height: 20.0m
+  Width: 217.1m
+  Depth: 381.6m
+  Collection: Buildings
+
+Name: 50 Hudson Yards
+  Current Height: 308.2m
+  Width: 120.6m
+  Depth: 99.4m
+  Collection: Buildings
+
+Name: A24
+  Current Height: 66.0m
+  Width: 42.7m
+  Depth: 45.6m
+  Collection: Buildings
+
+Name: Abington House
+  Current Height: 20.0m
+  Width: 56.8m
+  Depth: 75.2m
+  Collection: Buildings
+
+Name: Alice's Garden
+  Current Height: 0.0m
+  Width: 19.6m
+  Depth: 43.9m
+  Collection: Buildings
+
+Name: Alumni Hall
+  Current Height: 58.0m
+  Width: 32.2m
+  Depth: 41.2m
+  Collection: Buildings
+
+Name: Archer Hotel
+  Current Height: 70.9m
+  Width: 30.4m
+  Depth: 34.7m
+  Collection: Buildings
+
+Name: Avenida
+  Current Height: 4.4m
+  Width: 19.8m
+  Depth: 16.1m
+  Collection: Buildings
+
+Name: Barbour Hotel
+  Current Height: 28.7m
+  Width: 23.1m
+  Depth: 29.2m
+  Collection: Buildings
+
+Name: Best Western
+  Current Height: 50.0m
+  Width: 16.8m
+  Depth: 19.5m
+  Collection: Buildings
+
+Name: Bryant Park
+  Current Height: 0.0m
+  Width: 213.2m
+  Depth: 199.9m
+  Collection: Buildings
+
+Name: Bryant Park 7
+  Current Height: 40.0m
+  Width: 51.3m
+  Depth: 62.7m
+  Collection: Buildings
+
+Name: Bryant Park Tower
+  Current Height: 20.0m
+  Width: 54.3m
+  Depth: 65.8m
+  Collection: Buildings
+
+Name: Business and Liberal Arts Center
+  Current Height: 20.0m
+  Width: 55.7m
+  Depth: 52.8m
+  Collection: Buildings
+
+Name: Cafe R
+  Current Height: 0.0m
+  Width: 35.1m
+  Depth: 56.5m
+  Collection: Buildings
+
+Name: Cambria Hotel & Suites
+  Current Height: 65.0m
+  Width: 10.3m
+  Depth: 18.9m
+  Collection: Buildings
+
+Name: Chelsea District
+  Current Height: 0.0m
+  Width: 1763.7m
+  Depth: 2163.1m
+  Collection: Buildings
+
+Name: Chelsea Houses
+  Current Height: 0.0m
+  Width: 32.4m
+  Depth: 60.8m
+  Collection: Buildings
+
+Name: Chelsea Park
+  Current Height: 0.0m
+  Width: 240.4m
+  Depth: 165.8m
+  Collection: Buildings
+
+Name: Chelsea Park Playground
+  Current Height: 0.0m
+  Width: 39.0m
+  Depth: 31.1m
+  Collection: Buildings
+
+Name: Chelsea Television Studios
+  Current Height: 17.2m
+  Width: 67.8m
+  Depth: 55.2m
+  Collection: Buildings
+
+Name: Church of Saint Francis of Assisi
+  Current Height: 17.8m
+  Width: 43.6m
+  Depth: 39.8m
+  Collection: Buildings
+
+Name: Church of St. John the Baptist
+  Current Height: 22.4m
+  Width: 39.4m
+  Depth: 48.6m
+  Collection: Buildings
+
+Name: Church of The Holy Innocents
+  Current Height: 25.4m
+  Width: 33.4m
+  Depth: 37.3m
+  Collection: Buildings
+
+Name: Church of the Holy Apostles
+  Current Height: 20.0m
+  Width: 37.4m
+  Depth: 41.8m
+  Collection: Buildings
+
+Name: CityTouch Licensed Massage Therapy
+  Current Height: 29.1m
+  Width: 19.9m
+  Depth: 30.2m
+  Collection: Buildings
+
+Name: Claytor-Scannell Control Center
+  Current Height: 26.0m
+  Width: 44.3m
+  Depth: 37.7m
+  Collection: Buildings
+
+Name: Coed Hall
+  Current Height: 40.8m
+  Width: 42.1m
+  Depth: 31.0m
+  Collection: Buildings
+
+Name: Courtyard Marriot
+  Current Height: 20.0m
+  Width: 38.4m
+  Depth: 35.1m
+  Collection: Buildings
+
+Name: Crocs
+  Current Height: 12.1m
+  Width: 24.4m
+  Depth: 31.9m
+  Collection: Buildings
+
+Name: Crosswalk_IX_10th Avenue.002_West 28th Street.001_+1
+  Current Height: 0.0m
+  Width: 10.5m
+  Depth: 15.7m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_10th Avenue.002_West 28th Street.001_-1
+  Current Height: 0.0m
+  Width: 10.5m
+  Depth: 15.7m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_10th Avenue.002_West 28th Street.002_+1
+  Current Height: 0.0m
+  Width: 10.5m
+  Depth: 15.7m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_10th Avenue.002_West 28th Street.002_-1
+  Current Height: 0.0m
+  Width: 10.5m
+  Depth: 15.7m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_10th Avenue.002_West 30th Street.001_+1
+  Current Height: 0.0m
+  Width: 15.8m
+  Depth: 10.4m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_10th Avenue.002_West 30th Street.001_-1
+  Current Height: 0.0m
+  Width: 15.8m
+  Depth: 10.4m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_10th Avenue.002_West 30th Street.002_+1
+  Current Height: 0.0m
+  Width: 10.6m
+  Depth: 15.7m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_10th Avenue.002_West 30th Street.002_-1
+  Current Height: 0.0m
+  Width: 10.6m
+  Depth: 15.7m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_10th Avenue.002_West 30th Street.003_+1
+  Current Height: 0.0m
+  Width: 10.6m
+  Depth: 15.7m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_10th Avenue.002_West 30th Street.003_-1
+  Current Height: 0.0m
+  Width: 10.6m
+  Depth: 15.7m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_10th Avenue.002_West 30th Street.004_+1
+  Current Height: 0.0m
+  Width: 15.8m
+  Depth: 10.4m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_10th Avenue.002_West 30th Street.004_-1
+  Current Height: 0.0m
+  Width: 15.8m
+  Depth: 10.4m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_10th Avenue.002_West 31st Street.001_+1
+  Current Height: 0.0m
+  Width: 15.7m
+  Depth: 10.5m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_10th Avenue.002_West 31st Street.001_-1
+  Current Height: 0.0m
+  Width: 15.7m
+  Depth: 10.5m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_10th Avenue.002_West 31st Street.002_+1
+  Current Height: 0.0m
+  Width: 15.7m
+  Depth: 10.5m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_10th Avenue.002_West 31st Street.002_-1
+  Current Height: 0.0m
+  Width: 15.7m
+  Depth: 10.5m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_28th Street.002_West 28th Street.001_+1
+  Current Height: 0.0m
+  Width: 11.5m
+  Depth: 17.0m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_28th Street.002_West 28th Street.001_-1
+  Current Height: 0.0m
+  Width: 11.5m
+  Depth: 17.0m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_28th Street.002_West 28th Street.002_+1
+  Current Height: 0.0m
+  Width: 11.3m
+  Depth: 17.1m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_28th Street.002_West 28th Street.002_-1
+  Current Height: 0.0m
+  Width: 11.3m
+  Depth: 17.1m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_28th Street.002_West 28th Street.003_+1
+  Current Height: 0.0m
+  Width: 11.3m
+  Depth: 17.1m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_28th Street.002_West 28th Street.003_-1
+  Current Height: 0.0m
+  Width: 11.3m
+  Depth: 17.1m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_28th Street.002_West 28th Street.004_+1
+  Current Height: 0.0m
+  Width: 11.5m
+  Depth: 17.0m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_28th Street.002_West 28th Street.004_-1
+  Current Height: 0.0m
+  Width: 11.5m
+  Depth: 17.0m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_28th Street.002_West 29th Street.001_+1
+  Current Height: 0.0m
+  Width: 11.4m
+  Depth: 17.1m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_28th Street.002_West 29th Street.001_-1
+  Current Height: 0.0m
+  Width: 11.4m
+  Depth: 17.1m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_28th Street.002_West 29th Street.002_+1
+  Current Height: 0.0m
+  Width: 11.4m
+  Depth: 17.1m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_28th Street.002_West 29th Street.002_-1
+  Current Height: 0.0m
+  Width: 11.4m
+  Depth: 17.1m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_28th Street.002_West 29th Street.003_+1
+  Current Height: 0.0m
+  Width: 11.4m
+  Depth: 17.1m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_28th Street.002_West 29th Street.003_-1
+  Current Height: 0.0m
+  Width: 11.4m
+  Depth: 17.1m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_28th Street.002_West 29th Street.004_+1
+  Current Height: 0.0m
+  Width: 11.4m
+  Depth: 17.1m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_28th Street.002_West 29th Street.004_-1
+  Current Height: 0.0m
+  Width: 11.4m
+  Depth: 17.1m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_6th Avenue.002_West 31st Street.001_+1
+  Current Height: 0.0m
+  Width: 15.7m
+  Depth: 10.6m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_6th Avenue.002_West 31st Street.001_-1
+  Current Height: 0.0m
+  Width: 15.7m
+  Depth: 10.6m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_6th Avenue.002_West 31st Street.002_+1
+  Current Height: 0.0m
+  Width: 15.7m
+  Depth: 10.6m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_6th Avenue.002_West 31st Street.002_-1
+  Current Height: 0.0m
+  Width: 15.7m
+  Depth: 10.6m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_6th Avenue.002_West 34th Street.001_+1
+  Current Height: 0.0m
+  Width: 10.6m
+  Depth: 15.7m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_6th Avenue.002_West 34th Street.001_-1
+  Current Height: 0.0m
+  Width: 10.6m
+  Depth: 15.7m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_6th Avenue.002_West 34th Street.002_+1
+  Current Height: 0.0m
+  Width: 10.6m
+  Depth: 15.7m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_6th Avenue.002_West 34th Street.002_-1
+  Current Height: 0.0m
+  Width: 10.6m
+  Depth: 15.7m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_6th Avenue.002_West 35th Street.001_+1
+  Current Height: 0.0m
+  Width: 10.6m
+  Depth: 15.7m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_6th Avenue.002_West 35th Street.001_-1
+  Current Height: 0.0m
+  Width: 10.6m
+  Depth: 15.7m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_6th Avenue.002_West 35th Street.002_+1
+  Current Height: 0.0m
+  Width: 15.7m
+  Depth: 10.7m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_6th Avenue.002_West 35th Street.002_-1
+  Current Height: 0.0m
+  Width: 15.7m
+  Depth: 10.7m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_6th Avenue.002_West 35th Street.003_+1
+  Current Height: 0.0m
+  Width: 15.0m
+  Depth: 12.0m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_6th Avenue.002_West 35th Street.003_-1
+  Current Height: 0.0m
+  Width: 15.0m
+  Depth: 12.0m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_6th Avenue.002_West 35th Street.004_+1
+  Current Height: 0.0m
+  Width: 15.7m
+  Depth: 10.7m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_6th Avenue.002_West 35th Street.004_-1
+  Current Height: 0.0m
+  Width: 15.7m
+  Depth: 10.7m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_6th Avenue.002_West 35th Street.005_+1
+  Current Height: 0.0m
+  Width: 10.6m
+  Depth: 15.7m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_6th Avenue.002_West 35th Street.005_-1
+  Current Height: 0.0m
+  Width: 10.6m
+  Depth: 15.7m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_6th Avenue.002_West 35th Street.006_+1
+  Current Height: 0.0m
+  Width: 15.0m
+  Depth: 12.0m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_6th Avenue.002_West 35th Street.006_-1
+  Current Height: 0.0m
+  Width: 15.0m
+  Depth: 12.0m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_6th Avenue.002_West 37th Street.001_+1
+  Current Height: 0.0m
+  Width: 10.8m
+  Depth: 15.6m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_6th Avenue.002_West 37th Street.001_-1
+  Current Height: 0.0m
+  Width: 10.8m
+  Depth: 15.6m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_6th Avenue.002_West 37th Street.002_+1
+  Current Height: 0.0m
+  Width: 10.8m
+  Depth: 15.6m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_6th Avenue.002_West 37th Street.002_-1
+  Current Height: 0.0m
+  Width: 10.8m
+  Depth: 15.6m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_6th Avenue.002_West 39th Street.001_+1
+  Current Height: 0.0m
+  Width: 10.8m
+  Depth: 15.6m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_6th Avenue.002_West 39th Street.001_-1
+  Current Height: 0.0m
+  Width: 10.8m
+  Depth: 15.6m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_6th Avenue.002_West 39th Street.002_+1
+  Current Height: 0.0m
+  Width: 10.8m
+  Depth: 15.6m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_6th Avenue.002_West 39th Street.002_-1
+  Current Height: 0.0m
+  Width: 10.8m
+  Depth: 15.6m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_6th Avenue.002_West 40th Street.001_+1
+  Current Height: 0.0m
+  Width: 10.6m
+  Depth: 15.7m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_6th Avenue.002_West 40th Street.001_-1
+  Current Height: 0.0m
+  Width: 10.6m
+  Depth: 15.7m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_6th Avenue.002_West 40th Street.002_+1
+  Current Height: 0.0m
+  Width: 10.6m
+  Depth: 15.7m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_6th Avenue.002_West 40th Street.002_-1
+  Current Height: 0.0m
+  Width: 10.6m
+  Depth: 15.7m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_7th Avenue.002_West 35th Street.001_+1
+  Current Height: 0.0m
+  Width: 15.7m
+  Depth: 10.6m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_7th Avenue.002_West 35th Street.001_-1
+  Current Height: 0.0m
+  Width: 15.7m
+  Depth: 10.6m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_7th Avenue.002_West 35th Street.002_+1
+  Current Height: 0.0m
+  Width: 15.7m
+  Depth: 10.6m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_7th Avenue.002_West 35th Street.002_-1
+  Current Height: 0.0m
+  Width: 15.7m
+  Depth: 10.6m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_7th Avenue.002_West 37th Street.001_+1
+  Current Height: 0.0m
+  Width: 15.7m
+  Depth: 10.6m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_7th Avenue.002_West 37th Street.001_-1
+  Current Height: 0.0m
+  Width: 15.7m
+  Depth: 10.6m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_7th Avenue.002_West 37th Street.002_+1
+  Current Height: 0.0m
+  Width: 15.7m
+  Depth: 10.6m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_7th Avenue.002_West 37th Street.002_-1
+  Current Height: 0.0m
+  Width: 15.7m
+  Depth: 10.6m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_7th Avenue.002_West 39th Street.001_+1
+  Current Height: 0.0m
+  Width: 10.3m
+  Depth: 15.8m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_7th Avenue.002_West 39th Street.001_-1
+  Current Height: 0.0m
+  Width: 10.3m
+  Depth: 15.8m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_7th Avenue.002_West 39th Street.002_+1
+  Current Height: 0.0m
+  Width: 10.3m
+  Depth: 15.8m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_7th Avenue.002_West 39th Street.002_-1
+  Current Height: 0.0m
+  Width: 10.3m
+  Depth: 15.8m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_8th Avenue.002_West 25th Street.001_+1
+  Current Height: 0.0m
+  Width: 15.7m
+  Depth: 10.6m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_8th Avenue.002_West 25th Street.001_-1
+  Current Height: 0.0m
+  Width: 15.7m
+  Depth: 10.6m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_8th Avenue.002_West 25th Street.002_+1
+  Current Height: 0.0m
+  Width: 15.7m
+  Depth: 10.6m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_8th Avenue.002_West 25th Street.002_-1
+  Current Height: 0.0m
+  Width: 15.7m
+  Depth: 10.6m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_8th Avenue.002_West 26th Street.001_+1
+  Current Height: 0.0m
+  Width: 11.0m
+  Depth: 15.5m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_8th Avenue.002_West 26th Street.001_-1
+  Current Height: 0.0m
+  Width: 11.0m
+  Depth: 15.5m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_8th Avenue.002_West 26th Street.002_+1
+  Current Height: 0.0m
+  Width: 11.0m
+  Depth: 15.5m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_8th Avenue.002_West 26th Street.002_-1
+  Current Height: 0.0m
+  Width: 11.0m
+  Depth: 15.5m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_8th Avenue.002_West 27th Street.001_+1
+  Current Height: 0.0m
+  Width: 11.5m
+  Depth: 15.3m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_8th Avenue.002_West 27th Street.001_-1
+  Current Height: 0.0m
+  Width: 11.5m
+  Depth: 15.3m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_8th Avenue.002_West 27th Street.002_+1
+  Current Height: 0.0m
+  Width: 11.5m
+  Depth: 15.3m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_8th Avenue.002_West 27th Street.002_-1
+  Current Height: 0.0m
+  Width: 11.5m
+  Depth: 15.3m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_8th Avenue.002_West 28th Street.001_+1
+  Current Height: 0.0m
+  Width: 15.7m
+  Depth: 10.7m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_8th Avenue.002_West 28th Street.001_-1
+  Current Height: 0.0m
+  Width: 15.7m
+  Depth: 10.7m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_8th Avenue.002_West 28th Street.002_+1
+  Current Height: 0.0m
+  Width: 15.7m
+  Depth: 10.7m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_8th Avenue.002_West 28th Street.002_-1
+  Current Height: 0.0m
+  Width: 15.7m
+  Depth: 10.7m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_8th Avenue.002_West 29th Street.001_+1
+  Current Height: 0.0m
+  Width: 15.7m
+  Depth: 10.6m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_8th Avenue.002_West 29th Street.001_-1
+  Current Height: 0.0m
+  Width: 15.7m
+  Depth: 10.6m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_8th Avenue.002_West 29th Street.002_+1
+  Current Height: 0.0m
+  Width: 15.7m
+  Depth: 10.6m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_8th Avenue.002_West 29th Street.002_-1
+  Current Height: 0.0m
+  Width: 15.7m
+  Depth: 10.6m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_8th Avenue.002_West 30th Street.001_+1
+  Current Height: 0.0m
+  Width: 10.6m
+  Depth: 15.7m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_8th Avenue.002_West 30th Street.001_-1
+  Current Height: 0.0m
+  Width: 10.6m
+  Depth: 15.7m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_8th Avenue.002_West 30th Street.002_+1
+  Current Height: 0.0m
+  Width: 10.6m
+  Depth: 15.7m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_8th Avenue.002_West 30th Street.002_-1
+  Current Height: 0.0m
+  Width: 10.6m
+  Depth: 15.7m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_8th Avenue.002_West 31st Street.001_+1
+  Current Height: 0.0m
+  Width: 15.7m
+  Depth: 10.6m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_8th Avenue.002_West 31st Street.001_-1
+  Current Height: 0.0m
+  Width: 15.7m
+  Depth: 10.6m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_8th Avenue.002_West 31st Street.002_+1
+  Current Height: 0.0m
+  Width: 15.7m
+  Depth: 10.6m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_8th Avenue.002_West 31st Street.002_-1
+  Current Height: 0.0m
+  Width: 15.7m
+  Depth: 10.6m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_8th Avenue.002_West 33rd Street.001_+1
+  Current Height: 0.0m
+  Width: 15.7m
+  Depth: 10.6m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_8th Avenue.002_West 33rd Street.001_-1
+  Current Height: 0.0m
+  Width: 15.7m
+  Depth: 10.6m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_8th Avenue.002_West 33rd Street.002_+1
+  Current Height: 0.0m
+  Width: 15.7m
+  Depth: 10.6m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_8th Avenue.002_West 33rd Street.002_-1
+  Current Height: 0.0m
+  Width: 15.7m
+  Depth: 10.6m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_8th Avenue.002_West 34th Street.001_+1
+  Current Height: 0.0m
+  Width: 15.7m
+  Depth: 10.5m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_8th Avenue.002_West 34th Street.001_-1
+  Current Height: 0.0m
+  Width: 15.7m
+  Depth: 10.5m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_8th Avenue.002_West 34th Street.002_+1
+  Current Height: 0.0m
+  Width: 15.7m
+  Depth: 10.5m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_8th Avenue.002_West 34th Street.002_-1
+  Current Height: 0.0m
+  Width: 15.7m
+  Depth: 10.5m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_8th Avenue.002_West 35th Street.001_+1
+  Current Height: 0.0m
+  Width: 15.7m
+  Depth: 10.6m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_8th Avenue.002_West 35th Street.001_-1
+  Current Height: 0.0m
+  Width: 15.7m
+  Depth: 10.6m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_8th Avenue.002_West 35th Street.002_+1
+  Current Height: 0.0m
+  Width: 15.7m
+  Depth: 10.6m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_8th Avenue.002_West 35th Street.002_-1
+  Current Height: 0.0m
+  Width: 15.7m
+  Depth: 10.6m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_8th Avenue.002_West 36th Street.001_+1
+  Current Height: 0.0m
+  Width: 15.7m
+  Depth: 10.6m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_8th Avenue.002_West 36th Street.001_-1
+  Current Height: 0.0m
+  Width: 15.7m
+  Depth: 10.6m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_8th Avenue.002_West 36th Street.002_+1
+  Current Height: 0.0m
+  Width: 15.7m
+  Depth: 10.6m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_8th Avenue.002_West 36th Street.002_-1
+  Current Height: 0.0m
+  Width: 15.7m
+  Depth: 10.6m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_8th Avenue.002_West 37th Street.001_+1
+  Current Height: 0.0m
+  Width: 15.7m
+  Depth: 10.5m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_8th Avenue.002_West 37th Street.001_-1
+  Current Height: 0.0m
+  Width: 15.7m
+  Depth: 10.5m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_8th Avenue.002_West 37th Street.002_+1
+  Current Height: 0.0m
+  Width: 15.7m
+  Depth: 10.5m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_8th Avenue.002_West 37th Street.002_-1
+  Current Height: 0.0m
+  Width: 15.7m
+  Depth: 10.5m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_8th Avenue.002_West 38th Street.001_+1
+  Current Height: 0.0m
+  Width: 10.5m
+  Depth: 15.7m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_8th Avenue.002_West 38th Street.001_-1
+  Current Height: 0.0m
+  Width: 10.5m
+  Depth: 15.7m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_8th Avenue.002_West 38th Street.002_+1
+  Current Height: 0.0m
+  Width: 10.5m
+  Depth: 15.7m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_8th Avenue.002_West 38th Street.002_-1
+  Current Height: 0.0m
+  Width: 10.5m
+  Depth: 15.7m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_9th Avenue.002_West 25th Street.001_+1
+  Current Height: 0.0m
+  Width: 11.6m
+  Depth: 15.3m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_9th Avenue.002_West 25th Street.001_-1
+  Current Height: 0.0m
+  Width: 11.6m
+  Depth: 15.3m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_9th Avenue.002_West 25th Street.002_+1
+  Current Height: 0.0m
+  Width: 11.6m
+  Depth: 15.3m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_9th Avenue.002_West 25th Street.002_-1
+  Current Height: 0.0m
+  Width: 11.6m
+  Depth: 15.3m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_9th Avenue.002_West 26th Street.001_+1
+  Current Height: 0.0m
+  Width: 9.7m
+  Depth: 16.0m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_9th Avenue.002_West 26th Street.001_-1
+  Current Height: 0.0m
+  Width: 9.7m
+  Depth: 16.0m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_9th Avenue.002_West 26th Street.002_+1
+  Current Height: 0.0m
+  Width: 9.7m
+  Depth: 16.0m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_9th Avenue.002_West 26th Street.002_-1
+  Current Height: 0.0m
+  Width: 9.7m
+  Depth: 16.0m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_9th Avenue.002_West 27th.001_+1
+  Current Height: 0.0m
+  Width: 15.7m
+  Depth: 10.5m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_9th Avenue.002_West 27th.001_-1
+  Current Height: 0.0m
+  Width: 15.7m
+  Depth: 10.5m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_9th Avenue.002_West 27th.002_+1
+  Current Height: 0.0m
+  Width: 15.7m
+  Depth: 10.5m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_9th Avenue.002_West 27th.002_-1
+  Current Height: 0.0m
+  Width: 15.7m
+  Depth: 10.5m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_9th Avenue.002_West 28th Street.001_+1
+  Current Height: 0.0m
+  Width: 15.7m
+  Depth: 10.5m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_9th Avenue.002_West 28th Street.001_-1
+  Current Height: 0.0m
+  Width: 15.7m
+  Depth: 10.5m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_9th Avenue.002_West 28th Street.002_+1
+  Current Height: 0.0m
+  Width: 9.5m
+  Depth: 16.0m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_9th Avenue.002_West 28th Street.002_-1
+  Current Height: 0.0m
+  Width: 9.5m
+  Depth: 16.0m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_9th Avenue.002_West 28th Street.003_+1
+  Current Height: 0.0m
+  Width: 9.5m
+  Depth: 16.0m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_9th Avenue.002_West 28th Street.003_-1
+  Current Height: 0.0m
+  Width: 9.5m
+  Depth: 16.0m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_9th Avenue.002_West 28th Street.004_+1
+  Current Height: 0.0m
+  Width: 15.7m
+  Depth: 10.5m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_9th Avenue.002_West 28th Street.004_-1
+  Current Height: 0.0m
+  Width: 15.7m
+  Depth: 10.5m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_9th Avenue.002_West 30th Street.001_+1
+  Current Height: 0.0m
+  Width: 10.7m
+  Depth: 15.7m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_9th Avenue.002_West 30th Street.001_-1
+  Current Height: 0.0m
+  Width: 10.7m
+  Depth: 15.7m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_9th Avenue.002_West 30th Street.002_+1
+  Current Height: 0.0m
+  Width: 10.7m
+  Depth: 15.7m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_9th Avenue.002_West 30th Street.002_-1
+  Current Height: 0.0m
+  Width: 10.7m
+  Depth: 15.7m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_9th Avenue.002_West 31st Street.001_+1
+  Current Height: 0.0m
+  Width: 15.9m
+  Depth: 9.9m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_9th Avenue.002_West 31st Street.001_-1
+  Current Height: 0.0m
+  Width: 15.9m
+  Depth: 9.9m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_9th Avenue.002_West 31st Street.002_+1
+  Current Height: 0.0m
+  Width: 15.9m
+  Depth: 9.9m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_9th Avenue.002_West 31st Street.002_-1
+  Current Height: 0.0m
+  Width: 15.9m
+  Depth: 9.9m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_9th Avenue.002_West 34th Street.001_+1
+  Current Height: 0.0m
+  Width: 15.8m
+  Depth: 10.4m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_9th Avenue.002_West 34th Street.001_-1
+  Current Height: 0.0m
+  Width: 15.8m
+  Depth: 10.4m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_9th Avenue.002_West 34th Street.002_+1
+  Current Height: 0.0m
+  Width: 15.8m
+  Depth: 10.4m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_9th Avenue.002_West 34th Street.002_-1
+  Current Height: 0.0m
+  Width: 15.8m
+  Depth: 10.4m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_9th Avenue.002_West 35th Street.001_+1
+  Current Height: 0.0m
+  Width: 15.7m
+  Depth: 10.6m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_9th Avenue.002_West 35th Street.001_-1
+  Current Height: 0.0m
+  Width: 15.7m
+  Depth: 10.6m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_9th Avenue.002_West 35th Street.002_+1
+  Current Height: 0.0m
+  Width: 15.7m
+  Depth: 10.6m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_9th Avenue.002_West 35th Street.002_-1
+  Current Height: 0.0m
+  Width: 15.7m
+  Depth: 10.6m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_Broadway.002_West 37th Street.001_+1
+  Current Height: 0.0m
+  Width: 11.5m
+  Depth: 17.0m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_Broadway.002_West 37th Street.001_-1
+  Current Height: 0.0m
+  Width: 11.5m
+  Depth: 17.0m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_Broadway.002_West 37th Street.002_+1
+  Current Height: 0.0m
+  Width: 11.4m
+  Depth: 17.1m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_Broadway.002_West 37th Street.002_-1
+  Current Height: 0.0m
+  Width: 11.4m
+  Depth: 17.1m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_Broadway.002_West 37th Street.003_+1
+  Current Height: 0.0m
+  Width: 11.4m
+  Depth: 17.1m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_Broadway.002_West 37th Street.003_-1
+  Current Height: 0.0m
+  Width: 11.4m
+  Depth: 17.1m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_Broadway.002_West 37th Street.004_+1
+  Current Height: 0.0m
+  Width: 11.5m
+  Depth: 17.0m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_Broadway.002_West 37th Street.004_-1
+  Current Height: 0.0m
+  Width: 11.5m
+  Depth: 17.0m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_Broadway.002_West 39th Street.001_+1
+  Current Height: 0.0m
+  Width: 11.3m
+  Depth: 17.1m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_Broadway.002_West 39th Street.001_-1
+  Current Height: 0.0m
+  Width: 11.3m
+  Depth: 17.1m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_Broadway.002_West 39th Street.002_+1
+  Current Height: 0.0m
+  Width: 11.3m
+  Depth: 17.1m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_Broadway.002_West 39th Street.002_-1
+  Current Height: 0.0m
+  Width: 11.3m
+  Depth: 17.1m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_Broadway.002_West 39th Street.003_+1
+  Current Height: 0.0m
+  Width: 11.3m
+  Depth: 17.1m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_Broadway.002_West 39th Street.003_-1
+  Current Height: 0.0m
+  Width: 11.3m
+  Depth: 17.1m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_Broadway.002_West 39th Street.004_+1
+  Current Height: 0.0m
+  Width: 11.3m
+  Depth: 17.1m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_Broadway.002_West 39th Street.004_-1
+  Current Height: 0.0m
+  Width: 11.3m
+  Depth: 17.1m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_Dyer Avenue.002_West 30th Street.001_+1
+  Current Height: 0.0m
+  Width: 16.7m
+  Depth: 12.2m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_Dyer Avenue.002_West 30th Street.001_-1
+  Current Height: 0.0m
+  Width: 16.7m
+  Depth: 12.2m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_Dyer Avenue.002_West 30th Street.002_+1
+  Current Height: 0.0m
+  Width: 7.1m
+  Depth: 17.9m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_Dyer Avenue.002_West 30th Street.002_-1
+  Current Height: 0.0m
+  Width: 7.1m
+  Depth: 17.9m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_Dyer Avenue.002_West 30th Street.003_+1
+  Current Height: 0.0m
+  Width: 11.6m
+  Depth: 17.0m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_Dyer Avenue.002_West 30th Street.003_-1
+  Current Height: 0.0m
+  Width: 11.6m
+  Depth: 17.0m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_Dyer Avenue.002_West 30th Street.004_+1
+  Current Height: 0.0m
+  Width: 17.8m
+  Depth: 8.9m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_Dyer Avenue.002_West 30th Street.004_-1
+  Current Height: 0.0m
+  Width: 17.8m
+  Depth: 8.9m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_Dyer Avenue.002_West 30th Street.005_+1
+  Current Height: 0.0m
+  Width: 7.1m
+  Depth: 17.9m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_Dyer Avenue.002_West 30th Street.005_-1
+  Current Height: 0.0m
+  Width: 7.1m
+  Depth: 17.9m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_Dyer Avenue.002_West 30th Street.006_+1
+  Current Height: 0.0m
+  Width: 16.7m
+  Depth: 12.2m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_Dyer Avenue.002_West 30th Street.006_-1
+  Current Height: 0.0m
+  Width: 16.7m
+  Depth: 12.2m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_Dyer Avenue.002_West 30th Street.007_+1
+  Current Height: 0.0m
+  Width: 11.6m
+  Depth: 17.0m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_Dyer Avenue.002_West 30th Street.007_-1
+  Current Height: 0.0m
+  Width: 11.6m
+  Depth: 17.0m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_Dyer Avenue.002_West 30th Street.008_+1
+  Current Height: 0.0m
+  Width: 17.8m
+  Depth: 8.9m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_Dyer Avenue.002_West 30th Street.008_-1
+  Current Height: 0.0m
+  Width: 17.8m
+  Depth: 8.9m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_Dyer Avenue.002_West 31st Street.001_+1
+  Current Height: 0.0m
+  Width: 11.3m
+  Depth: 17.1m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_Dyer Avenue.002_West 31st Street.001_-1
+  Current Height: 0.0m
+  Width: 11.3m
+  Depth: 17.1m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_Dyer Avenue.002_West 31st Street.002_+1
+  Current Height: 0.0m
+  Width: 17.5m
+  Depth: 10.3m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_Dyer Avenue.002_West 31st Street.002_-1
+  Current Height: 0.0m
+  Width: 17.5m
+  Depth: 10.3m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_Dyer Avenue.002_West 31st Street.003_+1
+  Current Height: 0.0m
+  Width: 11.3m
+  Depth: 17.1m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_Dyer Avenue.002_West 31st Street.003_-1
+  Current Height: 0.0m
+  Width: 11.3m
+  Depth: 17.1m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_Dyer Avenue.002_West 31st Street.004_+1
+  Current Height: 0.0m
+  Width: 17.5m
+  Depth: 10.3m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_Dyer Avenue.002_West 31st Street.004_-1
+  Current Height: 0.0m
+  Width: 17.5m
+  Depth: 10.3m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_Dyer Avenue.002_West 31st Street.005_+1
+  Current Height: 0.0m
+  Width: 11.3m
+  Depth: 17.1m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_Dyer Avenue.002_West 31st Street.005_-1
+  Current Height: 0.0m
+  Width: 11.3m
+  Depth: 17.1m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_Dyer Avenue.002_West 31st Street.006_+1
+  Current Height: 0.0m
+  Width: 11.3m
+  Depth: 17.1m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_Dyer Avenue.002_West 31st Street.006_-1
+  Current Height: 0.0m
+  Width: 11.3m
+  Depth: 17.1m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_Dyer Avenue.002_West 33rd Street.001_+1
+  Current Height: 0.0m
+  Width: 11.2m
+  Depth: 17.2m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_Dyer Avenue.002_West 33rd Street.001_-1
+  Current Height: 0.0m
+  Width: 11.2m
+  Depth: 17.2m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_Dyer Avenue.002_West 33rd Street.002_+1
+  Current Height: 0.0m
+  Width: 11.4m
+  Depth: 17.1m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_Dyer Avenue.002_West 33rd Street.002_-1
+  Current Height: 0.0m
+  Width: 11.4m
+  Depth: 17.1m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_Dyer Avenue.002_West 33rd Street.003_+1
+  Current Height: 0.0m
+  Width: 11.4m
+  Depth: 17.1m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_Dyer Avenue.002_West 33rd Street.003_-1
+  Current Height: 0.0m
+  Width: 11.4m
+  Depth: 17.1m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_Dyer Avenue.002_West 33rd Street.004_+1
+  Current Height: 0.0m
+  Width: 11.2m
+  Depth: 17.2m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_Dyer Avenue.002_West 33rd Street.004_-1
+  Current Height: 0.0m
+  Width: 11.2m
+  Depth: 17.2m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_Dyer Avenue.002_West 34th Street.001_+1
+  Current Height: 0.0m
+  Width: 11.3m
+  Depth: 17.1m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_Dyer Avenue.002_West 34th Street.001_-1
+  Current Height: 0.0m
+  Width: 11.3m
+  Depth: 17.1m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_Dyer Avenue.002_West 34th Street.002_+1
+  Current Height: 0.0m
+  Width: 11.3m
+  Depth: 17.1m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_Dyer Avenue.002_West 34th Street.002_-1
+  Current Height: 0.0m
+  Width: 11.3m
+  Depth: 17.1m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_East 33rd Street.002_West 33rd Street.001_+1
+  Current Height: 0.0m
+  Width: 11.4m
+  Depth: 17.1m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_East 33rd Street.002_West 33rd Street.001_-1
+  Current Height: 0.0m
+  Width: 11.4m
+  Depth: 17.1m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_East 33rd Street.002_West 33rd Street.002_+1
+  Current Height: 0.0m
+  Width: 11.4m
+  Depth: 17.1m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_East 33rd Street.002_West 33rd Street.002_-1
+  Current Height: 0.0m
+  Width: 11.4m
+  Depth: 17.1m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_Spur.002_West 30th Street.001_+1
+  Current Height: 0.0m
+  Width: 16.8m
+  Depth: 12.0m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_Spur.002_West 30th Street.001_-1
+  Current Height: 0.0m
+  Width: 16.8m
+  Depth: 12.0m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_Spur.002_West 30th Street.002_+1
+  Current Height: 0.0m
+  Width: 16.8m
+  Depth: 12.0m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_Spur.002_West 30th Street.002_-1
+  Current Height: 0.0m
+  Width: 16.8m
+  Depth: 12.0m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_West 24th Street.002_9th Avenue.001_+1
+  Current Height: 0.0m
+  Width: 12.1m
+  Depth: 16.8m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_West 24th Street.002_9th Avenue.001_-1
+  Current Height: 0.0m
+  Width: 12.1m
+  Depth: 16.8m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_West 24th Street.002_9th Avenue.002_+1
+  Current Height: 0.0m
+  Width: 11.3m
+  Depth: 15.4m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_West 24th Street.002_9th Avenue.002_-1
+  Current Height: 0.0m
+  Width: 11.3m
+  Depth: 15.4m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_West 27th Drive.002_10th Avenue.001_+1
+  Current Height: 0.0m
+  Width: 17.1m
+  Depth: 11.3m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_West 27th Drive.002_10th Avenue.001_-1
+  Current Height: 0.0m
+  Width: 17.1m
+  Depth: 11.3m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_West 27th Drive.002_10th Avenue.002_+1
+  Current Height: 0.0m
+  Width: 15.7m
+  Depth: 10.6m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_West 27th Drive.002_10th Avenue.002_-1
+  Current Height: 0.0m
+  Width: 15.7m
+  Depth: 10.6m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_West 27th Drive.002_West 26th Street.001_+1
+  Current Height: 0.0m
+  Width: 11.4m
+  Depth: 17.1m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_West 27th Drive.002_West 26th Street.001_-1
+  Current Height: 0.0m
+  Width: 11.4m
+  Depth: 17.1m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_West 27th Drive.002_West 26th Street.002_+1
+  Current Height: 0.0m
+  Width: 11.4m
+  Depth: 17.1m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_West 27th Drive.002_West 26th Street.002_-1
+  Current Height: 0.0m
+  Width: 11.4m
+  Depth: 17.1m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_West 29th Street.002_10th Avenue.001_+1
+  Current Height: 0.0m
+  Width: 11.7m
+  Depth: 17.0m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_West 29th Street.002_10th Avenue.001_-1
+  Current Height: 0.0m
+  Width: 11.7m
+  Depth: 17.0m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_West 29th Street.002_10th Avenue.002_+1
+  Current Height: 0.0m
+  Width: 10.9m
+  Depth: 15.6m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_West 29th Street.002_10th Avenue.002_-1
+  Current Height: 0.0m
+  Width: 10.9m
+  Depth: 15.6m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_West 29th Street.002_6th Avenue.001_+1
+  Current Height: 0.0m
+  Width: 17.1m
+  Depth: 11.4m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_West 29th Street.002_6th Avenue.001_-1
+  Current Height: 0.0m
+  Width: 17.1m
+  Depth: 11.4m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_West 29th Street.002_6th Avenue.002_+1
+  Current Height: 0.0m
+  Width: 15.7m
+  Depth: 10.6m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_West 29th Street.002_6th Avenue.002_-1
+  Current Height: 0.0m
+  Width: 15.7m
+  Depth: 10.6m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_West 29th Street.002_9th Avenue.001_+1
+  Current Height: 0.0m
+  Width: 17.1m
+  Depth: 11.4m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_West 29th Street.002_9th Avenue.001_-1
+  Current Height: 0.0m
+  Width: 17.1m
+  Depth: 11.4m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_West 29th Street.002_9th Avenue.002_+1
+  Current Height: 0.0m
+  Width: 15.7m
+  Depth: 10.7m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_West 29th Street.002_9th Avenue.002_-1
+  Current Height: 0.0m
+  Width: 15.7m
+  Depth: 10.7m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_West 30th Street.002_6th Avenue.001_+1
+  Current Height: 0.0m
+  Width: 17.1m
+  Depth: 11.5m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_West 30th Street.002_6th Avenue.001_-1
+  Current Height: 0.0m
+  Width: 17.1m
+  Depth: 11.5m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_West 30th Street.002_6th Avenue.002_+1
+  Current Height: 0.0m
+  Width: 15.7m
+  Depth: 10.7m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_West 30th Street.002_6th Avenue.002_-1
+  Current Height: 0.0m
+  Width: 15.7m
+  Depth: 10.7m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_West 30th Street.002_7th Avenue.001_+1
+  Current Height: 0.0m
+  Width: 17.1m
+  Depth: 11.3m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_West 30th Street.002_7th Avenue.001_-1
+  Current Height: 0.0m
+  Width: 17.1m
+  Depth: 11.3m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_West 30th Street.002_7th Avenue.002_+1
+  Current Height: 0.0m
+  Width: 15.7m
+  Depth: 10.6m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_West 30th Street.002_7th Avenue.002_-1
+  Current Height: 0.0m
+  Width: 15.7m
+  Depth: 10.6m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_West 30th Street.002_Broadway.001_+1
+  Current Height: 0.0m
+  Width: 11.3m
+  Depth: 17.1m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_West 30th Street.002_Broadway.001_-1
+  Current Height: 0.0m
+  Width: 11.3m
+  Depth: 17.1m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_West 30th Street.002_Broadway.002_+1
+  Current Height: 0.0m
+  Width: 11.3m
+  Depth: 17.1m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_West 30th Street.002_Broadway.002_-1
+  Current Height: 0.0m
+  Width: 11.3m
+  Depth: 17.1m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_West 31st Street.002_5th Avenue.001_+1
+  Current Height: 0.0m
+  Width: 11.4m
+  Depth: 17.1m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_West 31st Street.002_5th Avenue.001_-1
+  Current Height: 0.0m
+  Width: 11.4m
+  Depth: 17.1m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_West 31st Street.002_5th Avenue.002_+1
+  Current Height: 0.0m
+  Width: 10.6m
+  Depth: 15.7m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_West 31st Street.002_5th Avenue.002_-1
+  Current Height: 0.0m
+  Width: 10.6m
+  Depth: 15.7m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_West 31st Street.002_7th Avenue.001_+1
+  Current Height: 0.0m
+  Width: 11.3m
+  Depth: 17.1m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_West 31st Street.002_7th Avenue.001_-1
+  Current Height: 0.0m
+  Width: 11.3m
+  Depth: 17.1m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_West 31st Street.002_7th Avenue.002_+1
+  Current Height: 0.0m
+  Width: 10.6m
+  Depth: 15.7m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_West 31st Street.002_7th Avenue.002_-1
+  Current Height: 0.0m
+  Width: 10.6m
+  Depth: 15.7m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_West 31st Street.002_Broadway.001_+1
+  Current Height: 0.0m
+  Width: 11.4m
+  Depth: 17.1m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_West 31st Street.002_Broadway.001_-1
+  Current Height: 0.0m
+  Width: 11.4m
+  Depth: 17.1m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_West 31st Street.002_Broadway.002_+1
+  Current Height: 0.0m
+  Width: 11.4m
+  Depth: 17.1m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_West 31st Street.002_Broadway.002_-1
+  Current Height: 0.0m
+  Width: 11.4m
+  Depth: 17.1m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_West 31st Street.002_Pennsylvania Plaza.001_+1
+  Current Height: 0.0m
+  Width: 17.1m
+  Depth: 11.2m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_West 31st Street.002_Pennsylvania Plaza.001_-1
+  Current Height: 0.0m
+  Width: 17.1m
+  Depth: 11.2m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_West 31st Street.002_Pennsylvania Plaza.002_+1
+  Current Height: 0.0m
+  Width: 17.1m
+  Depth: 11.2m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_West 31st Street.002_Pennsylvania Plaza.002_-1
+  Current Height: 0.0m
+  Width: 17.1m
+  Depth: 11.2m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_West 32nd Street.002_6th Avenue.001_+1
+  Current Height: 0.0m
+  Width: 10.7m
+  Depth: 17.3m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_West 32nd Street.002_6th Avenue.001_-1
+  Current Height: 0.0m
+  Width: 10.7m
+  Depth: 17.3m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_West 32nd Street.002_6th Avenue.002_+1
+  Current Height: 0.0m
+  Width: 10.0m
+  Depth: 15.9m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_West 32nd Street.002_6th Avenue.002_-1
+  Current Height: 0.0m
+  Width: 10.0m
+  Depth: 15.9m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_West 32nd Street.002_7th Avenue.001_+1
+  Current Height: 0.0m
+  Width: 17.1m
+  Depth: 11.2m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_West 32nd Street.002_7th Avenue.001_-1
+  Current Height: 0.0m
+  Width: 17.1m
+  Depth: 11.2m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_West 32nd Street.002_7th Avenue.002_+1
+  Current Height: 0.0m
+  Width: 15.7m
+  Depth: 10.5m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_West 32nd Street.002_7th Avenue.002_-1
+  Current Height: 0.0m
+  Width: 15.7m
+  Depth: 10.5m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_West 32nd Street.002_Broadway.001_+1
+  Current Height: 0.0m
+  Width: 11.5m
+  Depth: 17.1m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_West 32nd Street.002_Broadway.001_-1
+  Current Height: 0.0m
+  Width: 11.5m
+  Depth: 17.1m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_West 32nd Street.002_Broadway.002_+1
+  Current Height: 0.0m
+  Width: 11.5m
+  Depth: 17.1m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_West 32nd Street.002_Broadway.002_-1
+  Current Height: 0.0m
+  Width: 11.5m
+  Depth: 17.1m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_West 32nd Street.002_East 32nd Street.001_+1
+  Current Height: 0.0m
+  Width: 11.3m
+  Depth: 17.1m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_West 32nd Street.002_East 32nd Street.001_-1
+  Current Height: 0.0m
+  Width: 11.3m
+  Depth: 17.1m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_West 32nd Street.002_East 32nd Street.002_+1
+  Current Height: 0.0m
+  Width: 11.3m
+  Depth: 17.1m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_West 32nd Street.002_East 32nd Street.002_-1
+  Current Height: 0.0m
+  Width: 11.3m
+  Depth: 17.1m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_West 33rd Street.002_10th Avenue.001_+1
+  Current Height: 0.0m
+  Width: 10.7m
+  Depth: 17.3m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_West 33rd Street.002_10th Avenue.001_-1
+  Current Height: 0.0m
+  Width: 10.7m
+  Depth: 17.3m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_West 33rd Street.002_10th Avenue.002_+1
+  Current Height: 0.0m
+  Width: 15.7m
+  Depth: 10.6m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_West 33rd Street.002_10th Avenue.002_-1
+  Current Height: 0.0m
+  Width: 15.7m
+  Depth: 10.6m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_West 33rd Street.002_10th Avenue.003_+1
+  Current Height: 0.0m
+  Width: 16.9m
+  Depth: 11.9m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_West 33rd Street.002_10th Avenue.003_-1
+  Current Height: 0.0m
+  Width: 16.9m
+  Depth: 11.9m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_West 33rd Street.002_10th Avenue.004_+1
+  Current Height: 0.0m
+  Width: 17.1m
+  Depth: 11.3m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_West 33rd Street.002_10th Avenue.004_-1
+  Current Height: 0.0m
+  Width: 17.1m
+  Depth: 11.3m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_West 33rd Street.002_10th Avenue.005_+1
+  Current Height: 0.0m
+  Width: 10.7m
+  Depth: 17.3m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_West 33rd Street.002_10th Avenue.005_-1
+  Current Height: 0.0m
+  Width: 10.7m
+  Depth: 17.3m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_West 33rd Street.002_10th Avenue.006_+1
+  Current Height: 0.0m
+  Width: 16.9m
+  Depth: 11.9m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_West 33rd Street.002_10th Avenue.006_-1
+  Current Height: 0.0m
+  Width: 16.9m
+  Depth: 11.9m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_West 33rd Street.002_6th Avenue.001_+1
+  Current Height: 0.0m
+  Width: 17.1m
+  Depth: 11.4m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_West 33rd Street.002_6th Avenue.001_-1
+  Current Height: 0.0m
+  Width: 17.1m
+  Depth: 11.4m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_West 33rd Street.002_6th Avenue.002_+1
+  Current Height: 0.0m
+  Width: 15.7m
+  Depth: 10.7m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_West 33rd Street.002_6th Avenue.002_-1
+  Current Height: 0.0m
+  Width: 15.7m
+  Depth: 10.7m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_West 33rd Street.002_7th Avenue.001_+1
+  Current Height: 0.0m
+  Width: 17.1m
+  Depth: 11.3m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_West 33rd Street.002_7th Avenue.001_-1
+  Current Height: 0.0m
+  Width: 17.1m
+  Depth: 11.3m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_West 33rd Street.002_7th Avenue.002_+1
+  Current Height: 0.0m
+  Width: 15.7m
+  Depth: 10.6m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_West 33rd Street.002_7th Avenue.002_-1
+  Current Height: 0.0m
+  Width: 15.7m
+  Depth: 10.6m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_West 33rd Street.002_9th Avenue.001_+1
+  Current Height: 0.0m
+  Width: 16.5m
+  Depth: 12.7m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_West 33rd Street.002_9th Avenue.001_-1
+  Current Height: 0.0m
+  Width: 16.5m
+  Depth: 12.7m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_West 33rd Street.002_9th Avenue.002_+1
+  Current Height: 0.0m
+  Width: 15.2m
+  Depth: 11.8m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_West 33rd Street.002_9th Avenue.002_-1
+  Current Height: 0.0m
+  Width: 15.2m
+  Depth: 11.8m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_West 33rd Street.002_Broadway.001_+1
+  Current Height: 0.0m
+  Width: 11.4m
+  Depth: 17.1m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_West 33rd Street.002_Broadway.001_-1
+  Current Height: 0.0m
+  Width: 11.4m
+  Depth: 17.1m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_West 33rd Street.002_Broadway.002_+1
+  Current Height: 0.0m
+  Width: 11.4m
+  Depth: 17.1m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_West 33rd Street.002_Broadway.002_-1
+  Current Height: 0.0m
+  Width: 11.4m
+  Depth: 17.1m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_West 33rd Street.002_Pennsylvania Plaza.001_+1
+  Current Height: 0.0m
+  Width: 13.4m
+  Depth: 16.0m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_West 33rd Street.002_Pennsylvania Plaza.001_-1
+  Current Height: 0.0m
+  Width: 13.4m
+  Depth: 16.0m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_West 33rd Street.002_Pennsylvania Plaza.002_+1
+  Current Height: 0.0m
+  Width: 13.4m
+  Depth: 16.0m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_West 33rd Street.002_Pennsylvania Plaza.002_-1
+  Current Height: 0.0m
+  Width: 13.4m
+  Depth: 16.0m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_West 34th Street.002_5th Avenue.001_+1
+  Current Height: 0.0m
+  Width: 17.2m
+  Depth: 11.2m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_West 34th Street.002_5th Avenue.001_-1
+  Current Height: 0.0m
+  Width: 17.2m
+  Depth: 11.2m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_West 34th Street.002_5th Avenue.002_+1
+  Current Height: 0.0m
+  Width: 15.7m
+  Depth: 10.5m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_West 34th Street.002_5th Avenue.002_-1
+  Current Height: 0.0m
+  Width: 15.7m
+  Depth: 10.5m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_West 34th Street.002_7th Avenue.001_+1
+  Current Height: 0.0m
+  Width: 11.3m
+  Depth: 17.1m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_West 34th Street.002_7th Avenue.001_-1
+  Current Height: 0.0m
+  Width: 11.3m
+  Depth: 17.1m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_West 34th Street.002_7th Avenue.002_+1
+  Current Height: 0.0m
+  Width: 10.5m
+  Depth: 15.7m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_West 34th Street.002_7th Avenue.002_-1
+  Current Height: 0.0m
+  Width: 10.5m
+  Depth: 15.7m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_West 34th Street.002_Broadway.001_+1
+  Current Height: 0.0m
+  Width: 11.6m
+  Depth: 17.0m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_West 34th Street.002_Broadway.001_-1
+  Current Height: 0.0m
+  Width: 11.6m
+  Depth: 17.0m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_West 34th Street.002_Broadway.002_+1
+  Current Height: 0.0m
+  Width: 11.6m
+  Depth: 17.0m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_West 34th Street.002_Broadway.002_-1
+  Current Height: 0.0m
+  Width: 11.6m
+  Depth: 17.0m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_West 35th Street.002_Broadway.001_+1
+  Current Height: 0.0m
+  Width: 17.9m
+  Depth: 6.2m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_West 35th Street.002_Broadway.001_-1
+  Current Height: 0.0m
+  Width: 17.9m
+  Depth: 6.2m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_West 35th Street.002_Broadway.002_+1
+  Current Height: 0.0m
+  Width: 17.5m
+  Depth: 10.2m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_West 35th Street.002_Broadway.002_-1
+  Current Height: 0.0m
+  Width: 17.5m
+  Depth: 10.2m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_West 35th Street.002_Broadway.003_+1
+  Current Height: 0.0m
+  Width: 17.5m
+  Depth: 10.2m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_West 35th Street.002_Broadway.003_-1
+  Current Height: 0.0m
+  Width: 17.5m
+  Depth: 10.2m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_West 35th Street.002_Broadway.004_+1
+  Current Height: 0.0m
+  Width: 17.9m
+  Depth: 6.2m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_West 35th Street.002_Broadway.004_-1
+  Current Height: 0.0m
+  Width: 17.9m
+  Depth: 6.2m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_West 36th Street.002_6th Avenue.001_+1
+  Current Height: 0.0m
+  Width: 11.4m
+  Depth: 17.1m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_West 36th Street.002_6th Avenue.001_-1
+  Current Height: 0.0m
+  Width: 11.4m
+  Depth: 17.1m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_West 36th Street.002_6th Avenue.002_+1
+  Current Height: 0.0m
+  Width: 10.6m
+  Depth: 15.7m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_West 36th Street.002_6th Avenue.002_-1
+  Current Height: 0.0m
+  Width: 10.6m
+  Depth: 15.7m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_West 36th Street.002_7th Avenue.001_+1
+  Current Height: 0.0m
+  Width: 11.3m
+  Depth: 17.1m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_West 36th Street.002_7th Avenue.001_-1
+  Current Height: 0.0m
+  Width: 11.3m
+  Depth: 17.1m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_West 36th Street.002_7th Avenue.002_+1
+  Current Height: 0.0m
+  Width: 10.6m
+  Depth: 15.7m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_West 36th Street.002_7th Avenue.002_-1
+  Current Height: 0.0m
+  Width: 10.6m
+  Depth: 15.7m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_West 36th Street.002_Broadway.001_+1
+  Current Height: 0.0m
+  Width: 11.4m
+  Depth: 17.1m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_West 36th Street.002_Broadway.001_-1
+  Current Height: 0.0m
+  Width: 11.4m
+  Depth: 17.1m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_West 36th Street.002_Broadway.002_+1
+  Current Height: 0.0m
+  Width: 11.4m
+  Depth: 17.1m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_West 36th Street.002_Broadway.002_-1
+  Current Height: 0.0m
+  Width: 11.4m
+  Depth: 17.1m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_West 36th Street.002_Broadway.003_+1
+  Current Height: 0.0m
+  Width: 11.4m
+  Depth: 17.1m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_West 36th Street.002_Broadway.003_-1
+  Current Height: 0.0m
+  Width: 11.4m
+  Depth: 17.1m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_West 36th Street.002_Broadway.004_+1
+  Current Height: 0.0m
+  Width: 11.4m
+  Depth: 17.1m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_West 36th Street.002_Broadway.004_-1
+  Current Height: 0.0m
+  Width: 11.4m
+  Depth: 17.1m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_West 38th Street.002_6th Avenue.001_+1
+  Current Height: 0.0m
+  Width: 11.3m
+  Depth: 17.1m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_West 38th Street.002_6th Avenue.001_-1
+  Current Height: 0.0m
+  Width: 11.3m
+  Depth: 17.1m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_West 38th Street.002_6th Avenue.002_+1
+  Current Height: 0.0m
+  Width: 10.6m
+  Depth: 15.7m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_West 38th Street.002_6th Avenue.002_-1
+  Current Height: 0.0m
+  Width: 10.6m
+  Depth: 15.7m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_West 38th Street.002_7th Avenue.001_+1
+  Current Height: 0.0m
+  Width: 11.4m
+  Depth: 17.1m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_West 38th Street.002_7th Avenue.001_-1
+  Current Height: 0.0m
+  Width: 11.4m
+  Depth: 17.1m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_West 38th Street.002_7th Avenue.002_+1
+  Current Height: 0.0m
+  Width: 10.7m
+  Depth: 15.7m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_West 38th Street.002_7th Avenue.002_-1
+  Current Height: 0.0m
+  Width: 10.7m
+  Depth: 15.7m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_West 38th Street.002_Broadway.001_+1
+  Current Height: 0.0m
+  Width: 11.4m
+  Depth: 17.1m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_West 38th Street.002_Broadway.001_-1
+  Current Height: 0.0m
+  Width: 11.4m
+  Depth: 17.1m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_West 38th Street.002_Broadway.002_+1
+  Current Height: 0.0m
+  Width: 17.7m
+  Depth: 9.0m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_West 38th Street.002_Broadway.002_-1
+  Current Height: 0.0m
+  Width: 17.7m
+  Depth: 9.0m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_West 38th Street.002_Broadway.003_+1
+  Current Height: 0.0m
+  Width: 17.7m
+  Depth: 9.0m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_West 38th Street.002_Broadway.003_-1
+  Current Height: 0.0m
+  Width: 17.7m
+  Depth: 9.0m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_West 38th Street.002_Broadway.004_+1
+  Current Height: 0.0m
+  Width: 11.4m
+  Depth: 17.1m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_West 38th Street.002_Broadway.004_-1
+  Current Height: 0.0m
+  Width: 11.4m
+  Depth: 17.1m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_West 40th Street.002_Broadway.001_+1
+  Current Height: 0.0m
+  Width: 17.9m
+  Depth: 7.7m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_West 40th Street.002_Broadway.001_-1
+  Current Height: 0.0m
+  Width: 17.9m
+  Depth: 7.7m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_West 40th Street.002_Broadway.002_+1
+  Current Height: 0.0m
+  Width: 17.9m
+  Depth: 7.7m
+  Collection: Crosswalks
+
+Name: Crosswalk_IX_West 40th Street.002_Broadway.002_-1
+  Current Height: 0.0m
+  Width: 17.9m
+  Depth: 7.7m
+  Collection: Crosswalks
+
+Name: Crowne Plaza HY36 Midtown Manhattan
+  Current Height: 75.0m
+  Width: 36.8m
+  Depth: 38.5m
+  Collection: Buildings
+
+Name: David Dubinsky Student Center
+  Current Height: 42.3m
+  Width: 79.0m
+  Depth: 66.9m
+  Collection: Buildings
+
+Name: DoubleTree
+  Current Height: 86.2m
+  Width: 143.1m
+  Depth: 786.6m
+  Collection: Buildings
+
+Name: Duane Reade
+  Current Height: 6.3m
+  Width: 34.8m
+  Depth: 45.9m
+  Collection: Buildings
+
+Name: EOS
+  Current Height: 20.0m
+  Width: 78.9m
+  Depth: 76.9m
+  Collection: Buildings
+
+Name: EVEN Hotel New York - Times Square South
+  Current Height: 76.2m
+  Width: 28.6m
+  Depth: 34.0m
+  Collection: Buildings
+
+Name: East End Gateway
+  Current Height: 12.2m
+  Width: 27.2m
+  Depth: 16.9m
+  Collection: Buildings
+
+Name: Embassy Suites by Hilton
+  Current Height: 124.0m
+  Width: 25.9m
+  Depth: 30.9m
+  Collection: Buildings
+
+Name: Empire State Building
+  Current Height: 443.2m
+  Width: 142.3m
+  Depth: 113.7m
+  Collection: Buildings
+
+Name: Eventi
+  Current Height: 187.0m
+  Width: 53.7m
+  Depth: 66.1m
+  Collection: Buildings
+
+Name: FDNY Engine 1/Ladder 24
+  Current Height: 16.4m
+  Width: 24.4m
+  Depth: 32.2m
+  Collection: Buildings
+
+Name: FDNY Engine 26
+  Current Height: 13.0m
+  Width: 19.8m
+  Depth: 27.7m
+  Collection: Buildings
+
+Name: Fairfield Inn
+  Current Height: 48.0m
+  Width: 16.7m
+  Depth: 22.1m
+  Collection: Buildings
+
+Name: Fairfield Inn & Suites
+  Current Height: 20.0m
+  Width: 43.4m
+  Depth: 33.7m
+  Collection: Buildings
+
+Name: Fairfield Inn & Suites New York Midtown Manhattan/Penn Sta
+  Current Height: 20.0m
+  Width: 19.6m
+  Depth: 10.5m
+  Collection: Buildings
+
+Name: Fashion Institute of Technology
+  Current Height: 0.0m
+  Width: 242.4m
+  Depth: 239.4m
+  Collection: Buildings
+
+Name: Five Bryant Park
+  Current Height: 20.0m
+  Width: 67.7m
+  Depth: 81.4m
+  Collection: Buildings
+
+Name: Five Manhattan West
+  Current Height: 48.0m
+  Width: 137.3m
+  Depth: 160.8m
+  Collection: Buildings
+
+Name: Flower District
+  Current Height: 0.0m
+  Width: 274.5m
+  Depth: 159.2m
+  Collection: Buildings
+
+Name: Four Manhattan West
+  Current Height: 57.8m
+  Width: 49.2m
+  Depth: 44.2m
+  Collection: Buildings
+
+Name: Fred P. Pomerantz Art & Design Center
+  Current Height: 29.6m
+  Width: 75.7m
+  Depth: 94.1m
+  Collection: Buildings
+
+Name: Greeley Square
+  Current Height: 0.0m
+  Width: 36.7m
+  Depth: 69.4m
+  Collection: Buildings
+
+Name: Greeley Square Building
+  Current Height: 20.0m
+  Width: 41.3m
+  Depth: 38.7m
+  Collection: Buildings
+
+Name: H-yard Gourmet Deli
+  Current Height: 3.9m
+  Width: 14.0m
+  Depth: 12.6m
+  Collection: Buildings
+
+Name: Haier Building
+  Current Height: 30.6m
+  Width: 54.2m
+  Depth: 52.4m
+  Collection: Buildings
+
+Name: Hampton
+  Current Height: 55.0m
+  Width: 19.4m
+  Depth: 25.6m
+  Collection: Buildings
+
+Name: Hampton Inn
+  Current Height: 56.5m
+  Width: 24.1m
+  Depth: 26.8m
+  Collection: Buildings
+
+Name: Henn Na Hotel
+  Current Height: 52.3m
+  Width: 23.4m
+  Depth: 28.3m
+  Collection: Buildings
+
+Name: Herald Square
+  Current Height: 0.0m
+  Width: 58.2m
+  Depth: 91.5m
+  Collection: Buildings
+
+Name: Herald Square Building
+  Current Height: 99.7m
+  Width: 41.3m
+  Depth: 49.9m
+  Collection: Buildings
+
+Name: Herald Towers
+  Current Height: 99.2m
+  Width: 68.5m
+  Depth: 81.6m
+  Collection: Buildings
+
+Name: Hilton Garden Inn
+  Current Height: 87.3m
+  Width: 30.3m
+  Depth: 30.1m
+  Collection: Buildings
+
+Name: Holiday Inn Express
+  Current Height: 51.0m
+  Width: 748.0m
+  Depth: 272.9m
+  Collection: Buildings
+
+Name: Homewood Suites by Hilton
+  Current Height: 20.0m
+  Width: 41.0m
+  Depth: 40.8m
+  Collection: Buildings
+
+Name: Hoops Cabaret and Sports Bar
+  Current Height: 11.7m
+  Width: 19.9m
+  Depth: 29.3m
+  Collection: Buildings
+
+Name: Horace Greely Statue
+  Current Height: 0.0m
+  Width: 3.4m
+  Depth: 3.7m
+  Collection: Buildings
+
+Name: Hotel Indigo
+  Current Height: 65.0m
+  Width: 25.5m
+  Depth: 30.0m
+  Collection: Buildings
+
+Name: Hotel Stanford
+  Current Height: 45.7m
+  Width: 30.3m
+  Depth: 35.1m
+  Collection: Buildings
+
+Name: Hyatt Herald Square New York
+  Current Height: 54.6m
+  Width: 25.0m
+  Depth: 28.3m
+  Collection: Buildings
+
+Name: Hyatt Place
+  Current Height: 81.4m
+  Width: 24.4m
+  Depth: 24.2m
+  Collection: Buildings
+
+Name: James A. Farley Building
+  Current Height: 18.0m
+  Width: 255.9m
+  Depth: 209.8m
+  Collection: Buildings
+
+Name: James A. Farley Post Office
+  Current Height: 0.0m
+  Width: 32.9m
+  Depth: 92.8m
+  Collection: Buildings
+
+Name: James Gordon Bennett Monument
+  Current Height: 12.1m
+  Width: 6.5m
+  Depth: 5.7m
+  Collection: Buildings
+
+Name: Jeff Dullea Inter-Generational Garden
+  Current Height: 0.0m
+  Width: 42.1m
+  Depth: 34.2m
+  Collection: Buildings
+
+Name: Jet Partners
+  Current Height: 68.5m
+  Width: 28.9m
+  Depth: 30.2m
+  Collection: Buildings
+
+Name: John Lovejoy Elliott Houses
+  Current Height: 0.0m
+  Width: 218.0m
+  Depth: 184.6m
+  Collection: Buildings
+
+Name: Kaufman Hall - Fashion Institute of Technology
+  Current Height: 75.2m
+  Width: 91.2m
+  Depth: 69.6m
+  Collection: Buildings
+
+Name: Kratter Building
+  Current Height: 20.0m
+  Width: 87.0m
+  Depth: 74.4m
+  Collection: Buildings
+
+Name: Laguardia Community College
+  Current Height: 0.0m
+  Width: 1.9m
+  Depth: 3.5m
+  Collection: Buildings
+
+Name: LeSoleil
+  Current Height: 0.0m
+  Width: 30.5m
+  Depth: 33.1m
+  Collection: Buildings
+
+Name: Lefcourt Manhattan Building
+  Current Height: 109.7m
+  Width: 58.4m
+  Depth: 46.3m
+  Collection: Buildings
+
+Name: Life Hotel
+  Current Height: 37.6m
+  Width: 27.2m
+  Depth: 32.2m
+  Collection: Buildings
+
+Name: Local
+  Current Height: 8.9m
+  Width: 18.9m
+  Depth: 16.9m
+  Collection: Buildings
+
+Name: London Terrace
+  Current Height: 0.0m
+  Width: 196.9m
+  Depth: 144.5m
+  Collection: Buildings
+
+Name: ML House
+  Current Height: 85.0m
+  Width: 32.4m
+  Depth: 25.1m
+  Collection: Buildings
+
+Name: Macy's
+  Current Height: 50.8m
+  Width: 204.9m
+  Depth: 145.2m
+  Collection: Buildings
+
+Name: Madison Square Garden
+  Current Height: 39.4m
+  Width: 154.3m
+  Depth: 143.1m
+  Collection: Buildings
+
+Name: Manhattan Center
+  Current Height: 45.7m
+  Width: 56.5m
+  Depth: 67.8m
+  Collection: Buildings
+
+Name: Manhattan Mall
+  Current Height: 58.2m
+  Width: 136.4m
+  Depth: 111.2m
+  Collection: Buildings
+
+Name: Manhattan Mini Storage
+  Current Height: 67.9m
+  Width: 49.0m
+  Depth: 45.9m
+  Collection: Buildings
+
+Name: Manhattan West
+  Current Height: 0.0m
+  Width: 290.6m
+  Depth: 246.3m
+  Collection: Buildings
+
+Name: Manheimer Building
+  Current Height: 14.5m
+  Width: 23.0m
+  Depth: 16.7m
+  Collection: Buildings
+
+Name: Manor Community Church
+  Current Height: 13.3m
+  Width: 26.5m
+  Depth: 34.0m
+  Collection: Buildings
+
+Name: Marriott Vacation Club, New York City
+  Current Height: 66.9m
+  Width: 25.0m
+  Depth: 21.8m
+  Collection: Buildings
+
+Name: Martinique New York on Broadway, Curio Collection by Hilto
+  Current Height: 20.0m
+  Width: 52.3m
+  Depth: 67.0m
+  Collection: Buildings
+
+Name: Marvin Feldman Center
+  Current Height: 46.6m
+  Width: 104.9m
+  Depth: 101.7m
+  Collection: Buildings
+
+Name: Master Printers Building
+  Current Height: 20.0m
+  Width: 67.8m
+  Depth: 75.9m
+  Collection: Buildings
+
+Name: McDonald's
+  Current Height: 4.8m
+  Width: 33.4m
+  Depth: 27.0m
+  Collection: Buildings
+
+Name: Midtown West Hotel
+  Current Height: 14.6m
+  Width: 11.7m
+  Depth: 11.2m
+  Collection: Buildings
+
+Name: Millinery Building
+  Current Height: 20.0m
+  Width: 40.8m
+  Depth: 40.7m
+  Collection: Buildings
+
+Name: Million Dollar Corner
+  Current Height: 22.1m
+  Width: 17.8m
+  Depth: 14.1m
+  Collection: Buildings
+
+Name: Morgan General Mail Facility
+  Current Height: 20.0m
+  Width: 242.1m
+  Depth: 168.4m
+  Collection: Buildings
+
+Name: Moynihan Train Hall
+  Current Height: 0.0m
+  Width: 121.3m
+  Depth: 138.9m
+  Collection: Buildings
+
+Name: Murray Hill Substation
+  Current Height: 15.7m
+  Width: 74.4m
+  Depth: 68.8m
+  Collection: Buildings
+
+Name: Nagler Hall
+  Current Height: 27.8m
+  Width: 45.1m
+  Depth: 32.6m
+  Collection: Buildings
+
+Name: Name:Pennsylvania Plaza
+  Current Height: 0.0m
+  Width: 69.9m
+  Depth: 141.7m
+  Collection: Streets_Roads
+
+Name: Name:The Pennsy
+  Current Height: 0.0m
+  Width: 18.4m
+  Depth: 13.1m
+  Collection: Streets_Roads
+
+Name: Name:West 24th Street
+  Current Height: 0.0m
+  Width: 1191.7m
+  Depth: 641.6m
+  Collection: Streets_Roads
+
+Name: Name:West 25th Street
+  Current Height: 0.0m
+  Width: 723.9m
+  Depth: 391.2m
+  Collection: Streets_Roads
+
+Name: Name:West 26th Street
+  Current Height: 0.0m
+  Width: 928.4m
+  Depth: 500.7m
+  Collection: Streets_Roads
+
+Name: Name:West 27th
+  Current Height: 0.0m
+  Width: 46.4m
+  Depth: 24.8m
+  Collection: Streets_Roads
+
+Name: Name:West 27th Drive
+  Current Height: 0.0m
+  Width: 155.6m
+  Depth: 151.7m
+  Collection: Streets_Roads
+
+Name: Name:West 27th Street
+  Current Height: 0.0m
+  Width: 226.8m
+  Depth: 125.4m
+  Collection: Streets_Roads
+
+Name: Name:West 28th Street
+  Current Height: 0.0m
+  Width: 1426.1m
+  Depth: 769.8m
+  Collection: Streets_Roads
+
+Name: Name:West 29th Street
+  Current Height: 0.0m
+  Width: 1126.1m
+  Depth: 608.5m
+  Collection: Streets_Roads
+
+Name: Name:West 30th Street
+  Current Height: 0.0m
+  Width: 1287.0m
+  Depth: 694.5m
+  Collection: Streets_Roads
+
+Name: Name:West 31st Street
+  Current Height: 0.0m
+  Width: 1239.3m
+  Depth: 669.5m
+  Collection: Streets_Roads
+
+Name: Name:West 32nd Street
+  Current Height: 0.0m
+  Width: 515.9m
+  Depth: 277.6m
+  Collection: Streets_Roads
+
+Name: Name:West 33rd Street
+  Current Height: 0.0m
+  Width: 1361.6m
+  Depth: 738.4m
+  Collection: Streets_Roads
+
+Name: Name:West 34th Street
+  Current Height: 0.0m
+  Width: 1152.3m
+  Depth: 619.5m
+  Collection: Streets_Roads
+
+Name: Name:West 35th Street
+  Current Height: 0.0m
+  Width: 1133.0m
+  Depth: 611.8m
+  Collection: Streets_Roads
+
+Name: Name:West 36th Street
+  Current Height: 0.0m
+  Width: 1085.7m
+  Depth: 585.6m
+  Collection: Streets_Roads
+
+Name: Name:West 37th Street
+  Current Height: 0.0m
+  Width: 961.4m
+  Depth: 518.1m
+  Collection: Streets_Roads
+
+Name: Name:West 38th Street
+  Current Height: 0.0m
+  Width: 756.7m
+  Depth: 407.3m
+  Collection: Streets_Roads
+
+Name: Name:West 39th Street
+  Current Height: 0.0m
+  Width: 756.2m
+  Depth: 407.5m
+  Collection: Streets_Roads
+
+Name: Name:West 40th Street
+  Current Height: 0.0m
+  Width: 431.1m
+  Depth: 231.5m
+  Collection: Streets_Roads
+
+Name: Nelson Tower
+  Current Height: 20.0m
+  Width: 54.6m
+  Depth: 54.4m
+  Collection: Buildings
+
+Name: New York City Health Department
+  Current Height: 20.3m
+  Width: 30.7m
+  Depth: 40.8m
+  Collection: Buildings
+
+Name: New York Police Department Traffic Control Division
+  Current Height: 25.0m
+  Width: 36.2m
+  Depth: 36.6m
+  Collection: Buildings
+
+Name: New Yorker by Lotte Hotels
+  Current Height: 120.0m
+  Width: 80.9m
+  Depth: 80.9m
+  Collection: Buildings
+
+Name: Nomad Tower
+  Current Height: 50.0m
+  Width: 52.8m
+  Depth: 58.4m
+  Collection: Buildings
+
+Name: Nuchas
+  Current Height: 6.9m
+  Width: 5.9m
+  Depth: 7.1m
+  Collection: Buildings
+
+Name: Old Navy
+  Current Height: 19.9m
+  Width: 61.6m
+  Depth: 63.5m
+  Collection: Buildings
+
+Name: One Manhattan West
+  Current Height: 303.0m
+  Width: 73.3m
+  Depth: 67.1m
+  Collection: Buildings
+
+Name: PENN 1
+  Current Height: 20.0m
+  Width: 142.7m
+  Depth: 103.1m
+  Collection: Buildings
+
+Name: PENN 1 EAST
+  Current Height: 6.3m
+  Width: 60.2m
+  Depth: 67.3m
+  Collection: Buildings
+
+Name: PENN 11
+  Current Height: 20.0m
+  Width: 104.6m
+  Depth: 90.1m
+  Collection: Buildings
+
+Name: PENN 2
+  Current Height: 144.0m
+  Width: 131.7m
+  Depth: 151.8m
+  Collection: Buildings
+
+Name: PO David Willis Basketball Court
+  Current Height: 0.0m
+  Width: 24.3m
+  Depth: 28.4m
+  Collection: Buildings
+
+Name: PPS 100 LLC
+  Current Height: 0.0m
+  Width: 0.0m
+  Depth: 0.0m
+  Collection: Buildings
+
+Name: Pearson Park
+  Current Height: 0.0m
+  Width: 34.8m
+  Depth: 56.3m
+  Collection: Buildings
+
+Name: Pendry Manhattan West
+  Current Height: 85.6m
+  Width: 33.3m
+  Depth: 34.7m
+  Collection: Buildings
+
+Name: Penn South
+  Current Height: 0.0m
+  Width: 431.7m
+  Depth: 448.3m
+  Collection: Buildings
+
+Name: Penn South Building 8
+  Current Height: 59.5m
+  Width: 62.0m
+  Depth: 76.8m
+  Collection: Buildings
+
+Name: Penn South Building 9
+  Current Height: 65.0m
+  Width: 38.7m
+  Depth: 40.9m
+  Collection: Buildings
+
+Name: Penn South Housing
+  Current Height: 59.2m
+  Width: 48.8m
+  Depth: 80.7m
+  Collection: Buildings
+
+Name: Penn South Playground
+  Current Height: 0.0m
+  Width: 73.5m
+  Depth: 84.8m
+  Collection: Buildings
+
+Name: Pennsylvania Station
+  Current Height: 0.0m
+  Width: 879.8m
+  Depth: 468.7m
+  Collection: Buildings
+
+Name: Pinwheel Park
+  Current Height: 0.0m
+  Width: 29.2m
+  Depth: 29.0m
+  Collection: Buildings
+
+Name: PrimeXchange
+  Current Height: 16.0m
+  Width: 22.0m
+  Depth: 23.0m
+  Collection: Buildings
+
+Name: Public School 33
+  Current Height: 18.9m
+  Width: 86.5m
+  Depth: 77.9m
+  Collection: Buildings
+
+Name: Ranjan Mehta News Corp
+  Current Height: 20.0m
+  Width: 4.2m
+  Depth: 3.4m
+  Collection: Buildings
+
+Name: Renaissance
+  Current Height: 87.0m
+  Width: 34.0m
+  Depth: 36.6m
+  Collection: Buildings
+
+Name: Reserve Padel
+  Current Height: 0.0m
+  Width: 57.6m
+  Depth: 56.0m
+  Collection: Buildings
+
+Name: Rick's Cabaret
+  Current Height: 10.3m
+  Width: 24.7m
+  Depth: 31.9m
+  Collection: Buildings
+
+Name: Saint Eleftherios Greek Orthodox Church
+  Current Height: 14.2m
+  Width: 24.6m
+  Depth: 29.2m
+  Collection: Buildings
+
+Name: Saint Francis Friary
+  Current Height: 20.0m
+  Width: 13.0m
+  Depth: 6.8m
+  Collection: Buildings
+
+Name: Saint Francis House
+  Current Height: 19.9m
+  Width: 24.9m
+  Depth: 28.4m
+  Collection: Buildings
+
+Name: Saint Francis of Assisi School
+  Current Height: 19.9m
+  Width: 16.9m
+  Depth: 22.5m
+  Collection: Buildings
+
+Name: Saint Francis of Assisi School.001
+  Current Height: 19.9m
+  Width: 16.9m
+  Depth: 21.1m
+  Collection: Buildings
+
+Name: Salt & Pepper Restaurant
+  Current Height: 3.7m
+  Width: 18.1m
+  Depth: 24.6m
+  Collection: Buildings
+
+Name: Salt & Pepper Restaurant.001
+  Current Height: 3.7m
+  Width: 18.1m
+  Depth: 24.6m
+  Collection: Buildings
+
+Name: Sandbox Park
+  Current Height: 0.0m
+  Width: 29.5m
+  Depth: 42.0m
+  Collection: Buildings
+
+Name: Shirley Goodman Resource Center
+  Current Height: 23.6m
+  Width: 68.4m
+  Depth: 73.9m
+  Collection: Buildings
+
+Name: Solari
+  Current Height: 141.7m
+  Width: 40.8m
+  Depth: 40.6m
+  Collection: Buildings
+
+Name: SpringHill Suites
+  Current Height: 57.0m
+  Width: 21.1m
+  Depth: 23.5m
+  Collection: Buildings
+
+Name: Springs Building
+  Current Height: 20.0m
+  Width: 50.3m
+  Depth: 54.5m
+  Collection: Buildings
+
+Name: St. Columba Catholic Church
+  Current Height: 21.4m
+  Width: 29.6m
+  Depth: 33.9m
+  Collection: Buildings
+
+Name: St. Columba School
+  Current Height: 21.4m
+  Width: 13.9m
+  Depth: 25.8m
+  Collection: Buildings
+
+Name: St. Columba's Covenent
+  Current Height: 17.1m
+  Width: 16.0m
+  Depth: 21.0m
+  Collection: Buildings
+
+Name: St. Michael's Church
+  Current Height: 20.0m
+  Width: 47.2m
+  Depth: 65.2m
+  Collection: Buildings
+
+Name: Stewart Hotel
+  Current Height: 105.4m
+  Width: 65.6m
+  Depth: 54.6m
+  Collection: Buildings
+
+Name: T-Mobile
+  Current Height: 6.4m
+  Width: 31.4m
+  Depth: 28.6m
+  Collection: Buildings
+
+Name: The Atlas
+  Current Height: 16.0m
+  Width: 50.3m
+  Depth: 45.7m
+  Collection: Buildings
+
+Name: The Celtic Rail
+  Current Height: 4.3m
+  Width: 14.8m
+  Depth: 18.7m
+  Collection: Buildings
+
+Name: The Dylan
+  Current Height: 20.0m
+  Width: 48.2m
+  Depth: 35.7m
+  Collection: Buildings
+
+Name: The Epic
+  Current Height: 20.0m
+  Width: 51.6m
+  Depth: 65.9m
+  Collection: Buildings
+
+Name: The Eugene
+  Current Height: 11.0m
+  Width: 74.5m
+  Depth: 59.7m
+  Collection: Buildings
+
+Name: The Gregorian Hotel
+  Current Height: 50.0m
+  Width: 29.3m
+  Depth: 33.5m
+  Collection: Buildings
+
+Name: The Hartford
+  Current Height: 48.4m
+  Width: 18.2m
+  Depth: 26.4m
+  Collection: Buildings
+
+Name: The Hotel @ 5th Avenue
+  Current Height: 46.0m
+  Width: 34.6m
+  Depth: 37.9m
+  Collection: Buildings
+
+Name: The Irvin
+  Current Height: 31.8m
+  Width: 29.1m
+  Depth: 31.1m
+  Collection: Buildings
+
+Name: The Joseph P. Cuomo Building
+  Current Height: 9.7m
+  Width: 17.7m
+  Depth: 23.5m
+  Collection: Buildings
+
+Name: The Kixby
+  Current Height: 45.3m
+  Width: 37.2m
+  Depth: 36.1m
+  Collection: Buildings
+
+Name: The Magellan
+  Current Height: 20.0m
+  Width: 32.6m
+  Depth: 36.5m
+  Collection: Buildings
+
+Name: The NOMA
+  Current Height: 96.3m
+  Width: 43.6m
+  Depth: 30.4m
+  Collection: Buildings
+
+Name: The Navarre
+  Current Height: 20.0m
+  Width: 45.0m
+  Depth: 49.4m
+  Collection: Buildings
+
+Name: The Olivia
+  Current Height: 20.0m
+  Width: 88.9m
+  Depth: 91.6m
+  Collection: Buildings
+
+Name: The Pennsy Food Hall
+  Current Height: 0.0m
+  Width: 61.7m
+  Depth: 67.1m
+  Collection: Buildings
+
+Name: The Shops & Restaurants at Hudson Yards
+  Current Height: 67.0m
+  Width: 156.8m
+  Depth: 159.9m
+  Collection: Buildings
+
+Name: The Vogue
+  Current Height: 13.0m
+  Width: 58.7m
+  Depth: 65.7m
+  Collection: Buildings
+
+Name: Times Square
+  Current Height: 0.0m
+  Width: 729.4m
+  Depth: 951.9m
+  Collection: Buildings
+
+Name: Tower 111
+  Current Height: 20.0m
+  Width: 66.1m
+  Depth: 56.1m
+  Collection: Buildings
+
+Name: Tower 31
+  Current Height: 20.0m
+  Width: 52.3m
+  Depth: 44.0m
+  Collection: Buildings
+
+Name: Two Manhattan West
+  Current Height: 285.0m
+  Width: 72.2m
+  Depth: 66.3m
+  Collection: Buildings
+
+Name: Universal Building
+  Current Height: 51.2m
+  Width: 30.8m
+  Depth: 32.8m
+  Collection: Buildings
+
+Name: Virgin Hotel
+  Current Height: 145.1m
+  Width: 58.2m
+  Depth: 85.7m
+  Collection: Buildings
+
+Name: Wafels & Dinges
+  Current Height: 20.0m
+  Width: 4.5m
+  Depth: 3.8m
+  Collection: Buildings
+
+Name: West Side Jewish Center
+  Current Height: 20.5m
+  Width: 23.3m
+  Depth: 29.4m
+  Collection: Buildings
+
+Name: West Side Yard
+  Current Height: 0.0m
+  Width: 489.0m
+  Depth: 292.4m
+  Collection: Buildings
+
+Name: World Apparel Center
+  Current Height: 117.0m
+  Width: 72.2m
+  Depth: 76.0m
+  Collection: Buildings
+
+Name: World's Tower Building
+  Current Height: 81.0m
+  Width: 25.5m
+  Depth: 30.4m
+  Collection: Buildings
+
+Name: nyma
+  Current Height: 65.3m
+  Width: 27.6m
+  Depth: 32.2m
+  Collection: Buildings
+

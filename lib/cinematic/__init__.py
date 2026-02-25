@@ -552,6 +552,35 @@ from .tracking.types import (
 # Batch Types (from tracking.types)
 from .tracking.types import BatchJob, BatchConfig, BatchResult
 
+# Camera Control System (Unified API)
+from .camera_control import (
+    CameraController,
+    CameraType,
+    RigType,
+    ShakeProfile,
+    MultiCameraController,
+    ShakeConfig,
+    ZoomConfig,
+    FocusPullConfig,
+    CameraState,
+    SHAKE_PROFILES,
+)
+
+# GN Camera Control
+from .gn_camera_control import (
+    GNCameraController,
+    GNCameraNodeTree,
+    ShakeType,
+    FollowMode,
+    ShakeLayer,
+    GNCameraConfig,
+    create_shake_camera,
+    create_follow_orbit_camera,
+    get_shake_node_spec,
+    get_orbit_node_spec,
+    get_follow_node_spec,
+)
+
 # Object Tracking & Follow Focus (Phase 6.2)
 from .tracking_types import (
     SolveMethod,
@@ -1095,6 +1124,28 @@ __all__ = [
     "setup_shot_compositing",
     "load_tracking_shot_yaml",
     "validate_tracking_shot_config",
+
+    # Camera Control System (Unified API)
+    "CameraController",
+    "CameraType",
+    "RigType",
+    "ShakeProfile",
+    "MultiCameraController",
+    "create_camera" "create_ortho_camera",
+    "create_isometric_camera",
+    "create_dolly_zoom",
+    # GN Camera Control
+    "GNCameraController",
+    "GNCameraNodeTree",
+    "ShakeType",
+    "FollowMode",
+    "ShakeLayer",
+    "GNCameraConfig",
+    "create_shake_camera",
+    "create_follow_orbit_camera",
+    "get_shake_node_spec",
+    "get_orbit_node_spec",
+    "get_follow_node_spec",
 
     # Constants
     "APERTURE_MIN",

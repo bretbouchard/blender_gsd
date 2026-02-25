@@ -566,3 +566,331 @@ class FieldOperations:
             builder.link(target_geometry, proximity.inputs["Target Geometry"])
 
         return proximity
+
+    # =========================================================================
+    # UV PASS-THROUGH METHODS (Blender 5.x Pattern)
+    # =========================================================================
+
+    @staticmethod
+    def store_uv_for_shader(
+        geometry,
+        uv_data,
+        uv_name: str = "UV",
+        builder=None,
+        location: tuple[float, float] = (0, 0),
+    ) -> Node:
+        """
+        Store UV coordinates for shader access.
+
+        Uses Store Named Attribute with Face Corner domain to pass UVs
+        from Geometry Nodes to shader. This is the critical pattern for
+        UV pass-through in Blender 5.x.
+
+        **Critical:** UVs must be stored at Face Corner (CORNER) domain,
+        not Point domain, for proper interpolation across faces.
+
+        Args:
+            geometry: Geometry to store UVs on.
+            uv_data: UV coordinate data (2D vector field).
+            uv_name: Name for the UV attribute (default "UV").
+            builder: NodeTreeBuilder for node creation.
+            location: Position for the store node.
+
+        Returns:
+            Store Named Attribute node.
+
+        Example (Geometry Nodes):
+            >>> # Store procedurally generated UVs
+            >>> position = builder.add_node("GeometryNodeInputPosition")
+            >>> uv_from_pos = builder.add_node("ShaderNodeSeparateXYZ")
+            >>> builder.link(position.outputs["Position"], uv_from_pos.inputs[0])
+            >>>
+            >>> # Create 2D UV from XZ position
+            >>> combine = builder.add_node("ShaderNodeCombineXYZ")
+            >>> # ... connect X→X, Z→Y
+            >>>
+            >>> store = FieldOperations.store_uv_for_shader(
+            ...     geometry,
+            ...     combine.outputs["Vector"],
+            ...     uv_name="ProceduralUV",
+            ...     builder=builder
+            ... )
+
+        Example (Shader - Reading stored UVs):
+            >>> # In material node tree
+            >>> attr = material_nodes.new("ShaderNodeAttribute")
+            >>> attr.attribute_name = "ProceduralUV"
+            >>> # Connect attr.outputs["Vector"] to texture vector input
+        """
+        if builder is None:
+            raise ValueError("builder parameter required for node creation")
+
+        store = builder.add_node(
+            "GeometryNodeStoreNamedAttribute",
+            location,
+            name=f"StoreUV_{uv_name}",
+        )
+
+        # Critical: Face Corner domain for UVs
+        # This ensures proper interpolation across faces
+        store.domain = 'CORNER'
+
+        # Set data type to 2D vector for UVs
+        store.data_type = 'FLOAT_VECTOR'
+
+        # Set attribute name
+        store.inputs["Name"].default_value = uv_name
+
+        # Connect geometry
+        if geometry is not None:
+            builder.link(geometry, store.inputs["Geometry"])
+
+        # Connect UV data (2D vector stored as 3D with Z=0)
+        if uv_data is not None:
+            builder.link(uv_data, store.inputs["Value"])
+
+        return store
+
+    @staticmethod
+    def store_named_attribute(
+        geometry,
+        value,
+        attribute_name: str,
+        domain: str = 'POINT',
+        data_type: str = 'FLOAT',
+        builder=None,
+        location: tuple[float, float] = (0, 0),
+    ) -> Node:
+        """
+        Store a named attribute for cross-node or shader access.
+
+        Generic attribute storage that can be used for UVs, colors,
+        weights, or any custom data.
+
+        Args:
+            geometry: Geometry to store attribute on.
+            value: Field value to store.
+            attribute_name: Name for the attribute.
+            domain: Attribute domain ('POINT', 'EDGE', 'FACE', 'CORNER', 'CURVE', 'INSTANCE').
+            data_type: Data type ('FLOAT', 'INT', 'FLOAT_VECTOR', 'FLOAT_COLOR', 'BYTE_COLOR', 'BOOLEAN', 'QUATERNION', 'FLOAT4X4').
+            builder: NodeTreeBuilder for node creation.
+            location: Position for the store node.
+
+        Returns:
+            Store Named Attribute node.
+
+        Domain Quick Reference:
+            - POINT: Per-vertex data
+            - EDGE: Per-edge data
+            - FACE: Per-face data
+            - CORNER: Per-face-corner (loops) - **USE FOR UVs**
+            - CURVE: Per-curve data (hair/curves)
+            - INSTANCE: Per-instance data
+        """
+        if builder is None:
+            raise ValueError("builder parameter required for node creation")
+
+        store = builder.add_node(
+            "GeometryNodeStoreNamedAttribute",
+            location,
+            name=f"Store_{attribute_name}",
+        )
+
+        # Set domain and data type
+        store.domain = domain
+        store.data_type = data_type
+
+        # Set attribute name
+        store.inputs["Name"].default_value = attribute_name
+
+        # Connect geometry
+        if geometry is not None:
+            builder.link(geometry, store.inputs["Geometry"])
+
+        # Connect value
+        if value is not None:
+            builder.link(value, store.inputs["Value"])
+
+        return store
+
+    @staticmethod
+    def get_named_attribute(
+        attribute_name: str,
+        data_type: str = 'FLOAT',
+        builder=None,
+        location: tuple[float, float] = (0, 0),
+    ) -> Node:
+        """
+        Read a named attribute from geometry.
+
+        Creates an input node that reads attribute values. Use this
+        to access attributes stored via Store Named Attribute.
+
+        Args:
+            attribute_name: Name of the attribute to read.
+            data_type: Data type ('FLOAT', 'INT', 'FLOAT_VECTOR', 'FLOAT_COLOR').
+            builder: NodeTreeBuilder for node creation.
+            location: Position for the input node.
+
+        Returns:
+            Named Attribute input node.
+
+        Example:
+            >>> # Read stored UV attribute
+            >>> uv_input = FieldOperations.get_named_attribute(
+            ...     "ProceduralUV",
+            ...     data_type='FLOAT_VECTOR',
+            ...     builder=builder
+            ... )
+            >>> # Use uv_input.outputs["Attribute"] for texture sampling
+        """
+        if builder is None:
+            raise ValueError("builder parameter required for node creation")
+
+        attr_input = builder.add_node(
+            "GeometryNodeInputNamedAttribute",
+            location,
+            name=f"Get_{attribute_name}",
+        )
+
+        # Set data type
+        attr_input.data_type = data_type
+
+        # Set attribute name
+        attr_input.inputs["Name"].default_value = attribute_name
+
+        return attr_input
+
+    @staticmethod
+    def create_uv_from_position(
+        geometry,
+        plane: str = "XZ",
+        scale: tuple[float, float] = (1.0, 1.0),
+        offset: tuple[float, float] = (0.0, 0.0),
+        uv_name: str = "UV",
+        builder=None,
+        location: tuple[float, float] = (0, 0),
+    ) -> Node:
+        """
+        Create and store UV coordinates from position.
+
+        Convenience method that generates UVs from world position and
+        stores them for shader access. Common pattern for procedural
+        textures.
+
+        Args:
+            geometry: Geometry to generate UVs for.
+            plane: Which axes to use ("XZ", "XY", "YZ").
+            scale: UV scale (u_scale, v_scale).
+            offset: UV offset (u_offset, v_offset).
+            uv_name: Name for the UV attribute.
+            builder: NodeTreeBuilder for node creation.
+            location: Position for nodes.
+
+        Returns:
+            Store Named Attribute node.
+
+        Example:
+            >>> # Create UVs for top-down road texture
+            >>> store = FieldOperations.create_uv_from_position(
+            ...     road_geometry,
+            ...     plane="XZ",  # Use X for U, Z for V
+            ...     scale=(0.25, 0.25),  # 4m texture tiling
+            ...     uv_name="RoadUV",
+            ...     builder=builder
+            ... )
+        """
+        if builder is None:
+            raise ValueError("builder parameter required for node creation")
+
+        # Get position
+        position = builder.add_node(
+            "GeometryNodeInputPosition",
+            (location[0] - 400, location[1]),
+            name="Position",
+        )
+
+        # Separate position
+        separate = builder.add_node(
+            "ShaderNodeSeparateXYZ",
+            (location[0] - 200, location[1]),
+            name="SeparatePos",
+        )
+        builder.link(position.outputs["Position"], separate.inputs[0])
+
+        # Select axes based on plane
+        u_source = None
+        v_source = None
+
+        if plane == "XZ":
+            u_source = separate.outputs["X"]
+            v_source = separate.outputs["Z"]
+        elif plane == "XY":
+            u_source = separate.outputs["X"]
+            v_source = separate.outputs["Y"]
+        elif plane == "YZ":
+            u_source = separate.outputs["Y"]
+            v_source = separate.outputs["Z"]
+        else:
+            raise ValueError(f"Invalid plane: {plane}. Use 'XZ', 'XY', or 'YZ'.")
+
+        # Scale U
+        scale_u = builder.add_node(
+            "ShaderNodeMath",
+            (location[0], location[1] + 50),
+            name="ScaleU",
+        )
+        scale_u.operation = 'MULTIPLY'
+        scale_u.inputs[1].default_value = scale[0]
+        builder.link(u_source, scale_u.inputs[0])
+
+        # Offset U
+        offset_u = builder.add_node(
+            "ShaderNodeMath",
+            (location[0] + 100, location[1] + 50),
+            name="OffsetU",
+        )
+        offset_u.operation = 'ADD'
+        offset_u.inputs[1].default_value = offset[0]
+        builder.link(scale_u.outputs[0], offset_u.inputs[0])
+
+        # Scale V
+        scale_v = builder.add_node(
+            "ShaderNodeMath",
+            (location[0], location[1] - 50),
+            name="ScaleV",
+        )
+        scale_v.operation = 'MULTIPLY'
+        scale_v.inputs[1].default_value = scale[1]
+        builder.link(v_source, scale_v.inputs[0])
+
+        # Offset V
+        offset_v = builder.add_node(
+            "ShaderNodeMath",
+            (location[0] + 100, location[1] - 50),
+            name="OffsetV",
+        )
+        offset_v.operation = 'ADD'
+        offset_v.inputs[1].default_value = offset[1]
+        builder.link(scale_v.outputs[0], offset_v.inputs[0])
+
+        # Combine to 2D vector (UV)
+        combine = builder.add_node(
+            "ShaderNodeCombineXYZ",
+            (location[0] + 200, location[1]),
+            name="CombineUV",
+        )
+        builder.link(offset_u.outputs[0], combine.inputs["X"])
+        builder.link(offset_v.outputs[0], combine.inputs["Y"])
+        # Z stays at 0
+
+        # Store UV
+        store = FieldOperations.store_uv_for_shader(
+            geometry,
+            combine.outputs["Vector"],
+            uv_name=uv_name,
+            builder=builder,
+            location=(location[0] + 400, location[1]),
+        )
+
+        return store

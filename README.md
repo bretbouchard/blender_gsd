@@ -370,6 +370,44 @@ zone.apply_preset(preset)
 
 ---
 
+## CLI & Project Tools
+
+Create and manage Blender GSD projects from the command line:
+
+```bash
+# Create a new project
+python -m lib.cli init my-project
+
+# Create with a specific template
+python -m lib.cli init my-film --template cinematic
+
+# List available templates
+python -m lib.cli templates list
+
+# Validate a project
+python -m lib.cli validate .
+
+# Start debug dashboard
+python -m lib.cli dashboard
+```
+
+**Project Templates:**
+| Template | Description |
+|----------|-------------|
+| default | Standard project with tasks, scripts, planning |
+| control-surface | Audio control surface design |
+| cinematic | Cinematic rendering with camera/lighting |
+| production | Full production with characters/locations |
+| charlotte | Charlotte digital twin geometry |
+| minimal | Bare-bones project |
+
+**VS Code Integration:**
+- Auto-generated `settings.json` with Python/YAML configuration
+- Recommended extensions (Python, Pylance, YAML, TOML)
+- Debug configurations for running tasks
+
+---
+
 ## Testing & Validation
 
 Oracle-based testing framework for deterministic validation:
@@ -386,7 +424,8 @@ def test_output_exists():
 ```
 
 **Test Coverage:**
-- 1,452 unit tests
+- 4,610+ unit tests
+- Integration tests for pipelines
 - Oracle comparison functions
 - Works outside Blender (fallback implementations)
 
@@ -449,12 +488,12 @@ The Council of Ricks - domain-specific AI agents:
 
 | Metric | Count |
 |--------|-------|
-| Python Modules | 266 |
-| Test Files | 88 |
-| Lines of Code | 146,301 |
-| Tests | 1,452 |
+| Python Modules | 270+ |
+| Test Files | 95+ |
+| Lines of Code | 150,000+ |
+| Tests | 4,700+ |
 | Versioned Packages | 14 |
-| Completed Phases | 49 |
+| Completed Phases | 51+ |
 
 ### Completed Milestones
 

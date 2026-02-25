@@ -612,6 +612,7 @@ class WeatheringTools:
         noise_amount: float = 0.1,
         color: Optional[Tuple[float, float, float]] = None,
         seed: int = 0,
+        use_shader_raycast: bool = False,
     ) -> Dict[str, Any]:
         """
         Create an edge wear/chipping material configuration.
@@ -623,11 +624,12 @@ class WeatheringTools:
             noise_amount: Amount of noise in wear pattern
             color: Optional under-color revealed by wear
             seed: Random seed for reproducibility
+            use_shader_raycast: Use Blender 5.1 shader raycast (real-time)
 
         Returns:
             Dictionary containing edge wear configuration
         """
-        return {
+        config = {
             "type": "edge_wear",
             "parameters": {
                 "intensity": max(0.0, min(1.0, intensity)),
@@ -636,9 +638,10 @@ class WeatheringTools:
                 "noise_amount": max(0.0, min(1.0, noise_amount)),
                 "under_color": color,
                 "seed": seed,
+                "use_shader_raycast": use_shader_raycast,
             },
             "node_config": {
-                "use_geometry_nodes": True,
+                "use_geometry_nodes": not use_shader_raycast,
                 "bevel_radius": inner_radius * 2,
                 "noise_scale": noise_amount * 50,
                 "threshold": 1.0 - intensity,
@@ -648,11 +651,135 @@ class WeatheringTools:
                 "wear_roughness_increase": intensity * 0.3,
                 "wear_specular_decrease": intensity * 0.2,
             },
-            "geometry_nodes_setup": {
+        }
+
+        if use_shader_raycast:
+            # Blender 5.1+ shader raycast configuration
+            config["shader_raycast_setup"] = {
+                "method": "self_raycast",
+                "max_distance": inner_radius * 2,
+                "direction": "normal",
+                "output": "hit_distance",
+                "map_range": {
+                    "from_min": 0.0,
+                    "from_max": inner_radius * 2,
+                    "to_min": 0.0,
+                    "to_max": 1.0,  # Close = more wear
+                },
+                "noise_overlay": {
+                    "scale": noise_amount * 50,
+                    "factor": noise_amount,
+                },
+                "advantages": [
+                    "Real-time updates",
+                    "No baking required",
+                    "Works with animated geometry",
+                    "Simpler node setup",
+                ],
+            }
+        else:
+            # Traditional geometry nodes approach
+            config["geometry_nodes_setup"] = {
                 "use_bevel": True,
                 "use_edge_angle": True,
                 "min_angle": 30,
             }
+
+        return config
+
+    @staticmethod
+    def create_edge_wear_with_raycast(
+        intensity: float = 0.5,
+        max_distance: float = 0.2,
+        wear_color: Optional[Tuple[float, float, float]] = None,
+        noise_amount: float = 0.1,
+        seed: int = 0,
+    ) -> Dict[str, Any]:
+        """
+        Create edge wear using Blender 5.1 shader raycast.
+
+        This method uses the new Raycast node in shaders for real-time
+        edge detection without geometry processing or baking.
+
+        Args:
+            intensity: Wear intensity (0.0 - 1.0)
+            max_distance: Maximum distance for edge detection
+            wear_color: Optional under-color revealed by wear
+            noise_amount: Amount of noise variation
+            seed: Random seed for reproducibility
+
+        Returns:
+            Dictionary containing shader raycast edge wear configuration
+
+        Note:
+            Requires Blender 5.1 or later. The Raycast node sends rays
+            from surface along normals and detects self-intersection,
+            which naturally reveals edges and corners.
+        """
+        return {
+            "type": "edge_wear_raycast",
+            "method": "shader_raycast",
+            "parameters": {
+                "intensity": max(0.0, min(1.0, intensity)),
+                "max_distance": max(0.01, max_distance),
+                "wear_color": wear_color,
+                "noise_amount": max(0.0, min(1.0, noise_amount)),
+                "seed": seed,
+            },
+            "node_config": {
+                # Shader nodes to create
+                "nodes": [
+                    {"type": "ShaderNodeNewGeometry", "name": "geometry"},
+                    {"type": "ShaderNodeRaycast", "name": "raycast",
+                     "ray_length": max_distance},
+                    {"type": "ShaderNodeMapRange", "name": "map_distance",
+                     "from_min": 0.0, "from_max": max_distance,
+                     "to_min": 1.0, "to_max": 0.0},  # Invert: close = dark
+                    {"type": "ShaderNodeMath", "name": "apply_intensity",
+                     "operation": "MULTIPLY", "value2": intensity},
+                    {"type": "ShaderNodeTexNoise", "name": "noise",
+                     "scale": noise_amount * 50 if noise_amount > 0 else 1},
+                    {"type": "ShaderNodeMath", "name": "mix_noise",
+                     "operation": "MULTIPLY", "value2": noise_amount},
+                    {"type": "ShaderNodeMath", "name": "final_wear",
+                     "operation": "MULTIPLY"},
+                ],
+                "links": [
+                    # Geometry to raycast
+                    {"from": "geometry", "from_socket": "Position",
+                     "to": "raycast", "to_socket": "Source Position"},
+                    {"from": "geometry", "from_socket": "Normal",
+                     "to": "raycast", "to_socket": "Direction"},
+                    # Raycast to map range
+                    {"from": "raycast", "from_socket": "Hit Distance",
+                     "to": "map_distance", "to_socket": "Value"},
+                    # Apply intensity
+                    {"from": "map_distance", "from_socket": "Result",
+                     "to": "apply_intensity", "to_socket": "Value"},
+                    # Add noise variation
+                    {"from": "noise", "from_socket": "Fac",
+                     "to": "mix_noise", "to_socket": "Value"},
+                    {"from": "apply_intensity", "from_socket": "Value",
+                     "to": "final_wear", "to_socket": "Value"},
+                    {"from": "mix_noise", "from_socket": "Value",
+                     "to": "final_wear", "to_socket": "Value"},
+                ],
+                "output": {"node": "final_wear", "socket": "Value"},
+            },
+            "shader_setup": {
+                "wear_roughness_increase": intensity * 0.3,
+                "wear_specular_decrease": intensity * 0.2,
+                "blend_mode": "mix",
+            },
+            "usage": {
+                "description": "Use the output 'final_wear' factor to mix colors or adjust material properties",
+                "example_material_setup": [
+                    "1. Create base color and wear color nodes",
+                    "2. Use Mix Color with final_wear as factor",
+                    "3. Connect to BSDF Base Color",
+                    "4. Optionally mix roughness values",
+                ],
+            },
         }
 
     @staticmethod

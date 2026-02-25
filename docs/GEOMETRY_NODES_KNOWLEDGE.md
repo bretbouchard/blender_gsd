@@ -331,11 +331,13 @@ Cryptomatte → Separate CGI
 | Matrix SVD | Singular Value Decomposition |
 | Font Socket | New text handling type |
 | Get/Store Bundle Item | Complex data packaging |
+| **Raycast (Shader)** | Proximity detection in materials |
 
 ### Enhanced Nodes
 - **Pack UV Islands**: Custom packing region, warnings search
 - **UV Unwrap**: SLIM option, no-flip option
 - **String to Curves**: New input sockets
+- **Normal Map**: DirectX/OpenGL toggle built-in
 
 ### Eevee Next
 - Planar reflections with glossy
@@ -346,10 +348,24 @@ Cryptomatte → Separate CGI
 ### Performance Overlay
 Shows evaluation, sync, and total times (CPU/GPU breakdown)
 
+### UX Improvements
+- **Vulkan** as default backend (Metal on Mac)
+- **Preferences Search** with highlighting
+- **Update All** for extensions
+- **Face Center** snap mode
+- **Resizable Quad View** (Ctrl+Alt+Q)
+- **Grease Pencil Boolean** cutout (Shift+J)
+
+### Animation Performance
+- **150-300% improvement** for shape keys
+- Background optimization for heavy animations
+
 ### Coming in 5.2
 - Lists in Geometry Nodes
 - Word ID for String to Curves
 - Geometry Attribute Node for Armatures
+
+**See Also:** [BLENDER_51_TUTORIAL_KNOWLEDGE.md](BLENDER_51_TUTORIAL_KNOWLEDGE.md) for detailed examples
 
 ---
 
@@ -689,4 +705,13 @@ Input → Simulation Zone
 
 ---
 
-*Compiled from 13 CGMatter tutorials - February 2026*
+## Related Documentation
+
+| Document | Content |
+|----------|---------|
+| [BLENDER_51_TUTORIAL_KNOWLEDGE.md](BLENDER_51_TUTORIAL_KNOWLEDGE.md) | Blender 5.1 features, geometric minimalism, isometric modeling |
+| [NODE_TOOL_PATTERNS.md](NODE_TOOL_PATTERNS.md) | Reusable node patterns for animation, instances, materials |
+
+---
+
+*Compiled from 13 CGMatter tutorials + 3 advanced tutorials (DECODED, Ducky 3D, Polygon Runway) - February 2026*

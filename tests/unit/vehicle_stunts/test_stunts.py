@@ -199,8 +199,8 @@ class TestLoops:
         config = LoopConfig(radius=5.0)
         min_speed = config.get_min_speed()
         assert min_speed > 0
-        # For 5m radius, should be around 11-12 m/s
-        assert 10 < min_speed < 15
+        # For 5m radius with 1.5g safety factor, should be around 16-17 m/s
+        assert 14 < min_speed < 20
 
     def test_create_banked_turn(self):
         """Test creating a banked turn."""

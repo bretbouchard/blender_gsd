@@ -227,6 +227,142 @@ class GNOutputFormat:
 
 
 # =============================================================================
+# UV STORAGE VALIDATION
+# =============================================================================
+
+@dataclass
+class UVStorageSpec:
+    """Specification for UV attribute storage."""
+    uv_attribute_name: str
+    domain: str = 'CORNER'  # Must be CORNER for UVs
+    data_type: str = 'FLOAT_VECTOR'
+    is_stored: bool = False
+    store_node_name: str = ""
+
+
+def validate_uv_storage(
+    gn_output: GNOutputFormat,
+    node_tree: Optional[GeometryNodeTree] = None,
+) -> List[str]:
+    """
+    Validate that UV attribute is properly stored before use.
+
+    Checks that:
+    1. UV attribute name is specified
+    2. If node_tree provided, verifies Store Named Attribute exists
+    3. Domain is CORNER (Face Corner) for proper UV interpolation
+
+    Args:
+        gn_output: GN output format to validate
+        node_tree: Optional node tree to check for actual storage
+
+    Returns:
+        List of validation warnings/errors
+    """
+    warnings = []
+    uv_attr = gn_output.inputs.get("uv_attribute", "")
+
+    if not uv_attr:
+        warnings.append("No UV attribute name specified in inputs")
+        return warnings
+
+    if node_tree and BLENDER_AVAILABLE:
+        # Check for Store Named Attribute node with UV name
+        found_store = False
+        for node in node_tree.nodes:
+            if node.type == 'GeometryNodeStoreNamedAttribute':
+                if node.inputs["Name"].default_value == uv_attr:
+                    found_store = True
+                    # Check domain
+                    if node.domain != 'CORNER':
+                        warnings.append(
+                            f"UV storage node domain is {node.domain}, "
+                            f"should be 'CORNER' for proper UV interpolation"
+                        )
+
+        if not found_store:
+            warnings.append(
+                f"No 'Store Named Attribute' node found for UV attribute '{uv_attr}'. "
+                f"Use FieldOperations.store_uv_for_shader() before texture sampling."
+            )
+
+    return warnings
+
+
+def create_uv_storage_node_spec(
+    uv_attribute_name: str = "uv_map",
+    plane: str = "XZ",
+    scale: tuple[float, float] = (1.0, 1.0),
+    offset: tuple[float, float] = (0.0, 0.0),
+) -> Dict[str, Any]:
+    """
+    Create node specification for UV storage from position.
+
+    Generates a dictionary specification that can be used to create
+    nodes for storing UV coordinates derived from position.
+
+    Args:
+        uv_attribute_name: Name for the UV attribute
+        plane: Which position axes to use ("XZ", "XY", "YZ")
+        scale: UV scale factors
+        offset: UV offset values
+
+    Returns:
+        Dictionary with nodes and links for UV storage
+    """
+    # Determine axis indices
+    axis_map = {"X": 0, "Y": 1, "Z": 2}
+    u_axis = axis_map[plane[0]]
+    v_axis = axis_map[plane[1]]
+
+    return {
+        "uv_attribute_name": uv_attribute_name,
+        "nodes": [
+            {"type": "GeometryNodeInputPosition", "name": "get_position"},
+            {"type": "ShaderNodeSeparateXYZ", "name": "separate_pos"},
+            {"type": "ShaderNodeMath", "name": "scale_u", "operation": "MULTIPLY"},
+            {"type": "ShaderNodeMath", "name": "offset_u", "operation": "ADD"},
+            {"type": "ShaderNodeMath", "name": "scale_v", "operation": "MULTIPLY"},
+            {"type": "ShaderNodeMath", "name": "offset_v", "operation": "ADD"},
+            {"type": "ShaderNodeCombineXYZ", "name": "combine_uv"},
+            {"type": "GeometryNodeStoreNamedAttribute", "name": "store_uv",
+             "domain": "CORNER", "data_type": "FLOAT_VECTOR",
+             "attribute_name": uv_attribute_name},
+        ],
+        "links": [
+            {"from": "get_position", "from_socket": "Position",
+             "to": "separate_pos", "to_socket": "Vector"},
+            # Scale U
+            {"from": "separate_pos", "from_socket": list(axis_map.keys())[u_axis],
+             "to": "scale_u", "to_socket": "Value"},
+            # Offset U
+            {"from": "scale_u", "from_socket": "Value",
+             "to": "offset_u", "to_socket": "Value"},
+            # Scale V
+            {"from": "separate_pos", "from_socket": list(axis_map.keys())[v_axis],
+             "to": "scale_v", "to_socket": "Value"},
+            # Offset V
+            {"from": "scale_v", "from_socket": "Value",
+             "to": "offset_v", "to_socket": "Value"},
+            # Combine UV
+            {"from": "offset_u", "from_socket": "Value",
+             "to": "combine_uv", "to_socket": "X"},
+            {"from": "offset_v", "from_socket": "Value",
+             "to": "combine_uv", "to_socket": "Y"},
+            # Store UV
+            {"from": "combine_uv", "from_socket": "Vector",
+             "to": "store_uv", "to_socket": "Value"},
+        ],
+        "defaults": {
+            "scale_u": {"input_index": 1, "value": scale[0]},
+            "offset_u": {"input_index": 1, "value": offset[0]},
+            "scale_v": {"input_index": 1, "value": scale[1]},
+            "offset_v": {"input_index": 1, "value": offset[1]},
+        },
+    }
+
+
+# =============================================================================
 # MASK NODE GROUP GENERATORS
 # =============================================================================
 
@@ -637,9 +773,12 @@ __all__ = [
     "GNLayerConfig",
     "MaterialSlotConfig",
     "GNOutputFormat",
+    "UVStorageSpec",
     # Functions
     "convert_to_gn_format",
     "create_road_gn_config",
+    "validate_uv_storage",
+    "create_uv_storage_node_spec",
     # Classes
     "GNTextureIntegrator",
     # Presets

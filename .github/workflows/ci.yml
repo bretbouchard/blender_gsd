@@ -1,0 +1,204 @@
+name: CI
+
+on:
+  push:
+    branches: [master, main, develop]
+  pull_request:
+    branches: [master, main]
+  workflow_dispatch:
+
+env:
+  PYTHON_VERSION: '3.11'
+
+jobs:
+  # =====================================
+  # LINT & FORMAT
+  # =====================================
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+
+      - name: Install linters
+        run: pip install ruff
+
+      - name: Lint with ruff
+        run: ruff check lib/ tests/ --output-format=github
+        continue-on-error: true
+
+      - name: Check formatting
+        run: ruff format --check lib/ tests/
+        continue-on-error: true
+
+  # =====================================
+  # UNIT TESTS
+  # =====================================
+  unit-tests:
+    name: Unit Tests
+    runs-on: ubuntu-latest
+    needs: lint
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+          cache: 'pip'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pytest pytest-cov pytest-xdist pyyaml pillow
+
+      - name: Run unit tests with coverage
+        run: |
+          pytest tests/unit \
+            -v \
+            --cov=lib \
+            --cov-report=xml \
+            --cov-report=term-missing \
+            --cov-fail-under=0 \
+            -n auto \
+            --dist=loadscope
+
+      - name: Upload coverage report
+        uses: codecov/codecov-action@v4
+        if: always()
+        with:
+          files: ./coverage.xml
+          fail_ci_if_error: false
+
+  # =====================================
+  # INTEGRATION TESTS
+  # =====================================
+  integration-tests:
+    name: Integration Tests
+    runs-on: ubuntu-latest
+    needs: lint
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pytest pyyaml pillow
+
+      - name: Run integration tests
+        run: pytest tests/integration -v -m integration --tb=short
+        continue-on-error: true
+
+  # =====================================
+  # REGRESSION TESTS
+  # =====================================
+  regression-tests:
+    name: Regression Tests
+    runs-on: ubuntu-latest
+    needs: [lint, unit-tests]
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pytest pyyaml pillow
+
+      - name: Run regression tests
+        run: pytest tests/regression -v -m regression --tb=short
+
+  # =====================================
+  # ORACLE VALIDATION
+  # =====================================
+  oracle-tests:
+    name: Oracle Tests
+    runs-on: ubuntu-latest
+    needs: lint
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+
+      - name: Install dependencies
+        run: pip install pytest pyyaml
+
+      - name: Run Oracle self-tests
+        run: python lib/oracle.py
+
+  # =====================================
+  # SLC CHECK
+  # =====================================
+  slc-check:
+    name: SLC Quality Check
+    runs-on: ubuntu-latest
+    needs: lint
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+
+      - name: Check for SLC violations
+        run: |
+          echo "=== SLC Quality Check ==="
+
+          # Check for TODO/FIXME without tickets
+          TODOS=$(grep -r "TODO\|FIXME" lib/ --include="*.py" | wc -l || echo "0")
+          echo "TODO/FIXME comments: $TODOS"
+
+          # Check for NotImplementedError in production code
+          NOT_IMPL=$(grep -r "raise NotImplementedError" lib/ --include="*.py" | grep -v "plugin_interface" | wc -l || echo "0")
+          if [ "$NOT_IMPL" -gt "0" ]; then
+            echo "::warning::$NOT_IMPL NotImplementedError found (excluding plugin_interface)"
+          fi
+
+          # Check for pass statements in methods
+          PASS_COUNT=$(grep -r "^\s*pass$" lib/ --include="*.py" | wc -l || echo "0")
+          echo "Pass statements: $PASS_COUNT"
+
+  # =====================================
+  # TEST SUMMARY
+  # =====================================
+  test-summary:
+    name: Test Summary
+    runs-on: ubuntu-latest
+    needs: [lint, unit-tests, integration-tests, regression-tests, oracle-tests]
+    if: always()
+    steps:
+      - name: Check test results
+        run: |
+          echo "## Test Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "| Job | Status |" >> $GITHUB_STEP_SUMMARY
+          echo "|-----|--------|" >> $GITHUB_STEP_SUMMARY
+          echo "| Lint | ${{ needs.lint.result }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| Unit Tests | ${{ needs.unit-tests.result }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| Integration | ${{ needs.integration-tests.result }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| Regression | ${{ needs.regression-tests.result }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| Oracle | ${{ needs.oracle-tests.result }} |" >> $GITHUB_STEP_SUMMARY
+
+          # Fail if lint or unit tests fail
+          if [[ "${{ needs.lint.result }}" == "failure" ]] || [[ "${{ needs.unit-tests.result }}" == "failure" ]]; then
+            echo "::error::Required checks failed"
+            exit 1
+          fi

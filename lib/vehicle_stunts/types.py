@@ -37,7 +37,7 @@ class LoopType(Enum):
 @dataclass
 class RampConfig:
     """Configuration for a stunt ramp."""
-    ramp_type: RampType
+    ramp_type: Optional[RampType] = None
     width: float = 4.0             # meters
     height: float = 2.0            # meters
     length: float = 6.0            # meters
@@ -62,7 +62,7 @@ class RampConfig:
     def to_dict(self) -> Dict[str, Any]:
         """Convert to dictionary."""
         return {
-            'ramp_type': self.ramp_type.name,
+            'ramp_type': self.ramp_type.name if self.ramp_type else None,
             'width': self.width,
             'height': self.height,
             'length': self.length,

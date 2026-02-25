@@ -370,16 +370,20 @@ def calculate_wall_ride_physics(
 
 
 def calculate_optimal_trajectory(
-    start_pos: Tuple[float, float, float],
-    end_pos: Tuple[float, float, float],
+    start_pos: Tuple[float, float, float] | float,
+    end_pos: Optional[Tuple[float, float, float]] = None,
     max_height: Optional[float] = None,
     constraints: Optional[Dict[str, float]] = None,
 ) -> Dict[str, Any]:
     """Calculate optimal trajectory between two points.
 
+    Can be called with two signatures:
+    1. (start_pos: tuple, end_pos: tuple, ...) - Full positions
+    2. (distance: float, height_diff: float, ...) - Simplified
+
     Args:
-        start_pos: Starting position (x, y, z)
-        end_pos: Ending position (x, y, z)
+        start_pos: Starting position (x, y, z) OR horizontal distance (float)
+        end_pos: Ending position (x, y, z) OR None if using simplified signature
         max_height: Optional maximum height constraint
         constraints: Optional physics constraints
 
@@ -388,13 +392,26 @@ def calculate_optimal_trajectory(
     """
     g = GRAVITY
 
-    # Calculate distance and height difference
-    dx = end_pos[0] - start_pos[0]
-    dy = end_pos[1] - start_pos[1]
-    dz = end_pos[2] - start_pos[2]
+    # Handle both calling conventions
+    if isinstance(start_pos, (int, float)):
+        # Simplified signature: (distance, height_diff)
+        horizontal_dist = float(start_pos)
+        height_diff = max_height if max_height is not None else 0.0
+        max_height = constraints  # Third param becomes max_height in this mode
+        start_z = 0.0
+    else:
+        # Full signature: (start_pos, end_pos)
+        if end_pos is None:
+            end_pos = (0.0, 0.0, 0.0)
 
-    horizontal_dist = math.sqrt(dx**2 + dy**2)
-    height_diff = dz
+        # Calculate distance and height difference
+        dx = end_pos[0] - start_pos[0]
+        dy = end_pos[1] - start_pos[1]
+        dz = end_pos[2] - start_pos[2]
+
+        horizontal_dist = math.sqrt(dx**2 + dy**2)
+        height_diff = dz
+        start_z = start_pos[2]
 
     # Calculate optimal angle
     if abs(height_diff) < 0.1:
@@ -425,7 +442,7 @@ def calculate_optimal_trajectory(
 
     # Calculate peak height
     vy = required_speed * math.sin(angle_rad)
-    peak_height = start_pos[2] + vy**2 / (2 * g)
+    peak_height = start_z + vy**2 / (2 * g)
 
     # Check height constraint
     if max_height is not None and peak_height > max_height:
@@ -443,7 +460,7 @@ def calculate_optimal_trajectory(
                 required_speed = math.sqrt(required_speed**2 + 2 * g * abs(height_diff))
 
         vy = required_speed * math.sin(angle_rad)
-        peak_height = start_pos[2] + vy**2 / (2 * g)
+        peak_height = start_z + vy**2 / (2 * g)
 
     # Calculate air time
     air_time = calculate_air_time(required_speed, optimal_angle, -height_diff)
