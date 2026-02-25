@@ -1,0 +1,288 @@
+# Projector Profiles Configuration
+# This YAML file provides projector hardware specifications
+# for use with the physical projector mapping system.
+#
+# Key Formula (Geometry Rick verified):
+#   focal_length = sensor_width * throw_ratio
+#
+# NOT: focal_length = (throw_ratio * sensor_width) / 2
+
+version: 1.0
+description: Common projector hardware profiles for physical projection mapping
+
+# Default sensor dimensions (full frame equivalent)
+defaults:
+  sensor_width: 36.0   # mm
+  sensor_height: 20.25 # mm (16:9 aspect)
+
+profiles:
+  # ========================================================================
+  # EPSON PROJECTORS
+  # ========================================================================
+  Epson_Home_Cinema_2150:
+    manufacturer: Epson
+    model: Home Cinema 2150
+    type: lcd
+    resolution: [1920, 1080]
+    aspect_ratio: 16/9
+    throw_ratio: 1.32
+    throw_ratio_range: [1.32, 1.32]
+    has_zoom: false
+    lens_shift:
+      vertical: 0.0
+      horizontal: 0.0
+    keystone:
+      horizontal: 0.0
+      vertical: 0.0
+      automatic: true
+    brightness_lumens: 2500
+    contrast_ratio: 70000
+    color_gamut: Rec.709
+
+  Epson_Home_Cinema_3800:
+    manufacturer: Epson
+    model: Home Cinema 3800
+    type: lcd
+    resolution: [1920, 1080]
+    aspect_ratio: 16/9
+    throw_ratio: 1.32
+    throw_ratio_range: [1.32, 1.32]
+    has_zoom: false
+    lens_shift:
+      vertical: 0.60
+      horizontal: 0.24
+    keystone:
+      horizontal: 0.0
+      vertical: 0.0
+    brightness_lumens: 3000
+    contrast_ratio: 100000
+    color_gamut: Rec.709
+
+  Epson_Pro_Cinema_6050UB:
+    manufacturer: Epson
+    model: Pro Cinema 6050UB
+    type: lcd
+    resolution: [1920, 1080]
+    aspect_ratio: 16/9
+    throw_ratio: 1.35
+    throw_ratio_range: [1.32, 2.15]
+    has_zoom: true
+    lens_shift:
+      vertical: 0.96
+      horizontal: 0.47
+    keystone:
+      horizontal: 30.0
+      vertical: 30.0
+    brightness_lumens: 2500
+    contrast_ratio: 1000000
+    color_gamut: DCI-P3
+
+  Epson_LS12000:
+    manufacturer: Epson
+    model: LS12000
+    type: laser
+    resolution: [1920, 1080]
+    aspect_ratio: 16/9
+    throw_ratio: 1.35
+    throw_ratio_range: [1.32, 2.24]
+    has_zoom: true
+    lens_shift:
+      vertical: 0.60
+      horizontal: 0.24
+    keystone:
+      horizontal: 0.0
+      vertical: 0.0
+    brightness_lumens: 2700
+    contrast_ratio: 2500000
+    color_gamut: Rec.2020
+
+  # ========================================================================
+  # BENQ PROJECTORS
+  # ========================================================================
+  BenQ_MW632ST:
+    manufacturer: BenQ
+    model: MW632ST
+    type: dlp
+    resolution: [1280, 800]
+    aspect_ratio: 16/10
+    throw_ratio: 0.72
+    throw_ratio_range: [0.72, 0.72]
+    has_zoom: false
+    lens_shift:
+      vertical: 0.0
+      horizontal: 0.0
+    keystone:
+      horizontal: 40.0
+      vertical: 40.0
+    brightness_lumens: 3200
+    contrast_ratio: 13000
+    color_gamut: Rec.709
+    sensor_height: 22.5  # 16:10
+
+  BenQ_TH685:
+    manufacturer: BenQ
+    model: TH685
+    type: dlp
+    resolution: [1920, 1080]
+    aspect_ratio: 16/9
+    throw_ratio: 1.5
+    throw_ratio_range: [1.5, 1.66]
+    has_zoom: true
+    lens_shift:
+      vertical: 0.0
+      horizontal: 0.0
+    keystone:
+      horizontal: 40.0
+      vertical: 40.0
+    brightness_lumens: 3500
+    contrast_ratio: 10000
+    color_gamut: Rec.709
+
+  BenQ_W2700:
+    manufacturer: BenQ
+    model: W2700
+    type: dlp
+    resolution: [3840, 2160]
+    aspect_ratio: 16/9
+    throw_ratio: 1.13
+    throw_ratio_range: [1.13, 1.47]
+    has_zoom: true
+    lens_shift:
+      vertical: 0.60
+      horizontal: 0.23
+    keystone:
+      horizontal: 30.0
+      vertical: 30.0
+    brightness_lumens: 2000
+    contrast_ratio: 50000
+    color_gamut: DCI-P3
+
+  # ========================================================================
+  # OPTOMA PROJECTORS
+  # ========================================================================
+  Optoma_UHD38:
+    manufacturer: Optoma
+    model: UHD38
+    type: dlp
+    resolution: [3840, 2160]
+    aspect_ratio: 16/9
+    throw_ratio: 1.5
+    throw_ratio_range: [1.5, 1.65]
+    has_zoom: true
+    lens_shift:
+      vertical: 0.0
+      horizontal: 0.0
+    keystone:
+      horizontal: 40.0
+      vertical: 40.0
+    brightness_lumens: 4000
+    contrast_ratio: 1000000
+    color_gamut: Rec.709
+
+  Optoma_GT1080HDR:
+    manufacturer: Optoma
+    model: GT1080HDR
+    type: dlp
+    resolution: [1920, 1080]
+    aspect_ratio: 16/9
+    throw_ratio: 0.50
+    throw_ratio_range: [0.50, 0.50]
+    has_zoom: false
+    lens_shift:
+      vertical: 0.0
+      horizontal: 0.0
+    keystone:
+      horizontal: 40.0
+      vertical: 40.0
+    brightness_lumens: 3800
+    contrast_ratio: 300000
+    color_gamut: Rec.709
+    notes: "Short-throw gaming projector"
+
+  Optoma_EH412:
+    manufacturer: Optoma
+    model: EH412
+    type: dlp
+    resolution: [1920, 1080]
+    aspect_ratio: 16/9
+    throw_ratio: 1.94
+    throw_ratio_range: [1.94, 2.16]
+    has_zoom: true
+    lens_shift:
+      vertical: 0.0
+      horizontal: 0.0
+    keystone:
+      horizontal: 40.0
+      vertical: 40.0
+    brightness_lumens: 4500
+    contrast_ratio: 50000
+    color_gamut: Rec.709
+
+  # ========================================================================
+  # SONY PROJECTORS
+  # ========================================================================
+  Sony_VPL_HW45ES:
+    manufacturer: Sony
+    model: VPL-HW45ES
+    type: lcos
+    resolution: [1920, 1080]
+    aspect_ratio: 16/9
+    throw_ratio: 1.4
+    throw_ratio_range: [1.39, 1.74]
+    has_zoom: true
+    lens_shift:
+      vertical: 0.71
+      horizontal: 0.25
+    keystone:
+      horizontal: 0.0
+      vertical: 0.0
+    brightness_lumens: 1800
+    contrast_ratio: 120000
+    color_gamut: Rec.709
+
+  Sony_VPL_VW295ES:
+    manufacturer: Sony
+    model: VPL-VW295ES
+    type: lcos
+    resolution: [4096, 2160]
+    aspect_ratio: 17/9
+    throw_ratio: 1.38
+    throw_ratio_range: [1.38, 2.02]
+    has_zoom: true
+    lens_shift:
+      vertical: 0.85
+      horizontal: 0.31
+    keystone:
+      horizontal: 0.0
+      vertical: 0.0
+    brightness_lumens: 1500
+    contrast_ratio: 200000
+    color_gamut: Rec.2020
+    sensor_height: 18.91  # 17:9
+
+  # ========================================================================
+  # USER CUSTOM PROJECTORS
+  # ========================================================================
+  # Add your custom projector profiles here
+  # Example:
+  # My_Custom_Projector:
+  #   manufacturer: Custom
+  #   model: My Projector
+  #   type: dlp
+  #   resolution: [1920, 1080]
+  #   aspect_ratio: 16/9
+  #   throw_ratio: 1.5
+  #   throw_ratio_range: [1.5, 1.5]
+  #   has_zoom: false
+  #   lens_shift:
+  #     vertical: 0.0
+  #     horizontal: 0.0
+  #   keystone:
+  #     horizontal: 0.0
+  #     vertical: 0.0
+  #     automatic: false
+  #   brightness_lumens: 2500
+  #   contrast_ratio: 10000
+  #   color_gamut: Rec.709
+  #   sensor_width: 36.0
+  #   sensor_height: 20.25
