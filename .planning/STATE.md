@@ -4,9 +4,9 @@
 
 **Phase:** 18.0 - Physical Projector Mapping System
 **Status:** In Progress
-**Last activity:** 2026-02-25 - Completed 18.0-02 Profile Database
+**Last activity:** 2026-02-25 - Completed 18.0-03 Package Exports & Integration
 
-**Progress:** [████░░░░░░] 40% (2/5 plans complete in Phase 18.0)
+**Progress:** [█████░░░░░] 60% (3/5 plans complete in Phase 18.0)
 
 **Version:** 0.15.0
 
@@ -20,7 +20,7 @@
 |------|------|--------|---------|
 | 18.0-01 | ProjectorProfile Types | Complete | 18.0-01-SUMMARY.md |
 | 18.0-02 | Profile Database | Complete | 18.0-02-SUMMARY.md |
-| 18.0-03 | Calibration Workflow | Pending | - |
+| 18.0-03 | Package Exports & Integration | Complete | 18.0-03-SUMMARY.md |
 | 18.0-04 | Target Presets | Pending | - |
 | 18.0-05 | Package Exports | Pending | - |
 
@@ -33,6 +33,12 @@
 - profile_database.py - 12 projector profiles (Epson, BenQ, Optoma, Sony), query functions, YAML loader
 - projector_profiles.yaml - YAML configuration with all 12 profiles
 - 22 unit tests
+
+**Delivered (18.0-03):**
+- projector/__init__.py - Complete package exports (types, database, calibration)
+- physical/__init__.py - Re-exports for convenient access
+- stages/__init__.py - StageContext, StageState, stage_normalize, stage_primary
+- 8 integration tests
 
 ---
 
@@ -994,4 +1000,7 @@ cd tracking-ui && npm run dev   # Start dev server
 | 2026-02-25 | 18.0-02 | Short-throw threshold = 0.8 throw ratio | Industry standard for short-throw projectors |
 | 2026-02-25 | 18.0-02 | 4K resolution threshold = min_width 3840 | UHD standard (3840x2160) |
 | 2026-02-25 | 18.0-02 | YAML + Python dual format | Users can extend via YAML without touching code |
+| 2026-02-25 | 18.0-03 | Deterministic seed via MD5 hash | Pipeline Rick requirement for reproducible calibration |
+| 2026-02-25 | 18.0-03 | field(default_factory=list) for errors | Prevents mutable default issues in dataclass |
+| 2026-02-25 | 18.0-03 | Stage 2-4 as placeholders | Full implementation in Phase 18.1/18.2 |
 
