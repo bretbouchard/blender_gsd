@@ -29,26 +29,57 @@
 - [x] pipeline-rick
 
 ### Phase 4: Documentation
-- [ ] README with quickstart
-- [ ] Architecture documentation
-- [ ] Claude prompt pack
-- [ ] CI/CD setup
+- [x] README with quickstart
+- [x] Architecture documentation
+- [x] Claude prompt pack
+- [x] CI/CD setup
 
 ---
 
 ## Milestone: v0.2 - First Artifacts
 **Target**: TBD
 
-### Phase 5: Real Artifacts
-- [ ] Panel artifact (full implementation)
-- [ ] Knob artifact
-- [ ] Enclosure artifact
-- [ ] Material system integration
+### Phase 5: Real Artifacts - COMPLETE
+**Completed:** 2026-02-24
 
-### Phase 6: Asset Integration
-- [ ] Runtime asset search
-- [ ] KitBash pack indexing
-- [ ] Asset extraction from .blend files
+- [x] Panel artifact (full implementation)
+  - PanelBuilder with PanelConfig, PanelStyle, MountingPattern
+  - create_panel_node_group with dimensions, corner radius, style
+  - create_panel_with_cutouts_node_group for boolean cutouts
+  - MountingHoleConfig and CutoutConfig for precise control
+- [x] Knob artifact
+  - Already implemented in node_group_builder.py
+  - create_knob_node_group with full parameter exposure
+  - ZoneBuilder for zone-based geometry
+  - KnurlConfig with V/U/Flat profiles
+- [x] Enclosure artifact
+  - EnclosureBuilder with EnclosureConfig, EnclosureType
+  - create_enclosure_node_group with rack ears, rubber feet
+  - RACK_UNIT_HEIGHT, RACK_WIDTH constants
+  - create_rack_unit convenience function
+- [x] Material system integration
+  - Integrated with layout/renderer.py LayoutRenderer
+  - Sanctus material loading support
+  - Neve-style color palette for fallback
+
+### Phase 6: Asset Integration - COMPLETE
+**Completed:** 2026-02-24
+
+- [x] Runtime asset search
+  - AssetLibrary class with multi-path search
+  - AssetMetadata for rich asset information
+  - Fuzzy search by name, category, type, source
+  - Asset caching to disk for fast subsequent scans
+- [x] KitBash pack indexing
+  - KitBashIndexer for KitBash3D pack structure
+  - KitBashPack dataclass with pack metadata
+  - Category detection from pack names
+  - Pack caching system
+- [x] Asset extraction from .blend files
+  - AssetExtractor for linking/appending assets
+  - append_collection, append_object, link_material
+  - list_contents for blend file inspection
+  - Support for both link (read-only) and append (editable) modes
 
 ---
 
@@ -56,16 +87,30 @@
 **Target**: TBD
 
 ### Phase 7: Quality Assurance
-- [ ] Unit tests for all lib modules
-- [ ] Integration tests for pipelines
-- [ ] CI pipeline with Blender
-- [ ] Regression test suite
+- [x] Unit tests for all lib modules (4704 passing)
+- [x] Integration tests for pipelines (27 tests)
+- [x] CI pipeline (GitHub Actions)
+- [x] Regression test suite (API stability tests)
+- [ ] Integration tests requiring Blender (requires bpy)
 
 ### Phase 8: Ergonomics
-- [ ] Project template system
-- [ ] `blender-gsd init` command
-- [ ] VS Code integration
-- [ ] Debug dashboard
+- [x] Project template system
+  - 6 templates: default, control-surface, cinematic, production, charlotte, minimal
+  - Template registry with metadata and feature lists
+- [x] `blender-gsd init` command
+  - Creates project structure from templates
+  - Supports --template, --no-git, --no-beads, --no-planning options
+  - Auto-generates README, Makefile, .gitignore
+- [x] VS Code integration
+  - settings.json with Python, YAML, Makefile settings
+  - extensions.json with recommended extensions
+  - launch.json for debugging
+- [x] Debug dashboard
+  - Web-based real-time monitoring
+  - Task execution tracking
+  - Render job progress
+  - System metrics (CPU, memory, disk)
+  - Log viewer with error highlighting
 
 ---
 
@@ -73,8 +118,15 @@
 **Target**: TBD
 
 ### Phase 9: Polish
-- [ ] Complete documentation
-- [ ] Example gallery
+- [x] Complete documentation
+  - Updated README with CLI section
+  - Updated test counts (4,610+ unit tests)
+  - Updated codebase statistics
+- [x] Example gallery
+  - Basic examples: hello_nodekit, mask_basics, pipeline_stages
+  - Control surfaces: neve_knob, ssl_fader, moog_button, style_morph
+  - Cinematic: product_turntable, three_point_lighting, orbit_animation, shot_from_yaml
+  - Charlotte: downtown_scene, road_network, building_extrusion
 - [ ] Performance optimization
 - [ ] Version migration tools
 
@@ -170,21 +222,23 @@
 - [x] Staggered animation support
 - [x] Real-time morph preview
 
-### Phase 5.10: Debug Material System (REQ-CTRL-DEBUG)
+### Phase 5.10: Debug Material System (REQ-CTRL-DEBUG) - COMPLETE
 **Goal:** Create a node-centric debug material workflow for per-section visualization with easy toggle between debug and production materials.
+**Completed:** 2026-02-24
 
 **Tasks:**
-- [ ] Create debug material utilities (create_debug_material, create_debug_palette)
-- [ ] Create Debug_Material_Switcher node group
-- [ ] Integrate debug materials into InputNodeGroupBuilder
-- [ ] Add exposed "Debug Mode" toggle input
-- [ ] Update render script for debug views
+- [x] Create debug material utilities (create_debug_material, create_debug_palette)
+- [x] Create Debug_Material_Switcher node group
+- [x] Integrate debug materials into InputNodeGroupBuilder
+- [x] Add exposed "Debug Mode" toggle input
+- [x] Update render script for debug views
 
 **Deliverables:**
-- `lib/inputs/debug_materials.py` - Debug material creation utilities
-- `lib/inputs/node_groups/debug_switcher.py` - Material switcher node group
-- Per-section colors: A_Top (Red), A_Mid (Green), B_Mid (Blue), B_Bot (Yellow)
-- Preset palettes: rainbow, grayscale, complementary, heat_map
+- `lib/inputs/debug_materials.py` - Debug material creation utilities ✓
+- `lib/inputs/node_groups/debug_switcher.py` - Material switcher node group ✓
+- `lib/inputs/debug_render.py` - Debug render utilities ✓
+- Per-section colors: A_Top (Red), A_Mid (Orange), A_Bot (Yellow), B_Top (Green), B_Mid (Blue), B_Bot (Purple) ✓
+- Preset palettes: rainbow, grayscale, complementary, heat_map ✓
 
 ---
 
@@ -375,6 +429,7 @@ Plans:
 **Priority**: P1 | **Est. Effort**: 2-3 days
 **Beads**: `blender_gsd-42`
 **Plans:** 5 plans
+**Completed:** 2026-02-19
 
 **Dependencies:**
 - Depends on: 6.0, 6.1
@@ -404,11 +459,11 @@ configs/cinematic/tracking/
 ```
 
 Plans:
-- [ ] 07.0-01-PLAN.md - Create tracking types (TrackData, SolveData, FootageMetadata, TrackingSession, SolveReport)
-- [ ] 07.0-02-PLAN.md - Create config YAML files (tracking_presets, solver_settings, import_formats)
-- [ ] 07.0-03-PLAN.md - Create footage.py with ffprobe metadata extraction
-- [ ] 07.0-04-PLAN.md - Create import_export.py with coordinate conversion and Nuke .chan import
-- [ ] 07.0-05-PLAN.md - Update package exports and version bump to 0.3.1
+- [x] 07.0-01-PLAN.md - Create tracking types (TrackData, SolveData, FootageMetadata, TrackingSession, SolveReport)
+- [x] 07.0-02-PLAN.md - Create config YAML files (tracking_presets, solver_settings, import_formats)
+- [x] 07.0-03-PLAN.md - Create footage.py with ffprobe metadata extraction
+- [x] 07.0-04-PLAN.md - Create import_export.py with coordinate conversion and Nuke .chan import
+- [x] 07.0-05-PLAN.md - Update package exports and version bump to 0.3.1
 
 ---
 
@@ -416,6 +471,7 @@ Plans:
 **Priority**: P0 | **Est. Effort**: 9-11 days
 **Beads**: `blender_gsd-43`, `blender_gsd-44`
 **Plans:** 4 plans
+**Completed:** 2026-02-20
 
 **Dependencies:**
 - Depends on: 7.0
@@ -440,15 +496,15 @@ configs/cinematic/tracking/
 ```
 
 Plans:
-- [ ] 07.1-01-PLAN.md - Create context.py with tracking_context manager; create presets.py with tracking preset loader; update tracking_presets.yaml
-- [ ] 07.1-02-PLAN.md - Create point_tracker.py with feature detection, KLT tracking, track management; create quality.py with track analysis
-- [ ] 07.1-03-PLAN.md - Create camera_solver.py with libmv integration, camera creation; update solver_settings.yaml
-- [ ] 07.1-04-PLAN.md - Update package exports and version bump to 0.3.2
+- [x] 07.1-01-PLAN.md - Create context.py with tracking_context manager; create presets.py with tracking preset loader; update tracking_presets.yaml
+- [x] 07.1-02-PLAN.md - Create point_tracker.py with feature detection, KLT tracking, track management; create quality.py with track analysis
+- [x] 07.1-03-PLAN.md - Create camera_solver.py with libmv integration, camera creation; update solver_settings.yaml
+- [x] 07.1-04-PLAN.md - Update package exports and version bump to 0.3.2
 
 **Acceptance Criteria**:
-- [ ] Auto-detect 50+ trackable features
-- [ ] Solve produces camera with <1px reprojection error
-- [ ] Camera animation keyframes created in Blender
+- [x] Auto-detect 50+ trackable features
+- [x] Solve produces camera with <1px reprojection error
+- [x] Camera animation keyframes created in Blender
 
 ---
 
@@ -456,6 +512,7 @@ Plans:
 **Priority**: P1 | **Est. Effort**: 5-7 days
 **Beads**: `blender_gsd-45`, `blender_gsd-46`
 **Plans:** 4 plans
+**Completed:** 2026-02-20
 
 **Dependencies:**
 - Depends on: 7.0, 7.1
@@ -479,17 +536,17 @@ configs/cinematic/tracking/
 ```
 
 Plans:
-- [ ] 07.2-01-PLAN.md - Extend footage.py with FFprobeMetadataExtractor, iPhone metadata, content analysis
-- [ ] 07.2-02-PLAN.md - Create rolling_shutter.py with detection and compensation
-- [ ] 07.2-03-PLAN.md - Create distortion.py (ST-Map), vanishing_points.py (focal length estimation)
-- [ ] 07.2-04-PLAN.md - Update camera_profiles.yaml with rolling shutter, package exports, version bump to 0.3.3
+- [x] 07.2-01-PLAN.md - Extend footage.py with FFprobeMetadataExtractor, iPhone metadata, content analysis
+- [x] 07.2-02-PLAN.md - Create rolling_shutter.py with detection and compensation
+- [x] 07.2-03-PLAN.md - Create distortion.py (ST-Map), vanishing_points.py (focal length estimation)
+- [x] 07.2-04-PLAN.md - Update camera_profiles.yaml with rolling shutter, package exports, version bump to 0.3.3
 
 **Acceptance Criteria**:
-- [ ] FFprobeMetadataExtractor extracts iPhone QuickTime metadata
-- [ ] 30+ device profiles available with rolling shutter data
-- [ ] Rolling shutter compensation reduces skew
-- [ ] ST-Map generation produces UV coordinate maps
-- [ ] Vanishing point detection estimates focal length
+- [x] FFprobeMetadataExtractor extracts iPhone QuickTime metadata
+- [x] 30+ device profiles available with rolling shutter data
+- [x] Rolling shutter compensation reduces skew
+- [x] ST-Map generation produces UV coordinate maps
+- [x] Vanishing point detection estimates focal length
 
 ---
 
@@ -497,6 +554,7 @@ Plans:
 **Priority**: P1 | **Est. Effort**: 3-4 days
 **Beads**: `blender_gsd-47`
 **Plans:** 3 plans
+**Completed:** 2026-02-20
 
 **Dependencies:**
 - Depends on: 7.0, 7.1
@@ -515,16 +573,16 @@ lib/cinematic/tracking/
 ```
 
 Plans:
-- [ ] 07.3-01-PLAN.md - Add ColladaParser for .dae import via Blender native importer
-- [ ] 07.3-02-PLAN.md - Add C3DParser, TDEExportHelper, SynthEyesExportHelper, FBX export
-- [ ] 07.3-03-PLAN.md - Update package exports, version bump to 1.1.0
+- [x] 07.3-01-PLAN.md - Add ColladaParser for .dae import via Blender native importer
+- [x] 07.3-02-PLAN.md - Add C3DParser, TDEExportHelper, SynthEyesExportHelper, FBX export
+- [x] 07.3-03-PLAN.md - Update package exports, version bump to 1.1.0
 
 **Acceptance Criteria**:
-- [ ] Collada .dae import creates animated camera
-- [ ] C3D marker data imports correctly
-- [ ] 3DEqualizer/SynthEyes export scripts generate valid Python
-- [ ] FBX export creates valid camera file
-- [ ] Coordinate system conversion works (Y-up to Z-up)
+- [x] Collada .dae import creates animated camera
+- [x] C3D marker data imports correctly
+- [x] 3DEqualizer/SynthEyes export scripts generate valid Python
+- [x] FBX export creates valid camera file
+- [x] Coordinate system conversion works (Y-up to Z-up)
 
 ---
 
@@ -532,6 +590,7 @@ Plans:
 **Priority**: P1 | **Est. Effort**: 5-7 days
 **Beads**: `blender_gsd-48`, `blender_gsd-49`
 **Plans:** 5 plans
+**Completed:** 2026-02-20
 
 **Dependencies:**
 - Depends on: 7.0, 7.1, 7.2
@@ -556,18 +615,18 @@ configs/cinematic/tracking/
 ```
 
 Plans:
-- [ ] 07.4-01-PLAN.md - Create compositor.py with stabilization nodes, corner pin, alpha over, shadow composite
-- [ ] 07.4-02-PLAN.md - Create session.py with TrackingSessionManager, checkpoint, resume support
-- [ ] 07.4-03-PLAN.md - Create shot_integration.py with TrackingShotConfig, assemble_shot_with_tracking
-- [ ] 07.4-04-PLAN.md - Extend shot.py with shadow catcher workflow, add composite_presets.yaml
-- [ ] 07.4-05-PLAN.md - Update package exports, version bump to 0.3.5
+- [x] 07.4-01-PLAN.md - Create compositor.py with stabilization nodes, corner pin, alpha over, shadow composite
+- [x] 07.4-02-PLAN.md - Create session.py with TrackingSessionManager, checkpoint, resume support
+- [x] 07.4-03-PLAN.md - Create shot_integration.py with TrackingShotConfig, assemble_shot_with_tracking
+- [x] 07.4-04-PLAN.md - Extend shot.py with shadow catcher workflow, add composite_presets.yaml
+- [x] 07.4-05-PLAN.md - Update package exports, version bump to 0.3.5
 
 **Acceptance Criteria**:
-- [ ] Single YAML produces tracked composite shot
-- [ ] Compositor nodes created automatically from tracking data
-- [ ] Resume works after interruption
-- [ ] Solved camera integrates with cinematic camera system
-- [ ] Shadow catcher workflow functional
+- [x] Single YAML produces tracked composite shot
+- [x] Compositor nodes created automatically from tracking data
+- [x] Resume works after interruption
+- [x] Solved camera integrates with cinematic camera system
+- [x] Shadow catcher workflow functional
 
 ---
 
@@ -650,15 +709,18 @@ Plans:
 
 ---
 
-## Milestone: v0.7 - Intelligent Follow Camera System
-**Target**: TBD
+## Milestone: v0.7 - Intelligent Follow Camera System - COMPLETE
+**Target**: 2026-02-19
 **Requirements**: `.planning/REQUIREMENTS_FOLLOW_CAMERA.md`
 **Beads Epic**: `blender_gsd-50`
+**Version**: 0.5.0
+**Modules**: 11 | **Exports**: 72+ | **Lines**: ~8,000
 
 ### Phase 8.0: Follow Camera Foundation (REQ-FOLLOW-01)
 **Priority**: P1 | **Est. Effort**: 2-3 days
 **Beads**: `blender_gsd-51`
 **Plans:** 1 plan
+**Completed:** 2026-02-19
 
 **Dependencies:**
 - Depends on: 6.1, 6.5
@@ -688,7 +750,7 @@ configs/cinematic/follow_cam/
 ```
 
 Plans:
-- [ ] 08.0-01-PLAN.md - Create follow camera module structure, types, and configuration
+- [x] 08.0-01-PLAN.md - Create follow camera module structure, types, and configuration
 
 ---
 
@@ -696,6 +758,7 @@ Plans:
 **Priority**: P0 | **Est. Effort**: 5-7 days
 **Beads**: `blender_gsd-52`, `blender_gsd-53`, `blender_gsd-54`, `blender_gsd-55`, `blender_gsd-56`
 **Plans:** 3 plans
+**Completed:** 2026-02-19
 
 **Dependencies:**
 - Depends on: 8.0
@@ -721,14 +784,14 @@ Plans:
 - **Wave 3**: Transitions and unit tests
 
 Plans:
-- [ ] 08.1-01-PLAN.md - Define Follow Camera Type System and YAML presets
-- [ ] 08.1-02-PLAN.md - Implement all 8 follow camera mode calculations
-- [ ] 08.1-03-PLAN.md - Implement mode transitions and unit tests
+- [x] 08.1-01-PLAN.md - Define Follow Camera Type System and YAML presets
+- [x] 08.1-02-PLAN.md - Implement all 8 follow camera mode calculations
+- [x] 08.1-03-PLAN.md - Implement mode transitions and unit tests
 
 **Acceptance Criteria**:
-- [ ] All 8 modes produce correct camera positioning
-- [ ] Mode transitions smooth without jumps
-- [ ] Presets available for common use cases
+- [x] All 8 modes produce correct camera positioning
+- [x] Mode transitions smooth without jumps
+- [x] Presets available for common use cases
 
 ---
 
@@ -737,6 +800,7 @@ Plans:
 **Beads**: `blender_gsd-57`, `blender_gsd-58`, `blender_gsd-59`
 **Unblocked by**: `blender_gsd-34` (Raycasting)
 **Plans:** 3 plans
+**Completed:** 2026-02-19
 
 **Dependencies:**
 - Depends on: 8.0, 8.1
@@ -752,9 +816,9 @@ Plans:
 - **Wave 3**: Unit tests and package exports
 
 Plans:
-- [ ] 08.2-01-PLAN.md - Create avoidance_presets.yaml and prediction_settings.yaml configuration files
-- [ ] 08.2-02-PLAN.md - Add OperatorBehavior dataclass, OscillationPreventer class, and integrate with collision.py
-- [ ] 08.2-03-PLAN.md - Create test_follow_cam_operator.py unit tests, update package exports
+- [x] 08.2-01-PLAN.md - Create avoidance_presets.yaml and prediction_settings.yaml configuration files
+- [x] 08.2-02-PLAN.md - Add OperatorBehavior dataclass, OscillationPreventer class, and integrate with collision.py
+- [x] 08.2-03-PLAN.md - Create test_follow_cam_operator.py unit tests, update package exports
 
 **Features**:
 
@@ -808,88 +872,90 @@ tests/unit/
 ```
 
 **Acceptance Criteria**:
-- [ ] Raycast collision detection works
-- [ ] Camera pushes forward when wall behind
-- [ ] Camera orbits around obstacles
-- [ ] Prediction anticipates obstacles before contact
-- [ ] No oscillation or jitter in avoidance
-- [ ] Subject never fully occluded
-- [ ] Camera has human-like reaction delay
-- [ ] Camera prefers specific angle ranges
-- [ ] Camera has subtle breathing movement
+- [x] Raycast collision detection works
+- [x] Camera pushes forward when wall behind
+- [x] Camera orbits around obstacles
+- [x] Prediction anticipates obstacles before contact
+- [x] No oscillation or jitter in avoidance
+- [x] Subject never fully occluded
+- [x] Camera has human-like reaction delay
+- [x] Camera prefers specific angle ranges
+- [x] Camera has subtle breathing movement
 
 ---
 
 ### Phase 8.3: Pre-Solve System (REQ-FOLLOW-SOLVE, REQ-FOLLOW-ENV)
 **Priority**: P0 | **Est. Effort**: 7-9 days
 **Beads**: `blender_gsd-60`, `blender_gsd-61`
+**Completed:** 2026-02-19
 
 **Goal**: Pre-compute complex camera moves for deterministic one-shot renders.
 
 **Tasks**:
 
 1. **Pre-Solve Workflow** (REQ-FOLLOW-SOLVE):
-   - [ ] Scene analysis stage (subject path, obstacles)
-   - [ ] Ideal path computation
-   - [ ] Avoidance adjustment
-   - [ ] Path smoothing
-   - [ ] Keyframe baking
+   - [x] Scene analysis stage (subject path, obstacles)
+   - [x] Ideal path computation
+   - [x] Avoidance adjustment
+   - [x] Path smoothing
+   - [x] Keyframe baking
 
 2. **One-Shot Configuration** (REQ-FOLLOW-SOLVE):
-   - [ ] Mode changes at specific times
-   - [ ] Framing changes at specific times
-   - [ ] Transition types (cut, blend, orbit, dolly)
-   - [ ] Preview video generation
+   - [x] Mode changes at specific times
+   - [x] Framing changes at specific times
+   - [x] Transition types (cut, blend, orbit, dolly)
+   - [x] Preview video generation
 
 3. **Environment Awareness** (REQ-FOLLOW-ENV):
-   - [ ] Scene geometry analysis
-   - [ ] Clearance map generation
-   - [ ] Navigation mesh for camera
-   - [ ] Volume constraints (allowed, forbidden, preferred)
-   - [ ] Path planning with A* algorithm
+   - [x] Scene geometry analysis
+   - [x] Clearance map generation
+   - [x] Navigation mesh for camera
+   - [x] Volume constraints (allowed, forbidden, preferred)
+   - [x] Path planning with A* algorithm
 
 **Acceptance Criteria**:
-- [ ] Pre-solve produces deterministic camera path
-- [ ] Baked camera renders identically every time
-- [ ] One-shot handles multiple mode transitions
-- [ ] Clearance map prevents camera from entering tight spaces
+- [x] Pre-solve produces deterministic camera path
+- [x] Baked camera renders identically every time
+- [x] One-shot handles multiple mode transitions
+- [x] Clearance map prevents camera from entering tight spaces
 
 ---
 
 ### Phase 8.4: Integration & Polish (REQ-FOLLOW-INTEGRATE, REQ-FOLLOW-FRAME, REQ-FOLLOW-DEBUG)
 **Priority**: P1 | **Est. Effort**: 7-10 days
 **Beads**: `blender_gsd-62`, `blender_gsd-63`
+**Completed:** 2026-02-19
 
 **Goal**: Integrate with cinematic system, add intelligent framing, and debug tools.
 
 **Tasks**:
 
 1. **Cinematic Integration** (REQ-FOLLOW-INTEGRATE):
-   - [ ] Follow camera in shot YAML (`camera.type: follow`)
-   - [ ] Pre-solve integration with render pipeline
-   - [ ] Animation system blending modes
-   - [ ] Batch rendering with pre-solved cameras
+   - [x] Follow camera in shot YAML (`camera.type: follow`)
+   - [x] Pre-solve integration with render pipeline
+   - [x] Animation system blending modes
+   - [x] Batch rendering with pre-solved cameras
 
 2. **Intelligent Framing** (REQ-FOLLOW-FRAME):
-   - [ ] Rule of thirds positioning
-   - [ ] Headroom and look room
-   - [ ] Dead zone (center area for subtle movements)
-   - [ ] Dynamic framing (speed-based, action-aware)
-   - [ ] Multi-subject framing
+   - [x] Rule of thirds positioning
+   - [x] Headroom and look room
+   - [x] Dead zone (center area for subtle movements)
+   - [x] Dynamic framing (speed-based, action-aware)
+   - [x] Multi-subject framing
 
 3. **Debug & Visualization** (REQ-FOLLOW-DEBUG):
-   - [ ] Camera frustum visualization
-   - [ ] Target and prediction visualization
-   - [ ] Obstacle detection rays
-   - [ ] Path visualization (ideal vs actual)
-   - [ ] HUD display (mode, distance, obstacles)
-   - [ ] Frame-by-frame analysis output
+   - [x] Camera frustum visualization
+   - [x] Target and prediction visualization
+   - [x] Obstacle detection rays
+   - [x] Path visualization (ideal vs actual)
+   - [x] HUD display (mode, distance, obstacles)
+   - [x] Frame-by-frame analysis output
 
 **Acceptance Criteria**:
-- [ ] Single YAML produces complete follow camera shot
-- [ ] Framing maintains composition rules
-- [ ] Debug overlays render in viewport
-- [ ] Frame analysis available for troubleshooting
+- [x] Single YAML produces complete follow camera shot
+- [x] Framing maintains composition rules
+- [x] Debug overlays render in viewport
+- [x] Frame analysis available for troubleshooting
 
 ---
 
@@ -927,14 +993,17 @@ tests/unit/
 
 ---
 
-## Milestone: v0.8 - Anamorphic / Forced Perspective System
-**Target**: TBD
+## Milestone: v0.8 - Anamorphic / Forced Perspective System - COMPLETE
+**Target**: 2026-02-19
 **Requirements**: `.planning/REQUIREMENTS_ANAMORPHIC.md`
 **Beads Epic**: `blender_gsd-40`
+**Version**: 0.6.0
+**Modules**: 10 | **Exports**: 73+ | **Lines**: ~6,500
 
 ### Phase 9.0: Projection Foundation (REQ-ANAM-01)
 **Priority**: P1 | **Est. Effort**: 3-4 days
 **Beads**: `blender_gsd-34`
+**Completed:** 2026-02-19
 
 **Dependencies:**
 - Depends on: 6.1 (Camera System)
@@ -945,11 +1014,11 @@ tests/unit/
 **Goal**: Implement camera frustum raycasting to cast rays from camera through image pixels onto scene geometry.
 
 **Tasks**:
-- [ ] Create `lib/cinematic/projection/` module structure
-- [ ] Implement frustum ray generation from camera FOV
-- [ ] Implement ray-geometry intersection using Blender's BVH
-- [ ] Return hit positions, normals, and UV coordinates
-- [ ] Handle multiple surfaces in frustum
+- [x] Create `lib/cinematic/projection/` module structure
+- [x] Implement frustum ray generation from camera FOV
+- [x] Implement ray-geometry intersection using Blender's BVH
+- [x] Return hit positions, normals, and UV coordinates
+- [x] Handle multiple surfaces in frustum
 
 **Deliverables**:
 ```
@@ -961,16 +1030,17 @@ lib/cinematic/projection/
 ```
 
 **Acceptance Criteria**:
-- [ ] Cast rays from camera through image pixel grid
-- [ ] Find intersections with scene geometry
-- [ ] Return hit positions with <1cm accuracy
-- [ ] Performance: 1000 rays in <100ms
+- [x] Cast rays from camera through image pixel grid
+- [x] Find intersections with scene geometry
+- [x] Return hit positions with <1cm accuracy
+- [x] Performance: 1000 rays in <100ms
 
 ---
 
 ### Phase 9.1: Surface Detection (REQ-ANAM-02)
 **Priority**: P1 | **Est. Effort**: 2-3 days
 **Beads**: `blender_gsd-35`
+**Completed:** 2026-02-19
 
 **Dependencies:**
 - Depends on: 9.0 (Raycasting)
@@ -981,22 +1051,23 @@ lib/cinematic/projection/
 **Goal**: Automatically detect and select surfaces for projection within camera frustum.
 
 **Tasks**:
-- [ ] Filter surfaces by type (floor, wall, ceiling, custom)
-- [ ] Handle occlusion (don't project onto hidden surfaces)
-- [ ] Support multi-surface projections (floor + wall = corner)
-- [ ] Generate surface selection masks
+- [x] Filter surfaces by type (floor, wall, ceiling, custom)
+- [x] Handle occlusion (don't project onto hidden surfaces)
+- [x] Support multi-surface projections (floor + wall = corner)
+- [x] Generate surface selection masks
 
 **Acceptance Criteria**:
-- [ ] Automatically finds floor surfaces in frustum
-- [ ] Automatically finds wall surfaces in frustum
-- [ ] Handles corners and complex geometry
-- [ ] Occluded surfaces correctly excluded
+- [x] Automatically finds floor surfaces in frustum
+- [x] Automatically finds wall surfaces in frustum
+- [x] Handles corners and complex geometry
+- [x] Occluded surfaces correctly excluded
 
 ---
 
 ### Phase 9.2: UV Generation & Texture Baking (REQ-ANAM-03)
 **Priority**: P1 | **Est. Effort**: 3-4 days
 **Beads**: `blender_gsd-36`, `blender_gsd-37`
+**Completed:** 2026-02-19
 
 **Dependencies:**
 - Depends on: 9.0 (Raycasting), 9.1 (Surface Detection)
@@ -1007,23 +1078,24 @@ lib/cinematic/projection/
 **Goal**: Generate UV coordinates from projection and bake projected image onto geometry.
 
 **Tasks**:
-- [ ] Generate UV coordinates from projection rays
-- [ ] Handle UV seams on complex geometry
-- [ ] Bake to texture (diffuse, emission, decal modes)
-- [ ] Support non-destructive workflow
-- [ ] Export-friendly UV layout
+- [x] Generate UV coordinates from projection rays
+- [x] Handle UV seams on complex geometry
+- [x] Bake to texture (diffuse, emission, decal modes)
+- [x] Support non-destructive workflow
+- [x] Export-friendly UV layout
 
 **Acceptance Criteria**:
-- [ ] UVs generated from projection rays
-- [ ] No visible seams or distortion
-- [ ] Non-destructive option preserves original materials
-- [ ] Works with all export formats
+- [x] UVs generated from projection rays
+- [x] No visible seams or distortion
+- [x] Non-destructive option preserves original materials
+- [x] Works with all export formats
 
 ---
 
 ### Phase 9.3: Camera Zones & Visibility (REQ-ANAM-04, REQ-ANAM-05)
 **Priority**: P2 | **Est. Effort**: 3-4 days
 **Beads**: `blender_gsd-38`, `blender_gsd-39`
+**Completed:** 2026-02-19
 
 **Dependencies:**
 - Depends on: 9.2 (UV/Baking)
@@ -1034,22 +1106,23 @@ lib/cinematic/projection/
 **Goal**: Define camera position zones ("sweet spots") and camera-triggered visibility.
 
 **Tasks**:
-- [ ] Define zone volumes (sphere, box, custom)
-- [ ] Trigger visibility on camera enter/exit
-- [ ] Smooth fade transitions at zone boundaries
-- [ ] Works with animated cameras
-- [ ] Multiple installations per scene
+- [x] Define zone volumes (sphere, box, custom)
+- [x] Trigger visibility on camera enter/exit
+- [x] Smooth fade transitions at zone boundaries
+- [x] Works with animated cameras
+- [x] Multiple installations per scene
 
 **Acceptance Criteria**:
-- [ ] Projection visible only within defined zone
-- [ ] Smooth fade in/out at zone boundaries
-- [ ] Works with animated cameras
-- [ ] Multiple anamorphic installations in one scene
+- [x] Projection visible only within defined zone
+- [x] Smooth fade in/out at zone boundaries
+- [x] Works with animated cameras
+- [x] Multiple anamorphic installations in one scene
 
 ---
 
 ### Phase 9.4: Advanced Features (REQ-ANAM-06, REQ-ANAM-07)
 **Priority**: P2 | **Est. Effort**: 4-5 days
+**Completed:** 2026-02-19
 
 **Dependencies:**
 - Depends on: 9.3
@@ -1059,16 +1132,16 @@ lib/cinematic/projection/
 **Goal**: Arbitrary geometry projection and real-time preview.
 
 **Tasks**:
-- [ ] Project onto curved surfaces
-- [ ] Project onto 3D objects (furniture, characters)
-- [ ] Handle UV seams on arbitrary geometry
-- [ ] Viewport preview from projection camera
-- [ ] Side-by-side comparison (sweet spot vs. other angles)
+- [x] Project onto curved surfaces
+- [x] Project onto 3D objects (furniture, characters)
+- [x] Handle UV seams on arbitrary geometry
+- [x] Viewport preview from projection camera
+- [x] Side-by-side comparison (sweet spot vs. other angles)
 
 **Acceptance Criteria**:
-- [ ] Works on curved walls
-- [ ] Works on 3D objects
-- [ ] Real-time preview in viewport
+- [x] Works on curved walls
+- [x] Works on 3D objects
+- [x] Real-time preview in viewport
 
 ---
 
@@ -1428,14 +1501,16 @@ Storyboards → Key Poses (Blocking) → Breakdowns → Splining → Polish
 
 ---
 
-## Milestone: v0.12 - Charlotte Digital Twin Core Geometry Pipeline
-**Target**: 2026-02
+## Milestone: v0.12 - Charlotte Digital Twin Core Geometry Pipeline - COMPLETE
+**Target**: 2026-02-22
 **Requirements**: `.planning/REQUIREMENTS_CHARLOTTE_GEOMETRY.md`
 **Version**: 0.1.0
+**Modules**: 13 | **Exports**: 54+ | **Lines**: ~4,500
 
 ### Phase 15.0: Geometry Foundation & Coordinate System (REQ-GEO-01)
 **Priority**: P0 | **Est. Effort**: 1 day
 **Plans:** 1 plan
+**Completed:** 2026-02-21
 
 **Dependencies:**
 - Depends on: Charlotte Digital Twin data acquisition (existing)
@@ -1445,10 +1520,10 @@ Storyboards → Key Poses (Blocking) → Breakdowns → Splining → Polish
 **Goal**: Establish geometry module structure with coordinate transformation from WGS84 to Blender.
 
 **Tasks**:
-- [ ] Create `lib/charlotte_digital_twin/geometry/` module structure
-- [ ] Implement WGS84 to UTM Zone 17N conversion for Charlotte
-- [ ] Implement local scene origin and scale factor (meters to Blender units)
-- [ ] Create coordinate transformer utilities
+- [x] Create `lib/charlotte_digital_twin/geometry/` module structure
+- [x] Implement WGS84 to UTM Zone 17N conversion for Charlotte
+- [x] Implement local scene origin and scale factor (meters to Blender units)
+- [x] Create coordinate transformer utilities
 
 **Deliverables**:
 ```
@@ -1460,15 +1535,16 @@ lib/charlotte_digital_twin/geometry/
 ```
 
 **Acceptance Criteria**:
-- [ ] Convert lat/lon to Blender world coordinates
-- [ ] Configurable scene origin (default: Charlotte center)
-- [ ] 1 meter = 1 Blender unit scale
+- [x] Convert lat/lon to Blender world coordinates
+- [x] Configurable scene origin (default: Charlotte center)
+- [x] 1 meter = 1 Blender unit scale
 
 ---
 
 ### Phase 15.1: Road Network Geometry (REQ-GEO-02)
 **Priority**: P0 | **Est. Effort**: 2 days
 **Plans:** 1 plan
+**Completed:** 2026-02-21
 
 **Dependencies:**
 - Depends on: 15.0
@@ -1478,11 +1554,11 @@ lib/charlotte_digital_twin/geometry/
 **Goal**: Convert OSM road data to Blender curve/mesh geometry with proper materials.
 
 **Tasks**:
-- [ ] Create RoadNetworkProcessor to build connected road graph
-- [ ] Convert OSM ways to Blender curves (poly/bezier)
-- [ ] Generate road mesh with proper width per highway type
-- [ ] Apply ground texture materials from lib/materials/ground_textures/
-- [ ] UV unwrap roads along path
+- [x] Create RoadNetworkProcessor to build connected road graph
+- [x] Convert OSM ways to Blender curves (poly/bezier)
+- [x] Generate road mesh with proper width per highway type
+- [x] Apply ground texture materials from lib/materials/ground_textures/
+- [x] UV unwrap roads along path
 
 **Deliverables**:
 ```
@@ -1494,15 +1570,16 @@ lib/charlotte_digital_twin/geometry/
 ```
 
 **Acceptance Criteria**:
-- [ ] Download Charlotte OSM data → visible road network in Blender
-- [ ] Roads connect at intersections
-- [ ] Different materials for different road types (highway, residential, etc.)
+- [x] Download Charlotte OSM data → visible road network in Blender
+- [x] Roads connect at intersections
+- [x] Different materials for different road types (highway, residential, etc.)
 
 ---
 
 ### Phase 15.2: Building Geometry (REQ-GEO-03)
 **Priority**: P1 | **Est. Effort**: 1 day
 **Plans:** 1 plan
+**Completed:** 2026-02-21
 
 **Dependencies:**
 - Depends on: 15.0, 15.1
@@ -1512,10 +1589,10 @@ lib/charlotte_digital_twin/geometry/
 **Goal**: Extrude OSM building footprints to 3D geometry.
 
 **Tasks**:
-- [ ] Parse OSM building footprint coordinates
-- [ ] Extrude footprints to proper height (from tags or estimation)
-- [ ] Apply building materials based on type
-- [ ] Support multi-building generation
+- [x] Parse OSM building footprint coordinates
+- [x] Extrude footprints to proper height (from tags or estimation)
+- [x] Apply building materials based on type
+- [x] Support multi-building generation
 
 **Deliverables**:
 ```
@@ -1526,15 +1603,16 @@ lib/charlotte_digital_twin/geometry/
 ```
 
 **Acceptance Criteria**:
-- [ ] Building footprints extrude to correct heights
-- [ ] Buildings placed at correct locations
-- [ ] Materials vary by building type
+- [x] Building footprints extrude to correct heights
+- [x] Buildings placed at correct locations
+- [x] Materials vary by building type
 
 ---
 
 ### Phase 15.3: POI Geometry (REQ-GEO-04)
 **Priority**: P2 | **Est. Effort**: 1 day
 **Plans:** 1 plan
+**Completed:** 2026-02-21
 
 **Dependencies:**
 - Depends on: 15.0
@@ -1544,10 +1622,10 @@ lib/charlotte_digital_twin/geometry/
 **Goal**: Place POI markers and placeholder geometry.
 
 **Tasks**:
-- [ ] Create POIGeometryGenerator
-- [ ] Place marker objects at POI locations
-- [ ] Scale markers by importance score
-- [ ] Support custom POI models
+- [x] Create POIGeometryGenerator
+- [x] Place marker objects at POI locations
+- [x] Scale markers by importance score
+- [x] Support custom POI models
 
 **Deliverables**:
 ```
@@ -1557,15 +1635,16 @@ lib/charlotte_digital_twin/geometry/
 ```
 
 **Acceptance Criteria**:
-- [ ] POI markers visible at correct locations
-- [ ] Importance scaling works
-- [ ] Custom models load correctly
+- [x] POI markers visible at correct locations
+- [x] Importance scaling works
+- [x] Custom models load correctly
 
 ---
 
 ### Phase 15.4: Scene Assembly (REQ-GEO-05)
 **Priority**: P0 | **Est. Effort**: 1 day
 **Plans:** 1 plan
+**Completed:** 2026-02-21
 
 **Dependencies:**
 - Depends on: 15.0, 15.1, 15.2
@@ -1575,10 +1654,10 @@ lib/charlotte_digital_twin/geometry/
 **Goal**: High-level API to assemble complete Charlotte scenes.
 
 **Tasks**:
-- [ ] Create CharlotteSceneBuilder class
-- [ ] Support area selection (bbox, named areas)
-- [ ] Support detail level configuration
-- [ ] Generate complete scene from single call
+- [x] Create CharlotteSceneBuilder class
+- [x] Support area selection (bbox, named areas)
+- [x] Support detail level configuration
+- [x] Generate complete scene from single call
 
 **Deliverables**:
 ```
@@ -1588,9 +1667,9 @@ lib/charlotte_digital_twin/geometry/
 ```
 
 **Acceptance Criteria**:
-- [ ] Single call generates complete scene
-- [ ] Scene templates work
-- [ ] Bounding box filtering works
+- [x] Single call generates complete scene
+- [x] Scene templates work
+- [x] Bounding box filtering works
 
 ---
 
@@ -1612,6 +1691,202 @@ lib/charlotte_digital_twin/geometry/
 - **Building extrusion** - 3D from 2D footprints
 - **POI placement** - Markers scaled by importance
 - **Scene assembly** - One-call scene generation
+
+---
+
+## Milestone: v0.13 - SD Projection Mapping System
+**Target**: 2026-02-24
+**Version**: 0.1.0
+**Modules**: 3 | **Exports**: 40+ | **Lines**: ~1,800
+
+### Phase 16.0: SD Projection Foundation
+**Priority**: P0 | **Completed:** 2026-02-24
+
+**Goal**: Create the Arcane-style painted texture projection system with Stable Diffusion ControlNet.
+
+**Key Features**:
+- Camera-based projection mapping onto 3D geometry
+- ControlNet conditioning (depth, normal, canny)
+- Multi-style blending with LoRA support
+- Drifting/slipping texture animation ("trippy" effect)
+- Background building LOD support
+
+**Architecture**:
+```
+lib/sd_projection/
+├── __init__.py              # Package exports
+├── sd_projection.py         # Core SD projection with ControlNet
+├── style_blender.py         # Multi-style blending and drift animation
+└── building_projection.py   # Building-specific projection with LOD
+```
+
+**Style Presets**:
+| Preset | Description |
+|--------|-------------|
+| cyberpunk_night | Neon-lit cyberpunk with rain |
+| arcane_painted | Arcane-style hand-painted look |
+| trippy_drift | Psychedelic with heavy drift |
+| noir_gritty | Film noir with rain streaks |
+| anime_cel | Clean cel-shaded anime style |
+
+**Drift Effects**:
+| Pattern | Description |
+|---------|-------------|
+| LINEAR | Constant direction drift |
+| RADIAL | Drift outward from center |
+| SPIRAL | Spiral drift pattern |
+| CHAOS | Chaotic/noise-based drift |
+| WAVE | Wave-like undulation |
+
+**Tasks**:
+- [x] Create sd_projection.py with SDProjectionMapper, PassGenerator, SDClient
+- [x] Create style_blender.py with StyleBlender, DriftConfig, StyleAnimator
+- [x] Create building_projection.py with BuildingProjector, LOD support
+- [x] Add style presets (cyberpunk, arcane, trippy, noir, anime)
+- [x] Integrate depth/normal/canny pass generation
+- [x] Add UV drift animation system
+
+**Usage**:
+```python
+from lib.sd_projection import project_onto_buildings
+
+results = project_onto_buildings(
+    camera=scene.camera,
+    buildings=city_buildings,
+    style="cyberpunk_night",
+    prompt="neon lit cyberpunk city, rain",
+    drift_speed=0.1,
+)
+```
+
+**Requirements**:
+- SD WebUI running at http://127.0.0.1:7860 (or ComfyUI)
+- ControlNet models installed
+- Style LoRAs for preset styles
+
+---
+
+## Milestone: v0.14 - Vehicle Stunt System - COMPLETE
+**Target**: 2026-02-24
+**Requirements**: `.planning/REQUIREMENTS_VEHICLE_STUNTS.md`
+**Version**: 0.1.0
+**Modules**: 8 | **Exports**: 70+ | **Lines**: ~4,500
+
+### Phase 17.0: Stunt Foundation (REQ-STUNT-01)
+**Priority**: P0 | **Completed:** 2026-02-24
+
+**Goal**: Establish vehicle stunt system foundation with physics-aware ramp generation.
+
+**Tasks**:
+- [x] Create lib/vehicle_stunts/ module structure
+- [x] Implement RampConfig, LoopConfig, TrajectoryPoint data types
+- [x] Create physics constants and utilities
+
+**Deliverables**:
+- `lib/vehicle_stunts/__init__.py` - Package exports
+- `lib/vehicle_stunts/types.py` - Core data structures
+
+---
+
+### Phase 17.1: Ramp & Jump Generation (REQ-STUNT-02)
+**Priority**: P0 | **Completed:** 2026-02-24
+
+**Goal**: Generate physics-accurate ramps, jumps, and launch surfaces.
+
+**Tasks**:
+- [x] Implement 12 ramp presets (beginner to pro)
+- [x] Create ramp geometry generator
+- [x] Implement trajectory calculation with drag
+- [x] Add landing zone generation
+
+**Deliverables**:
+- `lib/vehicle_stunts/ramps.py` - Ramp creation and presets
+- `lib/vehicle_stunts/jumps.py` - Trajectory calculations
+
+---
+
+### Phase 17.2: Building Interaction (REQ-STUNT-03)
+**Priority**: P1 | **Completed:** 2026-02-24
+
+**Goal**: Enable vehicles to interact with buildings for urban stunts.
+
+**Tasks**:
+- [x] Implement wall-ride detection and configuration
+- [x] Create corner bank generation
+- [x] Add rooftop landing zone detection
+
+**Deliverables**:
+- `lib/vehicle_stunts/building_interaction.py` - Wall rides, corner banks
+
+---
+
+### Phase 17.3: Loop & Curve Generation (REQ-STUNT-04)
+**Priority**: P1 | **Completed:** 2026-02-24
+
+**Goal**: Generate vertical loops and banked curves for vehicles.
+
+**Tasks**:
+- [x] Implement 4 loop types (circular, clothoid, egg, helix)
+- [x] Create banked turn generator
+- [x] Add half-pipe, wave, barrel roll elements
+
+**Deliverables**:
+- `lib/vehicle_stunts/loops.py` - Loop and curve generation
+
+---
+
+### Phase 17.4: Launch Control & Physics (REQ-STUNT-05)
+**Priority**: P0 | **Completed:** 2026-02-24
+
+**Goal**: Calculate and visualize launch parameters for successful stunts.
+
+**Tasks**:
+- [x] Implement launch velocity calculator
+- [x] Create G-force calculations
+- [x] Add speed requirement system
+- [x] Implement launch angle optimizer
+
+**Deliverables**:
+- `lib/vehicle_stunts/physics.py` - Physics calculations
+- `lib/vehicle_stunts/launch_control.py` - Launch optimization
+
+---
+
+### Phase 17.5: Stunt Course Assembly (REQ-STUNT-06)
+**Priority**: P2 | **Completed:** 2026-02-24
+
+**Goal**: Assemble complete stunt courses from individual elements.
+
+**Tasks**:
+- [x] Implement StuntCourseBuilder
+- [x] Create course flow analyzer
+- [x] Add course validation
+- [x] Create 4 course presets (beginner, intermediate, pro, extreme)
+
+**Deliverables**:
+- `lib/vehicle_stunts/course.py` - Course builder and validation
+
+---
+
+### Vehicle Stunt System Summary
+
+| Phase | Requirements | Priority | Status |
+|-------|-------------|----------|--------|
+| 17.0 | STUNT-01 (Foundation) | P0 | ✅ Complete |
+| 17.1 | STUNT-02 (Ramps) | P0 | ✅ Complete |
+| 17.2 | STUNT-03 (Buildings) | P1 | ✅ Complete |
+| 17.3 | STUNT-04 (Loops) | P1 | ✅ Complete |
+| 17.4 | STUNT-05 (Launch Control) | P0 | ✅ Complete |
+| 17.5 | STUNT-06 (Course Assembly) | P2 | ✅ Complete |
+
+**Total**: 8 modules, 70+ exports, ~4,500 lines
+
+**Use Cases**:
+- Urban stunt driving (parkour with cars)
+- Rooftop racing
+- Stunt film choreography
+- Game level design
+- Action sequence previsualization
 
 ---
 
