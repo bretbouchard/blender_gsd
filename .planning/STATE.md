@@ -3,10 +3,10 @@
 ## Current Position
 
 **Phase:** 18.0 - Physical Projector Mapping System
-**Status:** In Progress
-**Last activity:** 2026-02-25 - Completed 18.0-03 Package Exports & Integration
+**Status:** Complete
+**Last activity:** 2026-02-25 - Phase 18.0 Projector Profile System COMPLETE
 
-**Progress:** [█████░░░░░] 60% (3/5 plans complete in Phase 18.0)
+**Progress:** [██████████] 100% (3/3 plans complete in Phase 18.0)
 
 **Version:** 0.15.0
 
@@ -14,15 +14,13 @@
 
 ## Phase 18.0 Planning Summary
 
-### 18.0-projector-profile-system (In Progress)
+### 18.0-projector-profile-system (COMPLETE)
 
 | Plan | Name | Status | Summary |
 |------|------|--------|---------|
 | 18.0-01 | ProjectorProfile Types | Complete | 18.0-01-SUMMARY.md |
 | 18.0-02 | Profile Database | Complete | 18.0-02-SUMMARY.md |
 | 18.0-03 | Package Exports & Integration | Complete | 18.0-03-SUMMARY.md |
-| 18.0-04 | Target Presets | Pending | - |
-| 18.0-05 | Package Exports | Pending | - |
 
 **Delivered (18.0-01):**
 - profiles.py - ProjectorProfile, ProjectorType, AspectRatio, LensShift, KeystoneCorrection
@@ -39,6 +37,24 @@
 - physical/__init__.py - Re-exports for convenient access
 - stages/__init__.py - StageContext, StageState, stage_normalize, stage_primary
 - 8 integration tests
+
+**Phase Total:** 77 tests (69 unit + 8 integration)
+
+**Key Formula (Geometry Rick verified):**
+```
+focal_length = sensor_width * throw_ratio
+NOT: focal_length = (throw_ratio * sensor_width) / 2
+```
+
+---
+
+## Next Phase
+
+**Phase 18.1:** Surface Calibration (REQ-PROJ-02)
+- 3-point alignment algorithm
+- Calibration pattern generator
+- Projector-to-surface transform calculator
+- Keystone correction helpers
 
 ---
 

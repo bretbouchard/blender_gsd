@@ -1892,6 +1892,273 @@ results = project_onto_buildings(
 
 ---
 
+## Milestone: v0.15 - Physical Projector Mapping System
+**Target**: 2026-02-25
+**Design**: `.planning/projection-mapping-design.md`
+**Version**: 0.1.0
+**Modules**: 5 | **Exports**: 40+ | **Lines**: ~2,200
+
+### Phase 18.0: Projector Profile System (REQ-PROJ-01) - COMPLETE
+**Priority**: P0 | **Completed**: 2026-02-25
+
+**Goal**: Create projector hardware profiles with throw ratio, lens shift, and resolution.
+
+**Tasks**:
+- [x] Create `lib/cinematic/projection/physical/projector/` module structure
+- [x] Implement ProjectorProfile dataclass with optical characteristics
+- [x] Create projector profile database (12 profiles: Epson, BenQ, Optoma, Sony)
+- [x] Implement throw ratio → focal length conversion (CORRECT formula: sensor_width * throw_ratio)
+- [x] Create projector camera factory (Blender camera from profile)
+- [x] Add stage pipeline interface (StageContext, StageState, stage_normalize, stage_primary)
+
+**Deliverables**:
+```
+lib/cinematic/projection/physical/
+├── __init__.py               # Re-exports for convenient access
+├── projector/
+│   ├── __init__.py           # Complete package exports (24+ exports)
+│   ├── profiles.py           # ProjectorProfile, ProjectorType, AspectRatio, LensShift, KeystoneCorrection
+│   ├── calibration.py        # throw_ratio_to_focal_length, create_projector_camera
+│   └── profile_database.py   # 12 profiles, query functions, YAML loader
+└── stages/
+    └── __init__.py           # StageContext, StageState, stage_normalize, stage_primary
+
+configs/cinematic/projection/
+└── projector_profiles.yaml   # YAML configuration with all 12 profiles
+```
+
+**Key Formula (Geometry Rick verified)**:
+```
+focal_length = sensor_width * throw_ratio
+NOT: focal_length = (throw_ratio * sensor_width) / 2
+```
+
+**Acceptance Criteria**:
+- [x] 12 projector profiles available
+- [x] Blender camera matches projector throw ratio
+- [x] Lens shift correctly applied
+- [x] 77 tests passing (69 unit + 8 integration)
+
+---
+
+### Phase 18.1: Surface Calibration (REQ-PROJ-02)
+**Priority**: P0 | **Est. Effort**: 3-4 days
+
+**Goal**: Implement 3-point surface alignment for real-world projection mapping.
+
+**Tasks**:
+- [ ] Implement 3-point alignment algorithm (adapted from compify)
+- [ ] Create calibration pattern generator (checkerboard, color bars)
+- [ ] Build projector-to-surface transform calculator
+- [ ] Add keystone correction helpers
+- [ ] Create real-world measurement input system
+
+**Deliverables**:
+```
+lib/projection/projector/
+├── calibration.py        # 3-point alignment, keystone
+
+configs/projection/
+├── calibration_patterns.yaml
+└── surface_presets.yaml
+```
+
+**Acceptance Criteria**:
+- [ ] 3-point alignment produces correct projector transform
+- [ ] Calibration patterns render correctly
+- [ ] Keystone correction works
+
+---
+
+### Phase 18.2: Content Mapping Workflow (REQ-PROJ-03)
+**Priority**: P0 | **Est. Effort**: 4-5 days
+
+**Goal**: Create content-to-surface mapping with camera projection shaders.
+
+**Tasks**:
+- [ ] Create UV-mapped proxy geometry generator
+- [ ] Implement camera projection shader (adapted from compify node_groups)
+- [ ] Build content-to-surface mapping system
+- [ ] Add projection output renderer (native projector resolution)
+- [ ] Create multi-surface support
+
+**Deliverables**:
+```
+lib/projection/
+├── shaders/
+│   ├── __init__.py
+│   └── projector_nodes.py   # Camera projection shader nodes
+├── targets/
+│   ├── __init__.py
+│   ├── base.py              # SurfaceGeometry base
+│   ├── reading_room.py      # Cabinet/desk targets
+│   └── garage_door.py       # Flat surface targets
+└── operators/
+    ├── setup.py              # Projector setup operators
+    └── render.py             # Output rendering
+```
+
+**Acceptance Criteria**:
+- [ ] Content projects correctly onto target surface
+- [ ] UV mapping preserves aspect ratio
+- [ ] Output matches projector native resolution
+
+---
+
+### Phase 18.3: Target Presets (REQ-PROJ-04)
+**Priority**: P1 | **Est. Effort**: 2-3 days
+
+**Goal**: Create presets for common projection targets.
+
+**Target Presets**:
+| Target | Description |
+|--------|-------------|
+| Reading Room | Cabinets, desks, multiple surfaces |
+| Garage Door | Single flat surface |
+| Gallery Wall | Flat wall with artwork zones |
+| Building Facade | Multi-story projection |
+
+**Tasks**:
+- [ ] Implement ReadingRoomTarget configuration
+- [ ] Implement GarageDoorTarget configuration
+- [ ] Create target geometry import from measurements
+- [ ] Add target preview system
+
+**Deliverables**:
+```
+configs/projection/targets/
+├── reading_room.yaml
+├── garage_door.yaml
+└── building_facade.yaml
+```
+
+**Acceptance Criteria**:
+- [ ] Reading room target generates cabinet/desk geometry
+- [ ] Garage door target creates flat projection surface
+- [ ] Measurements convert to correct Blender units
+
+---
+
+### Phase 18.4: Integration & Testing (REQ-PROJ-05)
+**Priority**: P1 | **Est. Effort**: 2-3 days
+
+**Goal**: Integration with existing cinematic system and testing.
+
+**Tasks**:
+- [ ] Integrate with cinematic camera system
+- [ ] Add projection setup to shot YAML
+- [ ] Create end-to-end tests
+- [ ] Document workflow
+
+**Usage**:
+```python
+from lib.projection import setup_projector, calibrate_surface, render_for_projector
+
+# Setup
+projector = setup_projector(profile="epson_home_cinema_2150")
+surface = calibrate_surface(
+    projector=projector,
+    points=[(0, 0, 0), (2, 0, 0), (0, 1.5, 0)]  # Bottom-left, bottom-right, top-left
+)
+
+# Render
+render_for_projector(
+    content="my_animation.blend",
+    projector=projector,
+    output="projector_output/"
+)
+```
+
+**Acceptance Criteria**:
+- [ ] Single YAML produces complete projection setup
+- [ ] Output renders at projector native resolution
+- [ ] Real-world alignment matches virtual preview
+
+---
+
+### Physical Projector Mapping Summary
+
+| Phase | Requirements | Priority | Est. Days |
+|-------|-------------|----------|-----------|
+| 18.0 | PROJ-01 (Profiles) | P0 | 2-3 |
+| 18.1 | PROJ-02 (Calibration) | P0 | 3-4 |
+| 18.2 | PROJ-03 (Content Mapping) | P0 | 4-5 |
+| 18.3 | PROJ-04 (Targets) | P1 | 2-3 |
+| 18.4 | PROJ-05 (Integration) | P1 | 2-3 |
+
+**Total**: 13-18 days
+
+**Key Features**:
+- **Projector profiles** - Hardware specs as Blender cameras
+- **3-point calibration** - Real-world surface alignment
+- **Content mapping** - Camera projection shaders
+- **Target presets** - Reading room, garage door, etc.
+- **Native output** - Render at projector resolution
+
+**Inspiration**: Compify addon (Ian Hubert, Nathan Vegdahl) - camera projection techniques adapted for physical projectors
+
+---
+
+## Milestone: v0.16 - Image Extrusion / Depth-to-3D System
+**Target**: TBD
+
+### Phase 19.0: Depth Map Generation (REQ-EXTR-01)
+**Priority**: P1 | **Est. Effort**: 3-4 days
+
+**Goal**: Generate depth maps from 2D images for 3D extrusion.
+
+**Approaches**:
+| Method | Description |
+|--------|-------------|
+| AI Depth | ControlNet/MiDaS depth estimation |
+| Manual | User-painted depth gradients |
+| Stereo | Dual-image depth extraction |
+
+**Tasks**:
+- [ ] Integrate ControlNet depth generation
+- [ ] Create depth map painting tools
+- [ ] Add depth map import/export
+
+---
+
+### Phase 19.1: Displacement Extrusion (REQ-EXTR-02)
+**Priority**: P1 | **Est. Effort**: 2-3 days
+
+**Goal**: Convert depth maps to 3D geometry via displacement.
+
+**Tasks**:
+- [ ] Implement displacement modifier setup
+- [ ] Create subdivision control system
+- [ ] Add sculpt refinement workflow
+- [ ] Support adaptive subdivision
+
+---
+
+### Phase 19.2: Mesh Generation (REQ-EXTR-03)
+**Priority**: P2 | **Est. Effort**: 3-4 days
+
+**Goal**: Generate clean mesh from depth via marching cubes.
+
+**Tasks**:
+- [ ] Implement marching cubes algorithm
+- [ ] Create mesh cleanup tools
+- [ ] Add retopology helpers
+- [ ] Support LOD generation
+
+---
+
+### Image Extrusion Summary
+
+| Phase | Requirements | Priority | Est. Days |
+|-------|-------------|----------|-----------|
+| 19.0 | EXTR-01 (Depth Generation) | P1 | 3-4 |
+| 19.1 | EXTR-02 (Displacement) | P1 | 2-3 |
+| 19.2 | EXTR-03 (Mesh Generation) | P2 | 3-4 |
+
+**Total**: 8-11 days
+
+---
+
 ## Future Considerations
 
 ### Not Yet Scheduled
