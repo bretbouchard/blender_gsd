@@ -1,65 +1,51 @@
-"""
-Physical Projector Mapping Module
+"""Physical projector mapping system.
 
-This module provides tools for mapping physical projector hardware
-to real-world projection surfaces.
+This package provides tools for mapping content to physical projectors
+in real-world environments.
 
-Key Components:
-- ProjectorProfile: Hardware specifications for real projectors
-- Calibration: Throw ratio to focal length conversion
-- Stage Functions: Pipeline stages for projection mapping workflow
+Components:
+- projector: Hardware profiles and calibration utilities
+- stages: Pipeline stage functions (Phase 18.1+)
+- targets: Projection surface configurations (Phase 18.3+)
+- shaders: Camera projection shader nodes (Phase 18.2+)
 
-Part of Milestone v0.15 - Physical Projector Mapping System
+Workflow:
+1. Select projector profile from database
+2. Create Blender camera from profile
+3. Calibrate to real-world surface (Phase 18.1)
+4. Map content to surface (Phase 18.2)
+5. Render at projector native resolution
 
-Usage:
+Example:
     from lib.cinematic.projection.physical import (
-        # Types
-        ProjectorProfile,
-        ProjectorType,
-        AspectRatio,
-        LensShift,
-        KeystoneCorrection,
-
-        # Calibration functions
-        throw_ratio_to_focal_length,
-        focal_length_to_throw_ratio,
-        calculate_throw_distance,
-        calculate_image_width,
+        get_profile,
         create_projector_camera,
-        configure_render_for_projector,
-        restore_render_settings,
     )
 
-    # Create a projector profile
-    profile = ProjectorProfile(
-        name="Epson_Home_Cinema_2150",
-        manufacturer="Epson",
-        throw_ratio=1.32,
-        native_resolution=(1920, 1080),
-        sensor_width=36.0,
-        sensor_height=20.25,
-    )
-
-    # Get Blender focal length from throw ratio
-    focal_length = profile.get_blender_focal_length()
-
-    # Create a Blender camera matching the projector
+    # Setup projector
+    profile = get_profile("Epson_Home_Cinema_2150")
     camera = create_projector_camera(profile)
+
+    # Position camera to match real-world projector location
+    camera.location = (2.5, 0, 1.8)
+    camera.rotation_euler = (math.radians(-15), 0, 0)
 """
 
-from .projector.profiles import (
-    # Enums
+from .projector import (
+    # Re-export all projector module items
+    ProjectorProfile,
     ProjectorType,
     AspectRatio,
-
-    # Data classes
     LensShift,
     KeystoneCorrection,
-    ProjectorProfile,
-)
-
-from .projector.calibration import (
-    # Calibration functions
+    PROJECTOR_PROFILES,
+    get_profile,
+    list_profiles,
+    get_profiles_by_throw_ratio,
+    get_profiles_by_resolution,
+    get_short_throw_profiles,
+    get_4k_profiles,
+    load_profile_from_yaml,
     throw_ratio_to_focal_length,
     focal_length_to_throw_ratio,
     calculate_throw_distance,
@@ -70,23 +56,31 @@ from .projector.calibration import (
 )
 
 __all__ = [
-    # Enums
-    "ProjectorType",
-    "AspectRatio",
+    # Types
+    'ProjectorProfile',
+    'ProjectorType',
+    'AspectRatio',
+    'LensShift',
+    'KeystoneCorrection',
 
-    # Data classes
-    "LensShift",
-    "KeystoneCorrection",
-    "ProjectorProfile",
+    # Database
+    'PROJECTOR_PROFILES',
+    'get_profile',
+    'list_profiles',
+    'get_profiles_by_throw_ratio',
+    'get_profiles_by_resolution',
+    'get_short_throw_profiles',
+    'get_4k_profiles',
+    'load_profile_from_yaml',
 
-    # Calibration functions
-    "throw_ratio_to_focal_length",
-    "focal_length_to_throw_ratio",
-    "calculate_throw_distance",
-    "calculate_image_width",
-    "create_projector_camera",
-    "configure_render_for_projector",
-    "restore_render_settings",
+    # Calibration
+    'throw_ratio_to_focal_length',
+    'focal_length_to_throw_ratio',
+    'calculate_throw_distance',
+    'calculate_image_width',
+    'create_projector_camera',
+    'configure_render_for_projector',
+    'restore_render_settings',
 ]
 
-__version__ = "0.1.0"
+__version__ = '0.1.0'
