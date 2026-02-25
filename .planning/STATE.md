@@ -4,9 +4,9 @@
 
 **Phase:** 18.0 - Physical Projector Mapping System
 **Status:** In Progress
-**Last activity:** 2026-02-25 - Completed 18.0-01 ProjectorProfile Types
+**Last activity:** 2026-02-25 - Completed 18.0-02 Profile Database
 
-**Progress:** [██░░░░░░░░] 20% (1/5 plans complete in Phase 18.0)
+**Progress:** [████░░░░░░] 40% (2/5 plans complete in Phase 18.0)
 
 **Version:** 0.15.0
 
@@ -19,7 +19,7 @@
 | Plan | Name | Status | Summary |
 |------|------|--------|---------|
 | 18.0-01 | ProjectorProfile Types | Complete | 18.0-01-SUMMARY.md |
-| 18.0-02 | Profile Database | Pending | - |
+| 18.0-02 | Profile Database | Complete | 18.0-02-SUMMARY.md |
 | 18.0-03 | Calibration Workflow | Pending | - |
 | 18.0-04 | Target Presets | Pending | - |
 | 18.0-05 | Package Exports | Pending | - |
@@ -28,6 +28,11 @@
 - profiles.py - ProjectorProfile, ProjectorType, AspectRatio, LensShift, KeystoneCorrection
 - calibration.py - throw_ratio_to_focal_length, create_projector_camera, configure_render_for_projector
 - 47 unit tests
+
+**Delivered (18.0-02):**
+- profile_database.py - 12 projector profiles (Epson, BenQ, Optoma, Sony), query functions, YAML loader
+- projector_profiles.yaml - YAML configuration with all 12 profiles
+- 22 unit tests
 
 ---
 
@@ -985,4 +990,8 @@ cd tracking-ui && npm run dev   # Start dev server
 | 2026-02-25 | 18.0-01 | Lens shift as fraction (0.15 = 15%) | Matches Blender camera shift values directly |
 | 2026-02-25 | 18.0-01 | ImportError for Blender-only functions | Helpful message when bpy unavailable |
 | 2026-02-25 | 18.0-01 | AspectRatio enum with tuple values + ratio property | Clean storage (16, 9) with float access (1.777...) |
+| 2026-02-25 | 18.0-02 | Profile naming: {Manufacturer}_{Model} | Consistent, searchable, no spaces |
+| 2026-02-25 | 18.0-02 | Short-throw threshold = 0.8 throw ratio | Industry standard for short-throw projectors |
+| 2026-02-25 | 18.0-02 | 4K resolution threshold = min_width 3840 | UHD standard (3840x2160) |
+| 2026-02-25 | 18.0-02 | YAML + Python dual format | Users can extend via YAML without touching code |
 
