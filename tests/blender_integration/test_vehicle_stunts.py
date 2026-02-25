@@ -11,7 +11,7 @@ from pathlib import Path
 # Add lib to path for imports
 sys.path.insert(0, str(Path(__file__).parent.parent.parent))
 
-from . import requires_blender, BPY_AVAILABLE, BLENDER_AVAILABLE
+from . import BPY_AVAILABLE, BLENDER_AVAILABLE, requires_blender
 
 # Skip all tests in this module if Blender not available
 pytestmark = pytest.mark.skipif(
@@ -44,7 +44,8 @@ class TestRampCreation:
 
     def test_ramp_presets(self):
         """Test loading ramp presets."""
-        from lib.vehicle_stunts.ramps import get_ramp_preset, RAMP_PRESETS
+        from lib.vehicle_stunts.ramps import get_ramp_preset, RAMP_PRESETS, list_preset_names
+        from lib.vehicle_stunts.types import RampType
 
         # Check preset exists
         assert "beginner_kicker" in RAMP_PRESETS
@@ -52,6 +53,11 @@ class TestRampCreation:
         preset = get_ramp_preset("beginner_kicker")
         assert preset is not None
         assert preset.ramp_type == RampType.KICKER
+
+        # Check list_preset_names works
+        names = list_preset_names()
+        assert len(names) > 0
+        assert "beginner_kicker" in names
 
     def test_table_ramp(self):
         """Test creating a table ramp."""
@@ -112,21 +118,29 @@ class TestTrajectoryCalculation:
     def test_calculate_trajectory(self):
         """Test trajectory calculation."""
         from lib.vehicle_stunts.jumps import calculate_trajectory
+        from lib.vehicle_stunts.types import LaunchParams
 
-        points = calculate_trajectory(
-            launch_velocity=15.0,
+        # Create launch params
+        launch_params = LaunchParams(
+            speed=15.0,
             angle=30.0,
             height=1.0,
-            num_points=50,
         )
 
-        assert len(points) == 50
+        result = calculate_trajectory(
+            launch_params=launch_params,
+            frame_rate=24,
+        )
+
+        assert result is not None
+        assert len(result.points) > 0
 
         # Check first point is at launch position
-        assert abs(points[0].position[2] - 1.0) < 0.1  # z height
+        first_point = result.points[0]
+        assert abs(first_point.position[2] - 1.0) < 0.1  # z height
 
         # Check trajectory goes up then down
-        max_height = max(p.position[2] for p in points)
+        max_height = max(p.position[2] for p in result.points)
         assert max_height > 1.0  # Should go higher than launch height
 
     def test_optimal_trajectory(self):
