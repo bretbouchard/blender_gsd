@@ -2,13 +2,32 @@
 
 ## Current Position
 
-**Phase:** All Council Issues Resolved
-**Status:** ✅ FULL APPROVE - All P0, P1, and P2 issues verified complete
-**Last activity:** 2026-02-24 - Verified all P0, P1, and P2 issues already implemented
+**Phase:** 18.0 - Physical Projector Mapping System
+**Status:** In Progress
+**Last activity:** 2026-02-25 - Completed 18.0-01 ProjectorProfile Types
 
-**Progress:** [██████████] 100% (Core Infrastructure Complete)
+**Progress:** [██░░░░░░░░] 20% (1/5 plans complete in Phase 18.0)
 
-**Version:** 0.2.0
+**Version:** 0.15.0
+
+---
+
+## Phase 18.0 Planning Summary
+
+### 18.0-projector-profile-system (In Progress)
+
+| Plan | Name | Status | Summary |
+|------|------|--------|---------|
+| 18.0-01 | ProjectorProfile Types | Complete | 18.0-01-SUMMARY.md |
+| 18.0-02 | Profile Database | Pending | - |
+| 18.0-03 | Calibration Workflow | Pending | - |
+| 18.0-04 | Target Presets | Pending | - |
+| 18.0-05 | Package Exports | Pending | - |
+
+**Delivered (18.0-01):**
+- profiles.py - ProjectorProfile, ProjectorType, AspectRatio, LensShift, KeystoneCorrection
+- calibration.py - throw_ratio_to_focal_length, create_projector_camera, configure_render_for_projector
+- 47 unit tests
 
 ---
 
@@ -962,4 +981,8 @@ cd tracking-ui && npm run dev   # Start dev server
 | 2026-02-20 | 14.2-01 | 16 shot templates | Cover standard cinematography |
 | 2026-02-20 | 14.2-01 | 8 style presets | Cover common visual styles |
 | 2026-02-20 | 14.2-01 | validate_for_execution_strict | Strict validation for execution readiness |
+| 2026-02-25 | 18.0-01 | Throw ratio formula: focal_length = sensor_width * throw_ratio | Geometry Rick verified the original formula was wrong with /2 |
+| 2026-02-25 | 18.0-01 | Lens shift as fraction (0.15 = 15%) | Matches Blender camera shift values directly |
+| 2026-02-25 | 18.0-01 | ImportError for Blender-only functions | Helpful message when bpy unavailable |
+| 2026-02-25 | 18.0-01 | AspectRatio enum with tuple values + ratio property | Clean storage (16, 9) with float access (1.777...) |
 
