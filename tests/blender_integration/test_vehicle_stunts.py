@@ -11,7 +11,7 @@ from pathlib import Path
 # Add lib to path for imports
 sys.path.insert(0, str(Path(__file__).parent.parent.parent))
 
-from . import requires_blender, BPY_AVAILABLE
+from . import requires_blender, BPY_AVAILABLE, BLENDER_AVAILABLE
 
 # Skip all tests in this module if Blender not available
 pytestmark = pytest.mark.skipif(
@@ -28,7 +28,8 @@ class TestRampCreation:
         """Test creating a kicker ramp mesh."""
         import bpy
 
-        from lib.vehicle_stunts.ramps import create_ramp, from lib.vehicle_stunts.types import RampType
+        from lib.vehicle_stunts.ramps import create_ramp
+        from lib.vehicle_stunts.types import RampType
 
         config = create_ramp(
             ramp_type=RampType.KICKER,

@@ -84,8 +84,9 @@ class TestPrimitiveNodes:
         cube_node = node_tree.nodes.new('GeometryNodeMeshCube')
         assert cube_node is not None
 
-        # Verify default size
-        assert cube_node.inputs['Size'].default_value == (1.0, 1.0, 1.0)
+        # Verify default size (convert to tuple for comparison)
+        size_val = tuple(cube_node.inputs['Size'].default_value)
+        assert size_val == (1.0, 1.0, 1.0)
 
         # Cleanup
         bpy.data.node_groups.remove(node_tree)
