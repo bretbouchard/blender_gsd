@@ -91,7 +91,9 @@
 - [x] Integration tests for pipelines (27 tests)
 - [x] CI pipeline (GitHub Actions)
 - [x] Regression test suite (API stability tests)
-- [ ] Integration tests requiring Blender (requires bpy)
+- [x] Integration tests requiring Blender (requires bpy)
+  - [x] Integration test framework in tests/blender_integration/
+  - [x] Tests for geometry nodes, cinematic system, vehicle stunts
 
 ### Phase 8: Ergonomics
 - [x] Project template system
