@@ -1197,7 +1197,7 @@ The AI edits the YAML files directly. No backend needed.
 - No backend server
 
 Plans:
-- [ ] 11.0-PLAN.md - Read-only tracking UI with board, filters, blocker panel
+- [x] 11.0-PLAN.md - Read-only tracking UI with board, filters, blocker panel
 
 ---
 
@@ -1264,7 +1264,7 @@ Plans:
 - Source traceability
 
 Plans:
-- [ ] 12.0-PLAN.md - 1-sheet templates, export (HTML/PDF/PNG), preview modal
+- [x] 12.0-PLAN.md - 1-sheet templates, export (HTML/PDF/PNG), preview modal
 
 ---
 
