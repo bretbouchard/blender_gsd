@@ -299,6 +299,33 @@ SONY_VPL_VW295ES = ProjectorProfile(
 
 
 # ============================================================================
+# BUDGET / MINI PROJECTORS
+# ============================================================================
+
+GENERIC_480P_MINI = ProjectorProfile(
+    name="Generic_480P_Mini",
+    manufacturer="Generic",
+    model="480P Mini Projector",
+    projector_type=ProjectorType.DLP,
+    native_resolution=(854, 480),  # 480p (480 vertical lines)
+    aspect_ratio=AspectRatio.RATIO_16_9,
+    throw_ratio=1.5,  # Typical for cheap projectors
+    throw_ratio_range=(1.4, 1.6),
+    has_zoom=False,
+    lens_shift=LensShift(vertical=0.0, horizontal=0.0),
+    keystone=KeystoneCorrection(horizontal=15.0, vertical=15.0, automatic=False),
+    brightness_lumens=200,  # Low brightness typical of mini projectors
+    contrast_ratio=1000,    # Low contrast
+    color_gamut="sRGB",     # Limited color
+    sensor_width=36.0,
+    sensor_height=20.25,
+    calibration_notes="Generic 480p mini/portable projector. Low brightness (200-400 ANSI lumens typical). "
+                      "Suitable for dark rooms only. Often marketed as '1080p supported' but native is 480p. "
+                      "Examples: AAXA P300, Anker Nebula Capsule, Vamvo L4200, various Amazon budget projectors.",
+)
+
+
+# ============================================================================
 # PROFILE REGISTRY
 # ============================================================================
 
@@ -322,6 +349,9 @@ PROJECTOR_PROFILES: Dict[str, ProjectorProfile] = {
     # Sony
     "Sony_VPL_HW45ES": SONY_VPL_HW45ES,
     "Sony_VPL_VW295ES": SONY_VPL_VW295ES,
+
+    # Budget / Mini
+    "Generic_480P_Mini": GENERIC_480P_MINI,
 }
 
 
@@ -427,6 +457,24 @@ def get_4k_profiles() -> List[ProjectorProfile]:
         List of 4K profiles
     """
     return get_profiles_by_resolution(min_width=3840)
+
+
+# Alias for get_profile (convenience function)
+def load_profile(name: str) -> ProjectorProfile:
+    """Load a projector profile by name.
+
+    This is an alias for get_profile() provided for convenience.
+
+    Args:
+        name: Profile name (e.g., "Epson_Home_Cinema_2150")
+
+    Returns:
+        ProjectorProfile instance
+
+    Raises:
+        KeyError: If profile not found
+    """
+    return get_profile(name)
 
 
 def load_profile_from_yaml(yaml_path: str, profile_name: str) -> ProjectorProfile:

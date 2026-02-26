@@ -40,6 +40,7 @@ from .profile_database import (
     get_profiles_by_resolution,
     get_short_throw_profiles,
     get_4k_profiles,
+    load_profile,
     load_profile_from_yaml,
 )
 
@@ -70,6 +71,7 @@ __all__ = [
     'get_profiles_by_resolution',
     'get_short_throw_profiles',
     'get_4k_profiles',
+    'load_profile',
     'load_profile_from_yaml',
 
     # Calibration

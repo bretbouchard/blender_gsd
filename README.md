@@ -525,6 +525,15 @@ The Council of Ricks - domain-specific AI agents:
 | **Retro Graphics (13.x)** | 12 phases | Rigging, IK/FK, pixel art, dithering, CRT effects |
 | **Production (14.x)** | 2 phases | Production orchestrator, master config |
 | **Control Surfaces (5.x)** | 10 phases | Knobs, faders, buttons, LEDs, morphing |
+| **Tentacle System (19.x)** | 5 phases | Procedural tentacles, suckers, animation, materials, export |
+| **Quetzalcoatl (20.x)** | 12 phases | Feathered serpent generator with scales, wings, rigging |
+
+### Latest Additions
+
+| System | Version | Tests | Description |
+|--------|---------|-------|-------------|
+| **Tentacle System** | v1.0.0 | 266 | Procedural tentacle generation for horror characters with zombie mouth support |
+| **Quetzalcoatl** | v1.0.0 | 446 | Feathered serpent creature generator with full procedural pipeline |
 
 ### CI/CD
 

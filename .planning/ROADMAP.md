@@ -2099,10 +2099,231 @@ render_for_projector(
 
 ---
 
-## Milestone: v0.16 - Image Extrusion / Depth-to-3D System
+## Milestone: v0.16 - Tentacle System
+**Target**: TBD
+**Requirements**: `.planning/REQUIREMENTS_TENTACLE.md`
+**Research**: `.planning/phases/19.0-tentacle-system/RESEARCH.md`
+
+### Phase 19.0: Tentacle System Research
+**Priority**: P1 | **Est. Effort**: 2-3 days
+**Status**: Research Phase
+
+**Goal**: Research procedural tentacle creation for Blender 5.0 with Unreal Engine export.
+
+**Primary Use Case**: Zombie Mouth Tentacles
+- Tentacles emerge from character's mouth
+- Squish through small hole (mouth), expand back out
+- Squeeze/grab objects/victims
+- Animated creature appendages for horror characters
+
+**Research Topics**:
+- [x] Geometry Nodes procedural generation
+- [x] Spline IK rigging for animation
+- [x] Shape keys (morph targets) for squeeze/expand
+- [x] Procedural skin materials with SSS
+- [x] Unreal Engine FBX export pipeline
+- [x] Sucker placement and anatomy
+- [x] Zombie mouth integration (NEW!)
+
+**Key Findings**:
+| Technique | Use Case | Unreal Support |
+|-----------|----------|----------------|
+| Geometry Nodes | Procedural body, suckers | Bake to mesh |
+| Spline IK | Bone animation | ✅ Native FBX |
+| Shape Keys | Squeeze/expand | ✅ Morph targets |
+| Procedural Shaders | Skin, wet, organic | Bake to textures |
+
+**Module Structure**:
+```
+lib/tentacle/
+├── geometry/     # Body generation, taper, segments
+├── suckers/      # Placement, size gradient
+├── animation/    # Spline IK, shape keys, controls, states
+├── materials/    # Skin shaders, themes, horror, slime
+├── zombie/       # Mouth attachment, multi-array, face integration
+└── export/       # FBX, LOD generation
+```
+
+**Open Questions**:
+1. ~~Sucker style~~ - Realistic or stylized? → **Stylized/smooth** (body horror)
+2. ~~Bone count~~ - How many for typical tentacle? → **15-20 bones**
+3. ~~Multi-tentacle~~ - Support for arrays/groups? → **Yes, 2-6 per mouth**
+4. ~~Integration~~ - Connect to cinematic system? → **Face rig integration**
+5. ~~Teeth behavior~~ - Remove/displace teeth or → **Emerge between teeth**
+
+**Horror Themes**:
+| Theme | Use Case |
+|-------|----------|
+| Rotting | Classic zombie |
+| Parasitic | Alien parasite |
+| Demonic | Supernatural |
+| Mutated | Radiation |
+| Decayed | Long-dead zombie |
+
+**Next Steps**:
+1. Define REQUIREMENTS_TENTACLE.md
+2. Create implementation phase plans
+3. Build prototype
+
+**Research Document**: `.planning/phases/19.0-tentacle-system/RESEARCH.md`
+
+---
+
+### Phase 19.1: Tentacle Geometry (REQ-TENT-01, REQ-TENT-06)
+**Priority**: P0 | **Est. Effort**: 3-4 days
+**Depends on**: 19.0 Research completion
+**Plans:** 3 plans
+**Status**: Planning Complete
+
+**Goal**: Procedural tentacle body generation with configurable parameters and zombie mouth foundation.
+
+**Plans**:
+
+| Plan | Name | Est. Hours | Description |
+|------|------|------------|-------------|
+| 19.1-01 | Types & Configuration | 2-3h | TentacleConfig, TaperProfile, ZombieMouthConfig, YAML presets |
+| 19.1-02 | Body Generation | 4-6h | TentacleBodyGenerator, taper profiles, segmentation |
+| 19.1-03 | Zombie Mouth Foundation | 3-4h | Mouth attachment, multi-tentacle arrays |
+
+**Module Structure**:
+```
+lib/tentacle/
+├── __init__.py              # Package exports
+├── types.py                 # TentacleConfig, TaperProfile, SegmentConfig
+├── presets.py               # YAML preset loader
+├── geometry/
+│   ├── __init__.py
+│   ├── body.py              # TentacleBodyGenerator
+│   ├── taper.py             # Taper profile functions
+│   └── segments.py          # Segmentation utilities
+└── zombie/
+    ├── __init__.py
+    ├── mouth_attach.py      # ZombieMouthConfig, attachment utilities
+    └── multi_array.py       # MultiTentacleArray
+
+configs/tentacle/
+├── presets.yaml             # Tentacle geometry presets
+└── zombie_presets.yaml      # Zombie mouth configurations
+```
+
+**Requirements Coverage**:
+
+| ID | Requirement | Plan |
+|----|-------------|------|
+| REQ-TENT-01-01 | Configurable length (0.1m to 3.0m) | 19.1-02 |
+| REQ-TENT-01-02 | Taper profile (base 2-3x tip) | 19.1-02 |
+| REQ-TENT-01-03 | Segmentation (10-50 segments) | 19.1-02 |
+| REQ-TENT-01-04 | Real-time viewport preview | 19.1-02 |
+| REQ-TENT-01-05 | Curve-based base | 19.1-02 |
+| REQ-TENT-01-06 | Deterministic output | 19.1-02 |
+| REQ-TENT-01-07 | Smooth surface (auto-subdivision) | 19.1-02 |
+| REQ-TENT-06-01 | Mouth anchor attachment | 19.1-03 |
+| REQ-TENT-06-02 | Multi-tentacle support (1-6) | 19.1-03 |
+| REQ-TENT-06-03 | Size variation (thick/thin mix) | 19.1-03 |
+
+**Key Design Decisions**:
+- **Curve-based generation** - Use Blender Bézier curves as base
+- **Python API** - More control, export-friendly (Geometry Nodes optional)
+- **Deterministic output** - Seed parameter for reproducible results
+- **Works without Blender** - Numpy-only mode for testing
+
+**Acceptance Criteria**:
+- [ ] Single tentacle generates with configurable length/taper/segments
+- [ ] Changes visible in viewport in < 100ms
+- [ ] Same parameters produce identical mesh
+- [ ] Tentacle can attach to character mouth socket
+- [ ] Multi-tentacle array generates 1-6 tentacles
+- [ ] Size variation applies across tentacles in array
+- [ ] 80%+ test coverage
+
+---
+
+### Phase 19.2: Sucker System (REQ-TENT-02)
+**Priority**: P0 | **Est. Effort**: 2-3 days
+**Depends on**: 19.1
+
+**Goal**: Procedural sucker generation with placement controls.
+
+**Features**:
+- Row/column count controls
+- Size gradient along tentacle
+- Sucker geometry (cup, rim, depth)
+- Optional suckers toggle
+
+---
+
+### Phase 19.3: Squeeze/Expand Animation (REQ-TENT-03)
+**Priority**: P0 | **Est. Effort**: 4-5 days
+**Depends on**: 19.1, 19.2
+
+**Goal**: Animation system for squeeze-through-hole and grab animations.
+
+**Features**:
+- Shape keys for compress/expand
+- Spline IK bone rig
+- Control rig for posing
+- Morph targets for Unreal
+
+---
+
+### Phase 19.4: Material System (REQ-TENT-04)
+**Priority**: P1 | **Est. Effort**: 3-4 days
+**Depends on**: 19.1
+
+**Goal**: Procedural tentacle skin materials with themes.
+
+**Features**:
+- Subsurface scattering setup
+- Procedural texture layers
+- Color theme presets (octopus, alien, horror, mechanical)
+- Wet/slimy surface option
+- Texture baking for export
+
+---
+
+### Phase 19.5: Unreal Export Pipeline (REQ-TENT-05)
+**Priority**: P0 | **Est. Effort**: 2-3 days
+**Depends on**: 19.1, 19.2, 19.3
+
+**Goal**: Complete FBX export pipeline for Unreal Engine.
+
+**Features**:
+- FBX export with skeleton
+- Morph target export
+- Material ID zones
+- LOD generation
+
+---
+
+### Tentacle System Summary
+
+| Phase | Requirements | Priority | Est. Days |
+|-------|-------------|----------|-----------|
+| 19.0 | Research | P1 | 2-3 |
+| 19.1 | TENT-01 (Geometry) | P0 | 3-4 |
+| 19.2 | TENT-02 (Suckers) | P0 | 2-3 |
+| 19.3 | TENT-03 (Animation) | P0 | 4-5 |
+| 19.4 | TENT-04 (Materials) | P1 | 3-4 |
+| 19.5 | TENT-05 (Export) | P0 | 2-3 |
+
+**Total P0**: 11-15 days
+**Total P1**: 5-7 days
+**Grand Total**: 16-22 days
+
+**Key Features**:
+- **Procedural geometry** - Curve-based with taper/segmentation
+- **Sucker system** - Rows, columns, size gradient
+- **Squeeze animation** - Shape keys for compress/expand
+- **Spline IK rig** - Bone-based animation
+- **Material themes** - Octopus, alien, horror, mechanical
+- **Unreal export** - FBX with morph targets
+
+---
+
+## Milestone: v0.17 - Image Extrusion / Depth-to-3D System
 **Target**: TBD
 
-### Phase 19.0: Depth Map Generation (REQ-EXTR-01)
+### Phase 20.0: Depth Map Generation (REQ-EXTR-01)
 **Priority**: P1 | **Est. Effort**: 3-4 days
 
 **Goal**: Generate depth maps from 2D images for 3D extrusion.
@@ -2121,7 +2342,7 @@ render_for_projector(
 
 ---
 
-### Phase 19.1: Displacement Extrusion (REQ-EXTR-02)
+### Phase 20.1: Displacement Extrusion (REQ-EXTR-02)
 **Priority**: P1 | **Est. Effort**: 2-3 days
 
 **Goal**: Convert depth maps to 3D geometry via displacement.
@@ -2134,7 +2355,7 @@ render_for_projector(
 
 ---
 
-### Phase 19.2: Mesh Generation (REQ-EXTR-03)
+### Phase 20.2: Mesh Generation (REQ-EXTR-03)
 **Priority**: P2 | **Est. Effort**: 3-4 days
 
 **Goal**: Generate clean mesh from depth via marching cubes.
@@ -2151,9 +2372,9 @@ render_for_projector(
 
 | Phase | Requirements | Priority | Est. Days |
 |-------|-------------|----------|-----------|
-| 19.0 | EXTR-01 (Depth Generation) | P1 | 3-4 |
-| 19.1 | EXTR-02 (Displacement) | P1 | 2-3 |
-| 19.2 | EXTR-03 (Mesh Generation) | P2 | 3-4 |
+| 20.0 | EXTR-01 (Depth Generation) | P1 | 3-4 |
+| 20.1 | EXTR-02 (Displacement) | P1 | 2-3 |
+| 20.2 | EXTR-03 (Mesh Generation) | P2 | 3-4 |
 
 **Total**: 8-11 days
 

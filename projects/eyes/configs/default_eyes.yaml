@@ -1,0 +1,57 @@
+# Default Eye Configuration
+# Used by generate_eyes.py
+
+geometry:
+  # Number of eyes (12 to 1,000,000)
+  count: 100
+
+  # Distribution type: sphere, random, grid
+  distribution: sphere
+
+  # Size range for eyes
+  size_min: 0.1
+  size_max: 1.0
+
+  # Distribution sphere radius
+  radius: 10.0
+
+  # Random seed for reproducibility
+  seed: 42
+
+eye_structure:
+  # Relative sizes of eye parts
+  pupil_ratio: 0.3    # Pupil size relative to eye
+  iris_ratio: 0.6     # Iris size relative to eye
+  cornea_scale: 1.1   # Cornea slightly larger than iris
+
+  # Subdivision levels for spheres
+  subdivisions: 2     # Higher = smoother but slower
+
+animation:
+  # Emergence animation
+  emergence_enabled: true
+  emergence_duration: 60  # frames
+  emergence_curve: ease_out
+
+  # Rotation animation
+  rotation_enabled: true
+  base_rotation_speed: 1.0
+  size_speed_factor: 2.0  # Smaller eyes rotate faster
+
+material:
+  # Reflection settings
+  reflection_enabled: true
+  reflection_roughness: 0.1
+
+  # Emission settings
+  emission_enabled: false
+  emission_intensity: 1.0
+  emission_color: [1.0, 0.9, 0.8]
+
+performance:
+  # Level of detail distances
+  lod_enabled: false
+  lod_distances: [50, 100, 200]
+
+  # Viewport simplification
+  viewport_count_override: 1000

@@ -1,0 +1,89 @@
+# Base Creature Configuration
+# Default values for all Quetzalcoatl creature variants
+
+name: Quetzalcoatl
+description: Default feathered serpent configuration
+seed: 42
+
+spine:
+  length: 10.0
+  segments: 64
+  taper_head: 0.3
+  taper_tail: 0.2
+  wave_amplitude: 0.5
+  wave_frequency: 3
+
+body:
+  radius: 0.5
+  compression: 0.8
+  dorsal_flat: 0.0
+
+limbs:
+  leg_pairs: 2
+  leg_positions: [0.3, 0.6]
+  leg_length: 1.0
+  leg_girth: 0.15
+  toe_count: 4
+  claw_length: 0.1
+
+wings:
+  wing_type: none
+  wing_span: 3.0
+  wing_arm_length: 1.5
+  finger_count: 4
+  feather_layers: 3
+
+scales:
+  size: 0.05
+  shape: oval
+  overlap: 0.3
+  density: 1.0
+  variation: 0.2
+
+feathers:
+  length: 0.3
+  width: 0.02
+  barb_density: 20
+  iridescence: 0.5
+  layer_count: 3
+
+head:
+  snout_length: 0.8
+  snout_profile: 0.5
+  jaw_depth: 0.3
+  crest_type: none
+  crest_size: 0.5
+
+teeth:
+  count: 40
+  curve: 0.3
+  size_variation: 0.3
+
+whiskers:
+  count: 6
+  length: 0.5
+  taper: 0.1
+  curve: 0.2
+
+tail:
+  tail_type: pointed
+  ornament_size: 0.5
+  feather_count: 12
+
+colors:
+  base_color: [0.1, 0.3, 0.2]
+  accent_color: [0.8, 0.6, 0.2]
+  iridescent_colors:
+    - [0.0, 0.8, 0.6]
+    - [0.8, 0.2, 0.8]
+    - [0.2, 0.4, 0.9]
+  color_pattern: solid
+  color_group_count: 3
+  translucency: 0.3
+
+animation:
+  wave_speed: 1.0
+  wave_amplitude: 0.5
+  wave_decay: 0.3
+  secondary_wave: true
+  feather_sway: 0.2

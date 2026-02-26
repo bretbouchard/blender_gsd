@@ -1,0 +1,43 @@
+# Tutorial-to-Pipeline Mapping
+
+This document maps tutorials from the GSD pipeline stages:
+
+# Priority Implementation guide
+
+# Stage 0: Normalize
+## 1. Normalize Stage
+
+**Tutorials:** Abandoned House (SharpWind),
+**Apply transforms** - Scale verification
+ Check scale
+**Recalculate normals**
+**Clean topology** - Check for non-manifold geometry
+ Verify materials/textures exist
+ Set up UV pass-through for shaders
+**Check for non-manifold geometry**
+
+ **Stage 1: Normalize**
+- Check object type (mesh, empty, armature)
+
+- Stage 2: Primary
+ - Block-out primary forms
+- Stage 3: Secondary - Add detail
+- Check polygon count
+
+ - Stage 4: Detail - Export
+- Stage 5: Output - Render and export
+
+- Clean up geometry
+
+- Verify materials/textures
+- Set up UV pass-through for shaders
+- Create EXR multi-layer output support
+- Document workflow patterns
+
+---
+
+<options>
+<option>Continue implementing all modules</option>
+<option>Review what was created</option>
+<option>Something else</option>
+</options>

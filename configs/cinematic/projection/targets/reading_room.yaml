@@ -1,0 +1,42 @@
+name: reading_room
+description: "Reading room with cabinets and desks"
+target_type: multi_surface
+
+dimensions:
+  width_m: 2.5
+  height_m: 2.0
+  depth_m: 0.6
+
+surfaces:
+  - name: upper_cabinet
+    surface_type: planar
+    position: [0, 0, 1.2]
+    dimensions:
+      width_m: 2.5
+      height_m: 0.8
+    material: white_paint
+    albedo: 0.85
+
+  - name: lower_cabinet
+    surface_type: planar
+    position: [0, 0, 0]
+    dimensions:
+      width_m: 2.5
+      height_m: 0.6
+    material: white_paint
+    albedo: 0.85
+
+  - name: desk_surface
+    surface_type: planar
+    position: [0, 0.4, 0.6]
+    dimensions:
+      width_m: 2.0
+      height_m: 0.5
+    material: wood
+    albedo: 0.6
+
+recommended_calibration: four_point_dlt
+
+preset_measurements:
+  cabinet_depth: 0.3
+  desk_height: 0.75

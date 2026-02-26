@@ -151,11 +151,22 @@ class TentaclePresetLoader:
 
         Returns:
             Dictionary containing presets data, or empty structure if file not found
+
+        Raises:
+            ValueError: If path traversal detected (security)
         """
         if "presets" in cls._cache:
             return cls._cache["presets"]
 
         presets_file = cls.get_presets_path() / "presets.yaml"
+
+        # Security: Validate path is within expected directory (no traversal)
+        try:
+            presets_file.resolve().relative_to(cls.get_presets_path().resolve())
+        except ValueError:
+            raise ValueError(
+                f"Invalid preset path - directory traversal detected: {presets_file}"
+            )
 
         if not presets_file.exists():
             # Return empty structure if file doesn't exist

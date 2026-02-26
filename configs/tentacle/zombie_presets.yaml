@@ -1,0 +1,98 @@
+# Zombie Mouth Tentacle Presets
+
+# Individual tentacle configurations for zombies
+tentacles:
+  zombie_main:
+    length: 1.2
+    base_diameter: 0.10
+    tip_diameter: 0.025
+    segments: 25
+    curve_resolution: 48
+    taper_profile: "organic"
+    twist: 15.0
+    subdivision_levels: 2
+    seed: 42
+    name: "ZombieMain"
+
+  zombie_feeler:
+    length: 0.6
+    base_diameter: 0.04
+    tip_diameter: 0.01
+    segments: 12
+    curve_resolution: 32
+    taper_profile: "smooth"
+    twist: 5.0
+    subdivision_levels: 1
+    seed: 42
+    name: "ZombieFeeler"
+
+  zombie_thick:
+    length: 1.0
+    base_diameter: 0.14
+    tip_diameter: 0.04
+    segments: 20
+    curve_resolution: 48
+    taper_profile: "organic"
+    twist: 10.0
+    subdivision_levels: 2
+    seed: 42
+    name: "ZombieThick"
+
+  zombie_thin:
+    length: 0.8
+    base_diameter: 0.03
+    tip_diameter: 0.008
+    segments: 15
+    curve_resolution: 32
+    taper_profile: "linear"
+    twist: 20.0
+    subdivision_levels: 1
+    seed: 42
+    name: "ZombieThin"
+
+# Mouth configurations
+mouths:
+  # Standard 4-tentacle zombie
+  standard:
+    tentacle_count: 4
+    distribution: "staggered"
+    size_mix: 0.5
+    spread_angle: 60.0
+    main_tentacle: "zombie_main"
+    feeler_tentacle: "zombie_feeler"
+
+  # Aggressive 6-tentacle zombie
+  aggressive:
+    tentacle_count: 6
+    distribution: "uniform"
+    size_mix: 0.3
+    spread_angle: 80.0
+    main_tentacle: "zombie_thick"
+    feeler_tentacle: "zombie_feeler"
+
+  # Subtle 2-tentacle zombie
+  subtle:
+    tentacle_count: 2
+    distribution: "random"
+    size_mix: 0.8
+    spread_angle: 40.0
+    main_tentacle: "zombie_thin"
+    feeler_tentacle: null
+
+  # Heavy 4-tentacle with thick main
+  heavy:
+    tentacle_count: 4
+    distribution: "uniform"
+    size_mix: 0.2
+    spread_angle: 50.0
+    main_tentacle: "zombie_thick"
+    feeler_tentacle: "zombie_main"
+
+  # Swarm 6-tentacle with thin feelers
+  swarm:
+    tentacle_count: 6
+    distribution: "staggered"
+    size_mix: 0.7
+    spread_angle: 70.0
+    main_tentacle: "zombie_feeler"
+    feeler_tentacle: "zombie_thin"

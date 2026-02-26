@@ -1,0 +1,140 @@
+# Calibration Pattern Presets
+# Test patterns for physical projector alignment
+
+patterns:
+  # Checkerboard patterns
+  checkerboard_standard:
+    type: checkerboard
+    grid_size: 8
+    description: "8x8 checkerboard for standard alignment"
+    primary_color: [1.0, 1.0, 1.0]   # White
+    secondary_color: [0.0, 0.0, 0.0] # Black
+
+  checkerboard_fine:
+    type: checkerboard
+    grid_size: 16
+    description: "16x16 fine checkerboard for precision alignment"
+    primary_color: [1.0, 1.0, 1.0]
+    secondary_color: [0.0, 0.0, 0.0]
+
+  checkerboard_large:
+    type: checkerboard
+    grid_size: 4
+    description: "4x4 large checkerboard for quick rough alignment"
+    primary_color: [1.0, 1.0, 1.0]
+    secondary_color: [0.0, 0.0, 0.0]
+
+  # Color bar patterns
+  color_bars_smpte:
+    type: color_bars
+    standard: smpte
+    description: "SMPTE color bars for color calibration"
+
+  color_bars_arib:
+    type: color_bars
+    standard: arib
+    description: "ARIB (simplified) color bars"
+
+  # Grid patterns
+  grid_50px:
+    type: grid
+    spacing: 50
+    line_width: 1
+    description: "50px grid for fine keystone adjustment"
+    primary_color: [1.0, 1.0, 1.0]
+    secondary_color: [0.0, 0.0, 0.0]
+
+  grid_100px:
+    type: grid
+    spacing: 100
+    line_width: 2
+    description: "100px grid for standard keystone adjustment"
+    primary_color: [1.0, 1.0, 1.0]
+    secondary_color: [0.0, 0.0, 0.0]
+
+  grid_200px:
+    type: grid
+    spacing: 200
+    line_width: 3
+    description: "200px grid for rough keystone adjustment"
+    primary_color: [1.0, 1.0, 1.0]
+    secondary_color: [0.0, 0.0, 0.0]
+
+  # Crosshair patterns
+  crosshair_center:
+    type: crosshair
+    line_width: 2
+    description: "Center crosshair for alignment verification"
+
+  # Gradient patterns
+  gradient_horizontal:
+    type: gradient
+    direction: horizontal
+    description: "Horizontal gradient for brightness linearity test"
+    start_color: [0.0, 0.0, 0.0]
+    end_color: [1.0, 1.0, 1.0]
+
+  gradient_vertical:
+    type: gradient
+    direction: vertical
+    description: "Vertical gradient for brightness linearity test"
+    start_color: [0.0, 0.0, 0.0]
+    end_color: [1.0, 1.0, 1.0]
+
+# Calibration presets
+calibration_presets:
+  planar_fast:
+    type: three_point
+    description: "Quick 3-point calibration for flat surfaces"
+    tolerance_px: 5
+    recommended_pattern: checkerboard_large
+
+  planar_standard:
+    type: three_point
+    description: "Standard 3-point calibration for flat surfaces"
+    tolerance_px: 2
+    recommended_pattern: checkerboard_standard
+
+  planar_precise:
+    type: three_point
+    description: "Precise 3-point calibration for flat surfaces"
+    tolerance_px: 1
+    recommended_pattern: checkerboard_fine
+
+  multi_surface_standard:
+    type: four_point_dlt
+    description: "4-point DLT for non-planar surfaces"
+    tolerance_px: 3
+    recommended_pattern: grid_100px
+
+  multi_surface_precise:
+    type: four_point_dlt
+    description: "Precise 4-point DLT for complex surfaces"
+    tolerance_px: 1
+    recommended_pattern: grid_50px
+
+# Workflow recommendations
+workflow:
+  rough_alignment:
+    - pattern: checkerboard_large
+      description: "Get approximate alignment"
+    - pattern: crosshair_center
+      description: "Verify center alignment"
+
+  standard_calibration:
+    - pattern: checkerboard_standard
+      description: "Main calibration"
+    - pattern: grid_100px
+      description: "Fine-tune keystone"
+    - pattern: color_bars_smpte
+      description: "Color verification"
+
+  precise_calibration:
+    - pattern: checkerboard_fine
+      description: "Precise alignment"
+    - pattern: grid_50px
+      description: "Fine keystone adjustment"
+    - pattern: color_bars_smpte
+      description: "Color calibration"
+    - pattern: gradient_horizontal
+      description: "Brightness linearity check"

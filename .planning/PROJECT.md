@@ -77,3 +77,36 @@ Contents:
 
 **Phase**: Foundation
 **Started**: 2026-02-17
+
+---
+
+## ⚠️ FOLDER STRUCTURE (CRITICAL - MEMORIZE THIS)
+
+```
+blender_gsd/
+├── .planning/          # GSD planning (PROJECT.md, ROADMAP.md, phases/)
+├── lib/                # Python library code (cinematic/, tentacle/, etc.)
+├── configs/            # YAML configuration files
+├── tests/              # Unit and integration tests
+├── docs/               # Documentation
+├── projects/           # 🎯 BLENDER PROJECTS GO HERE (eyes/, city_chase/, etc.)
+│   ├── eyes/           # Example: Eyes project
+│   ├── charlotte/      # Example: Charlotte project
+│   └── ...
+├── assets/             # Shared assets (textures, HDRI, etc.)
+├── output/             # Rendered outputs
+├── scripts/            # Standalone utility scripts
+└── examples/           # Example files and demos
+```
+
+### ❌ NEVER CREATE PROJECTS IN:
+- `~/Desktop/`
+- `~/apps/` root
+- Any random folder
+
+### ✅ ALWAYS CREATE PROJECTS IN:
+- `blender_gsd/projects/{project_name}/`
+
+### Before Creating Any File/Folder:
+1. Check: "Is this inside `blender_gsd/projects/`?"
+2. If NO → Stop. Navigate to correct location first.

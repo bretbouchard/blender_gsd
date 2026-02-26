@@ -1,0 +1,53 @@
+name: building_facade
+description: "Multi-story building facade for large-scale projection"
+target_type: multi_surface
+
+dimensions:
+  width_m: 20.0
+  height_m: 15.0
+  depth_m: 0.5
+
+surfaces:
+  - name: main_facade
+    surface_type: planar
+    position: [0, 0, 7.5]
+    dimensions:
+      width_m: 20.0
+      height_m: 15.0
+    material: gray_paint
+    albedo: 0.5
+
+  - name: window_row_1
+    surface_type: planar
+    position: [0, 0.1, 10.0]
+    dimensions:
+      width_m: 18.0
+      height_m: 2.0
+    material: glass
+    albedo: 0.3
+
+  - name: window_row_2
+    surface_type: planar
+    position: [0, 0.1, 6.0]
+    dimensions:
+      width_m: 18.0
+      height_m: 2.0
+    material: glass
+    albedo: 0.3
+
+  - name: window_row_3
+    surface_type: planar
+    position: [0, 0.1, 2.0]
+    dimensions:
+      width_m: 18.0
+      height_m: 2.0
+    material: glass
+    albedo: 0.3
+
+recommended_calibration: four_point_dlt
+
+preset_measurements:
+  window_width: 1.5
+  window_height: 2.0
+  window_spacing: 2.5
+  floor_height: 3.5

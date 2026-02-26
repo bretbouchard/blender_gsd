@@ -1,0 +1,182 @@
+# Surface Presets for Projection Mapping
+# Common projection surface configurations
+
+surfaces:
+  # Planar surfaces
+  flat_wall:
+    type: planar
+    description: "Standard flat wall"
+    calibration_type: three_point
+    default_points:
+      - label: "Bottom Left"
+        position: [0, 0, 0]
+        projector_uv: [0, 0]
+      - label: "Bottom Right"
+        position: [1, 0, 0]
+        projector_uv: [1, 0]
+      - label: "Top Left"
+        position: [0, 1, 0]
+        projector_uv: [0, 1]
+    dimensions:
+      width_m: 1.0
+      height_m: 1.0
+    material: white_paint
+    albedo: 0.85
+
+  garage_door:
+    type: planar
+    description: "Standard garage door (7ft x 16ft typical)"
+    calibration_type: three_point
+    default_points:
+      - label: "Bottom Left"
+        position: [0, 0, 0]
+        projector_uv: [0, 0]
+      - label: "Bottom Right"
+        position: [4.88, 0, 0]
+        projector_uv: [1, 0]
+      - label: "Top Left"
+        position: [0, 2.13, 0]
+        projector_uv: [0, 1]
+    dimensions:
+      width_m: 4.88   # 16ft
+      height_m: 2.13   # 7ft
+    material: white_paint
+    albedo: 0.85
+    notes: "Standard US garage door dimensions"
+
+  projection_screen:
+    type: planar
+    description: "Dedicated projection screen"
+    calibration_type: three_point
+    dimensions:
+      width_m: 2.44   # 8ft
+      height_m: 1.37   # 4.5ft (16:9)
+    material: projector_screen
+    albedo: 0.95
+    notes: "High-gain projection screen material"
+
+  # Multi-surface targets
+  reading_room:
+    type: multi_surface
+    description: "Reading room with cabinets and desks"
+    calibration_type: four_point_dlt
+    sub_surfaces:
+      - name: "upper_cabinet"
+        type: planar
+        position: [0, 0, 1.2]
+        dimensions:
+          width_m: 2.5
+          height_m: 0.8
+        material: white_paint
+        albedo: 0.85
+
+      - name: "lower_cabinet"
+        type: planar
+        position: [0, 0, 0]
+        dimensions:
+          width_m: 2.5
+          height_m: 0.6
+        material: white_paint
+        albedo: 0.85
+
+      - name: "desk_surface"
+        type: planar
+        position: [0, 0.4, 0.6]
+        dimensions:
+          width_m: 2.0
+          height_m: 0.5
+        material: wood
+        albedo: 0.6
+    dimensions:
+      width_m: 2.5
+      height_m: 2.0
+      depth_m: 0.6
+    notes: "Typical home office reading room setup"
+
+  building_facade:
+    type: multi_surface
+    description: "Multi-story building facade for large-scale projection"
+    calibration_type: four_point_dlt
+    sub_surfaces:
+      - name: "main_facade"
+        type: planar
+        position: [0, 0, 7.5]
+        dimensions:
+          width_m: 20.0
+          height_m: 15.0
+        material: gray_paint
+        albedo: 0.5
+
+      - name: "window_row_1"
+        type: planar
+        position: [0, 0.1, 10.0]
+        dimensions:
+          width_m: 18.0
+          height_m: 2.0
+        material: glass
+        albedo: 0.3
+    dimensions:
+      width_m: 20.0
+      height_m: 15.0
+      depth_m: 0.5
+    notes: "Large-scale architectural projection"
+    recommended_throw_ratio: 1.5
+
+  # Curved surfaces
+  cylindrical_column:
+    type: curved
+    description: "Cylindrical column or pillar"
+    calibration_type: four_point_dlt
+    dimensions:
+      radius_m: 0.5
+      height_m: 3.0
+    material: concrete
+    albedo: 0.6
+    notes: "Requires multiple calibration points around curve"
+
+# Material presets
+materials:
+  white_paint:
+    albedo: 0.85
+    glossiness: 0.1
+    description: "Standard white paint"
+
+  gray_paint:
+    albedo: 0.5
+    glossiness: 0.1
+    description: "Gray paint"
+
+  dark_paint:
+    albedo: 0.2
+    glossiness: 0.1
+    description: "Dark paint (reduces brightness)"
+
+  projector_screen:
+    albedo: 0.95
+    glossiness: 0.05
+    description: "Specialized projection screen material"
+
+  fabric:
+    albedo: 0.7
+    glossiness: 0.0
+    description: "Fabric surface (may absorb some light)"
+
+  wood:
+    albedo: 0.6
+    glossiness: 0.3
+    description: "Wood surface"
+
+  concrete:
+    albedo: 0.6
+    glossiness: 0.0
+    description: "Concrete surface"
+
+  glass:
+    albedo: 0.3
+    glossiness: 0.9
+    description: "Glass surface (may cause reflections)"
+
+  metal:
+    albedo: 0.4
+    glossiness: 0.8
+    description: "Metallic surface (may cause hot spots)"

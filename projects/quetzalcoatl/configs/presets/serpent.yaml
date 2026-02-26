@@ -1,0 +1,20 @@
+# Serpent Preset
+# Classic legless serpent - no legs, no wings
+
+name: Serpent
+description: Legless serpent with no wings
+extends: base_creature
+
+limbs:
+  leg_pairs: 0
+  leg_positions: []
+
+wings:
+  wing_type: none
+
+head:
+  crest_type: none
+  crest_size: 0.0
+
+tail:
+  tail_type: pointed

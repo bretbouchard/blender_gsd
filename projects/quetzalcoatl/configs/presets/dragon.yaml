@@ -1,0 +1,48 @@
+# Dragon Preset
+# Four-legged dragon with feathered wings
+
+name: Dragon
+description: Four-legged dragon with feathered wings
+extends: base_creature
+
+spine:
+  length: 15.0
+  wave_amplitude: 0.3
+
+body:
+  radius: 0.7
+  dorsal_flat: 0.2
+
+limbs:
+  leg_pairs: 2
+  leg_positions: [0.25, 0.55]
+  leg_length: 1.5
+  leg_girth: 0.2
+
+wings:
+  wing_type: feathered
+  wing_span: 8.0
+  wing_arm_length: 2.0
+  feather_layers: 4
+
+scales:
+  size: 0.08
+  shape: hexagonal
+  overlap: 0.4
+
+feathers:
+  length: 0.5
+  iridescence: 0.7
+
+head:
+  snout_length: 1.0
+  crest_type: horns
+  crest_size: 0.8
+
+tail:
+  tail_type: pointed
+
+colors:
+  base_color: [0.15, 0.35, 0.25]
+  accent_color: [0.9, 0.7, 0.3]
+  iridescence: 0.6

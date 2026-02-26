@@ -1,0 +1,373 @@
+# Tentacle Material Presets
+# Horror-themed procedural skin materials for zombie mouth tentacles
+
+# Theme Presets
+themes:
+  # Rotting/Necrotic zombie tentacles
+  rotting:
+    name: Rotting
+    theme: rotting
+    description: Gray-green necrotic flesh with purple veins and yellow-brown slime
+    base_color: [0.42, 0.48, 0.35]
+    sss:
+      radius: 2.5
+      color: [1.0, 0.15, 0.15]
+      weight: 1.0
+      anisotropy: 0.0
+      ior: 1.4
+    wetness:
+      level: slimy
+      intensity: 0.7
+      roughness_modifier: 0.4
+      specular_boost: 0.6
+      clearcoat: 0.3
+    veins:
+      enabled: true
+      color: [0.3, 0.1, 0.3]
+      density: 0.6
+      scale: 0.08
+      depth: 0.02
+      glow: false
+      glow_color: [0.0, 0.0, 0.0]
+      glow_intensity: 0.0
+    roughness:
+      base: 0.45
+      variation: 0.15
+      metallic: 0.0
+      normal_strength: 0.6
+    emission_color: [0.0, 0.0, 0.0]
+    emission_strength: 0.0
+
+  # Parasitic infestation tentacles
+  parasitic:
+    name: Parasitic
+    theme: parasitic
+    description: Flesh pink infested appearance with red veins and clear slime
+    base_color: [0.75, 0.55, 0.52]
+    sss:
+      radius: 1.8
+      color: [1.0, 0.4, 0.4]
+      weight: 0.9
+      anisotropy: 0.1
+      ior: 1.4
+    wetness:
+      level: moist
+      intensity: 0.5
+      roughness_modifier: 0.25
+      specular_boost: 0.4
+      clearcoat: 0.1
+    veins:
+      enabled: true
+      color: [0.6, 0.0, 0.0]
+      density: 0.7
+      scale: 0.06
+      depth: 0.015
+      glow: false
+      glow_color: [0.0, 0.0, 0.0]
+      glow_intensity: 0.0
+    roughness:
+      base: 0.4
+      variation: 0.1
+      metallic: 0.0
+      normal_strength: 0.4
+    emission_color: [0.0, 0.0, 0.0]
+    emission_strength: 0.0
+
+  # Demonic/hellish tentacles
+  demonic:
+    name: Demonic
+    theme: demonic
+    description: Deep red hellish flesh with black veins and dark slime
+    base_color: [0.5, 0.08, 0.08]
+    sss:
+      radius: 3.0
+      color: [1.0, 0.1, 0.1]
+      weight: 1.2
+      anisotropy: 0.0
+      ior: 1.4
+    wetness:
+      level: slimy
+      intensity: 0.6
+      roughness_modifier: 0.35
+      specular_boost: 0.5
+      clearcoat: 0.4
+    veins:
+      enabled: true
+      color: [0.1, 0.0, 0.0]
+      density: 0.5
+      scale: 0.1
+      depth: 0.025
+      glow: false
+      glow_color: [0.0, 0.0, 0.0]
+      glow_intensity: 0.0
+    roughness:
+      base: 0.35
+      variation: 0.12
+      metallic: 0.0
+      normal_strength: 0.7
+    emission_color: [0.3, 0.0, 0.0]
+    emission_strength: 0.15
+
+  # Mutated/alien/radioactive tentacles
+  mutated:
+    name: Mutated
+    theme: mutated
+    description: Pale alien flesh with bioluminescent veins and green glow
+    base_color: [0.65, 0.72, 0.68]
+    sss:
+      radius: 1.5
+      color: [0.3, 1.0, 0.8]
+      weight: 0.8
+      anisotropy: 0.2
+      ior: 1.4
+    wetness:
+      level: dripping
+      intensity: 0.8
+      roughness_modifier: 0.5
+      specular_boost: 0.7
+      clearcoat: 0.5
+    veins:
+      enabled: true
+      color: [0.0, 0.8, 0.5]
+      density: 0.4
+      scale: 0.07
+      depth: 0.01
+      glow: true
+      glow_color: [0.0, 1.0, 0.6]
+      glow_intensity: 0.7
+    roughness:
+      base: 0.3
+      variation: 0.08
+      metallic: 0.0
+      normal_strength: 0.3
+    emission_color: [0.0, 0.6, 0.4]
+    emission_strength: 0.4
+
+  # Decayed/skeletal tentacles
+  decayed:
+    name: Decayed
+    theme: decayed
+    description: Bone white desiccated flesh with no veins, dry appearance
+    base_color: [0.82, 0.78, 0.72]
+    sss:
+      radius: 0.8
+      color: [0.9, 0.8, 0.7]
+      weight: 0.4
+      anisotropy: 0.0
+      ior: 1.4
+    wetness:
+      level: dry
+      intensity: 0.1
+      roughness_modifier: 0.1
+      specular_boost: 0.1
+      clearcoat: 0.0
+    veins:
+      enabled: false
+      color: [0.0, 0.0, 0.0]
+      density: 0.0
+      scale: 0.1
+      depth: 0.0
+      glow: false
+      glow_color: [0.0, 0.0, 0.0]
+      glow_intensity: 0.0
+    roughness:
+      base: 0.65
+      variation: 0.2
+      metallic: 0.0
+      normal_strength: 0.5
+    emission_color: [0.0, 0.0, 0.0]
+    emission_strength: 0.0
+
+# Material Configurations
+materials:
+  # Standard zombie mouth tentacle
+  zombie_mouth:
+    name: ZombieMouthTentacle
+    theme_preset:
+      name: Rotting
+      theme: rotting
+      base_color: [0.42, 0.48, 0.35]
+      sss:
+        radius: 2.5
+        color: [1.0, 0.15, 0.15]
+      wetness:
+        level: slimy
+        intensity: 0.7
+      veins:
+        enabled: true
+        color: [0.3, 0.1, 0.3]
+        density: 0.6
+      roughness:
+        base: 0.45
+        variation: 0.15
+    zones:
+      - name: base
+        position: 0.0
+        width: 0.3
+        color_tint: [0.9, 0.95, 0.9]
+        roughness_offset: 0.05
+        sss_offset: 0.2
+      - name: mid
+        position: 0.5
+        width: 0.4
+        color_tint: [1.0, 1.0, 1.0]
+        roughness_offset: 0.0
+        sss_offset: 0.0
+      - name: tip
+        position: 1.0
+        width: 0.3
+        color_tint: [1.1, 0.95, 0.9]
+        roughness_offset: -0.1
+        sss_offset: -0.1
+    blend_zones: true
+    global_wetness_multiplier: 1.0
+    global_sss_multiplier: 1.0
+    noise_scale: 1.0
+    noise_detail: 4
+    seed: null
+
+  # Alien parasite mouth tentacles
+  alien_parasite:
+    name: AlienParasiteTentacle
+    theme_preset:
+      name: Mutated
+      theme: mutated
+      base_color: [0.65, 0.72, 0.68]
+      sss:
+        radius: 1.5
+        color: [0.3, 1.0, 0.8]
+      wetness:
+        level: dripping
+        intensity: 0.8
+      veins:
+        enabled: true
+        glow: true
+        glow_color: [0.0, 1.0, 0.6]
+        glow_intensity: 0.7
+      emission_color: [0.0, 0.6, 0.4]
+      emission_strength: 0.4
+    zones:
+      - name: base
+        position: 0.0
+        width: 0.25
+        color_tint: [0.9, 1.0, 0.95]
+        roughness_offset: 0.0
+        sss_offset: 0.1
+      - name: mid
+        position: 0.5
+        width: 0.5
+        color_tint: [1.0, 1.0, 1.0]
+        roughness_offset: 0.0
+        sss_offset: 0.0
+      - name: tip
+        position: 1.0
+        width: 0.25
+        color_tint: [1.0, 1.1, 1.05]
+        roughness_offset: -0.15
+        sss_offset: -0.2
+    blend_zones: true
+    global_wetness_multiplier: 1.2
+    global_sss_multiplier: 0.9
+    noise_scale: 0.8
+    noise_detail: 6
+    seed: null
+
+  # Demon mouth tentacles
+  demon_mouth:
+    name: DemonMouthTentacle
+    theme_preset:
+      name: Demonic
+      theme: demonic
+      base_color: [0.5, 0.08, 0.08]
+      sss:
+        radius: 3.0
+        color: [1.0, 0.1, 0.1]
+        weight: 1.2
+      wetness:
+        level: slimy
+        intensity: 0.6
+      veins:
+        enabled: true
+        color: [0.1, 0.0, 0.0]
+        density: 0.5
+      emission_color: [0.3, 0.0, 0.0]
+      emission_strength: 0.15
+    zones:
+      - name: base
+        position: 0.0
+        width: 0.35
+        color_tint: [1.1, 0.9, 0.9]
+        roughness_offset: 0.1
+        sss_offset: 0.3
+      - name: mid
+        position: 0.5
+        width: 0.35
+        color_tint: [1.0, 1.0, 1.0]
+        roughness_offset: 0.0
+        sss_offset: 0.0
+      - name: tip
+        position: 1.0
+        width: 0.3
+        color_tint: [1.2, 0.85, 0.85]
+        roughness_offset: -0.15
+        sss_offset: -0.15
+    blend_zones: true
+    global_wetness_multiplier: 0.9
+    global_sss_multiplier: 1.1
+    noise_scale: 1.2
+    noise_detail: 4
+    seed: null
+
+# Bake Configurations
+baking:
+  # Default bake settings
+  default:
+    resolution: 2048
+    bake_albedo: true
+    bake_normal: true
+    bake_roughness: true
+    bake_sss: true
+    bake_emission: false
+    output_format: PNG
+    output_directory: null
+    denoise: true
+    samples: 64
+
+  # High quality baking
+  high_quality:
+    resolution: 4096
+    bake_albedo: true
+    bake_normal: true
+    bake_roughness: true
+    bake_sss: true
+    bake_emission: true
+    output_format: PNG
+    output_directory: null
+    denoise: true
+    samples: 128
+
+  # Quick preview baking
+  preview:
+    resolution: 1024
+    bake_albedo: true
+    bake_normal: false
+    bake_roughness: true
+    bake_sss: false
+    bake_emission: false
+    output_format: PNG
+    output_directory: null
+    denoise: false
+    samples: 16
+
+  # LOD baking (for lower resolution LODs)
+  lod:
+    resolution: 1024
+    bake_albedo: true
+    bake_normal: true
+    bake_roughness: true
+    bake_sss: false
+    bake_emission: false
+    output_format: PNG
+    output_directory: null
+    denoise: true
+    samples: 32

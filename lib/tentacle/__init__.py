@@ -8,6 +8,9 @@ This module provides:
 - YAML preset loading with caching
 - Taper profile calculations
 - Zombie mouth multi-tentacle configurations
+- Animation system with shape keys and state machines
+- Procedural materials with horror themes
+- FBX export pipeline for Unreal Engine 5.x
 
 Usage:
     from lib.tentacle import (
@@ -17,49 +20,43 @@ Usage:
         SegmentConfig,
         ZombieMouthConfig,
 
-        # Preset loader
+        # Presets
         TentaclePresetLoader,
-
-        # Convenience functions
         load_tentacle,
         load_zombie_mouth,
-        list_tentacle_presets,
-        list_zombie_mouth_presets,
+
+        # Animation
+        ShapeKeyPreset,
+        AnimationState,
+        ShapeKeyGenerator,
+        TentacleStateMachine,
+        MultiTentacleStateCoordinator,
+
+        # Materials
+        MaterialTheme,
+        ThemePreset,
+        SkinShaderGenerator,
+        create_skin_material,
+
+        # Export
+        LODGenerator,
+        FBXExporter,
+        ExportPipeline,
+        export_for_unreal,
+
+        # Version
+        __version__
     )
-
-    # Load a preset
-    config = load_tentacle("zombie_main")
-    print(f"Length: {config.length}m")
-
-    # Create custom configuration
-    custom = TentacleConfig(
-        length=1.5,
-        base_diameter=0.10,
-        tip_diameter=0.02,
-        segments=30,
-        taper_profile="organic",
-        twist=20.0,
-    )
-
-    # Load zombie mouth configuration
-    mouth = load_zombie_mouth("standard")
-    for tentacle_config in mouth.get_tentacle_configs():
-        print(f"Tentacle: {tentacle_config.name}")
-
-Part of Phase 19.1: Tentacle Geometry System
 """
 
-__version__ = "0.1.0"
-
-# Core types
 from .types import (
     TentacleConfig,
     TaperProfile,
     SegmentConfig,
     ZombieMouthConfig,
+    sanitize_blender_name,
 )
 
-# Preset loader
 from .presets import (
     TentaclePresetLoader,
     load_tentacle,
@@ -68,20 +65,198 @@ from .presets import (
     list_zombie_mouth_presets,
 )
 
-__all__ = [
-    # Version
-    "__version__",
+from .animation import (
+    # Enums
+    ShapeKeyPreset,
+    AnimationState,
+    # Config dataclasses
+    ShapeKeyConfig,
+    StateTransition,
+    AnimationStateConfig,
+    SplineIKRig,
+    RigConfig,
+    # Result dataclasses
+    ShapeKeyResult,
+    RigResult,
+    # Shape key generation
+    ShapeKeyGenerator,
+    get_preset_config,
+    SHAPE_KEY_PRESETS,
+    # State machine
+    TentacleStateMachine,
+    MultiTentacleStateCoordinator,
+    DEFAULT_STATE_CONFIGS,
+    DEFAULT_TRANSITIONS,
+)
 
+from .materials import (
+    # Enums
+    MaterialTheme,
+    WetnessLevel,
+    # Config dataclasses
+    SSSConfig,
+    WetnessConfig,
+    VeinConfig,
+    RoughnessConfig,
+    MaterialZone,
+    ThemePreset,
+    TentacleMaterialConfig,
+    BakeConfig,
+    BakeResult,
+    # Theme presets
+    THEME_PRESETS,
+    get_theme_preset,
+    get_theme_preset_by_name,
+    list_theme_presets,
+    blend_themes,
+    # Skin shader
+    SkinShaderGenerator,
+    create_skin_material,
+    # Vein patterns
+    VeinPatternGenerator,
+    create_bioluminescent_pattern,
+    # Baking
+    TextureBaker,
+    bake_material,
+    bake_all_lods,
+    # Convenience
+    create_horror_material,
+    create_zombie_tentacle_material,
+)
+
+from .export import (
+    # Enums
+    LODStrategy,
+    ExportFormat,
+    # Config dataclasses
+    LODConfig,
+    LODLevel,
+    FBXExportConfig,
+    MaterialSlotConfig,
+    ExportPreset,
+    # Result dataclasses
+    LODResult,
+    ExportResult,
+    MaterialSlotResult,
+    # LOD Generation
+    LODGenerator,
+    generate_lods,
+    generate_lod_levels,
+    # FBX Export
+    FBXExporter,
+    export_for_unreal,
+    export_tentacle_fbx,
+    # Pipeline
+    ExportPipeline,
+    export_tentacle_package,
+    # Presets
+    EXPORT_PRESETS,
+    get_export_preset,
+    list_export_presets,
+    DEFAULT_LOD_LEVELS,
+)
+
+
+__version__ = "1.0.0"
+VERSION = __version__  # Alias for backwards compatibility
+
+
+__all__ = [
     # Types
     "TentacleConfig",
     "TaperProfile",
     "SegmentConfig",
     "ZombieMouthConfig",
-
+    "sanitize_blender_name",
     # Presets
     "TentaclePresetLoader",
     "load_tentacle",
     "load_zombie_mouth",
     "list_tentacle_presets",
     "list_zombie_mouth_presets",
+    # Animation - Enums
+    "ShapeKeyPreset",
+    "AnimationState",
+    # Animation - Config dataclasses
+    "ShapeKeyConfig",
+    "StateTransition",
+    "AnimationStateConfig",
+    "SplineIKRig",
+    "RigConfig",
+    # Animation - Result dataclasses
+    "ShapeKeyResult",
+    "RigResult",
+    # Animation - Shape key generation
+    "ShapeKeyGenerator",
+    "get_preset_config",
+    "SHAPE_KEY_PRESETS",
+    # Animation - State machine
+    "TentacleStateMachine",
+    "MultiTentacleStateCoordinator",
+    "DEFAULT_STATE_CONFIGS",
+    "DEFAULT_TRANSITIONS",
+    # Materials - Enums
+    "MaterialTheme",
+    "WetnessLevel",
+    # Materials - Config dataclasses
+    "SSSConfig",
+    "WetnessConfig",
+    "VeinConfig",
+    "RoughnessConfig",
+    "MaterialZone",
+    "ThemePreset",
+    "TentacleMaterialConfig",
+    "BakeConfig",
+    "BakeResult",
+    # Materials - Theme presets
+    "THEME_PRESETS",
+    "get_theme_preset",
+    "get_theme_preset_by_name",
+    "list_theme_presets",
+    "blend_themes",
+    # Materials - Skin shader
+    "SkinShaderGenerator",
+    "create_skin_material",
+    # Materials - Vein patterns
+    "VeinPatternGenerator",
+    "create_bioluminescent_pattern",
+    # Materials - Baking
+    "TextureBaker",
+    "bake_material",
+    "bake_all_lods",
+    # Materials - Convenience
+    "create_horror_material",
+    "create_zombie_tentacle_material",
+    # Export - Enums
+    "LODStrategy",
+    "ExportFormat",
+    # Export - Config dataclasses
+    "LODConfig",
+    "LODLevel",
+    "FBXExportConfig",
+    "MaterialSlotConfig",
+    "ExportPreset",
+    # Export - Result dataclasses
+    "LODResult",
+    "ExportResult",
+    "MaterialSlotResult",
+    # Export - LOD Generation
+    "LODGenerator",
+    "generate_lods",
+    "generate_lod_levels",
+    # Export - FBX Export
+    "FBXExporter",
+    "export_for_unreal",
+    "export_tentacle_fbx",
+    # Export - Pipeline
+    "ExportPipeline",
+    "export_tentacle_package",
+    # Export - Presets
+    "EXPORT_PRESETS",
+    "get_export_preset",
+    "list_export_presets",
+    "DEFAULT_LOD_LEVELS",
+    # Version
+    "__version__",
+    "VERSION",
 ]

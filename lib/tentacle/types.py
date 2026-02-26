@@ -8,6 +8,27 @@ Primary use case: Zombie mouth tentacles for horror characters.
 
 from dataclasses import dataclass, field
 from typing import List, Tuple, Optional
+import random
+import re
+
+
+def sanitize_blender_name(name: str) -> str:
+    """Sanitize name for Blender object naming.
+
+    Removes or replaces characters that are invalid in Blender object names.
+
+    Args:
+        name: Input name string
+
+    Returns:
+        Sanitized name safe for Blender object naming
+
+    Example:
+        >>> sanitize_blender_name("My Tentacle #1!")
+        'My_Tentacle_1_'
+    """
+    # Replace invalid characters with underscore
+    return re.sub(r'[^\w\-_\.]', '_', name)
 
 
 @dataclass
@@ -165,7 +186,7 @@ class TentacleConfig:
         taper_profile: Type of taper profile ("linear", "smooth", "organic", "custom")
         twist: Total twist along length in degrees
         subdivision_levels: Subdivision surface levels for smooth mesh (0 - 4)
-        seed: Random seed for reproducible procedural generation
+        seed: Random seed for future procedural variation features (currently unused)
         name: Blender object name
     """
 
@@ -185,7 +206,7 @@ class TentacleConfig:
     # Quality
     subdivision_levels: int = 2
 
-    # Determinism
+    # Determinism (used for future procedural variation features)
     seed: int = 42
 
     # Name
@@ -247,8 +268,34 @@ class TentacleConfig:
         """Calculate the length of each segment."""
         return self.length / self.segments
 
+    # Cached taper profile for performance (avoid object creation in hot path)
+    _cached_taper_profile: Optional[TaperProfile] = field(default=None, init=False, repr=False)
+    _cached_taper_type: str = field(default="", init=False, repr=False)
+    _cached_taper_ratio: float = field(default=0.0, init=False, repr=False)
+
+    def _get_taper_profile(self) -> TaperProfile:
+        """Get or create cached taper profile for performance.
+
+        Performance: Caches the profile to avoid object creation in get_diameter_at().
+
+        Returns:
+            Cached TaperProfile instance
+        """
+        if (self._cached_taper_profile is None or
+            self._cached_taper_type != self.taper_profile or
+            abs(self._cached_taper_ratio - self.taper_ratio) > 1e-9):
+            self._cached_taper_profile = TaperProfile(
+                profile_type=self.taper_profile,
+                base_ratio=self.taper_ratio,
+            )
+            self._cached_taper_type = self.taper_profile
+            self._cached_taper_ratio = self.taper_ratio
+        return self._cached_taper_profile
+
     def get_diameter_at(self, t: float) -> float:
         """Get the diameter at position t (0-1) along the tentacle.
+
+        Performance: O(1) with cached taper profile.
 
         Args:
             t: Position along tentacle length (0=base, 1=tip)
@@ -256,11 +303,7 @@ class TentacleConfig:
         Returns:
             Diameter in meters at position t
         """
-        # Create a taper profile for calculation
-        profile = TaperProfile(
-            profile_type=self.taper_profile,
-            base_ratio=self.taper_ratio,
-        )
+        profile = self._get_taper_profile()
         radius_factor = profile.get_radius_at(t)
         return self.base_diameter * radius_factor
 
@@ -319,8 +362,6 @@ class ZombieMouthConfig:
         Returns:
             List of angles in degrees, centered around 0 (forward)
         """
-        import random
-
         angles = []
         half_spread = self.spread_angle / 2.0
 
@@ -364,8 +405,6 @@ class ZombieMouthConfig:
         Returns:
             List of TentacleConfig objects for each tentacle
         """
-        import random
-
         configs = []
         random.seed(hash((self.main_tentacle.seed, "zombie_mouth_sizes")))
 

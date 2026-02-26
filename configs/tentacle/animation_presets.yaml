@@ -1,0 +1,298 @@
+# Tentacle Animation Presets
+# Shape key presets, animation states, and transition configurations
+
+# Shape Key Presets
+shape_keys:
+  # Basic shapes
+  base:
+    diameter_scale: 1.0
+    length_scale: 1.0
+    squeeze_position: null
+    squeeze_width: 0.2
+    curl_angle: 0.0
+    curl_start: 1.0
+    volume_preservation: 0.0
+
+  compress_50:
+    diameter_scale: 0.5
+    length_scale: 2.0
+    squeeze_position: null
+    squeeze_width: 0.3
+    curl_angle: 0.0
+    curl_start: 1.0
+    volume_preservation: 0.3
+
+  compress_75:
+    diameter_scale: 0.75
+    length_scale: 1.3
+    squeeze_position: null
+    squeeze_width: 0.2
+    curl_angle: 0.0
+    curl_start: 1.0
+    volume_preservation: 0.2
+
+  expand_125:
+    diameter_scale: 1.25
+    length_scale: 0.8
+    squeeze_position: null
+    squeeze_width: 0.2
+    curl_angle: 0.0
+    curl_start: 1.0
+    volume_preservation: 0.0
+
+  # Curl shapes
+  curl_tip:
+    diameter_scale: 1.0
+    length_scale: 1.0
+    squeeze_position: null
+    squeeze_width: 0.1
+    curl_angle: 180.0
+    curl_start: 0.8
+    volume_preservation: 0.0
+
+  curl_full:
+    diameter_scale: 1.0
+    length_scale: 0.9
+    squeeze_position: null
+    squeeze_width: 0.1
+    curl_angle: 540.0
+    curl_start: 0.3
+    volume_preservation: 0.0
+
+  # Localized squeeze presets
+  squeeze_tip:
+    diameter_scale: 0.7
+    length_scale: 1.1
+    squeeze_position: 0.9
+    squeeze_width: 0.2
+    curl_angle: 0.0
+    curl_start: 1.0
+    volume_preservation: 0.15
+
+  squeeze_mid:
+    diameter_scale: 0.8
+    length_scale: 1.05
+    squeeze_position: 0.5
+    squeeze_width: 0.25
+    curl_angle: 0.0
+    curl_start: 1.0
+    volume_preservation: 0.1
+
+  squeeze_base:
+    diameter_scale: 0.75
+    length_scale: 1.0
+    squeeze_position: 0.1
+    squeeze_width: 0.3
+    curl_angle: 0.0
+    curl_start: 1.0
+    volume_preservation: 0.1
+
+# Animation State Configurations
+states:
+  hidden:
+    shape_keys:
+      Compress50: 1.0
+    idle_motion: null
+    idle_speed: 0.0
+    emergence_delay: 0.0
+    loop: false
+
+  emerging:
+    shape_keys:
+      Compress50: 0.0
+      Compress75: 0.5
+    idle_motion: wave
+    idle_speed: 0.5
+    emergence_delay: 0.0
+    loop: false
+
+  searching:
+    shape_keys:
+      Base: 1.0
+    idle_motion: undulate
+    idle_speed: 1.0
+    emergence_delay: 0.0
+    loop: true
+
+  grabbing:
+    shape_keys:
+      CurlTip: 0.3
+      Expand125: 0.2
+    idle_motion: null
+    idle_speed: 0.0
+    emergence_delay: 0.0
+    loop: false
+
+  attacking:
+    shape_keys:
+      CurlFull: 0.7
+      Compress50: 0.0
+    idle_motion: null
+    idle_speed: 0.0
+    emergence_delay: 0.0
+    loop: false
+
+  retracting:
+    shape_keys:
+      Compress75: 0.8
+      Compress50: 1.0
+    idle_motion: null
+    idle_speed: 0.0
+    emergence_delay: 0.0
+    loop: false
+
+# State Transitions
+transitions:
+  - from_state: hidden
+    to_state: emerging
+    duration: 0.5
+    blend_curve: ease_out
+    shape_key_blend:
+      Compress50: 1.0
+      Compress75: 0.0
+
+  - from_state: emerging
+    to_state: searching
+    duration: 0.3
+    blend_curve: ease_out
+    shape_key_blend:
+      Compress50: 0.0
+      Compress75: 0.0
+
+  - from_state: searching
+    to_state: grabbing
+    duration: 0.2
+    blend_curve: linear
+    shape_key_blend:
+      Base: 0.5
+      CurlTip: 0.5
+
+  - from_state: searching
+    to_state: attacking
+    duration: 0.1
+    blend_curve: linear
+    shape_key_blend:
+      CurlFull: 0.7
+
+  - from_state: grabbing
+    to_state: retracting
+    duration: 0.4
+    blend_curve: ease_in
+    shape_key_blend:
+      Compress75: 0.6
+
+  - from_state: attacking
+    to_state: retracting
+    duration: 0.2
+    blend_curve: linear
+    shape_key_blend:
+      Compress50: 1.0
+
+  - from_state: retracting
+    to_state: hidden
+    duration: 0.5
+    blend_curve: ease_in
+    shape_key_blend:
+      Compress50: 1.0
+
+# Spline IK Rig Presets
+rigs:
+  # Standard tentacle rig
+  standard:
+    bone_count: 15
+    bone_prefix: Tentacle
+    curve_name: Tentacle_Curve
+    chain_length: 1.0
+    root_bone: null
+    control_empty: true
+
+  # Short tentacle rig (for small tentacles)
+  short:
+    bone_count: 8
+    bone_prefix: ShortTentacle
+    curve_name: ShortTentacle_Curve
+    chain_length: 0.5
+    root_bone: null
+    control_empty: true
+
+  # Long tentacle rig (for extended tentacles)
+  long:
+    bone_count: 25
+    bone_prefix: LongTentacle
+    curve_name: LongTentacle_Curve
+    chain_length: 2.0
+    root_bone: null
+    control_empty: true
+
+  # Mouth-attached rig (parented to jaw bone)
+  mouth_attached:
+    bone_count: 15
+    bone_prefix: MouthTentacle
+    curve_name: MouthTentacle_Curve
+    chain_length: 1.0
+    root_bone: Jaw
+    control_empty: false
+
+# Multi-Tentacle Configuration Presets
+multi_tentacle:
+  # Zombie mouth configuration (4 tentacles)
+  zombie_mouth:
+    tentacle_count: 4
+    distribution: staggered
+    size_mix: 0.5
+    emergence_delay: 0.1
+    spread_angle: 60
+
+  # Alien parasite configuration (6 tentacles)
+  alien_parasite:
+    tentacle_count: 6
+    distribution: random
+    size_mix: 0.3
+    emergence_delay: 0.05
+    spread_angle: 90
+
+  # Demon configuration (2 large tentacles)
+  demon:
+    tentacle_count: 2
+    distribution: uniform
+    size_mix: 0.8
+    emergence_delay: 0.2
+    spread_angle: 45
+
+  # Mutated configuration (3 mixed tentacles)
+  mutated:
+    tentacle_count: 3
+    distribution: staggered
+    size_mix: 0.6
+    emergence_delay: 0.15
+    spread_angle: 75
+
+# Idle Motion Presets
+idle_motions:
+  # Undulating wave motion
+  undulate:
+    type: wave
+    amplitude: 0.1
+    frequency: 0.5
+    phase_offset: 0.0
+
+  # Twitching motion
+  twitch:
+    type: random
+    amplitude: 0.05
+    frequency: 2.0
+    phase_offset: 0.0
+
+  # Swaying motion
+  sway:
+    type: sine
+    amplitude: 0.15
+    frequency: 0.3
+    phase_offset: 0.0
+
+  # Breathing motion
+  breathe:
+    type: pulse
+    amplitude: 0.02
+    frequency: 0.25
+    phase_offset: 0.0

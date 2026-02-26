@@ -1,0 +1,57 @@
+# Ghost Preset
+# Ethereal, translucent serpent with high iridescence
+
+name: Ghost
+description: Ethereal translucent serpent with strong iridescence
+extends: base_creature
+
+spine:
+  length: 12.0
+  wave_amplitude: 0.8
+  wave_frequency: 4
+
+body:
+  radius: 0.35
+  dorsal_flat: 0.0
+
+limbs:
+  leg_pairs: 0
+  leg_positions: []
+
+wings:
+  wing_type: none
+
+scales:
+  size: 0.03
+  shape: round
+  overlap: 0.2
+  density: 1.5
+
+feathers:
+  length: 0.4
+  iridescence: 0.9
+  layer_count: 4
+
+head:
+  snout_length: 0.7
+  crest_type: ridge
+  crest_size: 0.3
+
+tail:
+  tail_type: feather_tuft
+  feather_count: 20
+
+colors:
+  base_color: [0.3, 0.35, 0.4]
+  accent_color: [0.6, 0.7, 0.9]
+  iridescent_colors:
+    - [0.4, 0.6, 0.9]
+    - [0.7, 0.4, 0.8]
+    - [0.5, 0.8, 0.7]
+    - [0.9, 0.5, 0.6]
+  translucency: 0.8
+
+animation:
+  wave_speed: 0.8
+  wave_amplitude: 0.7
+  secondary_wave: true

@@ -1,0 +1,44 @@
+# Wyvern Preset
+# Two-legged creature with membrane wings
+
+name: Wyvern
+description: Two-legged creature with bat-like membrane wings
+extends: base_creature
+
+spine:
+  length: 8.0
+  wave_amplitude: 0.4
+
+body:
+  radius: 0.4
+  compression: 0.9
+
+limbs:
+  leg_pairs: 1
+  leg_positions: [0.4]
+  leg_length: 0.8
+  leg_girth: 0.12
+
+wings:
+  wing_type: membrane
+  wing_span: 6.0
+  wing_arm_length: 1.8
+  finger_count: 4
+
+scales:
+  size: 0.04
+  shape: diamond
+  overlap: 0.25
+
+head:
+  snout_length: 0.6
+  crest_type: frill
+  crest_size: 0.6
+
+tail:
+  tail_type: pointed
+
+colors:
+  base_color: [0.2, 0.2, 0.25]
+  accent_color: [0.7, 0.5, 0.3]
+  translucency: 0.2

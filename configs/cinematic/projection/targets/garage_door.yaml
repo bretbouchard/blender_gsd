@@ -1,0 +1,34 @@
+name: garage_door
+description: "Standard garage door (7ft x 16ft)"
+target_type: planar
+
+dimensions:
+  width_m: 4.88   # 16ft
+  height_m: 2.13  # 7ft
+  depth_m: 0
+
+surfaces:
+  - name: door_panel
+    surface_type: planar
+    position: [0, 0, 1.065]  # Centered vertically
+    dimensions:
+      width_m: 4.88
+      height_m: 2.13
+    material: white_paint
+    albedo: 0.85
+
+  - name: frame
+    surface_type: planar
+    position: [0, 0, 1.065]
+    dimensions:
+      width_m: 5.0
+      height_m: 2.25
+    material: white_paint
+    albedo: 0.90
+
+recommended_calibration: three_point
+
+preset_measurements:
+  frame_width: 0.05
+  panel_gap: 0.02
+  handle_height: 1.0
