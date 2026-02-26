@@ -1,0 +1,215 @@
+# Tentacle Geometry Presets
+#
+# Configuration presets for procedural tentacle generation.
+# Primary use case: Zombie mouth tentacles for horror characters.
+#
+# All measurements are in meters for consistency with Blender's default units.
+
+# Standard tentacle presets
+presets:
+  # Default balanced tentacle
+  default:
+    length: 1.0
+    base_diameter: 0.08
+    tip_diameter: 0.02
+    segments: 20
+    curve_resolution: 64
+    taper_profile: "organic"
+    twist: 0.0
+    subdivision_levels: 2
+    seed: 42
+    name: "Tentacle"
+
+  # Short and thick tentacle for stocky creatures
+  short_thick:
+    length: 0.5
+    base_diameter: 0.12
+    tip_diameter: 0.04
+    segments: 15
+    curve_resolution: 48
+    taper_profile: "smooth"
+    twist: 0.0
+    subdivision_levels: 2
+    seed: 42
+    name: "ShortThick"
+
+  # Long and thin tentacle for reaching/tendril effects
+  long_thin:
+    length: 2.0
+    base_diameter: 0.05
+    tip_diameter: 0.01
+    segments: 30
+    curve_resolution: 64
+    taper_profile: "organic"
+    twist: 5.0
+    subdivision_levels: 2
+    seed: 42
+    name: "LongThin"
+
+  # Small feeler tentacle for sensory organs
+  feeler:
+    length: 0.3
+    base_diameter: 0.03
+    tip_diameter: 0.008
+    segments: 10
+    curve_resolution: 32
+    taper_profile: "linear"
+    twist: 0.0
+    subdivision_levels: 1
+    seed: 42
+    name: "Feeler"
+
+  # Zombie-specific main tentacle
+  zombie_main:
+    length: 1.2
+    base_diameter: 0.10
+    tip_diameter: 0.025
+    segments: 25
+    curve_resolution: 64
+    taper_profile: "organic"
+    twist: 15.0
+    subdivision_levels: 2
+    seed: 42
+    name: "ZombieMain"
+
+  # Zombie-specific feeler tentacle
+  zombie_feeler:
+    length: 0.6
+    base_diameter: 0.04
+    tip_diameter: 0.01
+    segments: 12
+    curve_resolution: 48
+    taper_profile: "smooth"
+    twist: 8.0
+    subdivision_levels: 2
+    seed: 42
+    name: "ZombieFeeler"
+
+  # Extra long horror tentacle
+  horror_long:
+    length: 2.5
+    base_diameter: 0.06
+    tip_diameter: 0.015
+    segments: 40
+    curve_resolution: 64
+    taper_profile: "organic"
+    twist: 30.0
+    subdivision_levels: 3
+    seed: 42
+    name: "HorrorLong"
+
+  # Baby/tentacle sprout
+  sprout:
+    length: 0.15
+    base_diameter: 0.02
+    tip_diameter: 0.005
+    segments: 8
+    curve_resolution: 24
+    taper_profile: "smooth"
+    twist: 0.0
+    subdivision_levels: 1
+    seed: 42
+    name: "Sprout"
+
+# Taper profile definitions
+taper_profiles:
+  # Linear taper - straight line from base to tip
+  linear:
+    points: []
+    base_ratio: 4.0
+    mid_point: 0.5
+    smoothness: 0.0
+
+  # Smooth taper - ease-in-out curve
+  smooth:
+    points: []
+    base_ratio: 3.0
+    mid_point: 0.5
+    smoothness: 0.7
+
+  # Organic taper - natural bulbous shape
+  organic:
+    points: []
+    base_ratio: 2.5
+    mid_point: 0.4
+    smoothness: 0.5
+
+  # Bulbous profile - thicker in the middle
+  bulbous:
+    points:
+      - [0.0, 1.0]
+      - [0.3, 0.9]
+      - [0.5, 0.85]
+      - [0.7, 0.6]
+      - [1.0, 0.25]
+    base_ratio: 4.0
+    mid_point: 0.5
+    smoothness: 0.5
+
+  # Needle profile - very thin tip
+  needle:
+    points:
+      - [0.0, 1.0]
+      - [0.2, 0.8]
+      - [0.5, 0.5]
+      - [0.8, 0.2]
+      - [1.0, 0.05]
+    base_ratio: 20.0
+    mid_point: 0.6
+    smoothness: 0.3
+
+# Zombie mouth configurations
+zombie_mouths:
+  # Standard 4-tentacle configuration
+  standard:
+    tentacle_count: 4
+    distribution: "staggered"
+    size_mix: 0.5
+    spread_angle: 60.0
+    main_tentacle: "zombie_main"
+    feeler_tentacle: "zombie_feeler"
+
+  # Aggressive 6-tentacle configuration
+  aggressive:
+    tentacle_count: 6
+    distribution: "uniform"
+    size_mix: 0.3
+    spread_angle: 80.0
+    main_tentacle: "zombie_main"
+    feeler_tentacle: "zombie_feeler"
+
+  # Subtle 2-tentacle configuration
+  subtle:
+    tentacle_count: 2
+    distribution: "random"
+    size_mix: 0.8
+    spread_angle: 40.0
+    main_tentacle: "zombie_main"
+    feeler_tentacle: "zombie_feeler"
+
+  # Horror show - many long tentacles
+  horror_show:
+    tentacle_count: 6
+    distribution: "staggered"
+    size_mix: 0.6
+    spread_angle: 100.0
+    main_tentacle: "horror_long"
+    feeler_tentacle: "long_thin"
+
+  # Fresh turned - just starting to sprout
+  fresh_turned:
+    tentacle_count: 3
+    distribution: "random"
+    size_mix: 0.9
+    spread_angle: 45.0
+    main_tentacle: "sprout"
+    feeler_tentacle: null
+
+  # Single prominent tentacle
+  single_prominent:
+    tentacle_count: 1
+    distribution: "uniform"
+    size_mix: 1.0
+    spread_angle: 0.0
+    main_tentacle: "zombie_main"
+    feeler_tentacle: null
