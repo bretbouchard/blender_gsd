@@ -2,13 +2,13 @@
 
 ## Current Position
 
-**Phase:** 18.0 - Physical Projector Mapping System
-**Status:** Complete
-**Last activity:** 2026-02-25 - Phase 18.0 Projector Profile System COMPLETE
+**Phase:** 19.1 - Tentacle Geometry
+**Status:** In Progress
+**Last activity:** 2026-02-25 - Completed 19.1-01 Types & Configuration
 
-**Progress:** [██████████] 100% (3/3 plans complete in Phase 18.0)
+**Progress:** [████░░░░░░░] 33% (1/3 plans complete)
 
-**Version:** 0.15.0
+**Version:** 0.16.0
 
 ---
 
@@ -48,13 +48,129 @@ NOT: focal_length = (throw_ratio * sensor_width) / 2
 
 ---
 
+---
+
+## Phase 18.1 Planning Summary
+
+### 18.1-surface-calibration (Ready for Execution)
+
+| Plan | Name | Status | Summary |
+|------|------|--------|---------|
+| 18.1-01 | Calibration Types & Configuration | Planned | 18.1-01-PLAN.md |
+| 18.1-02 | 3-Point Alignment Algorithm | Planned | 18.1-02-PLAN.md |
+| 18.1-03 | 4-Point DLT & Package Exports | Planned | 18.1-03-PLAN.md |
+
+**Delivered (18.1-01):**
+- types.py - CalibrationPoint, SurfaceCalibration, CalibrationPattern
+- patterns.py - generate_checkerboard_pattern, generate_color_bars_pattern
+- calibration_patterns.yaml, surface_presets.yaml
+
+**Delivered (18.1-02):**
+- alignment.py - compute_alignment_transform, build_orthonormal_basis
+- keystone.py - compute_keystone_correction, apply_keystone_to_camera
+- surface_transform.py - SurfaceTransform, calculate_surface_transform
+
+**Delivered (18.1-03):**
+- dlt.py - four_point_dlt_alignment, decompose_projection_matrix
+- manager.py - CalibrationManager
+- __init__.py - 30+ exports
+
+---
+
+## Phase 18.2 Planning Summary
+
+### 18.2-content-mapping (Ready for Execution)
+
+| Plan | Name | Status | Summary |
+|------|------|--------|---------|
+| 18.2-01 | Projection Shader Nodes | Planned | 18.2-01-PLAN.md |
+| 18.2-02 | Projection Output Renderer | Planned | 18.2-02-PLAN.md |
+| 18.2-03 | Content Mapping Integration | Planned | 18.2-03-PLAN.md |
+
+**Delivered (18.2-01):**
+- types.py - ProjectionShaderConfig, ProjectionMode
+- projector_nodes.py - ensure_projector_projection_group, create_projector_material
+- proxy_geometry.py - create_proxy_geometry_for_surface
+- content_mapper.py - ContentMapper
+
+**Delivered (18.2-02):**
+- types.py - OutputFormat, ColorSpace, ProjectionOutputConfig
+- renderer.py - ProjectionOutputRenderer
+- multi_surface.py - MultiSurfaceRenderer
+
+**Delivered (18.2-03):**
+- workflow.py - ContentMappingWorkflow, render_for_projector
+- __init__.py - 60+ exports
+
+---
+
+## Phase 18.3 Planning Summary
+
+### 18.3-target-presets (Ready for Execution)
+
+| Plan | Name | Status | Summary |
+|------|------|--------|---------|
+| 18.3-01 | Target Types & Builders | Planned | 18.3-01-PLAN.md |
+| 18.3-02 | Target Import & Preview | Planned | 18.3-02-PLAN.md |
+
+**Delivered (18.3-01):**
+- types.py - TargetType, ProjectionSurface, ProjectionTarget
+- base.py - TargetBuilder, PlanarTargetBuilder, MultiSurfaceTargetBuilder
+- presets.py - load_target_preset, create_reading_room_target
+- reading_room.yaml, garage_door.yaml, building_facade.yaml
+
+**Delivered (18.3-02):**
+- import.py - TargetImporter, MeasurementInput
+- preview.py - TargetPreview, preview_target
+- __init__.py - 25+ exports
+
+---
+
+## Phase 18.4 Planning Summary
+
+### 18.4-integration-testing (Ready for Execution)
+
+| Plan | Name | Status | Summary |
+|------|------|--------|---------|
+| 18.4-01 | Shot YAML Integration | Planned | 18.4-01-PLAN.md |
+| 18.4-02 | E2E Tests & Documentation | Planned | 18.4-02-PLAN.md |
+
+**Delivered (18.4-01):**
+- shot.py - ProjectionShotBuilder, build_projection_shot
+- Shot YAML schema extension for projection configuration
+
+**Delivered (18.4-02):**
+- test_projection_mapping.py - E2E test suite
+- PROJECTION_MAPPING.md - User documentation
+- VERIFICATION.md - Phase verification checklist
+
+---
+
+## Phase 19.1 Planning Summary
+
+### 19.1-tentacle-geometry (In Progress)
+
+| Plan | Name | Status | Summary |
+|------|------|--------|---------|
+| 19.1-01 | Types & Configuration | Complete | 19.1-01-SUMMARY.md |
+| 19.1-02 | Curve Generation | Planned | 19.1-02-PLAN.md |
+| 19.1-03 | Mesh Builder & Package Exports | Planned | 19.1-03-PLAN.md |
+
+**Delivered (19.1-01):**
+- types.py - TentacleConfig, TaperProfile, SegmentConfig, ZombieMouthConfig
+- presets.py - TentaclePresetLoader with caching
+- presets.yaml - 8 tentacle presets, 5 taper profiles, 6 zombie mouth configs
+- 91 unit tests
+
+---
+
 ## Next Phase
 
-**Phase 18.1:** Surface Calibration (REQ-PROJ-02)
-- 3-point alignment algorithm
-- Calibration pattern generator
-- Projector-to-surface transform calculator
-- Keystone correction helpers
+**Phase 19.1-02:** Curve Generation (REQ-TENT-01)
+- Bezier curve generation from TentacleConfig
+- Taper profile application
+- Organic variation with noise
+- Twist implementation
 
 ---
 
@@ -821,10 +937,10 @@ None currently.
 
 ## Session Continuity
 
-**Last session:** 2026-02-20
-**Stopped at:** Completed Phase 14.2 Master Production Config
-**Resume file:** None - Phase complete
-**Next phase:** Review requirements for next steps
+**Last session:** 2026-02-25
+**Stopped at:** Completed 19.1-01 Types & Configuration
+**Resume file:** .planning/phases/19.1-tentacle-geometry/19.1-02-PLAN.md
+**Next phase:** Phase 19.1-02 Curve Generation
 
 ## Milestone Summary
 
@@ -1019,4 +1135,9 @@ cd tracking-ui && npm run dev   # Start dev server
 | 2026-02-25 | 18.0-03 | Deterministic seed via MD5 hash | Pipeline Rick requirement for reproducible calibration |
 | 2026-02-25 | 18.0-03 | field(default_factory=list) for errors | Prevents mutable default issues in dataclass |
 | 2026-02-25 | 18.0-03 | Stage 2-4 as placeholders | Full implementation in Phase 18.1/18.2 |
+| 2026-02-25 | 19.1-01 | Meters for all measurements | Consistency with Blender's default units |
+| 2026-02-25 | 19.1-01 | Tip must be smaller than base | Physical constraint for realistic tentacles |
+| 2026-02-25 | 19.1-01 | Profile types as strings | Flexible for future extensions without enum maintenance |
+| 2026-02-25 | 19.1-01 | Class-level caching in loader | Avoid repeated file I/O for performance |
+| 2026-02-25 | 19.1-01 | None resets presets path | Convenient way to restore default behavior |
 
