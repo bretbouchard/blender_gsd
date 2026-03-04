@@ -146,7 +146,7 @@ __all__ = [
     "ROAD_TEMPLATES",
     "SURFACE_MATERIALS",
     "RoadBuilder",
-    "RoadBuilderGN",
+    "RoadNetworkGN",
     "build_road_network",
     "network_to_gn_format",
 
@@ -194,6 +194,34 @@ __all__ = [
     "OcclusionCuller",
     "create_frustum_from_camera",
     "cull_instances",
+
+    # Blender 5.0 Features
+    "NodeGraphGenerator",
+    "PatternBuilder",
+    "NodeDef",
+    "LinkDef",
+    "ClosureDef",
+    "create_from_pattern",
+    "quick_random_transform",
+    "quick_height_scale",
+    "quick_noise_displace",
+
+    # Bundle Support (Blender 5.0)
+    "BundleSchema",
+    "BundleField",
+    "BundleBuilder",
+    "BundleType",
+    "ValidationError",
+    "validate_bundle",
+    "create_bundle",
+    "PHYSICS_BUNDLE",
+    "MATERIAL_BUNDLE",
+    "TRANSFORM_BUNDLE",
+    "PARTICLE_BUNDLE",
+    "CAMERA_BUNDLE",
+    "LIGHT_BUNDLE",
+    "VOLUME_BUNDLE",
+    "XPBD_BUNDLE",
 
     # Version info
     "__version__",
@@ -256,7 +284,7 @@ from .road_builder import (
     ROAD_TEMPLATES,
     SURFACE_MATERIALS,
     RoadBuilder,
-    RoadBuilderGN,
+    RoadNetworkGN,
     build_road_network,
     network_to_gn_format,
 )
@@ -304,6 +332,36 @@ from .culling import (
     OcclusionCuller,
     create_frustum_from_camera,
     cull_instances,
+)
+
+# Blender 5.0 Features
+from .generator import (
+    NodeGraphGenerator,
+    PatternBuilder,
+    NodeDef,
+    LinkDef,
+    ClosureDef,
+    create_from_pattern,
+    quick_random_transform,
+    quick_height_scale,
+    quick_noise_displace,
+)
+from .bundles import (
+    BundleSchema,
+    BundleField,
+    BundleBuilder,
+    BundleType,
+    ValidationError,
+    validate_bundle,
+    create_bundle,
+    PHYSICS_BUNDLE,
+    MATERIAL_BUNDLE,
+    TRANSFORM_BUNDLE,
+    PARTICLE_BUNDLE,
+    CAMERA_BUNDLE,
+    LIGHT_BUNDLE,
+    VOLUME_BUNDLE,
+    XPBD_BUNDLE,
 )
 
 

@@ -82,7 +82,7 @@ def create_per_sphere_radial_material():
     # 5. Math: Multiply for emission intensity control
     emission_mult = nodes.new('ShaderNodeMath')
     emission_mult.operation = 'MULTIPLY'
-    emission_mult.inputs[1].default_value = 2.0  # Emission strength multiplier
+    emission_mult.inputs[1].default_value = 5.0  # Increased emission strength for visibility
     emission_mult.location = (x, -200)
     x += 200
 
@@ -140,16 +140,10 @@ def create_per_sphere_radial_material():
 def create_geometry_nodes_distribution():
     """
     Create a Geometry Nodes setup that:
-    1. Distributes points in a sphere volume
-    2. Instances spheres with WEIGHTED size distribution matching original:
-       - 30% tiny (0.3x)
-       - 35% medium (0.8x)
-       - 25% large (2.0x)
-       - 10% very large (4.0x)
-    3. Provides controls for count, radius, size distribution, spacing
-
-    Uses math-based stepped selection for weighted sizes since geo nodes
-    don't support shader nodes like ValToRGB.
+    1. Creates a sphere mesh and converts to volume
+    2. Distributes points inside the volume
+    3. Instances spheres with random sizes
+    4. Provides controls for count, radius, size distribution, spacing
     """
     # Create a new node group
     node_group = bpy.data.node_groups.new(name="SphereSwarmDistribution", type='GeometryNodeTree')
@@ -174,127 +168,50 @@ def create_geometry_nodes_distribution():
     input_node.location = (x, 0)
     x += 200
 
-    # 2. Distribute Points in Volume (sphere)
+    # 2. Create UV sphere mesh (low poly for volume)
     uv_sphere = nodes.new('GeometryNodeMeshUVSphere')
     uv_sphere.inputs['Radius'].default_value = 1.0
-    uv_sphere.inputs['Segments'].default_value = 2
-    uv_sphere.inputs['Rings'].default_value = 2
+    uv_sphere.inputs['Segments'].default_value = 24
+    uv_sphere.inputs['Rings'].default_value = 16
     uv_sphere.location = (x, -400)
     x += 200
 
-    # Distribute points inside
+    # 3. Convert mesh to volume
+    mesh_to_volume = nodes.new('GeometryNodeMeshToVolume')
+    mesh_to_volume.inputs['Voxel Size'].default_value = 0.1
+    mesh_to_volume.inputs['Interior Band Width'].default_value = 0.2
+    mesh_to_volume.location = (x, -400)
+    x += 200
+
+    # 4. Distribute points in volume
     distribute = nodes.new('GeometryNodeDistributePointsInVolume')
     distribute.location = (x, -200)
     x += 250
 
-    # 3. Random Value for weighted size lookup (0-1)
-    random_picker = nodes.new('FunctionNodeRandomValue')
-    random_picker.data_type = 'FLOAT'
-    random_picker.inputs['Min'].default_value = 0.0
-    random_picker.inputs['Max'].default_value = 1.0
-    random_picker.location = (x, -500)
-    x_random = x
+    # 5. Random Value for size (0.3 to 4.0 for variety)
+    random_size = nodes.new('FunctionNodeRandomValue')
+    random_size.data_type = 'FLOAT'
+    random_size.inputs['Min'].default_value = 0.3  # Tiny
+    random_size.inputs['Max'].default_value = 4.0  # Very large
+    random_size.location = (x, -500)
     x += 200
 
-    # 4. Weighted size selection using stepped approach
-    # Thresholds: 0.3 (30%), 0.65 (30+35%), 0.9 (30+35+25%)
-    # Sizes: 0.3 (tiny), 0.8 (medium), 2.0 (large), 4.0 (very large)
+    # Index for random seed
+    index_node = nodes.new('GeometryNodeInputIndex')
+    index_node.location = (x - 450, -650)
 
-    # Compare: random >= 0.9 (top 10%)
-    compare_09 = nodes.new('FunctionNodeCompare')
-    compare_09.operation = 'GREATER_EQUAL'
-    compare_09.inputs[1].default_value = 0.9
-    compare_09.location = (x, -700)
-
-    # Compare: random >= 0.65 (top 35%)
-    compare_065 = nodes.new('FunctionNodeCompare')
-    compare_065.operation = 'GREATER_EQUAL'
-    compare_065.inputs[1].default_value = 0.65
-    compare_065.location = (x, -500)
-
-    # Compare: random >= 0.3 (top 70%)
-    compare_03 = nodes.new('FunctionNodeCompare')
-    compare_03.operation = 'GREATER_EQUAL'
-    compare_03.inputs[1].default_value = 0.3
-    compare_03.location = (x, -300)
-
-    x += 200
-
-    # Boolean math to isolate each category
-    # is_very_large = compare_09
-    # is_large = compare_065 AND NOT compare_09
-    # is_medium = compare_03 AND NOT compare_065
-    # is_tiny = NOT compare_03
-
-    not_09 = nodes.new('FunctionNodeBooleanMath')
-    not_09.operation = 'NOT'
-    not_09.location = (x, -700)
-
-    not_065 = nodes.new('FunctionNodeBooleanMath')
-    not_065.operation = 'NOT'
-    not_065.location = (x, -500)
-
-    and_large = nodes.new('FunctionNodeBooleanMath')
-    and_large.operation = 'AND'
-    and_large.location = (x + 200, -600)
-
-    and_medium = nodes.new('FunctionNodeBooleanMath')
-    and_medium.operation = 'AND'
-    and_medium.location = (x + 200, -400)
-
-    x += 400
-
-    # Multiply each size by its selection boolean
-    # Using math nodes with hardcoded size values
-    mult_tiny = nodes.new('ShaderNodeMath')
-    mult_tiny.operation = 'MULTIPLY'
-    mult_tiny.inputs[1].default_value = 0.3  # tiny size
-    mult_tiny.location = (x, -800)
-
-    mult_medium = nodes.new('ShaderNodeMath')
-    mult_medium.operation = 'MULTIPLY'
-    mult_medium.inputs[1].default_value = 0.8  # medium size
-    mult_medium.location = (x, -650)
-
-    mult_large = nodes.new('ShaderNodeMath')
-    mult_large.operation = 'MULTIPLY'
-    mult_large.inputs[1].default_value = 2.0  # large size
-    mult_large.location = (x, -500)
-
-    mult_vlarge = nodes.new('ShaderNodeMath')
-    mult_vlarge.operation = 'MULTIPLY'
-    mult_vlarge.inputs[1].default_value = 4.0  # very large size
-    mult_vlarge.location = (x, -350)
-
-    x += 200
-
-    # Add all together: tiny_contrib + medium_contrib + large_contrib + vlarge_contrib
-    add_1 = nodes.new('ShaderNodeMath')
-    add_1.operation = 'ADD'
-    add_1.location = (x, -700)
-
-    add_2 = nodes.new('ShaderNodeMath')
-    add_2.operation = 'ADD'
-    add_2.location = (x + 200, -550)
-
-    add_3 = nodes.new('ShaderNodeMath')
-    add_3.operation = 'ADD'
-    add_3.location = (x + 400, -400)
-
-    x += 600
-
-    # Now multiply by base sphere size
+    # 6. Multiply by base sphere size
     size_mult = nodes.new('ShaderNodeMath')
     size_mult.operation = 'MULTIPLY'
     size_mult.location = (x, -400)
     x += 200
 
-    # CombineXYZ to convert float scale to vector (uniform scale)
+    # 7. CombineXYZ to convert float scale to vector (uniform scale)
     combine_xyz = nodes.new('ShaderNodeCombineXYZ')
     combine_xyz.location = (x, -400)
     x += 200
 
-    # 5. Instance on Points - sphere mesh
+    # 8. Instance on Points - sphere mesh
     instance_sphere = nodes.new('GeometryNodeMeshUVSphere')
     instance_sphere.inputs['Segments'].default_value = 16
     instance_sphere.inputs['Rings'].default_value = 12
@@ -304,17 +221,17 @@ def create_geometry_nodes_distribution():
     instance_on_points.location = (x, -200)
     x += 300
 
-    # 6. Realize Instances (so shader works per-sphere)
+    # 9. Realize Instances (so shader works per-sphere)
     realize = nodes.new('GeometryNodeRealizeInstances')
     realize.location = (x, -200)
     x += 200
 
-    # 7. Set Material
+    # 10. Set Material
     set_material = nodes.new('GeometryNodeSetMaterial')
     set_material.location = (x, -200)
     x += 200
 
-    # 8. Output node
+    # 11. Output node
     output_node = nodes.new('NodeGroupOutput')
     output_node.location = (x, -200)
 
@@ -323,63 +240,21 @@ def create_geometry_nodes_distribution():
     # Create volume sphere from radius
     links.new(input_node.outputs['Swarm Radius'], uv_sphere.inputs['Radius'])
 
-    # Distribute points
-    links.new(uv_sphere.outputs['Mesh'], distribute.inputs['Volume'])
+    # Mesh to volume
+    links.new(uv_sphere.outputs['Mesh'], mesh_to_volume.inputs['Mesh'])
+
+    # Distribute points in volume
+    links.new(mesh_to_volume.outputs['Volume'], distribute.inputs['Volume'])
     links.new(input_node.outputs['Sphere Count'], distribute.inputs['Density'])
+    links.new(input_node.outputs['Seed'], distribute.inputs['Seed'])
 
-    # Random picker with seed and index
-    index_node = nodes.new('GeometryNodeInputIndex')
-    index_node.location = (x_random - 200, -600)
-    links.new(index_node.outputs['Index'], random_picker.inputs['ID'])
-    links.new(input_node.outputs['Seed'], random_picker.inputs['Seed'])
-
-    # Compare thresholds
-    links.new(random_picker.outputs['Value'], compare_09.inputs[0])
-    links.new(random_picker.outputs['Value'], compare_065.inputs[0])
-    links.new(random_picker.outputs['Value'], compare_03.inputs[0])
-
-    # Boolean isolation
-    links.new(compare_09.outputs['Result'], not_09.inputs[0])
-    links.new(compare_065.outputs['Result'], not_065.inputs[0])
-
-    # is_large = compare_065 AND NOT compare_09
-    links.new(compare_065.outputs['Result'], and_large.inputs[0])
-    links.new(not_09.outputs['Boolean'], and_large.inputs[1])
-
-    # is_medium = compare_03 AND NOT compare_065
-    links.new(compare_03.outputs['Result'], and_medium.inputs[0])
-    links.new(not_065.outputs['Boolean'], and_medium.inputs[1])
-
-    # is_tiny = NOT compare_03 (already have not_065, need NOT of compare_03)
-    not_03 = nodes.new('FunctionNodeBooleanMath')
-    not_03.operation = 'NOT'
-    not_03.location = (x_random + 400, -200)
-    links.new(compare_03.outputs['Result'], not_03.inputs[0])
-
-    # Multiply size by selection (bool converted to 0 or 1)
-    # tiny: not_03 * 0.3
-    links.new(not_03.outputs['Boolean'], mult_tiny.inputs[0])
-
-    # medium: and_medium * 0.8
-    links.new(and_medium.outputs['Boolean'], mult_medium.inputs[0])
-
-    # large: and_large * 2.0
-    links.new(and_large.outputs['Boolean'], mult_large.inputs[0])
-
-    # very_large: compare_09 * 4.0
-    links.new(compare_09.outputs['Result'], mult_vlarge.inputs[0])
-
-    # Add contributions
-    links.new(mult_tiny.outputs['Value'], add_1.inputs[0])
-    links.new(mult_medium.outputs['Value'], add_1.inputs[1])
-    links.new(mult_large.outputs['Value'], add_2.inputs[0])
-    links.new(mult_vlarge.outputs['Value'], add_2.inputs[1])
-    links.new(add_1.outputs['Value'], add_3.inputs[0])
-    links.new(add_2.outputs['Value'], add_3.inputs[1])
+    # Random size with index as ID for variation
+    links.new(index_node.outputs['Index'], random_size.inputs['ID'])
+    links.new(input_node.outputs['Seed'], random_size.inputs['Seed'])
 
     # Multiply by base size
     links.new(input_node.outputs['Base Sphere Size'], size_mult.inputs[0])
-    links.new(add_3.outputs['Value'], size_mult.inputs[1])
+    links.new(random_size.outputs['Value'], size_mult.inputs[1])
 
     # Convert float to vector for uniform scale
     links.new(size_mult.outputs['Value'], combine_xyz.inputs['X'])
@@ -410,14 +285,21 @@ def create_geo_nodes_swarm():
     base_obj = bpy.context.active_object
     base_obj.name = "SphereSwarmBase"
 
-    # Hide the base object gizmo in viewport only (geo nodes output still renders)
-    base_obj.show_in_front = False  # Don't show in front
-    # Don't hide_viewport as that hides geo nodes output too
+    # CRITICAL: Proper visibility settings for geo nodes
+    # - hide_render must be FALSE so geo nodes output is visible
+    # - Use display_type to hide the base gizmo in viewport
+    base_obj.hide_render = False  # MUST be False - geo nodes output needs this
+    base_obj.display_type = 'BOUNDS'  # Hide base mesh gizmo, show only bounds
+    base_obj.show_in_front = False
 
     # Add geometry nodes modifier
     geo_mod = base_obj.modifiers.new(name="SphereSwarm", type='NODES')
     node_group = create_geometry_nodes_distribution()
     geo_mod.node_group = node_group
+
+    # CRITICAL: Ensure modifier is enabled for render
+    geo_mod.show_render = True
+    geo_mod.show_viewport = True
 
     # Set default values - tuned from smooth_water_swarm.blend
     # 10,000 spheres, 1.5 radius, 0.06 base size
@@ -466,11 +348,13 @@ def create_backdrop():
 
 def setup_scene():
     """Setup camera, lighting, and render settings."""
+    scene = bpy.context.scene
+
     # Camera
     bpy.ops.object.camera_add(location=(0, -10, 3))
     camera = bpy.context.active_object
     camera.rotation_euler = (1.15, 0, 0)
-    bpy.context.scene.camera = camera
+    scene.camera = camera
 
     # Lighting
     bpy.ops.object.light_add(type='SUN', location=(5, -5, 10))
@@ -482,12 +366,30 @@ def setup_scene():
     fill.data.energy = 30.0
     fill.data.size = 4.0
 
+    # World lighting - subtle ambient for emissive materials
+    if not scene.world:
+        scene.world = bpy.data.worlds.new("World")
+
+    scene.world.use_nodes = True
+    world_nodes = scene.world.node_tree.nodes
+    world_links = scene.world.node_tree.links
+    world_nodes.clear()
+
+    # Background with subtle ambient
+    bg = world_nodes.new('ShaderNodeBackground')
+    bg.inputs['Color'].default_value = (0.02, 0.02, 0.05, 1)  # Very dark blue
+    bg.inputs['Strength'].default_value = 0.1  # Subtle ambient
+
+    output = world_nodes.new('ShaderNodeOutputWorld')
+    world_links.new(bg.outputs['Background'], output.inputs['Surface'])
+
     # Render settings
-    bpy.context.scene.render.engine = 'CYCLES'
-    bpy.context.scene.cycles.samples = 128
-    bpy.context.scene.render.fps = 24
-    bpy.context.scene.frame_start = 1
-    bpy.context.scene.frame_end = 150
+    scene.render.engine = 'CYCLES'
+    scene.cycles.samples = 128
+    scene.cycles.use_denoising = True
+    scene.render.fps = 24
+    scene.frame_start = 1
+    scene.frame_end = 150
 
     # Viewport shading
     for area in bpy.context.screen.areas:

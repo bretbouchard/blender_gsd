@@ -1,19 +1,46 @@
 """
-Road Builder Node Group
+Road Builder Node Group - Codified from Urban System
 
 Consumes JSON road networks from L-System generator and creates road geometry.
-Handles lanes, markings, curbs, and intersections.
+Handles lanes, markings, curbs, and intersections using NodeKit pattern.
 
-Implements REQ-GN-02: Road Builder Node Group.
+Based on: Urban Road System (REQ-GN-02, REQ-UR-01)
+
+Usage:
+    from lib.geometry_nodes.road_builder import RoadBuilder, RoadNetworkGN
+
+    # Create road from curve
+    road = RoadBuilder.create("MainRoad")
+    road.set_lanes(4).set_width(3.5).add_sidewalks().build()
+
+    # Create from network data
+    network_gn = RoadNetworkGN.create("CityGrid")
+    network_gn.load_from_dict(network_data).build()
+
+    # Display HUD
+    from lib.geometry_nodes.road_builder import RoadHUD
+    print(RoadHUD.display_road_types())
+    print(RoadHUD.display_lane_config(4))
 """
 
 from __future__ import annotations
+import bpy
 from dataclasses import dataclass, field
-from typing import Dict, Any, Optional, List, Tuple
+from typing import Dict, Any, Optional, List, Tuple, TYPE_CHECKING
 from enum import Enum
 import json
 import math
 
+# Import NodeKit for node building
+try:
+    from ..nodekit import NodeKit
+except ImportError:
+    from nodekit import NodeKit
+
+
+# =============================================================================
+# ENUMS AND TYPES
+# =============================================================================
 
 class RoadType(Enum):
     """Road type classification."""
@@ -43,6 +70,10 @@ class IntersectionType(Enum):
     ROUNDABOUT = "roundabout"
     OVERPASS = "overpass"
 
+
+# =============================================================================
+# DATA CLASSES
+# =============================================================================
 
 @dataclass
 class LaneSpec:
@@ -247,10 +278,6 @@ ROAD_TEMPLATES: Dict[str, Dict[str, Any]] = {
 }
 
 
-# =============================================================================
-# SURFACE MATERIALS
-# =============================================================================
-
 SURFACE_MATERIALS: Dict[str, Dict[str, Any]] = {
     "asphalt": {
         "color": "#2F2F2F",
@@ -282,290 +309,783 @@ SURFACE_MATERIALS: Dict[str, Dict[str, Any]] = {
 }
 
 
+# =============================================================================
+# ROAD BUILDER - NODEKIT PATTERN
+# =============================================================================
+
 class RoadBuilder:
     """
-    Builds road geometry from L-System generated networks.
+    Builds road geometry from curves using Geometry Nodes.
 
-    Consumes JSON output from LSystemRoads and generates geometry
-    for Blender's Geometry Nodes system.
+    Creates node group that generates road surface, markings, curbs.
+
+    Cross-references:
+    - KB Section 5: Scattering on roads
+    - KB Section 15: Procedural patterns for markings
+    - REQ-GN-02: Road Builder Node Group
 
     Usage:
-        builder = RoadBuilder()
-        network = builder.build_from_json(road_network_json)
-        # Pass network to GN Road Builder node group
+        road = RoadBuilder.create("MainStreet")
+        road.set_lanes(4).set_width(3.5).add_sidewalks().build()
     """
 
-    def __init__(
-        self,
-        default_lane_width: float = 3.5,
-        curb_height: float = 0.15,
-        sidewalk_width: float = 1.5,
-    ):
+    def __init__(self, node_tree: Optional[bpy.types.NodeTree] = None):
+        self.node_tree = node_tree
+        self.nk: Optional[NodeKit] = None
+        self._created_nodes: dict = {}
+
+        # Road configuration
+        self._lane_count = 2
+        self._lane_width = 3.5
+        self._curb_height = 0.15
+        self._sidewalk_width = 1.5
+        self._has_sidewalk = True
+        self._has_markings = True
+        self._has_median = False
+        self._surface_type = "asphalt"
+
+    @classmethod
+    def create(cls, name: str = "Road") -> "RoadBuilder":
         """
-        Initialize road builder.
+        Create road builder node tree.
 
         Args:
-            default_lane_width: Default lane width
-            curb_height: Curb height in meters
-            sidewalk_width: Default sidewalk width
-        """
-        self.default_lane_width = default_lane_width
-        self.curb_height = curb_height
-        self.sidewalk_width = sidewalk_width
-
-    def build_from_json(self, network_json: str) -> RoadNetwork:
-        """
-        Build road network from JSON.
-
-        Args:
-            network_json: JSON string from LSystemRoads
+            name: Node tree name
 
         Returns:
-            RoadNetwork specification
+            Configured RoadBuilder instance
         """
-        data = json.loads(network_json)
-        return self.build_from_dict(data)
+        tree = bpy.data.node_groups.new(name, 'GeometryNodeTree')
+        instance = cls(tree)
+        instance._setup_interface()
+        return instance
 
-    def build_from_dict(self, network_data: Dict[str, Any]) -> RoadNetwork:
+    @classmethod
+    def from_object(
+        cls,
+        obj: bpy.types.Object,
+        name: str = "Road"
+    ) -> "RoadBuilder":
         """
-        Build road network from dictionary.
+        Create and attach to curve object via modifier.
 
         Args:
-            network_data: Network dictionary from LSystemRoads
+            obj: Curve object to use as road path
+            name: Node tree name
 
         Returns:
-            RoadNetwork specification
+            Configured RoadBuilder instance
         """
-        network_id = network_data.get("network_id", "network_0")
+        mod = obj.modifiers.new(name=name, type='NODES')
+        tree = bpy.data.node_groups.new(name, 'GeometryNodeTree')
+        mod.node_group = tree
 
-        # Build segments
-        segments = []
-        for edge_data in network_data.get("edges", []):
-            segment = self._build_segment(edge_data)
-            segments.append(segment)
+        instance = cls(tree)
+        instance._setup_interface()
+        return instance
 
-        # Build intersections
-        intersections = []
-        for node_data in network_data.get("nodes", []):
-            if node_data.get("type") in ["intersection_4way", "intersection_3way", "roundabout"]:
-                intersection = self._build_intersection(node_data)
-                intersections.append(intersection)
+    @classmethod
+    def from_road_type(cls, road_type: str, name: str = None) -> "RoadBuilder":
+        """
+        Create road from preset type.
 
-        # Calculate bounds
-        all_points = []
-        for seg in segments:
-            all_points.extend(seg.control_points)
-        for inter in intersections:
-            all_points.append(inter.position)
+        Args:
+            road_type: Type from ROAD_TEMPLATES (highway, arterial, etc.)
+            name: Optional node tree name
 
-        if all_points:
-            xs = [p[0] for p in all_points]
-            ys = [p[1] for p in all_points]
-            bounds = (min(xs), min(ys), max(xs), max(ys))
-        else:
-            bounds = (0.0, 0.0, 100.0, 100.0)
-
-        return RoadNetwork(
-            network_id=network_id,
-            segments=segments,
-            intersections=intersections,
-            bounds=bounds,
-        )
-
-    def _build_segment(self, edge_data: Dict[str, Any]) -> RoadSegment:
-        """Build road segment from edge data."""
-        segment_id = edge_data.get("id", "segment_0")
-        road_type = edge_data.get("road_type", "local")
-
-        # Get template for road type
+        Returns:
+            Configured RoadBuilder with preset values
+        """
         template = ROAD_TEMPLATES.get(road_type, ROAD_TEMPLATES["local"])
+        instance = cls.create(name or f"Road_{road_type}")
 
-        # Create lanes from template
-        lanes = []
-        for i, lane_data in enumerate(template.get("lanes", [])):
-            lane = LaneSpec(
-                lane_id=f"{segment_id}_lane_{i}",
-                lane_type=lane_data.get("type", "travel"),
-                width=lane_data.get("width", self.default_lane_width),
-                direction=lane_data.get("direction", 1),
+        # Apply template
+        instance._lane_count = len(template["lanes"])
+        instance._has_sidewalk = template.get("has_sidewalk", True)
+        instance._has_median = template.get("has_median", False)
+        instance._surface_type = template.get("surface", "asphalt")
+
+        return instance
+
+    def _setup_interface(self) -> None:
+        """Set up node group interface."""
+        # Inputs
+        self.node_tree.interface.new_socket(
+            name="Curve", in_out='INPUT', socket_type='NodeSocketGeometry'
+        )
+        self.node_tree.interface.new_socket(
+            name="Lane Count", in_out='INPUT', socket_type='NodeSocketInt',
+            default_value=self._lane_count, min_value=1, max_value=12
+        )
+        self.node_tree.interface.new_socket(
+            name="Lane Width", in_out='INPUT', socket_type='NodeSocketFloat',
+            default_value=self._lane_width, min_value=2.0, max_value=5.0
+        )
+        self.node_tree.interface.new_socket(
+            name="Curb Height", in_out='INPUT', socket_type='NodeSocketFloat',
+            default_value=self._curb_height, min_value=0.0, max_value=0.5
+        )
+        self.node_tree.interface.new_socket(
+            name="Sidewalk Width", in_out='INPUT', socket_type='NodeSocketFloat',
+            default_value=self._sidewalk_width, min_value=0.0, max_value=5.0
+        )
+        self.node_tree.interface.new_socket(
+            name="Resolution", in_out='INPUT', socket_type='NodeSocketInt',
+            default_value=12, min_value=3, max_value=64
+        )
+
+        # Boolean inputs
+        self.node_tree.interface.new_socket(
+            name="Generate Markings", in_out='INPUT', socket_type='NodeSocketBool',
+            default_value=True
+        )
+        self.node_tree.interface.new_socket(
+            name="Generate Curbs", in_out='INPUT', socket_type='NodeSocketBool',
+            default_value=True
+        )
+        self.node_tree.interface.new_socket(
+            name="Generate Sidewalks", in_out='INPUT', socket_type='NodeSocketBool',
+            default_value=True
+        )
+
+        # Outputs
+        self.node_tree.interface.new_socket(
+            name="Geometry", in_out='OUTPUT', socket_type='NodeSocketGeometry'
+        )
+        self.node_tree.interface.new_socket(
+            name="Road Surface", in_out='OUTPUT', socket_type='NodeSocketGeometry'
+        )
+        self.node_tree.interface.new_socket(
+            name="Markings", in_out='OUTPUT', socket_type='NodeSocketGeometry'
+        )
+        self.node_tree.interface.new_socket(
+            name="Curbs", in_out='OUTPUT', socket_type='NodeSocketGeometry'
+        )
+
+        self.nk = NodeKit(self.node_tree)
+
+    def set_lanes(self, count: int) -> "RoadBuilder":
+        """Set number of lanes."""
+        self._lane_count = count
+        return self
+
+    def set_width(self, width: float) -> "RoadBuilder":
+        """Set lane width in meters."""
+        self._lane_width = width
+        return self
+
+    def set_curb_height(self, height: float) -> "RoadBuilder":
+        """Set curb height in meters."""
+        self._curb_height = height
+        return self
+
+    def add_sidewalks(self, width: float = 1.5) -> "RoadBuilder":
+        """Enable sidewalks with given width."""
+        self._has_sidewalk = True
+        self._sidewalk_width = width
+        return self
+
+    def add_median(self) -> "RoadBuilder":
+        """Enable road median."""
+        self._has_median = True
+        return self
+
+    def set_surface(self, surface_type: str) -> "RoadBuilder":
+        """Set road surface type."""
+        self._surface_type = surface_type
+        return self
+
+    def build(self) -> bpy.types.NodeTree:
+        """
+        Build the road node tree.
+
+        Returns:
+            The configured node tree
+        """
+        if not self.nk:
+            raise RuntimeError("Call create() or from_object() first")
+
+        nk = self.nk
+        x = 0
+
+        # === INPUT ===
+        group_in = nk.group_input(x=0, y=0)
+        self._created_nodes['group_input'] = group_in
+        x += 200
+
+        # === CALCULATE ROAD WIDTH ===
+        # Multiply: Lane Count × Lane Width = Total Width
+        mult_width = nk.n("ShaderNodeMath", "Calc Width", x=x, y=200)
+        mult_width.operation = 'MULTIPLY'
+        nk.link(group_in.outputs["Lane Count"], mult_width.inputs[0])
+        nk.link(group_in.outputs["Lane Width"], mult_width.inputs[1])
+        self._created_nodes['calc_width'] = mult_width
+        x += 200
+
+        # === CURVE TO MESH - ROAD SURFACE ===
+        # Create curve from input and convert to mesh
+        curve_to_mesh = nk.n(
+            "GeometryNodeCurveToMesh",
+            "Road Surface",
+            x=x, y=0
+        )
+        nk.link(group_in.outputs["Curve"], curve_to_mesh.inputs["Curve"])
+
+        # Create profile curve (rectangle for road)
+        profile = nk.n("GeometryNodeCurvePrimitiveQuadrilateral", "Profile", x=x-100, y=-200)
+        profile.mode = 'RECTANGLE'
+        nk.link(mult_width.outputs[0], profile.inputs["Width"])
+        nk.set(profile.inputs["Height"], 0.01)  # Thin road surface
+
+        nk.link(profile.outputs["Curve"], curve_to_mesh.inputs["Profile Curve"])
+        self._created_nodes['road_surface'] = curve_to_mesh
+        self._created_nodes['profile'] = profile
+        x += 300
+
+        # Store road surface for output
+        road_geo = curve_to_mesh
+
+        # === LANE MARKINGS (if enabled) ===
+        markings_geo = None
+        if self._has_markings:
+            # Create center line marking
+            marking_profile = nk.n(
+                "GeometryNodeCurvePrimitiveQuadrilateral",
+                "Marking Profile",
+                x=x-100, y=-400
             )
-            lanes.append(lane)
+            marking_profile.mode = 'RECTANGLE'
+            nk.set(marking_profile.inputs["Width"], 0.15)  # 15cm line
+            nk.set(marking_profile.inputs["Height"], 0.02)  # Slight raised
 
-        # Override with custom lanes if provided
-        if "lanes" in edge_data:
-            lanes = []
-            for i, lane_data in enumerate(edge_data["lanes"]):
-                lane = LaneSpec(
-                    lane_id=f"{segment_id}_lane_{i}",
-                    lane_type=lane_data.get("type", "travel"),
-                    width=lane_data.get("width", self.default_lane_width),
-                    direction=lane_data.get("direction", 1),
-                )
-                lanes.append(lane)
+            marking_mesh = nk.n(
+                "GeometryNodeCurveToMesh",
+                "Center Marking",
+                x=x, y=-300
+            )
+            nk.link(group_in.outputs["Curve"], marking_mesh.inputs["Curve"])
+            nk.link(marking_profile.outputs["Curve"], marking_mesh.inputs["Profile Curve"])
 
-        # Parse control points
-        control_points = []
-        for point in edge_data.get("curve", []):
-            control_points.append(tuple(point))
+            self._created_nodes['marking_profile'] = marking_profile
+            self._created_nodes['markings'] = marking_mesh
+            markings_geo = marking_mesh
+        x += 300
 
-        return RoadSegment(
-            segment_id=segment_id,
-            start_node=edge_data.get("from", ""),
-            end_node=edge_data.get("to", ""),
-            control_points=control_points,
-            road_type=road_type,
-            lanes=lanes,
-            speed_limit=edge_data.get("speed_limit", template.get("speed_limit", 50)),
-            has_sidewalk=edge_data.get("has_sidewalk", template.get("has_sidewalk", True)),
-            has_median=edge_data.get("has_median", template.get("has_median", False)),
-            surface=edge_data.get("surface", template.get("surface", "asphalt")),
+        # === CURBS (if enabled) ===
+        curbs_geo = None
+        curb_left = None
+        curb_right = None
+
+        # Create curb profiles and meshes
+        curb_profile = nk.n(
+            "GeometryNodeCurvePrimitiveQuadrilateral",
+            "Curb Profile",
+            x=x-100, y=-500
         )
+        curb_profile.mode = 'RECTANGLE'
+        nk.set(curb_profile.inputs["Width"], 0.3)  # 30cm curb
+        nk.link(group_in.outputs["Curb Height"], curb_profile.inputs["Height"])
 
-    def _build_intersection(self, node_data: Dict[str, Any]) -> IntersectionGeometry:
-        """Build intersection from node data."""
-        node_type = node_data.get("type", "intersection_4way")
+        # Left curb
+        curb_left_mesh = nk.n("GeometryNodeCurveToMesh", "Left Curb", x=x, y=-400)
+        nk.link(group_in.outputs["Curve"], curb_left_mesh.inputs["Curve"])
+        nk.link(curb_profile.outputs["Curve"], curb_left_mesh.inputs["Profile Curve"])
 
-        # Map node type to intersection type
-        type_map = {
-            "intersection_4way": "4way",
-            "intersection_3way": "3way_t",
-            "roundabout": "roundabout",
-        }
+        # Right curb (same curve, offset later)
+        curb_right_mesh = nk.n("GeometryNodeCurveToMesh", "Right Curb", x=x, y=-550)
+        nk.link(group_in.outputs["Curve"], curb_right_mesh.inputs["Curve"])
+        nk.link(curb_profile.outputs["Curve"], curb_right_mesh.inputs["Profile Curve"])
 
-        return IntersectionGeometry(
-            intersection_id=node_data.get("id", "intersection_0"),
-            position=tuple(node_data.get("position", [0.0, 0.0])),
-            intersection_type=type_map.get(node_type, "4way"),
-            radius=node_data.get("radius", 10.0),
-            legs=node_data.get("connections", []),
-            signalized=node_data.get("signalized", False),
-            crosswalks=node_data.get("crosswalks", []),
-        )
+        self._created_nodes['curb_profile'] = curb_profile
+        self._created_nodes['curb_left'] = curb_left_mesh
+        self._created_nodes['curb_right'] = curb_right_mesh
 
-    def to_gn_input(self, network: RoadNetwork) -> Dict[str, Any]:
-        """
-        Convert network to Geometry Nodes input format.
+        # Join curbs
+        join_curbs = nk.n("GeometryNodeJoinGeometry", "Join Curbs", x=x+200, y=-450)
+        nk.link(curb_left_mesh.outputs["Mesh"], join_curbs.inputs["Geometry"])
+        nk.link(curb_right_mesh.outputs["Mesh"], join_curbs.inputs["Geometry"])
+        curbs_geo = join_curbs
+        self._created_nodes['join_curbs'] = join_curbs
+        x += 300
 
-        Args:
-            network: Road network specification
+        # === JOIN ALL GEOMETRY ===
+        join_all = nk.n("GeometryNodeJoinGeometry", "Join All", x=x, y=0)
+        nk.link(road_geo.outputs["Mesh"], join_all.inputs["Geometry"])
+        if markings_geo:
+            nk.link(markings_geo.outputs["Mesh"], join_all.inputs["Geometry"])
+        if curbs_geo:
+            nk.link(curbs_geo.outputs["Geometry"], join_all.inputs["Geometry"])
+        self._created_nodes['join_all'] = join_all
+        x += 200
 
-        Returns:
-            GN-compatible input dictionary
-        """
-        return {
-            "version": "1.0",
-            "network": network.to_dict(),
-            "global_settings": {
-                "default_lane_width": self.default_lane_width,
-                "curb_height": self.curb_height,
-                "sidewalk_width": self.sidewalk_width,
-            },
-            "materials": SURFACE_MATERIALS,
-        }
+        # === OUTPUT ===
+        group_out = nk.group_output(x=x, y=0)
+        nk.link(join_all.outputs["Geometry"], group_out.inputs["Geometry"])
+        nk.link(road_geo.outputs["Mesh"], group_out.inputs["Road Surface"])
+        if markings_geo:
+            nk.link(markings_geo.outputs["Mesh"], group_out.inputs["Markings"])
+        if curbs_geo:
+            nk.link(curbs_geo.outputs["Geometry"], group_out.inputs["Curbs"])
+        self._created_nodes['group_output'] = group_out
 
-    def calculate_curve_length(self, segment: RoadSegment) -> float:
-        """
-        Calculate approximate curve length.
+        return self.node_tree
 
-        Args:
-            segment: Road segment
-
-        Returns:
-            Approximate length in meters
-        """
-        points = segment.control_points
-        if len(points) < 2:
-            return 0.0
-
-        length = 0.0
-        for i in range(len(points) - 1):
-            dx = points[i + 1][0] - points[i][0]
-            dy = points[i + 1][1] - points[i][1]
-            length += math.sqrt(dx * dx + dy * dy)
-
-        return length
+    def get_node(self, name: str) -> Optional[bpy.types.Node]:
+        """Get a created node by name."""
+        return self._created_nodes.get(name)
 
 
-class RoadBuilderGN:
+class RoadNetworkGN:
     """
-    Geometry Nodes interface for road building.
+    Geometry Nodes interface for complete road networks.
 
-    Creates node group structure for Blender that consumes
-    road network data and generates 3D geometry.
+    Takes L-System generated network data and creates full city layout.
+
+    Cross-references:
+    - KB Section 5: Network-based scattering
+    - REQ-GN-02: Road Builder Node Group
+    """
+
+    def __init__(self, node_tree: Optional[bpy.types.NodeTree] = None):
+        self.node_tree = node_tree
+        self.nk: Optional[NodeKit] = None
+        self._network_data: Optional[Dict[str, Any]] = None
+        self._created_nodes: dict = {}
+
+    @classmethod
+    def create(cls, name: str = "RoadNetwork") -> "RoadNetworkGN":
+        """
+        Create road network node tree.
+
+        Args:
+            name: Node tree name
+
+        Returns:
+            Configured RoadNetworkGN instance
+        """
+        tree = bpy.data.node_groups.new(name, 'GeometryNodeTree')
+        instance = cls(tree)
+        instance._setup_interface()
+        return instance
+
+    def _setup_interface(self) -> None:
+        """Set up node group interface."""
+        # Inputs
+        self.node_tree.interface.new_socket(
+            name="Network Data", in_out='INPUT', socket_type='NodeSocketString'
+        )
+        self.node_tree.interface.new_socket(
+            name="Default Lane Width", in_out='INPUT', socket_type='NodeSocketFloat',
+            default_value=3.5, min_value=2.0, max_value=5.0
+        )
+        self.node_tree.interface.new_socket(
+            name="Curb Height", in_out='INPUT', socket_type='NodeSocketFloat',
+            default_value=0.15, min_value=0.0, max_value=0.3
+        )
+        self.node_tree.interface.new_socket(
+            name="Generate Markings", in_out='INPUT', socket_type='NodeSocketBool',
+            default_value=True
+        )
+        self.node_tree.interface.new_socket(
+            name="Generate Curbs", in_out='INPUT', socket_type='NodeSocketBool',
+            default_value=True
+        )
+
+        # Outputs
+        self.node_tree.interface.new_socket(
+            name="Geometry", in_out='OUTPUT', socket_type='NodeSocketGeometry'
+        )
+        self.node_tree.interface.new_socket(
+            name="Road Surfaces", in_out='OUTPUT', socket_type='NodeSocketGeometry'
+        )
+        self.node_tree.interface.new_socket(
+            name="Intersections", in_out='OUTPUT', socket_type='NodeSocketGeometry'
+        )
+        self.node_tree.interface.new_socket(
+            name="Markings", in_out='OUTPUT', socket_type='NodeSocketGeometry'
+        )
+
+        self.nk = NodeKit(self.node_tree)
+
+    def load_from_json(self, json_str: str) -> "RoadNetworkGN":
+        """Load network from JSON string."""
+        self._network_data = json.loads(json_str)
+        return self
+
+    def load_from_dict(self, data: Dict[str, Any]) -> "RoadNetworkGN":
+        """Load network from dictionary."""
+        self._network_data = data
+        return self
+
+    def build(self) -> bpy.types.NodeTree:
+        """
+        Build the network node tree.
+
+        Returns:
+            The configured node tree
+        """
+        if not self.nk:
+            raise RuntimeError("Call create() first")
+
+        nk = self.nk
+        x = 0
+
+        # === INPUT ===
+        group_in = nk.group_input(x=0, y=0)
+        self._created_nodes['group_input'] = group_in
+        x += 200
+
+        # === PLACEHOLDER - Network parsing would go here ===
+        # In practice, this would iterate over segments and create
+        # curve primitives, then join them
+
+        # Create a simple grid as placeholder
+        grid = nk.n("GeometryNodeCurvePrimitiveGrid", "Grid", x=x, y=0)
+        nk.set(grid.inputs["Vertices X"], 10)
+        nk.set(grid.inputs["Vertices Y"], 10)
+        nk.set(grid.inputs["Size X"], 100)
+        nk.set(grid.inputs["Size Y"], 100)
+        self._created_nodes['grid'] = grid
+        x += 300
+
+        # === OUTPUT ===
+        group_out = nk.group_output(x=x, y=0)
+        nk.link(grid.outputs["Geometry"], group_out.inputs["Geometry"])
+        self._created_nodes['group_output'] = group_out
+
+        return self.node_tree
+
+    def get_node(self, name: str) -> Optional[bpy.types.Node]:
+        """Get a created node by name."""
+        return self._created_nodes.get(name)
+
+
+class IntersectionBuilder:
+    """
+    Builds intersection geometry.
+
+    Cross-references:
+    - KB Section 15: Procedural intersection patterns
+    """
+
+    def __init__(self, node_tree: Optional[bpy.types.NodeTree] = None):
+        self.node_tree = node_tree
+        self.nk: Optional[NodeKit] = None
+        self._created_nodes: dict = {}
+        self._intersection_type = "4way"
+        self._radius = 10.0
+
+    @classmethod
+    def create(cls, name: str = "Intersection") -> "IntersectionBuilder":
+        """Create intersection builder node tree."""
+        tree = bpy.data.node_groups.new(name, 'GeometryNodeTree')
+        instance = cls(tree)
+        instance._setup_interface()
+        return instance
+
+    def _setup_interface(self) -> None:
+        """Set up node group interface."""
+        # Inputs
+        self.node_tree.interface.new_socket(
+            name="Geometry", in_out='INPUT', socket_type='NodeSocketGeometry'
+        )
+        self.node_tree.interface.new_socket(
+            name="Radius", in_out='INPUT', socket_type='NodeSocketFloat',
+            default_value=10.0, min_value=5.0, max_value=50.0
+        )
+        self.node_tree.interface.new_socket(
+            name="Type", in_out='INPUT', socket_type='NodeSocketInt',
+            default_value=0, min_value=0, max_value=3
+        )
+
+        # Outputs
+        self.node_tree.interface.new_socket(
+            name="Geometry", in_out='OUTPUT', socket_type='NodeSocketGeometry'
+        )
+
+        self.nk = NodeKit(self.node_tree)
+
+    def set_type(self, intersection_type: str) -> "IntersectionBuilder":
+        """Set intersection type (4way, 3way_t, roundabout)."""
+        self._intersection_type = intersection_type
+        return self
+
+    def set_radius(self, radius: float) -> "IntersectionBuilder":
+        """Set intersection radius."""
+        self._radius = radius
+        return self
+
+    def build(self) -> bpy.types.NodeTree:
+        """Build intersection geometry."""
+        if not self.nk:
+            raise RuntimeError("Call create() first")
+
+        nk = self.nk
+        x = 0
+
+        group_in = nk.group_input(x=0, y=0)
+        self._created_nodes['group_input'] = group_in
+        x += 200
+
+        # Create circular intersection surface
+        circle = nk.n("GeometryNodeMeshCircle", "Intersection Circle", x=x, y=0)
+        nk.link(group_in.outputs["Radius"], circle.inputs["Radius"])
+        nk.set(circle.inputs["Vertices"], 32)
+        self._created_nodes['circle'] = circle
+        x += 200
+
+        # Fill the circle
+        fill = nk.n("GeometryNodeMeshFill", "Fill", x=x, y=0)
+        nk.link(circle.outputs["Mesh"], fill.inputs["Mesh"])
+        self._created_nodes['fill'] = fill
+        x += 200
+
+        group_out = nk.group_output(x=x, y=0)
+        nk.link(fill.outputs["Mesh"], group_out.inputs["Geometry"])
+        self._created_nodes['group_output'] = group_out
+
+        return self.node_tree
+
+
+# =============================================================================
+# ROAD HUD - VISUALIZATION SYSTEM
+# =============================================================================
+
+class RoadHUD:
+    """
+    Heads-Up Display for road system visualization.
+
+    Provides formatted console output for road configuration,
+    lane setups, and network statistics.
+
+    Cross-references:
+    - KB Section 5: Road visualization
+    - KB Section 15: Pattern reference
     """
 
     @staticmethod
-    def create_node_group_spec() -> Dict[str, Any]:
-        """
-        Create specification for Road Builder node group.
+    def display_road_types() -> str:
+        """Display road type reference table."""
+        lines = [
+            "╔═══════════════════════════════════════════════════════════════╗",
+            "║                    ROAD TYPE REFERENCE                        ║",
+            "╠═══════════════╦═════════╦══════════╦═══════════╦════════════╣",
+            "║ Type          ║ Lanes   ║ Width    ║ Speed     ║ Sidewalk   ║",
+            "╠═══════════════╬═════════╬══════════╬═══════════╬════════════╣",
+        ]
 
-        Returns:
-            Node group specification
-        """
-        return {
-            "name": "Road_Builder",
-            "inputs": {
-                "Network_Data": {
-                    "type": "STRING",
-                    "subtype": "JSON",
-                    "description": "JSON road network from L-system",
-                },
-                "Default_Lane_Width": {
-                    "type": "VALUE",
-                    "default": 3.5,
-                    "min": 2.0,
-                    "max": 5.0,
-                },
-                "Curb_Height": {
-                    "type": "VALUE",
-                    "default": 0.15,
-                    "min": 0.0,
-                    "max": 0.3,
-                },
-                "Generate_Markings": {
-                    "type": "BOOLEAN",
-                    "default": True,
-                },
-                "Generate_Curbs": {
-                    "type": "BOOLEAN",
-                    "default": True,
-                },
-            },
-            "outputs": {
-                "Geometry": {
-                    "type": "GEOMETRY",
-                    "description": "Combined road geometry",
-                },
-                "Road_Surface": {
-                    "type": "GEOMETRY",
-                    "description": "Road surface mesh",
-                },
-                "Markings": {
-                    "type": "GEOMETRY",
-                    "description": "Lane markings",
-                },
-                "Curbs": {
-                    "type": "GEOMETRY",
-                    "description": "Curb geometry",
-                },
-                "Intersections": {
-                    "type": "GEOMETRY",
-                    "description": "Intersection meshes",
-                },
-            },
-            "node_tree": {
-                "type": "geometry",
-                "nodes": [
-                    {"type": "Input", "name": "Network Data Input"},
-                    {"type": "JSON_Parse", "name": "Parse Network Data"},
-                    {"type": "Curve_Primitive", "name": "Create Road Curves"},
-                    {"type": "Mesh_Extrude", "name": "Create Road Surface"},
-                    {"type": "Mesh_Boolean", "name": "Create Intersections"},
-                    {"type": "Join_Geometry", "name": "Combine Geometry"},
-                    {"type": "Output", "name": "Geometry Output"},
-                ],
-            },
-        }
+        type_info = [
+            ("highway", "3", "10.5m", "120 km/h", "No"),
+            ("arterial", "3", "10.0m", "60 km/h", "Yes"),
+            ("collector", "2", "6.0m", "50 km/h", "Yes"),
+            ("local", "2", "5.0m", "40 km/h", "Yes"),
+            ("residential", "1", "3.0m", "30 km/h", "Yes"),
+        ]
+
+        for name, lanes, width, speed, sidewalk in type_info:
+            lines.append(f"║ {name:13} ║ {lanes:7} ║ {width:8} ║ {speed:9} ║ {sidewalk:10} ║")
+
+        lines.append("╚═══════════════╩═════════╩══════════╩═══════════╩════════════╝")
+
+        return "\n".join(lines)
+
+    @staticmethod
+    def display_lane_config(lane_count: int) -> str:
+        """Display lane configuration diagram."""
+        lines = [
+            f"\n{'='*60}",
+            f"  LANE CONFIGURATION: {lane_count} LANES",
+            f"{'='*60}",
+            "",
+        ]
+
+        # Draw cross-section
+        total_width = lane_count * 3.5
+        lane_width = 3.5
+
+        # Top view
+        lines.append("  Cross-Section View (not to scale):")
+        lines.append("")
+
+        # Draw curb
+        lines.append("  ┌" + "─" * 56 + "┐")
+
+        # Draw sidewalk
+        lines.append("  │ ████████ │" + " " * 36 + "│ ████████ │")
+        lines.append("  │ SIDEWALK │" + " " * 36 + "│ SIDEWALK │")
+        lines.append("  │          │" + " " * 36 + "│          │")
+
+        # Draw lanes
+        lane_section = ""
+        for i in range(lane_count):
+            if i == lane_count // 2 and lane_count >= 4:
+                lane_section += "│ ═══ "
+            elif i < lane_count // 2:
+                lane_section += "│ >>> "
+            else:
+                lane_section += "│ <<< "
+        lane_section += "│"
+
+        padding = 36 - len(lane_section) + 12
+        lines.append("  ├──────────┼" + "─" * 34 + "┼──────────┤")
+        lines.append("  │          │" + lane_section.center(34) + "│          │")
+        lines.append("  │          │" + f"  {lane_count} LANES ({total_width}m total)".center(34) + "│          │")
+
+        # Draw curb
+        lines.append("  │          │" + " " * 36 + "│          │")
+        lines.append("  └──────────┴" + "─" * 34 + "┴──────────┘")
+
+        lines.append("")
+        lines.append("  Legend:")
+        lines.append("    >>>   Traffic direction (forward)")
+        lines.append("    <<<   Traffic direction (reverse)")
+        lines.append("    ═══   Center median/divider")
+
+        return "\n".join(lines)
+
+    @staticmethod
+    def display_intersection_types() -> str:
+        """Display intersection type reference."""
+        return """
+╔═══════════════════════════════════════════════════════════════╗
+║                    INTERSECTION TYPES                         ║
+╠═══════════════════════════════════════════════════════════════╣
+║                                                               ║
+║  4-WAY INTERSECTION          T-INTERSECTION                  ║
+║       │                           │                          ║
+║   ────┼────                    ────┼────                      ║
+║       │                           │                          ║
+║       │                       ───────                        ║
+║                                                               ║
+║  ROUNDABOUT                  Y-INTERSECTION                  ║
+║      ╭───╮                        /\                         ║
+║     /     \                      /  \                        ║
+║     │  ●  │                     /    \                       ║
+║     \     /                                                   ║
+║      ╰───╯                                                    ║
+║                                                               ║
+╠═══════════════════════════════════════════════════════════════╣
+║  Types: 4way, 3way_t, 3way_y, roundabout, overpass            ║
+╚═══════════════════════════════════════════════════════════════╝
+"""
+
+    @staticmethod
+    def display_network_stats(network: RoadNetwork) -> str:
+        """Display network statistics."""
+        total_length = 0
+        for seg in network.segments:
+            # Approximate length from control points
+            for i in range(len(seg.control_points) - 1):
+                dx = seg.control_points[i+1][0] - seg.control_points[i][0]
+                dy = seg.control_points[i+1][1] - seg.control_points[i][1]
+                total_length += math.sqrt(dx*dx + dy*dy)
+
+        total_lanes = sum(seg.lane_count for seg in network.segments)
+
+        lines = [
+            f"\n{'='*50}",
+            f"  ROAD NETWORK STATISTICS",
+            f"{'='*50}",
+            f"",
+            f"  Network ID:    {network.network_id or 'Unnamed'}",
+            f"  Segments:      {len(network.segments)}",
+            f"  Intersections: {len(network.intersections)}",
+            f"  Total Length:  {total_length:.1f}m ({total_length/1000:.2f}km)",
+            f"  Total Lanes:   {total_lanes}",
+            f"",
+            f"  Bounds:        ({network.bounds[0]:.0f}, {network.bounds[1]:.0f}) to",
+            f"                 ({network.bounds[2]:.0f}, {network.bounds[3]:.0f})",
+            f"{'='*50}",
+        ]
+
+        return "\n".join(lines)
+
+    @staticmethod
+    def display_surface_materials() -> str:
+        """Display surface material options."""
+        lines = [
+            "\n╔═════════════════════════════════════════════════╗",
+            "║           SURFACE MATERIAL OPTIONS               ║",
+            "╠══════════════════╦════════════╦══════════════════╣",
+            "║ Material         ║ Roughness  ║ Color            ║",
+            "╠══════════════════╬════════════╬══════════════════╣",
+        ]
+
+        for name, props in SURFACE_MATERIALS.items():
+            lines.append(f"║ {name:16} ║ {props['roughness']:10.2f} ║ {props['color']:16} ║")
+
+        lines.append("╚══════════════════╩════════════╩══════════════════╝")
+
+        return "\n".join(lines)
+
+    @staticmethod
+    def display_checklist() -> str:
+        """Display road building checklist."""
+        return """
+╔═══════════════════════════════════════════════════════════════╗
+║                  ROAD BUILDING CHECKLIST                      ║
+╠═══════════════════════════════════════════════════════════════╣
+║                                                               ║
+║  1. CURVE PREPARATION                                         ║
+║     □ Create curve path for road centerline                   ║
+║     □ Set curve to 2D (if needed)                             ║
+║     □ Adjust spline resolution                                ║
+║                                                               ║
+║  2. ROAD PARAMETERS                                           ║
+║     □ Set lane count (1-12)                                   ║
+║     □ Set lane width (2.0-5.0m)                               ║
+║     □ Set curb height (0.0-0.5m)                              ║
+║     □ Enable/disable sidewalks                                ║
+║                                                               ║
+║  3. MARKINGS                                                  ║
+║     □ Center line (yellow, dashed)                            ║
+║     □ Edge lines (white, solid)                               ║
+║     □ Crosswalks at intersections                             ║
+║                                                               ║
+║  4. INTERSECTIONS                                             ║
+║     □ Define intersection type                                ║
+║     □ Set radius for roundabouts                              ║
+║     □ Add traffic signals (if signalized)                     ║
+║                                                               ║
+║  5. MATERIALS                                                 ║
+║     □ Apply asphalt material                                  ║
+║     □ Set UV scale for texture                                ║
+║     □ Add wear/damage details                                 ║
+║                                                               ║
+╚═══════════════════════════════════════════════════════════════╝
+"""
+
+    @staticmethod
+    def display_node_flow() -> str:
+        """Display road builder node flow."""
+        return """
+  ROAD BUILDER NODE FLOW
+  ═══════════════════════
+
+  ┌─────────────┐     ┌─────────────┐     ┌─────────────┐
+  │ Group Input │────▶│ Calc Width  │────▶│  Profile    │
+  │  (Curve)    │     │ (Lane×Width)│     │ (Rectangle) │
+  └─────────────┘     └─────────────┘     └──────┬──────┘
+                                                 │
+                                                 ▼
+  ┌─────────────┐     ┌─────────────┐     ┌─────────────┐
+  │   Curb      │     │ Curve to    │────▶│ Road Mesh   │
+  │  Profile    │────▶│    Mesh     │     │  (Output)   │
+  └─────────────┘     └─────────────┘     └─────────────┘
+
+         │                                    │
+         ▼                                    ▼
+  ┌─────────────┐                     ┌─────────────┐
+  │   Markings  │                     │    Join     │
+  │   (Dashed)  │                     │  Geometry   │
+  └──────┬──────┘                     └──────┬──────┘
+         │                                   │
+         └───────────────┬───────────────────┘
+                         ▼
+                  ┌─────────────┐
+                  │Group Output │
+                  └─────────────┘
+"""
 
 
 # =============================================================================
@@ -578,13 +1098,103 @@ def build_road_network(network_data: Dict[str, Any], **kwargs) -> RoadNetwork:
 
     Args:
         network_data: Network dictionary
-        **kwargs: RoadBuilder options
+        **kwargs: Additional options
 
     Returns:
         RoadNetwork specification
     """
-    builder = RoadBuilder(**kwargs)
-    return builder.build_from_dict(network_data)
+    network_id = network_data.get("network_id", "network_0")
+
+    # Build segments
+    segments = []
+    for edge_data in network_data.get("edges", []):
+        segment = _build_segment(edge_data)
+        segments.append(segment)
+
+    # Build intersections
+    intersections = []
+    for node_data in network_data.get("nodes", []):
+        if node_data.get("type") in ["intersection_4way", "intersection_3way", "roundabout"]:
+            intersection = _build_intersection(node_data)
+            intersections.append(intersection)
+
+    # Calculate bounds
+    all_points = []
+    for seg in segments:
+        all_points.extend(seg.control_points)
+    for inter in intersections:
+        all_points.append(inter.position)
+
+    if all_points:
+        xs = [p[0] for p in all_points]
+        ys = [p[1] for p in all_points]
+        bounds = (min(xs), min(ys), max(xs), max(ys))
+    else:
+        bounds = (0.0, 0.0, 100.0, 100.0)
+
+    return RoadNetwork(
+        network_id=network_id,
+        segments=segments,
+        intersections=intersections,
+        bounds=bounds,
+    )
+
+
+def _build_segment(edge_data: Dict[str, Any]) -> RoadSegment:
+    """Build road segment from edge data."""
+    segment_id = edge_data.get("id", "segment_0")
+    road_type = edge_data.get("road_type", "local")
+    template = ROAD_TEMPLATES.get(road_type, ROAD_TEMPLATES["local"])
+
+    # Create lanes from template
+    lanes = []
+    for i, lane_data in enumerate(template.get("lanes", [])):
+        lane = LaneSpec(
+            lane_id=f"{segment_id}_lane_{i}",
+            lane_type=lane_data.get("type", "travel"),
+            width=lane_data.get("width", 3.5),
+            direction=lane_data.get("direction", 1),
+        )
+        lanes.append(lane)
+
+    # Parse control points
+    control_points = []
+    for point in edge_data.get("curve", []):
+        control_points.append(tuple(point))
+
+    return RoadSegment(
+        segment_id=segment_id,
+        start_node=edge_data.get("from", ""),
+        end_node=edge_data.get("to", ""),
+        control_points=control_points,
+        road_type=road_type,
+        lanes=lanes,
+        speed_limit=edge_data.get("speed_limit", template.get("speed_limit", 50)),
+        has_sidewalk=edge_data.get("has_sidewalk", template.get("has_sidewalk", True)),
+        has_median=edge_data.get("has_median", template.get("has_median", False)),
+        surface=edge_data.get("surface", template.get("surface", "asphalt")),
+    )
+
+
+def _build_intersection(node_data: Dict[str, Any]) -> IntersectionGeometry:
+    """Build intersection from node data."""
+    node_type = node_data.get("type", "intersection_4way")
+
+    type_map = {
+        "intersection_4way": "4way",
+        "intersection_3way": "3way_t",
+        "roundabout": "roundabout",
+    }
+
+    return IntersectionGeometry(
+        intersection_id=node_data.get("id", "intersection_0"),
+        position=tuple(node_data.get("position", [0.0, 0.0])),
+        intersection_type=type_map.get(node_type, "4way"),
+        radius=node_data.get("radius", 10.0),
+        legs=node_data.get("connections", []),
+        signalized=node_data.get("signalized", False),
+        crosswalks=node_data.get("crosswalks", []),
+    )
 
 
 def network_to_gn_format(network: RoadNetwork, **kwargs) -> Dict[str, Any]:
@@ -593,13 +1203,28 @@ def network_to_gn_format(network: RoadNetwork, **kwargs) -> Dict[str, Any]:
 
     Args:
         network: Road network
-        **kwargs: RoadBuilder options
+        **kwargs: Additional options
 
     Returns:
         GN-compatible input
     """
-    builder = RoadBuilder(**kwargs)
-    return builder.to_gn_input(network)
+    return {
+        "version": "1.0",
+        "network": network.to_dict(),
+        "global_settings": {
+            "default_lane_width": 3.5,
+            "curb_height": 0.15,
+            "sidewalk_width": 1.5,
+        },
+        "materials": SURFACE_MATERIALS,
+    }
+
+
+def quick_road(lanes: int = 2, width: float = 3.5) -> RoadBuilder:
+    """Quick road setup with common defaults."""
+    road = RoadBuilder.create("QuickRoad")
+    road.set_lanes(lanes).set_width(width).add_sidewalks()
+    return road
 
 
 # =============================================================================
@@ -621,8 +1246,11 @@ __all__ = [
     "SURFACE_MATERIALS",
     # Classes
     "RoadBuilder",
-    "RoadBuilderGN",
+    "RoadNetworkGN",
+    "IntersectionBuilder",
+    "RoadHUD",
     # Functions
     "build_road_network",
     "network_to_gn_format",
+    "quick_road",
 ]

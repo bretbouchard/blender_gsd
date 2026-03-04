@@ -1,0 +1,531 @@
+# Blender Knowledge Base Index
+# Machine-readable index for fast lookup of patterns, features, and techniques
+# Generated: 2026-03
+
+version: "1.0.0"
+generated: "2026-03-03"
+
+# =============================================================================
+# KNOWLEDGE FILES
+# =============================================================================
+
+files:
+  GEOMETRY_NODES_KNOWLEDGE:
+    path: GEOMETRY_NODES_KNOWLEDGE.md
+    description: "13 CGMatter tutorials covering advanced Geometry Nodes techniques"
+    tutorials: 13
+    sections:
+      - triangle_parenting
+      - volume_nodes_system
+      - grid_based_simulations
+      - erosion_systems
+      - fur_hair_systems
+      - handwriting_system
+      - curl_noise_particles
+      - set_extension
+      - blender_51_features
+      - infinite_background
+      - volumetric_rendering
+      - volume_nodes_beginner
+      - building_folding
+      - curl_particles_advanced
+
+  BLENDER_51_TUTORIAL:
+    path: BLENDER_51_TUTORIAL_KNOWLEDGE.md
+    description: "38 advanced tutorials covering new features, generative art, isometric modeling"
+    tutorials: 38
+    key_topics:
+      - vulkan_backend
+      - raycast_node
+      - geometric_minimalism
+      - isometric_modeling
+      - scattering_modifier
+      - hard_surface
+      - recursive_rig
+      - effector_animation
+      - sdf_metaballs
+      - painterly_effect
+      - creature_rigging
+      - glass_flowers
+      - compositor_overhaul
+      - crystals
+      - morphing_effect
+      - lighting_mistakes
+      - volumetric_projector
+      - simulation_nodes
+
+  BLENDER_50_ARRAY_MODIFIER:
+    path: BLENDER_50_ARRAY_MODIFIER_KNOWLEDGE.md
+    description: "Deep dive into the new Geometry Nodes-based Array Modifier"
+    key_topics:
+      - line_alignment
+      - circle_alignment
+      - curve_following
+      - height_based_scale
+      - position_driven_scale
+
+  BLENDER_50_SYNTHESIS:
+    path: BLENDER_50_KNOWLEDGE_SYNTHESIS.md
+    description: "Comprehensive weave of Blender 5.0 features from official docs and workshop"
+    key_topics:
+      - closures
+      - bundles
+      - volume_grids
+      - physics_bundles
+      - xpbd_solver
+      - essentials_assets
+      - node_tools
+      - viewer_node
+      - eevee_next
+      - compositor_overhaul
+      - animation_roadmap
+
+# =============================================================================
+# PATTERNS INDEX
+# =============================================================================
+
+patterns:
+  # Volume Grids
+  sdf_workflow:
+    file: BLENDER_50_KNOWLEDGE_SYNTHESIS.md
+    section: "Volume Grid System"
+    category: volume
+    keywords: [volume, sdf, grid, mesh, procedural]
+    nodes: [Mesh to SDF, Points to SDF Grid, Grid Dilate, Grid Erode, Grid Blur, Grid to Mesh]
+    code_example: true
+    blender_version: "5.0"
+
+  volume_to_mesh:
+    file: GEOMETRY_NODES_KNOWLEDGE.md
+    section: "2. Volume Nodes System"
+    category: volume
+    keywords: [volume, mesh, convert, grid]
+    nodes: [Grid to Mesh, Points to SDF, Mesh to SDF]
+    code_example: true
+    blender_version: "4.0+"
+
+  # Particles & Simulation
+  curl_noise:
+    file: GEOMETRY_NODES_KNOWLEDGE.md
+    section: "7. Curl Noise Particles"
+    category: particles
+    keywords: [particles, noise, simulation, divergence-free, curl]
+    nodes: [Noise Texture, Math, Set Position, Simulation Zone, Repeat Zone]
+    code_example: true
+    blender_version: "4.0+"
+
+  simulation_zone:
+    file: GEOMETRY_NODES_KNOWLEDGE.md
+    section: "Quick Reference: Common Patterns"
+    category: simulation
+    keywords: [simulation, state, physics, animation]
+    nodes: [Simulation Zone, Repeat Zone]
+    code_example: true
+    blender_version: "4.0+"
+
+  grid_simulation:
+    file: GEOMETRY_NODES_KNOWLEDGE.md
+    section: "3. Grid-Based Simulations"
+    category: simulation
+    keywords: [grid, simulation, fluid, smoke]
+    nodes: [Volume Cube, Simulation Zone]
+    code_example: true
+    blender_version: "4.0+"
+
+  # Bundles (Blender 5.0)
+  material_bundle:
+    file: BLENDER_50_KNOWLEDGE_SYNTHESIS.md
+    section: "Closures & Bundles Deep Dive"
+    category: bundles
+    keywords: [bundle, material, data, pass-through]
+    nodes: [Store Bundle Item, Get Bundle Item, Bundle Info]
+    code_example: true
+    blender_version: "5.0"
+    status: stable
+
+  physics_bundle:
+    file: BLENDER_50_KNOWLEDGE_SYNTHESIS.md
+    section: "Physics Bundles & XPBD Solver"
+    category: physics
+    keywords: [physics, bundle, simulation, particles]
+    nodes: [Store Bundle Item, Get Bundle Item, Simulation Zone]
+    code_example: true
+    blender_version: "5.0"
+    status: stable
+
+  # Closures (Blender 5.0)
+  randomize_transform_closure:
+    file: BLENDER_50_KNOWLEDGE_SYNTHESIS.md
+    section: "Closures & Bundles Deep Dive"
+    category: closures
+    keywords: [closure, randomize, transform, instances]
+    nodes: [Closure, Invoke Closure, Random Value, Rotate Instances, Scale Instances]
+    code_example: true
+    blender_version: "5.0"
+    status: stable
+
+  noise_displace_closure:
+    file: BLENDER_50_KNOWLEDGE_SYNTHESIS.md
+    section: "Closures & Bundles Deep Dive"
+    category: closures
+    keywords: [closure, noise, displace, deformation]
+    nodes: [Closure, Noise Texture, Set Position]
+    code_example: true
+    blender_version: "5.0"
+
+  # Instances
+  height_based_scale:
+    file: BLENDER_50_ARRAY_MODIFIER_KNOWLEDGE.md
+    section: "Key Techniques"
+    category: instances
+    keywords: [instances, scale, position, height, plants]
+    nodes: [Position, Separate XYZ, Math, Scale Instances]
+    code_example: true
+    blender_version: "5.0"
+
+  curve_aligned_distribution:
+    file: BLENDER_50_ARRAY_MODIFIER_KNOWLEDGE.md
+    section: "Node Patterns"
+    category: instances
+    keywords: [curve, instances, alignment, distribution]
+    nodes: [Curve, Resample Curve, Instance on Points, Align Euler to Vector]
+    code_example: true
+    blender_version: "5.0"
+
+  index_driven_rotation:
+    file: BLENDER_51_TUTORIAL_KNOWLEDGE.md
+    section: "2. Geometric Minimalism"
+    category: instances
+    keywords: [index, rotation, pattern, spiral]
+    nodes: [Index, Math, Rotate Instances]
+    code_example: true
+    blender_version: "4.0+"
+
+  # Modeling
+  edge_erosion:
+    file: GEOMETRY_NODES_KNOWLEDGE.md
+    section: "4. Erosion Systems"
+    category: modeling
+    keywords: [erosion, procedural, modeling, edge, boolean]
+    nodes: [Edge Angle, Separate Geometry, Delete Geometry, Mesh to Curve, Resample Curve, Mesh Boolean]
+    code_example: true
+    blender_version: "4.0+"
+
+  face_erosion:
+    file: GEOMETRY_NODES_KNOWLEDGE.md
+    section: "4. Erosion Systems"
+    category: modeling
+    keywords: [erosion, procedural, modeling, face, points]
+    nodes: [Distribute Points on Faces, Noise Texture, Delete Geometry, Points to SDF, Grid to Mesh, Mesh Boolean]
+    code_example: true
+    blender_version: "4.0+"
+
+  # Generative Art
+  radial_cube_rotation:
+    file: BLENDER_51_TUTORIAL_KNOWLEDGE.md
+    section: "2. Geometric Minimalism"
+    category: generative
+    keywords: [generative, radial, rotation, index, pattern]
+    nodes: [Curve Circle, Instance on Points, Align Rotation to Vector, Rotate Instances]
+    code_example: true
+    blender_version: "4.0+"
+
+  cylindrical_wave_field:
+    file: BLENDER_51_TUTORIAL_KNOWLEDGE.md
+    section: "2. Geometric Minimalism"
+    category: generative
+    keywords: [generative, wave, cylinder, gradient]
+    nodes: [Mesh Line, Instance on Points, Gradient Texture, Store Named Attribute]
+    code_example: true
+    blender_version: "4.0+"
+
+  # Animation
+  perfect_loop:
+    file: BLENDER_51_TUTORIAL_KNOWLEDGE.md
+    section: "2. Geometric Minimalism"
+    category: animation
+    keywords: [animation, loop, seamless, math]
+    nodes: [Scene Time, Math]
+    code_example: true
+    blender_version: "4.0+"
+
+  effector_offset:
+    file: BLENDER_51_TUTORIAL_KNOWLEDGE.md
+    section: "12. Effector-Based Offset Animation"
+    category: animation
+    keywords: [animation, effector, offset, delay]
+    nodes: [Geometry Proximity, Map Range, Set Position]
+    code_example: true
+    blender_version: "4.0+"
+
+  # Hair/Fur
+  fur_clump:
+    file: GEOMETRY_NODES_KNOWLEDGE.md
+    section: "5. Fur/Hair Systems"
+    category: hair
+    keywords: [fur, hair, clump, spiral, curve]
+    nodes: [Spiral, Random Value, Distort, Resample Curve, Curve to Mesh]
+    code_example: true
+    blender_version: "4.0+"
+
+  # Lighting
+  studio_isometric:
+    file: BLENDER_51_TUTORIAL_KNOWLEDGE.md
+    section: "3.5 Rick and Morty Garage"
+    category: lighting
+    keywords: [lighting, isometric, studio, 3-point]
+    nodes: [Light, World Background]
+    code_example: true
+    blender_version: "4.0+"
+
+  # Materials
+  glass_dispersion:
+    file: BLENDER_51_TUTORIAL_KNOWLEDGE.md
+    section: "21. Glass Flowers"
+    category: material
+    keywords: [glass, dispersion, ior, refraction]
+    nodes: [Principled BSDF, Fresnel, Color Ramp]
+    code_example: true
+    blender_version: "4.0+"
+
+  painterly_effect:
+    file: BLENDER_51_TUTORIAL_KNOWLEDGE.md
+    section: "14. Painterly Brush Stroke Effect"
+    category: material
+    keywords: [painterly, brush, stroke, artistic]
+    nodes: [Shader to RGB, Color Ramp]
+    code_example: true
+    blender_version: "4.0+"
+
+  # Utility
+  triangle_parenting:
+    file: GEOMETRY_NODES_KNOWLEDGE.md
+    section: "1. Triangle Parenting"
+    category: utility
+    keywords: [parenting, control, camera, light]
+    nodes: [Sample Index, Transform Geometry]
+    code_example: true
+    blender_version: "4.0+"
+
+  boolean_cut:
+    file: GEOMETRY_NODES_KNOWLEDGE.md
+    section: "Quick Reference: Common Patterns"
+    category: utility
+    keywords: [boolean, cut, difference, mesh]
+    nodes: [Mesh Boolean]
+    code_example: true
+    blender_version: "4.0+"
+
+  proximity_effect:
+    file: GEOMETRY_NODES_KNOWLEDGE.md
+    section: "Quick Reference: Common Patterns"
+    category: utility
+    keywords: [proximity, distance, effect, reaction]
+    nodes: [Geometry Proximity, Map Range]
+    code_example: true
+    blender_version: "4.0+"
+
+# =============================================================================
+# FEATURES INDEX
+# =============================================================================
+
+features:
+  closures:
+    status: stable
+    blender_version: "5.0"
+    file: BLENDER_50_KNOWLEDGE_SYNTHESIS.md
+    description: "Reusable node logic that can be passed around and invoked multiple times"
+    nodes: [Closure, Invoke Closure]
+
+  bundles:
+    status: stable
+    blender_version: "5.0"
+    file: BLENDER_50_KNOWLEDGE_SYNTHESIS.md
+    description: "Structured data packaging for passing multiple values through nodes"
+    nodes: [Get Bundle Item, Store Bundle Item, Bundle Info]
+
+  volume_grids:
+    status: stable
+    blender_version: "5.0"
+    file: BLENDER_50_KNOWLEDGE_SYNTHESIS.md
+    description: "Full volume grid ecosystem with SDF operations"
+    nodes: [Volume Cube, Points to SDF Grid, Mesh to SDF, Grid to Mesh, Sample Grid, Grid Dilate, Grid Erode, Grid Blur]
+
+  lists:
+    status: experimental
+    blender_version: "5.0"
+    file: BLENDER_50_KNOWLEDGE_SYNTHESIS.md
+    description: "Collections of data within Geometry Nodes"
+    warning: "Production code should not rely on experimental features"
+
+  xpbd_solver:
+    status: in_development
+    blender_version: "5.2-5.3"
+    file: BLENDER_50_KNOWLEDGE_SYNTHESIS.md
+    description: "XPBD solver for hair simulation using cosserat rod model"
+    expected_release: "Blender 5.2-5.3"
+
+  physics_bundles:
+    status: partial
+    blender_version: "5.0"
+    file: BLENDER_50_KNOWLEDGE_SYNTHESIS.md
+    description: "Declarative physics systems using bundles"
+
+  animation_layers:
+    status: planned
+    blender_version: "5.x"
+    file: BLENDER_50_KNOWLEDGE_SYNTHESIS.md
+    description: "Non-destructive animation layering"
+    expected_release: "Q2 2026"
+
+  npr_rendering:
+    status: in_development
+    blender_version: "5.x"
+    file: BLENDER_50_KNOWLEDGE_SYNTHESIS.md
+    description: "Non-photorealistic rendering based on DillonGoo prototype"
+
+  eevee_next:
+    status: stable
+    blender_version: "5.0"
+    file: BLENDER_50_KNOWLEDGE_SYNTHESIS.md
+    description: "Vulkan/Metal backends, HDR, improved SSS, NanoVDB"
+    features: [vulkan, metal, hdr, wide_gamut, nanovdb, real_time_gi]
+
+  compositor_overhaul:
+    status: stable
+    blender_version: "5.0"
+    file: BLENDER_50_KNOWLEDGE_SYNTHESIS.md
+    description: "Asset shelf, VSE integration, GPU denoising"
+    features: [asset_shelf, vse_integration, gpu_denoise, sun_beams]
+
+# =============================================================================
+# SOCKET SHAPES (Blender 5.0)
+# =============================================================================
+
+socket_shapes:
+  circle:
+    meaning: "Single value"
+    types: [Integer, Vector, Boolean]
+
+  diamond:
+    meaning: "Field (per-element)"
+    types: [Position, Normal, Index]
+
+  diamond_with_dot:
+    meaning: "Field currently single value"
+    example: "Instance transform when count=1"
+
+# =============================================================================
+# ROADMAP
+# =============================================================================
+
+roadmap:
+  "5.0":
+    status: current
+    features: [closures, bundles, volume_grids, eevee_next, compositor_overhaul]
+
+  "5.1":
+    date: "March 2026"
+    features: [eevee_planar_reflections, aovs_128, shader_to_rgb_transparency]
+
+  "5.2":
+    date: "July 2026"
+    features: [lists_expected, word_id, geometry_attribute_armature]
+
+  "5.3":
+    date: "November 2026"
+    features: [xpbd_hair, physics_bundles_complete]
+
+# =============================================================================
+# QUICK REFERENCES
+# =============================================================================
+
+quick_references:
+  closures: |
+    Create Closure:
+      ├── Define inputs/outputs
+      ├── Build internal logic
+      └── Mark as reusable
+    Invoke Closure:
+      ├── Pass inputs
+      ├── Execute logic
+      └── Receive outputs
+
+  bundles: |
+    Create Bundle:
+      Store Bundle Item (key, value)
+    Read Bundle:
+      Get Bundle Item (bundle, key)
+    Bundle Contents:
+      Bundle Info (bundle) → keys
+
+  volume_grids: |
+    Create Grid:
+      Volume Cube / Points to SDF / Mesh to SDF
+    Process Grid:
+      Grid Dilate / Grid Erode / Grid Blur
+    Extract Grid:
+      Grid to Mesh / Sample Grid / Store Named Grid
+
+  physics_bundles: |
+    Define Physics:
+      Gravity + Damping + Collisions
+    Apply to Simulation:
+      Physics Bundle → Sim Zone → Solver
+
+# =============================================================================
+# CATEGORY INDEX
+# =============================================================================
+
+categories:
+  volume:
+    description: "Volume and SDF operations"
+    patterns: [sdf_workflow, volume_to_mesh]
+
+  particles:
+    description: "Particle systems and simulation"
+    patterns: [curl_noise]
+
+  simulation:
+    description: "Simulation zones and physics"
+    patterns: [simulation_zone, grid_simulation, physics_bundle]
+
+  bundles:
+    description: "Blender 5.0 bundle patterns"
+    patterns: [material_bundle, physics_bundle]
+
+  closures:
+    description: "Blender 5.0 closure patterns"
+    patterns: [randomize_transform_closure, noise_displace_closure]
+
+  instances:
+    description: "Instance manipulation and distribution"
+    patterns: [height_based_scale, curve_aligned_distribution, index_driven_rotation]
+
+  modeling:
+    description: "Procedural modeling techniques"
+    patterns: [edge_erosion, face_erosion]
+
+  generative:
+    description: "Generative art and patterns"
+    patterns: [radial_cube_rotation, cylindrical_wave_field]
+
+  animation:
+    description: "Animation techniques"
+    patterns: [perfect_loop, effector_offset]
+
+  hair:
+    description: "Hair and fur systems"
+    patterns: [fur_clump]
+
+  lighting:
+    description: "Lighting setups"
+    patterns: [studio_isometric]
+
+  material:
+    description: "Material and shader techniques"
+    patterns: [glass_dispersion, painterly_effect]
+
+  utility:
+    description: "Utility patterns"
+    patterns: [triangle_parenting, boolean_cut, proximity_effect]

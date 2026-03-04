@@ -78,3 +78,10 @@ temp/
 # Large data files (>100MB, exceed GitHub limit)
 lib/charlotte_digital_twin/data/charlotte_buildings.geojson
 lib/charlotte_digital_twin/data/charlotte_osm_polygons.json
+
+# Tutorial transcripts (source materials - already codified in docs/)
+transcripts/transcripts/*.srt
+transcripts/transcripts/*.vtt
+
+# Keep transcript directory structure but ignore content
+# (transcripts are codified into docs/ knowledge base)
