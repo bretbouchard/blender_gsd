@@ -98,8 +98,13 @@ __all__ = [
     # Hair/fur (Phase 5)
     "HairClumpGenerator",
     "FurSystem",
+    "HairCurvesBuilder",
+    "MultiLayerFur",
     "SIZE_CURVES",
     "create_fur",
+    "create_fur_ball",
+    "create_hair_material",
+    "create_stylized_hair_material",
     # Handwriting (Phase 5)
     "HandwritingSystem",
     "LetterVariantGenerator",
@@ -241,7 +246,17 @@ from .simulation import SimulationBuilder
 # Phase 5: Extended components
 from .curl_noise import CurlNoise, CurlParticleSystem, CurlLayer
 from .erosion import EdgeErosion, FaceErosion, ErosionSystem, erode_mesh
-from .hair import HairClumpGenerator, FurSystem, SIZE_CURVES, create_fur
+from .hair import (
+    HairClumpGenerator,
+    FurSystem,
+    HairCurvesBuilder,
+    MultiLayerFur,
+    SIZE_CURVES,
+    create_fur,
+    create_fur_ball,
+    create_hair_material,
+    create_stylized_hair_material,
+)
 from .handwriting import (
     HandwritingSystem,
     LetterVariantGenerator,

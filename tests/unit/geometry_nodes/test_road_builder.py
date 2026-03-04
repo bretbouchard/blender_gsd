@@ -31,7 +31,7 @@ from lib.geometry_nodes.road_builder import (
     ROAD_TEMPLATES,
     SURFACE_MATERIALS,
     RoadBuilder,
-    RoadBuilderGN,
+    RoadNetworkGN,
     build_road_network,
     network_to_gn_format,
 )
@@ -489,11 +489,11 @@ class TestRoadBuilder:
 
 
 class TestRoadBuilderGN:
-    """Tests for RoadBuilderGN class."""
+    """Tests for RoadNetworkGN class."""
 
     def test_create_node_group_spec(self):
         """Test creating node group specification."""
-        spec = RoadBuilderGN.create_node_group_spec()
+        spec = RoadNetworkGN.create_node_group_spec()
 
         assert spec["name"] == "Road_Builder"
         assert "inputs" in spec
