@@ -1566,14 +1566,11 @@ class HairCurvesBuilder:
             current_output = set_material.outputs["Geometry"]
             current_x += 150
 
-        # Return final output node reference
-        # Find the node that has this output
-        return b.add_node(
-            "NodeReroute",
-            (current_x, current_y),
-            name="HairOutput",
-            input_connection=current_output,
-        )
+        # Step 6: Connect to Group Output
+        group_output = b.add_group_output((current_x, current_y))
+        b.link(current_output, group_output.inputs.get("Geometry", group_output.inputs[0]))
+
+        return group_output
 
 
 class MultiLayerFur:
