@@ -5,22 +5,22 @@
 See: .planning/PROJECT.md (updated 2026-03-04)
 
 **Core value:** A sleek brutalist mechanical platform that builds itself — high-end mecha precision engineering that grows and shrinks to follow a target.
-**Current focus:** Phase 6 - Unlimited Scale (Complete)
+**Current focus:** Phase 7 - Automated Following (Complete)
 
 ## Current Position
 
-Phase: 6 of 9 (Unlimited Scale) - COMPLETE
+Phase: 7 of 9 (Automated Following) - COMPLETE
 Plan: 2 of 2 in current phase
 Status: Phase complete
-Last activity: 2026-03-05 — Completed 06-02 performance optimizer
+Last activity: 2026-03-05 — Completed 07-02 predictive placement
 
-Progress: [██████░░░░] 67% (6/9 phases, 12/18 plans complete)
+Progress: [███████░░░] 78% (7/9 phases, 14/18 plans complete)
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 12
-- Average duration: 5.0 min
+- Total plans completed: 14
+- Average duration: 4.3 min
 - Total execution time: 1.0 hours
 
 **By Phase:**
@@ -33,9 +33,10 @@ Progress: [██████░░░░] 67% (6/9 phases, 12/18 plans complete
 | Arm Constraints | 2 | 14 min | 7 min |
 | Arm Folding | 2 | 5 min | 2.5 min |
 | Unlimited Scale | 2 | 4 min | 2.0 min |
+| Automated Following | 2 | 5 min | 2.5 min |
 
 **Recent Trend:**
-- Last 5 plans: 04-02 (6 min), 05-01 (3 min), 05-02 (2 min), 06-01 (2.3 min), 06-02 (1.7 min)
+- Last 5 plans: 05-02 (2 min), 06-01 (2.3 min), 06-02 (1.7 min), 07-01 (3 min), 07-02 (2 min)
 - Trend: Improving (faster execution with accumulated context)
 
 *Updated after each plan completion*
@@ -96,6 +97,13 @@ Recent decisions affecting current work:
 - [06-02]: Multi-factor bottleneck detection (utilization, count, metrics, memory)
 - [06-02]: Scale-aware recommendations (escalate with platform size)
 - [06-02]: Configurable LOD and instancing thresholds
+- [07-01]: Float-based 3D world coordinates for target path
+- [07-01]: Velocity and acceleration tracking for motion prediction
+- [07-01]: Optional integration with TilePlacer/TileRetractor
+- [07-02]: Prediction horizon of 10 steps for lookahead
+- [07-02]: Buffer distance of 2 tiles around predicted path
+- [07-02]: Learning from actual placements to improve accuracy
+- [07-02]: Confidence-based filtering for uncertain predictions
 
 ### Pending Todos
 
@@ -112,9 +120,9 @@ None yet.
 ## Session Continuity
 
 Last session: 2026-03-05 (now)
-Stopped at: Phase 6 complete, ready for Phase 7 (Automated Following)
-Resume file: .planning/phases/07-automated-following/07-01-PLAN.md
+Stopped at: Phase 7 complete, ready for Phase 8 (Export Pipeline)
+Resume file: .planning/phases/08-export-pipeline/08-01-PLAN.md
 
 ---
 
-*Last updated: 2026-03-05 after 06-02 completion*
+*Last updated: 2026-03-05 after 07-02 completion*
