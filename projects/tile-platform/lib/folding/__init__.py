@@ -53,13 +53,14 @@ from .pose import (
     FoldingPose,
 )
 
-# Note: FoldingController will be added in 05-02
 from .animator import (
     FoldingAnimator,
     ease_linear,
     ease_in_out,
     ease_smooth,
 )
+
+from .controller import FoldingController
 
 __version__ = "0.1.0"
 
@@ -76,4 +77,6 @@ __all__ = [
     "ease_linear",
     "ease_in_out",
     "ease_smooth",
+    # Controller
+    "FoldingController",
 ]
