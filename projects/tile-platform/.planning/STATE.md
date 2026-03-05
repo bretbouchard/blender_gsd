@@ -5,23 +5,23 @@
 See: .planning/PROJECT.md (updated 2026-03-04)
 
 **Core value:** A sleek brutalist mechanical platform that builds itself — high-end mecha precision engineering that grows and shrinks to follow a target.
-**Current focus:** Phase 5 - Arm Folding (Complete)
+**Current focus:** Phase 6 - Unlimited Scale (Complete)
 
 ## Current Position
 
-Phase: 5 of 9 (Arm Folding) - COMPLETE
+Phase: 6 of 9 (Unlimited Scale) - COMPLETE
 Plan: 2 of 2 in current phase
 Status: Phase complete
-Last activity: 2026-03-05 — Completed 05-02 folding controller integration
+Last activity: 2026-03-05 — Completed 06-02 performance optimizer
 
-Progress: [█████░░░░░] 83% (5/9 phases, 10/18 plans complete)
+Progress: [██████░░░░] 67% (6/9 phases, 12/18 plans complete)
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 10
-- Average duration: 5.6 min
-- Total execution time: 0.93 hours
+- Total plans completed: 12
+- Average duration: 5.0 min
+- Total execution time: 1.0 hours
 
 **By Phase:**
 
@@ -32,9 +32,10 @@ Progress: [█████░░░░░] 83% (5/9 phases, 10/18 plans complete
 | Arm Physics | 2 | 11 min | 5.5 min |
 | Arm Constraints | 2 | 14 min | 7 min |
 | Arm Folding | 2 | 5 min | 2.5 min |
+| Unlimited Scale | 2 | 4 min | 2.0 min |
 
 **Recent Trend:**
-- Last 5 plans: 03-02 (6 min), 04-01 (8 min), 04-02 (6 min), 05-01 (3 min), 05-02 (2 min)
+- Last 5 plans: 04-02 (6 min), 05-01 (3 min), 05-02 (2 min), 06-01 (2.3 min), 06-02 (1.7 min)
 - Trend: Improving (faster execution with accumulated context)
 
 *Updated after each plan completion*
@@ -85,6 +86,16 @@ Recent decisions affecting current work:
 - [05-02]: Bidirectional mapping (fast lookup both directions)
 - [05-02]: State validation in handlers (fail early, clear errors)
 - [05-02]: Controller owns state (centralized state management)
+- [06-01]: Object pooling pattern for tile IDs (O(1) allocation/release)
+- [06-01]: Auto-expansion of pool when exhausted (no hard limits)
+- [06-01]: Spatial optimization with Morton curve-style ordering
+- [06-01]: Bounded/unbounded modes (max_tiles parameter)
+- [06-01]: Composition over inheritance (ScaleManager uses Platform + TileAllocator)
+- [06-02]: Adaptive optimization based on tile count thresholds
+- [06-02]: Benchmarking strategy (allocation/release rates, operation times)
+- [06-02]: Multi-factor bottleneck detection (utilization, count, metrics, memory)
+- [06-02]: Scale-aware recommendations (escalate with platform size)
+- [06-02]: Configurable LOD and instancing thresholds
 
 ### Pending Todos
 
@@ -101,9 +112,9 @@ None yet.
 ## Session Continuity
 
 Last session: 2026-03-05 (now)
-Stopped at: Phase 5 complete, ready for Phase 6 (Unlimited Scale)
-Resume file: .planning/phases/06-unlimited-scale/06-01-PLAN.md
+Stopped at: Phase 6 complete, ready for Phase 7 (Automated Following)
+Resume file: .planning/phases/07-automated-following/07-01-PLAN.md
 
 ---
 
-*Last updated: 2026-03-05 after 05-02 completion*
+*Last updated: 2026-03-05 after 06-02 completion*
