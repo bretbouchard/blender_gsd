@@ -8,34 +8,31 @@ Example usage:
     from lib.arms import (
         JointType, ArmState, PhysicsMode,
         JointConfig, ArmSegmentConfig, ArmPhysicsConfig,
-        Joint, JointChain, PhysicsSimulator
+        Joint, JointChain, PhysicsSimulator,
+        Arm, ArmController
     )
 
-    # Create joint configurations
-    joint_configs = [
-        JointConfig(JointType.HINGE, min_angle=-1.57, max_angle=1.57),
-        JointConfig(JointType.HINGE, min_angle=-1.57, max_angle=1.57),
-        JointConfig(JointType.BALL, min_angle=-3.14, max_angle=3.14),
-    ]
+    # Create a standard arm at a base position
+    arm = Arm.create_standard_arm(base_pos=(0.0, 0.0, 0.0))
 
-    # Create joint chain
-    chain = JointChain(joint_configs, segment_lengths=[0.5, 1.0, 1.0, 0.5])
+    # Update arm towards a target
+    end_pos = arm.update(dt=0.016, target_pos=(2.0, 0.0, 1.5))
 
-    # Create physics simulator
-    physics_config = ArmPhysicsConfig(mode=PhysicsMode.HYBRID)
-    simulator = PhysicsSimulator(config=physics_config, segment_lengths=[0.5, 1.0, 1.0, 0.5])
-    simulator.set_joints(chain.joints)
+    # Create arm controller for multiple arms
+    controller = ArmController()
+    arm1 = Arm.create_standard_arm(base_pos=(0.0, 0.0, 0.0))
+    arm2 = Arm.create_long_arm(base_pos=(3.0, 0.0, 0.0))
 
-    # Run simulation step
-    target_angles = [0.5, 0.3, 0.2]
-    new_angles = simulator.step(chain.joints, target_angles)
+    idx1 = controller.add_arm(arm1)
+    idx2 = controller.add_arm(arm2)
 
-    # Calculate end effector position
-    end_pos = simulator.calculate_end_effector_position(new_angles, [0.5, 1.0, 1.0, 0.5])
+    # Assign targets and update
+    controller.assign_target(idx1, (2.0, 0.0, 1.5))
+    controller.assign_target(idx2, (4.0, 0.0, 1.0))
+    positions = controller.update_all(dt=0.016)
 
-    # Solve for target position
-    target_pos = (2.0, 0.0, 1.5)
-    ik_angles = simulator.solve_for_target(target_pos, chain.get_joint_angles())
+    # Check for collisions
+    collisions = controller.check_arm_collisions()
 """
 
 from .types import (
@@ -48,6 +45,8 @@ from .types import (
 )
 from .joints import Joint, JointChain
 from .physics import PhysicsSimulator
+from .arm import Arm
+from .controller import ArmController
 
 __version__ = "0.1.0"
 
@@ -66,4 +65,7 @@ __all__ = [
     "Joint",
     "JointChain",
     "PhysicsSimulator",
+    # Arm assembly and controller
+    "Arm",
+    "ArmController",
 ]
