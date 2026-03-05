@@ -18,6 +18,7 @@ Example usage:
 
 from .types import TileConfig, TileShape, PlatformConfig, ArmConfig
 from .grid import Grid
+from .tile import Tile, TileGeometry
 from .platform import Platform
 
 __version__ = "0.1.0"
@@ -33,4 +34,7 @@ __all__ = [
     # Core classes
     "Grid",
     "Platform",
+    # Tile geometry
+    "Tile",
+    "TileGeometry",
 ]
