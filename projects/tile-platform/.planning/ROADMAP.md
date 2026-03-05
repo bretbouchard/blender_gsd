@@ -33,11 +33,10 @@ Decimal phases appear between their surrounding integers in numeric order.
   2. User can trigger tile removal and the tile disappears from the platform
   3. Platform maintains a grid of placed tiles that can be queried
   4. System tracks which tiles are currently placed and which are available
-**Plans**: TBD
 
 Plans:
-- [ ] 01-01: Basic tile placement system
-- [ ] 01-02: Tile removal and tracking system
+- [ ] 01-01-PLAN.md - Create foundation module structure with Platform, Tile, and Grid classes
+- [ ] 01-02-PLAN.md - Implement tile geometry generation and platform tile management methods
 
 ### Phase 2: Tile System
 **Goal**: Users have visually rich tile connections with configurable shapes
@@ -48,11 +47,10 @@ Plans:
   2. User can select from square, octagonal, or hexagonal tile shapes before placement
   3. Tiles of different shapes cannot connect to each other (validation feedback)
   4. Connection animation plays when tiles attach (visual engagement)
-**Plans**: TBD
 
 Plans:
-- [ ] 02-01: Magneto-mechanical connection visual system
-- [ ] 02-02: Multi-shape tile configuration
+- [ ] 02-01-PLAN.md - Create tile placement and retraction logic for path following
+- [ ] 02-02-PLAN.md - Implement magneto-mechanical tile connection system with visual feedback
 
 ### Phase 3: Arm Physics
 **Goal**: Users see natural, physics-driven arm movement when placing tiles
@@ -63,11 +61,10 @@ Plans:
   2. Arm motion looks organic rather than mechanically precise
   3. Physics simulation is deterministic (same input produces same motion)
   4. Arms respond to physics forces (gravity, collisions with platform)
-**Plans**: TBD
 
 Plans:
-- [ ] 03-01: Rigid body physics setup for arms
-- [ ] 03-02: Physics constraint tuning for natural motion
+- [ ] 03-01-PLAN.md - Create arm physics system with multi-joint arms and constraints
+- [ ] 03-02-PLAN.md - Create complete arm assembly and multi-arm controller
 
 ### Phase 4: Arm Constraints
 **Goal**: Arms always reach their target positions despite physics simulation
@@ -78,11 +75,10 @@ Plans:
   2. Arms don't overshoot or miss targets due to physics randomness
   3. Constraint strength is configurable (softer for natural look, harder for precision)
   4. Arms reach targets at predictable times for animation synchronization
-**Plans**: TBD
 
 Plans:
-- [ ] 04-01: Target constraint system
-- [ ] 04-02: Constraint tuning and predictability
+- [ ] 04-01-PLAN.md - Implement arm constraint system that guarantees target reach
+- [ ] 04-02-PLAN.md - Create integrated constraint solver that works with physics
 
 ### Phase 5: Arm Folding
 **Goal**: Arms fold into compact storage under the platform when not placing tiles
@@ -93,11 +89,10 @@ Plans:
   2. Folding animation looks natural (multi-joint articulation)
   3. Folded arms don't interfere with platform tiles or each other
   4. Arms smoothly transition from folded to extended when needed
-**Plans**: TBD
 
 Plans:
-- [ ] 05-01: Multi-joint folding mechanism
-- [ ] 05-02: Collision-free storage configuration
+- [ ] 05-01-PLAN.md - Create arm folding system for compact storage under platform
+- [ ] 05-02-PLAN.md - Create folding controller that integrates with tile system
 
 ### Phase 6: Unlimited Scale
 **Goal**: Platform can grow to unlimited size in any direction without performance collapse
@@ -108,11 +103,10 @@ Plans:
   2. System handles 100+ tiles without significant frame rate drop
   3. Memory usage scales linearly with tile count
   4. Far-distant tiles don't cause precision issues (floating point handling)
-**Plans**: TBD
 
 Plans:
-- [ ] 06-01: Procedural generation at scale
-- [ ] 06-02: Performance optimization for large tile counts
+- [ ] 06-01-PLAN.md - Create unlimited scale management system
+- [ ] 06-02-PLAN.md - Create performance optimization for large-scale platforms
 
 ### Phase 7: Automated Following
 **Goal**: Platform automatically grows and retracts to follow a target
@@ -123,11 +117,10 @@ Plans:
   2. Platform extends tiles ahead of the moving target (predictive placement)
   3. Platform retracts tiles behind the moving target (cleanup)
   4. Following behavior is smooth and doesn't cause visual stuttering
-**Plans**: TBD
 
 Plans:
-- [ ] 07-01: Target tracking system
-- [ ] 07-02: Predictive tile placement and removal
+- [ ] 07-01-PLAN.md - Create automated following system for target tracking
+- [ ] 07-02-PLAN.md - Create predictive tile placement and removal
 
 ### Phase 8: Export Pipeline
 **Goal**: Users can export the platform for game engines and render high-quality animations
@@ -138,11 +131,10 @@ Plans:
   2. User can export platform to glTF format that imports correctly in Unreal
   3. Exported armatures have reasonable bone counts (optimized for game engines)
   4. User can render the platform animation in Blender at production quality
-**Plans**: TBD
 
 Plans:
-- [ ] 08-01: FBX/glTF export pipeline
-- [ ] 08-02: Blender render pipeline optimization
+- [ ] 08-01-PLAN.md - Create export pipeline for game engines (FBX/glTF)
+- [ ] 08-02-PLAN.md - Create render pipeline for high-quality Blender animation
 
 ### Phase 9: Visual Polish
 **Goal**: Platform has sleek brutalist mecha precision visual style
@@ -153,11 +145,10 @@ Plans:
   2. Tiles have sleek brutalist design (bold geometric forms)
   3. Materials and lighting emphasize precision engineering quality
   4. Motion has satisfying weight and mechanical authenticity
-**Plans**: TBD
 
 Plans:
-- [ ] 09-01: Material and shader system
-- [ ] 09-02: Lighting and visual polish
+- [ ] 09-01-PLAN.md - Create visual polish system for sleek brutalist mecha aesthetic
+- [ ] 09-02-PLAN.md - Create motion polish system for satisfying mechanical feedback
 
 ## Progress
 
@@ -178,4 +169,4 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7 → 8 →
 
 ---
 
-*Last updated: 2026-03-04 after initialization*
+*Last updated: 2026-03-04 after phase planning*
