@@ -5,9 +5,11 @@ This module provides the Platform class that manages the tile system,
 including tile placement, removal, and overall platform state.
 """
 
-from typing import List, Optional, Tuple
+import math
+from typing import Dict, List, Optional, Tuple
 
 from .grid import Grid
+from .tile import Tile, TileGeometry
 from .types import ArmConfig, PlatformConfig, TileConfig, TileShape
 
 
@@ -44,9 +46,9 @@ class Platform:
         for i in range(self.config.arm_count):
             # Place arms at corners/edges based on count
             # For now, simple placement around origin
-            angle = (2 * 3.14159 * i) / self.config.arm_count
-            pos_x = int(round(2 * __import__('math').cos(angle)))
-            pos_y = int(round(2 * __import__('math').sin(angle)))
+            angle = (2 * math.pi * i) / self.config.arm_count
+            pos_x = int(round(2 * math.cos(angle)))
+            pos_y = int(round(2 * math.sin(angle)))
             self.arms.append(ArmConfig(position=(pos_x, pos_y)))
 
     def _initialize_tiles(self) -> None:
@@ -138,3 +140,40 @@ class Platform:
             List of grid positions where arms are mounted
         """
         return [arm.position for arm in self.arms]
+
+    def get_tile_geometry(self, position: Tuple[int, int]) -> Optional[TileGeometry]:
+        """Get the geometry of a tile at the specified position.
+
+        Args:
+            position: Grid position (x, y) of the tile
+
+        Returns:
+            TileGeometry at position, or None if no tile exists
+        """
+        tile_config = self.grid.get_tile(position)
+        if tile_config is None:
+            return None
+
+        # Generate geometry based on tile shape
+        if tile_config.shape == TileShape.SQUARE:
+            return Tile.generate_square(tile_config.size)
+        elif tile_config.shape == TileShape.OCTAGONAL:
+            return Tile.generate_octagon(tile_config.size)
+        elif tile_config.shape == TileShape.HEXAGONAL:
+            return Tile.generate_hexagon(tile_config.size)
+        else:
+            raise ValueError(f"Unknown tile shape: {tile_config.shape}")
+
+    def get_all_tiles(self) -> Dict[Tuple[int, int], TileGeometry]:
+        """Get all tile geometries in the platform.
+
+        Returns:
+            Dictionary mapping grid positions to TileGeometry
+        """
+        all_tiles: Dict[Tuple[int, int], TileGeometry] = {}
+        for position in self.grid.tiles.keys():
+            geometry = self.get_tile_geometry(position)
+            if geometry is not None:
+                all_tiles[position] = geometry
+        return all_tiles
+
