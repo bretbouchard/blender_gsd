@@ -1,0 +1,414 @@
+# Grease Pencil Modifier Presets
+#
+# Ready-to-use GP modifier configurations for various effects
+# IMPORTANT: GP has its own modifier stack (GP_BUILD, GP_NOISE, etc.)
+# DO NOT use Geometry Nodes for GP effects - they cannot process GP data.
+#
+# Phase 21.0: Core GP Module (REQ-GP-05)
+
+# =============================================================================
+# BUILD MODIFIER PRESETS
+# =============================================================================
+
+# Sequential stroke reveal - classic animation draw-on effect
+build_reveal:
+  type: "GP_BUILD"
+  name: "Build Reveal"
+  mode: "SEQUENTIAL"
+  transition: "GROW"
+  start_delay: 0
+  length: 48
+
+# Fast concurrent build - all strokes appear together
+build_concurrent:
+  type: "GP_BUILD"
+  name: "Build Concurrent"
+  mode: "CONCURRENT"
+  transition: "GROW"
+  start_delay: 0
+  length: 24
+
+# Additive build for accumulating strokes
+build_additive:
+  type: "GP_BUILD"
+  name: "Build Additive"
+  mode: "ADDITIVE"
+  transition: "GROW"
+  start_delay: 0
+  length: 60
+
+# Fade in effect
+build_fade:
+  type: "GP_BUILD"
+  name: "Build Fade"
+  mode: "SEQUENTIAL"
+  transition: "FADE"
+  start_delay: 0
+  length: 30
+
+# Shrink/disappear effect
+build_shrink:
+  type: "GP_BUILD"
+  name: "Build Shrink"
+  mode: "SEQUENTIAL"
+  transition: "SHRINK"
+  start_delay: 0
+  length: 24
+
+# =============================================================================
+# NOISE MODIFIER PRESETS
+# =============================================================================
+
+# Subtle hand-drawn jitter
+noise_hand_drawn:
+  type: "GP_NOISE"
+  name: "Noise Hand Drawn"
+  factor: 0.15
+  noise_scale: 1.0
+  use_noise_position: true
+  use_noise_strength: false
+  use_noise_thickness: false
+
+# Strong shake effect
+noise_shake:
+  type: "GP_NOISE"
+  name: "Noise Shake"
+  factor: 0.8
+  noise_scale: 5.0
+  use_noise_position: true
+  use_noise_strength: false
+  use_noise_thickness: false
+
+# Noise on thickness for varying line weight
+noise_thickness:
+  type: "GP_NOISE"
+  name: "Noise Thickness"
+  factor: 0.5
+  noise_scale: 2.0
+  use_noise_position: false
+  use_noise_strength: false
+  use_noise_thickness: true
+
+# Combined noise for organic feel
+noise_organic:
+  type: "GP_NOISE"
+  name: "Noise Organic"
+  factor: 0.3
+  noise_scale: 1.5
+  use_noise_position: true
+  use_noise_strength: true
+  use_noise_thickness: true
+
+# Earthquake/tremor effect
+noise_earthquake:
+  type: "GP_NOISE"
+  name: "Noise Earthquake"
+  factor: 1.5
+  noise_scale: 10.0
+  use_noise_position: true
+  use_noise_strength: false
+  use_noise_thickness: false
+
+# =============================================================================
+# SMOOTH MODIFIER PRESETS
+# =============================================================================
+
+# Light smooth for cleaning up strokes
+smooth_light:
+  type: "GP_SMOOTH"
+  name: "Smooth Light"
+  factor: 0.3
+  step: 1
+
+# Medium smooth for general cleanup
+smooth_medium:
+  type: "GP_SMOOTH"
+  name: "Smooth Medium"
+  factor: 0.5
+  step: 2
+
+# Heavy smooth for very clean lines
+smooth_heavy:
+  type: "GP_SMOOTH"
+  name: "Smooth Heavy"
+  factor: 0.8
+  step: 3
+
+# Strong smooth for eliminating jitter
+smooth_anti_jitter:
+  type: "GP_SMOOTH"
+  name: "Smooth Anti-Jitter"
+  factor: 0.9
+  step: 5
+
+# =============================================================================
+# OPACITY MODIFIER PRESETS
+# =============================================================================
+
+# Semi-transparent strokes
+opacity_ghost:
+  type: "GP_OPACITY"
+  name: "Opacity Ghost"
+  factor: 0.3
+
+# Slightly transparent for layering
+opacity_soft:
+  type: "GP_OPACITY"
+  name: "Opacity Soft"
+  factor: 0.7
+
+# Nearly invisible for guidelines
+opacity_guide:
+  type: "GP_OPACITY"
+  name: "Opacity Guide"
+  factor: 0.2
+
+# Full opacity (use for override)
+opacity_full:
+  type: "GP_OPACITY"
+  name: "Opacity Full"
+  factor: 1.0
+
+# =============================================================================
+# COLOR MODIFIER PRESETS
+# =============================================================================
+
+# Warm color shift
+color_warm:
+  type: "GP_COLOR"
+  name: "Color Warm"
+  hue: 0.05
+  saturation: 1.2
+  value: 1.1
+
+# Cool color shift
+color_cool:
+  type: "GP_COLOR"
+  name: "Color Cool"
+  hue: -0.1
+  saturation: 1.0
+  value: 1.0
+
+# Desaturate to grayscale
+color_desaturate:
+  type: "GP_COLOR"
+  name: "Color Desaturate"
+  hue: 0.0
+  saturation: 0.0
+  value: 1.0
+
+# Increase saturation for vivid colors
+color_vivid:
+  type: "GP_COLOR"
+  name: "Color Vivid"
+  hue: 0.0
+  saturation: 1.5
+  value: 1.0
+
+# Darken for shadows
+color_darken:
+  type: "GP_COLOR"
+  name: "Color Darken"
+  hue: 0.0
+  saturation: 1.0
+  value: 0.6
+
+# Lighten for highlights
+color_lighten:
+  type: "GP_COLOR"
+  name: "Color Lighten"
+  hue: 0.0
+  saturation: 0.8
+  value: 1.3
+
+# =============================================================================
+# TINT MODIFIER PRESETS
+# =============================================================================
+
+# Sepia tint for vintage look
+tint_sepia:
+  type: "GP_TINT"
+  name: "Tint Sepia"
+  tint_color: [0.8, 0.6, 0.4, 1.0]
+  tint_factor: 0.5
+
+# Blue tint for cold atmosphere
+tint_cold:
+  type: "GP_TINT"
+  name: "Tint Cold"
+  tint_color: [0.6, 0.7, 0.9, 1.0]
+  tint_factor: 0.4
+
+# Red tint for danger/heat
+tint_heat:
+  type: "GP_TINT"
+  name: "Tint Heat"
+  tint_color: [1.0, 0.3, 0.1, 1.0]
+  tint_factor: 0.3
+
+# Green tint for night vision
+tint_night_vision:
+  type: "GP_TINT"
+  name: "Tint Night Vision"
+  tint_color: [0.2, 1.0, 0.2, 1.0]
+  tint_factor: 0.6
+
+# =============================================================================
+# THICKNESS MODIFIER PRESETS
+# =============================================================================
+
+# Thicker strokes for bold effect
+thickness_bold:
+  type: "GP_THICKNESS"
+  name: "Thickness Bold"
+  factor: 2.0
+
+# Thinner strokes for detail
+thickness_thin:
+  type: "GP_THICKNESS"
+  name: "Thickness Thin"
+  factor: 0.5
+
+# Extra thick for poster style
+thickness_poster:
+  type: "GP_THICKNESS"
+  name: "Thickness Poster"
+  factor: 3.0
+
+# Very thin for fine details
+thickness_fine:
+  type: "GP_THICKNESS"
+  name: "Thickness Fine"
+  factor: 0.3
+
+# =============================================================================
+# ARRAY MODIFIER PRESETS
+# =============================================================================
+
+# Horizontal repetition
+array_horizontal:
+  type: "GP_ARRAY"
+  name: "Array Horizontal"
+  count: 5
+  offset: 0.5
+  offset_object: [1.0, 0.0, 0.0]
+
+# Vertical stack
+array_vertical:
+  type: "GP_ARRAY"
+  name: "Array Vertical"
+  count: 4
+  offset: 0.3
+  offset_object: [0.0, 1.0, 0.0]
+
+# Radial pattern (needs rotation)
+array_radial:
+  type: "GP_ARRAY"
+  name: "Array Radial"
+  count: 8
+  offset: 0.0
+  rotation: 45.0
+
+# Dense repetition
+array_dense:
+  type: "GP_ARRAY"
+  name: "Array Dense"
+  count: 10
+  offset: 0.1
+  offset_object: [0.1, 0.1, 0.0]
+
+# =============================================================================
+# MIRROR MODIFIER PRESETS
+# =============================================================================
+
+# Mirror on X axis (most common)
+mirror_x:
+  type: "GP_MIRROR"
+  name: "Mirror X"
+  mirror_axis: "X"
+
+# Mirror on Y axis
+mirror_y:
+  type: "GP_MIRROR"
+  name: "Mirror Y"
+  mirror_axis: "Y"
+
+# Mirror on Z axis
+mirror_z:
+  type: "GP_MIRROR"
+  name: "Mirror Z"
+  mirror_axis: "Z"
+
+# =============================================================================
+# COMBINED EFFECT PRESETS (Multi-modifier stacks)
+# =============================================================================
+
+# Hand-drawn animation look (build + noise + smooth)
+combined_hand_drawn_animation:
+  name: "Hand Drawn Animation"
+  description: "Sequential build with subtle jitter and light smoothing"
+  modifiers:
+    - type: "GP_BUILD"
+      mode: "SEQUENTIAL"
+      transition: "GROW"
+      length: 48
+    - type: "GP_NOISE"
+      factor: 0.1
+      noise_scale: 1.0
+      use_noise_position: true
+    - type: "GP_SMOOTH"
+      factor: 0.2
+      step: 1
+
+# Ghost/phantom effect (opacity + noise)
+combined_ghost:
+  name: "Ghost Effect"
+  description: "Semi-transparent with subtle position noise"
+  modifiers:
+    - type: "GP_OPACITY"
+      factor: 0.4
+    - type: "GP_NOISE"
+      factor: 0.2
+      noise_scale: 2.0
+      use_noise_position: true
+
+# Anime cel-shading look (smooth + color)
+combined_anime_cel:
+  name: "Anime Cel"
+  description: "Clean lines with slight saturation boost"
+  modifiers:
+    - type: "GP_SMOOTH"
+      factor: 0.6
+      step: 2
+    - type: "GP_COLOR"
+      saturation: 1.2
+      value: 1.0
+
+# Rough sketch effect (noise + thickness)
+combined_rough_sketch:
+  name: "Rough Sketch"
+  description: "Variable line weight with organic jitter"
+  modifiers:
+    - type: "GP_NOISE"
+      factor: 0.4
+      noise_scale: 1.5
+      use_noise_position: true
+      use_noise_thickness: true
+    - type: "GP_THICKNESS"
+      factor: 1.2
+
+# Vintage film look (color + tint + noise)
+combined_vintage:
+  name: "Vintage Film"
+  description: "Sepia tint with desaturation and film grain"
+  modifiers:
+    - type: "GP_COLOR"
+      saturation: 0.7
+      value: 0.9
+    - type: "GP_TINT"
+      tint_color: [0.9, 0.7, 0.5, 1.0]
+      tint_factor: 0.3
+    - type: "GP_NOISE"
+      factor: 0.05
+      noise_scale: 5.0
+      use_noise_position: true

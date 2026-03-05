@@ -1,0 +1,135 @@
+# Stroke presets for common GP workflows
+# Phase 21.0: Core GP Module (REQ-GP-01)
+
+# =============================================================================
+# Basic strokes
+# =============================================================================
+
+basic_line:
+  id: basic_line
+  stroke_width: 2.0
+  hardness: 1.0
+  display_mode: "3DSPACE"
+
+thick_outline:
+  id: thick_outline
+  stroke_width: 5.0
+  hardness: 1.0
+  display_mode: "3DSPACE"
+
+soft_sketch:
+  id: soft_sketch
+  stroke_width: 3.0
+  hardness: 0.7
+  display_mode: "3DSPACE"
+
+# =============================================================================
+# Artistic styles
+# =============================================================================
+
+anime_outline:
+  id: anime_outline
+  stroke_width: 3.0
+  hardness: 1.0
+  display_mode: "3DSPACE"
+
+watercolor_stroke:
+  id: watercolor_stroke
+  stroke_width: 4.0
+  hardness: 0.5
+  display_mode: "3DSPACE"
+
+comic_bold:
+  id: comic_bold
+  stroke_width: 6.0
+  hardness: 1.0
+  display_mode: "3DSPACE"
+
+manga_fine:
+  id: manga_fine
+  stroke_width: 1.5
+  hardness: 1.0
+  display_mode: "3DSPACE"
+
+pencil_sketch:
+  id: pencil_sketch
+  stroke_width: 2.0
+  hardness: 0.85
+  display_mode: "3DSPACE"
+
+marker_bold:
+  id: marker_bold
+  stroke_width: 8.0
+  hardness: 0.9
+  display_mode: "3DSPACE"
+
+# =============================================================================
+# Technical drawing
+# =============================================================================
+
+technical_line:
+  id: technical_line
+  stroke_width: 1.5
+  hardness: 1.0
+  display_mode: "3DSPACE"
+
+blueprint_line:
+  id: blueprint_line
+  stroke_width: 2.0
+  hardness: 1.0
+  display_mode: "3DSPACE"
+
+annotation:
+  id: annotation
+  stroke_width: 1.0
+  hardness: 1.0
+  display_mode: "3DSPACE"
+
+# =============================================================================
+# Motion graphics
+# =============================================================================
+
+motion_shape:
+  id: motion_shape
+  stroke_width: 4.0
+  hardness: 1.0
+  display_mode: "3DSPACE"
+  use_cyclic: true
+
+text_outline:
+  id: text_outline
+  stroke_width: 2.5
+  hardness: 1.0
+  display_mode: "2DIMAGE"
+
+# =============================================================================
+# 2D Animation
+# =============================================================================
+
+frame_by_frame:
+  id: frame_by_frame
+  stroke_width: 3.0
+  hardness: 0.9
+  display_mode: "3DSPACE"
+
+cutout_outline:
+  id: cutout_outline
+  stroke_width: 2.0
+  hardness: 1.0
+  display_mode: "3DSPACE"
+
+# =============================================================================
+# UI/Screen space
+# =============================================================================
+
+screen_overlay:
+  id: screen_overlay
+  stroke_width: 2.0
+  hardness: 1.0
+  display_mode: "2DSCREEN"
+
+hud_element:
+  id: hud_element
+  stroke_width: 1.5
+  hardness: 1.0
+  display_mode: "2DSCREEN"

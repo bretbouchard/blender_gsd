@@ -46,6 +46,31 @@ from .objects import (
     generate_arc_stroke,
     create_simple_gp_object,
 )
+from .materials import (
+    create_gp_material,
+    apply_material_to_gp,
+    create_material_node_group,
+    create_outline_material,
+    create_fill_material,
+    create_gradient_material,
+    load_material_preset,
+)
+from .modifiers import (
+    apply_build_modifier,
+    apply_noise_modifier,
+    apply_smooth_modifier,
+    apply_opacity_modifier,
+    apply_color_modifier,
+    apply_tint_modifier,
+    apply_thickness_modifier,
+    apply_array_modifier,
+    apply_mirror_modifier,
+    apply_effect_with_mask,
+    remove_modifier,
+    get_modifier_stack,
+    load_modifier_preset,
+    apply_modifier_preset,
+)
 
 
 __all__ = [

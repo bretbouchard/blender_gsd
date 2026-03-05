@@ -12,8 +12,10 @@
 4. [Limits Module](#limits-module)
 5. [Math Safe Module](#math-safe-module)
 6. [Drivers Module](#drivers-module)
-7. [Common Patterns](#common-patterns)
-8. [Migration Guide](#migration-guide)
+7. [Tips Module](#tips-module)
+8. [Generative Module](#generative-module)
+9. [Common Patterns](#common-patterns)
+10. [Migration Guide](#migration-guide)
 
 ---
 
@@ -27,6 +29,8 @@ The `lib/utils` package provides four core modules that address limitations iden
 | **limits** | System crashes, slow performance | Proactive warnings, benchmarks |
 | **math_safe** | Gimbal lock, incorrect blending | Quaternion interpolation, safe math |
 | **drivers** | Broken drivers after rename | Named variables, repair tools |
+| **tips** | Slow workflows, repetitive tasks | 30+ advanced Blender tips |
+| **generative** | Complex layered geometry | Multi-layer shells, faceted remesh |
 
 ---
 
@@ -709,6 +713,196 @@ result = safe_scale_blend(current, delta, opacity)
 
 ---
 
+## Tips Module
+
+**File:** `lib/tips/__init__.py`
+
+### Why Use It
+
+The tips module provides 30+ advanced Blender workflow utilities from Robin Squares' tutorial:
+
+1. **Render presets** - Quick switch between preview/final/animation renders
+2. **Material presets** - Pre-configured surface materials (metal, plastic, glass)
+3. **Scene organization** - Auto-sort objects, batch material assignment
+4. **Animation helpers** - Camera shake, seamless loops, secondary motion
+5. **Procedural effects** - Wear edges, dirt accumulation, subsurface scatter
+
+### When to Use
+
+| Situation | Use This |
+|-----------|----------|
+| Quick render setup | `apply_render_preset("preview")` |
+| Fast material prototyping | `apply_material_preset(mat, "metal_shiny")` |
+| Organizing scenes | `auto_organize_collections()` |
+| Adding camera shake | `setup_camera_shake(camera, intensity=0.05)` |
+| Scene analysis | `show_scene_stats()` |
+| Batch material assign | `batch_material_assign("MyMaterial")` |
+
+### Available Render Presets
+
+| Preset | Resolution | Samples | Use Case |
+|--------|------------|---------|----------|
+| `preview` | 25% | 64 | Fast viewport previews |
+| `final` | 100% | 256 | Production renders |
+| `animation` | 50% | 128 | Animation renders |
+
+### Available Material Presets
+
+| Preset | Metallic | Roughness | Use Case |
+|--------|----------|-----------|----------|
+| `metal_shiny` | 0.9 | 0.1 | Polished metal |
+| `metal_brushed` | 0.8 | 0.4 | Brushed metal |
+| `plastic_glossy` | 0.0 | 0.0 | Glossy plastic |
+| `plastic_matte` | 0.0 | 0.8 | Matte plastic |
+| `rubber` | 0.0 | 0.9 | Rubber/grip surfaces |
+| `glass` | 0.0 | 0.0 | Transparent glass |
+
+### Examples
+
+#### Quick Render Setup
+
+```python
+from lib.tips import apply_render_preset, RENDER_PRESETS
+
+# Apply preview preset for fast testing
+apply_render_preset("preview")
+
+# View available presets
+print(RENDER_PRESETS.keys())  # ['preview', 'final', 'animation']
+```
+
+#### Material Prototyping
+
+```python
+from lib.tips import apply_material_preset, MATERIAL_PRESETS
+import bpy
+
+# Create and apply preset
+mat = bpy.data.materials.new("MyMetal")
+apply_material_preset(mat, "metal_shiny")
+
+# View available presets
+print(MATERIAL_PRESETS.keys())
+```
+
+#### Scene Organization
+
+```python
+from lib.tips import auto_organize_collections, show_scene_stats
+
+# Auto-sort selected objects by type
+collections = auto_organize_collections()
+# Creates: Auto_Mesh, Auto_Light, Auto_Camera, etc.
+
+# Get scene statistics
+stats = show_scene_stats()
+print(f"Polygons: {stats['polygons']:,}")
+```
+
+#### Animation Helpers
+
+```python
+from lib.tips import setup_camera_shake, setup_animation_loop
+
+# Add camera shake
+setup_camera_shake(
+    camera,
+    intensity=0.05,   # Shake amount
+    frequency=2.0,    # Hz
+    frames=60         # Duration
+)
+
+# Create seamless loop
+setup_animation_loop(action, loop_start=50, loop_end=100)
+```
+
+---
+
+## Generative Module
+
+**File:** `lib/geometry_nodes/generative.py`
+
+### Why Use It
+
+The generative module provides multi-layer shell and faceted remesh utilities from Curtis Holt's tutorial:
+
+1. **MultiLayerShell** - Create complex layered geometry for visual depth
+2. **FacetedRemesh** - Prepare geometry for stylized low-poly look
+3. **GenerativeShell** - Extended shell with noise/rotation/scale variation
+4. **ShellLayer** - Dataclass for individual layer configuration
+
+### When to Use
+
+| Situation | Use This |
+|-----------|----------|
+| Layered armor/panels | `MultiLayerShell` |
+| Stylized low-poly look | `FacetedRemesh` |
+| Quick shell creation | `create_generative_shell()` |
+| Custom layer config | `ShellLayer` dataclass |
+
+### Examples
+
+#### Multi-Layer Shell
+
+```python
+from lib.geometry_nodes import MultiLayerShell
+
+# Create layered shell
+shell = MultiLayerShell(builder)
+shell.add_layer(scale=0.95, offset=-0.02, material="inner")
+shell.add_layer(scale=1.0, material="outer")
+shell.add_layer(scale=1.02, offset=0.01, material="detail")
+
+result = shell.build(input_mesh)
+```
+
+#### Faceted Remesh
+
+```python
+from lib.geometry_nodes import FacetedRemesh
+
+# Create faceted remesh setup
+faceted = FacetedRemesh(builder)
+faceted.set_voxel_size(0.05)
+faceted.preserve_edges(angle=30.0)
+faceted.store_normals(True)
+
+prepared = faceted.build(input_mesh)
+```
+
+#### Generative Shell with Noise
+
+```python
+from lib.geometry_nodes import GenerativeShell
+
+# Create shell with variations
+shell = GenerativeShell(builder)
+shell.add_layer(scale=0.95).add_noise(0.02)
+shell.add_layer(scale=1.0).add_rotation_variation(10.0)
+shell.add_layer(scale=1.02).add_scale_variation(0.1)
+
+result = shell.build(input_mesh)
+```
+
+#### Quick Shell Creation
+
+```python
+from lib.geometry_nodes import create_generative_shell
+
+# Create 3-layer shell with noise
+result = create_generative_shell(
+    builder,
+    input_mesh,
+    layers=3,
+    base_scale=1.0,
+    scale_step=-0.02,
+    add_noise=True,
+    noise_scale=0.02
+)
+```
+
+---
+
 ## Summary
 
 | Module | Key Functions | When to Use |
@@ -717,6 +911,18 @@ result = safe_scale_blend(current, delta, opacity)
 | `limits` | `check_limit()`, `@timed`, `performance_block` | Before creating many objects, timing operations |
 | `math_safe` | `interpolate_rotation()`, `smooth_falloff()`, `safe_scale_blend()` | Any rotation/scale blending, smooth transitions |
 | `drivers` | `add_safe_driver()`, `DriverBuilder`, `repair_drivers()` | Creating or fixing Blender drivers |
+| `tips` | `apply_render_preset()`, `apply_material_preset()`, `auto_organize_collections()` | Quick render setup, material prototyping, scene organization |
+| `generative` | `MultiLayerShell`, `FacetedRemesh`, `GenerativeShell` | Layered geometry, stylized remeshing |
+
+**Golden Rules:**
+
+1. **Always use `SafeYAML` for file I/O** - Prevents corruption
+2. **Check limits before bulk operations** - Prevents crashes
+3. **Use quaternion interpolation for rotations** - Prevents gimbal lock
+4. **Use named driver variables** - Prevents broken references
+5. **Use smooth falloff instead of hard cutoffs** - Prevents jerky motion
+6. **Use render presets for consistent output** - Speeds up workflow
+7. **Use generative shells for layered effects** - Adds visual depth
 
 **Golden Rules:**
 

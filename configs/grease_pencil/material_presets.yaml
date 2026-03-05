@@ -1,0 +1,265 @@
+# Grease Pencil Material Presets
+#
+# Ready-to-use GP material configurations for various styles
+# Phase 21.0: Core GP Module (REQ-GP-04)
+
+# =============================================================================
+# BASIC OUTLINE MATERIALS
+# =============================================================================
+
+# Basic black outline - standard for most 2D animation
+outline_black:
+  name: "Outline Black"
+  stroke_style: "SOLID"
+  fill_style: "SOLID"
+  show_stroke: true
+  show_fill: false
+  color: [0.0, 0.0, 0.0, 1.0]
+  stroke_width: 3.0
+  hardness: 1.0
+  use_stroke_holdout: true
+
+# Thin outline for subtle definition
+outline_thin:
+  name: "Outline Thin"
+  stroke_style: "SOLID"
+  fill_style: "SOLID"
+  show_stroke: true
+  show_fill: false
+  color: [0.0, 0.0, 0.0, 1.0]
+  stroke_width: 1.5
+  hardness: 1.0
+
+# Colored outline for stylized work
+outline_colored:
+  name: "Outline Colored"
+  stroke_style: "SOLID"
+  fill_style: "SOLID"
+  show_stroke: true
+  show_fill: false
+  color: [0.3, 0.3, 0.5, 1.0]
+  stroke_width: 2.5
+
+# =============================================================================
+# FILL MATERIALS
+# =============================================================================
+
+# Solid white fill - standard for character fills
+fill_white:
+  name: "Fill White"
+  stroke_style: "SOLID"
+  fill_style: "SOLID"
+  show_stroke: false
+  show_fill: true
+  fill_color: [1.0, 1.0, 1.0, 1.0]
+  use_fill_holdout: true
+
+# Skin tone fill
+fill_skin:
+  name: "Fill Skin"
+  stroke_style: "SOLID"
+  fill_style: "SOLID"
+  show_stroke: false
+  show_fill: true
+  fill_color: [1.0, 0.85, 0.8, 1.0]
+
+# Neutral gray fill
+fill_gray:
+  name: "Fill Gray"
+  stroke_style: "SOLID"
+  fill_style: "SOLID"
+  show_stroke: false
+  show_fill: true
+  fill_color: [0.7, 0.7, 0.75, 1.0]
+
+# Dark shadow fill
+fill_shadow:
+  name: "Fill Shadow"
+  stroke_style: "SOLID"
+  fill_style: "SOLID"
+  show_stroke: false
+  show_fill: true
+  fill_color: [0.3, 0.3, 0.35, 1.0]
+
+# =============================================================================
+# COMBINED OUTLINE + FILL
+# =============================================================================
+
+# Standard character material
+character_standard:
+  name: "Character Standard"
+  stroke_style: "SOLID"
+  fill_style: "SOLID"
+  show_stroke: true
+  show_fill: true
+  color: [0.0, 0.0, 0.0, 1.0]
+  fill_color: [0.95, 0.95, 0.98, 1.0]
+  stroke_width: 2.5
+  hardness: 0.95
+
+# Soft edge character
+character_soft:
+  name: "Character Soft"
+  stroke_style: "SOLID"
+  fill_style: "SOLID"
+  show_stroke: true
+  show_fill: true
+  color: [0.2, 0.2, 0.2, 0.9]
+  fill_color: [0.98, 0.96, 0.94, 1.0]
+  stroke_width: 2.0
+  hardness: 0.7
+
+# Bold comic style
+character_comic:
+  name: "Character Comic"
+  stroke_style: "SOLID"
+  fill_style: "SOLID"
+  show_stroke: true
+  show_fill: true
+  color: [0.0, 0.0, 0.0, 1.0]
+  fill_color: [1.0, 1.0, 1.0, 1.0]
+  stroke_width: 4.0
+  hardness: 1.0
+
+# =============================================================================
+# GRADIENT MATERIALS
+# =============================================================================
+
+# Sunset gradient
+gradient_sunset:
+  name: "Gradient Sunset"
+  stroke_style: "SOLID"
+  fill_style: "GRADIENT"
+  show_stroke: true
+  show_fill: true
+  color: [0.3, 0.3, 0.3, 1.0]
+  fill_color: [1.0, 0.6, 0.3, 1.0]
+  mix_factor: 0.7
+  gradient_type: "LINEAR"
+
+# Ocean gradient
+gradient_ocean:
+  name: "Gradient Ocean"
+  stroke_style: "SOLID"
+  fill_style: "GRADIENT"
+  show_stroke: true
+  show_fill: true
+  fill_color: [0.0, 0.3, 0.6, 1.0]
+  mix_factor: 0.7
+  gradient_type: "LINEAR"
+
+# Forest gradient
+gradient_forest:
+  name: "Gradient Forest"
+  stroke_style: "SOLID"
+  fill_style: "GRADIENT"
+  show_stroke: true
+  show_fill: true
+  fill_color: [0.2, 0.5, 0.2, 1.0]
+  mix_factor: 0.6
+  gradient_type: "LINEAR"
+
+# =============================================================================
+# ANIME/NPR STYLES
+# =============================================================================
+
+# Anime cel shading - sharp, clean
+anime_cel:
+  name: "Anime Cel"
+  stroke_style: "SOLID"
+  fill_style: "SOLID"
+  show_stroke: true
+  show_fill: true
+  color: [0.0, 0.0, 0.0, 1.0]
+  fill_color: [0.9, 0.9, 0.95, 1.0]
+  stroke_width: 2.0
+  hardness: 1.0
+
+# Anime shadow material
+anime_shadow:
+  name: "Anime Shadow"
+  stroke_style: "SOLID"
+  fill_style: "SOLID"
+  show_stroke: false
+  show_fill: true
+  fill_color: [0.6, 0.65, 0.75, 1.0]
+  use_fill_holdout: false
+  hardness: 1.0
+
+# 90s anime aesthetic
+anime_90s:
+  name: "90s Anime"
+  stroke_style: "SOLID"
+  fill_style: "SOLID"
+  show_stroke: true
+  show_fill: true
+  color: [0.1, 0.1, 0.1, 1.0]
+  fill_color: [0.95, 0.9, 0.85, 1.0]
+  stroke_width: 2.5
+  hardness: 0.9
+
+# =============================================================================
+# TECHNICAL DRAWING
+# =============================================================================
+
+# Blueprint style
+blueprint_line:
+  name: "Blueprint Line"
+  stroke_style: "SOLID"
+  fill_style: "SOLID"
+  show_stroke: true
+  show_fill: false
+  color: [0.0, 0.5, 1.0, 1.0]
+  stroke_width: 1.5
+  hardness: 1.0
+
+# Technical sketch
+technical_sketch:
+  name: "Technical Sketch"
+  stroke_style: "DOTTED"
+  fill_style: "SOLID"
+  show_stroke: true
+  show_fill: false
+  color: [0.3, 0.3, 0.3, 0.8]
+  stroke_width: 1.0
+
+# =============================================================================
+# WATERCOLOR/ARTISTIC STYLES
+# =============================================================================
+
+# Soft watercolor
+watercolor_soft:
+  name: "Watercolor Soft"
+  stroke_style: "SOLID"
+  fill_style: "GRADIENT"
+  show_stroke: true
+  show_fill: true
+  color: [0.3, 0.3, 0.3, 0.8]
+  fill_color: [0.9, 0.85, 0.8, 0.7]
+  mix_factor: 0.6
+  hardness: 0.7
+
+# Ghibli-inspired
+ghibli_style:
+  name: "Ghibli Style"
+  stroke_style: "SOLID"
+  fill_style: "GRADIENT"
+  show_stroke: true
+  show_fill: true
+  color: [0.2, 0.2, 0.25, 0.9]
+  fill_color: [0.95, 0.92, 0.88, 0.9]
+  mix_factor: 0.65
+  hardness: 0.75
+  stroke_width: 1.8
+
+# Marker pen style
+marker_pen:
+  name: "Marker Pen"
+  stroke_style: "SOLID"
+  fill_style: "SOLID"
+  show_stroke: true
+  show_fill: true
+  color: [0.1, 0.1, 0.1, 1.0]
+  fill_color: [0.9, 0.3, 0.2, 0.85]
+  stroke_width: 3.0
+  hardness: 0.85

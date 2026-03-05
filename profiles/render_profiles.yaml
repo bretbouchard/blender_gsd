@@ -9,6 +9,60 @@ studio_white_1k:
   transparent_bg: true
   color_management: "Filmic"
 
+preview_256:
+  description: "Fast draft preview, 512px"
+  engine: EEVEE
+  resolution: [512, 512]
+  samples: 16
+  transparent_bg: true
+
+turntable_1k:
+  description: "Turntable animation, 1K resolution"
+  engine: CYCLES
+  resolution: [1024, 1024]
+            samples: 64
+            animation: true
+            frames: 60
+            frame_start: 1
+            frame_end: 60
+
+product_4k:
+  description: "High quality product render"
+            engine: CYCLES
+            resolution: [4096, 4096]
+            samples: 256
+            transparent_bg: true
+            denoising: true
+
+# Tips module presets (from Robin Squares)
+tips_preview:
+  description: "Fast preview render (25% resolution, 64 samples"
+  engine: CYCLES
+  resolution: [256, 256]
+  denoising: false
+  motion_blur: false
+
+  use_motion_blur: false
+  transparent_bg: true
+
+tips_final:
+  description: "Production quality render (100% resolution, 256 samples)"
+  engine: CYCLES
+  resolution: [1920, 1080]
+  denoising: true
+  motion_blur: true
+  use_motion_blur: true
+  transparent_bg: true
+
+tips_animation:
+  description: "Animation renders (50% resolution, 128 samples)"
+  engine: CYCLES
+  resolution: [1280, 720]
+  denoising: true
+  motion_blur: true
+  use_motion_blur: true
+  transparent_bg: false
+
 studio_white_2k:
   description: "Standard studio lighting, 2K resolution"
   engine: CYCLES

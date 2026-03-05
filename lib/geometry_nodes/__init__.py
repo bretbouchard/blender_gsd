@@ -228,10 +228,26 @@ __all__ = [
     "VOLUME_BUNDLE",
     "XPBD_BUNDLE",
 
+    # Generative Modeling (Curtis Holt)
+    "MultiLayerShell",
+    "ShellLayer",
+    "FacetedRemesh",
+    "GenerativeShell",
+    "create_generative_shell",
+
     # Version info
     "__version__",
     "__author__",
 ]
+
+# Phase 7: Generative Modeling (Curtis Holt)
+from .generative import (
+    MultiLayerShell,
+    ShellLayer,
+    FacetedRemesh,
+    GenerativeShell,
+    create_generative_shell,
+)
 
 __version__ = "2.0.0"
 __author__ = "Blender GSD Project"

@@ -2392,3 +2392,111 @@ configs/tentacle/
 - Real elevation data (OpenTopography API)
 - Traffic flow visualization
 - Weather effects
+
+---
+
+## Milestone: v0.18 - Grease Pencil System
+**Target**: TBD
+**Requirements**: `.planning/REQUIREMENTS_GREASE_PENCIL.md`
+**Action Plan**: `docs/GREASE_PENCIL_ACTION_PLAN.md`
+
+### Phase 21.0: Core GP Module (REQ-GP-01)
+**Priority**: P1 | **Est. Effort**: 3-4 days
+
+**Goal**: Create lib/grease_pencil/ module with node-centric architecture.
+
+**Features**:
+- Stroke creation and manipulation utilities
+- Material shader node groups for NPR styles
+- GP modifier presets (Build, Opacity, Mirror) - NOT Geometry Nodes
+- Stage pipeline integration (Normalize → Primary → Secondary → Detail → Output)
+
+**Module Structure**:
+```
+lib/grease_pencil/
+├── __init__.py          # Main exports (see REQUIREMENTS for Public API)
+├── types.py            # GPStrokeConfig, GPMaterialConfig, GPAnimationConfig, GPLayerConfig, GPMaskConfig
+├── stages.py            # Stage pipeline (normalize → primary → secondary → detail → output)
+├── stroke_utils.py     # Stroke creation and manipulation
+├── materials.py        # GP shader node groups (stroke/fill)
+├── rigging.py          # Bone rigging for GP strokes
+├── animation.py        # Frame-by-frame, cut-out animation helpers
+├── modifiers.py        # GP modifier presets
+├── gp_effects.py        # GP modifier effects (NOT Geometry Nodes!)
+├── brush_config.py      # Brush presets for artist-assisted drawing
+├── rotoscope.py        # Video reference tracing
+├── hybrid.py            # 2D/3D hybrid workflow utilities
+└── presets/
+    ├── stroke_presets.yaml
+    ├── material_presets.yaml
+    ├── brush_presets.yaml
+    └── animation_presets.yaml
+```
+
+**Node-Centric Approach**:
+- Materials → Shader Node Groups (NPR styles)
+- Effects → GP Modifiers (NOT Geometry Nodes - GP has its own modifier stack)
+- Compositing → Compositor Nodes
+
+---
+
+### Phase 21.1: Animation Integration (REQ-GP-02)
+**Priority**: P1 | **Est. Effort**: 2-3 days
+
+**Goal**: Integrate with existing lib/animation/ system.
+
+**Features**:
+- Weight painting for GP strokes
+- Bone rigging for GP objects
+- Pose library extension for GP frames
+- Onion skinning extension
+
+---
+
+### Phase 21.2: 2D/3D Hybrid (REQ-GP-03)
+**Priority**: P2 | **Est. Effort**: 2-3 days
+
+**Goal**: Utilities for hybrid 2D/3D workflows.
+
+**Features**:
+- Draw on mesh surface (UV space)
+- 3D to 2D projection for compositing
+- Cut-out character conversion
+- Compositor node integration
+
+---
+
+### Phase 21.3: Style Presets (REQ-GP-04)
+**Priority**: P2 | **Est. Effort**: 1-2 days
+
+**Goal**: NPR/Anime style presets with shader node groups.
+
+**Presets**:
+- Anime cel shading (`NPR_AnimeCel` node group)
+- Ghibli watercolor (`NPR_Ghibli` node group)
+- 90s anime aesthetic (`NPR_90sAnime` node group)
+
+---
+
+### Grease Pencil Summary
+
+| Phase | Requirements | Priority | Est. Days |
+|-------|-------------|----------|-----------|
+| 21.0 | GP-01 (Core Module) | P1 | 3-4 |
+| 21.1 | GP-02 (Animation Integration) | P1 | 2-3 |
+| 21.2 | GP-03 (2D/3D Hybrid) | P2 | 2-3 |
+| 21.3 | GP-04 (Style Presets) | P2 | 1-2 |
+
+**Total**: 8-12 days
+
+**Key Features**:
+- **Node-centric materials** - Shader node groups for NPR styles
+- **GP Modifiers** - NOT Geometry Nodes (GP has its own modifier stack: GP_BUILD, GP_NOISE, etc.)
+- **Stage Pipeline** - Universal Stage Order (Normalize → Primary → Secondary → Detail → Output)
+- **Determinism** - Seed-based reproducible generation
+- **Animation integration** - Connects to existing lib/animation/
+- **2D/3D hybrid** - Draw on surfaces, project to 2D
+- **Style presets** - Anime, Ghibli, 90s anime looks
+
+**Python Workflow**:
+Python configures GP modifiers and generates shader node graphs. Uses existing `NodeTreeBuilder` pattern from `lib/geometry_nodes/` for shader nodes only.
