@@ -17,6 +17,12 @@ from .lighting import (
     LightingConfig,
 )
 
+from .feedback import (
+    VisualFeedback,
+    MotionPolish,
+    FeedbackType,
+)
+
 __all__ = [
     # Materials
     "MaterialSystem",
@@ -26,4 +32,8 @@ __all__ = [
     "LightingSystem",
     "LightingPreset",
     "LightingConfig",
+    # Motion Polish
+    "VisualFeedback",
+    "MotionPolish",
+    "FeedbackType",
 ]
