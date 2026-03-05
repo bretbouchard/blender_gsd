@@ -78,7 +78,9 @@ class Arm:
         if self.physics_simulator is None:
             return self.base_position
 
-        segment_lengths = [seg.length for seg in self.segments]
+        # Use first n segment lengths (one per joint)
+        num_joints = len(self.joints.joints)
+        segment_lengths = [seg.length for seg in self.segments[:num_joints]]
 
         # Get local position from physics simulator
         local_pos = self.physics_simulator.calculate_end_effector_position(
@@ -120,7 +122,10 @@ class Arm:
             target_pos[2] - self.base_position[2]
         )
 
-        segment_lengths = [seg.length for seg in self.segments]
+        # Use first n segment lengths (one per joint)
+        # The arm has n joints and n+1 segments, but IK only needs n lengths
+        num_joints = len(self.joints.joints)
+        segment_lengths = [seg.length for seg in self.segments[:num_joints]]
         current_angles = self.joints.get_joint_angles()
 
         # Solve IK in local space
@@ -214,7 +219,9 @@ class Arm:
 
         # Get joint angles
         angles = self.joints.get_joint_angles()
-        segment_lengths = [seg.length for seg in self.segments]
+        # Use first n segment lengths (one per joint)
+        num_joints = len(self.joints.joints)
+        segment_lengths = [seg.length for seg in self.segments[:num_joints]]
 
         # Calculate positions using forward kinematics
         x, y, z = self.base_position
