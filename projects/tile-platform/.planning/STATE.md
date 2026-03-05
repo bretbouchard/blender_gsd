@@ -5,23 +5,23 @@
 See: .planning/PROJECT.md (updated 2026-03-04)
 
 **Core value:** A sleek brutalist mechanical platform that builds itself — high-end mecha precision engineering that grows and shrinks to follow a target.
-**Current focus:** Phase 3 - Arm Physics (Complete)
+**Current focus:** Phase 4 - Arm Constraints (Complete)
 
 ## Current Position
 
-Phase: 3 of 9 (Arm Physics) - COMPLETE
+Phase: 4 of 9 (Arm Constraints) - COMPLETE
 Plan: 2 of 2 in current phase
 Status: Phase complete
-Last activity: 2026-03-05 — Completed 03-02 arm assembly and controller
+Last activity: 2026-03-05 — Completed 04-02 integrated constraint solver
 
-Progress: [████░░░░░░] 67% (6/9 plans complete)
+Progress: [████░░░░░░] 78% (7/9 phases, 8/18 plans complete)
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 6
-- Average duration: 5.5 min
-- Total execution time: 0.55 hours
+- Total plans completed: 8
+- Average duration: 5.75 min
+- Total execution time: 0.77 hours
 
 **By Phase:**
 
@@ -30,9 +30,10 @@ Progress: [████░░░░░░] 67% (6/9 plans complete)
 | Platform Foundation | 2 | 11 min | 5.5 min |
 | Tile System | 2 | 11 min | 5.5 min |
 | Arm Physics | 2 | 11 min | 5.5 min |
+| Arm Constraints | 2 | 14 min | 7 min |
 
 **Recent Trend:**
-- Last 5 plans: 02-01 (8 min), 02-02 (3 min), 03-01 (5 min), 03-02 (6 min)
+- Last 5 plans: 02-02 (3 min), 03-01 (5 min), 03-02 (6 min), 04-01 (8 min), 04-02 (6 min)
 - Trend: Stable (consistent execution times)
 
 *Updated after each plan completion*
@@ -68,6 +69,13 @@ Recent decisions affecting current work:
 - [03-02]: Use first n segment lengths for kinematics (n joints, n+1 segments)
 - [03-02]: AABB intersection for collision detection (fast, simple)
 - [03-02]: Factory methods for standard arm configurations
+- [04-01]: Spring-damper model for constraint corrections (smooth, stable convergence)
+- [04-01]: Soft boundaries for joint limits (no hard stops, realistic feel)
+- [04-01]: Dual convergence criteria (position + velocity checks)
+- [04-01]: Standard joint presets (hinge, telescope, prismatic)
+- [04-02]: Composable architecture for constraint solver
+- [04-02]: State tracking for multi-step solving (positions, targets, velocities)
+- [04-02]: Dual convergence detection (instantaneous + historical)
 
 ### Pending Todos
 
@@ -84,9 +92,9 @@ None yet.
 ## Session Continuity
 
 Last session: 2026-03-05 (now)
-Stopped at: Phase 3 complete, ready for Phase 4 (Arm Constraints)
-Resume file: .planning/phases/04-arm-constraints/04-01-PLAN.md
+Stopped at: Phase 4 complete, ready for Phase 5 (Arm Folding)
+Resume file: .planning/phases/05-arm-folding/05-01-PLAN.md
 
 ---
 
-*Last updated: 2026-03-05 after 03-02 completion*
+*Last updated: 2026-03-05 after 04-02 completion*
