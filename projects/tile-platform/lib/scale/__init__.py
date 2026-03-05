@@ -12,8 +12,10 @@ Components:
 
 from .manager import ScaleManager
 from .allocator import TileAllocator
+from .optimizer import PerformanceOptimizer
 
 __all__ = [
     'ScaleManager',
     'TileAllocator',
+    'PerformanceOptimizer',
 ]
