@@ -9,6 +9,7 @@ Example usage:
         TargetReachConstraint,
         JointLimiter,
         JointLimitConfig,
+        ConstraintSolver,
         HINGE_PRESET,
         TELESCOPE_PRESET,
         PRISMATIC_PRESET
@@ -40,6 +41,15 @@ Example usage:
         current_angle=0.0,
         target_angle=1.8  # Will be clamped to ~1.57 for hinge
     )
+
+    # Create integrated constraint solver
+    solver = ConstraintSolver()
+    solver.set_arm_state(0, current_pos=(0.0, 0.0, 0.0))
+    solver.set_target(0, target_pos=(2.0, 0.0, 1.5))
+
+    # Solve for target
+    corrections = solver.solve_step(dt=0.016)
+    is_settled = solver.is_settled(0)
 """
 
 from .target_reach import TargetReachConstraint
@@ -50,6 +60,7 @@ from .limiters import (
     TELESCOPE_PRESET,
     PRISMATIC_PRESET
 )
+from .solver import ConstraintSolver
 
 __version__ = "0.1.0"
 
@@ -61,6 +72,8 @@ __all__ = [
     # Joint limiters
     "JointLimiter",
     "JointLimitConfig",
+    # Integrated solver
+    "ConstraintSolver",
     # Presets
     "HINGE_PRESET",
     "TELESCOPE_PRESET",
