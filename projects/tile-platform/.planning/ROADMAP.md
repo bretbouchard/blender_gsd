@@ -20,7 +20,20 @@ Decimal phases appear between their surrounding integers in numeric order.
 - [ ] **Phase 6: Unlimited Scale** - Procedural generation at unlimited extent
 - [ ] **Phase 7: Automated Following** - Platform follows paths/characters/objects
 - [ ] **Phase 8: Export Pipeline** - Dual export for game engines and Blender renders
-- [ ] **Phase 9: Visual Polish** - Sleek brutalist mecha precision aesthetics
+- [x] **Phase 9: Visual Polish** - Sleek brutalist mecha precision aesthetics ✓ COMPLETE
+
+---
+## GN Migration Phases (Phase 10-14)
+
+*Added after Council of Ricks review identified architectural misalignment with intended Geometry Nodes stack.*
+
+- [ ] **Phase 10: GN Foundation Migration** - Migrate Platform/Tile to Geometry Nodes
+- [ ] **Phase 11: GN Arm System Migration** - Migrate arm physics to SimulationBuilder
+- [ ] **Phase 12: GN Scale & Following Migration** - Migrate procedural generation and tracking
+- [ ] **Phase 13: GN Export & Polish Integration** - Complete GN pipeline integration
+- [ ] **Phase 14: Hybrid Mode & Deprecation** - Runtime mode selection, documentation, deprecation
+
+---
 
 ## Phase Details
 
@@ -147,26 +160,99 @@ Plans:
   4. Motion has satisfying weight and mechanical authenticity
 
 Plans:
-- [ ] 09-01-PLAN.md - Create visual polish system for sleek brutalist mecha aesthetic
-- [ ] 09-02-PLAN.md - Create motion polish system for satisfying mechanical feedback
+- [x] 09-01-PLAN.md - Create visual polish system for sleek brutalist mecha aesthetic ✓
+- [x] 09-02-PLAN.md - Create motion polish system for satisfying mechanical feedback ✓
+
+### Phase 10: GN Foundation Migration
+**Goal**: Migrate platform and tile systems to proper Geometry Nodes architecture
+**Depends on**: Phase 9
+**Requirements**: GN-01
+**Success Criteria** (what must be TRUE):
+  1. Platform geometry is generated via Geometry Nodes, not Python
+  2. NodeTreeBuilder is used for all node tree creation
+  3. InstanceController handles tile distribution
+  4. Named attributes store masks for shader access
+  5. Parity testing validates Python vs GN outputs match
+
+Plans:
+- [ ] 10-01-PLAN.md - Create GN platform package with PlatformGN, TileGN, GNValidator
+
+### Phase 11: GN Arm System Migration
+**Goal**: Migrate arm physics to SimulationBuilder zones
+**Depends on**: Phase 10
+**Requirements**: GN-02
+**Success Criteria** (what must be TRUE):
+  1. Arm physics uses SimulationBuilder zones
+  2. Multi-joint state is stored in simulation state variables
+  3. Constraints are enforced via GN math nodes
+  4. Target reach is guaranteed within tolerance
+
+Plans:
+- [ ] 11-01-PLAN.md - Create PhysicsGN and ArmGN using SimulationBuilder
+
+### Phase 12: GN Scale & Following Migration
+**Goal**: Migrate procedural generation and following to GN
+**Depends on**: Phase 11
+**Requirements**: GN-03
+**Success Criteria** (what must be TRUE):
+  1. Procedural generation uses GN simulation zones
+  2. Path following is implemented in GN
+  3. System handles unlimited scale efficiently
+
+Plans:
+- [ ] 12-01-PLAN.md - Create ScaleGN and FollowingGN for procedural systems
+
+### Phase 13: GN Export & Polish Integration
+**Goal**: Complete GN pipeline with export and validation
+**Depends on**: Phase 12
+**Requirements**: GN-04
+**Success Criteria** (what must be TRUE):
+  1. GN output integrates with export pipeline
+  2. Materials use named attributes from GN
+  3. Performance is optimized for real-time
+  4. Python vs GN parity is validated
+
+Plans:
+- [ ] 13-01-PLAN.md - Create ExportGN, MaterialGN, final parity validation
+
+### Phase 14: Hybrid Mode & Deprecation
+**Goal**: Provide smooth transition path from Python to GN
+**Depends on**: Phase 13
+**Requirements**: GN-05
+**Success Criteria** (what must be TRUE):
+  1. Hybrid mode allows Python OR GN selection at runtime
+  2. Migration guide documents the GN API
+  3. Deprecation warnings guide users to GN
+  4. Python reference is archived but accessible
+
+Plans:
+- [ ] 14-01-PLAN.md - Create hybrid dispatcher, compatibility layer, migration guide
 
 ## Progress
 
 **Execution Order:**
-Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7 → 8 → 9
+Phases 1-9: ✓ COMPLETE (Pure Python implementation)
+Phases 10-14: GN Migration (In Progress)
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Platform Foundation | 0/2 | Not started | - |
-| 2. Tile System | 0/2 | Not started | - |
-| 3. Arm Physics | 0/2 | Not started | - |
-| 4. Arm Constraints | 0/2 | Not started | - |
-| 5. Arm Folding | 0/2 | Not started | - |
-| 6. Unlimited Scale | 0/2 | Not started | - |
-| 7. Automated Following | 0/2 | Not started | - |
-| 8. Export Pipeline | 0/2 | Not started | - |
-| 9. Visual Polish | 0/2 | Not started | - |
+| 1. Platform Foundation | 2/2 | ✓ Complete | 2026-03-05 |
+| 2. Tile System | 2/2 | ✓ Complete | 2026-03-05 |
+| 3. Arm Physics | 2/2 | ✓ Complete | 2026-03-05 |
+| 4. Arm Constraints | 2/2 | ✓ Complete | 2026-03-05 |
+| 5. Arm Folding | 2/2 | ✓ Complete | 2026-03-05 |
+| 6. Unlimited Scale | 2/2 | ✓ Complete | 2026-03-05 |
+| 7. Automated Following | 2/2 | ✓ Complete | 2026-03-05 |
+| 8. Export Pipeline | 2/2 | ✓ Complete | 2026-03-05 |
+| 9. Visual Polish | 2/2 | ✓ Complete | 2026-03-05 |
+| **10. GN Foundation** | 0/1 | Not started | - |
+| **11. GN Arms** | 0/1 | Not started | - |
+| **12. GN Scale/Follow** | 0/1 | Not started | - |
+| **13. GN Export/Polish** | 0/1 | Not started | - |
+| **14. Hybrid/Deprecation** | 0/1 | Not started | - |
+
+**Baseline Tag:** `v1.0-python-stable`
 
 ---
 
-*Last updated: 2026-03-04 after phase planning*
+*Last updated: 2026-03-05 after Council of Ricks review and migration planning*
