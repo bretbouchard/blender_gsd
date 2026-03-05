@@ -5,23 +5,23 @@
 See: .planning/PROJECT.md (updated 2026-03-04)
 
 **Core value:** A sleek brutalist mechanical platform that builds itself — high-end mecha precision engineering that grows and shrinks to follow a target.
-**Current focus:** Phase 7 - Automated Following (Complete)
+**Current focus:** Phase 8 - Export Pipeline (Complete)
 
 ## Current Position
 
-Phase: 7 of 9 (Automated Following) - COMPLETE
+Phase: 8 of 9 (Export Pipeline) - COMPLETE
 Plan: 2 of 2 in current phase
 Status: Phase complete
-Last activity: 2026-03-05 — Completed 07-02 predictive placement
+Last activity: 2026-03-05 — Completed 08-02 render pipeline
 
-Progress: [███████░░░] 78% (7/9 phases, 14/18 plans complete)
+Progress: [████████░░] 89% (8/9 phases, 16/18 plans complete)
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 14
-- Average duration: 4.3 min
-- Total execution time: 1.0 hours
+- Total plans completed: 16
+- Average duration: 4.1 min
+- Total execution time: 1.1 hours
 
 **By Phase:**
 
@@ -34,10 +34,11 @@ Progress: [███████░░░] 78% (7/9 phases, 14/18 plans complete
 | Arm Folding | 2 | 5 min | 2.5 min |
 | Unlimited Scale | 2 | 4 min | 2.0 min |
 | Automated Following | 2 | 5 min | 2.5 min |
+| Export Pipeline | 2 | 8 min | 4.0 min |
 
 **Recent Trend:**
-- Last 5 plans: 05-02 (2 min), 06-01 (2.3 min), 06-02 (1.7 min), 07-01 (3 min), 07-02 (2 min)
-- Trend: Improving (faster execution with accumulated context)
+- Last 5 plans: 06-02 (1.7 min), 07-01 (3 min), 07-02 (2 min), 08-01 (5 min), 08-02 (3 min)
+- Trend: Stable (consistent execution times)
 
 *Updated after each plan completion*
 
@@ -104,6 +105,14 @@ Recent decisions affecting current work:
 - [07-02]: Buffer distance of 2 tiles around predicted path
 - [07-02]: Learning from actual placements to improve accuracy
 - [07-02]: Confidence-based filtering for uncertain predictions
+- [08-01]: Separate exporters for FBX (Unity) and glTF (Unreal)
+- [08-01]: Draco compression enabled by default for glTF
+- [08-01]: 4 bones per armature (Unity recommendation)
+- [08-01]: Factory functions for common export configurations
+- [08-02]: Support both Cycles and Eevee render engines
+- [08-02]: Motion blur, DoF, AO as optional features
+- [08-02]: Factory functions for preview/production/4K presets
+- [08-02]: Render statistics tracking for performance analysis
 
 ### Pending Todos
 
@@ -120,9 +129,9 @@ None yet.
 ## Session Continuity
 
 Last session: 2026-03-05 (now)
-Stopped at: Phase 7 complete, ready for Phase 8 (Export Pipeline)
-Resume file: .planning/phases/08-export-pipeline/08-01-PLAN.md
+Stopped at: Phase 8 complete, ready for Phase 9 (Visual Polish)
+Resume file: .planning/phases/09-visual-polish/09-01-PLAN.md
 
 ---
 
-*Last updated: 2026-03-05 after 07-02 completion*
+*Last updated: 2026-03-05 after 08-02 completion*
