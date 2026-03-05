@@ -5,23 +5,23 @@
 See: .planning/PROJECT.md (updated 2026-03-04)
 
 **Core value:** A sleek brutalist mechanical platform that builds itself — high-end mecha precision engineering that grows and shrinks to follow a target.
-**Current focus:** Phase 4 - Arm Constraints (Complete)
+**Current focus:** Phase 5 - Arm Folding (Complete)
 
 ## Current Position
 
-Phase: 4 of 9 (Arm Constraints) - COMPLETE
+Phase: 5 of 9 (Arm Folding) - COMPLETE
 Plan: 2 of 2 in current phase
 Status: Phase complete
-Last activity: 2026-03-05 — Completed 04-02 integrated constraint solver
+Last activity: 2026-03-05 — Completed 05-02 folding controller integration
 
-Progress: [████░░░░░░] 78% (7/9 phases, 8/18 plans complete)
+Progress: [█████░░░░░] 83% (5/9 phases, 10/18 plans complete)
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 8
-- Average duration: 5.75 min
-- Total execution time: 0.77 hours
+- Total plans completed: 10
+- Average duration: 5.6 min
+- Total execution time: 0.93 hours
 
 **By Phase:**
 
@@ -31,10 +31,11 @@ Progress: [████░░░░░░] 78% (7/9 phases, 8/18 plans complete)
 | Tile System | 2 | 11 min | 5.5 min |
 | Arm Physics | 2 | 11 min | 5.5 min |
 | Arm Constraints | 2 | 14 min | 7 min |
+| Arm Folding | 2 | 5 min | 2.5 min |
 
 **Recent Trend:**
-- Last 5 plans: 02-02 (3 min), 03-01 (5 min), 03-02 (6 min), 04-01 (8 min), 04-02 (6 min)
-- Trend: Stable (consistent execution times)
+- Last 5 plans: 03-02 (6 min), 04-01 (8 min), 04-02 (6 min), 05-01 (3 min), 05-02 (2 min)
+- Trend: Improving (faster execution with accumulated context)
 
 *Updated after each plan completion*
 
@@ -76,6 +77,14 @@ Recent decisions affecting current work:
 - [04-02]: Composable architecture for constraint solver
 - [04-02]: State tracking for multi-step solving (positions, targets, velocities)
 - [04-02]: Dual convergence detection (instantaneous + historical)
+- [05-01]: Enum for pose states (type-safe state management)
+- [05-01]: Separate config and pose classes (SRP)
+- [05-01]: Three easing functions (balance of options vs complexity)
+- [05-01]: Easing function registry (extensible, string-based selection)
+- [05-02]: String-based status (simple, readable for 4 states)
+- [05-02]: Bidirectional mapping (fast lookup both directions)
+- [05-02]: State validation in handlers (fail early, clear errors)
+- [05-02]: Controller owns state (centralized state management)
 
 ### Pending Todos
 
@@ -92,9 +101,9 @@ None yet.
 ## Session Continuity
 
 Last session: 2026-03-05 (now)
-Stopped at: Phase 4 complete, ready for Phase 5 (Arm Folding)
-Resume file: .planning/phases/05-arm-folding/05-01-PLAN.md
+Stopped at: Phase 5 complete, ready for Phase 6 (Unlimited Scale)
+Resume file: .planning/phases/06-unlimited-scale/06-01-PLAN.md
 
 ---
 
-*Last updated: 2026-03-05 after 04-02 completion*
+*Last updated: 2026-03-05 after 05-02 completion*
